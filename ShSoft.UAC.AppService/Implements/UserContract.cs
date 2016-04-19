@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using ShSoft.Framework2015.Infrastructure.ValueObjects.Enums;
 using ShSoft.Framework2016.Common.PoweredByLee;
 using ShSoft.Framework2016.Infrastructure.Global.Transaction;
 using ShSoft.Framework2016.Infrastructure.IDTO;
@@ -255,29 +254,7 @@ namespace ShSoft.UAC.AppService.Implements
         }
         #endregion
 
-        #region # 登录 —— Guid Login(string loginId, string password)
-        /// <summary>
-        /// 登录
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <param name="password">密码</param>
-        /// <returns>公钥</returns>
-        public Guid Login(string loginId, string password)
-        {
-            //验证
-            Assert.IsTrue(this._repMediator.UserRep.Exists(loginId), string.Format("用户名\"{0}\"不存在！", loginId));
-
-            User currentUser = this._unitOfWork.Resolve<User>(loginId);
-            currentUser.Login(password);
-
-            //TODO 生成公钥
-            Guid publicKey = Guid.NewGuid();
-
-            return publicKey;
-        }
-        #endregion
-
-
+   
         #region # 创建角色 —— Guid CreateRole(string systemNo, string roleName...
         /// <summary>
         /// 创建角色

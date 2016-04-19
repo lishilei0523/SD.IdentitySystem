@@ -60,6 +60,7 @@
     <Compile Include="DTOs\Outputs\RoleInfo.cs" />
     <Compile Include="DTOs\Outputs\UserInfo.cs" />
     <Compile Include="Interfaces\IAuthorizationContract.cs" />
+    <Compile Include="Interfaces\IAuthenticationContract.cs" />
     <Compile Include="Interfaces\IUserContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

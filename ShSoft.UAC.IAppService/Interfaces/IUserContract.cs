@@ -120,17 +120,6 @@ namespace ShSoft.UAC.IAppService.Interfaces
         void AppendRoles(string loginId, string systemNo, IEnumerable<Guid> roleIds);
         #endregion
 
-        #region # 登录 —— Guid Login(string loginId, string password)
-        /// <summary>
-        /// 登录
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <param name="password">密码</param>
-        /// <returns>公钥</returns>
-        [OperationContract]
-        Guid Login(string loginId, string password);
-        #endregion
-
 
         #region # 创建角色 —— Guid CreateRole(string systemNo, string roleName...
         /// <summary>

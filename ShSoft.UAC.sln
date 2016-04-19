@@ -38,6 +38,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShSoft.UAC.DomainEventStore
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShSoft.UAC.Repository", "ShSoft.UAC.Repository\ShSoft.UAC.Repository.csproj", "{33F75AC9-F2CC-4117-A04D-E701EF897924}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShSoft.UAC.WcfAuthentication.Client", "ShSoft.UAC.WcfAuthentication.Client\ShSoft.UAC.WcfAuthentication.Client.csproj", "{FA4CA095-26A0-4E6F-B297-D98115A577D7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ShSoft.UAC.WcfAuthentication.Server", "ShSoft.UAC.WcfAuthentication.Server\ShSoft.UAC.WcfAuthentication.Server.csproj", "{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -76,6 +80,14 @@ Global
 		{33F75AC9-F2CC-4117-A04D-E701EF897924}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{33F75AC9-F2CC-4117-A04D-E701EF897924}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{33F75AC9-F2CC-4117-A04D-E701EF897924}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FA4CA095-26A0-4E6F-B297-D98115A577D7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FA4CA095-26A0-4E6F-B297-D98115A577D7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FA4CA095-26A0-4E6F-B297-D98115A577D7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FA4CA095-26A0-4E6F-B297-D98115A577D7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,5 +101,7 @@ Global
 		{DE59EC3B-2E0C-41E4-B0F2-F4530E650E1D} = {E1405A60-894A-48A4-996A-DC23F5487281}
 		{656D4E6F-A104-44D9-BD93-1E128ED79AC0} = {E1405A60-894A-48A4-996A-DC23F5487281}
 		{33F75AC9-F2CC-4117-A04D-E701EF897924} = {736BB2F7-0FF7-4CAD-9713-BB82C3EDF7D1}
+		{FA4CA095-26A0-4E6F-B297-D98115A577D7} = {1EB52F7A-C987-40D7-A079-05F819312D46}
+		{55E99FFF-1BCC-423F-B945-931A4F2BF2D3} = {1EB52F7A-C987-40D7-A079-05F819312D46}
 	EndGlobalSection
 EndGlobal

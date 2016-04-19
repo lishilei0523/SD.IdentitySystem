@@ -140,6 +140,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Global.asax" />
+    <Content Include="Hosts\AuthenticationContract.svc" />
     <Content Include="Hosts\UserContract.svc" />
     <Content Include="Hosts\AuthorizationContract.svc" />
     <Content Include="Web.config">
@@ -151,6 +152,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Implements\AuthorizationContract.cs" />
+    <Compile Include="Implements\AuthenticationContract.cs" />
     <Compile Include="Implements\UserContract.cs" />
     <Compile Include="Maps\AuthorizationMap.cs" />
     <Compile Include="Maps\UserMap.cs" />

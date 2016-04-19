@@ -39,17 +39,14 @@
       </wsHttpBinding>
     </bindings>
     <client>
-      <!--人资服务契约配置-->
-      <endpoint address="http://localhost:8000/11SupplierHR_WcfHost/Hosts/HumanResourceContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="ShSoft.UAC.IAppService.Interfaces.IHumanResourceContract" name="ShSoft.UAC.IAppService.Interfaces.IHumanResourceContract">
+      <!--身份认证服务契约配置-->
+      <endpoint address="http://localhost:8000/11SupplierHR_WcfHost/Hosts/AuthenticationContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="ShSoft.UAC.IAppService.Interfaces.IAuthenticationContract" name="ShSoft.UAC.IAppService.Interfaces.IAuthenticationContract">
       </endpoint>
       <!--用户服务契约配置-->
       <endpoint address="http://localhost:8000/11SupplierHR_WcfHost/Hosts/UserContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="ShSoft.UAC.IAppService.Interfaces.IUserContract" name="ShSoft.UAC.IAppService.Interfaces.IUserContract">
       </endpoint>
       <!--权限服务契约配置-->
       <endpoint address="http://localhost:8000/11SupplierHR_WcfHost/Hosts/AuthorizationContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="ShSoft.UAC.IAppService.Interfaces.IAuthorizationContract" name="ShSoft.UAC.IAppService.Interfaces.IAuthorizationContract">
-      </endpoint>
-      <!--For供应商子系统服务契约配置-->
-      <endpoint address="http://localhost:8000/11SupplierHR_WcfHost/Hosts/ForSupplierContract.svc" binding="wsHttpBinding" bindingConfiguration="TransactionBinding" contract="ShSoft.UAC.IAppService.Interfaces.IForSupplierContract" name="ShSoft.UAC.IAppService.Interfaces.IForSupplierContract">
       </endpoint>
     </client>
   </system.serviceModel>
