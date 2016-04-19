@@ -1,0 +1,44 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="ShSoft.UAC.Domain.Entities.Menu">
+    <Position X="4.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAECAAAABBAAAEAAAAAAAAAAACQAAAAEQAAA=</HashCode>
+      <FileName>Entities\Menu.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="ShSoft.UAC.Domain.Entities.InfoSystemKind">
+    <Position X="0.5" Y="1.75" Width="1.5" />
+    <AssociationLine Name="Menus" Type="ShSoft.UAC.Domain.Entities.Menu" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.375" Y="1.75" />
+        <Point X="1.375" Y="1.062" />
+        <Point X="4.25" Y="1.062" />
+      </Path>
+    </AssociationLine>
+    <AssociationLine Name="Authorities" Type="ShSoft.UAC.Domain.Entities.Authority" FixedFromPoint="true" FixedToPoint="true">
+      <Path>
+        <Point X="1.438" Y="5.078" />
+        <Point X="1.438" Y="6.714" />
+        <Point X="4.25" Y="6.714" />
+      </Path>
+    </AssociationLine>
+    <TypeIdentifier>
+      <HashCode>AAEAAQAAARAAAAgBAAAAAAABAAECBAAAAAAAAAAAACI=</HashCode>
+      <FileName>Entities\InfoSystemKind.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Menus" />
+      <Property Name="Authorities" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="ShSoft.UAC.Domain.Entities.Authority">
+    <Position X="4.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAECgAAAABIAAAAMCAgAAoEAAAAACAAAAJAA=</HashCode>
+      <FileName>Entities\Authority.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>

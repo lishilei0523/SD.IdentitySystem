@@ -1,0 +1,56 @@
+﻿<configuration>
+  <configSections>
+    <!--依赖注入提供者配置节点-->
+    <section name="injectionProviderConfiguration" type="SD.IOC.Core.Configuration.InjectionProviderConfiguration,SD.IOC.Core" />
+    <!--依赖注入注册配置节点-->
+    <section name="injectionRegisterConfiguration" type="SD.IOC.Core.Configuration.InjectionRegisterConfiguration,SD.IOC.Core" />
+  </configSections>
+  <!--依赖注入提供者配置，默认采用Autofac-->
+  <injectionProviderConfiguration type="SD.IOC.Core.AutofacProvider.AutofacInstanceResolver" assembly="SD.IOC.Core" />
+  <!--依赖注入注册配置-->
+  <injectionRegisterConfiguration>
+    <wcfInterfaces>
+      <assembly name="ShSoft.UAC.IAppService" />
+    </wcfInterfaces>
+  </injectionRegisterConfiguration>
+  <system.serviceModel>
+    <bindings>
+      <wsHttpBinding>
+        <binding name="DefaultBinding" maxBufferPoolSize="2147483647" maxReceivedMessageSize="2147483647" closeTimeout="00:10:00" openTimeout="00:10:00" receiveTimeout="00:10:00" sendTimeout="00:10:00">
+          <security mode="None">
+            <transport clientCredentialType="None" />
+            <message clientCredentialType="None" />
+          </security>
+        </binding>
+        <binding name="TransactionBinding" transactionFlow="true" maxBufferPoolSize="2147483647" maxReceivedMessageSize="2147483647" closeTimeout="00:10:00" openTimeout="00:10:00" receiveTimeout="00:10:00" sendTimeout="00:10:00">
+          <security mode="None">
+            <transport clientCredentialType="None" />
+            <message clientCredentialType="None" />
+          </security>
+          <reliableSession enabled="true" ordered="true" inactivityTimeout="00:10:00" />
+        </binding>
+        <binding name="NotReliableSessionBinding" transactionFlow="true" maxBufferPoolSize="2147483647" maxReceivedMessageSize="2147483647" closeTimeout="00:10:00" openTimeout="00:10:00" receiveTimeout="00:10:00" sendTimeout="00:10:00">
+          <security mode="None">
+            <transport clientCredentialType="None" />
+            <message clientCredentialType="None" />
+          </security>
+          <reliableSession enabled="false" />
+        </binding>
+      </wsHttpBinding>
+    </bindings>
+    <client>
+      <!--人资服务契约配置-->
+      <endpoint address="http://localhost:8000/11SupplierHR_WcfHost/Hosts/HumanResourceContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="ShSoft.UAC.IAppService.Interfaces.IHumanResourceContract" name="ShSoft.UAC.IAppService.Interfaces.IHumanResourceContract">
+      </endpoint>
+      <!--用户服务契约配置-->
+      <endpoint address="http://localhost:8000/11SupplierHR_WcfHost/Hosts/UserContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="ShSoft.UAC.IAppService.Interfaces.IUserContract" name="ShSoft.UAC.IAppService.Interfaces.IUserContract">
+      </endpoint>
+      <!--权限服务契约配置-->
+      <endpoint address="http://localhost:8000/11SupplierHR_WcfHost/Hosts/AuthorizationContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="ShSoft.UAC.IAppService.Interfaces.IAuthorizationContract" name="ShSoft.UAC.IAppService.Interfaces.IAuthorizationContract">
+      </endpoint>
+      <!--For供应商子系统服务契约配置-->
+      <endpoint address="http://localhost:8000/11SupplierHR_WcfHost/Hosts/ForSupplierContract.svc" binding="wsHttpBinding" bindingConfiguration="TransactionBinding" contract="ShSoft.UAC.IAppService.Interfaces.IForSupplierContract" name="ShSoft.UAC.IAppService.Interfaces.IForSupplierContract">
+      </endpoint>
+    </client>
+  </system.serviceModel>
+</configuration>
