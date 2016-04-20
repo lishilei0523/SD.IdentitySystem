@@ -4,7 +4,6 @@ using System.Linq;
 using System.ServiceModel;
 using ShSoft.Framework2016.Infrastructure.Global.Transaction;
 using ShSoft.Framework2016.Infrastructure.IDTO;
-using ShSoft.Framework2016.Infrastructure.WCF.IOC;
 using ShSoft.UAC.AppService.Maps;
 using ShSoft.UAC.Domain.Entities;
 using ShSoft.UAC.Domain.IRepositories;
@@ -19,7 +18,6 @@ namespace ShSoft.UAC.AppService.Implements
     /// 权限服务契约实现
     /// </summary>
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
-    [IocServiceBehavior]
     public class AuthorizationContract : IAuthorizationContract
     {
         #region # 字段及依赖注入构造器

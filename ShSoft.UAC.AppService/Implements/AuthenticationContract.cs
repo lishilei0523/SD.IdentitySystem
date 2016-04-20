@@ -1,7 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
 using ShSoft.Framework2016.Common.PoweredByLee;
-using ShSoft.Framework2016.Infrastructure.WCF.IOC;
 using ShSoft.UAC.Domain.Entities;
 using ShSoft.UAC.Domain.IRepositories;
 using ShSoft.UAC.Domain.Mediators;
@@ -13,7 +12,6 @@ namespace ShSoft.UAC.AppService.Implements
     /// 身份认证服务契约实现
     /// </summary>
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
-    [IocServiceBehavior]
     public class AuthenticationContract : IAuthenticationContract
     {
         #region # 字段及依赖注入构造器
@@ -67,6 +65,20 @@ namespace ShSoft.UAC.AppService.Implements
             Guid publicKey = Guid.NewGuid();
 
             return publicKey;
+        }
+        #endregion
+
+        #region # 认证 —— bool Authenticate(Guid publicKey)
+        /// <summary>
+        /// 认证
+        /// </summary>
+        /// <param name="publicKey">公钥</param>
+        /// <returns>是否通过</returns>
+        public bool Authenticate(Guid publicKey)
+        {
+            //TODO 以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
+
+            return true;
         }
         #endregion
     }

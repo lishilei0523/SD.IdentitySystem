@@ -113,8 +113,8 @@
       <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.Global.1.0.2\lib\net45\ShSoft.Framework2016.Infrastructure.Global.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2016.Infrastructure.WCF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.WCF.1.0.4\lib\net45\ShSoft.Framework2016.Infrastructure.WCF.dll</HintPath>
+    <Reference Include="ShSoft.Framework2016.Infrastructure.WCF.IOC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.WCF.IOC.1.0.0\lib\net45\ShSoft.Framework2016.Infrastructure.WCF.IOC.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.IdentityModel" />
