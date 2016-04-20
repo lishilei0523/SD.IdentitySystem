@@ -1,0 +1,10 @@
+﻿<configuration>
+  <system.serviceModel>
+    <extensions>
+      <behaviorExtensions>
+        <!--WCF客户端身份认证扩展配置-->
+        <add name="ClientAuthentication" type="ShSoft.UAC.WcfAuthentication.Client.AuthenticationBehaviorElement, ShSoft.UAC.WcfAuthentication.Client"/>
+      </behaviorExtensions>
+    </extensions>
+  </system.serviceModel>
+</configuration>
