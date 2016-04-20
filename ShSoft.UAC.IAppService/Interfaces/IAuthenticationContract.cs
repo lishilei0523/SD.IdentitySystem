@@ -20,5 +20,15 @@ namespace ShSoft.UAC.IAppService.Interfaces
         [OperationContract]
         Guid Login(string loginId, string password);
         #endregion
+
+        #region # 认证 —— bool Authenticate(Guid publicKey)
+        /// <summary>
+        /// 认证
+        /// </summary>
+        /// <param name="publicKey">公钥</param>
+        /// <returns>是否通过</returns>
+        [OperationContract]
+        bool Authenticate(Guid publicKey);
+        #endregion
     }
 }
