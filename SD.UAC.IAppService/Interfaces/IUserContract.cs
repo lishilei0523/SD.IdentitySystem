@@ -179,6 +179,18 @@ namespace SD.UAC.IAppService.Interfaces
         InfoSystemInfo GetInfoSystem(string systemNo);
         #endregion
 
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId...
+        /// <summary>
+        /// 获取信息系统列表
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <returns>信息系统列表</returns>
+        [OperationContract]
+        IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId, string systemKindNo);
+        #endregion
+
+
         #region # 获取用户 —— UserInfo GetUser(string loginId)
         /// <summary>
         /// 获取用户
@@ -201,6 +213,17 @@ namespace SD.UAC.IAppService.Interfaces
         [OperationContract]
         PageModel<UserInfo> GetUsersByPage(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
+
+        #region # 是否存在用户 —— bool ExistUser(string loginId)
+        /// <summary>
+        /// 是否存在用户
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <returns>是否存在</returns>
+        [OperationContract]
+        bool ExistUser(string loginId);
+        #endregion
+
 
         #region # 获取角色 —— RoleInfo GetRole(string systemNo, Guid roleId)
         /// <summary>
@@ -236,48 +259,6 @@ namespace SD.UAC.IAppService.Interfaces
         PageModel<RoleInfo> GetRolesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
 
-        #region # 获取菜单树 —— IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo)
-        /// <summary>
-        /// 获取菜单树
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <param name="systemNo">信息系统编号</param>
-        [OperationContract]
-        IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo);
-        #endregion
-
-        #region # 获取用户权限集 —— IEnumerable<AuthorityInfo> GetAuthorities(string loginId...
-        /// <summary>
-        /// 获取用户权限集
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限集</returns>
-        [OperationContract]
-        IEnumerable<AuthorityInfo> GetAuthorities(string loginId, string systemNo);
-        #endregion
-
-        #region # 获取信息系统集 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId...
-        /// <summary>
-        /// 获取信息系统集
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <returns>信息系统集</returns>
-        [OperationContract]
-        IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId, string systemKindNo);
-        #endregion
-
-        #region # 是否存在用户 —— bool ExistUser(string loginId)
-        /// <summary>
-        /// 是否存在用户
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <returns>是否存在</returns>
-        [OperationContract]
-        bool ExistUser(string loginId);
-        #endregion
-
         #region # 是否存在角色 —— bool ExistsRole(string systemNo, Guid? roleId, string roleName)
         /// <summary>
         /// 是否存在角色
@@ -288,6 +269,28 @@ namespace SD.UAC.IAppService.Interfaces
         /// <returns>是否存在</returns>
         [OperationContract]
         bool ExistsRole(string systemNo, Guid? roleId, string roleName);
+        #endregion
+
+
+        #region # 获取菜单树 —— IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo)
+        /// <summary>
+        /// 获取菜单树
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        [OperationContract]
+        IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo);
+        #endregion
+
+        #region # 获取用户权限列表 —— IEnumerable<AuthorityInfo> GetAuthorities(string loginId...
+        /// <summary>
+        /// 获取用户权限列表
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>权限列表</returns>
+        [OperationContract]
+        IEnumerable<AuthorityInfo> GetAuthorities(string loginId, string systemNo);
         #endregion
     }
 }

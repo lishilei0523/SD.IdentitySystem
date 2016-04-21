@@ -12,13 +12,8 @@ namespace SD.UAC.Common
         public const string WcfAuthHeaderName = "WcfAuthHeaderName";
 
         /// <summary>
-        /// WCF身份认证消息头Ns
+        /// WCF身份认证消息头命名空间
         /// </summary>
-        public const string WcfAuthHeaderNs = "WcfAuthHeaderNs";
-
-        /// <summary>
-        /// 应用程序类型AppSetting键
-        /// </summary>
-        public const string AppTypeAppSettingKey = "AppType";
+        public const string WcfAuthHeaderNamespace = "WcfAuthHeaderNamespace";
     }
 }

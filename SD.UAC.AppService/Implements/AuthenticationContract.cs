@@ -1,5 +1,7 @@
 ﻿using System;
 using System.ServiceModel;
+using SD.CacheManager.Mediator;
+using SD.UAC.Common.CustomExceptions;
 using SD.UAC.Domain.Entities;
 using SD.UAC.Domain.IRepositories;
 using SD.UAC.Domain.Mediators;
@@ -61,24 +63,32 @@ namespace SD.UAC.AppService.Implements
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
             currentUser.Login(password);
 
-            //TODO 生成公钥，以公钥为键，用户信息为值，存入分布式缓存
+            //生成公钥，以公钥为键，用户信息为值，存入分布式缓存
             Guid publicKey = Guid.NewGuid();
+            CacheMediator.Set(publicKey.ToString(), loginId, DateTime.Now.AddMinutes(20));
 
             return publicKey;
         }
         #endregion
 
-        #region # 认证 —— bool Authenticate(Guid publicKey)
+        #region # 认证 —— void Authenticate(Guid publicKey)
         /// <summary>
         /// 认证
         /// </summary>
         /// <param name="publicKey">公钥</param>
         /// <returns>是否通过</returns>
-        public bool Authenticate(Guid publicKey)
+        public void Authenticate(Guid publicKey)
         {
-            //TODO 以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
+            //以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
+            object userInfo = CacheMediator.Get<object>(publicKey.ToString());
 
-            return true;
+            if (userInfo == null)
+            {
+                throw new NoPermissionException("公钥失效，请重新登录！");
+            }
+
+            //通过后，重新设置缓存过期时间为20分钟
+            CacheMediator.Set(publicKey.ToString(), userInfo, DateTime.Now.AddMinutes(20));
         }
         #endregion
     }

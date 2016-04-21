@@ -77,6 +77,14 @@
       <HintPath>..\packages\SD.AOP.Core.1.0.1\lib\net45\SD.AOP.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SD.CacheManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SD.CacheManager.1.0.1\lib\net45\SD.CacheManager.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.CacheManager.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SD.CacheManager.Redis.1.0.0.0\lib\net45\SD.CacheManager.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SD.IOC.Core.1.0.1\lib\net45\SD.IOC.Core.dll</HintPath>
       <Private>True</Private>
@@ -87,6 +95,22 @@
     </Reference>
     <Reference Include="SD.Toolkits.CommonLibraries, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SD.Toolkits.CommonLibraries.1.0.0\lib\net45\SD.Toolkits.CommonLibraries.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.4.0.40\lib\net40\ServiceStack.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Interfaces.4.0.40\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Redis, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Redis.4.0.40\lib\net40\ServiceStack.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Text, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.0.40\lib\net40\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Framework2015.Infrastructure.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -169,6 +193,10 @@
     </None>
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SD.UAC.Common\SD.UAC.Common.csproj">
+      <Project>{2219ff8e-0870-4922-8d68-1e9497dd285d}</Project>
+      <Name>SD.UAC.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SD.UAC.DomainEventHandler\SD.UAC.DomainEventHandler.csproj">
       <Project>{de59ec3b-2e0c-41e4-b0f2-f4530e650e1d}</Project>
       <Name>SD.UAC.DomainEventHandler</Name>

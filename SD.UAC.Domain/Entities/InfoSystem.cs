@@ -115,8 +115,6 @@ namespace SD.UAC.Domain.Entities
         /// <param name="loginId">登录名</param>
         public void SetAdmin(string loginId)
         {
-            //TODO 更多验证
-
             #region # 验证参数
 
             if (string.IsNullOrWhiteSpace(loginId))

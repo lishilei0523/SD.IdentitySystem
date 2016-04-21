@@ -44,17 +44,17 @@ namespace SD.UAC.IAppService.DTOs.Outputs
 
         //导航属性
 
-        #region 信息系统类别 —— InfoSystemKindInfo InfoSystemKindInfo
+        #region 导航属性 - 信息系统类别 —— InfoSystemKindInfo InfoSystemKindInfo
         /// <summary>
-        /// 信息系统类别
+        /// 导航属性 - 信息系统类别
         /// </summary>
         [DataMember]
         public InfoSystemKindInfo InfoSystemKindInfo { get; set; }
         #endregion
 
-        #region 父级菜单 —— MenuInfo ParentMenu
+        #region 导航属性 - 父级菜单 —— MenuInfo ParentMenu
         /// <summary>
-        /// 父级菜单
+        /// 导航属性 - 父级菜单
         /// </summary>
         [DataMember]
         public MenuInfo ParentMenu { get; set; }

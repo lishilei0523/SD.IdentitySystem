@@ -21,14 +21,13 @@ namespace SD.UAC.IAppService.Interfaces
         Guid Login(string loginId, string password);
         #endregion
 
-        #region # 认证 —— bool Authenticate(Guid publicKey)
+        #region # 认证 —— void Authenticate(Guid publicKey)
         /// <summary>
         /// 认证
         /// </summary>
         /// <param name="publicKey">公钥</param>
-        /// <returns>是否通过</returns>
         [OperationContract]
-        bool Authenticate(Guid publicKey);
+        void Authenticate(Guid publicKey);
         #endregion
     }
 }

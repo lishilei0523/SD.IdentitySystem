@@ -29,9 +29,9 @@ namespace SD.UAC.IAppService.DTOs.Outputs
 
         //导航属性
 
-        #region 权限集 —— IEnumerable<AuthorityInfo> AuthorityInfos
+        #region 导航属性 - 权限集 —— IEnumerable<AuthorityInfo> AuthorityInfos
         /// <summary>
-        /// 权限集
+        /// 导航属性 - 权限集
         /// </summary>
         [DataMember]
         public IEnumerable<AuthorityInfo> AuthorityInfos { get; set; }

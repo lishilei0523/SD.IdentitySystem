@@ -261,8 +261,6 @@ namespace SD.UAC.Domain.Entities
                 throw new ArgumentNullException("roles", @"角色集不可为null！");
             }
 
-            //TODO 断言角色已存在
-
             #endregion
 
             this.Roles.Clear();
@@ -283,8 +281,6 @@ namespace SD.UAC.Domain.Entities
             {
                 throw new ArgumentNullException("roles", @"角色集不可为null！");
             }
-
-            //TODO 断言角色已存在
 
             #endregion
 

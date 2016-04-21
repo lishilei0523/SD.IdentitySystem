@@ -81,6 +81,9 @@ namespace SD.UAC.AppService.Implements
         /// <param name="loginId">登录名</param>
         public void SetSystemAdmin(string systemNo, string loginId)
         {
+            //验证参数
+            Assert.IsTrue(this._repMediator.UserRep.Exists(loginId), string.Format("登录名\"{0}\"不存在！", loginId));
+
             InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
             currentSystem.SetAdmin(loginId);
 
@@ -252,7 +255,7 @@ namespace SD.UAC.AppService.Implements
         }
         #endregion
 
-   
+
         #region # 创建角色 —— Guid CreateRole(string systemNo, string roleName...
         /// <summary>
         /// 创建角色
@@ -360,13 +363,13 @@ namespace SD.UAC.AppService.Implements
         }
         #endregion
 
-        #region # 获取信息系统集 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId...
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId...
         /// <summary>
-        /// 获取信息系统集
+        /// 获取信息系统列表
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <returns>信息系统集</returns>
+        /// <returns>信息系统列表</returns>
         public IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId, string systemKindNo)
         {
             User currentUser = this._repMediator.UserRep.Single(loginId);

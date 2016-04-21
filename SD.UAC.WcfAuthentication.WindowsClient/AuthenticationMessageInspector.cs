@@ -22,15 +22,19 @@ namespace SD.UAC.WcfAuthentication.WindowsClient
             //Windows客户端获取公钥处理
             object publicKeyObject = AppDomain.CurrentDomain.GetData(SessionKey.CurrentPublishKey);
 
+            #region # 非空验证
+
             if (publicKeyObject == null)
             {
-                throw new ApplicationException("公钥丢失，请检查程序！");
+                throw new ApplicationException("公钥数据丢失，请检查程序！");
             }
+
+            #endregion
 
             Guid publishKey = (Guid)publicKeyObject;
 
-            MessageHeader header = MessageHeader.CreateHeader(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNs, publishKey);
-
+            //添加消息头
+            MessageHeader header = MessageHeader.CreateHeader(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace, publishKey);
             request.Headers.Add(header);
 
             return null;
