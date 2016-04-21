@@ -3,13 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using PostSharp.Aspects;
-using SD.UAC.AuthorizationAspect.Attributes;
 using SD.UAC.Common;
+using SD.UAC.Common.Attributes;
 using SD.UAC.Common.CustomExceptions;
 using SD.UAC.IAppService.DTOs.Outputs;
 using ShSoft.Framework2016.Common.PoweredByLee;
 
-namespace SD.UAC.AuthorizationAspect.Aspects
+namespace SD.UAC.Authorization.Web.Aspects
 {
     /// <summary>
     /// 需要权限验证AOP特性类

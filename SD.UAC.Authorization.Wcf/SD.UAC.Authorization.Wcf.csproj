@@ -4,19 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{18524D7D-9812-4EFC-9902-7123E3A167BB}</ProjectGuid>
+    <ProjectGuid>{1E301BC9-D93A-4141-9987-DE216393E582}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SD.UAC.AuthorizationAspect</RootNamespace>
-    <AssemblyName>SD.UAC.AuthorizationAspect</AssemblyName>
+    <RootNamespace>SD.UAC.Authorization.Wcf</RootNamespace>
+    <AssemblyName>SD.UAC.Authorization.Wcf</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <SccProjectName>SAK</SccProjectName>
-    <SccLocalPath>SAK</SccLocalPath>
-    <SccAuxPath>SAK</SccAuxPath>
-    <SccProvider>SAK</SccProvider>
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
     <DontImportPostSharp>True</DontImportPostSharp>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
@@ -35,7 +29,6 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SD.UAC.AuthorizationAspect.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PostSharp, Version=4.1.15.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
@@ -43,45 +36,28 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2016.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Common.1.0.3\lib\net45\ShSoft.Framework2016.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Framework2016.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.1.0.2\lib\net45\ShSoft.Framework2016.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aspects\RequireAuthorizationAspect.cs" />
-    <Compile Include="Attributes\RequireAuthorizationAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\SD.UAC.Common\SD.UAC.Common.csproj">
-      <Project>{2219ff8e-0870-4922-8d68-1e9497dd285d}</Project>
+      <Project>{2219FF8E-0870-4922-8D68-1E9497DD285D}</Project>
       <Name>SD.UAC.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SD.UAC.IAppService\SD.UAC.IAppService.csproj">
-      <Project>{52bf9a76-1b01-4c29-8067-e6f1c88896fd}</Project>
-      <Name>SD.UAC.IAppService</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="$(SolutionDir)\.nuget\NuGet.targets" Condition="Exists('$(SolutionDir)\.nuget\NuGet.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('$(SolutionDir)\.nuget\NuGet.targets')" Text="$([System.String]::Format('$(ErrorText)', '$(SolutionDir)\.nuget\NuGet.targets'))" />
-  </Target>
   <Import Project="..\packages\PostSharp.4.1.15\tools\PostSharp.targets" Condition="Exists('..\packages\PostSharp.4.1.15\tools\PostSharp.targets')" />
   <Target Name="EnsurePostSharpImported" BeforeTargets="BeforeBuild" Condition="'$(PostSharp30Imported)' == ''">
     <Error Condition="!Exists('..\packages\PostSharp.4.1.15\tools\PostSharp.targets')" Text="This project references NuGet package(s) that are missing on this computer. Enable NuGet Package Restore to download them.  For more information, see http://www.postsharp.net/links/nuget-restore." />

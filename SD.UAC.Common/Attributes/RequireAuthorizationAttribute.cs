@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace SD.UAC.AuthorizationAspect.Attributes
+namespace SD.UAC.Common.Attributes
 {
     /// <summary>
     /// 需要权限验证特性类
