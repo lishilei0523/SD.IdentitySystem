@@ -24,7 +24,6 @@ namespace SD.UAC.Repository.Base
         public DataInitializer()
         {
             this._dbContext = DbSession.CommandInstance;
-            //sadasd
         }
 
         /// <summary>
