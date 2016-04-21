@@ -1,0 +1,46 @@
+﻿using System;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
+using System.ServiceModel.Dispatcher;
+using SD.UAC.Common;
+
+namespace SD.UAC.WcfAuthentication.WindowsClient
+{
+    /// <summary>
+    /// WCF客户端身份认证消息拦截器
+    /// </summary>
+    internal class AuthenticationMessageInspector : IClientMessageInspector
+    {
+        /// <summary>
+        /// 请求发送前事件
+        /// </summary>
+        /// <param name="request">请求消息</param>
+        /// <param name="channel">信道</param>
+        /// <returns></returns>
+        public object BeforeSendRequest(ref Message request, IClientChannel channel)
+        {
+            //Windows客户端获取公钥处理
+            object publicKeyObject = AppDomain.CurrentDomain.GetData(SessionKey.CurrentPublishKey);
+
+            if (publicKeyObject == null)
+            {
+                throw new ApplicationException("公钥丢失，请检查程序！");
+            }
+
+            Guid publishKey = (Guid)publicKeyObject;
+
+            MessageHeader header = MessageHeader.CreateHeader(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNs, publishKey);
+
+            request.Headers.Add(header);
+
+            return null;
+        }
+
+        /// <summary>
+        /// 请求响应后事件
+        /// </summary>
+        /// <param name="reply">响应消息</param>
+        /// <param name="correlationState">相关状态</param>
+        public void AfterReceiveReply(ref Message reply, object correlationState) { }
+    }
+}
