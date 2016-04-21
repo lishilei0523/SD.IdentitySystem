@@ -1,12 +1,11 @@
 ﻿using System;
-using System.Configuration;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.Web;
 using SD.UAC.Common;
 
-namespace SD.UAC.WcfAuthentication.Client
+namespace SD.UAC.WcfAuthentication.WebClient
 {
     /// <summary>
     /// WCF客户端身份认证消息拦截器
@@ -21,11 +20,9 @@ namespace SD.UAC.WcfAuthentication.Client
         /// <returns></returns>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
-            //Windows客户端与Web客户端获取公钥处理
+            //Web客户端获取公钥处理
 
-            string appType = ConfigurationManager.AppSettings[Constants.AppTypeAppSettingKey];
-
-            object publicKeyObject = appType == "Web" ? HttpContext.Current.Session[SessionKey.CurrentPublishKey] : AppDomain.CurrentDomain.GetData(SessionKey.CurrentPublishKey);
+            object publicKeyObject = HttpContext.Current.Session[SessionKey.CurrentPublishKey];
 
             if (publicKeyObject == null)
             {

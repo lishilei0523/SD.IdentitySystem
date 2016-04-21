@@ -109,7 +109,7 @@
   <ItemGroup>
     <ProjectReference Include="..\SD.UAC.DomainEventStore\SD.UAC.DomainEventStore.csproj">
       <Project>{656D4E6F-A104-44D9-BD93-1E128ED79AC0}</Project>
-      <Name>ShSoft.UAC.DomainEventStore</Name>
+      <Name>SD.UAC.DomainEventStore</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.UAC.Domain\SD.UAC.Domain.csproj">
       <Project>{20443D88-D509-43C6-942C-0CE1923BC91E}</Project>

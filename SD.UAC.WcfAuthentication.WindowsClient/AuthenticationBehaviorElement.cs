@@ -1,7 +1,7 @@
 ﻿using System;
 using System.ServiceModel.Configuration;
 
-namespace SD.UAC.WcfAuthentication.Client
+namespace SD.UAC.WcfAuthentication.WindowsClient
 {
     /// <summary>
     /// WCF客户端身份认证行为扩展元素

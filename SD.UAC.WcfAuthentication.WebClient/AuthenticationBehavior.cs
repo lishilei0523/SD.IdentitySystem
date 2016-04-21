@@ -2,7 +2,7 @@
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 
-namespace SD.UAC.WcfAuthentication.Client
+namespace SD.UAC.WcfAuthentication.WebClient
 {
     /// <summary>
     /// WCF客户端身份认证行为

@@ -3,7 +3,7 @@
     <extensions>
       <behaviorExtensions>
         <!--WCF客户端身份认证扩展配置-->
-        <add name="ClientAuthentication" type="ShSoft.UAC.WcfAuthentication.Client.AuthenticationBehaviorElement, ShSoft.UAC.WcfAuthentication.Client"/>
+        <add name="ClientAuthentication" type="SD.UAC.WcfAuthentication.WebClient.AuthenticationBehaviorElement, SD.UAC.WcfAuthentication.WebClient"/>
       </behaviorExtensions>
     </extensions>
   </system.serviceModel>

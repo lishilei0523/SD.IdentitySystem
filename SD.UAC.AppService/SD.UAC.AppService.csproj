@@ -171,27 +171,27 @@
   <ItemGroup>
     <ProjectReference Include="..\SD.UAC.DomainEventHandler\SD.UAC.DomainEventHandler.csproj">
       <Project>{de59ec3b-2e0c-41e4-b0f2-f4530e650e1d}</Project>
-      <Name>ShSoft.UAC.DomainEventHandler</Name>
+      <Name>SD.UAC.DomainEventHandler</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.UAC.DomainEventStore\SD.UAC.DomainEventStore.csproj">
       <Project>{656d4e6f-a104-44d9-bd93-1e128ed79ac0}</Project>
-      <Name>ShSoft.UAC.DomainEventStore</Name>
+      <Name>SD.UAC.DomainEventStore</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.UAC.DomainService\SD.UAC.DomainService.csproj">
       <Project>{21ab46c4-2c9b-4d96-ab4f-437ac2f662e6}</Project>
-      <Name>ShSoft.UAC.DomainService</Name>
+      <Name>SD.UAC.DomainService</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.UAC.Domain\SD.UAC.Domain.csproj">
       <Project>{20443d88-d509-43c6-942c-0ce1923bc91e}</Project>
-      <Name>ShSoft.UAC.Domain</Name>
+      <Name>SD.UAC.Domain</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.UAC.IAppService\SD.UAC.IAppService.csproj">
       <Project>{52bf9a76-1b01-4c29-8067-e6f1c88896fd}</Project>
-      <Name>ShSoft.UAC.IAppService</Name>
+      <Name>SD.UAC.IAppService</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.UAC.Repository\SD.UAC.Repository.csproj">
       <Project>{33f75ac9-f2cc-4117-a04d-e701ef897924}</Project>
-      <Name>ShSoft.UAC.Repository</Name>
+      <Name>SD.UAC.Repository</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup />
