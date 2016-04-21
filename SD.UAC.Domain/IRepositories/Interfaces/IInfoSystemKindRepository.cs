@@ -1,0 +1,13 @@
+﻿using SD.UAC.Domain.Entities;
+using ShSoft.Framework2016.Infrastructure.IRepository;
+
+namespace SD.UAC.Domain.IRepositories.Interfaces
+{
+    /// <summary>
+    /// 信息系统类别仓储接口
+    /// </summary>
+    public interface IInfoSystemKindRepository : IRepository<InfoSystemKind>
+    {
+
+    }
+}
