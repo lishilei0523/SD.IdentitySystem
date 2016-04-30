@@ -68,10 +68,6 @@
       <HintPath>..\packages\SD.Toolkits.CommonLibraries.1.0.0\lib\net45\SD.Toolkits.CommonLibraries.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2015.Infrastructure.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2015.Infrastructure.ValueObjects.1.3.7\lib\net45\ShSoft.Framework2015.Infrastructure.ValueObjects.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ShSoft.Framework2016.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\ShSoft.Framework2016.Common.1.0.3\lib\net45\ShSoft.Framework2016.Common.dll</HintPath>
       <Private>True</Private>
@@ -121,6 +117,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SD.UAC.Common\SD.UAC.Common.csproj">
+      <Project>{2219FF8E-0870-4922-8D68-1E9497DD285D}</Project>
+      <Name>SD.UAC.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SD.UAC.DomainEventStore\SD.UAC.DomainEventStore.csproj">
       <Project>{656D4E6F-A104-44D9-BD93-1E128ED79AC0}</Project>
       <Name>SD.UAC.DomainEventStore</Name>

@@ -4,7 +4,6 @@ using SD.UAC.Domain.Entities;
 using SD.UAC.Domain.IRepositories;
 using SD.UAC.Domain.Mediators;
 using SD.UAC.DomainEventStore.EventSources.Authority;
-using ShSoft.Framework2015.Infrastructure.ValueObjects;
 using ShSoft.Framework2016.Infrastructure.IDomainEvent;
 
 namespace SD.UAC.DomainEventHandler.Authority
@@ -79,45 +78,21 @@ namespace SD.UAC.DomainEventHandler.Authority
             InfoSystemKind currentSystemKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
             Domain.Entities.Authority currentAuthority = currentSystemKind.GetAuthority(authorityId);
 
-            //管理中心信息系统类别
-            if (systemKindNo == Constants.MCSystemKindNo)
+            //根据类别获取所有信息系统
+            IEnumerable<string> systemNos = this._repMediator.InfoSystemRep.GetInfoSystemNos(systemKindNo);
+            foreach (string systemNo in systemNos)
             {
-                IEnumerable<string> systemNos = this._repMediator.InfoSystemRep.GetInfoSystemNos(systemKindNo);
-                foreach (string systemNo in systemNos)
-                {
-                    //为超级管理员（admin）追加权限
-                    InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-                    Role adminRole = currentSystem.GetAdminRole();
-                    adminRole.AppendAuthorities(new[] { currentAuthority });
+                //为系统管理员追加权限
+                InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
+                Role adminRole = currentSystem.GetManagerRole();
+                adminRole.AppendAuthorities(new[] { currentAuthority });
 
-                    //注册保存
-                    this._unitOfWork.RegisterSave(currentSystem);
-                }
+                //注册保存
+                this._unitOfWork.RegisterSave(currentSystem);
             }
 
-            //供应商信息系统类别
-            else if (systemKindNo == Constants.SupplierSystemKindNo)
-            {
-                IEnumerable<string> systemNos = this._repMediator.InfoSystemRep.GetInfoSystemNos(systemKindNo);
-                foreach (string systemNo in systemNos)
-                {
-                    //为系统管理员与供应商代理人追加权限
-                    InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-                    Role managerRole = currentSystem.GetManagerRole();
-                    Role agentRole = currentSystem.GetAgentRole();
-                    managerRole.AppendAuthorities(new[] { currentAuthority });
-                    agentRole.AppendAuthorities(new[] { currentAuthority });
 
-                    //注册保存
-                    this._unitOfWork.RegisterSave(currentSystem);
-                }
-            }
-            else
-            {
-                throw new ArgumentOutOfRangeException("systemKindNo", @"未知的信息系统类别！");
-            }
-
-            //预提交
+            //提交
             this._unitOfWork.Commit();
         }
         #endregion

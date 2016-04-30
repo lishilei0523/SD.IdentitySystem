@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ShSoft.Framework2015.Infrastructure.ValueObjects;
+using SD.UAC.Common;
 using ShSoft.Framework2016.Infrastructure.IEntity;
 
 namespace SD.UAC.Domain.Entities
@@ -11,31 +11,7 @@ namespace SD.UAC.Domain.Entities
     /// </summary>
     public class InfoSystem : AggregateRootEntity
     {
-        #region # 常量及构造器
-
-        #region 00.常量
-
-        /// <summary>
-        /// 管理中心信息系统名称
-        /// </summary>
-        public const string ManageCenterSysName = "管理中心";
-
-        /// <summary>
-        /// 超级管理员（管理中心）角色名称
-        /// </summary>
-        public const string AdminRoleName = "超级管理员";
-
-        /// <summary>
-        /// 系统管理员（供应商）角色名称
-        /// </summary>
-        public const string ManagerRoleName = "系统管理员";
-
-        /// <summary>
-        /// 供应商代理人（供应商）角色名称
-        /// </summary>
-        public const string AgentRoleName = "供应商代理人";
-
-        #endregion
+        #region # 构造器
 
         #region 01.无参构造器
         /// <summary>
@@ -178,30 +154,6 @@ namespace SD.UAC.Domain.Entities
         }
         #endregion
 
-        #region 获取超级管理员角色 —— Role GetAdminRole()
-        /// <summary>
-        /// 获取超级管理员角色
-        /// </summary>
-        /// <returns>超级管理员角色</returns>
-        public Role GetAdminRole()
-        {
-            #region # 验证业务
-
-            if (this.InfoSystemKindNo != Constants.MCSystemKindNo)
-            {
-                throw new InvalidOperationException("只有管理中心系统类别有超级管理员角色");
-            }
-            if (this.Roles.All(x => x.Name != AdminRoleName))
-            {
-                throw new ApplicationException("发生严重的应用程序错误，未为管理中心信息系统初始化超级管理员角色！");
-            }
-
-            #endregion
-
-            return this.Roles.Single(x => x.Name == AdminRoleName);
-        }
-        #endregion
-
         #region 获取系统管理员角色 —— Role GetManagerRole()
         /// <summary>
         /// 获取系统管理员角色
@@ -211,38 +163,14 @@ namespace SD.UAC.Domain.Entities
         {
             #region # 验证业务
 
-            if (this.InfoSystemKindNo != Constants.SupplierSystemKindNo)
-            {
-                throw new InvalidOperationException("只有非管理中心系统类别有系统管理员角色");
-            }
-            if (this.Roles.All(x => x.Name != ManagerRoleName))
+            if (this.Roles.All(x => x.Name != Constants.ManagerRoleName))
             {
                 throw new ApplicationException("发生严重的应用程序错误，未为信息系统初始化系统管理员角色！");
             }
 
             #endregion
 
-            return this.Roles.Single(x => x.Name == ManagerRoleName);
-        }
-        #endregion
-
-        #region 获取代理人角色 —— Role GetAgentRole()
-        /// <summary>
-        /// 获取代理人角色
-        /// </summary>
-        /// <returns>代理人角色</returns>
-        public Role GetAgentRole()
-        {
-            #region # 验证业务
-
-            if (this.InfoSystemKindNo != Constants.SupplierSystemKindNo)
-            {
-                throw new InvalidOperationException("只有供应商系统类别有代理人角色");
-            }
-
-            #endregion
-
-            return this.Roles.SingleOrDefault(x => x.Name == AgentRoleName);
+            return this.Roles.Single(x => x.Name == Constants.ManagerRoleName);
         }
         #endregion
 

@@ -9,14 +9,6 @@ namespace SD.UAC.Domain.IDomainServices
     /// </summary>
     public interface IInfoSystemService : IDomainService<InfoSystem>
     {
-        #region # 获取代理人角色 —— Role GetAgentRole(string systemNo)
-        /// <summary>
-        /// 获取代理人角色
-        /// </summary>
-        /// <returns>代理人角色</returns>
-        Role GetAgentRole(string systemNo);
-        #endregion
-
         #region # 是否存在角色 —— bool ExistsRole(string systemNo, Guid? roleId, string roleName)
         /// <summary>
         /// 是否存在角色

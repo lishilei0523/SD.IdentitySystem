@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SD.UAC.Common;
 using ShSoft.Framework2016.Common.PoweredByLee;
 using ShSoft.Framework2016.Common.PoweredByLee.Recursion;
 using ShSoft.Framework2016.Infrastructure.IEntity;
@@ -12,16 +13,7 @@ namespace SD.UAC.Domain.Entities
     /// </summary>
     public class User : AggregateRootEntity
     {
-        #region # 常量及构造器
-
-        #region 00.常量
-
-        /// <summary>
-        /// 初始密码
-        /// </summary>
-        public const string InitialPassword = "888888";
-
-        #endregion
+        #region # 构造器
 
         #region 01.无参构造器
         /// <summary>
@@ -197,7 +189,7 @@ namespace SD.UAC.Domain.Entities
         /// </summary>
         public void ResetPassword()
         {
-            this.Password = InitialPassword.ToMD5();
+            this.Password = Constants.InitialPassword.ToMD5();
         }
         #endregion
 
