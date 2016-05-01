@@ -1,4 +1,6 @@
 ﻿using System.Data.Entity;
+using System.Linq;
+using SD.UAC.Domain.Entities;
 using ShSoft.Framework2016.Infrastructure.IRepository;
 
 namespace SD.UAC.Repository.Base
@@ -34,7 +36,23 @@ namespace SD.UAC.Repository.Base
         /// </summary>
         public void Initialize()
         {
+            this.InitInfoSystemKind();
+        }
 
+
+        /// <summary>
+        /// 初始化信息系统类别
+        /// </summary>
+        private void InitInfoSystemKind()
+        {
+            if (!this._dbContext.Set<InfoSystemKind>().Any())
+            {
+                InfoSystemKind manageCenterKind = new InfoSystemKind("X1", "管理中心系统类别");
+
+                this._dbContext.Set<InfoSystemKind>().Add(manageCenterKind);
+
+                this._dbContext.SaveChanges();
+            }
         }
     }
 }

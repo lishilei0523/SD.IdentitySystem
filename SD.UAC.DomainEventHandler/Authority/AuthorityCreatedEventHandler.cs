@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using SD.UAC.Domain.Entities;
+using SD.UAC.Domain.EventSources.Authority;
 using SD.UAC.Domain.IRepositories;
 using SD.UAC.Domain.Mediators;
-using SD.UAC.DomainEventStore.EventSources.Authority;
 using ShSoft.Framework2016.Infrastructure.IDomainEvent;
 
 namespace SD.UAC.DomainEventHandler.Authority

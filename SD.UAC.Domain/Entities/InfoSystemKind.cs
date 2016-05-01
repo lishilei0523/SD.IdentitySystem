@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SD.UAC.DomainEventStore.EventSources.Authority;
+using SD.UAC.Domain.EventSources.Authority;
 using ShSoft.Framework2016.Infrastructure.DomainEvent.Mediator;
 using ShSoft.Framework2016.Infrastructure.IEntity;
 

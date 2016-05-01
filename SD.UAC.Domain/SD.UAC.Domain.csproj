@@ -101,6 +101,7 @@
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Role.cs" />
     <Compile Include="Entities\User.cs" />
+    <Compile Include="EventSources\Authority\AuthorityCreatedEvent.cs" />
     <Compile Include="IDomainServices\IInfoSystemKindService.cs" />
     <Compile Include="IDomainServices\IInfoSystemService.cs" />
     <Compile Include="IDomainServices\INumberService.cs" />
@@ -120,10 +121,6 @@
     <ProjectReference Include="..\SD.UAC.Common\SD.UAC.Common.csproj">
       <Project>{2219FF8E-0870-4922-8D68-1E9497DD285D}</Project>
       <Name>SD.UAC.Common</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SD.UAC.DomainEventStore\SD.UAC.DomainEventStore.csproj">
-      <Project>{656D4E6F-A104-44D9-BD93-1E128ED79AC0}</Project>
-      <Name>SD.UAC.DomainEventStore</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>
