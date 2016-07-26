@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Web;
-using ShSoft.Framework2016.Infrastructure.Global;
 
 namespace SD.UAC.AppService
 {
@@ -12,7 +11,7 @@ namespace SD.UAC.AppService
 
         protected void Application_Start(object sender, EventArgs e)
         {
-            InitDatabase.Register();
+
         }
 
         protected void Session_Start(object sender, EventArgs e)

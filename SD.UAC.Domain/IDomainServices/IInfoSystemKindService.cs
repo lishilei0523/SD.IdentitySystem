@@ -1,6 +1,6 @@
 ﻿using System;
 using SD.UAC.Domain.Entities;
-using ShSoft.Framework2016.Infrastructure.IDomainService;
+using ShSoft.Infrastructure.DomainServiceBase;
 
 namespace SD.UAC.Domain.IDomainServices
 {

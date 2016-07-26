@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using SD.UAC.Domain.EventSources.Authority;
-using ShSoft.Framework2016.Infrastructure.DomainEvent.Mediator;
-using ShSoft.Framework2016.Infrastructure.IEntity;
+using SD.UAC.Domain.EventSources.AuthorizationContext;
+using ShSoft.Infrastructure.EntityBase;
+using ShSoft.Infrastructure.EventBase.Mediator;
 
 namespace SD.UAC.Domain.Entities
 {
@@ -191,6 +191,35 @@ namespace SD.UAC.Domain.Entities
             this.Menus.Remove(menu);
         }
 
+        #endregion
+
+        #region 删除权限 —— void RemoveAuthority(Authority authority)
+        /// <summary>
+        /// 删除权限
+        /// </summary>
+        /// <param name="authority">权限</param>
+        public void RemoveAuthority(Authority authority)
+        {
+            #region # 验证参数
+
+            if (authority == null)
+            {
+                throw new ArgumentNullException("authority", @"权限不可为空！");
+            }
+
+            #endregion
+
+            foreach (Menu menu in authority.MenuLeaves)
+            {
+                menu.Authorities.Remove(authority);
+            }
+            foreach (Role role in authority.Roles)
+            {
+                role.Authorities.Remove(authority);
+            }
+
+            this.Authorities.Remove(authority);
+        }
         #endregion
 
         #endregion

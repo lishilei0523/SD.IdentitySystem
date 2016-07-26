@@ -38,8 +38,8 @@
     <DocumentationFile>bin\Release\SD.UAC.IAppService.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="ShSoft.Framework2016.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.1.0.2\lib\net45\ShSoft.Framework2016.Infrastructure.dll</HintPath>
+    <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Infrastructure.1.0.0.0\lib\net45\ShSoft.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

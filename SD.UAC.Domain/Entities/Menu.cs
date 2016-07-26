@@ -1,14 +1,14 @@
 ﻿using System.Collections.Generic;
 using System.Linq;
-using ShSoft.Framework2016.Common.PoweredByLee.Recursion;
-using ShSoft.Framework2016.Infrastructure.IEntity;
+using SD.Toolkits.Recursion.Tree;
+using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.UAC.Domain.Entities
 {
     /// <summary>
     /// 菜单
     /// </summary>
-    public class Menu : PlainEntity, IRecursive<Menu>
+    public class Menu : PlainEntity, ITree<Menu>
     {
         #region # 构造器
 

@@ -1,6 +1,6 @@
 ﻿using System.Data.Entity.ModelConfiguration;
 using SD.UAC.Domain.Entities;
-using ShSoft.Framework2016.Infrastructure.Constants;
+using ShSoft.Infrastructure.Constants;
 
 namespace SD.UAC.Repository.EntityConfigurations
 {

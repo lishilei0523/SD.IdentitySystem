@@ -51,21 +51,13 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=4.2.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\packages\AutoMapper.4.2.1\lib\net45\AutoMapper.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
-      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="Newtonsoft.Json, Version=4.5.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\packages\Newtonsoft.Json.4.5.11\lib\net40\Newtonsoft.Json.dll</HintPath>
+    <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="PostSharp, Version=4.1.15.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
@@ -73,74 +65,87 @@
       <Private>True</Private>
       <Private>True</Private>
     </Reference>
+    <Reference Include="Raven.Abstractions, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\packages\RavenDB.Client.3.0.30143\lib\net45\Raven.Abstractions.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="Raven.Client.Lightweight, Version=3.0.0.0, Culture=neutral, PublicKeyToken=37f41c7f99471593, processorArchitecture=MSIL">
+      <HintPath>..\packages\RavenDB.Client.3.0.30143\lib\net45\Raven.Client.Lightweight.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SD.AOP.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SD.AOP.Core.1.0.1\lib\net45\SD.AOP.Core.dll</HintPath>
+      <HintPath>..\packages\SD.AOP.Core.1.0.4\lib\net45\SD.AOP.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.CacheManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SD.CacheManager.1.0.1\lib\net45\SD.CacheManager.dll</HintPath>
+      <HintPath>..\packages\SD.CacheManager.1.0.2\lib\net45\SD.CacheManager.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.CacheManager.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SD.CacheManager.Redis.1.0.0.0\lib\net45\SD.CacheManager.Redis.dll</HintPath>
+      <HintPath>..\packages\SD.CacheManager.Redis.1.0.1\lib\net45\SD.CacheManager.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SD.IOC.Core.1.0.1\lib\net45\SD.IOC.Core.dll</HintPath>
+      <HintPath>..\packages\SD.IOC.Core.1.0.5\lib\net45\SD.IOC.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Integration.WCF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SD.IOC.Integration.WCF.1.0.0.0\lib\net45\SD.IOC.Integration.WCF.dll</HintPath>
+      <HintPath>..\packages\SD.IOC.Integration.WCF.1.0.3\lib\net45\SD.IOC.Integration.WCF.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Toolkits.CommonLibraries, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SD.Toolkits.CommonLibraries.1.0.0\lib\net45\SD.Toolkits.CommonLibraries.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Common, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Common.4.0.40\lib\net40\ServiceStack.Common.dll</HintPath>
+    <Reference Include="SD.Toolkits.Recursion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SD.Toolkits.Recursion.1.0.3\lib\net45\SD.Toolkits.Recursion.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ServiceStack.Common, Version=4.0.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Common.4.0.60\lib\net40\ServiceStack.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Interfaces, Version=4.0.0.0, Culture=neutral, PublicKeyToken=e06fbc6124f57c43, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Interfaces.4.0.40\lib\portable-wp80+sl5+net40+win8+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
+      <HintPath>..\packages\ServiceStack.Interfaces.4.0.60\lib\portable-wp80+sl5+net40+win8+wpa81+monotouch+monoandroid+xamarin.ios10\ServiceStack.Interfaces.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Redis, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Redis.4.0.40\lib\net40\ServiceStack.Redis.dll</HintPath>
+    <Reference Include="ServiceStack.Redis, Version=4.0.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Redis.4.0.60\lib\net40\ServiceStack.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ServiceStack.Text, Version=4.0.40.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ServiceStack.Text.4.0.40\lib\net40\ServiceStack.Text.dll</HintPath>
+    <Reference Include="ServiceStack.Text, Version=4.0.60.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ServiceStack.Text.4.0.60\lib\net40\ServiceStack.Text.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2016.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Common.1.0.3\lib\net45\ShSoft.Framework2016.Common.dll</HintPath>
+    <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Common.1.0.0.0\lib\net45\ShSoft.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2016.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.1.0.2\lib\net45\ShSoft.Framework2016.Infrastructure.dll</HintPath>
+    <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Infrastructure.1.0.0.0\lib\net45\ShSoft.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2016.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.AOP.1.0.0.0\lib\net45\ShSoft.Framework2016.Infrastructure.AOP.dll</HintPath>
+    <Reference Include="ShSoft.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Infrastructure.AOP.1.0.0.0\lib\net45\ShSoft.Infrastructure.AOP.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2016.Infrastructure.DomainEvent, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.DomainEvent.1.0.2\lib\net45\ShSoft.Framework2016.Infrastructure.DomainEvent.dll</HintPath>
+    <Reference Include="ShSoft.Infrastructure.EventBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Infrastructure.EventBase.1.0.0.0\lib\net45\ShSoft.Infrastructure.EventBase.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2016.Infrastructure.DomainEvent.EFStorer, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.DomainEvent.EFStorer.1.0.2\lib\net45\ShSoft.Framework2016.Infrastructure.DomainEvent.EFStorer.dll</HintPath>
+    <Reference Include="ShSoft.Infrastructure.EventStoreProvider.RavenDB, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Infrastructure.EventStoreProvider.RavenDB.1.0.1\lib\net45\ShSoft.Infrastructure.EventStoreProvider.RavenDB.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2016.Infrastructure.Global, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.Global.1.0.2\lib\net45\ShSoft.Framework2016.Infrastructure.Global.dll</HintPath>
+    <Reference Include="ShSoft.Infrastructure.Global, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Infrastructure.Global.1.0.0.0\lib\net45\ShSoft.Infrastructure.Global.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Framework2016.Infrastructure.WCF.IOC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Framework2016.Infrastructure.WCF.IOC.1.0.0\lib\net45\ShSoft.Framework2016.Infrastructure.WCF.IOC.dll</HintPath>
+    <Reference Include="ShSoft.Infrastructure.WCF.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Infrastructure.WCF.Server.1.0.0.0\lib\net45\ShSoft.Infrastructure.WCF.Server.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="System.ComponentModel.Composition" />
     <Reference Include="System.IdentityModel" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />

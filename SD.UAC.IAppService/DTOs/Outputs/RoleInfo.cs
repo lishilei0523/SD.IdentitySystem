@@ -1,6 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Runtime.Serialization;
-using ShSoft.Framework2016.Infrastructure.IDTO;
+using ShSoft.Infrastructure.DTOBase;
 
 namespace SD.UAC.IAppService.DTOs.Outputs
 {

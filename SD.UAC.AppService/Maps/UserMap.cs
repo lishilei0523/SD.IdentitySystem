@@ -3,7 +3,7 @@ using System.Linq;
 using SD.UAC.Domain.Entities;
 using SD.UAC.Domain.Mediators;
 using SD.UAC.IAppService.DTOs.Outputs;
-using ShSoft.Framework2016.Common.PoweredByLee;
+using ShSoft.Common.PoweredByLee;
 
 namespace SD.UAC.AppService.Maps
 {

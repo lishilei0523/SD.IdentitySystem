@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using SD.UAC.Common;
-using ShSoft.Framework2016.Infrastructure.IEntity;
+using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.UAC.Domain.Entities
 {
@@ -171,6 +171,26 @@ namespace SD.UAC.Domain.Entities
             #endregion
 
             return this.Roles.Single(x => x.Name == Constants.ManagerRoleName);
+        }
+        #endregion
+
+        #region 删除角色 —— void RemoveRole(Role role)
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        /// <param name="role">角色</param>
+        public void RemoveRole(Role role)
+        {
+            foreach (Authority authority in role.Authorities)
+            {
+                authority.Roles.Remove(role);
+            }
+            foreach (User user in role.Users)
+            {
+                user.Roles.Remove(role);
+            }
+
+            this.Roles.Remove(role);
         }
         #endregion
 

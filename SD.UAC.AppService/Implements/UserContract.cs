@@ -8,9 +8,9 @@ using SD.UAC.Domain.IRepositories;
 using SD.UAC.Domain.Mediators;
 using SD.UAC.IAppService.DTOs.Outputs;
 using SD.UAC.IAppService.Interfaces;
-using ShSoft.Framework2016.Common.PoweredByLee;
-using ShSoft.Framework2016.Infrastructure.Global.Transaction;
-using ShSoft.Framework2016.Infrastructure.IDTO;
+using ShSoft.Common.PoweredByLee;
+using ShSoft.Infrastructure.DTOBase;
+using ShSoft.Infrastructure.Global.Transaction;
 
 namespace SD.UAC.AppService.Implements
 {
@@ -342,7 +342,12 @@ namespace SD.UAC.AppService.Implements
         /// <param name="roleId">角色Id</param>
         public void RemoveRole(string systemNo, Guid roleId)
         {
-            this._unitOfWork.RegisterRemove<Role>(roleId);
+            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
+            Role currentRole = currentSystem.GetRole(roleId);
+
+            currentSystem.RemoveRole(currentRole);
+
+            this._unitOfWork.RegisterSave(currentSystem);
             this._unitOfWork.UnitedCommit();
         }
         #endregion

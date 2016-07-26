@@ -3,7 +3,7 @@ using System.Linq;
 using SD.Toolkits.EntityFramework.Extensions;
 using SD.UAC.Domain.Entities;
 using SD.UAC.Domain.IRepositories.Interfaces;
-using ShSoft.Framework2016.Infrastructure.Repository.EntityFrameworkProvider;
+using ShSoft.Infrastructure.Repository.EntityFramework;
 
 namespace SD.UAC.Repository.Implements
 {

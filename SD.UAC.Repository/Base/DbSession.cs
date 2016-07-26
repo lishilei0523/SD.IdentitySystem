@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using System.Data.Entity;
-using ShSoft.Framework2016.Infrastructure.Constants;
-using ShSoft.Framework2016.Infrastructure.Repository.EntityFrameworkProvider.Base;
+using ShSoft.Infrastructure.Constants;
+using ShSoft.Infrastructure.Repository.EntityFramework.Base;
 using Configuration = SD.UAC.Repository.Migrations.Configuration;
 
 namespace SD.UAC.Repository.Base

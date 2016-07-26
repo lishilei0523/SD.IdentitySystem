@@ -2,8 +2,8 @@
 using System.Collections.Generic;
 using System.ServiceModel;
 using SD.UAC.IAppService.DTOs.Outputs;
-using ShSoft.Framework2016.Infrastructure;
-using ShSoft.Framework2016.Infrastructure.IDTO;
+using ShSoft.Infrastructure;
+using ShSoft.Infrastructure.DTOBase;
 
 namespace SD.UAC.IAppService.Interfaces
 {

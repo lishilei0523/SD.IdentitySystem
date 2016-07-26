@@ -9,8 +9,8 @@ using SD.UAC.Domain.Mediators;
 using SD.UAC.IAppService.DTOs.Inputs;
 using SD.UAC.IAppService.DTOs.Outputs;
 using SD.UAC.IAppService.Interfaces;
-using ShSoft.Framework2016.Infrastructure.Global.Transaction;
-using ShSoft.Framework2016.Infrastructure.IDTO;
+using ShSoft.Infrastructure.DTOBase;
+using ShSoft.Infrastructure.Global.Transaction;
 
 namespace SD.UAC.AppService.Implements
 {
@@ -137,7 +137,12 @@ namespace SD.UAC.AppService.Implements
         /// <param name="authorityId">权限Id</param>
         public void RemoveAuthority(string systemKindNo, Guid authorityId)
         {
-            this._unitOfWork.RegisterRemove<Authority>(authorityId);
+            InfoSystemKind currentKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
+            Authority currentAuthority = currentKind.GetAuthority(authorityId);
+
+            currentKind.RemoveAuthority(currentAuthority);
+
+            this._unitOfWork.RegisterSave(currentKind);
             this._unitOfWork.UnitedCommit();
         }
         #endregion

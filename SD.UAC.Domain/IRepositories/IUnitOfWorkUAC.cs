@@ -1,4 +1,4 @@
-﻿using ShSoft.Framework2016.Infrastructure.IRepository;
+﻿using ShSoft.Infrastructure.RepositoryBase;
 
 namespace SD.UAC.Domain.IRepositories
 {

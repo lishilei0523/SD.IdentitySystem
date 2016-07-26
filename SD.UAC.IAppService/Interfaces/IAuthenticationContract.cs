@@ -1,6 +1,6 @@
 ﻿using System;
 using System.ServiceModel;
-using ShSoft.Framework2016.Infrastructure;
+using ShSoft.Infrastructure;
 
 namespace SD.UAC.IAppService.Interfaces
 {

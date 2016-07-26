@@ -1,10 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using SD.Toolkits.Recursion.Tree;
 using SD.UAC.Common;
-using ShSoft.Framework2016.Common.PoweredByLee;
-using ShSoft.Framework2016.Common.PoweredByLee.Recursion;
-using ShSoft.Framework2016.Infrastructure.IEntity;
+using ShSoft.Common.PoweredByLee;
+using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.UAC.Domain.Entities
 {
@@ -322,10 +322,7 @@ namespace SD.UAC.Domain.Entities
             IEnumerable<Menu> menuLeaves = authorities.SelectMany(x => x.MenuLeaves).Where(x => x != null).Distinct().ToArray();
 
             //尾递归
-            HashSet<Menu> menus = new HashSet<Menu>();
-            menuLeaves.TailRecursion(menus);
-
-            return menus;
+            return menuLeaves.TailRecurseParentNodes();
         }
         #endregion
 

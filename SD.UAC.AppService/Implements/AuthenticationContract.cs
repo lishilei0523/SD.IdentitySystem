@@ -1,12 +1,12 @@
 ﻿using System;
 using System.ServiceModel;
-using SD.CacheManager.Mediator;
+using SD.CacheManager;
 using SD.UAC.Common.CustomExceptions;
 using SD.UAC.Domain.Entities;
 using SD.UAC.Domain.IRepositories;
 using SD.UAC.Domain.Mediators;
 using SD.UAC.IAppService.Interfaces;
-using ShSoft.Framework2016.Common.PoweredByLee;
+using ShSoft.Common.PoweredByLee;
 
 namespace SD.UAC.AppService.Implements
 {

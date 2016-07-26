@@ -1,7 +1,7 @@
 ﻿using SD.UAC.Domain.Entities;
 using SD.UAC.IAppService.DTOs.Inputs;
 using SD.UAC.IAppService.DTOs.Outputs;
-using ShSoft.Framework2016.Common.PoweredByLee;
+using ShSoft.Common.PoweredByLee;
 
 namespace SD.UAC.AppService.Maps
 {

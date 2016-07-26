@@ -1,17 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
 using SD.UAC.Domain.Entities;
-using SD.UAC.Domain.EventSources.Authority;
+using SD.UAC.Domain.EventSources.AuthorizationContext;
 using SD.UAC.Domain.IRepositories;
 using SD.UAC.Domain.Mediators;
-using ShSoft.Framework2016.Infrastructure.IDomainEvent;
+using ShSoft.Infrastructure.EventBase;
 
 namespace SD.UAC.DomainEventHandler.Authority
 {
     /// <summary>
     /// 权限创建事件处理者
     /// </summary>
-    public class AuthorityCreatedEventHandler : IDomainEventHandler<AuthorityCreatedEvent>
+    public class AuthorityCreatedEventHandler : IEventHandler<AuthorityCreatedEvent>
     {
         #region # 字段及依赖注入构造器
 
@@ -60,7 +60,7 @@ namespace SD.UAC.DomainEventHandler.Authority
         /// <param name="eventSource">事件源</param>
         public void Handle(AuthorityCreatedEvent eventSource)
         {
-            this.AppendAuthorities(eventSource.Data.InfoSystemKindNo, eventSource.Data.AuthorityId);
+            this.AppendAuthorities(eventSource.InfoSystemKindNo, eventSource.AuthorityId);
         }
         #endregion
 

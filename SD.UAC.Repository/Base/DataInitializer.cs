@@ -1,7 +1,7 @@
 ﻿using System.Data.Entity;
 using System.Linq;
 using SD.UAC.Domain.Entities;
-using ShSoft.Framework2016.Infrastructure.IRepository;
+using ShSoft.Infrastructure.RepositoryBase;
 
 namespace SD.UAC.Repository.Base
 {

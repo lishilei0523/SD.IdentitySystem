@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using ShSoft.Framework2016.Infrastructure.IEntity;
+using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.UAC.Domain.Entities
 {
