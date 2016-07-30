@@ -70,11 +70,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.CacheManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SD.CacheManager.1.0.3\lib\net45\SD.CacheManager.dll</HintPath>
+      <HintPath>..\packages\SD.CacheManager.1.0.4\lib\net45\SD.CacheManager.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.CacheManager.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SD.CacheManager.Redis.1.0.3\lib\net45\SD.CacheManager.Redis.dll</HintPath>
+      <HintPath>..\packages\SD.CacheManager.Redis.1.0.4\lib\net45\SD.CacheManager.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -91,6 +91,10 @@
     </Reference>
     <Reference Include="SD.Toolkits.Recursion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SD.Toolkits.Recursion.1.0.3\lib\net45\SD.Toolkits.Recursion.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Toolkits.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SD.Toolkits.Redis.1.0.1\lib\net45\SD.Toolkits.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Common, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
@@ -126,7 +130,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure.EventStoreProvider.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Infrastructure.EventStoreProvider.Redis.1.0.2\lib\net45\ShSoft.Infrastructure.EventStoreProvider.Redis.dll</HintPath>
+      <HintPath>..\packages\ShSoft.Infrastructure.EventStoreProvider.Redis.1.0.3\lib\net45\ShSoft.Infrastructure.EventStoreProvider.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure.Global, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
