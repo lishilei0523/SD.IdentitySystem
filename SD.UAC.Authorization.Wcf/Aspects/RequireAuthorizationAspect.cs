@@ -3,7 +3,7 @@ using System.Reflection;
 using PostSharp.Aspects;
 using SD.UAC.Common.Attributes;
 
-namespace SD.UAC.Authorization.Wcf.Aspects
+namespace SD.UAC.Authorization.WCF.Aspects
 {
     /// <summary>
     /// 需要权限验证AOP特性类

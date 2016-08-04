@@ -42,7 +42,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.UAC.WcfAuthentication.We
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.UAC.WcfAuthentication.WindowsClient", "SD.UAC.WcfAuthentication.WindowsClient\SD.UAC.WcfAuthentication.WindowsClient.csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.UAC.Authorization.Wcf", "SD.UAC.Authorization.Wcf\SD.UAC.Authorization.Wcf.csproj", "{1E301BC9-D93A-4141-9987-DE216393E582}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.UAC.Authorization.WCF", "SD.UAC.Authorization.Wcf\SD.UAC.Authorization.WCF.csproj", "{1E301BC9-D93A-4141-9987-DE216393E582}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.UAC.Authorization.Windows", "SD.UAC.Authorization.Windows\SD.UAC.Authorization.Windows.csproj", "{8EEF3BA8-243D-440E-95D7-FABD5931B882}"
 EndProject
@@ -51,6 +51,10 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07 - 授权工具", "07 - 授权工具", "{2391DA78-0DF7-46C0-9826-92FC96F281FF}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08 - WCF身份认证工具", "08 - WCF身份认证工具", "{7DA3F8E1-D6BA-42E1-A010-B4B0E9E2D4EC}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "09 - 权限初始化工具", "09 - 权限初始化工具", "{2AE70F05-B034-4FBD-95CB-32DCC63944FF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.UAC.InitAuthoritiesTool", "SD.UAC.InitAuthoritiesTool\SD.UAC.InitAuthoritiesTool.csproj", "{43F6A512-7219-480C-AFF6-CCEBDA75F4AE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -110,6 +114,10 @@ Global
 		{18524D7D-9812-4EFC-9902-7123E3A167BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{18524D7D-9812-4EFC-9902-7123E3A167BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{18524D7D-9812-4EFC-9902-7123E3A167BB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{43F6A512-7219-480C-AFF6-CCEBDA75F4AE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{43F6A512-7219-480C-AFF6-CCEBDA75F4AE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{43F6A512-7219-480C-AFF6-CCEBDA75F4AE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{43F6A512-7219-480C-AFF6-CCEBDA75F4AE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -128,5 +136,6 @@ Global
 		{1E301BC9-D93A-4141-9987-DE216393E582} = {2391DA78-0DF7-46C0-9826-92FC96F281FF}
 		{8EEF3BA8-243D-440E-95D7-FABD5931B882} = {2391DA78-0DF7-46C0-9826-92FC96F281FF}
 		{18524D7D-9812-4EFC-9902-7123E3A167BB} = {2391DA78-0DF7-46C0-9826-92FC96F281FF}
+		{43F6A512-7219-480C-AFF6-CCEBDA75F4AE} = {2AE70F05-B034-4FBD-95CB-32DCC63944FF}
 	EndGlobalSection
 EndGlobal
