@@ -23,7 +23,7 @@ namespace SD.UAC.AppService.Maps
         {
             InfoSystemInfo systemInfo = Transform<InfoSystem, InfoSystemInfo>.Map(infoSystem);
 
-            InfoSystemKind currentKind = repMediator.InfoSystemKindRep.Single(infoSystem.InfoSystemKindNo);
+            InfoSystemKind currentKind = repMediator.InfoSystemKindRep.Single(infoSystem.SystemKindNo);
 
             systemInfo.InfoSystemKindInfo = currentKind.ToDTO();
 

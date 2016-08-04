@@ -20,7 +20,7 @@ namespace SD.UAC.Repository.Implements
         /// <returns>菜单集</returns>
         public IEnumerable<Menu> FindBySystemKind(string systemKindNo)
         {
-            return base.Find(x => x.InfoSystemKind.Number == systemKindNo).AsEnumerable();
+            return base.Find(x => x.SystemKindNo == systemKindNo).AsEnumerable();
         }
         #endregion
 

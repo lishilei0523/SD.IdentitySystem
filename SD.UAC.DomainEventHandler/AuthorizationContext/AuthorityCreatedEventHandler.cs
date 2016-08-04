@@ -4,9 +4,10 @@ using SD.UAC.Domain.Entities;
 using SD.UAC.Domain.EventSources.AuthorizationContext;
 using SD.UAC.Domain.IRepositories;
 using SD.UAC.Domain.Mediators;
+using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.EventBase;
 
-namespace SD.UAC.DomainEventHandler.Authority
+namespace SD.UAC.DomainEventHandler.AuthorizationContext
 {
     /// <summary>
     /// 权限创建事件处理者
@@ -73,24 +74,25 @@ namespace SD.UAC.DomainEventHandler.Authority
         private void AppendAuthorities(string systemKindNo, Guid authorityId)
         {
             //验证参数
-            this._svcMediator.InfoSystemKindSvc.AssertAuthorityExists(systemKindNo, authorityId);
+            Assert.IsTrue(this._repMediator.InfoSystemKindRep.Exists(systemKindNo), string.Format("编号为\"{0}\"的信息系统类别不存在！", systemKindNo));
 
-            InfoSystemKind currentSystemKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
-            Domain.Entities.Authority currentAuthority = currentSystemKind.GetAuthority(authorityId);
+            Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
 
             //根据类别获取所有信息系统
             IEnumerable<string> systemNos = this._repMediator.InfoSystemRep.GetInfoSystemNos(systemKindNo);
+
             foreach (string systemNo in systemNos)
             {
                 //为系统管理员追加权限
-                InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-                Role adminRole = currentSystem.GetManagerRole();
+
+                Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(systemNo);
+
+                Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
                 adminRole.AppendAuthorities(new[] { currentAuthority });
 
                 //注册保存
-                this._unitOfWork.RegisterSave(currentSystem);
+                this._unitOfWork.RegisterSave(adminRole);
             }
-
 
             //提交
             this._unitOfWork.Commit();

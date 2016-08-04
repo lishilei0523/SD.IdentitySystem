@@ -69,7 +69,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Toolkits.EntityFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SD.Toolkits.EntityFramework.1.0.0.0\lib\net45\SD.Toolkits.EntityFramework.dll</HintPath>
+      <HintPath>..\packages\SD.Toolkits.EntityFramework.1.0.1\lib\net45\SD.Toolkits.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Toolkits.Recursion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -115,6 +115,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SD.UAC.Common\SD.UAC.Common.csproj">
+      <Project>{2219FF8E-0870-4922-8D68-1E9497DD285D}</Project>
+      <Name>SD.UAC.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SD.UAC.Domain\SD.UAC.Domain.csproj">
       <Project>{20443d88-d509-43c6-942c-0ce1923bc91e}</Project>
       <Name>SD.UAC.Domain</Name>

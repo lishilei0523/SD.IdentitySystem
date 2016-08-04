@@ -9,7 +9,7 @@ namespace SD.UAC.Domain.Entities
     /// <summary>
     /// 权限
     /// </summary>
-    public class Authority : PlainEntity
+    public class Authority : AggregateRootEntity
     {
         #region # 构造器
 
@@ -29,6 +29,7 @@ namespace SD.UAC.Domain.Entities
         /// <summary>
         /// 创建权限构造器
         /// </summary>
+        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="englishName">英文名称</param>
         /// <param name="description">描述</param>
@@ -36,13 +37,14 @@ namespace SD.UAC.Domain.Entities
         /// <param name="namespace">命名空间</param>
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
-        public Authority(string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        public Authority(string systemKindNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
             : this()
         {
             //验证参数
             this.CheckBasicInfo(assemblyName, @namespace, className, methodName);
 
             base.Name = authorityName;
+            this.SystemKindNo = systemKindNo;
             this.EnglishName = englishName;
             this.Description = description;
             this.AssemblyName = assemblyName;
@@ -59,6 +61,13 @@ namespace SD.UAC.Domain.Entities
         #endregion
 
         #region # 属性
+
+        #region 信息系统类别编号 —— string SystemKindNo
+        /// <summary>
+        /// 信息系统类别编号
+        /// </summary>
+        public string SystemKindNo { get; private set; }
+        #endregion
 
         #region 程序集名称 —— string AssemblyName
         /// <summary>
@@ -114,13 +123,6 @@ namespace SD.UAC.Domain.Entities
         /// 导航属性 - 菜单（叶子节点）
         /// </summary>
         public virtual ICollection<Menu> MenuLeaves { get; private set; }
-        #endregion
-
-        #region 导航属性 - 信息系统类别 —— InfoSystemKind InfoSystemKind
-        /// <summary>
-        /// 导航属性 - 信息系统类别
-        /// </summary>
-        public virtual InfoSystemKind InfoSystemKind { get; private set; }
         #endregion
 
         #region 导航属性 - 角色集 —— ICollection<Role> Roles

@@ -22,18 +22,9 @@ namespace SD.UAC.IAppService.Interfaces
         /// <param name="systemNo">组织编号</param>
         /// <param name="systemName">信息系统名称</param>
         /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="adminLoginId">系统管理员登录名</param>
         [OperationContract]
-        void CreateInfoSystem(string systemNo, string systemName, string systemKindNo);
-        #endregion
-
-        #region # 设置系统管理员 —— void SetSystemAdmin(string systemNo, string loginId)
-        /// <summary>
-        /// 设置系统管理员
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="loginId">登录名</param>
-        [OperationContract]
-        void SetSystemAdmin(string systemNo, string loginId);
+        void CreateInfoSystem(string systemNo, string systemName, string systemKindNo, string adminLoginId);
         #endregion
 
 
@@ -53,20 +44,30 @@ namespace SD.UAC.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="password">密码</param>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleIds">角色Id集</param>
         [OperationContract]
-        void CreateUserWithRoles(string loginId, string password, string systemNo, IEnumerable<Guid> roleIds);
+        void CreateUserWithRoles(string loginId, string password, IEnumerable<Guid> roleIds);
         #endregion
 
-        #region # 修改密码 —— void UpdatePassword(string loginId, string newPassword)
+        #region # 修改密码 —— void UpdatePassword(string loginId, string oldPassword...
         /// <summary>
         /// 修改密码
         /// </summary>
         /// <param name="loginId">登录名</param>
+        /// <param name="oldPassword">旧密码</param>
         /// <param name="newPassword">新密码</param>
         [OperationContract]
-        void UpdatePassword(string loginId, string newPassword);
+        void UpdatePassword(string loginId, string oldPassword, string newPassword);
+        #endregion
+
+        #region # 重置密码 —— void ResetPassword(string loginId, string newPassword)
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="newPassword">新密码</param>
+        [OperationContract]
+        void ResetPassword(string loginId, string newPassword);
         #endregion
 
         #region # 启用用户 —— void EnableUser(string loginId, string password)
@@ -98,26 +99,24 @@ namespace SD.UAC.IAppService.Interfaces
         void RemoveUser(string loginId);
         #endregion
 
-        #region # 为用户分配角色 —— void SetRoles(string loginId, string systemNo...
+        #region # 为用户分配角色 —— void SetRoles(string loginId, IEnumerable<Guid> roleIds)
         /// <summary>
         /// 为用户分配角色
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleIds">角色Id集</param>
         [OperationContract]
-        void SetRoles(string loginId, string systemNo, IEnumerable<Guid> roleIds);
+        void SetRoles(string loginId, IEnumerable<Guid> roleIds);
         #endregion
 
-        #region # 为用户追加角色 —— void AppendRoles(string loginId, string systemNo...
+        #region # 为用户追加角色 —— void AppendRoles(string loginId, IEnumerable<Guid> roleIds)
         /// <summary>
         /// 为用户追加角色
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleIds">角色Id集</param>
         [OperationContract]
-        void AppendRoles(string loginId, string systemNo, IEnumerable<Guid> roleIds);
+        void AppendRoles(string loginId, IEnumerable<Guid> roleIds);
         #endregion
 
 
@@ -133,37 +132,44 @@ namespace SD.UAC.IAppService.Interfaces
         Guid CreateRole(string systemNo, string roleName, IEnumerable<Guid> authorityIds);
         #endregion
 
-        #region # 为角色授权 —— void SetAuthorities(string systemNo, Guid roleId...
+        #region # 为角色分配权限 —— void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
         /// <summary>
-        /// 为角色授权
+        /// 为角色分配权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="authorityIds">权限Id集</param>
         [OperationContract]
-        void SetAuthorities(string systemNo, Guid roleId, IEnumerable<Guid> authorityIds);
+        void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds);
         #endregion
 
-        #region # 修改角色 —— void UpdateRole(string systemNo, Guid roleId, string roleName...
+        #region # 为角色追加权限 —— void AppendAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
+        /// <summary>
+        /// 为角色追加权限
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        /// <param name="authorityIds">权限Id集</param>
+        [OperationContract]
+        void AppendAuthorities(Guid roleId, IEnumerable<Guid> authorityIds);
+        #endregion
+
+        #region # 修改角色 —— void UpdateRole(Guid roleId, string roleName...
         /// <summary>
         /// 修改角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
         /// <param name="authorityIds">权限Id集</param>
         [OperationContract]
-        void UpdateRole(string systemNo, Guid roleId, string roleName, IEnumerable<Guid> authorityIds);
+        void UpdateRole(Guid roleId, string roleName, IEnumerable<Guid> authorityIds);
         #endregion
 
-        #region # 删除角色 —— void RemoveRole(string systemNo, Guid roleId)
+        #region # 删除角色 —— void RemoveRole(Guid roleId)
         /// <summary>
         /// 删除角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         [OperationContract]
-        void RemoveRole(string systemNo, Guid roleId);
+        void RemoveRole(Guid roleId);
         #endregion
 
 

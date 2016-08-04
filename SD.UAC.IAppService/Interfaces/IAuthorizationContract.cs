@@ -27,36 +27,33 @@ namespace SD.UAC.IAppService.Interfaces
         IEnumerable<Guid> CreateAuthorities(string systemKindNo, IEnumerable<AuthorityParam> authorityParams);
         #endregion
 
-        #region # 修改权限 —— void UpdateAuthority(string systemKindNo...
+        #region # 修改权限 —— void UpdateAuthority(Guid authorityId...
         /// <summary>
         /// 修改权限
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="authorityId">权限Id</param>
         /// <param name="authorityParam">权限参数模型</param>
         [OperationContract]
-        void UpdateAuthority(string systemKindNo, Guid authorityId, AuthorityParam authorityParam);
+        void UpdateAuthority(Guid authorityId, AuthorityParam authorityParam);
         #endregion
 
-        #region # 为权限设置菜单 —— void AppendMenu(string systemKindNo, Guid menuId...
+        #region # 为权限设置菜单 —— void AppendMenu(Guid menuId...
         /// <summary>
         /// 为权限设置菜单
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="menuId">菜单Id（叶子节点）</param>
         /// <param name="authorityIds">权限Id集</param>
         [OperationContract]
-        void AppendMenu(string systemKindNo, Guid menuId, IEnumerable<Guid> authorityIds);
+        void AppendMenu(Guid menuId, IEnumerable<Guid> authorityIds);
         #endregion
 
-        #region # 删除权限 —— void RemoveAuthority(string systemKindNo, Guid authorityId)
+        #region # 删除权限 —— void RemoveAuthority(Guid authorityId)
         /// <summary>
         /// 删除权限
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="authorityId">权限Id</param>
         [OperationContract]
-        void RemoveAuthority(string systemKindNo, Guid authorityId);
+        void RemoveAuthority(Guid authorityId);
         #endregion
 
         #region # 创建菜单 —— Guid CreateMenu(string systemKindNo, string menuName...
@@ -74,28 +71,26 @@ namespace SD.UAC.IAppService.Interfaces
         Guid CreateMenu(string systemKindNo, string menuName, int sort, string url, string icon, Guid? parentId);
         #endregion
 
-        #region # 修改菜单 —— void UpdateMenu(string systemKindNo, Guid menuId, string menuName...
+        #region # 修改菜单 —— void UpdateMenu(Guid menuId, string menuName...
         /// <summary>
         /// 修改菜单
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="menuId">菜单Id</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
         /// <param name="icon">图标</param>
         [OperationContract]
-        void UpdateMenu(string systemKindNo, Guid menuId, string menuName, int sort, string url, string icon);
+        void UpdateMenu(Guid menuId, string menuName, int sort, string url, string icon);
         #endregion
 
-        #region # 删除菜单 —— void RemoveMenu(string systemKindNo, Guid menuId)
+        #region # 删除菜单 —— void RemoveMenu(Guid menuId)
         /// <summary>
         /// 删除菜单
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="menuId">菜单Id</param>
         [OperationContract]
-        void RemoveMenu(string systemKindNo, Guid menuId);
+        void RemoveMenu(Guid menuId);
         #endregion
 
         ////////////////////////////////查询部分////////////////////////////////
@@ -136,11 +131,10 @@ namespace SD.UAC.IAppService.Interfaces
         /// <summary>
         /// 根据菜单Id获取权限列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="menuId">菜单Id</param>
         /// <returns>权限列表</returns>
         [OperationContract]
-        IEnumerable<AuthorityInfo> GetAuthoritysByMenu(string systemKindNo, Guid menuId);
+        IEnumerable<AuthorityInfo> GetAuthoritysByMenu(Guid menuId);
         #endregion
 
         #region # 获取权限Id集 —— IEnumerable<Guid> GetAuthorities(string systemKindNo)

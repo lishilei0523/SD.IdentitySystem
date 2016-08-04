@@ -1,5 +1,4 @@
 ﻿using SD.UAC.Domain.Entities;
-using SD.UAC.IAppService.DTOs.Inputs;
 using SD.UAC.IAppService.DTOs.Outputs;
 using ShSoft.Common.PoweredByLee;
 
@@ -45,18 +44,6 @@ namespace SD.UAC.AppService.Maps
         public static AuthorityInfo ToDTO(this Authority authority)
         {
             return Transform<Authority, AuthorityInfo>.Map(authority);
-        }
-        #endregion
-
-        #region # 权限映射领域模型 —— static Authority ToDomainModel(this AuthorityParam authorityParam)
-        /// <summary>
-        /// 权限映射领域模型
-        /// </summary>
-        /// <param name="authorityParam">权限参数模型</param>
-        /// <returns>权限领域模型</returns>
-        public static Authority ToDomainModel(this AuthorityParam authorityParam)
-        {
-            return new Authority(authorityParam.AuthorityName, authorityParam.EnglishName, authorityParam.Description, authorityParam.AssemblyName, authorityParam.Namespace, authorityParam.ClassName, authorityParam.MethodName);
         }
         #endregion
     }

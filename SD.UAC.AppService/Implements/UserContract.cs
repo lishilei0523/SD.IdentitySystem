@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using SD.UAC.AppService.Maps;
+using SD.UAC.Common;
 using SD.UAC.Domain.Entities;
 using SD.UAC.Domain.IRepositories;
 using SD.UAC.Domain.Mediators;
@@ -61,33 +62,18 @@ namespace SD.UAC.AppService.Implements
         /// <param name="systemNo">组织编号</param>
         /// <param name="systemName">信息系统名称</param>
         /// <param name="systemKindNo">信息系统类别编号</param>
-        public void CreateInfoSystem(string systemNo, string systemName, string systemKindNo)
+        /// <param name="adminLoginId">系统管理员登录名</param>
+        public void CreateInfoSystem(string systemNo, string systemName, string systemKindNo, string adminLoginId)
         {
             //验证
             Assert.IsTrue(this._repMediator.InfoSystemKindRep.Exists(systemKindNo), string.Format("编号为\"{0}\"的信息系统类别不存在！", systemKindNo));
+            Assert.IsFalse(this._repMediator.UserRep.Exists(adminLoginId), string.Format("登录名：\"{0}\"已存在，请重试！", adminLoginId));
 
-            InfoSystem infoSystem = new InfoSystem(systemNo, systemName, systemKindNo);
+            InfoSystem infoSystem = new InfoSystem(systemNo, systemName, systemKindNo, adminLoginId);
+            User admin = new User(adminLoginId, Constants.InitialPassword);
 
             this._unitOfWork.RegisterAdd(infoSystem);
-            this._unitOfWork.UnitedCommit();
-        }
-        #endregion
-
-        #region # 设置系统管理员 —— void SetSystemAdmin(string systemNo, string loginId)
-        /// <summary>
-        /// 设置系统管理员
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="loginId">登录名</param>
-        public void SetSystemAdmin(string systemNo, string loginId)
-        {
-            //验证参数
-            Assert.IsTrue(this._repMediator.UserRep.Exists(loginId), string.Format("登录名\"{0}\"不存在！", loginId));
-
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-            currentSystem.SetAdmin(loginId);
-
-            this._unitOfWork.RegisterSave(currentSystem);
+            this._unitOfWork.RegisterAdd(admin);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
@@ -117,18 +103,17 @@ namespace SD.UAC.AppService.Implements
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="password">密码</param>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleIds">角色Id集</param>
-        public void CreateUserWithRoles(string loginId, string password, string systemNo, IEnumerable<Guid> roleIds)
+        public void CreateUserWithRoles(string loginId, string password, IEnumerable<Guid> roleIds)
         {
             //验证参数
             this._svcMediator.UserSvc.AssertLoginIdNotExists(loginId);
 
+            //创建用户
             User user = new User(loginId, password);
 
             //分配角色
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-            IEnumerable<Role> roles = roleIds.Select(roleId => currentSystem.GetRole(roleId));
+            IEnumerable<Role> roles = roleIds.Select(roleId => this._unitOfWork.Resolve<Role>(roleId));
             user.SetRoles(roles);
 
             this._unitOfWork.RegisterAdd(user);
@@ -154,13 +139,13 @@ namespace SD.UAC.AppService.Implements
         }
         #endregion
 
-        #region # 修改密码 —— void UpdatePassword(string loginId, string newPassword)
+        #region # 重置密码 —— void ResetPassword(string loginId, string newPassword)
         /// <summary>
-        /// 修改密码
+        /// 重置密码
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="newPassword">新密码</param>
-        public void UpdatePassword(string loginId, string newPassword)
+        public void ResetPassword(string loginId, string newPassword)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
             currentUser.UpdatePassword(newPassword);
@@ -215,19 +200,17 @@ namespace SD.UAC.AppService.Implements
         }
         #endregion
 
-        #region # 为用户分配角色 —— void SetRoles(string loginId, string systemNo...
+        #region # 为用户分配角色 —— void SetRoles(string loginId, IEnumerable<Guid> roleIds)
         /// <summary>
         /// 为用户分配角色
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleIds">角色Id集</param>
-        public void SetRoles(string loginId, string systemNo, IEnumerable<Guid> roleIds)
+        public void SetRoles(string loginId, IEnumerable<Guid> roleIds)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
 
-            IEnumerable<Role> roles = roleIds.Select(roleId => currentSystem.GetRole(roleId));
+            IEnumerable<Role> roles = roleIds.Select(roleId => this._unitOfWork.Resolve<Role>(roleId));
             currentUser.SetRoles(roles);
 
             this._unitOfWork.RegisterSave(currentUser);
@@ -235,19 +218,17 @@ namespace SD.UAC.AppService.Implements
         }
         #endregion
 
-        #region # 为用户追加角色 —— void AppendRoles(string loginId, string systemNo...
+        #region # 为用户追加角色 —— void AppendRoles(string loginId, IEnumerable<Guid> roleIds)
         /// <summary>
         /// 为用户追加角色
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleIds">角色Id集</param>
-        public void AppendRoles(string loginId, string systemNo, IEnumerable<Guid> roleIds)
+        public void AppendRoles(string loginId, IEnumerable<Guid> roleIds)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
 
-            IEnumerable<Role> roles = roleIds.Select(roleId => currentSystem.GetRole(roleId));
+            IEnumerable<Role> roles = roleIds.Select(roleId => this._unitOfWork.Resolve<Role>(roleId));
             currentUser.AppendRoles(roles);
 
             this._unitOfWork.RegisterSave(currentUser);
@@ -266,88 +247,89 @@ namespace SD.UAC.AppService.Implements
         /// <returns>角色Id</returns>
         public Guid CreateRole(string systemNo, string roleName, IEnumerable<Guid> authorityIds)
         {
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
+            InfoSystem currentSystem = this._repMediator.InfoSystemRep.Single(systemNo);
 
-            Role role = new Role(roleName, roleName);
-            currentSystem.CreateRole(role);
+            //创建角色
+            Role role = new Role(roleName, currentSystem.SystemKindNo, currentSystem.Number, roleName);
 
-            InfoSystemKind currentKind = this._unitOfWork.Resolve<InfoSystemKind>(currentSystem.InfoSystemKindNo);
-
-            IEnumerable<Authority> authorities = authorityIds.Select(authorityId => currentKind.GetAuthority(authorityId));
-
+            //分配权限
+            IEnumerable<Authority> authorities = authorityIds.Select(authorityId => this._unitOfWork.Resolve<Authority>(authorityId));
             role.SetAuthorities(authorities);
 
-            this._unitOfWork.RegisterSave(currentSystem);
+            this._unitOfWork.RegisterAdd(role);
             this._unitOfWork.UnitedCommit();
 
             return role.Id;
         }
         #endregion
 
-        #region # 为角色授权 —— void SetAuthorities(string systemNo, Guid roleId...
+        #region # 为角色分配权限 —— void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
         /// <summary>
-        /// 为角色授权
+        /// 为角色分配权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="authorityIds">权限Id集</param>
-        public void SetAuthorities(string systemNo, Guid roleId, IEnumerable<Guid> authorityIds)
+        public void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
         {
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-            Role role = currentSystem.GetRole(roleId);
+            Role role = this._unitOfWork.Resolve<Role>(roleId);
 
-            InfoSystemKind currentKind = this._unitOfWork.Resolve<InfoSystemKind>(currentSystem.InfoSystemKindNo);
-
-            IEnumerable<Authority> authorities = authorityIds.Select(authorityId => currentKind.GetAuthority(authorityId));
+            IEnumerable<Authority> authorities = authorityIds.Select(authorityId => this._unitOfWork.Resolve<Authority>(authorityId));
 
             role.SetAuthorities(authorities);
-            this._unitOfWork.RegisterSave(currentSystem);
+            this._unitOfWork.RegisterSave(role);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
 
-        #region # 修改角色 —— void UpdateRole(string systemNo, Guid roleId, string roleName...
+        #region # 为角色追加权限 —— void AppendAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
+        /// <summary>
+        /// 为角色追加权限
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        /// <param name="authorityIds">权限Id集</param>
+        public void AppendAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
+        {
+            Role role = this._unitOfWork.Resolve<Role>(roleId);
+
+            IEnumerable<Authority> authorities = authorityIds.Select(authorityId => this._unitOfWork.Resolve<Authority>(authorityId));
+
+            role.AppendAuthorities(authorities);
+            this._unitOfWork.RegisterSave(role);
+            this._unitOfWork.UnitedCommit();
+        }
+        #endregion
+
+        #region # 修改角色 —— void UpdateRole(Guid roleId, string roleName...
         /// <summary>
         /// 修改角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
         /// <param name="authorityIds">权限Id集</param>
-        public void UpdateRole(string systemNo, Guid roleId, string roleName, IEnumerable<Guid> authorityIds)
+        public void UpdateRole(Guid roleId, string roleName, IEnumerable<Guid> authorityIds)
         {
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-
-            Role role = currentSystem.GetRole(roleId);
+            Role role = this._unitOfWork.Resolve<Role>(roleId);
 
             role.UpdateInfo(roleName, roleName);
 
-            InfoSystemKind currentKind = this._unitOfWork.Resolve<InfoSystemKind>(currentSystem.InfoSystemKindNo);
-
             IEnumerable<Authority> authorities =
-                authorityIds.Select(authorityId => currentKind.GetAuthority(authorityId));
+                authorityIds.Select(authorityId => this._unitOfWork.Resolve<Authority>(authorityId));
             role.SetAuthorities(authorities);
 
-            this._unitOfWork.RegisterSave(currentSystem);
+            this._unitOfWork.RegisterSave(role);
             this._unitOfWork.UnitedCommit();
         }
 
         #endregion
 
-        #region # 删除角色 —— void RemoveRole(string systemNo, Guid roleId)
+        #region # 删除角色 —— void RemoveRole(Guid roleId)
         /// <summary>
         /// 删除角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
-        public void RemoveRole(string systemNo, Guid roleId)
+        public void RemoveRole(Guid roleId)
         {
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-            Role currentRole = currentSystem.GetRole(roleId);
-
-            currentSystem.RemoveRole(currentRole);
-
-            this._unitOfWork.RegisterSave(currentSystem);
+            this._unitOfWork.RegisterRemove<Role>(roleId);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
@@ -379,7 +361,8 @@ namespace SD.UAC.AppService.Implements
         {
             User currentUser = this._repMediator.UserRep.Single(loginId);
 
-            IEnumerable<InfoSystem> systems = currentUser.GetInfoSystems(systemKindNo);
+            IEnumerable<InfoSystem> systems = this._repMediator.InfoSystemRep.GetInfoSystems(systemKindNo,
+                currentUser.SystemNos);
 
             return systems.Select(x => x.ToDTO(this._repMediator));
         }
@@ -440,8 +423,7 @@ namespace SD.UAC.AppService.Implements
         /// <returns>角色</returns>
         public RoleInfo GetRole(string systemNo, Guid roleId)
         {
-            InfoSystem currentSystem = this._repMediator.InfoSystemRep.Single(systemNo);
-            Role currentRole = currentSystem.GetRole(roleId);
+            Role currentRole = this._repMediator.RoleRep.Single(roleId);
 
             return currentRole.ToDTOWithAuthority();
         }

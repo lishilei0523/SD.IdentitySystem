@@ -1,6 +1,8 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SD.Toolkits.EntityFramework.Extensions;
+using SD.UAC.Common;
 using SD.UAC.Domain.Entities;
 using SD.UAC.Domain.IRepositories.Interfaces;
 using ShSoft.Infrastructure.Repository.EntityFramework;
@@ -20,7 +22,7 @@ namespace SD.UAC.Repository.Implements
         /// <returns>角色集</returns>
         public IEnumerable<Role> FindBySystem(string systemNo)
         {
-            return base.Find(x => x.InfoSystem.Number == systemNo).AsEnumerable();
+            return base.Find(x => x.SystemNo == systemNo).AsEnumerable();
         }
         #endregion
 
@@ -37,7 +39,7 @@ namespace SD.UAC.Repository.Implements
         /// <returns>角色集</returns>
         public IEnumerable<Role> FindByPage(string systemNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
-            PredicateBuilder<Role> builder = new PredicateBuilder<Role>(x => x.InfoSystem.Number == systemNo);
+            PredicateBuilder<Role> builder = new PredicateBuilder<Role>(x => x.SystemNo == systemNo);
 
             if (!string.IsNullOrWhiteSpace(keywords))
             {
@@ -45,6 +47,50 @@ namespace SD.UAC.Repository.Implements
             }
 
             return base.FindByPage(builder.Build(), pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
+        }
+        #endregion
+
+        #region # 获取系统管理员角色 —— Role GetManagerRole(string systemNo)
+        /// <summary>
+        /// 获取系统管理员角色
+        /// </summary>
+        /// <returns>系统管理员角色</returns>
+        public Role GetManagerRole(string systemNo)
+        {
+            IQueryable<Role> specRoles = base.Find(x => x.SystemNo == systemNo);
+
+            #region # 验证业务
+
+            if (specRoles.All(x => x.Name != Constants.ManagerRoleName))
+            {
+                throw new ApplicationException(string.Format("未为编号为\"{0}\"的信息系统初始化系统管理员角色！", systemNo));
+            }
+
+            #endregion
+
+            return specRoles.Single(x => x.Name == Constants.ManagerRoleName);
+        }
+        #endregion
+
+        #region # 获取系统管理员角色Id —— Guid GetManagerRoleId(string systemNo)
+        /// <summary>
+        /// 获取系统管理员角色Id
+        /// </summary>
+        /// <returns>系统管理员角色Id</returns>
+        public Guid GetManagerRoleId(string systemNo)
+        {
+            IQueryable<Role> specRoles = base.Find(x => x.SystemNo == systemNo);
+
+            #region # 验证业务
+
+            if (specRoles.All(x => x.Name != Constants.ManagerRoleName))
+            {
+                throw new ApplicationException(string.Format("未为编号为\"{0}\"的信息系统初始化系统管理员角色！", systemNo));
+            }
+
+            #endregion
+
+            return specRoles.Where(x => x.Name == Constants.ManagerRoleName).Select(x => x.Id).Single();
         }
         #endregion
     }

@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using SD.UAC.Domain.Entities;
 using ShSoft.Infrastructure.RepositoryBase;
 
@@ -30,6 +31,22 @@ namespace SD.UAC.Domain.IRepositories.Interfaces
         /// <param name="pageCount">总页数</param>
         /// <returns>角色集</returns>
         IEnumerable<Role> FindByPage(string systemNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount);
+        #endregion
+
+        #region # 获取系统管理员角色 —— Role GetManagerRole(string systemNo)
+        /// <summary>
+        /// 获取系统管理员角色
+        /// </summary>
+        /// <returns>系统管理员角色</returns>
+        Role GetManagerRole(string systemNo);
+        #endregion
+
+        #region # 获取系统管理员角色Id —— Guid GetManagerRoleId(string systemNo)
+        /// <summary>
+        /// 获取系统管理员角色Id
+        /// </summary>
+        /// <returns>系统管理员角色Id</returns>
+        Guid GetManagerRoleId(string systemNo);
         #endregion
     }
 }

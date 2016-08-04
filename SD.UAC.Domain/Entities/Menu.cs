@@ -8,7 +8,7 @@ namespace SD.UAC.Domain.Entities
     /// <summary>
     /// 菜单
     /// </summary>
-    public class Menu : PlainEntity, ITree<Menu>
+    public class Menu : AggregateRootEntity, ITree<Menu>
     {
         #region # 构造器
 
@@ -28,12 +28,13 @@ namespace SD.UAC.Domain.Entities
         /// <summary>
         /// 创建菜单构造器
         /// </summary>
+        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">菜单排序</param>
         /// <param name="url">链接地址</param>
         /// <param name="icon">图标</param>
         /// <param name="parentNode">上级菜单</param>
-        public Menu(string menuName, int sort, string url, string icon, Menu parentNode)
+        public Menu(string systemKindNo, string menuName, int sort, string url, string icon, Menu parentNode)
             : this()
         {
             //验证参数
@@ -41,6 +42,7 @@ namespace SD.UAC.Domain.Entities
 
             base.Name = menuName;
             base.Sort = sort;
+            this.SystemKindNo = systemKindNo;
             this.Url = url;
             this.Icon = icon;
             this.ParentNode = parentNode;
@@ -51,6 +53,13 @@ namespace SD.UAC.Domain.Entities
         #endregion
 
         #region # 属性
+
+        #region 信息系统类别编号 —— string SystemKindNo
+        /// <summary>
+        /// 信息系统类别编号
+        /// </summary>
+        public string SystemKindNo { get; private set; }
+        #endregion
 
         #region 链接地址 —— string Url
         /// <summary>
@@ -81,13 +90,6 @@ namespace SD.UAC.Domain.Entities
         {
             get { return !this.SubNodes.Any(); }
         }
-        #endregion
-
-        #region 导航属性 - 信息系统类别 —— InfoSystemKind InfoSystemKind
-        /// <summary>
-        /// 导航属性 - 信息系统类别
-        /// </summary>
-        public virtual InfoSystemKind InfoSystemKind { get; private set; }
         #endregion
 
         #region 导航属性 - 父级菜单 —— Menu ParentNode

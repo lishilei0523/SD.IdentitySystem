@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.UAC.Domain.Entities
@@ -8,7 +9,7 @@ namespace SD.UAC.Domain.Entities
     /// <summary>
     /// 角色
     /// </summary>
-    public class Role : PlainEntity
+    public class Role : AggregateRootEntity
     {
         #region # 构造器
 
@@ -29,14 +30,18 @@ namespace SD.UAC.Domain.Entities
         /// 创建角色构造器
         /// </summary>
         /// <param name="roleName">角色名称</param>
+        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="description">角色描述</param>
-        public Role(string roleName, string description)
+        public Role(string roleName, string systemKindNo, string systemNo, string description)
             : this()
         {
             //验证参数
-            base.CheckName(roleName);
+            Assert.IsFalse(string.IsNullOrWhiteSpace(roleName), "角色名称不可为空！");
 
             base.Name = roleName;
+            this.SystemKindNo = systemKindNo;
+            this.SystemNo = systemNo;
             this.Description = description;
 
             //初始化关键字
@@ -47,6 +52,20 @@ namespace SD.UAC.Domain.Entities
         #endregion
 
         #region # 属性
+
+        #region 信息系统类别编号 —— string SystemKindNo
+        /// <summary>
+        /// 信息系统类别编号
+        /// </summary>
+        public string SystemKindNo { get; private set; }
+        #endregion
+
+        #region 信息系统编号 —— string SystemNo
+        /// <summary>
+        /// 信息系统编号
+        /// </summary>
+        public string SystemNo { get; private set; }
+        #endregion
 
         #region 角色描述 —— string Description
         /// <summary>
@@ -63,13 +82,6 @@ namespace SD.UAC.Domain.Entities
         {
             get { return this.Users.Count(x => !x.Deleted); }
         }
-        #endregion
-
-        #region 导航属性 - 信息系统 —— InfoSystem InfoSystem
-        /// <summary>
-        /// 导航属性 - 信息系统
-        /// </summary>
-        public virtual InfoSystem InfoSystem { get; internal set; }
         #endregion
 
         #region 导航属性 - 用户集 —— ICollection<User> Users
@@ -139,26 +151,26 @@ namespace SD.UAC.Domain.Entities
         /// <param name="authorities">权限集</param>
         public void AppendAuthorities(IEnumerable<Authority> authorities)
         {
+            authorities = authorities == null ? new Authority[0] : authorities.ToArray();
+
             #region # 验证参数
 
-            if (authorities == null)
+            if (!authorities.Any())
             {
-                throw new ArgumentNullException("authorities", @"权限集不可为null！");
+                throw new ArgumentNullException("authorities", @"权限集不可为空！");
             }
+
             foreach (Authority authority in authorities)
             {
-                if (this.InfoSystem.InfoSystemKindNo != authority.InfoSystemKind.Number)
+                if (this.SystemKindNo != authority.SystemKindNo)
                 {
-                    throw new ArgumentOutOfRangeException("authorities", string.Format("角色与Id为\"{0}\"的权限的信息系统类别不匹配！", authority.Id));
+                    throw new ArgumentOutOfRangeException("authorities", string.Format("角色与Id为\"{0}\"的权限的信息系统类别不匹配！角色所在信息系统类别：\"{1}\"，权限所在信息系统类别：\"{2}\"", authority.Id, this.SystemKindNo, authority.SystemKindNo));
                 }
             }
 
             #endregion
 
-            foreach (Authority authority in authorities)
-            {
-                this.Authorities.Add(authority);
-            }
+            this.Authorities.AddRange(authorities);
         }
         #endregion
 

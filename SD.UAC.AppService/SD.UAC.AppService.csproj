@@ -94,7 +94,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Toolkits.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\SD.Toolkits.Redis.1.0.1\lib\net45\SD.Toolkits.Redis.dll</HintPath>
+      <HintPath>..\packages\SD.Toolkits.Redis.1.0.2\lib\net45\SD.Toolkits.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ServiceStack.Common, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
@@ -114,7 +114,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\packages\ShSoft.Common.1.0.0.0\lib\net45\ShSoft.Common.dll</HintPath>
+      <HintPath>..\packages\ShSoft.Common.1.0.1\lib\net45\ShSoft.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

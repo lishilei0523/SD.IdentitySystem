@@ -28,21 +28,6 @@ namespace SD.UAC.DomainService.Implements
 
         #endregion
 
-        #region # 断言权限已存在 —— void AssertAuthorityExists(string systemKindNo...
-        /// <summary>
-        /// 断言权限已存在
-        /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <param name="authorityId">权限Id</param>
-        public void AssertAuthorityExists(string systemKindNo, Guid authorityId)
-        {
-            if (!this._repMediator.AuthorityRep.Exists(systemKindNo, authorityId))
-            {
-                throw new ArgumentOutOfRangeException("authorityId", string.Format("信息系统类别\"{0}\"中不存在路径Id为\"{1}\"的权限！", systemKindNo, authorityId));
-            }
-        }
-        #endregion
-
         #region # 断言权限不存在 —— void AssertAuthorityNotExsits(string systemKindNo, string authorityPath)
         /// <summary>
         /// 断言权限不存在
@@ -54,24 +39,6 @@ namespace SD.UAC.DomainService.Implements
             if (this._repMediator.AuthorityRep.Exists(systemKindNo, authorityPath))
             {
                 throw new ArgumentOutOfRangeException("authorityPath", string.Format("信息系统类别\"{0}\"中已存在该权限！", systemKindNo));
-            }
-        }
-        #endregion
-
-        #region # 断言菜单是叶子节点 —— void AssertMenuIsLeaf(string systemKindNo, Guid menuId)
-        /// <summary>
-        /// 断言菜单是叶子节点
-        /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <param name="menuId">菜单Id</param>
-        public void AssertMenuIsLeaf(string systemKindNo, Guid menuId)
-        {
-            InfoSystemKind currentSystemKind = this._repMediator.InfoSystemKindRep.Single(systemKindNo);
-            Menu currentMenu = currentSystemKind.GetMenu(menuId);
-
-            if (!currentMenu.IsLeaf)
-            {
-                throw new ArgumentOutOfRangeException("menuId", string.Format("Id为\"{0}\"的菜单不是叶子节点！", menuId));
             }
         }
         #endregion

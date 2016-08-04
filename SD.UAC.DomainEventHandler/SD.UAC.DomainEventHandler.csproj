@@ -42,6 +42,10 @@
       <HintPath>..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
@@ -58,6 +62,14 @@
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\packages\SD.IOC.Core.1.0.5\lib\net45\SD.IOC.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Toolkits.CommonLibraries, Version=2.3.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\SD.Toolkits.CommonLibraries.1.0.0\lib\net45\SD.Toolkits.CommonLibraries.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\ShSoft.Common.1.0.1\lib\net45\ShSoft.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -83,13 +95,18 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Authority\AuthorityCreatedEventHandler.cs" />
+    <Compile Include="AuthorizationContext\AuthorityCreatedEventHandler.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UserContext\InfoSystemCreatedEventHandler.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SD.UAC.Common\SD.UAC.Common.csproj">
+      <Project>{2219FF8E-0870-4922-8D68-1E9497DD285D}</Project>
+      <Name>SD.UAC.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SD.UAC.Domain\SD.UAC.Domain.csproj">
       <Project>{20443D88-D509-43C6-942C-0CE1923BC91E}</Project>
       <Name>SD.UAC.Domain</Name>

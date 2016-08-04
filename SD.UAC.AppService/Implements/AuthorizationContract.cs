@@ -9,6 +9,7 @@ using SD.UAC.Domain.Mediators;
 using SD.UAC.IAppService.DTOs.Inputs;
 using SD.UAC.IAppService.DTOs.Outputs;
 using SD.UAC.IAppService.Interfaces;
+using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.Global.Transaction;
 
@@ -63,86 +64,76 @@ namespace SD.UAC.AppService.Implements
         /// <returns>权限Id集</returns>
         public IEnumerable<Guid> CreateAuthorities(string systemKindNo, IEnumerable<AuthorityParam> authorityParams)
         {
-            InfoSystemKind systemKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
+            //验证
+            Assert.IsTrue(this._repMediator.InfoSystemKindRep.Exists(systemKindNo), string.Format("编号为\"{0}\"的信息系统类别不存在！", systemKindNo));
 
-            List<Guid> authorityIds = new List<Guid>();
+            IList<Guid> authorityIds = new List<Guid>();
 
             foreach (AuthorityParam param in authorityParams)
             {
-                Authority authority = new Authority(param.AuthorityName, param.EnglishName, param.Description, param.AssemblyName, param.Namespace, param.ClassName, param.MethodName);
+                Authority authority = new Authority(systemKindNo, param.AuthorityName, param.EnglishName, param.Description, param.AssemblyName, param.Namespace, param.ClassName, param.MethodName);
 
                 //验证
                 this._svcMediator.InfoSystemKindSvc.AssertAuthorityNotExsits(systemKindNo, authority.AuthorityPath);
 
-                systemKind.CreateAuthority(authority);
+                this._unitOfWork.RegisterAdd(authority);
                 authorityIds.Add(authority.Id);
             }
 
-            this._unitOfWork.RegisterSave(systemKind);
             this._unitOfWork.UnitedCommit();
 
             return authorityIds;
         }
         #endregion
 
-        #region # 修改权限 —— void UpdateAuthority(string systemKindNo...
+        #region # 修改权限 —— void UpdateAuthority(Guid authorityId...
         /// <summary>
         /// 修改权限
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="authorityId">权限Id</param>
         /// <param name="authorityParam">权限参数模型</param>
-        public void UpdateAuthority(string systemKindNo, Guid authorityId, AuthorityParam authorityParam)
+        public void UpdateAuthority(Guid authorityId, AuthorityParam authorityParam)
         {
-            InfoSystemKind systemKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
-
-            Authority authority = systemKind.GetAuthority(authorityId);
+            Authority authority = this._unitOfWork.Resolve<Authority>(authorityId);
 
             authority.UpdateInfo(authorityParam.AuthorityName, authorityParam.EnglishName, authorityParam.Description, authorityParam.AssemblyName, authorityParam.Namespace, authorityParam.ClassName, authorityParam.MethodName);
 
-            this._unitOfWork.RegisterSave(systemKind);
+            this._unitOfWork.RegisterSave(authority);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
 
-        #region # 为权限设置菜单 —— void AppendMenu(string systemKindNo, Guid menuId...
+        #region # 为权限设置菜单 —— void AppendMenu(Guid menuId...
         /// <summary>
         /// 为权限设置菜单
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="menuId">菜单Id（叶子节点）</param>
         /// <param name="authorityIds">权限Id集</param>
-        public void AppendMenu(string systemKindNo, Guid menuId, IEnumerable<Guid> authorityIds)
+        public void AppendMenu(Guid menuId, IEnumerable<Guid> authorityIds)
         {
-            InfoSystemKind systemKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
-
-            Menu menu = systemKind.GetMenu(menuId);
+            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
 
             foreach (Guid authorityId in authorityIds)
             {
-                Authority currentAuthority = systemKind.GetAuthority(authorityId);
-                currentAuthority.AppendMenu(menu);
+                Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
+                currentAuthority.AppendMenu(currentMenu);
+
+                this._unitOfWork.RegisterSave(currentAuthority);
             }
 
-            this._unitOfWork.RegisterSave(systemKind);
+            this._unitOfWork.RegisterSave(currentMenu);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
 
-        #region # 删除权限 —— void RemoveAuthority(string systemKindNo, Guid authorityId)
+        #region # 删除权限 —— void RemoveAuthority(Guid authorityId)
         /// <summary>
         /// 删除权限
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="authorityId">权限Id</param>
-        public void RemoveAuthority(string systemKindNo, Guid authorityId)
+        public void RemoveAuthority(Guid authorityId)
         {
-            InfoSystemKind currentKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
-            Authority currentAuthority = currentKind.GetAuthority(authorityId);
-
-            currentKind.RemoveAuthority(currentAuthority);
-
-            this._unitOfWork.RegisterSave(currentKind);
+            this._unitOfWork.RegisterRemove<Authority>(authorityId);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
@@ -161,69 +152,57 @@ namespace SD.UAC.AppService.Implements
         public Guid CreateMenu(string systemKindNo, string menuName, int sort, string url, string icon, Guid? parentId)
         {
             //验证参数
+            Assert.IsTrue(this._repMediator.InfoSystemKindRep.Exists(systemKindNo), string.Format("编号为\"{0}\"的信息系统类别不存在！", systemKindNo));
             this._svcMediator.InfoSystemKindSvc.AssertMenuNotExists(systemKindNo, parentId, menuName);
 
-            InfoSystemKind systemKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
+            Menu parentMenu = parentId == null ? null : this._unitOfWork.Resolve<Menu>(parentId.Value);
+            Menu menu = new Menu(systemKindNo, menuName, sort, url, icon, parentMenu);
 
-            Menu parentMenu = parentId == null ? null : systemKind.GetMenu(parentId.Value);
-            Menu menu = new Menu(menuName, sort, url, icon, parentMenu);
-
-            systemKind.CreateMenu(menu);
-
-            this._unitOfWork.RegisterSave(systemKind);
+            this._unitOfWork.RegisterAdd(menu);
             this._unitOfWork.UnitedCommit();
 
             return menu.Id;
         }
         #endregion
 
-        #region # 修改菜单 —— void UpdateMenu(string systemKindNo, Guid menuId, string menuName...
+        #region # 修改菜单 —— void UpdateMenu(Guid menuId, string menuName...
         /// <summary>
         /// 修改菜单
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="menuId">菜单Id</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
         /// <param name="icon">图标</param>
-        public void UpdateMenu(string systemKindNo, Guid menuId, string menuName, int sort, string url, string icon)
+        public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string icon)
         {
-            InfoSystemKind systemKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
-
-            Menu currentMenu = systemKind.GetMenu(menuId);
+            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
 
             #region # 验证参数
 
             if (menuName != currentMenu.Name)
             {
                 Guid? parentId = currentMenu.ParentNode == null ? (Guid?)null : currentMenu.ParentNode.Id;
-                this._svcMediator.InfoSystemKindSvc.AssertMenuNotExists(systemKindNo, parentId, menuName);
+                this._svcMediator.InfoSystemKindSvc.AssertMenuNotExists(currentMenu.SystemKindNo, parentId, menuName);
             }
 
             #endregion
 
             currentMenu.UpdateInfo(menuName, sort, url, icon);
 
-            this._unitOfWork.RegisterSave(systemKind);
+            this._unitOfWork.RegisterSave(currentMenu);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
 
-        #region # 删除菜单 —— void RemoveMenu(string systemKindNo, Guid menuId)
+        #region # 删除菜单 —— void RemoveMenu(Guid menuId)
         /// <summary>
         /// 删除菜单
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="menuId">菜单Id</param>
-        public void RemoveMenu(string systemKindNo, Guid menuId)
+        public void RemoveMenu(Guid menuId)
         {
-            InfoSystemKind systemKind = this._unitOfWork.Resolve<InfoSystemKind>(systemKindNo);
-            Menu currentMenu = systemKind.GetMenu(menuId);
-
-            systemKind.RemoveMenu(currentMenu);
-
-            this._unitOfWork.RegisterSave(systemKind);
+            this._unitOfWork.RegisterRemove<Menu>(menuId);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
@@ -283,16 +262,15 @@ namespace SD.UAC.AppService.Implements
         /// <summary>
         /// 根据菜单Id获取权限列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="menuId">菜单Id</param>
         /// <returns>权限列表</returns>
-        public IEnumerable<AuthorityInfo> GetAuthoritysByMenu(string systemKindNo, Guid menuId)
+        public IEnumerable<AuthorityInfo> GetAuthoritysByMenu(Guid menuId)
         {
-            //验证
-            this._svcMediator.InfoSystemKindSvc.AssertMenuIsLeaf(systemKindNo, menuId);
+            Menu currentMenu = this._repMediator.MenuRep.Single(menuId);
 
-            InfoSystemKind currentSystemKind = this._repMediator.InfoSystemKindRep.Single(systemKindNo);
-            Menu currentMenu = currentSystemKind.GetMenu(menuId);
+            //验证叶子节点
+            Assert.IsTrue(currentMenu.IsLeaf, string.Format("Id为\"{0}\"的菜单不是叶子节点！", menuId));
+
             IEnumerable<Authority> authorities = currentMenu.GetAuthorities();
 
             return authorities.Select(x => x.ToDTO());

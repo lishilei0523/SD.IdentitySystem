@@ -85,13 +85,13 @@ namespace SD.UAC.Domain.Entities
         public bool Enabled { get; private set; }
         #endregion
 
-        #region 只读属性 - 信息系统集 —— IEnumerable<InfoSystem> InfoSystems
+        #region 只读属性 - 信息系统编号集 —— IEnumerable<string> SystemNos
         /// <summary>
-        /// 只读属性 - 信息系统集
+        /// 只读属性 - 信息系统编号集
         /// </summary>
-        public IEnumerable<InfoSystem> InfoSystems
+        public IEnumerable<string> SystemNos
         {
-            get { return this.Roles.Select(x => x.InfoSystem).Distinct(); }
+            get { return this.Roles.Select(x => x.SystemNo).Distinct(); }
         }
         #endregion
 
@@ -283,18 +283,6 @@ namespace SD.UAC.Domain.Entities
         }
         #endregion
 
-        #region 获取信息系统集 —— IEnumerable<InfoSystem> GetInfoSystems(string systemKindNo)
-        /// <summary>
-        /// 获取信息系统集
-        /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <returns>信息系统集</returns>
-        public IEnumerable<InfoSystem> GetInfoSystems(string systemKindNo)
-        {
-            return this.InfoSystems.Where(x => x.InfoSystemKindNo == systemKindNo).OrderByDescending(x => x.Sort).ThenByDescending(x => x.AddedTime);
-        }
-        #endregion
-
         #region 获取角色集 —— IEnumerable<Role> GetRoles(string systemNo)
         /// <summary>
         /// 获取角色集
@@ -303,7 +291,7 @@ namespace SD.UAC.Domain.Entities
         /// <returns>角色集</returns>
         public IEnumerable<Role> GetRoles(string systemNo)
         {
-            return this.Roles.Where(x => x.InfoSystem.Number == systemNo).ToArray();
+            return this.Roles.Where(x => x.SystemNo == systemNo);
         }
         #endregion
 
@@ -319,7 +307,7 @@ namespace SD.UAC.Domain.Entities
             IEnumerable<Authority> authorities = this.GetAuthorities(systemNo);
 
             //获取所有权限的菜单叶子节点
-            IEnumerable<Menu> menuLeaves = authorities.SelectMany(x => x.MenuLeaves).Where(x => x != null).Distinct().ToArray();
+            IEnumerable<Menu> menuLeaves = authorities.SelectMany(x => x.MenuLeaves).Where(x => x != null).Distinct();
 
             //尾递归
             return menuLeaves.TailRecurseParentNodes();
@@ -335,10 +323,10 @@ namespace SD.UAC.Domain.Entities
         public IEnumerable<Authority> GetAuthorities(string systemNo)
         {
             //获取给定系统内用户所有角色
-            IEnumerable<Role> roles = this.Roles.Where(x => x.InfoSystem.Number == systemNo);
+            IEnumerable<Role> roles = this.Roles.Where(x => x.SystemNo == systemNo);
 
             //获取所有权限
-            return roles.SelectMany(x => x.Authorities).Distinct().ToArray();
+            return roles.SelectMany(x => x.Authorities).Distinct();
         }
         #endregion
 

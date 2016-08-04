@@ -21,7 +21,7 @@ namespace SD.UAC.Repository.Implements
         /// <returns>权限集</returns>
         public IEnumerable<Authority> FindBySystemKind(string systemKindNo)
         {
-            return base.Find(x => x.InfoSystemKind.Number == systemKindNo).AsEnumerable();
+            return base.Find(x => x.SystemKindNo == systemKindNo).AsEnumerable();
         }
         #endregion
 
@@ -33,7 +33,7 @@ namespace SD.UAC.Repository.Implements
         /// <returns>权限Id集</returns>
         public IEnumerable<Guid> FindAuthorityIds(string systemKindNo)
         {
-            return base.FindIds(x => x.InfoSystemKind.Number == systemKindNo).AsEnumerable();
+            return base.FindIds(x => x.SystemKindNo == systemKindNo).AsEnumerable();
         }
         #endregion
 
@@ -50,7 +50,7 @@ namespace SD.UAC.Repository.Implements
         /// <returns>权限集</returns>
         public IEnumerable<Authority> FindByPage(string systemKindNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
-            PredicateBuilder<Authority> conditionBuilder = new PredicateBuilder<Authority>(x => x.InfoSystemKind.Number == systemKindNo);
+            PredicateBuilder<Authority> conditionBuilder = new PredicateBuilder<Authority>(x => x.SystemKindNo == systemKindNo);
 
             if (!string.IsNullOrWhiteSpace(keywords))
             {
@@ -70,7 +70,7 @@ namespace SD.UAC.Repository.Implements
         /// <returns>是否存在</returns>
         public bool Exists(string systemKindNo, Guid authorityId)
         {
-            return base.Exists(x => x.InfoSystemKind.Number == systemKindNo && x.Id == authorityId);
+            return base.Exists(x => x.SystemKindNo == systemKindNo && x.Id == authorityId);
         }
         #endregion
 
@@ -83,7 +83,7 @@ namespace SD.UAC.Repository.Implements
         /// <returns>是否存在</returns>
         public bool Exists(string systemKindNo, string authorityPath)
         {
-            return base.Exists(x => x.InfoSystemKind.Number == systemKindNo && x.AuthorityPath == authorityPath);
+            return base.Exists(x => x.SystemKindNo == systemKindNo && x.AuthorityPath == authorityPath);
         }
         #endregion
     }
