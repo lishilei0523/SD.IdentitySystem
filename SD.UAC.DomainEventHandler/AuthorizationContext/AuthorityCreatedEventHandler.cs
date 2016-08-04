@@ -84,9 +84,7 @@ namespace SD.UAC.DomainEventHandler.AuthorizationContext
             foreach (string systemNo in systemNos)
             {
                 //为系统管理员追加权限
-
                 Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(systemNo);
-
                 Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
                 adminRole.AppendAuthorities(new[] { currentAuthority });
 
