@@ -1,0 +1,10 @@
+﻿<configuration>
+  <system.serviceModel>
+    <extensions>
+      <behaviorExtensions>
+        <!--WCF客户端/服务端身份认证扩展配置-->
+        <add name="serverAuthentication" type="SD.IdentitySystem.WCFAuthentication.Server.AuthenticationBehaviorElement, SD.IdentitySystem.WCFAuthentication.Server"/>
+      </behaviorExtensions>
+    </extensions>
+  </system.serviceModel>
+</configuration>

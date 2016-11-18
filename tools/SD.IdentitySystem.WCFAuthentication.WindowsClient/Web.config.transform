@@ -1,0 +1,10 @@
+﻿<configuration>
+  <system.serviceModel>
+    <extensions>
+      <behaviorExtensions>
+        <!--WCF/Windows客户端身份认证扩展配置-->
+        <add name="windowsClientAuthentication" type="SD.IdentitySystem.WCFAuthentication.WindowsClient.AuthenticationBehaviorElement, SD.IdentitySystem.WCFAuthentication.WindowsClient"/>
+      </behaviorExtensions>
+    </extensions>
+  </system.serviceModel>
+</configuration>

@@ -1,0 +1,64 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 2013
+VisualStudioVersion = 12.0.40629.0
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubServer", "tests\SD.IdentitySystem.StubServer\SD.IdentitySystem.StubServer.csproj", "{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCFClient", "tests\SD.IdentitySystem.StubWCFClient\SD.IdentitySystem.StubWCFClient.csproj", "{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCFClientTests", "tests\SD.IdentitySystem.StubWCFClientTests\SD.IdentitySystem.StubWCFClientTests.csproj", "{C9297885-9F2A-4722-A993-EBAB6B659878}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWebClient", "tests\SD.IdentitySystem.StubWebClient\SD.IdentitySystem.StubWebClient.csproj", "{C6896688-B725-465A-8B5B-83F6549D64EE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWindowsClient", "tests\SD.IdentitySystem.StubWindowsClient\SD.IdentitySystem.StubWindowsClient.csproj", "{BABA3361-BEB6-4381-A870-BF7BD76C477C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{96FE9B45-B87F-4A98-B666-364C3F1936CC}"
+	ProjectSection(SolutionItems) = preProject
+		.nuget\NuGet.Config = .nuget\NuGet.Config
+		.nuget\NuGet.exe = .nuget\NuGet.exe
+		.nuget\NuGet.targets = .nuget\NuGet.targets
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Develop|Any CPU = Develop|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}.Develop|Any CPU.ActiveCfg = Develop|Any CPU
+		{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}.Develop|Any CPU.Build.0 = Develop|Any CPU
+		{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}.Develop|Any CPU.ActiveCfg = Develop|Any CPU
+		{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}.Develop|Any CPU.Build.0 = Develop|Any CPU
+		{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C9297885-9F2A-4722-A993-EBAB6B659878}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C9297885-9F2A-4722-A993-EBAB6B659878}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C9297885-9F2A-4722-A993-EBAB6B659878}.Develop|Any CPU.ActiveCfg = Develop|Any CPU
+		{C9297885-9F2A-4722-A993-EBAB6B659878}.Develop|Any CPU.Build.0 = Develop|Any CPU
+		{C9297885-9F2A-4722-A993-EBAB6B659878}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C9297885-9F2A-4722-A993-EBAB6B659878}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C6896688-B725-465A-8B5B-83F6549D64EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C6896688-B725-465A-8B5B-83F6549D64EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C6896688-B725-465A-8B5B-83F6549D64EE}.Develop|Any CPU.ActiveCfg = Develop|Any CPU
+		{C6896688-B725-465A-8B5B-83F6549D64EE}.Develop|Any CPU.Build.0 = Develop|Any CPU
+		{C6896688-B725-465A-8B5B-83F6549D64EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C6896688-B725-465A-8B5B-83F6549D64EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{BABA3361-BEB6-4381-A870-BF7BD76C477C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{BABA3361-BEB6-4381-A870-BF7BD76C477C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{BABA3361-BEB6-4381-A870-BF7BD76C477C}.Develop|Any CPU.ActiveCfg = Develop|Any CPU
+		{BABA3361-BEB6-4381-A870-BF7BD76C477C}.Develop|Any CPU.Build.0 = Develop|Any CPU
+		{BABA3361-BEB6-4381-A870-BF7BD76C477C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{BABA3361-BEB6-4381-A870-BF7BD76C477C}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal

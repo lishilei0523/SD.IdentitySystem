@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Service="SD.UAC.AppService.Implements.AuthenticationContract" %>

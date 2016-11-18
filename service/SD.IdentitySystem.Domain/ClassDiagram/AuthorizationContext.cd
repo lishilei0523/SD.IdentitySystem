@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="SD.IdentitySystem.Domain.Entities.Menu">
+    <Position X="0.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAECAAAABAAAAEAAAAAAAAAAACQAAAAEQAAA=</HashCode>
+      <FileName>Entities\Menu.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Authorities" />
+    </ShowAsCollectionAssociation>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="SD.IdentitySystem.Domain.Entities.Authority">
+    <Position X="4.75" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAACAAECgAAAAAIAAAAMDAgAAoEAACAACAAAAJAA=</HashCode>
+      <FileName>Entities\Authority.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="MenuLeaves" />
+      <Property Name="Roles" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Class Name="SD.IdentitySystem.Domain.Entities.InfoSystemKind">
+    <Position X="11.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
+      <FileName>Entities\InfoSystemKind.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="SD.IdentitySystem.Domain.Entities.Role">
+    <Position X="8.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAEAAAAAAEAgAAABFAAAAAAAAAAAAAgACAAAAAQABAA=</HashCode>
+      <FileName>Entities\Role.cs</FileName>
+    </TypeIdentifier>
+    <ShowAsCollectionAssociation>
+      <Property Name="Authorities" />
+    </ShowAsCollectionAssociation>
+  </Class>
+  <Font Name="微软雅黑" Size="9" />
+</ClassDiagram>
