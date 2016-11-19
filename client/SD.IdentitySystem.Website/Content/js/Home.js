@@ -2,8 +2,8 @@
 var topHelper = {};             //提供给 iframe里子页面 操作当前页面 的一些便捷 方法
 $(function () {
     //初始化用户菜单
-    $('#menuTree').tree({
-        url: '/Home/GetMenuList',
+    $("#menuTree").tree({
+        url: "/Home/GetMenuList",
         animate: true,
         lines: true,
         onClick: function (e) {
@@ -15,42 +15,42 @@ $(function () {
     messageBox = new MessageBox({ imghref: "/Content/images/" });
 
     //注销用户按钮
-    $('#btn_exit').linkbutton({
-        iconCls: 'icon-cancel',
+    $("#btn_exit").linkbutton({
+        iconCls: "icon-cancel",
         plain: true,
-        text: '注销用户'
+        text: "注销用户"
     });
 
     //注销按钮事件
-    $('#btn_exit').click(function () {
-        $.messager.confirm('警告', '确定注销当前用户吗？', function (result) {
+    $("#btn_exit").click(function () {
+        $.messager.confirm("警告", "确定注销当前用户吗？", function (result) {
             if (result) {
-                $.post('/Admin/User/Logout', null, function (jsonData) {
-                    if (jsonData.Status == '1') {
+                $.post("/Admin/User/Logout", null, function (jsonData) {
+                    if (jsonData.Status == "1") {
                         window.location.href = jsonData.ReturnUrl;
                     }
-                }, 'json');
+                }, "json");
             }
         });
     });
 
     //修改密码按钮
-    $('#btn_padlock').linkbutton({
-        iconCls: 'icon-lock',
+    $("#btn_padlock").linkbutton({
+        iconCls: "icon-lock",
         plain: true,
-        text: '修改密码'
+        text: "修改密码"
     });
 
     //修改密码按钮事件
-    $('#btn_padlock').click(function () {
+    $("#btn_padlock").click(function () {
         //修改密码窗口
-        $('#dvUpdatePwd').window('open');
-        $('#dvUpdatePwd').window('setTitle', '修改密码');
-        $('#fmUpdatePwd').form('clear');
+        $("#dvUpdatePwd").window("open");
+        $("#dvUpdatePwd").window("setTitle", "修改密码");
+        $("#fmUpdatePwd").form("clear");
     });
 
     //创建弹修改密码弹出窗口
-    $('#dvUpdatePwd').window({
+    $("#dvUpdatePwd").window({
         width: 350,
         height: 200,
         maximizable: false,
@@ -63,13 +63,13 @@ $(function () {
     });
 
     //初始化公共窗体
-    topHelper.comWin = $('#commonWindow').window({
+    topHelper.comWin = $("#commonWindow").window({
         width: 800,
         height: 500,
         collapsible: false,
         minimizable: false,
         maximizable: true
-    }).window('close');
+    }).window("close");
 
     //添加一个打开公共窗体的方法
     topHelper.showComWindow = function (title, url, width, height) {
@@ -125,25 +125,25 @@ function updatingPwd() {
 //修改密码后执行
 function updatedPwd(jsonData) {
     if (jsonData.Status == 1) {
-        $.messager.alert('OK', jsonData.Message);
-        $('#dvUpdatePwd').window('close');
+        $.messager.alert("OK", jsonData.Message);
+        $("#dvUpdatePwd").window("close");
         window.location.href = jsonData.ReturnUrl;
     } else {
         messageBox.showMsgErr(jsonData.Message);
-        $('#dvUpdatePwd').window('close');
+        $("#dvUpdatePwd").window("close");
     }
 }
 
 //添加tab方法
 function addTab(title, url, isLink) {
     //判断是否是链接
-    if (isLink == '1') {          //是链接
-        if ($('#tabs').tabs('exists', title)) {
-            var currTab = $('#tabs').tabs('getSelected');
-            $('#tabs').tabs('select', title);
-            var url = $(currTab.panel('options').content).attr('src');
+    if (isLink == "1") {          //是链接
+        if ($("#tabs").tabs("exists", title)) {
+            var currTab = $("#tabs").tabs("getSelected");
+            $("#tabs").tabs("select", title);
+            var url = $(currTab.panel("options").content).attr("src");
             if (url != undefined) {
-                $('#tabs').tabs('update', {
+                $("#tabs").tabs("update", {
                     tab: currTab,
                     options: {
                         content: createFrame(url)
@@ -152,7 +152,7 @@ function addTab(title, url, isLink) {
             }
         } else {
             var content = createFrame(url);
-            $('#tabs').tabs('add', {
+            $("#tabs").tabs("add", {
                 title: title,
                 content: content,
                 closable: true
@@ -173,7 +173,7 @@ function updateDataGridInTab() {
     //1.获取后台首页的tab容器
     var $tabBox = $("#tabs");
     //2.获取选中的tab
-    var $curTab = $tabBox.tabs('getSelected');
+    var $curTab = $tabBox.tabs("getSelected");
     //3.从选中的tab中获取iframe，并以jq对象返回
     var $ifram = $("iframe", $curTab);
     //4.从jq对象中获取iframe，并通过伟大的contentWindow对象操作iframe里的window的全局变量$tbGrid
