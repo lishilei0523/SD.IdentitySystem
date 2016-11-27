@@ -1,0 +1,164 @@
+﻿@{
+    Layout = null;
+}
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>统一身份认证系统 - 登录</title>
+    <script type="text/javascript" src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/messageBox.js"></script>
+    <script type="text/javascript">
+        $(function () {
+            //让用户名文本框获得焦点
+            $('#txtUserName').focus();
+
+            //点击图片刷新验证码
+            $('#imgValidCode').click(function () {
+                $(this).attr('src', '/Admin/User/GetValidCode?id=' + Math.random());
+            });
+        });
+
+        //登录成功
+        function loginSuccess() {
+            if (jsonData.Status == '1') {
+                //登录成功，跳转指定页面
+                messageBox.showMsgOk(jsonData.Message);
+                window.location.href = jsonData.ReturnUrl;
+            } else {
+                //登录失败，清空密码、刷新验证码、提醒错误消息
+                $('#txtPwd').val('');
+                $('#txtVadlidCode').val('');
+                $('#imgValidCode').attr('src', '/Admin/User/GetValidCode?id=' + Math.random());
+                messageBox.showMsgErr(jsonData.Message);
+            }
+        }
+
+        //登录失败
+        function loginFailed() {
+
+        }
+    </script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000000;
+            font: 14px 100;
+        }
+
+        #login_top, #login_stop, #login_center, #login_bottom {
+            width: 100%;
+            margin: auto;
+            text-align: center;
+        }
+
+        #login_center {
+            width: 998px;
+            height: 299px;
+            background: url("/Content/images/login_center.jpg") no-repeat;
+        }
+
+        #login_body {
+            padding-left: 80px;
+            padding-top: 75px;
+            height: 116px;
+            width: 280px;
+            margin: 0 auto;
+        }
+
+        #login_table {
+            border-collapse: collapse;
+            padding: 2px;
+        }
+
+            #login_table td {
+                border: 0px;
+                height: 26px;
+                font-size: 14px;
+                text-align: left;
+            }
+
+        .login_txt {
+            width: 149px;
+        }
+
+        .inputbox {
+            width: 150px;
+        }
+
+        #picNum {
+            position: relative;
+            top: 380px;
+            left: 770px;
+            display: none;
+        }
+
+            #picNum img {
+                border: 2px solid #ccc;
+            }
+    </style>
+</head>
+<body>
+    <div id="login_top">
+        <img src="~/Content/images/login_top.jpg" />
+    </div>
+    <div id="login_stop">
+        <img src="~/Content/images/login_stop.jpg" />
+    </div>
+    <div id="login_center">
+        <div id="login_body">
+            @using (Ajax.BeginForm("CheckLogin", "User", new AjaxOptions { HttpMethod = "post", OnBegin = "loginBegin", OnSuccess = "loginComplete" }, new { id = "frmLogin" }))
+            {
+                <table id="login_table">
+                    <tr>
+                        <td></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #FFFFFF">用户名:</span></td>
+                        <td>
+                            <input type="text" id="txtUserName" name="loginId" value="" class="inputbox" />
+                        </td>
+                        <td style="color: Red; font-size: 12px;">@Html.ValidationMessageFor(x => x.UserName)</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #FFFFFF">密　码:</span></td>
+                        <td>
+                            <input type="password" id="txtPwd" name="password" value="" class="inputbox" />
+                        </td>
+                        <td style="color: Red; font-size: 12px;">@Html.ValidationMessageFor(x => x.Password)</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #FFFFFF">验证码:</span></td>
+                        <td>
+                            <input type="text" id="txtVadlidCode" name="validCode" value="" class="inputbox" />
+                        </td>
+                        <td style="color: Red; font-size: 12px;">@Html.ValidationMessageFor(x => x.ValidCode)</td>
+                    </tr>
+                    <tr>
+                        <td><span style="color: #FFFFFF"><img id="imgValidCode" src="/User/GetValidCode" alt="看不清，点击更换!" style="cursor: pointer;" /></span></td>
+                        <td>
+                            <input type="submit" id="btnLogin" value="登录" />
+                            @Html.CheckBoxFor(x => x.IsRemember) <span style="color:#f2e6e6">记住密码</span>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            }
+        </div>
+    </div>
+    <div id="login_bottom">
+        <img src="~/Content/images/login_bottom.jpg" />
+    </div>
+</body>
+</html>
