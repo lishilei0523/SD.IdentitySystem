@@ -41,6 +41,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Autofac, Version=3.5.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Autofac.3.5.2\lib\net40\Autofac.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="AutoMapper, Version=4.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.4.1.1\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
@@ -48,6 +52,14 @@
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Newtonsoft.Json, Version=7.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IOC.Core.1.0.5\lib\net45\SD.IOC.Core.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.IOC.Integration.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IOC.Integration.MVC.1.0.5\lib\net45\SD.IOC.Integration.MVC.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -62,10 +74,15 @@
       <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.1\lib\net45\ShSoft.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ShSoft.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ShSoft.ValueObjects.1.1.5\lib\net45\ShSoft.ValueObjects.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Data.Entity" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -139,6 +156,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
@@ -147,6 +165,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\Login.css" />
     <Content Include="Content\images\404.jpg" />
     <Content Include="Content\images\banner-pic.gif" />
     <Content Include="Content\images\loader.gif" />
@@ -159,6 +178,7 @@
     <Content Include="Content\images\tx_btn.jpg" />
     <Content Include="Content\js\ExceptionLogIndex.js" />
     <Content Include="Content\js\Home.js" />
+    <Content Include="Content\js\Login.js" />
     <Content Include="Content\js\MenuEdit.js" />
     <Content Include="Content\js\MenuIndex.js" />
     <Content Include="Content\js\RunningLogIndex.js" />
@@ -617,6 +637,10 @@
     <ProjectReference Include="..\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
       <Project>{e252094f-979a-4655-b864-e600c33ab75d}</Project>
       <Name>SD.IdentitySystem.IPresentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.IdentitySystem.Presentation\SD.IdentitySystem.Presentation.csproj">
+      <Project>{3f6e50ba-8e37-4730-9c2e-0d9483a026d8}</Project>
+      <Name>SD.IdentitySystem.Presentation</Name>
     </ProjectReference>
   </ItemGroup>
   <PropertyGroup>

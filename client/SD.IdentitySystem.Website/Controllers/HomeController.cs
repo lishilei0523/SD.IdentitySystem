@@ -1,12 +1,11 @@
-﻿using System.Configuration;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
     /// <summary>
     /// 主页控制器
     /// </summary>
-    public class HomeController : Controller
+    public class HomeController : BaseController
     {
         /// <summary>
         /// 主页视图
@@ -14,8 +13,6 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <returns>主页视图</returns>
         public ActionResult Index()
         {
-            this.ViewBag.TechSupport = ConfigurationManager.AppSettings["TechSupport"];
-
             return this.View();
         }
 
