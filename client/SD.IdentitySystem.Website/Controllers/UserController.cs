@@ -1,14 +1,16 @@
 ﻿using System;
 using System.Web.Mvc;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using ShSoft.Common.PoweredByLee;
-using ShSoft.Infrastructure.Constants;
+using ShSoft.Infrastructure.MVC;
+using ShSoft.Infrastructure.MVC.Filters;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
     /// <summary>
     /// 用户控制器
     /// </summary>
+    [ExceptionFilter]
     public class UserController : BaseController
     {
         #region # 字段及构造器
@@ -19,12 +21,19 @@ namespace SD.IdentitySystem.Website.Controllers
         private readonly IUserPresenter _userPresenter;
 
         /// <summary>
+        /// 身份认证服务接口
+        /// </summary>
+        private readonly IAuthenticationContract _authenticationContract;
+
+        /// <summary>
         /// 字段及依赖注入构造器
         /// </summary>
         /// <param name="userPresenter">用户呈现器接口</param>
-        public UserController(IUserPresenter userPresenter)
+        /// <param name="authenticationContract">身份认证服务接口</param>
+        public UserController(IUserPresenter userPresenter, IAuthenticationContract authenticationContract)
         {
             this._userPresenter = userPresenter;
+            this._authenticationContract = authenticationContract;
         }
 
         #endregion
@@ -55,10 +64,9 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="loginId">用户名</param>
         /// <param name="password">密码</param>
         /// <param name="validCode">验证码</param>
-        /// <param name="isRemember">记住密码</param>
         [AllowAnonymous]
         [HttpPost]
-        public void Login(string loginId, string password, string validCode, bool isRemember)
+        public void Login(string loginId, string password, string validCode)
         {
             #region # 校验验证码
 
@@ -72,59 +80,19 @@ namespace SD.IdentitySystem.Website.Controllers
 
             #endregion
 
-            try
-            {
-                //获取客户端IP地址
-                string currentIp = base.Request.UserHostAddress;
+            //清空验证码
+            base.ClearValidCode();
 
-                //验证登录
-                base.LoginInfo = this._userPresenter.Login(loginId, password, currentIp);
+            //获取客户端IP地址
+            string currentIp = base.Request.UserHostAddress;
 
-                //判断用户是否记住密码
-                if (isRemember)
-                {
-                    base.LoginIdCookie = loginId;
-                    base.PasswordCookie = password;
-                }
-            }
-            catch (Exception)
-            {
-                //清空验证码
-                base.ClearValidCode();
-
-                throw;
-            }
-        }
-        #endregion
-
-        #region # 注销 —— void Logout()
-        /// <summary>
-        /// 注销
-        /// </summary>
-        public void Logout()
-        {
-            base.LoginInfo = null;
+            //验证登录
+            base.LoginInfo = this._authenticationContract.Login(loginId, password, currentIp);
         }
         #endregion
 
 
         //查询部分
 
-        #region # 获取验证码图片 —— FileContentResult GetValidCode()
-        /// <summary>
-        /// 获取验证码图片
-        /// </summary>
-        /// <returns>验证码图片二进制内容</returns>
-        [AllowAnonymous]
-        public FileContentResult GetValidCode()
-        {
-            string validCode = ValidCodeGenerator.GenerateCode(4);
-            byte[] buffer = ValidCodeGenerator.GenerateStream(validCode);
-
-            base.ValidCode = validCode;
-
-            return base.File(buffer, @"image/jpeg");
-        }
-        #endregion
     }
 }

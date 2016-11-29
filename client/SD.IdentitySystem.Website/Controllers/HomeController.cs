@@ -1,10 +1,13 @@
 ﻿using System.Web.Mvc;
+using ShSoft.Infrastructure.MVC;
+using ShSoft.Infrastructure.MVC.Filters;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
     /// <summary>
     /// 主页控制器
     /// </summary>
+    [ExceptionFilter]
     public class HomeController : BaseController
     {
         /// <summary>

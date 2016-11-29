@@ -7,8 +7,8 @@ using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
 using ShSoft.Common.PoweredByLee;
+using ShSoft.Infrastructure.Constants;
 using ShSoft.ValueObjects.CustomExceptions;
-using ShSoft.ValueObjects.Structs;
 using User = SD.IdentitySystem.Domain.Entities.User;
 
 namespace SD.IdentitySystem.AppService.Implements
@@ -126,7 +126,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>登录信息</returns>
         private LoginInfo BuildLoginInfo(Guid publicKey, User user)
         {
-            LoginInfo loginInfo = new LoginInfo(publicKey, user.Number, Guid.Empty, null, user.Name);
+            LoginInfo loginInfo = new LoginInfo(user.Number, user.Name, publicKey);
 
             return loginInfo;
         }

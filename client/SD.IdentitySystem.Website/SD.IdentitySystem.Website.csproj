@@ -54,6 +54,10 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.0.0\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.1.0.5\lib\net45\SD.IOC.Core.dll</HintPath>
       <Private>True</Private>
@@ -71,7 +75,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.1\lib\net45\ShSoft.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.2\lib\net45\ShSoft.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="ShSoft.Infrastructure.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ShSoft.Infrastructure.MVC.1.0.0.0\lib\net45\ShSoft.Infrastructure.MVC.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -156,7 +164,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
-    <Compile Include="Controllers\BaseController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">

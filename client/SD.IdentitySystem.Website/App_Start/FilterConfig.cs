@@ -1,5 +1,5 @@
-﻿using System.Web;
-using System.Web.Mvc;
+﻿using System.Web.Mvc;
+using ShSoft.Infrastructure.MVC.Filters;
 
 namespace SD.IdentitySystem.Website
 {
@@ -8,6 +8,7 @@ namespace SD.IdentitySystem.Website
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
+            filters.Add(new ExceptionFilterAttribute());
         }
     }
 }

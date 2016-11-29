@@ -39,6 +39,6 @@ function loginFail(result) {
     $("#txtVadlidCode").val("");
     $("#imgValidCode").attr("src", "/User/GetValidCode?id=" + Math.random());
 
-    messageBox.showMsgErr(result.responseText);
     alert(JSON.stringify(result));
+    messageBox.showMsgErr(result.responseText);
 }
