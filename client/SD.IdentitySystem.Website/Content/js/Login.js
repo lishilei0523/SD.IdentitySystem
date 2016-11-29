@@ -32,13 +32,10 @@ function loginSucceed(result) {
 
 //登录失败
 function loginFail(result) {
-
-
-    //登录失败，清空密码、刷新验证码、提醒错误消息
+    //清空密码、刷新验证码、提醒错误消息
     $("#txtPwd").val("");
     $("#txtVadlidCode").val("");
     $("#imgValidCode").attr("src", "/User/GetValidCode?id=" + Math.random());
 
-    alert(JSON.stringify(result));
     messageBox.showMsgErr(result.responseText);
 }
