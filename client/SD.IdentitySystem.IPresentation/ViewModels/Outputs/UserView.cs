@@ -7,6 +7,11 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
     /// </summary>
     public class UserView : ViewModel
     {
-
+        #region 是否启用 —— bool Enabled
+        /// <summary>
+        /// 是否启用
+        /// </summary>
+        public bool Enabled { get; set; }
+        #endregion
     }
 }

@@ -1,5 +1,11 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.Presentation.Maps;
+using ShSoft.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.Presentation.Implements
 {
@@ -24,6 +30,53 @@ namespace SD.IdentitySystem.Presentation.Implements
             this._userContract = userContract;
         }
 
+        #endregion
+
+        #region # 分页获取用户列表 —— PageModel<UserView> GetUsers(string systemNo...
+        /// <summary>
+        /// 分页获取用户列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户列表</returns>
+        public PageModel<UserView> GetUsers(string systemNo, string keywords, int pageIndex, int pageSize)
+        {
+            PageModel<UserInfo> pageModel = this._userContract.GetUsers(systemNo, keywords, pageIndex, pageSize);
+
+            IEnumerable<UserView> userViews = pageModel.Datas.Select(x => x.ToViewModel());
+
+            return new PageModel<UserView>(userViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+        }
+        #endregion
+
+        #region # 获取用户 —— UserView GetUser(string loginId)
+        /// <summary>
+        /// 获取用户
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <returns>用户</returns>
+        public UserView GetUser(string loginId)
+        {
+            UserInfo userInfo = this._userContract.GetUser(loginId);
+
+            return userInfo.ToViewModel();
+        }
+        #endregion
+
+        #region # 是否存在用户 —— bool ExistsUser(string loginId)
+        /// <summary>
+        /// 是否存在用户
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <returns>是否存在</returns>
+        public bool ExistsUser(string loginId)
+        {
+            //TODO 修正服务接口签名
+
+            return this._userContract.ExistUser(loginId);
+        }
         #endregion
     }
 }

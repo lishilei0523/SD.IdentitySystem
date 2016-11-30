@@ -1,4 +1,8 @@
-﻿using ShSoft.Infrastructure;
+﻿using System;
+using System.Collections.Generic;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using ShSoft.Infrastructure;
 
 namespace SD.IdentitySystem.IPresentation.Interfaces
 {
@@ -7,6 +11,31 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IMenuPresenter : IPresenter
     {
+        #region # 获取菜单列表 —— IEnumerable<MenuView> GetMenus(string systemKindNo)
+        /// <summary>
+        /// 获取菜单列表
+        /// </summary>
+        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <returns>菜单列表</returns>
+        IEnumerable<MenuView> GetMenus(string systemKindNo);
+        #endregion
 
+        #region # 获取菜单树 —— IEnumerable<Node> GetMenuTree(string systemKindNo)
+        /// <summary>
+        /// 获取菜单树
+        /// </summary>
+        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <returns>菜单树</returns>
+        IEnumerable<Node> GetMenuTree(string systemKindNo);
+        #endregion
+
+        #region # 获取菜单 —— MenuView GetMenu(Guid menuId)
+        /// <summary>
+        /// 获取菜单
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>菜单</returns>
+        MenuView GetMenu(Guid menuId);
+        #endregion
     }
 }

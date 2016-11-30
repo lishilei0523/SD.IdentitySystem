@@ -36,12 +36,17 @@
       <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.4\lib\net45\ShSoft.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="ShSoft.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\ShSoft.ValueObjects.1.1.5\lib\net45\ShSoft.ValueObjects.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Interfaces\IAuthorityPresenter.cs" />
+    <Compile Include="Interfaces\IInfoSystemKindPresenter.cs" />
     <Compile Include="Interfaces\IInfoSystemPresenter.cs" />
     <Compile Include="Interfaces\IMenuPresenter.cs" />
     <Compile Include="Interfaces\IRolePresenter.cs" />
@@ -50,6 +55,7 @@
     <Compile Include="ViewModels\Formats\EasyUI\Grid.cs" />
     <Compile Include="ViewModels\Formats\EasyUI\Node.cs" />
     <Compile Include="ViewModels\Outputs\AuthorityView.cs" />
+    <Compile Include="ViewModels\Outputs\InfoSystemKindView.cs" />
     <Compile Include="ViewModels\Outputs\InfoSystemView.cs" />
     <Compile Include="ViewModels\Outputs\MenuView.cs" />
     <Compile Include="ViewModels\Outputs\RoleView.cs" />
