@@ -1,55 +1,24 @@
-﻿var messageBox = null;      //消息框
-var topHelper = {};             //提供给 iframe里子页面 操作当前页面 的一些便捷 方法
+﻿//消息框
+var messageBox = null;
+
+//提供给iframe里子页面操作当前页面的一些便捷方法
+var topHelper = {};
+
 $(function () {
+    //初始化消息框
+    messageBox = new MessageBox({ imghref: "/Content/images/" });
+
     //初始化用户菜单
     $("#menuTree").tree({
         url: "/Home/GetMenuList",
         animate: true,
         lines: true,
-        onClick: function (e) {
-            addTab(e.text, e.attributes.href, e.attributes.isLink);
+        onClick: function (node) {
+            addTab(node.text, node.attributes.href, node.attributes.isLink);
         }
     });
 
-    //初始化消息框
-    messageBox = new MessageBox({ imghref: "/Content/images/" });
-
-    //注销用户按钮
-    $("#btn_exit").linkbutton({
-        iconCls: "icon-cancel",
-        plain: true,
-        text: "注销用户"
-    });
-
-    //注销按钮事件
-    $("#btn_exit").click(function () {
-        $.messager.confirm("警告", "确定注销当前用户吗？", function (result) {
-            if (result) {
-                $.post("/Admin/User/Logout", null, function (jsonData) {
-                    if (jsonData.Status == "1") {
-                        window.location.href = jsonData.ReturnUrl;
-                    }
-                }, "json");
-            }
-        });
-    });
-
-    //修改密码按钮
-    $("#btn_padlock").linkbutton({
-        iconCls: "icon-lock",
-        plain: true,
-        text: "修改密码"
-    });
-
-    //修改密码按钮事件
-    $("#btn_padlock").click(function () {
-        //修改密码窗口
-        $("#dvUpdatePwd").window("open");
-        $("#dvUpdatePwd").window("setTitle", "修改密码");
-        $("#fmUpdatePwd").form("clear");
-    });
-
-    //创建弹修改密码弹出窗口
+    //初始化修改密码窗口
     $("#dvUpdatePwd").window({
         width: 350,
         height: 200,
@@ -101,8 +70,29 @@ $(function () {
     };
 });
 
+
+//注销
+function logout() {
+    $.messager.confirm("警告", "确定注销当前用户吗？", function (result) {
+        if (result) {
+            $.post("/Admin/User/Logout", null, function (jsonData) {
+                if (jsonData.Status == "1") {
+                    window.location.href = jsonData.ReturnUrl;
+                }
+            }, "json");
+        }
+    });
+}
+
+//修改密码窗口
+function openChangePassword() {
+    $("#dvUpdatePwd").window("open");
+    $("#dvUpdatePwd").window("setTitle", "修改密码");
+    $("#fmUpdatePwd").form("clear");
+}
+
 //修改密码
-function changePwd() {
+function changePassword() {
     //var va = $("#oldPwd").val();
     //var val = $("#newPwd").val();
     //var val1 = $("#newPwd2").val();
@@ -117,12 +107,12 @@ function changePwd() {
     //}
 }
 
-//修改密码时执行
+//修改密码中事件
 function updatingPwd() {
     messageBox.showMsgWait("修改中，请稍后...");
 }
 
-//修改密码后执行
+//修改密码后事件
 function updatedPwd(jsonData) {
     if (jsonData.Status == 1) {
         $.messager.alert("OK", jsonData.Message);
@@ -169,7 +159,7 @@ function createFrame(url) {
 }
 
 //新增或修改成功后，可通过此方法更新tab里的DataGrid组件
-function updateDataGridInTab() {
+function updateGridInTab() {
     //1.获取后台首页的tab容器
     var $tabBox = $("#tabs");
     //2.获取选中的tab
