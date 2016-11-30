@@ -33,7 +33,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.2\lib\net45\ShSoft.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.4\lib\net45\ShSoft.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
@@ -47,7 +47,13 @@
     <Compile Include="Interfaces\IRolePresenter.cs" />
     <Compile Include="Interfaces\IUserPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\Formats\EasyUI\Grid.cs" />
+    <Compile Include="ViewModels\Formats\EasyUI\Node.cs" />
     <Compile Include="ViewModels\Outputs\AuthorityView.cs" />
+    <Compile Include="ViewModels\Outputs\InfoSystemView.cs" />
+    <Compile Include="ViewModels\Outputs\MenuView.cs" />
+    <Compile Include="ViewModels\Outputs\RoleView.cs" />
+    <Compile Include="ViewModels\Outputs\UserView.cs" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="ViewModels\Inputs\" />

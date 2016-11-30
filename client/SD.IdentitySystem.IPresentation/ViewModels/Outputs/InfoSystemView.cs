@@ -3,9 +3,9 @@
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
 {
     /// <summary>
-    /// 权限视图模型
+    /// 信息系统视图模型
     /// </summary>
-    public class AuthorityView : ViewModel
+    public class InfoSystemView : ViewModel
     {
 
     }
