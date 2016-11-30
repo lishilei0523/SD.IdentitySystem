@@ -27,7 +27,7 @@
                 init: function (title, width, height) {
                     this.title = title;
                     this.width = width;
-                    this.height = height
+                    this.height = height;
                 }
             },
             //代理方法：调用后台主页面的topHelper.showComWindow(title, url, width, height)方法
@@ -54,12 +54,17 @@
                 fit: true,
                 idField: 'Id',
                 loadMsg: '正在加载...',
-                singleSelect: false,                                //多选
+                //多选
+                singleSelect: false,
                 rownumbers: true,
-                pagination: true,                                  //启用分页
-                pageNumber: 1,                                   //第一次请求默认请求的页码
-                pageList: [5, 10, 15, 20, 30, 50],             //页容量数组
-                pageSize: 15,                                       //页容量（必须和 pageList 里某一个值一致）
+                //启用分页
+                pagination: true,
+                //第一次请求默认请求的页码
+                pageNumber: 1,
+                //页容量数组
+                pageList: [5, 10, 15, 20, 30, 50],
+                //页容量（必须和 pageList 里某一个值一致）
+                pageSize: 15,
                 queryParams: null,
                 onLoadSuccess: function (jsonObj) {
                     //如果Datagrid获取的服务器数据 包含 Statu的话，那就可以证明在过滤器验证权限时失败，那就将过滤器返回的权限消息交给msgAlert统一处理！
