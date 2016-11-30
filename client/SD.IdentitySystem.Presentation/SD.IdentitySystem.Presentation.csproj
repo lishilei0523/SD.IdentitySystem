@@ -49,6 +49,10 @@
     <Reference Include="System.Runtime.Serialization" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Implements\AuthorityPresenter.cs" />
+    <Compile Include="Implements\InfoSystemPresenter.cs" />
+    <Compile Include="Implements\MenuPresenter.cs" />
+    <Compile Include="Implements\RolePresenter.cs" />
     <Compile Include="Implements\UserPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

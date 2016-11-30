@@ -1,7 +1,5 @@
-﻿using System;
-using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using ShSoft.ValueObjects.Structs;
 
 namespace SD.IdentitySystem.Presentation.Implements
 {
