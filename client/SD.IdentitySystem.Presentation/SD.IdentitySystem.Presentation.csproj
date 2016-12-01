@@ -62,13 +62,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implements\AuthorityPresenter.cs" />
-    <Compile Include="Implements\InfoSystemKindPresenter.cs" />
     <Compile Include="Implements\InfoSystemPresenter.cs" />
     <Compile Include="Implements\MenuPresenter.cs" />
     <Compile Include="Implements\RolePresenter.cs" />
     <Compile Include="Implements\UserPresenter.cs" />
     <Compile Include="Maps\AuthorityMap.cs" />
-    <Compile Include="Maps\InfoSytemKindMap.cs" />
     <Compile Include="Maps\InfoSytemMap.cs" />
     <Compile Include="Maps\MenuMap.cs" />
     <Compile Include="Maps\RoleMap.cs" />

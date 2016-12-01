@@ -19,6 +19,9 @@ namespace SD.IdentitySystem.Presentation.Maps
         {
             RoleView roleView = Transform<RoleInfo, RoleView>.Map(roleInfo);
 
+            roleView.SystemNo = roleInfo.InfoSystemInfo.Number;
+            roleView.SystemName = roleInfo.InfoSystemInfo.Name;
+
             return roleView;
         }
         #endregion

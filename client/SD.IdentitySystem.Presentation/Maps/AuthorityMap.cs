@@ -19,6 +19,9 @@ namespace SD.IdentitySystem.Presentation.Maps
         {
             AuthorityView authorityView = Transform<AuthorityInfo, AuthorityView>.Map(authorityInfo);
 
+            authorityView.SystemNo = authorityInfo.InfoSystemInfo.Number;
+            authorityView.SystemName = authorityInfo.InfoSystemInfo.Name;
+
             return authorityView;
         }
         #endregion

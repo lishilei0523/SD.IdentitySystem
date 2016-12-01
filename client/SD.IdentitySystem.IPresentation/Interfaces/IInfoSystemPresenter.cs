@@ -9,13 +9,12 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IInfoSystemPresenter : IPresenter
     {
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemView> GetInfoSystems(string systemKindNo)
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemView> GetInfoSystems()
         /// <summary>
         /// 获取信息系统列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <returns>信息系统列表</returns>
-        IEnumerable<InfoSystemView> GetInfoSystems(string systemKindNo);
+        IEnumerable<InfoSystemView> GetInfoSystems();
         #endregion
 
         #region # 获取信息系统 —— InfoSystemView GetInfoSystem(string systemNo)

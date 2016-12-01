@@ -31,15 +31,14 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemView> GetInfoSystems(string systemKindNo)
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemView> GetInfoSystems()
         /// <summary>
         /// 获取信息系统列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <returns>信息系统列表</returns>
-        public IEnumerable<InfoSystemView> GetInfoSystems(string systemKindNo)
+        public IEnumerable<InfoSystemView> GetInfoSystems()
         {
-            IEnumerable<InfoSystemInfo> systemInfos = this._userContract.GetInfoSystemsByKind(systemKindNo);
+            IEnumerable<InfoSystemInfo> systemInfos = this._userContract.GetInfoSystems();
 
             IEnumerable<InfoSystemView> systemViews = systemInfos.Select(x => x.ToViewModel());
 

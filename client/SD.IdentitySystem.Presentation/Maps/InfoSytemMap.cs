@@ -19,7 +19,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         {
             InfoSystemView systemView = Transform<InfoSystemInfo, InfoSystemView>.Map(systemInfo);
 
-            systemView.SystemKindName = systemInfo.InfoSystemKindInfo.Name;
+            systemView.ApplicationTypeName = systemInfo.ApplicationType.GetEnumMember();
 
             return systemView;
         }

@@ -27,28 +27,12 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         public string LoginId { get; set; }
         #endregion
 
-        #region 员工Id —— Guid? EmployeeId
+        #region 真实姓名 —— string RealName
         /// <summary>
-        /// 员工Id
+        /// 真实姓名
         /// </summary>
         [DataMember]
-        public Guid? EmployeeId { get; set; }
-        #endregion
-
-        #region 员工编号 —— string EmployeeNo
-        /// <summary>
-        /// 员工编号
-        /// </summary>
-        [DataMember]
-        public string EmployeeNo { get; set; }
-        #endregion
-
-        #region 员工名称 —— string EmployeeName
-        /// <summary>
-        /// 员工名称
-        /// </summary>
-        [DataMember]
-        public string EmployeeName { get; set; }
+        public string RealName { get; set; }
         #endregion
 
         #region IP地址 —— string IP

@@ -39,18 +39,18 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
 
         //Others
 
-        #region 信息系统类别编号 —— string SystemKindNo
+        #region 信息系统编号 —— string SystemNo
         /// <summary>
-        /// 信息系统类别编号
+        /// 信息系统编号
         /// </summary>
-        public string SystemKindNo { get; set; }
+        public string SystemNo { get; set; }
         #endregion
 
-        #region 信息系统类别名称 —— string SystemKindName
+        #region 信息系统名称 —— string SystemName
         /// <summary>
-        /// 信息系统类别名称
+        /// 信息系统名称
         /// </summary>
-        public string SystemKindName { get; set; }
+        public string SystemName { get; set; }
         #endregion
 
         #region 导航属性 - 父级菜单 —— MenuView Parent

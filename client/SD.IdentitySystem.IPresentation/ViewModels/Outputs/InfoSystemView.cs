@@ -1,4 +1,5 @@
 ﻿using ShSoft.Infrastructure;
+using ShSoft.ValueObjects.Enums;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
 {
@@ -14,21 +15,42 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
         public string AdminLoginId { get; set; }
         #endregion
 
-        #region 信息系统类别编号 —— string SystemKindNo
+        #region 应用程序类型 —— ApplicationType ApplicationType
         /// <summary>
-        /// 信息系统类别编号
+        /// 应用程序类型
         /// </summary>
-        public string SystemKindNo { get; set; }
+        public ApplicationType ApplicationType { get; set; }
+        #endregion
+
+        #region 主机名 —— string Host
+        /// <summary>
+        /// 主机名
+        /// </summary>
+        public string Host { get; set; }
+        #endregion
+
+        #region 端口 —— int? Port
+        /// <summary>
+        /// 端口
+        /// </summary>
+        public int? Port { get; set; }
+        #endregion
+
+        #region 首页 —— string Index
+        /// <summary>
+        /// 首页
+        /// </summary>
+        public string Index { get; set; }
         #endregion
 
 
         //Others
 
-        #region 信息系统类别名称 —— string SystemKindName
+        #region 应用程序类型名称 —— string ApplicationTypeName
         /// <summary>
-        /// 信息系统类别名称
+        /// 应用程序类型名称
         /// </summary>
-        public string SystemKindName { get; set; }
+        public string ApplicationTypeName { get; set; }
         #endregion
     }
 }
