@@ -11,21 +11,14 @@ namespace SD.IdentitySystem.Domain.Mediators
         /// 依赖注入构造器
         /// </summary>
         /// <param name="userSvc">用户领域服务接口</param>
-        /// <param name="infoSystemKindSvc">信息系统类别领域服务接口</param>
-        /// <param name="infoSystemSvc">信息系统领域服务接口</param>
+        /// <param name="systemSvc">信息系统领域服务接口</param>
         /// <param name="numberSvc">编号领域服务</param>
-        public DomainServiceMediator(IUserService userSvc, IInfoSystemKindService infoSystemKindSvc, IInfoSystemService infoSystemSvc, INumberService numberSvc)
+        public DomainServiceMediator(IUserService userSvc, IInfoSystemService systemSvc, INumberService numberSvc)
         {
             this.UserSvc = userSvc;
-            this.InfoSystemKindSvc = infoSystemKindSvc;
-            this.InfoSystemSvc = infoSystemSvc;
+            this.InfoSystemSvc = systemSvc;
             this.NumberSvc = numberSvc;
         }
-
-        /// <summary>
-        /// 信息系统类别领域服务接口
-        /// </summary>
-        public IInfoSystemKindService InfoSystemKindSvc { get; private set; }
 
         /// <summary>
         /// 信息系统领域服务接口

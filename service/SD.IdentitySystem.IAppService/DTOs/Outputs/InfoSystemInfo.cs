@@ -16,24 +16,5 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         [DataMember]
         public string AdminLoginId { get; set; }
         #endregion
-
-        #region 信息系统类别编号 —— string SystemKindNo
-        /// <summary>
-        /// 信息系统类别编号
-        /// </summary>
-        [DataMember]
-        public string SystemKindNo { get; set; }
-        #endregion
-
-
-        //导航属性
-
-        #region 信息系统类别 —— InfoSystemKindInfo InfoSystemKindInfo
-        /// <summary>
-        /// 信息系统类别
-        /// </summary>
-        [DataMember]
-        public InfoSystemKindInfo InfoSystemKindInfo { get; set; }
-        #endregion
     }
 }

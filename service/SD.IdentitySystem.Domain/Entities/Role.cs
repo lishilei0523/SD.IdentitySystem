@@ -30,10 +30,10 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 创建角色构造器
         /// </summary>
         /// <param name="roleName">角色名称</param>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="description">角色描述</param>
         /// <param name="roleNo">角色编号</param>
-        public Role(string roleName, string systemKindNo, string description, string roleNo = null)
+        public Role(string roleName, string systemNo, string description, string roleNo = null)
             : this()
         {
             //验证参数
@@ -41,7 +41,7 @@ namespace SD.IdentitySystem.Domain.Entities
 
             base.Number = roleNo;
             base.Name = roleName;
-            this.SystemKindNo = systemKindNo;
+            this.SystemNo = systemNo;
             this.Description = description;
 
             //初始化关键字
@@ -53,11 +53,11 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 属性
 
-        #region 信息系统类别编号 —— string SystemKindNo
+        #region 信息系统编号 —— string SystemNo
         /// <summary>
-        /// 信息系统类别编号
+        /// 信息系统编号
         /// </summary>
-        public string SystemKindNo { get; private set; }
+        public string SystemNo { get; private set; }
         #endregion
 
         #region 角色描述 —— string Description
@@ -131,9 +131,9 @@ namespace SD.IdentitySystem.Domain.Entities
 
             foreach (Authority authority in authorities)
             {
-                if (this.SystemKindNo != authority.SystemKindNo)
+                if (this.SystemNo != authority.SystemNo)
                 {
-                    throw new ArgumentOutOfRangeException("authorities", string.Format("角色与Id为\"{0}\"的权限的信息系统类别不匹配！角色所在信息系统类别：\"{1}\"，权限所在信息系统类别：\"{2}\"", authority.Id, this.SystemKindNo, authority.SystemKindNo));
+                    throw new ArgumentOutOfRangeException("authorities", string.Format("角色与Id为\"{0}\"的权限的信息系统类别不匹配！角色所在信息系统类别：\"{1}\"，权限所在信息系统类别：\"{2}\"", authority.Id, this.SystemNo, authority.SystemNo));
                 }
                 authority.Roles.Add(this);
             }

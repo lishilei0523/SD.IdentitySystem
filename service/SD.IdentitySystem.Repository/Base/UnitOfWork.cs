@@ -19,7 +19,7 @@ namespace SD.IdentitySystem.Repository.Base
         /// <returns>权限集</returns>
         public IEnumerable<Authority> ResolveAuthorities(string systemKindNo)
         {
-            return base.ResolveRange<Authority>(x => x.SystemKindNo == systemKindNo).AsEnumerable();
+            return base.ResolveRange<Authority>(x => x.SystemNo == systemKindNo).AsEnumerable();
         }
         #endregion
     }

@@ -22,7 +22,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>角色集</returns>
         public IEnumerable<Role> FindBySystemKind(string systemKindNo)
         {
-            return base.Find(x => x.SystemKindNo == systemKindNo).AsEnumerable();
+            return base.Find(x => x.SystemNo == systemKindNo).AsEnumerable();
         }
         #endregion
 
@@ -41,7 +41,7 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             Expression<Func<Role, bool>> condition =
                 x =>
-                    (string.IsNullOrEmpty(systemKindNo) || x.SystemKindNo == systemKindNo) &&
+                    (string.IsNullOrEmpty(systemKindNo) || x.SystemNo == systemKindNo) &&
                     (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
 
             return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
@@ -56,7 +56,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>系统管理员角色</returns>
         public Role GetManagerRole(string systemKindNo)
         {
-            IQueryable<Role> specRoles = base.Find(x => x.SystemKindNo == systemKindNo);
+            IQueryable<Role> specRoles = base.Find(x => x.SystemNo == systemKindNo);
 
             #region # 验证业务
 
@@ -79,7 +79,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>系统管理员角色Id</returns>
         public Guid GetManagerRoleId(string systemKindNo)
         {
-            IQueryable<Role> specRoles = base.Find(x => x.SystemKindNo == systemKindNo);
+            IQueryable<Role> specRoles = base.Find(x => x.SystemNo == systemKindNo);
 
             #region # 验证业务
 
@@ -103,7 +103,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>是否存在</returns>
         public bool Exists(string systemKindNo, string roleName)
         {
-            return base.Exists(x => x.SystemKindNo == systemKindNo && x.Name == roleName);
+            return base.Exists(x => x.SystemNo == systemKindNo && x.Name == roleName);
         }
         #endregion
     }

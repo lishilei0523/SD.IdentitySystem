@@ -143,7 +143,7 @@ namespace SD.IdentitySystem.AppService.Implements
         private void GenerateLoginRecord(Guid publicKey, User user, string ip)
         {
             //生成记录
-            LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, null, null, user.Name, ip);
+            LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
 
             this._unitOfWork.RegisterAdd(loginRecord);
             this._unitOfWork.Commit();

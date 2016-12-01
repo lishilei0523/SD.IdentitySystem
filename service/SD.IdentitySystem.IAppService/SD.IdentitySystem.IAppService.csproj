@@ -70,10 +70,9 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DTOs\Inputs\AuthorityParam.cs" />
-    <Compile Include="DTOs\Inputs\InfoSystemKindParam.cs" />
+    <Compile Include="DTOs\Inputs\InfoSystemParam.cs" />
     <Compile Include="DTOs\Outputs\AuthorityInfo.cs" />
     <Compile Include="DTOs\Outputs\InfoSystemInfo.cs" />
-    <Compile Include="DTOs\Outputs\InfoSystemKindInfo.cs" />
     <Compile Include="DTOs\Outputs\LoginRecordInfo.cs" />
     <Compile Include="DTOs\Outputs\MenuInfo.cs" />
     <Compile Include="DTOs\Outputs\RoleInfo.cs" />

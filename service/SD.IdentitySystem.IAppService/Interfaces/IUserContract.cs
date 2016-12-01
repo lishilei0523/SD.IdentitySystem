@@ -21,10 +21,9 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="systemNo">组织编号</param>
         /// <param name="systemName">信息系统名称</param>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="adminLoginId">系统管理员登录名</param>
         [OperationContract]
-        void CreateInfoSystem(string systemNo, string systemName, string systemKindNo, string adminLoginId);
+        void CreateInfoSystem(string systemNo, string systemName, string adminLoginId);
         #endregion
 
 
@@ -124,15 +123,23 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         InfoSystemInfo GetInfoSystem(string systemNo);
         #endregion
 
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId...
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems()
+        /// <summary>
+        /// 获取信息系统列表
+        /// </summary>
+        /// <returns>信息系统列表</returns>
+        [OperationContract]
+        IEnumerable<InfoSystemInfo> GetInfoSystems();
+        #endregion
+
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystemsByUser(string loginId)
         /// <summary>
         /// 获取信息系统列表
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <returns>信息系统列表</returns>
         [OperationContract]
-        IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId, string systemKindNo);
+        IEnumerable<InfoSystemInfo> GetInfoSystemsByUser(string loginId);
         #endregion
 
 
@@ -159,14 +166,14 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         PageModel<UserInfo> GetUsers(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
 
-        #region # 是否存在用户 —— bool ExistUser(string loginId)
+        #region # 是否存在用户 —— bool ExistsUser(string loginId)
         /// <summary>
         /// 是否存在用户
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <returns>是否存在</returns>
         [OperationContract]
-        bool ExistUser(string loginId);
+        bool ExistsUser(string loginId);
         #endregion
 
 

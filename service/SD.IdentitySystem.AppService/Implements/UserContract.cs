@@ -63,15 +63,13 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="systemNo">组织编号</param>
         /// <param name="systemName">信息系统名称</param>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="adminLoginId">系统管理员登录名</param>
-        public void CreateInfoSystem(string systemNo, string systemName, string systemKindNo, string adminLoginId)
+        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId)
         {
             //验证
-            Assert.IsTrue(this._repMediator.InfoSystemKindRep.Exists(systemKindNo), string.Format("编号为\"{0}\"的信息系统类别不存在！", systemKindNo));
             Assert.IsFalse(this._repMediator.UserRep.Exists(adminLoginId), string.Format("登录名：\"{0}\"已存在，请重试！", adminLoginId));
 
-            InfoSystem infoSystem = new InfoSystem(systemNo, systemName, systemKindNo, adminLoginId);
+            InfoSystem infoSystem = new InfoSystem(systemNo, systemName, adminLoginId);
             string adminName = string.Format("{0}管理员", infoSystem.Name);
             User admin = new User(adminLoginId, adminName, Constants.InitialPassword);
 
@@ -96,7 +94,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public void CreateUser(string loginId, string realName, string password)
         {
             //验证参数
-            Assert.IsFalse(this.ExistUser(loginId), "登录名\"{0}\"已存在，请重试！");
+            Assert.IsFalse(this.ExistsUser(loginId), "登录名\"{0}\"已存在，请重试！");
 
             User user = new User(loginId, realName, password);
 
@@ -220,9 +218,9 @@ namespace SD.IdentitySystem.AppService.Implements
                 {
                     Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
 
-                    if (currentRole.SystemKindNo != currentSystem.SystemKindNo)
+                    if (currentRole.SystemNo != currentSystem.Number)
                     {
-                        throw new InvalidOperationException(string.Format("角色\"{0}\"与信息系统\"{1}\"的信息系统类别不匹配！", roleId, systemRole.Key));
+                        throw new InvalidOperationException(string.Format("角色\"{0}\"与信息系统\"{1}\"不匹配！", roleId, systemRole.Key));
                     }
 
                     roles.Add(currentRole);
@@ -258,9 +256,9 @@ namespace SD.IdentitySystem.AppService.Implements
                 {
                     Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
 
-                    if (currentRole.SystemKindNo != currentSystem.SystemKindNo)
+                    if (currentRole.SystemNo != currentSystem.Number)
                     {
-                        throw new InvalidOperationException(string.Format("角色\"{0}\"与信息系统\"{1}\"的信息系统类别不匹配！", roleId, systemRole.Key));
+                        throw new InvalidOperationException(string.Format("角色\"{0}\"与信息系统\"{1}\"不匹配！", roleId, systemRole.Key));
                     }
 
                     roles.Add(currentRole);
@@ -287,29 +285,37 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             InfoSystem currentSystem = this._repMediator.InfoSystemRep.Single(systemNo);
 
-            IDictionary<string, InfoSystemKind> systemKinds = this._repMediator.InfoSystemKindRep.Find(new[] { currentSystem.SystemKindNo });
-            IDictionary<string, InfoSystemKindInfo> systemKindInfos = systemKinds.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return currentSystem.ToDTO(systemKindInfos);
+            return currentSystem.ToDTO();
         }
         #endregion
 
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId...
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems()
+        /// <summary>
+        /// 获取信息系统列表
+        /// </summary>
+        /// <returns>信息系统列表</returns>
+        public IEnumerable<InfoSystemInfo> GetInfoSystems()
+        {
+            IEnumerable<InfoSystem> systems = this._repMediator.InfoSystemRep.FindAll();
+
+            IEnumerable<InfoSystemInfo> systemInfos = systems.Select(x => x.ToDTO());
+
+            return systemInfos;
+        }
+        #endregion
+
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId)
         /// <summary>
         /// 获取信息系统列表
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <returns>信息系统列表</returns>
-        public IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId, string systemKindNo)
+        public IEnumerable<InfoSystemInfo> GetInfoSystemsByUser(string loginId)
         {
             IEnumerable<string> systemNos = this._repMediator.UserRoleRep.GetInfoSystemNos(loginId);
-            IEnumerable<InfoSystem> systems = this._repMediator.InfoSystemRep.GetInfoSystems(systemKindNo, systemNos);
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
 
-            IDictionary<string, InfoSystemKind> systemKinds = this._repMediator.InfoSystemKindRep.Find(new[] { systemKindNo });
-            IDictionary<string, InfoSystemKindInfo> systemKindInfos = systemKinds.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return systems.Select(x => x.ToDTO(systemKindInfos));
+            return systems.Values.Select(x => x.ToDTO());
         }
         #endregion
 
@@ -350,13 +356,13 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 是否存在用户 —— bool ExistUser(string loginId)
+        #region # 是否存在用户 —— bool ExistsUser(string loginId)
         /// <summary>
         /// 是否存在用户
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <returns>是否存在</returns>
-        public bool ExistUser(string loginId)
+        public bool ExistsUser(string loginId)
         {
             return this._repMediator.UserRep.ExistsFromCache(loginId);
         }
@@ -372,14 +378,12 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户菜单树</returns>
         public IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo)
         {
-            IEnumerable<Menu> menus = this._repMediator.UserRoleRep.GetMenus(loginId, systemNo).ToArray();
+            IEnumerable<Menu> menus = this._repMediator.UserRoleRep.GetMenus(loginId, systemNo);
 
-            IEnumerable<string> systemKindNos = menus.Select(x => x.SystemKindNo);
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            IDictionary<string, InfoSystemKind> systemKinds = this._repMediator.InfoSystemKindRep.Find(systemKindNos);
-            IDictionary<string, InfoSystemKindInfo> systemKindInfos = systemKinds.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return menus.Select(x => x.ToDTO(systemKindInfos));
+            return menus.Select(x => x.ToDTO(systemInfos));
         }
         #endregion
 
@@ -394,7 +398,10 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             IEnumerable<Role> roles = this._repMediator.UserRoleRep.GetRoles(loginId, systemNo);
 
-            return roles.Select(x => x.ToDTO());
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return roles.Select(x => x.ToDTO(systemInfos));
         }
         #endregion
 
@@ -409,7 +416,10 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             IEnumerable<Authority> authorities = this._repMediator.UserRoleRep.GetAuthorities(loginId, systemNo);
 
-            return authorities.Select(x => x.ToDTO());
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return authorities.Select(x => x.ToDTO(systemInfos));
         }
         #endregion
     }

@@ -9,12 +9,12 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
     public class RoleInfo : BaseDTO
     {
-        #region 信息系统类别编号 —— string SystemKindNo
+        #region 信息系统编号 —— string SystemNo
         /// <summary>
-        /// 信息系统类别编号
+        /// 信息系统编号
         /// </summary>
         [DataMember]
-        public string SystemKindNo { get; set; }
+        public string SystemNo { get; set; }
         #endregion
 
         #region 角色描述 —— string Description
@@ -23,6 +23,17 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         /// </summary>
         [DataMember]
         public string Description { get; set; }
+        #endregion
+
+
+        //导航属性
+
+        #region 导航属性 - 信息系统 —— InfoSystemInfo InfoSystemInfo
+        /// <summary>
+        /// 导航属性 - 信息系统
+        /// </summary>
+        [DataMember]
+        public InfoSystemInfo InfoSystemInfo { get; set; }
         #endregion
     }
 }

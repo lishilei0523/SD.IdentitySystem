@@ -28,13 +28,13 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <summary>
         /// 创建菜单构造器
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">菜单排序</param>
         /// <param name="url">链接地址</param>
         /// <param name="icon">图标</param>
         /// <param name="parentNode">上级菜单</param>
-        public Menu(string systemKindNo, string menuName, int sort, string url, string icon, Menu parentNode)
+        public Menu(string systemNo, string menuName, int sort, string url, string icon, Menu parentNode)
             : this()
         {
             //验证参数
@@ -42,7 +42,7 @@ namespace SD.IdentitySystem.Domain.Entities
 
             base.Name = menuName;
             base.Sort = sort;
-            this.SystemKindNo = systemKindNo;
+            this.SystemNo = systemNo;
             this.Url = url;
             this.Icon = icon;
             this.ParentNode = parentNode;
@@ -54,11 +54,11 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 属性
 
-        #region 信息系统类别编号 —— string SystemKindNo
+        #region 信息系统编号 —— string SystemNo
         /// <summary>
-        /// 信息系统类别编号
+        /// 信息系统编号
         /// </summary>
-        public string SystemKindNo { get; private set; }
+        public string SystemNo { get; private set; }
         #endregion
 
         #region 链接地址 —— string Url

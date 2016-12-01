@@ -178,7 +178,6 @@
     <Compile Include="Implements\UserRoleRepository.cs" />
     <Compile Include="Implements\LoginRecordRepository.cs" />
     <Compile Include="Implements\MenuRepository.cs" />
-    <Compile Include="Implements\InfoSystemKindRepository.cs" />
     <Compile Include="Implements\InfoSystemRepository.cs" />
     <Compile Include="Implements\RoleRepository.cs" />
     <Compile Include="Implements\UserRepository.cs" />

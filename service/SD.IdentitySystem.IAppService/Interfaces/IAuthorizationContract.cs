@@ -16,25 +16,25 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     {
         ////////////////////////////////命令部分////////////////////////////////
 
-        #region # 初始化信息系统类别 —— void InitInfoSystemKinds(IEnumerable<InfoSystemKindParam> initParams)
+        #region # 初始化信息系统 —— void InitInfoSystems(IEnumerable<InfoSystemParam> initParams)
         /// <summary>
-        /// 初始化信息系统类别
+        /// 初始化信息系统
         /// </summary>
-        /// <param name="initParams">初始化信息系统类别参数模型集</param>
+        /// <param name="initParams">初始化信息系统参数模型集</param>
         [OperationContract]
-        void InitInfoSystemKinds(IEnumerable<InfoSystemKindParam> initParams);
+        void InitInfoSystems(IEnumerable<InfoSystemParam> initParams);
         #endregion
 
 
-        #region # 批量创建权限 —— IEnumerable<Guid> CreateAuthorities(string systemKindNo...
+        #region # 批量创建权限 —— IEnumerable<Guid> CreateAuthorities(string systemNo...
         /// <summary>
         /// 批量创建权限
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="authorityParams">权限参数模型集</param>
         /// <returns>权限Id集</returns>
         [OperationContract]
-        IEnumerable<Guid> CreateAuthorities(string systemKindNo, IEnumerable<AuthorityParam> authorityParams);
+        IEnumerable<Guid> CreateAuthorities(string systemNo, IEnumerable<AuthorityParam> authorityParams);
         #endregion
 
         #region # 修改权限 —— void UpdateAuthority(Guid authorityId...
@@ -67,11 +67,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         #endregion
 
 
-        #region # 创建菜单 —— Guid CreateMenu(string systemKindNo, string menuName...
+        #region # 创建菜单 —— Guid CreateMenu(string systemNo, string menuName...
         /// <summary>
         /// 创建菜单
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
@@ -79,7 +79,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="parentId">上级菜单Id</param>
         /// <returns>菜单Id</returns>
         [OperationContract]
-        Guid CreateMenu(string systemKindNo, string menuName, int sort, string url, string icon, Guid? parentId);
+        Guid CreateMenu(string systemNo, string menuName, int sort, string url, string icon, Guid? parentId);
         #endregion
 
         #region # 修改菜单 —— void UpdateMenu(Guid menuId, string menuName...
@@ -105,16 +105,16 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         #endregion
 
 
-        #region # 创建角色 —— Guid CreateRole(string systemKindNo, string roleName...
+        #region # 创建角色 —— Guid CreateRole(string systemNo, string roleName...
         /// <summary>
         /// 创建角色
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleName">角色名称</param>
         /// <param name="authorityIds">权限Id集</param>
         /// <returns>角色Id</returns>
         [OperationContract]
-        Guid CreateRole(string systemKindNo, string roleName, IEnumerable<Guid> authorityIds);
+        Guid CreateRole(string systemNo, string roleName, IEnumerable<Guid> authorityIds);
         #endregion
 
         #region # 为角色分配权限 —— void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
@@ -159,16 +159,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
 
 
         ////////////////////////////////查询部分////////////////////////////////
-
-        #region # 获取信息系统类别列表 —— IEnumerable<InfoSystemKindInfo> GetSystemKinds()
-        /// <summary>
-        /// 获取信息系统类别列表
-        /// </summary>
-        /// <returns>信息系统类别列表</returns>
-        [OperationContract]
-        IEnumerable<InfoSystemKindInfo> GetSystemKinds();
-        #endregion
-
 
         #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemKindNo...
         /// <summary>
@@ -233,14 +223,27 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         IEnumerable<Guid> GetAuthorityIds(string systemKindNo);
         #endregion
 
-        #region # 判断权限是否存在 —— bool ExistsAuthority(string authorityPath)
+        #region # 获取权限 —— AuthorityInfo GetAuthority(Guid authorityId)
         /// <summary>
-        /// 判断权限是否存在
+        /// 获取权限
         /// </summary>
-        /// <param name="authorityPath">权限路径</param>
+        /// <param name="authorityId">权限Id</param>
+        /// <returns>权限视图模型</returns>
+        [OperationContract]
+        AuthorityInfo GetAuthority(Guid authorityId);
+        #endregion
+
+        #region # 是否存在权限 —— bool ExistsAuthority(string assemblyName, string @namespace...
+        /// <summary>
+        /// 是否存在权限
+        /// </summary>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
         /// <returns>是否存在</returns>
         [OperationContract]
-        bool ExistsAuthority(string authorityPath);
+        bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName);
         #endregion
 
 
@@ -252,6 +255,16 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <returns>菜单列表</returns>
         [OperationContract]
         IEnumerable<MenuInfo> GetMenus(string systemKindNo);
+        #endregion
+
+        #region # 获取菜单 —— MenuInfo GetMenu(Guid menuId)
+        /// <summary>
+        /// 获取菜单
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>菜单</returns>
+        [OperationContract]
+        MenuInfo GetMenu(Guid menuId);
         #endregion
 
 

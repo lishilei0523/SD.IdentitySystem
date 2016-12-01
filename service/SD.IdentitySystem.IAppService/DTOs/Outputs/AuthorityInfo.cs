@@ -9,6 +9,14 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
     public class AuthorityInfo : BaseDTO
     {
+        #region 信息系统编号 —— string SystemNo
+        /// <summary>
+        /// 信息系统编号
+        /// </summary>
+        [DataMember]
+        public string SystemNo { get; set; }
+        #endregion
+
         #region 程序集名称 —— string AssemblyName
         /// <summary>
         /// 程序集名称
@@ -63,6 +71,17 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         /// </summary>
         [DataMember]
         public string AuthorityPath { get; set; }
+        #endregion
+
+
+        //导航属性
+
+        #region 导航属性 - 信息系统 —— InfoSystemInfo InfoSystemInfo
+        /// <summary>
+        /// 导航属性 - 信息系统
+        /// </summary>
+        [DataMember]
+        public InfoSystemInfo InfoSystemInfo { get; set; }
         #endregion
     }
 }

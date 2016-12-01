@@ -31,7 +31,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <summary>
         /// 创建权限构造器
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="englishName">英文名称</param>
         /// <param name="description">描述</param>
@@ -39,14 +39,14 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="namespace">命名空间</param>
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
-        public Authority(string systemKindNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        public Authority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
             : this()
         {
             //验证参数
             this.CheckBasicInfo(assemblyName, @namespace, className, methodName);
 
             base.Name = authorityName;
-            this.SystemKindNo = systemKindNo;
+            this.SystemNo = systemNo;
             this.EnglishName = englishName;
             this.Description = description;
             this.AssemblyName = assemblyName;
@@ -59,7 +59,7 @@ namespace SD.IdentitySystem.Domain.Entities
             this.InitKeywords();
 
             //挂起领域事件
-            EventMediator.Suspend(new AuthorityCreatedEvent(this.SystemKindNo, this.Id));
+            EventMediator.Suspend(new AuthorityCreatedEvent(this.SystemNo, this.Id));
         }
         #endregion
 
@@ -67,11 +67,11 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 属性
 
-        #region 信息系统类别编号 —— string SystemKindNo
+        #region 信息系统编号 —— string SystemNo
         /// <summary>
-        /// 信息系统类别编号
+        /// 信息系统编号
         /// </summary>
-        public string SystemKindNo { get; private set; }
+        public string SystemNo { get; private set; }
         #endregion
 
         #region 程序集名称 —— string AssemblyName

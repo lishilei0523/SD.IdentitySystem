@@ -21,7 +21,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>权限集</returns>
         public IEnumerable<Authority> FindBySystemKind(string systemKindNo)
         {
-            return base.Find(x => x.SystemKindNo == systemKindNo).AsEnumerable();
+            return base.Find(x => x.SystemNo == systemKindNo).AsEnumerable();
         }
         #endregion
 
@@ -33,7 +33,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>权限Id集</returns>
         public IEnumerable<Guid> FindAuthorityIds(string systemKindNo)
         {
-            return base.FindIds(x => x.SystemKindNo == systemKindNo).AsEnumerable();
+            return base.FindIds(x => x.SystemNo == systemKindNo).AsEnumerable();
         }
         #endregion
 
@@ -76,7 +76,7 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             Expression<Func<Authority, bool>> condition =
                 x =>
-                    (string.IsNullOrEmpty(systemKindNo) || x.SystemKindNo == systemKindNo) &&
+                    (string.IsNullOrEmpty(systemKindNo) || x.SystemNo == systemKindNo) &&
                     (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
 
             return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
@@ -92,7 +92,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>是否存在</returns>
         public bool Exists(string systemKindNo, Guid authorityId)
         {
-            return base.Exists(x => x.SystemKindNo == systemKindNo && x.Id == authorityId);
+            return base.Exists(x => x.SystemNo == systemKindNo && x.Id == authorityId);
         }
         #endregion
 
@@ -105,7 +105,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>是否存在</returns>
         public bool Exists(string systemKindNo, string authorityPath)
         {
-            return base.Exists(x => x.SystemKindNo == systemKindNo && x.AuthorityPath == authorityPath);
+            return base.Exists(x => x.SystemNo == systemKindNo && x.AuthorityPath == authorityPath);
         }
         #endregion
 

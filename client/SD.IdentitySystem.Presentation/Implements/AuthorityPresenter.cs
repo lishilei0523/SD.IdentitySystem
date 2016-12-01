@@ -92,27 +92,9 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>权限视图模型</returns>
         public AuthorityView GetAuthority(Guid authorityId)
         {
-            //TODO 添加服务接口
-            //AuthorityInfo authorityInfo=this._authorizationContract.ge
+            AuthorityInfo authorityInfo = this._authorizationContract.GetAuthority(authorityId);
 
-            return null;
-        }
-        #endregion
-
-        #region # 是否存在权限 —— bool ExistsAuthority(string assemblyName, string @namespace...
-        /// <summary>
-        /// 是否存在权限
-        /// </summary>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
-        /// <returns>是否存在</returns>
-        public bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName)
-        {
-            //TODO 添加服务接口
-
-            return false;
+            return authorityInfo.ToViewModel();
         }
         #endregion
     }

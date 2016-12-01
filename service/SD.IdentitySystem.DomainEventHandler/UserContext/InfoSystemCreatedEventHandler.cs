@@ -61,7 +61,7 @@ namespace SD.IdentitySystem.DomainEventHandler.UserContext
         public void Handle(InfoSystemCreatedEvent eventSource)
         {
             //获取系统管理员角色
-            Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(eventSource.SystemKindNo);
+            Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(eventSource.SystemNo);
             Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
 
             //创建系统管理员用户，并为用户分配角色

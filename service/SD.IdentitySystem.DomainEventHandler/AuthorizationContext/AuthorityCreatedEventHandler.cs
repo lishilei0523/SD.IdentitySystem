@@ -80,7 +80,7 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
             Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
 
             //根据类别获取所有信息系统
-            IEnumerable<string> systemNos = this._repMediator.InfoSystemRep.GetInfoSystemNos(systemKindNo);
+            IEnumerable<string> systemNos = this._repMediator.InfoSystemRep.FindAllNos();
 
             foreach (string systemNo in systemNos)
             {

@@ -44,12 +44,12 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
 
         //导航属性
 
-        #region 导航属性 - 信息系统类别 —— InfoSystemKindInfo InfoSystemKindInfo
+        #region 导航属性 - 信息系统 —— InfoSystemInfo InfoSystemInfo
         /// <summary>
-        /// 导航属性 - 信息系统类别
+        /// 导航属性 - 信息系统
         /// </summary>
         [DataMember]
-        public InfoSystemKindInfo InfoSystemKindInfo { get; set; }
+        public InfoSystemInfo InfoSystemInfo { get; set; }
         #endregion
 
         #region 导航属性 - 父级菜单 —— MenuInfo ParentMenu

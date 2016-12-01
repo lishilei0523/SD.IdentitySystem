@@ -99,7 +99,6 @@
     <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implements\InfoSystemKindService.cs" />
     <Compile Include="Implements\InfoSystemService.cs" />
     <Compile Include="Implements\UserService.cs" />
     <Compile Include="Implements\NumberService.cs" />

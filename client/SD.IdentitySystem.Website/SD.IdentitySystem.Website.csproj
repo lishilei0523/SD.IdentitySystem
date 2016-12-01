@@ -54,10 +54,6 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.1\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.1.0.5\lib\net45\SD.IOC.Core.dll</HintPath>
       <Private>True</Private>
@@ -590,6 +586,10 @@
     <Content Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\service\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj">
+      <Project>{52bf9a76-1b01-4c29-8067-e6f1c88896fd}</Project>
+      <Name>SD.IdentitySystem.IAppService</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
       <Project>{e252094f-979a-4655-b864-e600c33ab75d}</Project>
       <Name>SD.IdentitySystem.IPresentation</Name>

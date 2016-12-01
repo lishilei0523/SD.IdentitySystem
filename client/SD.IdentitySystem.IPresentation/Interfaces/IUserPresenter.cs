@@ -29,14 +29,5 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// <returns>用户</returns>
         UserView GetUser(string loginId);
         #endregion
-
-        #region # 是否存在用户 —— bool ExistsUser(string loginId)
-        /// <summary>
-        /// 是否存在用户
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <returns>是否存在</returns>
-        bool ExistsUser(string loginId);
-        #endregion
     }
 }

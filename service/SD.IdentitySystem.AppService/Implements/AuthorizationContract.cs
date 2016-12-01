@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using System.Text;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
@@ -55,48 +56,46 @@ namespace SD.IdentitySystem.AppService.Implements
 
         ////////////////////////////////命令部分////////////////////////////////
 
-        #region # 初始化信息系统类别 —— void InitInfoSystemKinds(IEnumerable<InfoSystemKindParam> initParams)
+        #region # 初始化信息系统 —— void InitInfoSystems(IEnumerable<InfoSystemParam> initParams)
         /// <summary>
-        /// 初始化信息系统类别
+        /// 初始化信息系统
         /// </summary>
-        /// <param name="initParams">初始化信息系统类别参数模型集</param>
-        public void InitInfoSystemKinds(IEnumerable<InfoSystemKindParam> initParams)
+        /// <param name="initParams">初始化信息系统参数模型集</param>
+        public void InitInfoSystems(IEnumerable<InfoSystemParam> initParams)
         {
-            IList<InfoSystemKind> systemKinds = new List<InfoSystemKind>();
-
-            foreach (InfoSystemKindParam param in initParams)
+            foreach (InfoSystemParam param in initParams)
             {
-                InfoSystemKind currentKind = this._repMediator.InfoSystemKindRep.Single(param.SystemKindNo);
-                currentKind.Init(param.Host, param.Port, param.Index);
+                InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(param.SystemNo);
+                currentSystem.Init(param.Host, param.Port, param.Index);
 
-                systemKinds.Add(currentKind);
+                this._unitOfWork.RegisterSave(currentSystem);
             }
 
-            this._repMediator.InfoSystemKindRep.SaveRange(systemKinds);
+            this._unitOfWork.Commit();
         }
         #endregion
 
 
-        #region # 批量创建权限 —— IEnumerable<Guid> CreateAuthorities(string systemKindNo...
+        #region # 批量创建权限 —— IEnumerable<Guid> CreateAuthorities(string systemNo...
         /// <summary>
         /// 批量创建权限
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="authorityParams">权限参数模型集</param>
         /// <returns>权限Id集</returns>
-        public IEnumerable<Guid> CreateAuthorities(string systemKindNo, IEnumerable<AuthorityParam> authorityParams)
+        public IEnumerable<Guid> CreateAuthorities(string systemNo, IEnumerable<AuthorityParam> authorityParams)
         {
             //验证
-            Assert.IsTrue(this._repMediator.InfoSystemKindRep.Exists(systemKindNo), string.Format("编号为\"{0}\"的信息系统类别不存在！", systemKindNo));
+            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), string.Format("编号为\"{0}\"的信息系统不存在！", systemNo));
 
             IList<Guid> authorityIds = new List<Guid>();
 
             foreach (AuthorityParam param in authorityParams)
             {
-                Authority authority = new Authority(systemKindNo, param.AuthorityName, param.EnglishName, param.Description, param.AssemblyName, param.Namespace, param.ClassName, param.MethodName);
+                Authority authority = new Authority(systemNo, param.AuthorityName, param.EnglishName, param.Description, param.AssemblyName, param.Namespace, param.ClassName, param.MethodName);
 
                 //验证
-                Assert.IsFalse(this._repMediator.AuthorityRep.Exists(systemKindNo, authority.AuthorityPath), string.Format("信息系统类别\"{0}\"中已存在该权限！", systemKindNo));
+                Assert.IsFalse(this._repMediator.AuthorityRep.Exists(systemNo, authority.AuthorityPath), string.Format("信息系统\"{0}\"中已存在该权限！", systemNo));
 
                 this._unitOfWork.RegisterAdd(authority);
                 authorityIds.Add(authority.Id);
@@ -161,25 +160,25 @@ namespace SD.IdentitySystem.AppService.Implements
         #endregion
 
 
-        #region # 创建菜单 —— Guid CreateMenu(string systemKindNo, string menuName...
+        #region # 创建菜单 —— Guid CreateMenu(string systemNo, string menuName...
         /// <summary>
         /// 创建菜单
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
         /// <param name="icon">图标</param>
         /// <param name="parentId">上级菜单Id</param>
         /// <returns>菜单Id</returns>
-        public Guid CreateMenu(string systemKindNo, string menuName, int sort, string url, string icon, Guid? parentId)
+        public Guid CreateMenu(string systemNo, string menuName, int sort, string url, string icon, Guid? parentId)
         {
             //验证参数
-            Assert.IsTrue(this._repMediator.InfoSystemKindRep.Exists(systemKindNo), string.Format("编号为\"{0}\"的信息系统类别不存在！", systemKindNo));
+            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), string.Format("编号为\"{0}\"的信息系统不存在！", systemNo));
             Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, menuName), "给定菜单级别下菜单名称已存在！");
 
             Menu parentMenu = parentId == null ? null : this._unitOfWork.Resolve<Menu>(parentId.Value);
-            Menu menu = new Menu(systemKindNo, menuName, sort, url, icon, parentMenu);
+            Menu menu = new Menu(systemNo, menuName, sort, url, icon, parentMenu);
 
             this._unitOfWork.RegisterAdd(menu);
             this._unitOfWork.UnitedCommit();
@@ -231,21 +230,21 @@ namespace SD.IdentitySystem.AppService.Implements
         #endregion
 
 
-        #region # 创建角色 —— Guid CreateRole(string systemKindNo, string roleName...
+        #region # 创建角色 —— Guid CreateRole(string systemNo, string roleName...
         /// <summary>
         /// 创建角色
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleName">角色名称</param>
         /// <param name="authorityIds">权限Id集</param>
         /// <returns>角色Id</returns>
-        public Guid CreateRole(string systemKindNo, string roleName, IEnumerable<Guid> authorityIds)
+        public Guid CreateRole(string systemNo, string roleName, IEnumerable<Guid> authorityIds)
         {
             //验证
-            Assert.IsTrue(this._repMediator.InfoSystemKindRep.Exists(systemKindNo));
+            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo));
 
             //创建角色
-            Role role = new Role(roleName, systemKindNo, roleName);
+            Role role = new Role(roleName, systemNo, roleName);
 
             //分配权限
             IEnumerable<Authority> authorities = authorityIds.Select(authorityId => this._unitOfWork.Resolve<Authority>(authorityId));
@@ -331,20 +330,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
         ////////////////////////////////查询部分////////////////////////////////
 
-        #region # 获取信息系统类别列表 —— IEnumerable<InfoSystemKindInfo> GetSystemKinds()
-        /// <summary>
-        /// 获取信息系统类别列表
-        /// </summary>
-        /// <returns>信息系统类别列表</returns>
-        public IEnumerable<InfoSystemKindInfo> GetSystemKinds()
-        {
-            IEnumerable<InfoSystemKind> kinds = this._repMediator.InfoSystemKindRep.FindAll();
-
-            return kinds.Select(x => x.ToDTO());
-        }
-        #endregion
-
-
         #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemKindNo...
         /// <summary>
         /// 分页获取权限列表
@@ -360,7 +345,10 @@ namespace SD.IdentitySystem.AppService.Implements
 
             IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(systemKindNo, keywords, pageIndex, pageSize, out rowCount, out pageCount);
 
-            IEnumerable<AuthorityInfo> authorityInfos = authorities.Select(x => x.ToDTO());
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            IEnumerable<AuthorityInfo> authorityInfos = authorities.Select(x => x.ToDTO(systemInfos));
 
             return new PageModel<AuthorityInfo>(authorityInfos, pageIndex, pageSize, pageCount, rowCount);
         }
@@ -376,7 +364,10 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindBySystemKind(systemKindNo);
 
-            return authorities.Select(x => x.ToDTO());
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return authorities.Select(x => x.ToDTO(systemInfos));
         }
         #endregion
 
@@ -395,7 +386,10 @@ namespace SD.IdentitySystem.AppService.Implements
 
             IEnumerable<Authority> authorities = currentMenu.GetAuthorities();
 
-            return authorities.Select(x => x.ToDTO());
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return authorities.Select(x => x.ToDTO(systemInfos));
         }
         #endregion
 
@@ -409,7 +403,10 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleId);
 
-            IEnumerable<AuthorityInfo> authorityInfos = authorities.Select(x => x.ToDTO());
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            IEnumerable<AuthorityInfo> authorityInfos = authorities.Select(x => x.ToDTO(systemInfos));
 
             return authorityInfos;
         }
@@ -441,14 +438,45 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 判断权限是否存在 —— bool ExistsAuthority(string authorityPath)
+        #region # 获取权限 —— AuthorityInfo GetAuthority(Guid authorityId)
         /// <summary>
-        /// 判断权限是否存在
+        /// 获取权限
         /// </summary>
-        /// <param name="authorityPath">权限路径</param>
-        /// <returns>是否存在</returns>
-        public bool ExistsAuthority(string authorityPath)
+        /// <param name="authorityId">权限Id</param>
+        /// <returns>权限视图模型</returns>
+        public AuthorityInfo GetAuthority(Guid authorityId)
         {
+            Authority currentAuthority = this._repMediator.AuthorityRep.Single(authorityId);
+
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return currentAuthority.ToDTO(systemInfos);
+        }
+        #endregion
+
+        #region # 是否存在权限 —— bool ExistsAuthority(string assemblyName, string @namespace...
+        /// <summary>
+        /// 是否存在权限
+        /// </summary>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        /// <returns>是否存在</returns>
+        public bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName)
+        {
+            StringBuilder pathBuilder = new StringBuilder("/");
+            pathBuilder.Append(assemblyName);
+            pathBuilder.Append("/");
+            pathBuilder.Append(@namespace);
+            pathBuilder.Append("/");
+            pathBuilder.Append(className);
+            pathBuilder.Append("/");
+            pathBuilder.Append(methodName);
+
+            string authorityPath = pathBuilder.ToString();
+
             return this._repMediator.AuthorityRep.ExistsPath(authorityPath);
         }
         #endregion
@@ -464,10 +492,27 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             IEnumerable<Menu> menus = this._repMediator.MenuRep.FindBySystemKind(systemKindNo);
 
-            IDictionary<string, InfoSystemKind> systemKinds = this._repMediator.InfoSystemKindRep.Find(new[] { systemKindNo });
-            IDictionary<string, InfoSystemKindInfo> systemKindInfos = systemKinds.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            return menus.Select(x => x.ToDTO(systemKindInfos));
+            return menus.Select(x => x.ToDTO(systemInfos));
+        }
+        #endregion
+
+        #region # 获取菜单 —— MenuInfo GetMenu(Guid menuId)
+        /// <summary>
+        /// 获取菜单
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>菜单</returns>
+        public MenuInfo GetMenu(Guid menuId)
+        {
+            Menu currentMenu = this._repMediator.MenuRep.Single(menuId);
+
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return currentMenu.ToDTO(systemInfos);
         }
         #endregion
 
@@ -482,7 +527,10 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             Role currentRole = this._repMediator.RoleRep.Single(roleId);
 
-            return currentRole.ToDTO();
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return currentRole.ToDTO(systemInfos);
         }
         #endregion
 
@@ -496,7 +544,10 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             IEnumerable<Role> roles = this._repMediator.RoleRep.FindBySystemKind(systemKindNo);
 
-            return roles.Select(x => x.ToDTO());
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return roles.Select(x => x.ToDTO(systemInfos));
         }
         #endregion
 
@@ -515,7 +566,10 @@ namespace SD.IdentitySystem.AppService.Implements
 
             IEnumerable<Role> roles = this._repMediator.RoleRep.FindByPage(systemKindNo, keywords, pageIndex, pageSize, out rowCount, out pageCount);
 
-            IEnumerable<RoleInfo> roleInfos = roles.Select(x => x.ToDTO());
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            IEnumerable<RoleInfo> roleInfos = roles.Select(x => x.ToDTO(systemInfos));
 
             return new PageModel<RoleInfo>(roleInfos, pageIndex, pageSize, pageCount, rowCount);
         }

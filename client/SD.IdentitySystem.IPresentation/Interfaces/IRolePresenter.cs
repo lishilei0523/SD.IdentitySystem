@@ -40,16 +40,5 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// <returns>角色</returns>
         RoleView GetRole(Guid roleId);
         #endregion
-
-        #region # 是否存在角色 —— bool ExistsRole(string systemKindNo, Guid? roleId, string roleName)
-        /// <summary>
-        /// 是否存在角色
-        /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <param name="roleId">角色Id</param>
-        /// <param name="roleName">角色名称</param>
-        /// <returns>是否存在</returns>
-        bool ExistsRole(string systemKindNo, Guid? roleId, string roleName);
-        #endregion
     }
 }

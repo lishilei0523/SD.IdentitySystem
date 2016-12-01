@@ -20,14 +20,12 @@ namespace SD.IdentitySystem.Domain.EventSources.UserContext
         /// <summary>
         /// 基础构造器
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="systemName">信息系统名称</param>
         /// <param name="adminLoginId">管理员登录名</param>
-        public InfoSystemCreatedEvent(string systemKindNo, string systemNo, string systemName, string adminLoginId)
+        public InfoSystemCreatedEvent(string systemNo, string systemName, string adminLoginId)
             : this()
         {
-            this.SystemKindNo = systemKindNo;
             this.SystemNo = systemNo;
             this.SystemName = systemName;
             this.AdminLoginId = adminLoginId;
@@ -37,13 +35,6 @@ namespace SD.IdentitySystem.Domain.EventSources.UserContext
         #endregion
 
         #region # 属性
-
-        #region 信息系统类别编号 —— string SystemKindNo
-        /// <summary>
-        /// 信息系统类别编号
-        /// </summary>
-        public string SystemKindNo { get; set; }
-        #endregion
 
         #region 信息系统编号 —— string SystemNo
         /// <summary>

@@ -71,11 +71,9 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>菜单</returns>
         public MenuView GetMenu(Guid menuId)
         {
-            //MenuInfo menuInfo=this._authorizationContract.GetMenus()
+            MenuInfo menuInfo = this._authorizationContract.GetMenu(menuId);
 
-            //TODO 添加服务接口
-
-            return null;
+            return menuInfo.ToViewModel();
         }
         #endregion
     }

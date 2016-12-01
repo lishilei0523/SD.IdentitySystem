@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
@@ -38,11 +39,11 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>信息系统列表</returns>
         public IEnumerable<InfoSystemView> GetInfoSystems(string systemKindNo)
         {
-            //TODO 添加服务接口
+            IEnumerable<InfoSystemInfo> systemInfos = this._userContract.GetInfoSystemsByKind(systemKindNo);
 
-            //IEnumerable<InfoSystemInfo> systemInfos=this._userContract.GetInfoSystems()
+            IEnumerable<InfoSystemView> systemViews = systemInfos.Select(x => x.ToViewModel());
 
-            return null;
+            return systemViews;
         }
         #endregion
 

@@ -133,7 +133,6 @@
   <ItemGroup>
     <Compile Include="Entities\Authority.cs" />
     <Compile Include="Entities\InfoSystem.cs" />
-    <Compile Include="Entities\InfoSystemKind.cs" />
     <Compile Include="Entities\LoginRecord.cs" />
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Role.cs" />
@@ -141,12 +140,10 @@
     <Compile Include="Entities\UserRole.cs" />
     <Compile Include="EventSources\AuthorizationContext\AuthorityCreatedEvent.cs" />
     <Compile Include="EventSources\UserContext\InfoSystemCreatedEvent.cs" />
-    <Compile Include="IDomainServices\IInfoSystemKindService.cs" />
     <Compile Include="IDomainServices\IInfoSystemService.cs" />
     <Compile Include="IDomainServices\INumberService.cs" />
     <Compile Include="IDomainServices\IUserService.cs" />
     <Compile Include="IRepositories\Interfaces\IAuthorityRepository.cs" />
-    <Compile Include="IRepositories\Interfaces\IInfoSystemKindRepository.cs" />
     <Compile Include="IRepositories\Interfaces\IInfoSystemRepository.cs" />
     <Compile Include="IRepositories\Interfaces\ILoginRecordRepository.cs" />
     <Compile Include="IRepositories\Interfaces\IMenuRepository.cs" />

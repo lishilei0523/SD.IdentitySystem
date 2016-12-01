@@ -64,19 +64,5 @@ namespace SD.IdentitySystem.Presentation.Implements
             return userInfo.ToViewModel();
         }
         #endregion
-
-        #region # 是否存在用户 —— bool ExistsUser(string loginId)
-        /// <summary>
-        /// 是否存在用户
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <returns>是否存在</returns>
-        public bool ExistsUser(string loginId)
-        {
-            //TODO 修正服务接口签名
-
-            return this._userContract.ExistUser(loginId);
-        }
-        #endregion
     }
 }

@@ -56,42 +56,15 @@ namespace SD.IdentitySystem.Repository.Base
         {
             Initializer.InitSessionId();
 
-            this.InitInfoSystemKinds();
             this.InitAdmin();
             this.InitPredefineRoles();
             this.InitInfoSystems();
+            this.InitIdentitySystemMenus();
         }
         #endregion
 
 
         //Private
-
-        #region # 初始化信息系统类别 —— void InitInfoSystemKinds()
-        /// <summary>
-        /// 初始化信息系统类别
-        /// </summary>
-        private void InitInfoSystemKinds()
-        {
-            if (this._repMediator.InfoSystemKindRep.Count() == 0)
-            {
-                IList<InfoSystemKind> systemKinds = new List<InfoSystemKind>();
-                systemKinds.Add(new InfoSystemKind("01", "市场端", ApplicationType.Web));
-                systemKinds.Add(new InfoSystemKind("03", "设计端", ApplicationType.Web));
-                systemKinds.Add(new InfoSystemKind("05", "销售端", ApplicationType.Web));
-                systemKinds.Add(new InfoSystemKind("06", "工程端", ApplicationType.Web));
-                systemKinds.Add(new InfoSystemKind("10", "配送中心", ApplicationType.Web));
-                systemKinds.Add(new InfoSystemKind("11", "供应商", ApplicationType.Web));
-                systemKinds.Add(new InfoSystemKind("17", "管理中心", ApplicationType.Web));
-                systemKinds.Add(new InfoSystemKind("20", "人资端", ApplicationType.Web));
-                systemKinds.Add(new InfoSystemKind("21", "财务端", ApplicationType.Windows));
-                systemKinds.Add(new InfoSystemKind("23", "档案室", ApplicationType.Windows));
-                systemKinds.Add(new InfoSystemKind("33", "消息中心", ApplicationType.Web));
-                systemKinds.Add(new InfoSystemKind("80", "身份认证", ApplicationType.Web));
-
-                this._repMediator.InfoSystemKindRep.AddRange(systemKinds);
-            }
-        }
-        #endregion
 
         #region # 初始化超级管理员 —— void InitAdmin()
         /// <summary>
@@ -117,15 +90,15 @@ namespace SD.IdentitySystem.Repository.Base
         {
             if (this._repMediator.RoleRep.Count() == 0)
             {
-                IEnumerable<InfoSystemKind> systemKinds = this._repMediator.InfoSystemKindRep.FindAll();
+                IEnumerable<InfoSystem> systems = this._repMediator.InfoSystemRep.FindAll();
 
                 IList<Role> predefineRoles = new List<Role>();
 
-                foreach (InfoSystemKind systemKind in systemKinds)
+                foreach (InfoSystem system in systems)
                 {
-                    Role adminRole = new Role("系统管理员", systemKind.Number, "系统管理员", Constants.ManagerRoleNo);
+                    Role adminRole = new Role("系统管理员", system.Number, "系统管理员", Constants.ManagerRoleNo);
 
-                    IEnumerable<Authority> specAuthorities = this._unitOfWork.ResolveAuthorities(systemKind.Number);
+                    IEnumerable<Authority> specAuthorities = this._unitOfWork.ResolveAuthorities(system.Number);
 
                     adminRole.SetAuthorities(specAuthorities);
 
@@ -147,17 +120,13 @@ namespace SD.IdentitySystem.Repository.Base
             if (this._repMediator.InfoSystemRep.Count() == 0)
             {
                 IList<InfoSystem> systems = new List<InfoSystem>();
-                systems.Add(new InfoSystem("01", "市场端", "01", "market"));
-                systems.Add(new InfoSystem("03", "设计端", "03", "design"));
-                systems.Add(new InfoSystem("05", "销售端", "05", "sales"));
-                systems.Add(new InfoSystem("06", "工程端", "06", "project"));
-                systems.Add(new InfoSystem("10", "配送中心", "10", "warehouse"));
-                systems.Add(new InfoSystem("17", "管理中心", "17", "manager"));
-                systems.Add(new InfoSystem("20", "人资端", "20", "hrm"));
-                systems.Add(new InfoSystem("21", "财务端", "21", "finance"));
-                systems.Add(new InfoSystem("23", "档案室", "23", "archive"));
-                systems.Add(new InfoSystem("33", "消息中心", "33", "message"));
-                systems.Add(new InfoSystem("80", "身份认证", "80", "identity"));
+
+                systems.Add(new InfoSystem("00", "身份认证", "identity"));
+                systems.Add(new InfoSystem("01", "市场端", "market"));
+                systems.Add(new InfoSystem("02", "销售端", "sales"));
+                systems.Add(new InfoSystem("03", "工程端", "project"));
+                systems.Add(new InfoSystem("04", "人资端", "hrm"));
+                systems.Add(new InfoSystem("05", "财务端", "finance"));
 
                 this._unitOfWork.RegisterAddRange(systems);
                 this._unitOfWork.UnitedCommit();
@@ -165,6 +134,26 @@ namespace SD.IdentitySystem.Repository.Base
                 //清除缓存
                 CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
             }
+        }
+        #endregion
+
+        #region # 初始化身份认证系统菜单 —— void InitIdentitySystemMenus()
+        /// <summary>
+        /// 初始化身份认证系统菜单
+        /// </summary>
+        private void InitIdentitySystemMenus()
+        {
+            Menu userManagement = new Menu("00", "用户管理", 1, "", null, null);
+            Menu roleManagement = new Menu("00", "角色管理", 2, "", null, null);
+            Menu menuManagement = new Menu("00", "菜单管理", 3, "", null, null);
+            Menu authorityManagement = new Menu("00", "权限管理", 4, "", null, null);
+
+            this._unitOfWork.RegisterAdd(userManagement);
+            this._unitOfWork.RegisterAdd(roleManagement);
+            this._unitOfWork.RegisterAdd(menuManagement);
+            this._unitOfWork.RegisterAdd(authorityManagement);
+
+            this._unitOfWork.Commit();
         }
         #endregion
     }

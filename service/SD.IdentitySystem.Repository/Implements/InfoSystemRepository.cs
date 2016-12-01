@@ -43,32 +43,32 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 根据信息系统类别获取信息系统编号集 —— IEnumerable<string> GetInfoSystemNos(...
+        #region # 获取信息系统编号列表 —— IEnumerable<string> FindAllNos()
         /// <summary>
-        /// 根据信息系统类别获取信息系统编号集
+        /// 获取信息系统编号列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <returns>信息系统集</returns>
-        public IEnumerable<string> GetInfoSystemNos(string systemKindNo)
+        /// <returns>信息系统编号列表</returns>
+        public IEnumerable<string> FindAllNos()
         {
-            return this.FindNos(x => x.SystemKindNo == systemKindNo).AsEnumerable();
+            return this.FindNos(x => true).AsEnumerable();
         }
         #endregion
 
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystem> GetInfoSystems(string systemKindNo...
+        #region # 获取信息系统字典 —— IDictionary<string, InfoSystem> FindDictionary()
         /// <summary>
-        /// 获取信息系统列表
+        /// 获取信息系统字典
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <param name="systemNos">信息系统编号集</param>
-        /// <returns>信息系统列表</returns>
-        public IEnumerable<InfoSystem> GetInfoSystems(string systemKindNo, IEnumerable<string> systemNos)
+        /// <returns>信息系统字典</returns>
+        public IDictionary<string, InfoSystem> FindDictionary()
         {
-            IQueryable<InfoSystem> specSystems = this.Find(x => x.SystemKindNo == systemKindNo);
+            IDictionary<string, InfoSystem> dictionary = new Dictionary<string, InfoSystem>();
 
-            specSystems = specSystems.Where(x => systemNos.Contains(x.Number));
+            foreach (InfoSystem system in this.FindAll())
+            {
+                dictionary.Add(system.Number, system);
+            }
 
-            return specSystems.AsEnumerable();
+            return dictionary;
         }
         #endregion
     }

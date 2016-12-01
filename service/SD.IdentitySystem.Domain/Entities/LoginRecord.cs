@@ -23,17 +23,14 @@ namespace SD.IdentitySystem.Domain.Entities
         /// </summary>
         /// <param name="publicKey">公钥</param>
         /// <param name="loginId">登录名</param>
-        /// <param name="employeeId">员工Id</param>
-        /// <param name="employeeNo">员工编号</param>
-        /// <param name="employeeName">员工名称</param>
+        /// <param name="realName">真实姓名</param>
         /// <param name="ip">IP地址</param>
-        public LoginRecord(Guid publicKey, string loginId, Guid? employeeId, string employeeNo, string employeeName, string ip)
+        public LoginRecord(Guid publicKey, string loginId, string realName, string ip)
+            : this()
         {
             this.PublicKey = publicKey;
             this.LoginId = loginId;
-            this.EmployeeId = employeeId;
-            this.EmployeeNo = employeeNo;
-            this.EmployeeName = employeeName;
+            this.RealName = realName;
             this.IP = ip;
         }
         #endregion
@@ -56,25 +53,11 @@ namespace SD.IdentitySystem.Domain.Entities
         public string LoginId { get; private set; }
         #endregion
 
-        #region 员工Id —— Guid? EmployeeId
+        #region 真实姓名 —— string RealName
         /// <summary>
-        /// 员工Id
+        /// 真实姓名
         /// </summary>
-        public Guid? EmployeeId { get; private set; }
-        #endregion
-
-        #region 员工编号 —— string EmployeeNo
-        /// <summary>
-        /// 员工编号
-        /// </summary>
-        public string EmployeeNo { get; private set; }
-        #endregion
-
-        #region 员工名称 —— string EmployeeName
-        /// <summary>
-        /// 员工名称
-        /// </summary>
-        public string EmployeeName { get; private set; }
+        public string RealName { get; private set; }
         #endregion
 
         #region IP地址 —— string IP

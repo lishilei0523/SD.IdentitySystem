@@ -81,19 +81,5 @@ namespace SD.IdentitySystem.Presentation.Implements
             return roleInfo.ToViewModel();
         }
         #endregion
-
-        #region # 是否存在角色 —— bool ExistsRole(string systemKindNo, Guid? roleId, string roleName)
-        /// <summary>
-        /// 是否存在角色
-        /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <param name="roleId">角色Id</param>
-        /// <param name="roleName">角色名称</param>
-        /// <returns>是否存在</returns>
-        public bool ExistsRole(string systemKindNo, Guid? roleId, string roleName)
-        {
-            return this._authorizationContract.ExistsRole(systemKindNo, roleId, roleName);
-        }
-        #endregion
     }
 }

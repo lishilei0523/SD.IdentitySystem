@@ -20,7 +20,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>菜单列表</returns>
         public IEnumerable<Menu> FindBySystemKind(string systemKindNo)
         {
-            return base.Find(x => x.SystemKindNo == systemKindNo).AsEnumerable();
+            return base.Find(x => x.SystemNo == systemKindNo).AsEnumerable();
         }
         #endregion
 
