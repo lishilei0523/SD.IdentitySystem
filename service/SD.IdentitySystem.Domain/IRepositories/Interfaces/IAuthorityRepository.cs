@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using ShSoft.Infrastructure.RepositoryBase;
+using System;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
 {
@@ -10,22 +10,22 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// </summary>
     public interface IAuthorityRepository : IRepository<Authority>
     {
-        #region # 根据信息系统类别获取权限集 —— IEnumerable<Authority> FindBySystemKind(...
+        #region # 根据信息系统获取权限列表 —— IEnumerable<Authority> FindBySystem(...
         /// <summary>
-        /// 根据信息系统类别获取权限集
+        /// 根据信息系统获取权限列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <returns>权限集</returns>
-        IEnumerable<Authority> FindBySystemKind(string systemKindNo);
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>权限列表</returns>
+        IEnumerable<Authority> FindBySystem(string systemNo);
         #endregion
 
-        #region # 根据信息系统类别获取权限Id集 —— IEnumerable<Guid> FindAuthorityIds(string systemKindNo)
+        #region # 根据信息系统获取权限Id集 —— IEnumerable<Guid> FindAuthorityIds(string systemNo)
         /// <summary>
-        /// 根据信息系统类别获取权限Id集
+        /// 根据信息系统获取权限Id集
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限Id集</returns>
-        IEnumerable<Guid> FindAuthorityIds(string systemKindNo);
+        IEnumerable<Guid> FindAuthorityIds(string systemNo);
         #endregion
 
         #region # 根据角色获取权限列表 —— IEnumerable<Authority> FindByRole(...
@@ -46,38 +46,18 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         IEnumerable<Guid> FindIdsByRole(Guid roleId);
         #endregion
 
-        #region # 分页获取权限集 —— IEnumerable<Authority> FindByPage(string systemKindNo...
+        #region # 分页获取权限集 —— IEnumerable<Authority> FindByPage(string systemNo...
         /// <summary>
         /// 分页获取权限集
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount">总记录条数</param>
         /// <param name="pageCount">总页数</param>
         /// <returns>权限集</returns>
-        IEnumerable<Authority> FindByPage(string systemKindNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount);
-        #endregion
-
-        #region # 是否存在给定权限 —— bool Exists(string systemKindNo, Guid authorityId)
-        /// <summary>
-        /// 是否存在给定权限
-        /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <param name="authorityId">权限Id</param>
-        /// <returns>是否存在</returns>
-        bool Exists(string systemKindNo, Guid authorityId);
-        #endregion
-
-        #region # 是否存在给定权限 —— bool Exists(string systemKindNo, string authorityPath)
-        /// <summary>
-        /// 是否存在给定权限
-        /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <param name="authorityPath">权限路径</param>
-        /// <returns>是否存在</returns>
-        bool Exists(string systemKindNo, string authorityPath);
+        IEnumerable<Authority> FindByPage(string systemNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount);
         #endregion
 
         #region # 是否存在给定权限 —— bool ExistsPath(string authorityPath)
@@ -87,6 +67,18 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <param name="authorityPath">权限路径</param>
         /// <returns>是否存在</returns>
         bool ExistsPath(string authorityPath);
+        #endregion
+
+        #region # 是否存在给定权限 ——  bool ExistsPath(string assemblyName, string @namespace
+        /// <summary>
+        /// 是否存在给定权限
+        /// </summary>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        /// <returns>是否存在</returns>
+        bool ExistsPath(string assemblyName, string @namespace, string className, string methodName);
         #endregion
     }
 }

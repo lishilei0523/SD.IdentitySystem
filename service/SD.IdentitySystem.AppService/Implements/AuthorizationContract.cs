@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using System.Text;
-using SD.IdentitySystem.AppService.Maps;
+﻿using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
@@ -13,6 +8,10 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.Global.Transaction;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -95,7 +94,7 @@ namespace SD.IdentitySystem.AppService.Implements
                 Authority authority = new Authority(systemNo, param.AuthorityName, param.EnglishName, param.Description, param.AssemblyName, param.Namespace, param.ClassName, param.MethodName);
 
                 //验证
-                Assert.IsFalse(this._repMediator.AuthorityRep.Exists(systemNo, authority.AuthorityPath), string.Format("信息系统\"{0}\"中已存在该权限！", systemNo));
+                Assert.IsFalse(this._repMediator.AuthorityRep.ExistsPath(authority.AuthorityPath), "已存在该权限！");
 
                 this._unitOfWork.RegisterAdd(authority);
                 authorityIds.Add(authority.Id);
@@ -466,18 +465,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>是否存在</returns>
         public bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName)
         {
-            StringBuilder pathBuilder = new StringBuilder("/");
-            pathBuilder.Append(assemblyName);
-            pathBuilder.Append("/");
-            pathBuilder.Append(@namespace);
-            pathBuilder.Append("/");
-            pathBuilder.Append(className);
-            pathBuilder.Append("/");
-            pathBuilder.Append(methodName);
-
-            string authorityPath = pathBuilder.ToString();
-
-            return this._repMediator.AuthorityRep.ExistsPath(authorityPath);
+            return this._repMediator.AuthorityRep.ExistsPath(assemblyName, @namespace, className, methodName);
         }
         #endregion
 
@@ -542,7 +530,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>角色列表</returns>
         public IEnumerable<RoleInfo> GetRoles(string systemKindNo)
         {
-            IEnumerable<Role> roles = this._repMediator.RoleRep.FindBySystemKind(systemKindNo);
+            IEnumerable<Role> roles = this._repMediator.RoleRep.FindBySystem(systemKindNo);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());

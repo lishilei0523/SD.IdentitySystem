@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using ShSoft.Infrastructure.EventBase;
+using System;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
 {
@@ -65,7 +65,7 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
         /// <param name="eventSource">事件源</param>
         public void Handle(AuthorityCreatedEvent eventSource)
         {
-            this.AppendAuthorities(eventSource.SystemKindNo, eventSource.AuthorityId);
+            this.AppendAuthorities(eventSource.SystemNo, eventSource.AuthorityId);
         }
         #endregion
 
@@ -75,7 +75,7 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
         /// </summary>
         /// <param name="systemKindNo">信息系统类别编号</param>
         /// <param name="authorityId">权限Id</param>
-        private void AppendAuthorities(string systemKindNo, Guid authorityId)
+        private void AppendAuthorities(Guid authorityId)
         {
             Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
 

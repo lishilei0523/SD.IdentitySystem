@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using ShSoft.Infrastructure.RepositoryBase;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.Domain.IRepositories
 {
@@ -13,9 +13,9 @@ namespace SD.IdentitySystem.Domain.IRepositories
         /// <summary>
         /// 获取权限集
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限集</returns>
-        IEnumerable<Authority> ResolveAuthorities(string systemKindNo);
+        IEnumerable<Authority> ResolveAuthorities(string systemNo);
         #endregion
     }
 }

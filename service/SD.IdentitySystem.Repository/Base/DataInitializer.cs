@@ -1,6 +1,4 @@
-﻿using System.Collections.Generic;
-using System.Transactions;
-using SD.AOP.Core.Aspects.ForMethod;
+﻿using SD.AOP.Core.Aspects.ForMethod;
 using SD.CacheManager;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
@@ -10,7 +8,8 @@ using ShSoft.Infrastructure.Global;
 using ShSoft.Infrastructure.Global.Transaction;
 using ShSoft.Infrastructure.RepositoryBase;
 using ShSoft.ValueObjects;
-using ShSoft.ValueObjects.Enums;
+using System.Collections.Generic;
+using System.Transactions;
 
 namespace SD.IdentitySystem.Repository.Base
 {
@@ -56,15 +55,41 @@ namespace SD.IdentitySystem.Repository.Base
         {
             Initializer.InitSessionId();
 
+            this.InitInfoSystems();
             this.InitAdmin();
             this.InitPredefineRoles();
-            this.InitInfoSystems();
             this.InitIdentitySystemMenus();
         }
         #endregion
 
 
         //Private
+
+        #region # 初始化信息系统 —— void InitInfoSystems()
+        /// <summary>
+        /// 初始化信息系统
+        /// </summary>
+        private void InitInfoSystems()
+        {
+            if (this._repMediator.InfoSystemRep.Count() == 0)
+            {
+                IList<InfoSystem> systems = new List<InfoSystem>();
+
+                systems.Add(new InfoSystem("00", "身份认证", "identity"));
+                systems.Add(new InfoSystem("01", "市场端", "market"));
+                systems.Add(new InfoSystem("02", "销售端", "sales"));
+                systems.Add(new InfoSystem("03", "工程端", "project"));
+                systems.Add(new InfoSystem("04", "人资端", "hrm"));
+                systems.Add(new InfoSystem("05", "财务端", "finance"));
+
+                this._unitOfWork.RegisterAddRange(systems);
+                this._unitOfWork.UnitedCommit();
+
+                //清除缓存
+                CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
+            }
+        }
+        #endregion
 
         #region # 初始化超级管理员 —— void InitAdmin()
         /// <summary>
@@ -107,32 +132,6 @@ namespace SD.IdentitySystem.Repository.Base
 
                 this._unitOfWork.RegisterAddRange(predefineRoles);
                 this._unitOfWork.Commit();
-            }
-        }
-        #endregion
-
-        #region # 初始化信息系统 —— void InitInfoSystems()
-        /// <summary>
-        /// 初始化信息系统
-        /// </summary>
-        private void InitInfoSystems()
-        {
-            if (this._repMediator.InfoSystemRep.Count() == 0)
-            {
-                IList<InfoSystem> systems = new List<InfoSystem>();
-
-                systems.Add(new InfoSystem("00", "身份认证", "identity"));
-                systems.Add(new InfoSystem("01", "市场端", "market"));
-                systems.Add(new InfoSystem("02", "销售端", "sales"));
-                systems.Add(new InfoSystem("03", "工程端", "project"));
-                systems.Add(new InfoSystem("04", "人资端", "hrm"));
-                systems.Add(new InfoSystem("05", "财务端", "finance"));
-
-                this._unitOfWork.RegisterAddRange(systems);
-                this._unitOfWork.UnitedCommit();
-
-                //清除缓存
-                CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
             }
         }
         #endregion

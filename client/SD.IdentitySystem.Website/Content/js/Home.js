@@ -10,7 +10,7 @@ $(function () {
 
     //初始化用户菜单
     $("#menuTree").tree({
-        url: "/Home/GetMenuList",
+        url: "/Menu/GetMenuTree",
         animate: true,
         lines: true,
         onClick: function (node) {

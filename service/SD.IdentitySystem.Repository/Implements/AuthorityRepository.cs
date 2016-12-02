@@ -1,10 +1,10 @@
-﻿using System;
+﻿using SD.IdentitySystem.Domain.Entities;
+using SD.IdentitySystem.Domain.IRepositories.Interfaces;
+using ShSoft.Infrastructure.Repository.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using SD.IdentitySystem.Domain.Entities;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using ShSoft.Infrastructure.Repository.EntityFramework;
 
 namespace SD.IdentitySystem.Repository.Implements
 {
@@ -13,27 +13,27 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class AuthorityRepository : EFRepositoryProvider<Authority>, IAuthorityRepository
     {
-        #region # 根据信息系统类别获取权限集 —— IEnumerable<Authority> FindBySystemKind(...
+        #region # 根据信息系统获取权限集 —— IEnumerable<Authority> FindBySystem(...
         /// <summary>
-        /// 根据信息系统类别获取权限集
+        /// 根据信息系统获取权限集
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限集</returns>
-        public IEnumerable<Authority> FindBySystemKind(string systemKindNo)
+        public IEnumerable<Authority> FindBySystem(string systemNo)
         {
-            return base.Find(x => x.SystemNo == systemKindNo).AsEnumerable();
+            return base.Find(x => x.SystemNo == systemNo).AsEnumerable();
         }
         #endregion
 
-        #region # 根据信息系统类别获取权限Id集 —— IEnumerable<Guid> FindAuthorityIds(string systemKindNo)
+        #region # 根据信息系统获取权限Id集 —— IEnumerable<Guid> FindAuthorityIds(string systemNo)
         /// <summary>
-        /// 根据信息系统类别获取权限Id集
+        /// 根据信息系统获取权限Id集
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限Id集</returns>
-        public IEnumerable<Guid> FindAuthorityIds(string systemKindNo)
+        public IEnumerable<Guid> FindAuthorityIds(string systemNo)
         {
-            return base.FindIds(x => x.SystemNo == systemKindNo).AsEnumerable();
+            return base.FindIds(x => x.SystemNo == systemNo).AsEnumerable();
         }
         #endregion
 
@@ -61,51 +61,25 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 分页获取权限集 —— IEnumerable<Authority> FindByPage(string systemKindNo...
+        #region # 分页获取权限集 —— IEnumerable<Authority> FindByPage(string systemNo...
         /// <summary>
         /// 分页获取权限集
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount">总记录条数</param>
         /// <param name="pageCount">总页数</param>
         /// <returns>权限集</returns>
-        public IEnumerable<Authority> FindByPage(string systemKindNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        public IEnumerable<Authority> FindByPage(string systemNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
             Expression<Func<Authority, bool>> condition =
                 x =>
-                    (string.IsNullOrEmpty(systemKindNo) || x.SystemNo == systemKindNo) &&
+                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo) &&
                     (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
 
             return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
-        }
-        #endregion
-
-        #region # 是否存在给定权限 —— bool Exists(string systemKindNo, Guid authorityId)
-        /// <summary>
-        /// 是否存在给定权限
-        /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <param name="authorityId">权限Id</param>
-        /// <returns>是否存在</returns>
-        public bool Exists(string systemKindNo, Guid authorityId)
-        {
-            return base.Exists(x => x.SystemNo == systemKindNo && x.Id == authorityId);
-        }
-        #endregion
-
-        #region # 是否存在给定权限 —— bool Exists(string systemKindNo, string authorityPath)
-        /// <summary>
-        /// 是否存在给定权限
-        /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <param name="authorityPath">权限路径</param>
-        /// <returns>是否存在</returns>
-        public bool Exists(string systemKindNo, string authorityPath)
-        {
-            return base.Exists(x => x.SystemNo == systemKindNo && x.AuthorityPath == authorityPath);
         }
         #endregion
 
@@ -118,6 +92,28 @@ namespace SD.IdentitySystem.Repository.Implements
         public bool ExistsPath(string authorityPath)
         {
             return base.Exists(x => x.AuthorityPath == authorityPath);
+        }
+        #endregion
+
+        #region # 是否存在给定权限 ——  bool ExistsPath(string assemblyName, string @namespace
+        /// <summary>
+        /// 是否存在给定权限
+        /// </summary>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        /// <returns>是否存在</returns>
+        public bool ExistsPath(string assemblyName, string @namespace, string className, string methodName)
+        {
+            Expression<Func<Authority, bool>> condition =
+                x =>
+                    x.AssemblyName == assemblyName &&
+                    x.Namespace == @namespace &&
+                    x.ClassName == className &&
+                    x.MethodName == methodName;
+
+            return base.Exists(condition);
         }
         #endregion
     }

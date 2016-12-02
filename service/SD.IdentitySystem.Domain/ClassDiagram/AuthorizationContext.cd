@@ -3,7 +3,7 @@
   <Class Name="SD.IdentitySystem.Domain.Entities.Menu">
     <Position X="0.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAECAAAABAAAAEAAAAAAAAAAACQAAAAEQAAA=</HashCode>
+      <HashCode>AAEAAAAAAECAAAABAAAAEAAAAAQAAAAACQAAAAEQAAA=</HashCode>
       <FileName>Entities\Menu.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -14,7 +14,7 @@
   <Class Name="SD.IdentitySystem.Domain.Entities.Authority">
     <Position X="4.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAECgAAAAAIAAAAMDAgAAoEAACAACAAAAJAA=</HashCode>
+      <HashCode>AAAAAACAAECgAAAAAIAAAAMDAgQAoEAAAAACAAAAJAA=</HashCode>
       <FileName>Entities\Authority.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
@@ -22,17 +22,10 @@
       <Property Name="Roles" />
     </ShowAsCollectionAssociation>
   </Class>
-  <Class Name="SD.IdentitySystem.Domain.Entities.InfoSystemKind">
-    <Position X="11.5" Y="0.5" Width="1.5" />
-    <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAAAAA=</HashCode>
-      <FileName>Entities\InfoSystemKind.cs</FileName>
-    </TypeIdentifier>
-  </Class>
   <Class Name="SD.IdentitySystem.Domain.Entities.Role">
     <Position X="8.5" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAEAgAAABFAAAAAAAAAAAAAgACAAAAAQABAA=</HashCode>
+      <HashCode>AAEAAAAAAEAgAAABFAAAAAAAAAQAAAgAAAAAAAQABAA=</HashCode>
       <FileName>Entities\Role.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>

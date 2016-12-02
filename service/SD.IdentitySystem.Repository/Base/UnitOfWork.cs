@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using ShSoft.Infrastructure.Repository.EntityFramework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SD.IdentitySystem.Repository.Base
 {
@@ -15,11 +15,11 @@ namespace SD.IdentitySystem.Repository.Base
         /// <summary>
         /// 获取权限集
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限集</returns>
-        public IEnumerable<Authority> ResolveAuthorities(string systemKindNo)
+        public IEnumerable<Authority> ResolveAuthorities(string systemNo)
         {
-            return base.ResolveRange<Authority>(x => x.SystemNo == systemKindNo).AsEnumerable();
+            return base.ResolveRange<Authority>(x => x.SystemNo == systemNo).AsEnumerable();
         }
         #endregion
     }

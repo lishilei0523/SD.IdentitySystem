@@ -1,8 +1,8 @@
-﻿using System;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IDomainServices;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
+using System;
 
 namespace SD.IdentitySystem.DomainService.Implements
 {
@@ -36,26 +36,26 @@ namespace SD.IdentitySystem.DomainService.Implements
 
         #endregion
 
-        #region # 是否存在角色 —— bool ExistsRole(string systemKindNo, Guid? roleId...
+        #region # 是否存在角色 —— bool ExistsRole(string systemNo, Guid? roleId...
         /// <summary>
         /// 是否存在角色
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
         /// <returns>是否存在</returns>
-        public bool ExistsRole(string systemKindNo, Guid? roleId, string roleName)
+        public bool ExistsRole(string systemNo, Guid? roleId, string roleName)
         {
             if (roleId == null)
             {
-                return this._repMediator.RoleRep.Exists(systemKindNo, roleName);
+                return this._repMediator.RoleRep.Exists(systemNo, roleName);
             }
 
             Role currentRole = this._repMediator.RoleRep.Single(roleId.Value);
 
             if (currentRole.Name != roleName)
             {
-                return this._repMediator.RoleRep.Exists(systemKindNo, roleName);
+                return this._repMediator.RoleRep.Exists(systemNo, roleName);
             }
 
             return false;
