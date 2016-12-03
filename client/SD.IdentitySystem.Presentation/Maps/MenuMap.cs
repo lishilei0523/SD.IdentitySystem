@@ -80,7 +80,7 @@ namespace SD.IdentitySystem.Presentation.Maps
             else
             {
                 //从给定Id向下遍历
-                foreach (MenuView menu in menus.Where(x => x.Parent.Id == parentId.Value))
+                foreach (MenuView menu in menus.Where(x => x.Parent != null && x.Parent.Id == parentId.Value))
                 {
                     Node node = menu.ToNode();
 

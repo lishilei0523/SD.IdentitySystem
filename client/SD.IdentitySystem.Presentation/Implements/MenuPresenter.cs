@@ -59,7 +59,9 @@ namespace SD.IdentitySystem.Presentation.Implements
         {
             IEnumerable<MenuView> menuViews = this.GetMenus(systemNo);
 
-            return menuViews.ToTree(null);
+            ICollection<Node> menuTree = menuViews.ToTree(null);
+
+            return menuTree;
         }
         #endregion
 

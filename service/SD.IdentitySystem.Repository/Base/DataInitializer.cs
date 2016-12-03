@@ -126,11 +126,6 @@ namespace SD.IdentitySystem.Repository.Base
             if (this._repMediator.InfoSystemRep.Count() == 0)
             {
                 this._systems.Add(new InfoSystem("00", "身份认证", "identity"));
-                this._systems.Add(new InfoSystem("01", "市场系统", "market"));
-                this._systems.Add(new InfoSystem("02", "销售系统", "sales"));
-                this._systems.Add(new InfoSystem("03", "工程系统", "project"));
-                this._systems.Add(new InfoSystem("04", "人资系统", "hrm"));
-                this._systems.Add(new InfoSystem("05", "财务系统", "finance"));
             }
         }
         #endregion
@@ -209,11 +204,13 @@ namespace SD.IdentitySystem.Repository.Base
         {
             if (this._repMediator.MenuRep.Count() == 0)
             {
-                Menu userManagement = new Menu("00", "用户管理", 1, "", null, null);
-                Menu roleManagement = new Menu("00", "角色管理", 2, "", null, null);
-                Menu menuManagement = new Menu("00", "菜单管理", 3, "", null, null);
-                Menu authorityManagement = new Menu("00", "权限管理", 4, "", null, null);
+                Menu root = new Menu("00", "身份认证系统", 1, null, null, null);
+                Menu userManagement = new Menu("00", "用户管理", 2, "", null, root);
+                Menu roleManagement = new Menu("00", "角色管理", 3, "", null, root);
+                Menu menuManagement = new Menu("00", "菜单管理", 4, "", null, root);
+                Menu authorityManagement = new Menu("00", "权限管理", 5, "", null, root);
 
+                this._menus.Add(root);
                 this._menus.Add(userManagement);
                 this._menus.Add(roleManagement);
                 this._menus.Add(menuManagement);

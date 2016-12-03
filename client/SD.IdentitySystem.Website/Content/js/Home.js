@@ -75,11 +75,19 @@ $(function () {
 function logout() {
     $.messager.confirm("警告", "确定注销当前用户吗？", function (result) {
         if (result) {
-            $.post("/Admin/User/Logout", null, function (jsonData) {
-                if (jsonData.Status == "1") {
-                    window.location.href = jsonData.ReturnUrl;
+            $.ajax({
+                type: "POST",
+                url: "/User/Logout",
+                dataType: "json",
+                data: null,
+                contentType: "application/json; charset=utf-8",
+                success: function () {
+                    window.location.href = "/User/Login";
+                },
+                error: function (error) {
+                    $.messager.alert("Error", error.responseText);
                 }
-            }, "json");
+            });
         }
     });
 }
