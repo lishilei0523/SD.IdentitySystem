@@ -42,7 +42,7 @@ namespace SD.IdentitySystem.Presentation.Maps
             var attributes = new
             {
                 href = menuView.Url,
-                isLeaf = menuView.IsLeaf ? 1 : 0
+                isLeaf = menuView.IsLeaf
             };
 
             return new Node(menuView.Id, menuView.Name, "open", false, attributes);

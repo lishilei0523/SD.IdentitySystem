@@ -162,6 +162,15 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">登录名</param>
         public void RemoveUser(string loginId)
         {
+            #region # 验证
+
+            if (loginId == Constants.AdminLoginId)
+            {
+                throw new InvalidOperationException("超级管理员不可删除！");
+            }
+
+            #endregion
+
             this._unitOfWork.RegisterRemove<User>(loginId);
             this._unitOfWork.UnitedCommit();
 

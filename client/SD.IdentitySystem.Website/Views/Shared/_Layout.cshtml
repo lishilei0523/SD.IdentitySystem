@@ -4,13 +4,29 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width" />
     <title>@ViewBag.Title</title>
-    @Styles.Render("~/Content/css")
-    @Scripts.Render("~/bundles/modernizr")
+    <link type="text/css" href="~/Content/themes/default/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/themes/icon.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Scripts/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.easyui-1.4.5.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.extensions.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.easyui.extensions.js"></script>
+    <script type="text/javascript" src="~/Scripts/messageBox.js"></script>
+    <style type="text/css">
+        body {
+            margin: 0;
+            padding: 0;
+            font: 14px "微软雅黑";
+            overflow: hidden;
+            height: 100%;
+        }
+    </style>
+    @RenderSection("header", false)
 </head>
 <body>
     @RenderBody()
-
-    @Scripts.Render("~/bundles/jquery")
-    @RenderSection("scripts", required: false)
 </body>
 </html>

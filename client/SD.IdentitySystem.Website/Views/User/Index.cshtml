@@ -1,0 +1,44 @@
+﻿@using SD.IdentitySystem.IPresentation.ViewModels.Outputs
+@{
+    ViewBag.Title = "用户管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <link type="text/css" href="~/Content/css/Grid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/scripts/User/Index.js"></script>
+}
+
+<div class="main">
+    @*工具栏*@
+    <div id="toolbar" style="background: #EFEFEF; padding: 5px; height: auto">
+        @*按钮区*@
+        <div style="margin-bottom: 5px">
+            <a href="#" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="createUser();">新增</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="removeUsers();">删除</a>
+        </div>
+
+        @*表单区*@
+        <div style="margin-left: 5px">
+            <form id="frmQueries">
+                信息系统：
+                <select class="easyui-combobox" id="slSystem" name="systemNo" style="width: 150px">
+                    <option value="" selected="selected">请选择</option>
+                    @foreach (InfoSystemView system in ViewBag.InfoSystems)
+                    {
+                        <option value="@system.Number">@system.Name</option>
+                    }
+                </select>
+
+                关键字：<input class="easyui-textbox" type="text" id="txtKeywords" name="keywords" />
+
+                <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchUsers();">搜索</a>
+            </form>
+        </div>
+    </div>
+
+    @*列表*@
+    <div id="dvGrid" class="gridDiv">
+        <table id="tbGrid"></table>
+    </div>
+</div>

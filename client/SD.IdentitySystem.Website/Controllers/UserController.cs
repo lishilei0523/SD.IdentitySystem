@@ -3,7 +3,13 @@ using SD.IdentitySystem.IPresentation.Interfaces;
 using ShSoft.Infrastructure.MVC;
 using ShSoft.Infrastructure.MVC.Filters;
 using System;
+using System.Collections.Generic;
+using System.Diagnostics;
+using System.Linq;
 using System.Web.Mvc;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using ShSoft.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -21,6 +27,11 @@ namespace SD.IdentitySystem.Website.Controllers
         private readonly IUserPresenter _userPresenter;
 
         /// <summary>
+        /// 信息系统呈现器接口
+        /// </summary>
+        private readonly IInfoSystemPresenter _systemPresenter;
+
+        /// <summary>
         /// 身份认证服务接口
         /// </summary>
         private readonly IAuthenticationContract _authenticationContract;
@@ -36,11 +47,13 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="userPresenter">用户呈现器接口</param>
         /// <param name="authenticationContract">身份认证服务接口</param>
         /// <param name="userContract">用户服务接口</param>
-        public UserController(IUserPresenter userPresenter, IAuthenticationContract authenticationContract, IUserContract userContract)
+        /// <param name="systemPresenter">信息系统呈现器接口</param>
+        public UserController(IUserPresenter userPresenter, IAuthenticationContract authenticationContract, IUserContract userContract, IInfoSystemPresenter systemPresenter)
         {
             this._userPresenter = userPresenter;
             this._authenticationContract = authenticationContract;
             this._userContract = userContract;
+            this._systemPresenter = systemPresenter;
         }
 
         #endregion
@@ -57,6 +70,21 @@ namespace SD.IdentitySystem.Website.Controllers
         [HttpGet]
         public ViewResult Login()
         {
+            return this.View();
+        }
+        #endregion
+
+        #region # 加载首页视图 —— ViewResult Index()
+        /// <summary>
+        /// 加载首页视图
+        /// </summary>
+        /// <returns>首页视图</returns>
+        [HttpGet]
+        public ViewResult Index()
+        {
+            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            base.ViewBag.InfoSystems = systems;
+
             return this.View();
         }
         #endregion
@@ -106,6 +134,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="oldPassword">旧密码</param>
         /// <param name="newPassword">新密码</param>
         /// <param name="confirmPassword">确认密码</param>
+        [HttpPost]
         public void UpdatePassword(string loginId, string oldPassword, string newPassword, string confirmPassword)
         {
             #region # 验证
@@ -121,8 +150,51 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
+        #region # 删除用户 —— void RemoveUser(string id)
+        /// <summary>
+        /// 删除用户
+        /// </summary>
+        /// <param name="id">用户登录名</param>
+        [HttpPost]
+        public void RemoveUser(string id)
+        {
+            this._userContract.RemoveUser(id);
+        }
+        #endregion
+
+        #region # 删除用户列表 —— void RemoveUsers(IEnumerable<string> loginIds)
+        /// <summary>
+        /// 删除用户列表
+        /// </summary>
+        /// <param name="loginIds">登录名集合</param>
+        [HttpPost]
+        public void RemoveUsers(IEnumerable<string> loginIds)
+        {
+            Trace.WriteLine(loginIds.Count());
+        }
+        #endregion
+
 
         //查询部分
+
+        #region # 获取用户列表 —— JsonResult GetUsers(string systemNo, string keywords...
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="keywords">关键字</param>
+        /// <param name="page">页码</param>
+        /// <param name="rows">页容量</param>
+        /// <returns>用户列表</returns>
+        public JsonResult GetUsers(string systemNo, string keywords, int page, int rows)
+        {
+            PageModel<UserView> pageModel = this._userPresenter.GetUsers(systemNo, keywords, page, rows);
+
+            Grid<UserView> grid = new Grid<UserView>(pageModel.RowCount, pageModel.Datas);
+
+            return base.Json(grid, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
 
     }
 }

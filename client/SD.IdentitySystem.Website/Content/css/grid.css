@@ -1,0 +1,14 @@
+﻿.main {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.gridDiv {
+    width: 100%;
+    height: 90%;
+}
+
+.datagrid-body table td, .datagrid-header-inner table td {
+    padding: 5px;
+}

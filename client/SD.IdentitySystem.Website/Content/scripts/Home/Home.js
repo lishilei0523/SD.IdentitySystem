@@ -15,7 +15,7 @@ $(function () {
         animate: true,
         lines: true,
         onClick: function (node) {
-            addTab(node.text, node.attributes.href, node.attributes.isLink);
+            addTab(node.text, node.attributes.href, node.attributes.isLeaf);
         }
     });
 
@@ -42,7 +42,7 @@ $(function () {
     }).window("close");
 
     //添加一个打开公共窗体的方法
-    topHelper.showComWindow = function (title, url, width, height) {
+    topHelper.showWindow = function (title, url, width, height) {
         var trueTitle = "公共窗体";
         var trueWidth = 1200;
         var trueHeight = 500;
@@ -66,12 +66,30 @@ $(function () {
     };
 
     //添加一个关闭公共窗体方法
-    topHelper.closeComWindow = function () {
+    topHelper.closeWindow = function () {
         topHelper.comWin.window("close");
     };
-});
 
-//#region
+    //新增或修改成功后，可通过此方法更新tab里的DataGrid组件
+    topHelper.updateGridInTab = function () {
+        //1.获取后台首页的tab容器
+        var $tabBox = $("#tabs");
+
+        //2.获取选中的tab
+        var $curTab = $tabBox.tabs("getSelected");
+
+        //3.从选中的tab中获取iframe，并以jq对象返回
+        var $ifram = $("iframe", $curTab);
+
+        //4.从jq对象中获取iframe，并通过contentWindow对象操作iframe里的window的全局变量$tbGrid
+
+        //清除选中
+        $ifram[0].contentWindow.$tbGrid.datagrid("clearSelections");
+
+        //刷新表格
+        $ifram[0].contentWindow.$tbGrid.datagrid("reload");
+    };
+});
 
 //注销
 function logout() {
@@ -80,26 +98,16 @@ function logout() {
             $.ajax({
                 type: "POST",
                 url: "/User/Logout",
-                dataType: "json",
-                data: null,
-                contentType: "application/json; charset=utf-8",
                 success: function () {
                     window.location.href = "/User/Login";
                 },
                 error: function (error) {
-                    if (error.status === 200) {
-                        window.location.href = "/User/Login";
-                    }
-                    else {
-                        $.messager.alert("Error", error.responseText);
-                    }
+                    $.messager.alert("Error", error.responseText);
                 }
             });
         }
     });
 }
-
-//#endregion
 
 //修改密码窗口
 function openChangePassword() {
@@ -145,14 +153,14 @@ function updateFailed(result) {
     $("#dvUpdatePwd").window("close");
 }
 
-//添加tab方法
-function addTab(title, url, isLink) {
+//添加选项卡
+function addTab(title, url, isLeaf) {
     //判断是否是链接
-    if (isLink == "1") {          //是链接
+    if (isLeaf) {
         if ($("#tabs").tabs("exists", title)) {
             var currTab = $("#tabs").tabs("getSelected");
             $("#tabs").tabs("select", title);
-            var url = $(currTab.panel("options").content).attr("src");
+            url = $(currTab.panel("options").content).attr("src");
             if (url != undefined) {
                 $("#tabs").tabs("update", {
                     tab: currTab,
@@ -161,7 +169,8 @@ function addTab(title, url, isLink) {
                     }
                 });
             }
-        } else {
+        }
+        else {
             var content = createFrame(url);
             $("#tabs").tabs("add", {
                 title: title,
@@ -172,29 +181,9 @@ function addTab(title, url, isLink) {
     }
 }
 
-//创建iframe方法
+//创建iframe
 function createFrame(url) {
     var tabHeight = $("#tabs").height() - 35;
     var frame = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:' + tabHeight + 'px;"></iframe>';
     return frame;
-}
-
-//新增或修改成功后，可通过此方法更新tab里的DataGrid组件
-function updateGridInTab() {
-    //1.获取后台首页的tab容器
-    var $tabBox = $("#tabs");
-
-    //2.获取选中的tab
-    var $curTab = $tabBox.tabs("getSelected");
-
-    //3.从选中的tab中获取iframe，并以jq对象返回
-    var $ifram = $("iframe", $curTab);
-
-    //4.从jq对象中获取iframe，并通过contentWindow对象操作iframe里的window的全局变量$tbGrid
-
-    //清除选中
-    $ifram[0].contentWindow.$tbGrid.datagrid("clearSelections");
-
-    //刷新表格
-    $ifram[0].contentWindow.$tbGrid.datagrid("reload");                      
 }

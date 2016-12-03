@@ -15,13 +15,14 @@
     <script type="text/javascript" src="~/Scripts/jquery-1.12.4.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.easyui-1.4.5.min.js"></script>
     <script type="text/javascript" src="~/Scripts/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.easyui.assist.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
     <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.extensions.js"></script>
+    <script type="text/javascript" src="~/Scripts/jquery.easyui.extensions.js"></script>
     <script type="text/javascript" src="~/Scripts/messageBox.js"></script>
     <script type="text/javascript" src="~/Scripts/datetools.js"></script>
-    <script type="text/javascript" src="~/Content/js/Home.js"></script>
+    <script type="text/javascript" src="~/Content/scripts/Home/Home.js"></script>
 </head>
 <body class="easyui-layout">
     @*网站头部*@
@@ -43,7 +44,7 @@
     <div data-options="region:'center'" id="dvContent">
         <div class="easyui-tabs" id="tabs" data-options="headerWidth:200,fit:true">
             <div data-options="title:'首页'" class="tabHome">
-                <iframe src="http://cn.bing.com" style="width: 100%; height: 99%; border: 0;"></iframe>
+                <iframe src="@*http://cn.bing.com*@" style="width: 100%; height: 99%; border: 0;"></iframe>
             </div>
         </div>
     </div>

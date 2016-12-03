@@ -1,7 +1,7 @@
 ﻿//定义消息框
 var messageBox = null;
 
-//DOM OnReady
+//DOM初始化事件
 $(function () {
     //让用户名文本框获得焦点
     $("#txtUserName").focus();
