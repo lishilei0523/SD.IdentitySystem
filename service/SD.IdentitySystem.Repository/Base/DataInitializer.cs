@@ -1,14 +1,12 @@
 ﻿using SD.AOP.Core.Aspects.ForMethod;
-using SD.CacheManager;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.IdentitySystem.Domain.Mediators;
 using ShSoft.Infrastructure.Global;
-using ShSoft.Infrastructure.Global.Transaction;
 using ShSoft.Infrastructure.RepositoryBase;
 using ShSoft.ValueObjects;
 using System.Collections.Generic;
+using System.Linq;
 using System.Transactions;
 
 namespace SD.IdentitySystem.Repository.Base
@@ -31,6 +29,26 @@ namespace SD.IdentitySystem.Repository.Base
         private readonly IUnitOfWorkIdentity _unitOfWork;
 
         /// <summary>
+        /// 信息系统列表
+        /// </summary>
+        private readonly IList<InfoSystem> _systems;
+
+        /// <summary>
+        /// 用户列表
+        /// </summary>
+        private readonly IList<User> _users;
+
+        /// <summary>
+        /// 角色列表
+        /// </summary>
+        private readonly IList<Role> _roles;
+
+        /// <summary>
+        /// 菜单列表
+        /// </summary>
+        private readonly IList<Menu> _menus;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
         /// <param name="repMediator">仓储中介者</param>
@@ -39,6 +57,10 @@ namespace SD.IdentitySystem.Repository.Base
         {
             this._repMediator = repMediator;
             this._unitOfWork = unitOfWork;
+            this._systems = new List<InfoSystem>();
+            this._users = new List<User>();
+            this._roles = new List<Role>();
+            this._menus = new List<Menu>();
         }
 
         #endregion
@@ -55,41 +77,27 @@ namespace SD.IdentitySystem.Repository.Base
         {
             Initializer.InitSessionId();
 
-            this.InitInfoSystems();
             this.InitAdmin();
-            this.InitPredefineRoles();
-            this.InitIdentitySystemMenus();
+            this.InitInfoSystems();
+            this.InitSystemAdmins();
+            this.InitRoles();
+            this.InitUserRoles();
+            this.InitMenus();
+
+            if (this._systems.Any())
+            {
+                this._unitOfWork.RegisterAddRange(this._systems);
+                this._unitOfWork.RegisterAddRange(this._users);
+                this._unitOfWork.RegisterAddRange(this._roles);
+                this._unitOfWork.RegisterAddRange(this._menus);
+
+                this._unitOfWork.Commit();
+            }
         }
         #endregion
 
 
         //Private
-
-        #region # 初始化信息系统 —— void InitInfoSystems()
-        /// <summary>
-        /// 初始化信息系统
-        /// </summary>
-        private void InitInfoSystems()
-        {
-            if (this._repMediator.InfoSystemRep.Count() == 0)
-            {
-                IList<InfoSystem> systems = new List<InfoSystem>();
-
-                systems.Add(new InfoSystem("00", "身份认证", "identity"));
-                systems.Add(new InfoSystem("01", "市场端", "market"));
-                systems.Add(new InfoSystem("02", "销售端", "sales"));
-                systems.Add(new InfoSystem("03", "工程端", "project"));
-                systems.Add(new InfoSystem("04", "人资端", "hrm"));
-                systems.Add(new InfoSystem("05", "财务端", "finance"));
-
-                this._unitOfWork.RegisterAddRange(systems);
-                this._unitOfWork.UnitedCommit();
-
-                //清除缓存
-                CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
-            }
-        }
-        #endregion
 
         #region # 初始化超级管理员 —— void InitAdmin()
         /// <summary>
@@ -101,58 +109,107 @@ namespace SD.IdentitySystem.Repository.Base
             {
                 User admin = new User(Constants.AdminLoginId, "超级管理员", Constants.InitialPassword);
 
-                this._unitOfWork.RegisterAdd(admin);
-                this._unitOfWork.Commit();
+                this._users.Add(admin);
             }
         }
         #endregion
 
-        #region # 初始化预定义角色 —— void InitPredefineRoles()
+        #region # 初始化信息系统 —— void InitInfoSystems()
         /// <summary>
-        /// 初始化预定义角色
+        /// 初始化信息系统
         /// </summary>
-        private void InitPredefineRoles()
+        private void InitInfoSystems()
         {
-            if (this._repMediator.RoleRep.Count() == 0)
+            if (this._repMediator.InfoSystemRep.Count() == 0)
             {
-                IEnumerable<InfoSystem> systems = this._repMediator.InfoSystemRep.FindAll();
+                this._systems.Add(new InfoSystem("00", "身份认证", "identity"));
+                this._systems.Add(new InfoSystem("01", "市场系统", "market"));
+                this._systems.Add(new InfoSystem("02", "销售系统", "sales"));
+                this._systems.Add(new InfoSystem("03", "工程系统", "project"));
+                this._systems.Add(new InfoSystem("04", "人资系统", "hrm"));
+                this._systems.Add(new InfoSystem("05", "财务系统", "finance"));
+            }
+        }
+        #endregion
 
-                IList<Role> predefineRoles = new List<Role>();
+        #region # 初始化信息系统管理员 —— void InitSystemAdmins()
+        /// <summary>
+        /// 初始化信息系统管理员
+        /// </summary>
+        private void InitSystemAdmins()
+        {
+            foreach (InfoSystem system in this._systems)
+            {
+                this._users.Add(new User(system.AdminLoginId, string.Format("{0}系统管理员", system.Name), Constants.InitialPassword));
+            }
+        }
+        #endregion
 
-                foreach (InfoSystem system in systems)
+        #region # 初始化角色 —— void InitRoles()
+        /// <summary>
+        /// 初始化角色
+        /// </summary>
+        private void InitRoles()
+        {
+            foreach (InfoSystem system in this._systems)
+            {
+                Role adminRole = new Role("系统管理员", system.Number, "系统管理员", Constants.ManagerRoleNo);
+
+                #region # 给角色授权
+
+                IEnumerable<Authority> specAuthorities = this._unitOfWork.ResolveAuthorities(system.Number).ToArray();
+
+                if (specAuthorities.Any())
                 {
-                    Role adminRole = new Role("系统管理员", system.Number, "系统管理员", Constants.ManagerRoleNo);
-
-                    IEnumerable<Authority> specAuthorities = this._unitOfWork.ResolveAuthorities(system.Number);
-
                     adminRole.SetAuthorities(specAuthorities);
-
-                    predefineRoles.Add(adminRole);
                 }
 
-                this._unitOfWork.RegisterAddRange(predefineRoles);
-                this._unitOfWork.Commit();
+                #endregion
+
+                this._roles.Add(adminRole);
             }
         }
         #endregion
 
-        #region # 初始化身份认证系统菜单 —— void InitIdentitySystemMenus()
+        #region # 初始化用户角色 —— void InitUserRoles()
         /// <summary>
-        /// 初始化身份认证系统菜单
+        /// 初始化用户角色
         /// </summary>
-        private void InitIdentitySystemMenus()
+        private void InitUserRoles()
+        {
+            //获取超级管理员
+            User superAdmin = this._users.Single(x => x.Number == Constants.AdminLoginId);
+
+            foreach (Role role in this._roles)
+            {
+                //获取信息系统
+                InfoSystem currentSystem = this._systems.Single(x => x.Number == role.SystemNo);
+
+                //追加系统管理员权限
+                User systemAdmin = this._users.Single(x => x.Number == currentSystem.AdminLoginId);
+                systemAdmin.AppendRoles(currentSystem.Number, new[] { role });
+
+                //追加超级管理员权限
+                superAdmin.AppendRoles(currentSystem.Number, new[] { role });
+            }
+        }
+        #endregion
+
+        #region # 初始化菜单 —— void InitMenus()
+        /// <summary>
+        /// 初始化菜单
+        /// </summary>
+        private void InitMenus()
         {
             Menu userManagement = new Menu("00", "用户管理", 1, "", null, null);
             Menu roleManagement = new Menu("00", "角色管理", 2, "", null, null);
             Menu menuManagement = new Menu("00", "菜单管理", 3, "", null, null);
             Menu authorityManagement = new Menu("00", "权限管理", 4, "", null, null);
 
-            this._unitOfWork.RegisterAdd(userManagement);
-            this._unitOfWork.RegisterAdd(roleManagement);
-            this._unitOfWork.RegisterAdd(menuManagement);
-            this._unitOfWork.RegisterAdd(authorityManagement);
-
-            this._unitOfWork.Commit();
+            this._menus.Add(userManagement);
+            this._menus.Add(roleManagement);
+            this._menus.Add(menuManagement);
+            this._menus.Add(authorityManagement);
         }
         #endregion
     }
