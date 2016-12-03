@@ -249,51 +249,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
         ////////////////////////////////查询部分////////////////////////////////
 
-        #region # 获取信息系统 —— InfoSystemInfo GetInfoSystem(string systemNo)
-        /// <summary>
-        /// 获取信息系统
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>信息系统</returns>
-        public InfoSystemInfo GetInfoSystem(string systemNo)
-        {
-            InfoSystem currentSystem = this._repMediator.InfoSystemRep.Single(systemNo);
-
-            return currentSystem.ToDTO();
-        }
-        #endregion
-
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems()
-        /// <summary>
-        /// 获取信息系统列表
-        /// </summary>
-        /// <returns>信息系统列表</returns>
-        public IEnumerable<InfoSystemInfo> GetInfoSystems()
-        {
-            IEnumerable<InfoSystem> systems = this._repMediator.InfoSystemRep.FindAll();
-
-            IEnumerable<InfoSystemInfo> systemInfos = systems.Select(x => x.ToDTO());
-
-            return systemInfos;
-        }
-        #endregion
-
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId)
-        /// <summary>
-        /// 获取信息系统列表
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <returns>信息系统列表</returns>
-        public IEnumerable<InfoSystemInfo> GetInfoSystemsByUser(string loginId)
-        {
-            IEnumerable<string> systemNos = this._repMediator.UserRoleRep.GetInfoSystemNos(loginId);
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
-
-            return systems.Values.Select(x => x.ToDTO());
-        }
-        #endregion
-
-
         #region # 获取用户 —— UserInfo GetUser(string loginId)
         /// <summary>
         /// 获取用户
