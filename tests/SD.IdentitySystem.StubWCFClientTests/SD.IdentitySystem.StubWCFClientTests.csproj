@@ -86,7 +86,7 @@
       <Project>{27c3d0ae-91e2-4548-a0dd-b5f2e9cfd805}</Project>
       <Name>SD.IdentitySystem.StubWCFClient</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ShSoft.IdentitySystem.WCFAuthentication.WindowsClient\SD.IdentitySystem.WCFAuthentication.WindowsClient.csproj">
+    <ProjectReference Include="..\..\tools\SD.IdentitySystem.WCFAuthentication.WindowsClient\SD.IdentitySystem.WCFAuthentication.WindowsClient.csproj">
       <Project>{fe93ac6f-b38f-412f-a2b1-2fbe2800c647}</Project>
       <Name>SD.IdentitySystem.WCFAuthentication.WindowsClient</Name>
     </ProjectReference>

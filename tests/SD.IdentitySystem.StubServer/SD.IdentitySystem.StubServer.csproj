@@ -51,7 +51,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.2\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.3\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -111,7 +111,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ShSoft.IdentitySystem.WCFAuthentication.Server\SD.IdentitySystem.WCFAuthentication.Server.csproj">
+    <ProjectReference Include="..\..\tools\SD.IdentitySystem.WCFAuthentication.Server\SD.IdentitySystem.WCFAuthentication.Server.csproj">
       <Project>{55e99fff-1bcc-423f-b945-931a4f2bf2d3}</Project>
       <Name>SD.IdentitySystem.WCFAuthentication.Server</Name>
     </ProjectReference>

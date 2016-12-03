@@ -108,7 +108,7 @@
       <Project>{757eccc8-d24a-44a4-bc0b-184003b9daab}</Project>
       <Name>SD.IdentitySystem.StubServer</Name>
     </ProjectReference>
-    <ProjectReference Include="..\ShSoft.IdentitySystem.WCFAuthentication.Server\SD.IdentitySystem.WCFAuthentication.Server.csproj">
+    <ProjectReference Include="..\..\tools\SD.IdentitySystem.WCFAuthentication.Server\SD.IdentitySystem.WCFAuthentication.Server.csproj">
       <Project>{55e99fff-1bcc-423f-b945-931a4f2bf2d3}</Project>
       <Name>SD.IdentitySystem.WCFAuthentication.Server</Name>
     </ProjectReference>
