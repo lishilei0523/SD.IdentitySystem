@@ -11,16 +11,16 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IAuthorityPresenter : IPresenter
     {
-        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string systemKindNo...
+        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo...
         /// <summary>
         /// 分页获取权限列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
-        PageModel<AuthorityView> GetAuthoritiesByPage(string systemKindNo, string keywords, int pageIndex, int pageSize);
+        PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
 
         #region # 根据菜单获取权限列表 —— IEnumerable<AuthorityView> GetAuthoritiesByMenu(...

@@ -33,18 +33,18 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string systemKindNo...
+        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo...
         /// <summary>
         /// 分页获取权限列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
-        public PageModel<AuthorityView> GetAuthoritiesByPage(string systemKindNo, string keywords, int pageIndex, int pageSize)
+        public PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize)
         {
-            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(systemKindNo, keywords, pageIndex, pageSize);
+            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(systemNo, keywords, pageIndex, pageSize);
 
             IEnumerable<AuthorityView> authorityViews = pageModel.Datas.Select(x => x.ToViewModel());
 

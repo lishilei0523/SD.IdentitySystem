@@ -11,25 +11,25 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IRolePresenter : IPresenter
     {
-        #region # 获取角色列表 —— IEnumerable<RoleView> GetRoles(string systemKindNo)
+        #region # 获取角色列表 —— IEnumerable<RoleView> GetRoles(string systemNo)
         /// <summary>
         /// 获取角色列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
-        IEnumerable<RoleView> GetRoles(string systemKindNo);
+        IEnumerable<RoleView> GetRoles(string systemNo);
         #endregion
 
-        #region # 分页获取角色列表 —— PageModel<RoleView> GetRolesByPage(string systemKindNo...
+        #region # 分页获取角色列表 —— PageModel<RoleView> GetRolesByPage(string systemNo...
         /// <summary>
         /// 分页获取角色列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
-        PageModel<RoleView> GetRolesByPage(string systemKindNo, string keywords, int pageIndex, int pageSize);
+        PageModel<RoleView> GetRolesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
 
         #region # 获取角色 —— RoleView GetRole(Guid roleId)

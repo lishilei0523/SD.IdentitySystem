@@ -33,15 +33,15 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 获取角色列表 —— IEnumerable<RoleView> GetRoles(string systemKindNo)
+        #region # 获取角色列表 —— IEnumerable<RoleView> GetRoles(string systemNo)
         /// <summary>
         /// 获取角色列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
-        public IEnumerable<RoleView> GetRoles(string systemKindNo)
+        public IEnumerable<RoleView> GetRoles(string systemNo)
         {
-            IEnumerable<RoleInfo> roleInfos = this._authorizationContract.GetRoles(systemKindNo);
+            IEnumerable<RoleInfo> roleInfos = this._authorizationContract.GetRoles(systemNo);
 
             IEnumerable<RoleView> roleViews = roleInfos.Select(x => x.ToViewModel());
 
@@ -49,18 +49,18 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 分页获取角色列表 —— PageModel<RoleView> GetRolesByPage(string systemKindNo...
+        #region # 分页获取角色列表 —— PageModel<RoleView> GetRolesByPage(string systemNo...
         /// <summary>
         /// 分页获取角色列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
-        public PageModel<RoleView> GetRolesByPage(string systemKindNo, string keywords, int pageIndex, int pageSize)
+        public PageModel<RoleView> GetRolesByPage(string systemNo, string keywords, int pageIndex, int pageSize)
         {
-            PageModel<RoleInfo> pageModel = this._authorizationContract.GetRolesByPage(systemKindNo, keywords, pageIndex, pageSize);
+            PageModel<RoleInfo> pageModel = this._authorizationContract.GetRolesByPage(systemNo, keywords, pageIndex, pageSize);
 
             IEnumerable<RoleView> roleViews = pageModel.Datas.Select(x => x.ToViewModel());
 

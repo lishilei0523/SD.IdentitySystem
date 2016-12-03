@@ -53,7 +53,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <summary>
         /// 获取菜单树
         /// </summary>
-        /// <param name="systemNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>菜单树</returns>
         public IEnumerable<Node> GetMenuTree(string systemNo)
         {
