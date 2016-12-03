@@ -24,7 +24,18 @@
     </div>
     <div id="login_center">
         <div id="login_body">
-            @using (Ajax.BeginForm("Login", "User", new AjaxOptions { HttpMethod = "post", OnBegin = "loginBegin", OnSuccess = "loginSucceed", OnFailure = "loginFail" }, new { id = "frmLogin" }))
+            @using (Ajax.BeginForm("Login", "User",
+                new AjaxOptions
+                {
+                    HttpMethod = "post",
+                    OnBegin = "loginBegin",
+                    OnSuccess = "loginSucceed",
+                    OnFailure = "loginFail"
+                },
+                new
+                {
+                    id = "frmLogin"
+                }))
             {
                 <table id="login_table">
                     @*占位*@

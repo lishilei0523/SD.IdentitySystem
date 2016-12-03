@@ -71,6 +71,8 @@ $(function () {
     };
 });
 
+//#region
+
 //注销
 function logout() {
     $.messager.confirm("警告", "确定注销当前用户吗？", function (result) {
@@ -97,6 +99,8 @@ function logout() {
     });
 }
 
+//#endregion
+
 //修改密码窗口
 function openChangePassword() {
     $("#dvUpdatePwd").window("open");
@@ -106,35 +110,39 @@ function openChangePassword() {
 
 //修改密码
 function changePassword() {
-    //var va = $("#oldPwd").val();
-    //var val = $("#newPwd").val();
-    //var val1 = $("#newPwd2").val();
-    //if (va.length == 0 || val.length == 0 || val1.length == 0) {
-    //    messageBox.showMsgErr('密码不可为空，请重新输入！');
-    //} else if (val != val1) {
-    //    messageBox.showMsgErr('两次密码不一致，请重试！');
-    //} else {
-    //    //动态将用户Id赋值给隐藏域，否则接收不到
-    //    $('#txtUserId').val(@Model.Id);                 //最恶心的就是这块
-    //    $('#fmUpdatePwd').submit();
-    //}
+    var oldPassword = $("#oldPassword").val();
+    var newPassword = $("#newPassword").val();
+    var confirmPassword = $("#confirmPassword").val();
+    if (oldPassword.length === 0 ||
+        newPassword.length === 0 ||
+        confirmPassword.length === 0) {
+        messageBox.showMsgErr("密码不可为空，请重新输入！");
+    }
+    else if (newPassword !== confirmPassword) {
+        messageBox.showMsgErr("两次密码不一致，请重试！");
+    }
+    else {
+        var loginId = $("#spLoginId").text();
+        $("#hdLoginId").val(loginId);
+        $("#fmUpdatePwd").submit();
+    }
 }
 
 //修改密码中事件
-function updatingPwd() {
+function updatingPassword() {
     messageBox.showMsgWait("修改中，请稍后...");
 }
 
-//修改密码后事件
-function updatedPwd(jsonData) {
-    if (jsonData.Status == 1) {
-        $.messager.alert("OK", jsonData.Message);
-        $("#dvUpdatePwd").window("close");
-        window.location.href = jsonData.ReturnUrl;
-    } else {
-        messageBox.showMsgErr(jsonData.Message);
-        $("#dvUpdatePwd").window("close");
-    }
+//修改密码成功
+function updateSucceed() {
+    messageBox.showMsgOk("修改成功");
+    $("#dvUpdatePwd").window("close");
+}
+
+//修改密码失败
+function updateFailed(result) {
+    messageBox.showMsgErr(result.responseText);
+    $("#dvUpdatePwd").window("close");
 }
 
 //添加tab方法
@@ -167,19 +175,26 @@ function addTab(title, url, isLink) {
 //创建iframe方法
 function createFrame(url) {
     var tabHeight = $("#tabs").height() - 35;
-    var s = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:' + tabHeight + 'px;"></iframe>';
-    return s;
+    var frame = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:' + tabHeight + 'px;"></iframe>';
+    return frame;
 }
 
 //新增或修改成功后，可通过此方法更新tab里的DataGrid组件
 function updateGridInTab() {
     //1.获取后台首页的tab容器
     var $tabBox = $("#tabs");
+
     //2.获取选中的tab
     var $curTab = $tabBox.tabs("getSelected");
+
     //3.从选中的tab中获取iframe，并以jq对象返回
     var $ifram = $("iframe", $curTab);
-    //4.从jq对象中获取iframe，并通过伟大的contentWindow对象操作iframe里的window的全局变量$tbGrid
-    $ifram[0].contentWindow.$tbGrid.datagrid("clearSelections");         //清除选中
-    $ifram[0].contentWindow.$tbGrid.datagrid("reload");                      //刷新表格
+
+    //4.从jq对象中获取iframe，并通过contentWindow对象操作iframe里的window的全局变量$tbGrid
+
+    //清除选中
+    $ifram[0].contentWindow.$tbGrid.datagrid("clearSelections");
+
+    //刷新表格
+    $ifram[0].contentWindow.$tbGrid.datagrid("reload");                      
 }

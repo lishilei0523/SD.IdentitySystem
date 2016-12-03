@@ -19,8 +19,8 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <returns>主页视图</returns>
         public ViewResult Index()
         {
-            base.ViewBag.LoginId = base.LoginInfo.LoginId;
-            base.ViewBag.RealName = base.LoginInfo.RealName;
+            base.ViewBag.LoginId = base.LoginInfo == null ? null : base.LoginInfo.LoginId;
+            base.ViewBag.RealName = base.LoginInfo == null ? null : base.LoginInfo.RealName;
 
             return this.View();
         }

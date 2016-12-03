@@ -26,14 +26,21 @@ namespace SD.IdentitySystem.Website.Controllers
         private readonly IAuthenticationContract _authenticationContract;
 
         /// <summary>
+        /// 用户服务接口
+        /// </summary>
+        private readonly IUserContract _userContract;
+
+        /// <summary>
         /// 字段及依赖注入构造器
         /// </summary>
         /// <param name="userPresenter">用户呈现器接口</param>
         /// <param name="authenticationContract">身份认证服务接口</param>
-        public UserController(IUserPresenter userPresenter, IAuthenticationContract authenticationContract)
+        /// <param name="userContract">用户服务接口</param>
+        public UserController(IUserPresenter userPresenter, IAuthenticationContract authenticationContract, IUserContract userContract)
         {
             this._userPresenter = userPresenter;
             this._authenticationContract = authenticationContract;
+            this._userContract = userContract;
         }
 
         #endregion
@@ -88,6 +95,29 @@ namespace SD.IdentitySystem.Website.Controllers
 
             //验证登录
             base.LoginInfo = this._authenticationContract.Login(loginId, password, currentIp);
+        }
+        #endregion
+
+        #region # 修改密码 —— void UpdatePassword(string loginId, string oldPassword...
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="oldPassword">旧密码</param>
+        /// <param name="newPassword">新密码</param>
+        /// <param name="confirmPassword">确认密码</param>
+        public void UpdatePassword(string loginId, string oldPassword, string newPassword, string confirmPassword)
+        {
+            #region # 验证
+
+            if (newPassword != confirmPassword)
+            {
+                throw new InvalidOperationException("两次密码输入不一致");
+            }
+
+            #endregion
+
+            this._userContract.UpdatePassword(loginId, oldPassword, newPassword);
         }
         #endregion
 
