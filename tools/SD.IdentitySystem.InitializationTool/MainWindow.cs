@@ -7,7 +7,6 @@ using System.Windows.Forms;
 using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
-using ShSoft.Common.PoweredByLee;
 using ShSoft.ValueObjects.Attributes;
 
 namespace SD.IdentitySystem.InitializationTool
@@ -23,11 +22,19 @@ namespace SD.IdentitySystem.InitializationTool
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
+        /// 用户服务契约接口
+        /// </summary>
+        private readonly IUserContract _userContract;
+
+        /// <summary>
         /// 构造器
         /// </summary>
-        public MainWindow(IAuthorizationContract authorizationContract)
+        /// <param name="authorizationContract">权限服务契约接口</param>
+        /// <param name="userContract">用户服务契约接口</param>
+        public MainWindow(IAuthorizationContract authorizationContract, IUserContract userContract)
         {
             this._authorizationContract = authorizationContract;
+            this._userContract = userContract;
             this.InitializeComponent();
         }
 
@@ -36,14 +43,14 @@ namespace SD.IdentitySystem.InitializationTool
         /// </summary>
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            IEnumerable<InfoSystemKindInfo> systemKinds = this._authorizationContract.GetSystemKinds().ToArray();
+            IEnumerable<InfoSystemInfo> systems = this._userContract.GetInfoSystems().ToArray();
 
-            foreach (InfoSystemKindInfo systemKind in systemKinds)
+            foreach (InfoSystemInfo system in systems)
             {
-                this.Cbx_SystemKind.Items.Add(systemKind);
+                this.Cbx_SystemKind.Items.Add(system);
             }
 
-            this.Cbx_SystemKind.SelectedItem = systemKinds.FirstOrDefault();
+            this.Cbx_SystemKind.SelectedItem = systems.FirstOrDefault();
             this.Cbx_SystemKind.DisplayMember = "Name";
         }
 
@@ -70,12 +77,12 @@ namespace SD.IdentitySystem.InitializationTool
             }
             if (this.Cbx_SystemKind.SelectedItem == null)
             {
-                MessageBox.Show(@"信息系统类别不可不选！", @"Warning");
+                MessageBox.Show(@"信息系统不可不选！", @"Warning");
                 return;
             }
 
             string assemblyPath = this.Txt_FilePath.Text;
-            string systemKindNo = ((InfoSystemKindInfo)this.Cbx_SystemKind.SelectedItem).Number;
+            string systemKindNo = ((InfoSystemInfo)this.Cbx_SystemKind.SelectedItem).Number;
 
 
             await Task.Run(() => this.InitAuthorities(assemblyPath, systemKindNo));
@@ -113,7 +120,7 @@ namespace SD.IdentitySystem.InitializationTool
                     Description = attribute.Description
                 };
 
-                if (!this._authorizationContract.ExistsAuthority(methodInfo.GetMethodPath()))
+                if (!this._authorizationContract.ExistsAuthority(authorityParam.AssemblyName, authorityParam.Namespace, authorityParam.ClassName, authorityParam.MethodName))
                 {
                     authorityParams.Add(authorityParam);
                 }

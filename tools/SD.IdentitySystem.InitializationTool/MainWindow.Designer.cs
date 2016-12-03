@@ -144,7 +144,7 @@ namespace SD.IdentitySystem.InitializationTool
             this.tabPage2.Padding = new System.Windows.Forms.Padding(3);
             this.tabPage2.Size = new System.Drawing.Size(717, 316);
             this.tabPage2.TabIndex = 1;
-            this.tabPage2.Text = "信息系统类别初始化";
+            this.tabPage2.Text = "信息系统初始化";
             // 
             // panel1
             // 
