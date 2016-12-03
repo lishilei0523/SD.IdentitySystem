@@ -16,9 +16,32 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     {
         ////////////////////////////////命令部分////////////////////////////////
 
-        #region # 初始化信息系统 —— void InitInfoSystems(IEnumerable<InfoSystemParam> initParams)
+        #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
+        /// <summary>
+        /// 创建信息系统
+        /// </summary>
+        /// <param name="systemNo">组织编号</param>
+        /// <param name="systemName">信息系统名称</param>
+        /// <param name="adminLoginId">系统管理员登录名</param>
+        [OperationContract]
+        void CreateInfoSystem(string systemNo, string systemName, string adminLoginId);
+        #endregion
+
+        #region # 初始化信息系统 —— void InitInfoSystem(string systemNo, string host...
         /// <summary>
         /// 初始化信息系统
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="host">主机名称</param>
+        /// <param name="port">端口</param>
+        /// <param name="index">首页</param>
+        [OperationContract]
+        void InitInfoSystem(string systemNo, string host, int port, string index);
+        #endregion
+
+        #region # 批量初始化信息系统 —— void InitInfoSystems(IEnumerable<InfoSystemParam> initParams)
+        /// <summary>
+        /// 批量初始化信息系统
         /// </summary>
         /// <param name="initParams">初始化信息系统参数模型集</param>
         [OperationContract]

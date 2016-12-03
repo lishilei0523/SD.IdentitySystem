@@ -15,18 +15,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     {
         ////////////////////////////////命令部分////////////////////////////////
 
-        #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
-        /// <summary>
-        /// 创建信息系统
-        /// </summary>
-        /// <param name="systemNo">组织编号</param>
-        /// <param name="systemName">信息系统名称</param>
-        /// <param name="adminLoginId">系统管理员登录名</param>
-        [OperationContract]
-        void CreateInfoSystem(string systemNo, string systemName, string adminLoginId);
-        #endregion
-
-
         #region # 创建用户 —— void CreateUser(string loginId, string realName...
         /// <summary>
         /// 创建用户
