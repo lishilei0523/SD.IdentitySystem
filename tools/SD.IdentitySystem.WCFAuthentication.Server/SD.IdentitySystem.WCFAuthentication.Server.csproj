@@ -63,10 +63,6 @@
       <HintPath>..\..\packages\SD.IOC.Core.1.0.5\lib\net45\SD.IOC.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.IdentitySystem.IAppService.1.3.67.45286\lib\net45\ShSoft.IdentitySystem.IAppService.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.2\lib\net45\ShSoft.Infrastructure.dll</HintPath>
       <Private>True</Private>
