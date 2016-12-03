@@ -16,17 +16,17 @@ namespace SD.IdentitySystem.Presentation.Implements
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务接口
+        /// 权限服务接口
         /// </summary>
-        private readonly IUserContract _userContract;
+        private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="userContract">用户服务接口</param>
-        public InfoSystemPresenter(IUserContract userContract)
+        /// <param name="authorizationContract">权限服务接口</param>
+        public InfoSystemPresenter(IAuthorizationContract authorizationContract)
         {
-            this._userContract = userContract;
+            this._authorizationContract = authorizationContract;
         }
 
         #endregion
@@ -38,7 +38,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>信息系统列表</returns>
         public IEnumerable<InfoSystemView> GetInfoSystems()
         {
-            IEnumerable<InfoSystemInfo> systemInfos = this._userContract.GetInfoSystems();
+            IEnumerable<InfoSystemInfo> systemInfos = this._authorizationContract.GetInfoSystems();
 
             IEnumerable<InfoSystemView> systemViews = systemInfos.Select(x => x.ToViewModel());
 
@@ -54,7 +54,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>信息系统</returns>
         public InfoSystemView GetInfoSystem(string systemNo)
         {
-            InfoSystemInfo systemInfo = this._userContract.GetInfoSystem(systemNo);
+            InfoSystemInfo systemInfo = this._authorizationContract.GetInfoSystem(systemNo);
 
             return systemInfo.ToViewModel();
         }
