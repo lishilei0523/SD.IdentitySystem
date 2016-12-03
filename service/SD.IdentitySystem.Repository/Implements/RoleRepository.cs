@@ -62,7 +62,7 @@ namespace SD.IdentitySystem.Repository.Implements
 
             if (specRoles.All(x => x.Number != Constants.ManagerRoleNo))
             {
-                throw new ApplicationException(string.Format("未为编号为\"{0}\"的信息系统类别初始化系统管理员角色！", systemKindNo));
+                throw new ApplicationException(string.Format("未为编号为\"{0}\"的信息系统初始化系统管理员角色！", systemNo));
             }
 
             #endregion

@@ -160,27 +160,27 @@ namespace SD.IdentitySystem.IAppService.Interfaces
 
         ////////////////////////////////查询部分////////////////////////////////
 
-        #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemKindNo...
+        #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo...
         /// <summary>
         /// 分页获取权限列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
         [OperationContract]
-        PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemKindNo, string keywords, int pageIndex, int pageSize);
+        PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
 
-        #region # 获取权限列表 —— IEnumerable<AuthorityInfo> GetAuthorities(string systemKindNo)
+        #region # 获取权限列表 —— IEnumerable<AuthorityInfo> GetAuthorities(string systemNo)
         /// <summary>
         /// 获取权限列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限列表</returns>
         [OperationContract]
-        IEnumerable<AuthorityInfo> GetAuthorities(string systemKindNo);
+        IEnumerable<AuthorityInfo> GetAuthorities(string systemNo);
         #endregion
 
         #region # 根据菜单获取权限列表 —— IEnumerable<AuthorityInfo> GetAuthoritiesByMenu(...
@@ -213,14 +213,14 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         IEnumerable<Guid> GetAuthorityIdsByRole(Guid roleId);
         #endregion
 
-        #region # 获取权限Id集 —— IEnumerable<Guid> GetAuthorityIds(string systemKindNo)
+        #region # 获取权限Id列表 —— IEnumerable<Guid> GetAuthorityIds(string systemNo)
         /// <summary>
-        /// 获取权限Id集
+        /// 获取权限Id列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        /// <returns>权限Id集</returns>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>权限Id列表</returns>
         [OperationContract]
-        IEnumerable<Guid> GetAuthorityIds(string systemKindNo);
+        IEnumerable<Guid> GetAuthorityIds(string systemNo);
         #endregion
 
         #region # 获取权限 —— AuthorityInfo GetAuthority(Guid authorityId)
@@ -247,14 +247,14 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         #endregion
 
 
-        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemKindNo)
+        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo)
         /// <summary>
         /// 获取菜单列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>菜单列表</returns>
         [OperationContract]
-        IEnumerable<MenuInfo> GetMenus(string systemKindNo);
+        IEnumerable<MenuInfo> GetMenus(string systemNo);
         #endregion
 
         #region # 获取菜单 —— MenuInfo GetMenu(Guid menuId)
@@ -278,39 +278,39 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         RoleInfo GetRole(Guid roleId);
         #endregion
 
-        #region # 获取角色列表 —— IEnumerable<RoleInfo> GetRoles(string systemKindNo)
+        #region # 获取角色列表 —— IEnumerable<RoleInfo> GetRoles(string systemNo)
         /// <summary>
         /// 获取角色列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
         [OperationContract]
-        IEnumerable<RoleInfo> GetRoles(string systemKindNo);
+        IEnumerable<RoleInfo> GetRoles(string systemNo);
         #endregion
 
-        #region # 分页获取角色列表 —— PageModel<RoleInfo> GetRolesByPage(string systemKindNo...
+        #region # 分页获取角色列表 —— PageModel<RoleInfo> GetRolesByPage(string systemNo...
         /// <summary>
         /// 分页获取角色列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
         [OperationContract]
-        PageModel<RoleInfo> GetRolesByPage(string systemKindNo, string keywords, int pageIndex, int pageSize);
+        PageModel<RoleInfo> GetRolesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
 
-        #region # 是否存在角色 —— bool ExistsRole(string systemKindNo, Guid? roleId, string roleName)
+        #region # 是否存在角色 —— bool ExistsRole(string systemNo, Guid? roleId, string roleName)
         /// <summary>
         /// 是否存在角色
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
         /// <returns>是否存在</returns>
         [OperationContract]
-        bool ExistsRole(string systemKindNo, Guid? roleId, string roleName);
+        bool ExistsRole(string systemNo, Guid? roleId, string roleName);
         #endregion
     }
 }

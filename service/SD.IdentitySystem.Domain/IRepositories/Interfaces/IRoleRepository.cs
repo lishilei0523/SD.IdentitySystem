@@ -14,7 +14,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <summary>
         /// 获取角色集
         /// </summary>
-        /// <param name="systemNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色集</returns>
         IEnumerable<Role> FindBySystem(string systemNo);
         #endregion

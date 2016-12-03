@@ -156,8 +156,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram\AuthorizationContext.cd" />
-    <None Include="ClassDiagram\UserContext.cd" />
+    <None Include="ClassDiagram\Main.cd" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

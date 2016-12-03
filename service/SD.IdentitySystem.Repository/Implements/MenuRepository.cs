@@ -12,15 +12,15 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class MenuRepository : EFRepositoryProvider<Menu>, IMenuRepository
     {
-        #region # 获取菜单列表 —— IEnumerable<Menu> FindBySystemKind(string systemKindNo)
+        #region # 获取菜单列表 —— IEnumerable<Menu> FindBySystem(string systemNo)
         /// <summary>
         /// 获取菜单列表
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <returns>菜单列表</returns>
-        public IEnumerable<Menu> FindBySystemKind(string systemKindNo)
+        public IEnumerable<Menu> FindBySystem(string systemNo)
         {
-            return base.Find(x => x.SystemNo == systemKindNo).AsEnumerable();
+            return base.Find(x => x.SystemNo == systemNo).AsEnumerable();
         }
         #endregion
 

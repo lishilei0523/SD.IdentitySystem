@@ -13,7 +13,7 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
     /// </summary>
     /// <remarks>
     /// 处理流程：
-    /// *1、查询出给定信息系统类别的所有信息系统
+    /// *1、查询出给定信息系统
     /// *2、为系统管理员角色追加最新权限
     /// </remarks>
     public class AuthorityCreatedEventHandler : IEventHandler<AuthorityCreatedEvent>
@@ -69,29 +69,23 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
         }
         #endregion
 
-        #region # 追加权限 —— void AppendAuthorities(string systemKindNo, Guid authorityId)
+        #region # 追加权限 —— void AppendAuthorities(string systemNo, Guid authorityId)
         /// <summary>
         /// 追加权限
         /// </summary>
-        /// <param name="systemKindNo">信息系统类别编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="authorityId">权限Id</param>
-        private void AppendAuthorities(Guid authorityId)
+        private void AppendAuthorities(string systemNo, Guid authorityId)
         {
             Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
 
-            //根据类别获取所有信息系统
-            IEnumerable<string> systemNos = this._repMediator.InfoSystemRep.FindAllNos();
+            //为系统管理员角色追加权限
+            Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(systemNo);
+            Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
+            adminRole.AppendAuthorities(new[] { currentAuthority });
 
-            foreach (string systemNo in systemNos)
-            {
-                //为系统管理员角色追加权限
-                Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(systemNo);
-                Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
-                adminRole.AppendAuthorities(new[] { currentAuthority });
-
-                //注册保存
-                this._unitOfWork.RegisterSave(adminRole);
-            }
+            //注册保存
+            this._unitOfWork.RegisterSave(adminRole);
 
             //提交
             this._unitOfWork.Commit();

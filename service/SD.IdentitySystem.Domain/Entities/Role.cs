@@ -133,7 +133,7 @@ namespace SD.IdentitySystem.Domain.Entities
             {
                 if (this.SystemNo != authority.SystemNo)
                 {
-                    throw new ArgumentOutOfRangeException("authorities", string.Format("角色与Id为\"{0}\"的权限的信息系统类别不匹配！角色所在信息系统类别：\"{1}\"，权限所在信息系统类别：\"{2}\"", authority.Id, this.SystemNo, authority.SystemNo));
+                    throw new ArgumentOutOfRangeException("authorities", string.Format("角色与Id为\"{0}\"的权限的信息系统不匹配！角色所在信息系统：\"{1}\"，权限所在信息系统：\"{2}\"", authority.Id, this.SystemNo, authority.SystemNo));
                 }
                 authority.Roles.Add(this);
             }
