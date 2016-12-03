@@ -25,7 +25,7 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             IList<InfoSystem> infoSystems = CacheMediator.Get<IList<InfoSystem>>(typeof(IInfoSystemRepository).FullName);
 
-            if (infoSystems == null)
+            if (infoSystems == null || !infoSystems.Any())
             {
                 IQueryable<InfoSystem> systems = base.FindAllInner();
 

@@ -6,8 +6,10 @@ using ShSoft.Infrastructure.Global;
 using ShSoft.Infrastructure.RepositoryBase;
 using ShSoft.ValueObjects;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Transactions;
+using SD.CacheManager;
 
 namespace SD.IdentitySystem.Repository.Base
 {
@@ -76,6 +78,7 @@ namespace SD.IdentitySystem.Repository.Base
         public void Initialize()
         {
             Initializer.InitSessionId();
+            CacheMediator.Clear();
 
             this.InitAdmin();
             this.InitInfoSystems();
@@ -177,20 +180,23 @@ namespace SD.IdentitySystem.Repository.Base
         /// </summary>
         private void InitUserRoles()
         {
-            //获取超级管理员
-            User superAdmin = this._users.Single(x => x.Number == Constants.AdminLoginId);
-
-            foreach (Role role in this._roles)
+            if (this._systems.Any())
             {
-                //获取信息系统
-                InfoSystem currentSystem = this._systems.Single(x => x.Number == role.SystemNo);
+                //获取超级管理员
+                User superAdmin = this._users.Single(x => x.Number == Constants.AdminLoginId);
 
-                //追加系统管理员权限
-                User systemAdmin = this._users.Single(x => x.Number == currentSystem.AdminLoginId);
-                systemAdmin.AppendRoles(currentSystem.Number, new[] { role });
+                foreach (Role role in this._roles)
+                {
+                    //获取信息系统
+                    InfoSystem currentSystem = this._systems.Single(x => x.Number == role.SystemNo);
 
-                //追加超级管理员权限
-                superAdmin.AppendRoles(currentSystem.Number, new[] { role });
+                    //追加系统管理员权限
+                    User systemAdmin = this._users.Single(x => x.Number == currentSystem.AdminLoginId);
+                    systemAdmin.AppendRoles(currentSystem.Number, new[] { role });
+
+                    //追加超级管理员权限
+                    superAdmin.AppendRoles(currentSystem.Number, new[] { role });
+                }
             }
         }
         #endregion
@@ -201,15 +207,18 @@ namespace SD.IdentitySystem.Repository.Base
         /// </summary>
         private void InitMenus()
         {
-            Menu userManagement = new Menu("00", "用户管理", 1, "", null, null);
-            Menu roleManagement = new Menu("00", "角色管理", 2, "", null, null);
-            Menu menuManagement = new Menu("00", "菜单管理", 3, "", null, null);
-            Menu authorityManagement = new Menu("00", "权限管理", 4, "", null, null);
+            if (this._repMediator.MenuRep.Count() == 0)
+            {
+                Menu userManagement = new Menu("00", "用户管理", 1, "", null, null);
+                Menu roleManagement = new Menu("00", "角色管理", 2, "", null, null);
+                Menu menuManagement = new Menu("00", "菜单管理", 3, "", null, null);
+                Menu authorityManagement = new Menu("00", "权限管理", 4, "", null, null);
 
-            this._menus.Add(userManagement);
-            this._menus.Add(roleManagement);
-            this._menus.Add(menuManagement);
-            this._menus.Add(authorityManagement);
+                this._menus.Add(userManagement);
+                this._menus.Add(roleManagement);
+                this._menus.Add(menuManagement);
+                this._menus.Add(authorityManagement);
+            }
         }
         #endregion
     }

@@ -25,7 +25,7 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             IList<User> users = CacheMediator.Get<IList<User>>(typeof(IUserRepository).FullName);
 
-            if (users == null)
+            if (users == null || !users.Any())
             {
                 IQueryable<User> systems = base.FindAllInner();
 
