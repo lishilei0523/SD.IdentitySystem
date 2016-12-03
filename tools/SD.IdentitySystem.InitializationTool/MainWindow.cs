@@ -22,19 +22,12 @@ namespace SD.IdentitySystem.InitializationTool
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
-        /// 用户服务契约接口
-        /// </summary>
-        private readonly IUserContract _userContract;
-
-        /// <summary>
         /// 构造器
         /// </summary>
         /// <param name="authorizationContract">权限服务契约接口</param>
-        /// <param name="userContract">用户服务契约接口</param>
-        public MainWindow(IAuthorizationContract authorizationContract, IUserContract userContract)
+        public MainWindow(IAuthorizationContract authorizationContract)
         {
             this._authorizationContract = authorizationContract;
-            this._userContract = userContract;
             this.InitializeComponent();
         }
 
@@ -43,7 +36,7 @@ namespace SD.IdentitySystem.InitializationTool
         /// </summary>
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            IEnumerable<InfoSystemInfo> systems = this._userContract.GetInfoSystems().ToArray();
+            IEnumerable<InfoSystemInfo> systems = this._authorizationContract.GetInfoSystems().ToArray();
 
             foreach (InfoSystemInfo system in systems)
             {
