@@ -4,6 +4,7 @@ var messageBox = null;
 //提供给iframe里子页面操作当前页面的一些便捷方法
 var topHelper = {};
 
+//DOM初始化事件
 $(function () {
     //初始化消息框
     messageBox = new MessageBox({ imghref: "/Content/images/" });
@@ -70,7 +71,6 @@ $(function () {
     };
 });
 
-
 //注销
 function logout() {
     $.messager.confirm("警告", "确定注销当前用户吗？", function (result) {
@@ -85,7 +85,12 @@ function logout() {
                     window.location.href = "/User/Login";
                 },
                 error: function (error) {
-                    $.messager.alert("Error", error.responseText);
+                    if (error.status === 200) {
+                        window.location.href = "/User/Login";
+                    }
+                    else {
+                        $.messager.alert("Error", error.responseText);
+                    }
                 }
             });
         }
