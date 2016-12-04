@@ -89,6 +89,31 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
+        #region # 加载创建用户视图 —— ViewResult Add()
+        /// <summary>
+        /// 加载创建用户视图
+        /// </summary>
+        /// <returns>创建用户视图</returns>
+        [HttpGet]
+        public ViewResult Add()
+        {
+            return base.View();
+        }
+        #endregion
+
+        #region # 加载修改用户视图 —— ViewResult Update(string id)
+        /// <summary>
+        /// 加载修改用户视图
+        /// </summary>
+        /// <param name="id">用户登录名</param>
+        /// <returns>修改用户视图</returns>
+        [HttpGet]
+        public ViewResult Update(string id)
+        {
+            return base.View();
+        }
+        #endregion
+
 
         //命令部分
 
@@ -147,6 +172,30 @@ namespace SD.IdentitySystem.Website.Controllers
             #endregion
 
             this._userContract.UpdatePassword(loginId, oldPassword, newPassword);
+        }
+        #endregion
+
+        #region # 创建用户 —— void CreateUser(string loginId, string realName...
+        /// <summary>
+        /// 创建用户
+        /// </summary>
+        /// <param name="loginId">用户登录名</param>
+        /// <param name="realName">真实姓名</param>
+        /// <param name="password">密码</param>
+        /// <param name="confirmPassword">确认密码</param>
+        [HttpPost]
+        public void CreateUser(string loginId, string realName, string password, string confirmPassword)
+        {
+            #region # 验证
+
+            if (password != confirmPassword)
+            {
+                throw new ArgumentOutOfRangeException("password", "两次密码输入不一致！");
+            }
+
+            #endregion
+
+            this._userContract.CreateUser(loginId, realName, password);
         }
         #endregion
 

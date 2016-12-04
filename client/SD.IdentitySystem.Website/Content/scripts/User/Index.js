@@ -68,7 +68,7 @@ function getUsers(queryParams) {
 
 //创建用户
 function createUser() {
-    $.easyuiExt.showWindow("创建用户", "/User/Add", 360, 420);
+    $.easyuiExt.showWindow("创建用户", "/User/Add", 360, 240);
 }
 
 //修改用户

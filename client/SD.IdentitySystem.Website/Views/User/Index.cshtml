@@ -5,7 +5,7 @@
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Grid.css" rel="stylesheet" />
+    <link type="text/css" href="~/Content/css/Common/Grid.css" rel="stylesheet" />
     <script type="text/javascript" src="~/Content/scripts/User/Index.js"></script>
 }
 
@@ -22,7 +22,7 @@
         <div style="margin-left: 5px">
             <form id="frmQueries">
                 信息系统：
-                <select class="easyui-combobox" id="slSystem" name="systemNo" style="width: 150px">
+                <select class="easyui-combobox" id="slSystem" name="systemNo" data-options="editable:false" style="width: 150px">
                     <option value="" selected="selected">请选择</option>
                     @foreach (InfoSystemView system in ViewBag.InfoSystems)
                     {

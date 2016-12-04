@@ -33,28 +33,6 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 分页获取用户列表 —— IEnumerable<User> GetUsers(string systemNo...
-        /// <summary>
-        /// 分页获取用户列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <param name="rowCount"></param>
-        /// <param name="pageCount"></param>
-        /// <returns>用户列表</returns>
-        public IEnumerable<User> GetUsers(string systemNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount)
-        {
-            Expression<Func<UserRole, bool>> condition =
-                x =>
-                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo) &&
-                    (string.IsNullOrEmpty(keywords) || x.User.Keywords.Contains(keywords));
-
-            return this.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).Select(x => x.User).AsEnumerable();
-        }
-        #endregion
-
         #region # 获取角色列表 —— IEnumerable<Role> GetRoles(string loginId, string systemNo)
         /// <summary>
         /// 获取角色列表

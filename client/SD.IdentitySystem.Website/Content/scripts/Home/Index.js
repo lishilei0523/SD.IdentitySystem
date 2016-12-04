@@ -1,14 +1,8 @@
-﻿//消息框
-var messageBox = null;
-
-//提供给iframe里子页面操作当前页面的一些便捷方法
+﻿//提供给iframe里子页面操作当前页面的一些便捷方法
 var topHelper = {};
 
 //DOM初始化事件
 $(function () {
-    //初始化消息框
-    messageBox = new MessageBox({ imghref: "/Content/images/" });
-
     //初始化用户菜单
     $("#menuTree").tree({
         url: "/Menu/GetMenuTree",
@@ -38,7 +32,8 @@ $(function () {
         height: 500,
         collapsible: false,
         minimizable: false,
-        maximizable: true
+        maximizable: true,
+        modal: true
     }).window("close");
 
     //添加一个打开公共窗体的方法
@@ -54,7 +49,7 @@ $(function () {
             trueHeight = height;
         }
         //判断是否置顶url，如果有，则设置公共窗体里的iframe的src
-        if (url && url.length && url.length > 10) {
+        if (url && url.length) {
             $("#commonWindow iframe").attr("src", url);
         }
         //重新设置窗体的大小，并自动居中，然后才显示
@@ -124,10 +119,10 @@ function changePassword() {
     if (oldPassword.length === 0 ||
         newPassword.length === 0 ||
         confirmPassword.length === 0) {
-        messageBox.showMsgErr("密码不可为空，请重新输入！");
+        $.messageBox.showError("密码不可为空，请重新输入！");
     }
     else if (newPassword !== confirmPassword) {
-        messageBox.showMsgErr("两次密码不一致，请重试！");
+        $.messageBox.showError("两次密码不一致，请重试！");
     }
     else {
         var loginId = $("#spLoginId").text();
@@ -138,18 +133,18 @@ function changePassword() {
 
 //修改密码中事件
 function updatingPassword() {
-    messageBox.showMsgWait("修改中，请稍后...");
+    $.messageBox.showWait("修改中，请稍后...");
 }
 
 //修改密码成功
 function updateSucceed() {
-    messageBox.showMsgOk("修改成功");
+    $.messageBox.showSuccess("修改成功");
     $("#dvUpdatePwd").window("close");
 }
 
 //修改密码失败
 function updateFailed(result) {
-    messageBox.showMsgErr(result.responseText);
+    $.messageBox.showError(result.responseText);
     $("#dvUpdatePwd").window("close");
 }
 

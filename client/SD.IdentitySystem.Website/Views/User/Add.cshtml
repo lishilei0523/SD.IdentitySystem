@@ -1,0 +1,59 @@
+﻿@{
+    ViewBag.Title = "Add";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <link type="text/css" href="~/Content/css/User/Add.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/scripts/User/Add.js"></script>
+}
+
+@using (Ajax.BeginForm("CreateUser", "User",
+    new AjaxOptions
+    {
+        HttpMethod = "post",
+        OnBegin = "addBegin",
+        OnSuccess = "addSucceed",
+        OnFailure = "addFail"
+    },
+    new
+    {
+        id = "frmCreateUser"
+    }))
+{
+    <div id="dvIframe">
+        <table id="tbAdd">
+            <tr>
+                <td class="tdTitle">用户名：</td>
+                <td class="tdContent">
+                    <input class="easyui-textbox" type="text" name="loginId" data-options="required:true,iconCls:'icon-man',width:210" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitle">真实姓名：</td>
+                <td class="tdContent">
+                    <input class="easyui-textbox" type="text" name="realName" data-options="required:true,iconCls:'icon-man',width:210" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitle">密码：</td>
+                <td class="tdContent">
+                    <input class="easyui-textbox" type="password" name="password" data-options="required:true,iconCls:'icon-lock',width:210" />
+                </td>
+            </tr>
+            <tr>
+                <td class="tdTitle">确认密码：</td>
+                <td class="tdContent">
+                    <input class="easyui-textbox" type="password" name="confirmPassword" data-options="required:true,iconCls:'icon-lock',width:210" />
+                </td>
+            </tr>
+            <tr>
+                <td></td>
+                <td class="tdContent">
+                    <a href="#" onclick="javascript: $('#frmCreateUser').submit();" class="easyui-linkbutton" data-options="iconCls:'icon-ok'">确定</a>
+                    <a href="#" onclick="javascript: $.easyuiExt.closeWindow();" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'">取消</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+}

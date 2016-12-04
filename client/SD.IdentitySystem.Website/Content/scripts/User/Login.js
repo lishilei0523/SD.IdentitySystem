@@ -1,16 +1,10 @@
-﻿//定义消息框
-var messageBox = null;
-
-//DOM初始化事件
+﻿//DOM初始化事件
 $(function () {
     //让用户名文本框获得焦点
     $("#txtUserName").focus();
 
     //验证码图片点击事件
     $("#imgValidCode").click(resetValidCode);
-
-    //初始化消息框
-    messageBox = new MessageBox({ imghref: "/Content/images/" });
 });
 
 //刷新验证码
@@ -20,13 +14,14 @@ function resetValidCode() {
 
 //登录开始时执行方法
 function loginBegin() {
-    messageBox.showMsgWait("验证中，请稍候...");
+    $.messageBox.showWait("验证中，请稍候...");
 }
 
 //登录成功
-function loginSucceed(result) {
+function loginSucceed() {
     //登录成功，跳转至主页
-    messageBox.showMsgOk("登录成功");
+    $.messageBox.showSuccess("登录成功！");
+
     window.location.href = "/Home/Index";
 }
 
@@ -37,5 +32,5 @@ function loginFail(result) {
     $("#txtVadlidCode").val("");
     $("#imgValidCode").attr("src", "/User/GetValidCode?id=" + Math.random());
 
-    messageBox.showMsgErr(result.responseText);
+    $.messageBox.showError(result.responseText);
 }

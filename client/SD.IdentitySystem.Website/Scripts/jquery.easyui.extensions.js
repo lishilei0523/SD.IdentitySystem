@@ -18,6 +18,9 @@
                 window.top.topHelper.closeWindow();
             },
 
+            //消息框
+            messager: window.top.$.messager,
+
             //EasyUI Grid组件属性设置
             datagrid: {
                 url: null,

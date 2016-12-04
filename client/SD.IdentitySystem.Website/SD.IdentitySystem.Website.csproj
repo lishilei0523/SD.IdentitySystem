@@ -176,8 +176,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="Content\css\Grid.css" />
-    <Content Include="Content\css\Login.css" />
+    <Content Include="Content\css\Common\Grid.css" />
+    <Content Include="Content\css\User\Add.css" />
+    <Content Include="Content\css\User\Login.css" />
     <Content Include="Content\images\banner-pic.gif" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\login_bottom.jpg" />
@@ -185,7 +186,8 @@
     <Content Include="Content\images\login_sTop.jpg" />
     <Content Include="Content\images\login_top.jpg" />
     <Content Include="Content\images\qzonebg.gif" />
-    <Content Include="Content\scripts\Home\Home.js" />
+    <Content Include="Content\scripts\Home\Index.js" />
+    <Content Include="Content\scripts\User\Add.js" />
     <Content Include="Content\scripts\User\Index.js" />
     <Content Include="Content\scripts\User\Login.js" />
     <Content Include="Content\themes\black\accordion.css" />
@@ -289,7 +291,7 @@
     <Content Include="Content\themes\bootstrap\validatebox.css" />
     <Content Include="Content\themes\bootstrap\window.css" />
     <Content Include="Content\themes\color.css" />
-    <Content Include="Content\css\Home.css" />
+    <Content Include="Content\css\Home\Index.css" />
     <Content Include="Content\themes\default\accordion.css" />
     <Content Include="Content\themes\default\calendar.css" />
     <Content Include="Content\themes\default\combo.css" />
@@ -536,6 +538,7 @@
     <Content Include="Scripts\jquery.easyui-1.4.5.js" />
     <Content Include="Scripts\jquery.easyui-1.4.5.min.js" />
     <Content Include="Scripts\jquery.easyui.extensions.js" />
+    <Content Include="Scripts\jquery.extensions.message.js" />
     <Content Include="Scripts\jquery.extensions.js" />
     <Content Include="Scripts\jquery.easyui.mobile-1.4.5.js" />
     <Content Include="Scripts\jquery.easyui.mobile-1.4.5.min.js" />
@@ -569,7 +572,6 @@
     <Content Include="Scripts\locale\easyui-lang-tr.js" />
     <Content Include="Scripts\locale\easyui-lang-zh_CN.js" />
     <Content Include="Scripts\locale\easyui-lang-zh_TW.js" />
-    <Content Include="Scripts\messageBox.js" />
     <Content Include="Scripts\_references.js" />
     <Content Include="Web.config" />
     <Content Include="Web.Debug.config">
@@ -586,6 +588,8 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Add.cshtml" />
+    <Content Include="Views\User\Update.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

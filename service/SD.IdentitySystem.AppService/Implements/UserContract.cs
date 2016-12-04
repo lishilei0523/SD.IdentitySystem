@@ -285,8 +285,7 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             int rowCount, pageCount;
 
-            IEnumerable<User> specUsers = this._repMediator.UserRoleRep.GetUsers(systemNo, keywords, pageIndex, pageSize,
-                out rowCount, out pageCount);
+            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out rowCount, out pageCount);
 
             IEnumerable<UserInfo> specUserInfos = specUsers.Select(x => x.ToDTO());
 
