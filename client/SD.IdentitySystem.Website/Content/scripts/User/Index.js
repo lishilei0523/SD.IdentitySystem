@@ -30,13 +30,34 @@ function getUsers(queryParams) {
                 }
             },
             {
-                field: "Update",
-                title: "编辑",
+                field: "ResetPassord",
+                title: "重置密码",
+                width: 70,
+                formatter: function (value, row) {
+                    var start = '<a class="aLink" href="javascript: resetPassord(\'';
+                    var end = '\');" >重置密码</a>';
+                    var element = start + row.Number + end;
+
+                    return element;
+                }
+            },
+            {
+                field: "Enabled",
+                title: "状态",
+                align: "center",
+                halign: "center",
                 width: 35,
                 formatter: function (value, row) {
-                    var start = '<a class="aLink" href="javascript: updateUser(\'';
-                    var end = '\');" >编辑</a>';
-                    var element = start + row.Number + end;
+                    var start =
+                        value === true ?
+                            '<a class="aLink" href="javascript: disableUser(\'' :
+                            '<a class="aLink" href="javascript: enableUser(\'';
+                    var end =
+                        value === true ?
+                            '\');" >停用</a>' :
+                            '\');" >启用</a>';
+
+                    var element = start + row.Number + end;;
 
                     return element;
                 }
@@ -71,9 +92,9 @@ function createUser() {
     $.easyuiExt.showWindow("创建用户", "/User/Add", 360, 240);
 }
 
-//修改用户
-function updateUser(loginId) {
-    $.easyuiExt.showWindow("修改用户", "/User/Update/" + loginId, 360, 420);
+//重置密码
+function resetPassord(loginId) {
+    $.easyuiExt.showWindow("重置密码", "/User/ResetPassword/" + loginId, 360, 230);
 }
 
 //删除用户
@@ -131,6 +152,42 @@ function removeUsers() {
     else {
         $.messager.alert("警告", "请选中要删除的用户！");
     }
+}
+
+//启用用户
+function enableUser(loginId) {
+    $.messager.confirm("Warning", "确定要启用吗？", function (confirm) {
+        if (confirm) {
+            $.ajax({
+                type: "post",
+                url: "/User/EnableUser/" + loginId,
+                success: function () {
+                    $.easyuiExt.updateGridInTab();
+                },
+                error: function (error) {
+                    $.easyuiExt.messager.alert("Error", error.responseText);
+                }
+            });
+        }
+    });
+}
+
+//停用用户
+function disableUser(loginId) {
+    $.messager.confirm("Warning", "确定要停用吗？", function (confirm) {
+        if (confirm) {
+            $.ajax({
+                type: "post",
+                url: "/User/DisableUser/" + loginId,
+                success: function () {
+                    $.easyuiExt.updateGridInTab();
+                },
+                error: function (error) {
+                    $.easyuiExt.messager.alert("Error", error.responseText);
+                }
+            });
+        }
+    });
 }
 
 //搜索

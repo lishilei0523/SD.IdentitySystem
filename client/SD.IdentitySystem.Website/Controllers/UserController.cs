@@ -4,8 +4,6 @@ using ShSoft.Infrastructure.MVC;
 using ShSoft.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
-using System.Diagnostics;
-using System.Linq;
 using System.Web.Mvc;
 using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
@@ -101,15 +99,17 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
-        #region # 加载修改用户视图 —— ViewResult Update(string id)
+        #region # 加载重置密码视图 —— ViewResult ResetPassword(string id)
         /// <summary>
-        /// 加载修改用户视图
+        /// 加载重置密码视图
         /// </summary>
         /// <param name="id">用户登录名</param>
-        /// <returns>修改用户视图</returns>
+        /// <returns>重置密码视图</returns>
         [HttpGet]
-        public ViewResult Update(string id)
+        public ViewResult ResetPassword(string id)
         {
+            base.ViewBag.LoginId = base.LoginInfo == null ? null : base.LoginInfo.LoginId;
+
             return base.View();
         }
         #endregion
@@ -211,15 +211,53 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
-        #region # 删除用户列表 —— void RemoveUsers(IEnumerable<string> loginIds)
+        #region # 批量删除用户 —— void RemoveUsers(IEnumerable<string> loginIds)
         /// <summary>
-        /// 删除用户列表
+        /// 批量删除用户
         /// </summary>
-        /// <param name="loginIds">登录名集合</param>
+        /// <param name="loginIds">用户登录名集</param>
         [HttpPost]
         public void RemoveUsers(IEnumerable<string> loginIds)
         {
-            Trace.WriteLine(loginIds.Count());
+            this._userContract.RemoveUsers(loginIds);
+        }
+        #endregion
+
+        #region # 重置密码 —— void ResetPassword(string loginId, string newPassword...
+        /// <summary>
+        /// 重置密码
+        /// </summary>
+        /// <param name="loginId">用户登录名</param>
+        /// <param name="newPassword">新密码</param>
+        /// <param name="confirmPassword">确认密码</param>
+        [HttpPost]
+        public void ResetPassword(string loginId, string newPassword, string confirmPassword)
+        {
+            this._userContract.ResetPassword(loginId, newPassword);
+        }
+        #endregion
+
+        #region # 启用用户 —— void EnableUser(string id)
+        /// <summary>
+        /// 启用用户
+        /// </summary>
+        /// <param name="id">登录名</param>
+        [HttpPost]
+        public void EnableUser(string id)
+        {
+            this._userContract.EnableUser(id);
+        }
+        #endregion
+
+        #region # 停用用户 —— void DisableUser(string id)
+        /// <summary>
+        /// 停用用户
+        /// </summary>
+        /// <param name="id">登录名</param>
+        [HttpPost]
+        public void DisableUser(string id)
+        {
+            this._userContract.DisableUser(id);
         }
         #endregion
 
@@ -244,6 +282,5 @@ namespace SD.IdentitySystem.Website.Controllers
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }
         #endregion
-
     }
 }

@@ -55,7 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.3\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.4\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -179,6 +179,7 @@
     <Content Include="Content\css\Common\Grid.css" />
     <Content Include="Content\css\User\Add.css" />
     <Content Include="Content\css\User\Login.css" />
+    <Content Include="Content\css\User\ResetPassword.css" />
     <Content Include="Content\images\banner-pic.gif" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\login_bottom.jpg" />
@@ -190,6 +191,7 @@
     <Content Include="Content\scripts\User\Add.js" />
     <Content Include="Content\scripts\User\Index.js" />
     <Content Include="Content\scripts\User\Login.js" />
+    <Content Include="Content\scripts\User\ResetPassword.js" />
     <Content Include="Content\themes\black\accordion.css" />
     <Content Include="Content\themes\black\calendar.css" />
     <Content Include="Content\themes\black\combo.css" />
@@ -589,7 +591,7 @@
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Add.cshtml" />
-    <Content Include="Views\User\Update.cshtml" />
+    <Content Include="Views\User\ResetPassword.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
