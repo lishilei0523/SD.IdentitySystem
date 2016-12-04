@@ -179,6 +179,36 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
+        #region # 批量删除用户 —— void RemoveUsers(IEnumerable<string> loginIds)
+        /// <summary>
+        /// 批量删除用户
+        /// </summary>
+        /// <param name="loginIds">用户登录名集</param>
+        public void RemoveUsers(IEnumerable<string> loginIds)
+        {
+            #region # 验证
+
+            if (loginIds == null)
+            {
+                throw new ArgumentNullException("loginIds", "用户登录名集不可为null！");
+            }
+            loginIds = loginIds.ToArray();
+            if (loginIds.Contains(Constants.AdminLoginId))
+            {
+                throw new InvalidOperationException("超级管理员不可删除！");
+            }
+
+            #endregion
+
+            foreach (string loginId in loginIds)
+            {
+                this._unitOfWork.RegisterRemove<User>(loginId);
+            }
+
+            this._unitOfWork.Commit();
+        }
+        #endregion
+
         #region # 为用户分配角色 —— void SetRoles(string loginId...
         /// <summary>
         /// 为用户分配角色
