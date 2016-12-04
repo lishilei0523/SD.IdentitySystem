@@ -205,10 +205,10 @@ namespace SD.IdentitySystem.Repository.Base
             if (this._repMediator.MenuRep.Count() == 0)
             {
                 Menu root = new Menu("00", "身份认证系统", 1, null, null, null);
-                Menu userManagement = new Menu("00", "用户管理", 2, "", null, root);
-                Menu roleManagement = new Menu("00", "角色管理", 3, "", null, root);
-                Menu menuManagement = new Menu("00", "菜单管理", 4, "", null, root);
-                Menu authorityManagement = new Menu("00", "权限管理", 5, "", null, root);
+                Menu userManagement = new Menu("00", "用户管理", 2, "/User/Index", null, root);
+                Menu roleManagement = new Menu("00", "角色管理", 3, "/Role/Index", null, root);
+                Menu menuManagement = new Menu("00", "菜单管理", 4, "/Menu/Index", null, root);
+                Menu authorityManagement = new Menu("00", "权限管理", 5, "/Authority/Index", null, root);
 
                 this._menus.Add(root);
                 this._menus.Add(userManagement);
