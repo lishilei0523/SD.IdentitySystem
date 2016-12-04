@@ -139,7 +139,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="Entities\UserRole.cs" />
     <Compile Include="EventSources\AuthorizationContext\AuthorityCreatedEvent.cs" />
-    <Compile Include="EventSources\UserContext\InfoSystemCreatedEvent.cs" />
+    <Compile Include="EventSources\AuthorizationContext\InfoSystemCreatedEvent.cs" />
     <Compile Include="IDomainServices\IInfoSystemService.cs" />
     <Compile Include="IDomainServices\INumberService.cs" />
     <Compile Include="IDomainServices\IUserService.cs" />

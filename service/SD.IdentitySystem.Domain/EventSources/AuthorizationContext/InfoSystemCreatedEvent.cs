@@ -1,6 +1,6 @@
 ﻿using ShSoft.Infrastructure.EventBase;
 
-namespace SD.IdentitySystem.Domain.EventSources.UserContext
+namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
 {
     /// <summary>
     /// 信息系统已创建事件

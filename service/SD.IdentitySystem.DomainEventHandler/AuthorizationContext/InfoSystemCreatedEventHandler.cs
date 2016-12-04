@@ -1,12 +1,10 @@
-﻿using System;
-using SD.IdentitySystem.Domain.Entities;
-using SD.IdentitySystem.Domain.EventSources.UserContext;
+﻿using SD.IdentitySystem.Domain.Entities;
+using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using SD.IdentitySystem.Domain.IRepositories;
-using SD.IdentitySystem.Domain.Mediators;
 using ShSoft.Infrastructure.EventBase;
 using ShSoft.ValueObjects;
 
-namespace SD.IdentitySystem.DomainEventHandler.UserContext
+namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
 {
     /// <summary>
     /// 信息系统已创建事件处理者
@@ -14,17 +12,6 @@ namespace SD.IdentitySystem.DomainEventHandler.UserContext
     public class InfoSystemCreatedEventHandler : IEventHandler<InfoSystemCreatedEvent>
     {
         #region # 字段及依赖注入构造器
-
-        /// <summary>
-        /// 领域服务中介者
-        /// </summary>
-        private readonly DomainServiceMediator _svcMediator;
-
-        /// <summary>
-        /// 仓储中介者
-        /// </summary>
-        private readonly RepositoryMediator _repMediator;
-
         /// <summary>
         /// 单元事务
         /// </summary>
@@ -33,13 +20,9 @@ namespace SD.IdentitySystem.DomainEventHandler.UserContext
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="svcMediator">领域服务中介者</param>
-        /// <param name="repMediator">仓储中介者</param>
         /// <param name="unitOfWork">单元事务</param>
-        public InfoSystemCreatedEventHandler(DomainServiceMediator svcMediator, RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
+        public InfoSystemCreatedEventHandler(IUnitOfWorkIdentity unitOfWork)
         {
-            this._svcMediator = svcMediator;
-            this._repMediator = repMediator;
             this._unitOfWork = unitOfWork;
             this.Sort = uint.MaxValue;
         }
@@ -60,20 +43,22 @@ namespace SD.IdentitySystem.DomainEventHandler.UserContext
         /// <param name="eventSource">事件源</param>
         public void Handle(InfoSystemCreatedEvent eventSource)
         {
-            //获取系统管理员角色
-            Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(eventSource.SystemNo);
-            Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
+            //获取超级管理员用户
+            User admin = this._unitOfWork.Resolve<User>(Constants.AdminLoginId);
 
-            //创建系统管理员用户，并为用户分配角色
+            //创建系统管理员用户
             string adminName = string.Format("{0}管理员", eventSource.SystemName);
             User systemAdmin = new User(eventSource.AdminLoginId, adminName, Constants.InitialPassword);
-            systemAdmin.SetRoles(eventSource.SystemNo, new[] { adminRole });
 
-            //获取超级管理员，并为超级管理员追加角色
-            User admin = this._unitOfWork.Resolve<User>(Constants.AdminLoginId);
+            //创建系统管理员角色
+            Role adminRole = new Role("系统管理员", eventSource.SystemNo, "系统管理员", Constants.ManagerRoleNo);
+
+            //为超级管理员与系统管理员追加角色
             admin.AppendRoles(eventSource.SystemNo, new[] { adminRole });
+            systemAdmin.AppendRoles(eventSource.SystemNo, new[] { adminRole });
 
             this._unitOfWork.RegisterAdd(systemAdmin);
+            this._unitOfWork.RegisterAdd(adminRole);
             this._unitOfWork.RegisterSave(admin);
             this._unitOfWork.Commit();
         }
