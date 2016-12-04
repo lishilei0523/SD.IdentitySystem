@@ -19,19 +19,12 @@ namespace SD.IdentitySystem.DomainService.Implements
         private readonly RepositoryMediator _repMediator;
 
         /// <summary>
-        /// 单元事务接口
-        /// </summary>
-        private readonly IUnitOfWorkIdentity _unitOfWork;
-
-        /// <summary>
         /// 依赖注入构造器
         /// </summary>
         /// <param name="repMediator">仓储中介者</param>
-        /// <param name="unitOfWork">单元事务接口</param>
-        public InfoSystemService(RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
+        public InfoSystemService(RepositoryMediator repMediator)
         {
             this._repMediator = repMediator;
-            this._unitOfWork = unitOfWork;
         }
 
         #endregion
