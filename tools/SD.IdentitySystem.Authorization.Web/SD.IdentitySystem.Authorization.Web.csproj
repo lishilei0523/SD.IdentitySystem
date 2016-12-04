@@ -68,7 +68,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.3\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.4\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -80,7 +80,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.2\lib\net45\ShSoft.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.4\lib\net45\ShSoft.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
