@@ -8,9 +8,9 @@
                 window.top.topHelper.updateGridInTab();
             },
 
-            //代理方法：调用后台主页面的topHelper.showComWindow(title, url, width, height)方法
-            showWindow: function (title, url, width, height) {
-                window.top.topHelper.showWindow(title, url, width, height);
+            //代理方法：调用后台主页面的topHelper.showWindow方法
+            showWindow: function (title, url, width, height, resizable) {
+                window.top.topHelper.showWindow(title, url, width, height, resizable);
             },
 
             //代理方法：调用后台主页面的topHelper.showComWindow(title, url, width, height)方法

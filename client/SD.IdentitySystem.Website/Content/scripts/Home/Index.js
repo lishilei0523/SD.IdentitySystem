@@ -37,26 +37,36 @@ $(function () {
     }).window("close");
 
     //添加一个打开公共窗体的方法
-    topHelper.showWindow = function (title, url, width, height) {
+    topHelper.showWindow = function (title, url, width, height, resizable) {
         var trueTitle = "公共窗体";
-        var trueWidth = 1200;
-        var trueHeight = 500;
-        if (title) trueTitle = title;
+        var trueWidth = 1024;
+        var trueHeight = 768;
+        var trueResizable = false;
+
+        if (title) {
+            trueTitle = title;
+        }
         if (width && parseInt(width) > 10) {
             trueWidth = width;
         }
         if (height && parseInt(height) > 10) {
             trueHeight = height;
         }
+        if (resizable) {
+            trueResizable = resizable;
+        }
+
         //判断是否置顶url，如果有，则设置公共窗体里的iframe的src
         if (url && url.length) {
             $("#commonWindow iframe").attr("src", url);
         }
+
         //重新设置窗体的大小，并自动居中，然后才显示
         topHelper.comWin.window({
             title: trueTitle,
             width: trueWidth,
-            height: trueHeight
+            height: trueHeight,
+            resizable: trueResizable
         }).window("center").window("open");
     };
 

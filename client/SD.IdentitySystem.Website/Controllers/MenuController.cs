@@ -32,9 +32,9 @@ namespace SD.IdentitySystem.Website.Controllers
 
         //视图部分
 
-        #region # 加载菜单树视图 —— ViewResult Index()
+        #region # 加载首页视图 —— ViewResult Index()
         /// <summary>
-        /// 加载菜单树视图
+        /// 加载首页视图
         /// </summary>
         /// <returns></returns>
         public ViewResult Index()
