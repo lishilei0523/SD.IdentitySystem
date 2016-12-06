@@ -1,4 +1,4 @@
-﻿using ShSoft.Infrastructure;
+﻿using ShSoft.Infrastructure.MVC;
 using System.Collections.Generic;
 using System.Linq;
 

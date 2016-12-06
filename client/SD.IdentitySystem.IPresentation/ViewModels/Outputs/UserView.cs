@@ -1,5 +1,5 @@
-﻿using System;
-using ShSoft.Infrastructure;
+﻿using ShSoft.Infrastructure.MVC;
+using System;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
 {

@@ -1,4 +1,4 @@
-﻿using ShSoft.Infrastructure;
+﻿using ShSoft.Infrastructure.MVC;
 using ShSoft.ValueObjects.Enums;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
