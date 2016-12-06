@@ -596,6 +596,7 @@
     <Content Include="Views\Role\Index.cshtml" />
     <Content Include="Views\Role\Add.cshtml" />
     <Content Include="Views\Role\Update.cshtml" />
+    <Content Include="Views\Authority\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

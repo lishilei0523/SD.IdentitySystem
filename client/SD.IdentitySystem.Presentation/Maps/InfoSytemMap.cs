@@ -1,4 +1,6 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using System.Collections.Generic;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Common.PoweredByLee;
 
@@ -22,6 +24,34 @@ namespace SD.IdentitySystem.Presentation.Maps
             systemView.ApplicationTypeName = systemInfo.ApplicationType.GetEnumMember();
 
             return systemView;
+        }
+        #endregion
+
+        #region # 信息系统/权限EasyUI树节点映射 —— static Node ToNode(this InfoSystemView systemView...
+        /// <summary>
+        /// 信息系统/权限EasyUI树节点映射
+        /// </summary>
+        /// <param name="systemView">信息系统视图模型</param>
+        /// <param name="authorities">权限列表</param>
+        /// <returns>EasyUI树节点</returns>
+        public static Node ToNode(this InfoSystemView systemView, IEnumerable<AuthorityView> authorities)
+        {
+            var attributes = new
+            {
+                type = "infoSystem"
+            };
+
+            Node systemNode = new Node(systemView.Id, systemView.Name, "open", false, attributes);
+
+            foreach (AuthorityView authority in authorities)
+            {
+                if (authority.SystemNo == systemView.Number)
+                {
+                    systemNode.children.Add(authority.ToNode());
+                }
+            }
+
+            return systemNode;
         }
         #endregion
     }

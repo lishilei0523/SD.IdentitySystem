@@ -2,6 +2,43 @@
 @{
     ViewBag.Title = "创建角色";
     Layout = "~/Views/Shared/_Layout.cshtml";
+
+    IEnumerable<InfoSystemView> Systems = ((IEnumerable<InfoSystemView>)ViewBag.InfoSystems).OrderBy(x => x.Number);
+}
+
+@section header{
+    <script>
+        $(function () {
+            //获取用户选中的信息系统编号
+            var systemNo = $("#slSystem").val();
+
+            //初始化权限树
+            initAuthorityTree(systemNo);
+        });
+
+        //初始化权限树
+        function initAuthorityTree(systemNo) {
+            $("#authorityTree").tree({
+                url: "/Authority/GetAuthorityTree/" + systemNo,
+                animate: true,
+                lines: true,
+                checkbox: function (node) {
+                    if (node.attributes.type === "infoSystem") {
+                        return false;
+                    }
+                    else {
+                        return true;
+                    }
+                }
+            });
+        }
+
+        //信息系统选中事件
+        function systemSelected(record) {
+            //重新初始化权限树
+            initAuthorityTree(record.value);
+        }
+    </script>
 }
 
 @*角色信息面板*@
@@ -11,9 +48,8 @@
             <tr>
                 <td class="tdTitle">信息系统：</td>
                 <td class="tdContent">
-                    <select class="easyui-combobox" id="slSystem" name="systemNo" data-options="editable:false" style="width: 210px">
-                        @*<option value="" selected="selected">请选择</option>*@
-                        @foreach (InfoSystemView system in ViewBag.InfoSystems)
+                    <select class="easyui-combobox" id="slSystem" name="systemNo" data-options="editable:false,onSelect:systemSelected" style="width: 210px">
+                        @foreach (InfoSystemView system in Systems)
                         {
                             <option value="@system.Number">@system.Name</option>
                         }
@@ -46,27 +82,6 @@
 @*权限信息面板*@
 <div style="width: 48%; height: 50%; float: right; margin: 5px;">
     <div class="easyui-panel" title="权限列表" style="width:100%;height:626px;padding:10px;">
-        <ul id="authorityTree" class="easyui-tree" data-options="checkbox:true">
-            <li>index.html</li>
-            <li>about.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-            <li>welcome.html</li>
-        </ul>
+        <ul id="authorityTree" class="easyui-tree"></ul>
     </div>
 </div>

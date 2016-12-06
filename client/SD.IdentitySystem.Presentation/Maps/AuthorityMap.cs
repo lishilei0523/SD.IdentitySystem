@@ -1,4 +1,5 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Common.PoweredByLee;
 
@@ -23,6 +24,23 @@ namespace SD.IdentitySystem.Presentation.Maps
             authorityView.SystemName = authorityInfo.InfoSystemInfo.Name;
 
             return authorityView;
+        }
+        #endregion
+
+        #region # 权限EasyUI树节点映射 —— static Node ToNode(this AuthorityView authorityView)
+        /// <summary>
+        /// 权限EasyUI树节点映射
+        /// </summary>
+        /// <param name="authorityView">权限视图模型</param>
+        /// <returns>EasyUI树节点</returns>
+        public static Node ToNode(this AuthorityView authorityView)
+        {
+            var attributes = new
+            {
+                type = "authority"
+            };
+
+            return new Node(authorityView.Id, authorityView.Name, "open", false, attributes);
         }
         #endregion
     }
