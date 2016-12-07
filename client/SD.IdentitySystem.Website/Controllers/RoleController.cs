@@ -98,8 +98,9 @@ namespace SD.IdentitySystem.Website.Controllers
         [HttpGet]
         public ViewResult Update(Guid id)
         {
+            RoleView currentRole = this._rolePresenter.GetRole(id);
 
-            return base.View();
+            return base.View(currentRole);
         }
         #endregion
 
@@ -112,10 +113,13 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleName">角色名称</param>
+        /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
-        public void CreateRole(string systemNo, string roleName, IEnumerable<Guid> authorityIds)
+        public void CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
+            authorityIds = authorityIds ?? new Guid[0];
+
             this._authorizationContract.CreateRole(systemNo, roleName, authorityIds);
         }
         #endregion
@@ -126,11 +130,43 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
+        /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
-        public void UpdateRole(Guid roleId, string roleName, IEnumerable<Guid> authorityIds)
+        public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
+            authorityIds = authorityIds ?? new Guid[0];
+
             this._authorizationContract.UpdateRole(roleId, roleName, authorityIds);
+        }
+        #endregion
+
+        #region # 删除角色 —— void RemoveRole(Guid id)
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        /// <param name="id">角色Id</param>
+        [HttpPost]
+        public void RemoveRole(Guid id)
+        {
+            this._authorizationContract.RemoveRole(id);
+        }
+        #endregion
+
+        #region # 批量删除角色 —— void RemoveRoles(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 批量删除角色
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        [HttpPost]
+        public void RemoveRoles(IEnumerable<Guid> roleIds)
+        {
+            roleIds = roleIds ?? new Guid[0];
+
+            foreach (Guid roleId in roleIds)
+            {
+                this._authorizationContract.RemoveRole(roleId);
+            }
         }
         #endregion
 

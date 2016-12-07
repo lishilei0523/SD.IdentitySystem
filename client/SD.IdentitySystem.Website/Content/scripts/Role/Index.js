@@ -64,7 +64,7 @@ function createRole() {
 
 //修改角色
 function updateRole(roleId) {
-    $.easyuiExt.showWindow("重置密码", "/Role/Update/" + roleId, 840, 680);
+    $.easyuiExt.showWindow("修改角色", "/Role/Update/" + roleId, 840, 680);
 }
 
 //删除角色
