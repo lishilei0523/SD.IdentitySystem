@@ -203,7 +203,7 @@ namespace SD.IdentitySystem.Domain.Entities
 
             #endregion
 
-            this.ClearRoles();
+            this.ClearRelation();
             this.AppendRoles(systemNo, roles);
         }
         #endregion
@@ -232,29 +232,16 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 获取用户角色集 —— IEnumerable<UserRole> GetUserRoles()
+        #region 清空用户关系 —— void ClearRelation()
         /// <summary>
-        /// 获取用户角色集
+        /// 清空用户关系
         /// </summary>
-        /// <returns>用户角色集</returns>
-        public IEnumerable<UserRole> GetUserRoles()
-        {
-            return this.UserRoles.Where(x => x.SystemNo != null && x.User != null && x.Role != null);
-        }
-        #endregion
-
-
-        //Private
-
-        #region # 清空角色 —— void ClearRoles()
-        /// <summary>
-        /// 清空角色
-        /// </summary>
-        private void ClearRoles()
+        public void ClearRelation()
         {
             foreach (UserRole userRole in this.UserRoles.ToArray())
             {
                 this.UserRoles.Remove(userRole);
+                userRole.Role.UserRoles.Remove(userRole);
                 userRole.User = null;
                 userRole.Role = null;
                 userRole.SystemNo = null;

@@ -169,6 +169,23 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
+        #region 清空角色关系 —— void ClearRelation()
+        /// <summary>
+        /// 清空角色关系
+        /// </summary>
+        public void ClearRelation()
+        {
+            foreach (UserRole userRole in this.UserRoles.ToArray())
+            {
+                this.UserRoles.Remove(userRole);
+                userRole.User.UserRoles.Remove(userRole);
+                userRole.User = null;
+                userRole.Role = null;
+                userRole.SystemNo = null;
+            }
+        }
+        #endregion
+
 
         //Private
 

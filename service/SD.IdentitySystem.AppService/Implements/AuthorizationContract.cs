@@ -367,7 +367,18 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="roleId">角色Id</param>
         public void RemoveRole(Guid roleId)
         {
-            this._unitOfWork.RegisterRemove<Role>(roleId);
+            #region # 验证
+
+            Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
+
+            if (currentRole.UserRoles.Any())
+            {
+                throw new InvalidOperationException(string.Format("角色\"{0}\"已被用户使用，不可删除！", currentRole.Name));
+            }
+
+            #endregion
+
+            this._unitOfWork.RegisterPhysicsRemove<Role>(roleId);
             this._unitOfWork.UnitedCommit();
         }
         #endregion

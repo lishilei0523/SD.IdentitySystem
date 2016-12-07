@@ -219,7 +219,12 @@ namespace SD.IdentitySystem.Website.Controllers
         [HttpPost]
         public void RemoveUsers(IEnumerable<string> loginIds)
         {
-            this._userContract.RemoveUsers(loginIds);
+            loginIds = loginIds ?? new string[0];
+
+            foreach (string loginId in loginIds)
+            {
+                this._userContract.RemoveUser(loginId);
+            }
         }
         #endregion
 

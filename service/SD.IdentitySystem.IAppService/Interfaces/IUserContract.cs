@@ -75,15 +75,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void RemoveUser(string loginId);
         #endregion
 
-        #region # 批量删除用户 —— void RemoveUsers(IEnumerable<string> loginIds)
-        /// <summary>
-        /// 批量删除用户
-        /// </summary>
-        /// <param name="loginIds">用户登录名集</param>
-        [OperationContract]
-        void RemoveUsers(IEnumerable<string> loginIds);
-        #endregion
-
         #region # 为用户分配角色 —— void SetRoles(string loginId...
         /// <summary>
         /// 为用户分配角色
