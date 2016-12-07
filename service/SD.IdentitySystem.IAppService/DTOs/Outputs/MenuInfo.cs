@@ -9,6 +9,14 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
     public class MenuInfo : BaseDTO
     {
+        #region 信息系统编号 —— string SystemNo
+        /// <summary>
+        /// 信息系统编号
+        /// </summary>
+        [DataMember]
+        public string SystemNo { get; set; }
+        #endregion
+
         #region 链接地址 —— string Url
         /// <summary>
         /// 链接地址

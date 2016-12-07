@@ -42,7 +42,12 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>角色列表</returns>
         public IEnumerable<Role> GetRoles(string loginId, string systemNo)
         {
-            return this.Find(x => x.SystemNo == systemNo && x.User.Number == loginId).Select(x => x.Role).AsEnumerable();
+            Expression<Func<UserRole, bool>> condition =
+                x =>
+                    x.User.Number == loginId &&
+                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo);
+
+            return this.Find(condition).Select(x => x.Role).AsEnumerable();
         }
         #endregion
 
