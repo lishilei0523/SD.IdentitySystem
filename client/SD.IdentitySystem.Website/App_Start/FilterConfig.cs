@@ -1,5 +1,5 @@
-﻿using System.Web.Mvc;
-using ShSoft.Infrastructure.MVC.Filters;
+﻿using ShSoft.Infrastructure.MVC.Filters;
+using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website
 {

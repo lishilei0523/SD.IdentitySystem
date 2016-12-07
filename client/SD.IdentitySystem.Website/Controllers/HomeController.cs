@@ -1,6 +1,6 @@
-﻿using ShSoft.Infrastructure.MVC.Filters;
+﻿using ShSoft.Infrastructure.MVC;
+using ShSoft.Infrastructure.MVC.Filters;
 using System.Web.Mvc;
-using ShSoft.Infrastructure.MVC;
 
 namespace SD.IdentitySystem.Website.Controllers
 {

@@ -1,8 +1,8 @@
-﻿using System.Collections.Generic;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Common.PoweredByLee;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.Presentation.Maps
 {
