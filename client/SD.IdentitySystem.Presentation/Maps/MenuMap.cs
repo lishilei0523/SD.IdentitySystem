@@ -23,7 +23,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         {
             MenuView menuView = Transform<MenuInfo, MenuView>.Map(menuInfo);
 
-            menuView.SystemNo = menuInfo.InfoSystemInfo.Number;
             menuView.SystemName = menuInfo.InfoSystemInfo.Name;
             menuView.Parent = menuInfo.ParentMenu == null ? null : menuInfo.ParentMenu.ToViewModel();
 
