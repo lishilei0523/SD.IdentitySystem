@@ -4,6 +4,7 @@ using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.MVC;
+using ShSoft.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -13,6 +14,7 @@ namespace SD.IdentitySystem.Website.Controllers
     /// <summary>
     /// 权限控制器
     /// </summary>
+    [ExceptionFilter]
     public class AuthorityController : BaseController
     {
         #region # 字段及构造器

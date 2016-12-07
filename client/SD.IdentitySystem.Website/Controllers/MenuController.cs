@@ -1,6 +1,7 @@
 ﻿using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using ShSoft.Infrastructure.MVC;
+using ShSoft.Infrastructure.MVC.Filters;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
@@ -9,6 +10,7 @@ namespace SD.IdentitySystem.Website.Controllers
     /// <summary>
     /// 菜单控制器
     /// </summary>
+    [ExceptionFilter]
     public class MenuController : BaseController
     {
         #region # 字段及构造器

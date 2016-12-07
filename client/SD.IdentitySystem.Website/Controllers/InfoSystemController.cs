@@ -1,6 +1,7 @@
 ﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using ShSoft.Infrastructure.MVC;
+using ShSoft.Infrastructure.MVC.Filters;
 using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website.Controllers
@@ -8,6 +9,7 @@ namespace SD.IdentitySystem.Website.Controllers
     /// <summary>
     /// 信息系统控制器
     /// </summary>
+    [ExceptionFilter]
     public class InfoSystemController : BaseController
     {
         #region # 字段及构造器
