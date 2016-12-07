@@ -1,14 +1,12 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
-using SD.IdentitySystem.Presentation.Maps;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.MVC;
+using System;
+using System.Collections.Generic;
+using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -80,7 +78,7 @@ namespace SD.IdentitySystem.Website.Controllers
 
         //查询部分
 
-        #region # 分页获取权限列表 —— JsonResult GetAuthorities(string systemNo, string keywords...
+        #region # 分页获取权限列表 —— JsonResult GetAuthorities(string systemNo...
         /// <summary>
         /// 分页获取权限列表
         /// </summary>
@@ -107,13 +105,9 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <returns>权限列表</returns>
         public JsonResult GetAuthorityTree(string id)
         {
-            string systemNo = id;
+            Node node = this._authorityPresenter.GetAuthorityTree(id);
 
-            InfoSystemView system = this._systemPresenter.GetInfoSystem(systemNo);
-
-            IEnumerable<AuthorityView> authorities = this._authorityPresenter.GetAuthoritiesByPage(systemNo, null, 1, int.MaxValue).Datas;
-
-            IEnumerable<Node> tree = new[] { system.ToNode(authorities) };
+            IEnumerable<Node> tree = new[] { node };
 
             return base.Json(tree, JsonRequestBehavior.AllowGet);
         }
@@ -127,28 +121,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <returns>权限列表</returns>
         public JsonResult GetAuthorityTreeByRole(Guid id)
         {
-            Guid roleId = id;
-
-            //获取当前角色及当前角色的权限集
-            RoleView currentRole = this._rolePresenter.GetRole(roleId);
-            IEnumerable<AuthorityView> roleAuthorities = this._authorityPresenter.GetAuthoritiesByRole(roleId).ToArray();
-
-            //获取当前角色的所属信息系统及信息系统的权限集
-            InfoSystemView system = this._systemPresenter.GetInfoSystem(currentRole.SystemNo);
-            IEnumerable<AuthorityView> authorities = this._authorityPresenter.GetAuthoritiesByPage(currentRole.SystemNo, null, 1, int.MaxValue).Datas;
-
-            //将信息系统的权限集转换成EasyUI树节点
-            Node node = system.ToNode(authorities);
-
-            //遍历子节点集
-            foreach (Node subNode in node.children)
-            {
-                //如果角色中含有该权限，则选中
-                if (roleAuthorities.Any(x => x.Id == subNode.id))
-                {
-                    subNode.@checked = true;
-                }
-            }
+            Node node = this._authorityPresenter.GetAuthorityTreeByRole(id);
 
             IEnumerable<Node> tree = new[] { node };
 
@@ -164,9 +137,11 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <returns>权限列表</returns>
         public JsonResult GetAuthorityTreeByMenu(Guid id)
         {
-            //TODO 实现
+            Node node = this._authorityPresenter.GetAuthorityTreeByMenu(id);
 
-            return base.Json(null, JsonRequestBehavior.AllowGet);
+            IEnumerable<Node> tree = new[] { node };
+
+            return base.Json(tree, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

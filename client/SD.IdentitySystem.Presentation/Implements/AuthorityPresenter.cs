@@ -1,12 +1,13 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using ShSoft.Infrastructure.DTOBase;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SD.IdentitySystem.Presentation.Implements
 {
@@ -49,6 +50,22 @@ namespace SD.IdentitySystem.Presentation.Implements
             IEnumerable<AuthorityView> authorityViews = pageModel.Datas.Select(x => x.ToViewModel());
 
             return new PageModel<AuthorityView>(authorityViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+        }
+        #endregion
+
+        #region # 根据信息系统获取权限列表 —— IEnumerable<AuthorityView> GetAuthoritiesBySystem(...
+        /// <summary>
+        /// 根据信息系统获取权限列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>权限列表</returns>
+        public IEnumerable<AuthorityView> GetAuthoritiesBySystem(string systemNo)
+        {
+            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(systemNo, null, 1, int.MaxValue);
+
+            IEnumerable<AuthorityView> authorities = pageModel.Datas.Select(x => x.ToViewModel());
+
+            return authorities;
         }
         #endregion
 
@@ -95,6 +112,82 @@ namespace SD.IdentitySystem.Presentation.Implements
             AuthorityInfo authorityInfo = this._authorizationContract.GetAuthority(authorityId);
 
             return authorityInfo.ToViewModel();
+        }
+        #endregion
+
+        #region # 获取信息系统的权限树 —— Node GetAuthorityTree(string systemNo)
+        /// <summary>
+        /// 获取信息系统的权限树
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>权限树</returns>
+        public Node GetAuthorityTree(string systemNo)
+        {
+            InfoSystemInfo system = this._authorizationContract.GetInfoSystem(systemNo);
+
+            IEnumerable<AuthorityView> authorities = this.GetAuthoritiesBySystem(systemNo);
+
+            Node node = system.ToViewModel().ToNode(authorities);
+
+            return node;
+        }
+        #endregion
+
+        #region # 获取角色的权限树 —— Node GetAuthorityTreeByRole(Guid roleId)
+        /// <summary>
+        /// 获取角色的权限树
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>权限树</returns>
+        public Node GetAuthorityTreeByRole(Guid roleId)
+        {
+            //获取当前角色及其权限集
+            RoleInfo currentRole = this._authorizationContract.GetRole(roleId);
+            IEnumerable<AuthorityView> roleAuthorities = this.GetAuthoritiesByRole(roleId).ToArray();
+
+            //获取角色所在信息系统的权限树
+            Node authroityTree = this.GetAuthorityTree(currentRole.SystemNo);
+
+            //遍历子节点集（权限集）
+            foreach (Node node in authroityTree.children)
+            {
+                //如果角色中含有该权限，则选中
+                if (roleAuthorities.Any(x => x.Id == node.id))
+                {
+                    node.@checked = true;
+                }
+            }
+
+            return authroityTree;
+        }
+        #endregion
+
+        #region # 获取菜单的权限树 —— Node GetAuthorityTreeByMenu(Guid menuId)
+        /// <summary>
+        /// 获取菜单的权限树
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>权限树</returns>
+        public Node GetAuthorityTreeByMenu(Guid menuId)
+        {
+            //获取当前菜单及其权限集
+            MenuInfo currentMenu = this._authorizationContract.GetMenu(menuId);
+            IEnumerable<AuthorityView> menuAuthorities = this.GetAuthoritiesByMenu(menuId).ToArray();
+
+            //获取菜单所在信息系统的权限树 TODO 修改服务DTO，增加SystemNo属性
+            Node authroityTree = this.GetAuthorityTree(currentMenu.InfoSystemInfo.Number);
+
+            //遍历子节点集（权限集）
+            foreach (Node node in authroityTree.children)
+            {
+                //如果菜单中含有该权限，则选中
+                if (menuAuthorities.Any(x => x.Id == node.id))
+                {
+                    node.@checked = true;
+                }
+            }
+
+            return authroityTree;
         }
         #endregion
     }
