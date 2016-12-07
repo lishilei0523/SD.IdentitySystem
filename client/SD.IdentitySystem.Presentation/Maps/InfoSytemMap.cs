@@ -54,5 +54,33 @@ namespace SD.IdentitySystem.Presentation.Maps
             return systemNode;
         }
         #endregion
+
+        #region # 信息系统/角色EasyUI树节点映射 —— static Node ToNode(this InfoSystemView systemView...
+        /// <summary>
+        /// 信息系统/角色EasyUI树节点映射
+        /// </summary>
+        /// <param name="systemView">信息系统视图模型</param>
+        /// <param name="roles">角色列表</param>
+        /// <returns>EasyUI树节点</returns>
+        public static Node ToNode(this InfoSystemView systemView, IEnumerable<RoleView> roles)
+        {
+            var attributes = new
+            {
+                type = "infoSystem"
+            };
+
+            Node systemNode = new Node(systemView.Id, systemView.Name, "open", false, attributes);
+
+            foreach (RoleView role in roles)
+            {
+                if (role.SystemNo == systemView.Number)
+                {
+                    systemNode.children.Add(role.ToNode());
+                }
+            }
+
+            return systemNode;
+        }
+        #endregion
     }
 }

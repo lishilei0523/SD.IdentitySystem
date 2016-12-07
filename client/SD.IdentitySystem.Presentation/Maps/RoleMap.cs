@@ -1,4 +1,5 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Common.PoweredByLee;
 
@@ -23,6 +24,23 @@ namespace SD.IdentitySystem.Presentation.Maps
             roleView.SystemName = roleInfo.InfoSystemInfo.Name;
 
             return roleView;
+        }
+        #endregion
+
+        #region # 角色EasyUI树节点映射 —— static Node ToNode(this RoleView role)
+        /// <summary>
+        /// 角色EasyUI树节点映射
+        /// </summary>
+        /// <param name="role">角色视图模型</param>
+        /// <returns>EasyUI树节点</returns>
+        public static Node ToNode(this RoleView role)
+        {
+            var attributes = new
+            {
+                type = "role"
+            };
+
+            return new Node(role.Id, role.Name, "open", false, attributes);
         }
         #endregion
     }
