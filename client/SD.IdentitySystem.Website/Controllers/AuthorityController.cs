@@ -28,11 +28,6 @@ namespace SD.IdentitySystem.Website.Controllers
         private readonly IAuthorityPresenter _authorityPresenter;
 
         /// <summary>
-        /// 角色呈现器接口
-        /// </summary>
-        private readonly IRolePresenter _rolePresenter;
-
-        /// <summary>
         /// 权限服务接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
@@ -43,13 +38,11 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="systemPresenter">信息系统呈现器接口</param>
         /// <param name="authorityPresenter">权限呈现器接口</param>
         /// <param name="authorizationContract">权限服务接口</param>
-        /// <param name="rolePresenter">角色呈现器接口</param>
-        public AuthorityController(IInfoSystemPresenter systemPresenter, IAuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract, IRolePresenter rolePresenter)
+        public AuthorityController(IInfoSystemPresenter systemPresenter, IAuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract)
         {
             this._systemPresenter = systemPresenter;
             this._authorityPresenter = authorityPresenter;
             this._authorizationContract = authorizationContract;
-            this._rolePresenter = rolePresenter;
         }
 
         #endregion
