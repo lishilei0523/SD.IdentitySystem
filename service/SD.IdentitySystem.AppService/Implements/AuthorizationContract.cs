@@ -1,6 +1,8 @@
-﻿using SD.IdentitySystem.AppService.Maps;
+﻿using SD.CacheManager;
+using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
+using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
@@ -8,13 +10,11 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.Global.Transaction;
+using ShSoft.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using SD.CacheManager;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using ShSoft.ValueObjects;
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -281,15 +281,16 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleName">角色名称</param>
+        /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         /// <returns>角色Id</returns>
-        public Guid CreateRole(string systemNo, string roleName, IEnumerable<Guid> authorityIds)
+        public Guid CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
             //验证
             Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo));
 
             //创建角色
-            Role role = new Role(roleName, systemNo, roleName);
+            Role role = new Role(roleName, systemNo, description);
 
             //分配权限
             IEnumerable<Authority> authorities = authorityIds.Select(authorityId => this._unitOfWork.Resolve<Authority>(authorityId));
@@ -344,8 +345,9 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
+        /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
-        public void UpdateRole(Guid roleId, string roleName, IEnumerable<Guid> authorityIds)
+        public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
             Role role = this._unitOfWork.Resolve<Role>(roleId);
 

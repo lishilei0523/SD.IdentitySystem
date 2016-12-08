@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ServiceModel;
-using SD.IdentitySystem.IAppService.DTOs.Inputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using ShSoft.Infrastructure;
 using ShSoft.Infrastructure.DTOBase;
+using System;
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace SD.IdentitySystem.IAppService.Interfaces
 {
@@ -134,10 +134,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleName">角色名称</param>
+        /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         /// <returns>角色Id</returns>
         [OperationContract]
-        Guid CreateRole(string systemNo, string roleName, IEnumerable<Guid> authorityIds);
+        Guid CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds);
         #endregion
 
         #region # 为角色分配权限 —— void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
@@ -166,9 +167,10 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
+        /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [OperationContract]
-        void UpdateRole(Guid roleId, string roleName, IEnumerable<Guid> authorityIds);
+        void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds);
         #endregion
 
         #region # 删除角色 —— void RemoveRole(Guid roleId)
