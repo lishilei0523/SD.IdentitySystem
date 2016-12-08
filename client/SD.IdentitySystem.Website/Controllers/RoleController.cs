@@ -120,7 +120,7 @@ namespace SD.IdentitySystem.Website.Controllers
         {
             authorityIds = authorityIds ?? new Guid[0];
 
-            this._authorizationContract.CreateRole(systemNo, roleName, authorityIds);
+            this._authorizationContract.CreateRole(systemNo, roleName, description, authorityIds);
         }
         #endregion
 
@@ -137,7 +137,7 @@ namespace SD.IdentitySystem.Website.Controllers
         {
             authorityIds = authorityIds ?? new Guid[0];
 
-            this._authorizationContract.UpdateRole(roleId, roleName, authorityIds);
+            this._authorizationContract.UpdateRole(roleId, roleName, description, authorityIds);
         }
         #endregion
 
