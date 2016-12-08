@@ -302,6 +302,19 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         #endregion
 
 
+        #region # 分页获取菜单列表 —— PageModel<MenuInfo> GetMenusByPage(string keywords...
+        /// <summary>
+        /// 分页获取菜单列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>菜单列表</returns>
+        [OperationContract]
+        PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize);
+        #endregion
+
         #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo)
         /// <summary>
         /// 获取菜单列表

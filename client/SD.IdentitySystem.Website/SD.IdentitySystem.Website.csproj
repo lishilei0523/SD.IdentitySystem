@@ -55,7 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.6\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.7\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -591,7 +591,6 @@
     <Content Include="Views\Shared\_Layout.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\User\Index.cshtml" />
     <Content Include="Views\User\Add.cshtml" />
     <Content Include="Views\User\ResetPassword.cshtml" />
@@ -600,6 +599,7 @@
     <Content Include="Views\Role\Update.cshtml" />
     <Content Include="Views\Authority\Index.cshtml" />
     <Content Include="Views\InfoSystem\Index.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

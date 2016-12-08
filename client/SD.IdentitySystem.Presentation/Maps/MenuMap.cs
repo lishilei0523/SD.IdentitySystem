@@ -92,5 +92,49 @@ namespace SD.IdentitySystem.Presentation.Maps
             return tree;
         }
         #endregion
+
+        #region # 菜单EasyUI TreeGrid映射 —— static IEnumerable<MenuView> ToTreeGrid(this...
+        /// <summary>
+        /// 菜单EasyUI TreeGrid映射
+        /// </summary>
+        /// <param name="menus">菜单视图模型集</param>
+        /// <returns>TreeGrid</returns>
+        public static IEnumerable<MenuView> ToTreeGrid(this IEnumerable<MenuView> menus)
+        {
+            IList<MenuView> allMenus = menus == null ? new List<MenuView>() : menus.ToList();
+
+            foreach (MenuView menu in allMenus)
+            {
+                menu.FillChildren(allMenus);
+            }
+
+            return allMenus.Where(x => x.IsRoot);
+        }
+        #endregion
+
+
+        //Private
+
+        #region # 填充子节点 —— static void FillChildren(this MenuView menu...
+        /// <summary>
+        /// 填充子节点
+        /// </summary>
+        /// <param name="menu">菜单视图模型</param>
+        /// <param name="menus">菜单视图模型集</param>
+        private static void FillChildren(this MenuView menu, ICollection<MenuView> menus)
+        {
+            foreach (MenuView menuView in menus)
+            {
+                if (menuView.Parent != null && menuView.Parent.Id == menu.Id)
+                {
+                    menu.children.Add(menuView);
+                    menu.type = menu.IsLeaf ? "pack" : "folder";
+                    menuView.Parent = null;
+
+                    FillChildren(menuView, menus);
+                }
+            }
+        }
+        #endregion
     }
 }

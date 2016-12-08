@@ -574,6 +574,30 @@ namespace SD.IdentitySystem.AppService.Implements
         #endregion
 
 
+        #region # 分页获取菜单列表 —— PageModel<MenuInfo> GetMenusByPage(string keywords...
+        /// <summary>
+        /// 分页获取菜单列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>菜单列表</returns>
+        public PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        {
+            int rowCount, pageCount;
+
+            IEnumerable<Menu> specMenus = this._repMediator.MenuRep.FindByPage(keywords, pageIndex, pageSize, out rowCount, out pageCount);
+
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            IEnumerable<MenuInfo> specMenuInfos = specMenus.Select(x => x.ToDTO(systemInfos));
+
+            return new PageModel<MenuInfo>(specMenuInfos, pageIndex, pageSize, pageCount, rowCount);
+        }
+        #endregion
+
         #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo)
         /// <summary>
         /// 获取菜单列表

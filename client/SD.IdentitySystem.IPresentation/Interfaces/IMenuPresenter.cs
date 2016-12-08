@@ -3,6 +3,7 @@ using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Infrastructure.MVC;
 using System;
 using System.Collections.Generic;
+using ShSoft.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.IPresentation.Interfaces
 {
@@ -11,6 +12,18 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IMenuPresenter : IPresenter
     {
+        #region # 分页获取菜单列表 —— PageModel<MenuView> GetMenusByPage(string keywords...
+        /// <summary>
+        /// 分页获取菜单列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>菜单列表</returns>
+        PageModel<MenuView> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize);
+        #endregion
+
         #region # 获取菜单列表 —— IEnumerable<MenuView> GetMenus(string systemNo)
         /// <summary>
         /// 获取菜单列表
@@ -36,6 +49,15 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// <param name="menuId">菜单Id</param>
         /// <returns>菜单</returns>
         MenuView GetMenu(Guid menuId);
+        #endregion
+
+        #region # 获取菜单TreeGrid —— IEnumerable<MenuView> GetMenuTreeGrid(string systemNo)
+        /// <summary>
+        /// 获取菜单TreeGrid
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>菜单TreeGrid</returns>
+        IEnumerable<MenuView> GetMenuTreeGrid(string systemNo);
         #endregion
     }
 }

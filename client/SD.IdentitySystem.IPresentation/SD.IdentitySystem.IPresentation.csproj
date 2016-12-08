@@ -84,6 +84,7 @@
     <Compile Include="Interfaces\IUserPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ViewModels\Formats\EasyUI\Grid.cs" />
+    <Compile Include="ViewModels\Formats\EasyUI\ITreeGrid.cs" />
     <Compile Include="ViewModels\Formats\EasyUI\Node.cs" />
     <Compile Include="ViewModels\Outputs\AuthorityView.cs" />
     <Compile Include="ViewModels\Outputs\InfoSystemView.cs" />

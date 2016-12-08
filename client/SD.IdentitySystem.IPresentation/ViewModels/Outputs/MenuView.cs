@@ -1,12 +1,24 @@
-﻿using ShSoft.Infrastructure.MVC;
+﻿using System.Collections.Generic;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+using ShSoft.Infrastructure.MVC;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
 {
     /// <summary>
     /// 菜单视图模型
     /// </summary>
-    public class MenuView : ViewModel
+    public class MenuView : ViewModel, ITreeGrid<MenuView>
     {
+        #region 构造器
+        /// <summary>
+        /// 构造器
+        /// </summary>
+        public MenuView()
+        {
+            this.children = new HashSet<MenuView>();
+        }
+        #endregion
+
         #region 链接地址 —— string Url
         /// <summary>
         /// 链接地址
@@ -53,11 +65,25 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
         public string SystemName { get; set; }
         #endregion
 
+        #region 类型 —— string type
+        /// <summary>
+        /// 类型
+        /// </summary>
+        public string type { get; set; }
+        #endregion
+
         #region 导航属性 - 父级菜单 —— MenuView Parent
         /// <summary>
         /// 导航属性 - 父级菜单
         /// </summary>
         public MenuView Parent { get; set; }
+        #endregion
+
+        #region 导航属性 - 子级菜单集 —— ICollection<MenuView> children
+        /// <summary>
+        /// 导航属性 - 子级菜单集
+        /// </summary>
+        public ICollection<MenuView> children { get; set; }
         #endregion
     }
 }
