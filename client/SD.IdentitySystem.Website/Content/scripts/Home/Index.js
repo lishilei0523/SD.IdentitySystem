@@ -94,6 +94,26 @@ $(function () {
         //刷新表格
         $ifram[0].contentWindow.$tbGrid.datagrid("reload");
     };
+
+    //新增或修改成功后，可通过此方法更新tab里的TreeGrid组件
+    topHelper.updateTreeGridInTab = function () {
+        //1.获取后台首页的tab容器
+        var $tabBox = $("#tabs");
+
+        //2.获取选中的tab
+        var $curTab = $tabBox.tabs("getSelected");
+
+        //3.从选中的tab中获取iframe，并以jq对象返回
+        var $ifram = $("iframe", $curTab);
+
+        //4.从jq对象中获取iframe，并通过contentWindow对象操作iframe里的window的全局变量$treeGrid
+
+        //清除选中
+        $ifram[0].contentWindow.$treeGrid.treegrid("clearSelections");
+
+        //刷新表格
+        $ifram[0].contentWindow.$treeGrid.treegrid("reload");
+    };
 });
 
 //注销

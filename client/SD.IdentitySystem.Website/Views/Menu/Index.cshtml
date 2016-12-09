@@ -5,55 +5,8 @@
 }
 
 @section header{
-    <style type="text/css">
-        .main {
-            width: 100%;
-            height: 100%;
-            position: absolute;
-        }
-
-        .gridDiv {
-            width: 100%;
-            height: 90%;
-        }
-
-        .datagrid-header-rownumber, .datagrid-cell-rownumber {
-            padding: 5px;
-        }
-
-        .datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber, .datagrid-cell-rownumber {
-            padding: 5px;
-        }
-    </style>
-    <script type="text/javascript">
-        $(function () {
-            $("#tbGrid").treegrid({
-                method: "get",
-                url: "/Menu/GetMenuTreeGrid",
-                title: null,
-                fit: true,
-                singleSelect: false,
-                animate: true,
-                idField: "Id",
-                treeField: 'Name',
-                loadMsg: "正在加载...",
-                rownumbers: true,
-                //工具栏元素Id
-                toolbarId: "#toolbar",
-                checkbox: function (row) {
-                    return row.IsLeaf === true;
-                },
-                columns: [
-                    [
-                        { field: "Id", title: "Id", hidden: true },
-                        { field: "Name", title: "菜单名称", halign: "center", width: 200 },
-                        { field: "Url", title: "链接地址", halign: "center", width: 200 },
-                        { field: "SystemName", title: "所属信息系统", halign: "center", width: 150 }
-                    ]
-                ]
-            });
-        });
-    </script>
+    <link type="text/css" href="~/Content/css/Common/TreeGrid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/scripts/Menu/Index.js"></script>
 }
 
 <div class="main">
@@ -61,8 +14,8 @@
     <div id="toolbar" class="datagrid-toolbar" style="padding: 5px; height: auto">
         @*按钮区*@
         <div style="margin-bottom: 5px">
-            <a href="#" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="createUser();">新增</a>
-            <a href="#" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="removeUsers();">删除</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="createMenu();">新增</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="removeMenus();">删除</a>
         </div>
 
         @*表单区*@
@@ -70,22 +23,22 @@
             <form id="frmQueries">
                 信息系统：
                 <select class="easyui-combobox" id="slSystem" name="systemNo" data-options="editable:false" style="width: 150px">
-                    <option value="" selected="selected">请选择</option>
+                    <option value="" selected="selected">全部</option>
                     @foreach (InfoSystemView system in ViewBag.InfoSystems)
                     {
                         <option value="@system.Number">@system.Name</option>
                     }
                 </select>
-
-                关键字：<input class="easyui-textbox" type="text" id="txtKeywords" name="keywords" />
-
-                <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchUsers();">搜索</a>
+                <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchMenus();">搜索</a>
             </form>
         </div>
     </div>
 
     @*列表*@
     <div id="dvGrid" class="gridDiv">
-        <table id="tbGrid"></table>
+        <table id="treeGrid"></table>
     </div>
+
+    @*底部*@
+    <div id="footer" style="padding: 5px;">&nbsp;</div>
 </div>

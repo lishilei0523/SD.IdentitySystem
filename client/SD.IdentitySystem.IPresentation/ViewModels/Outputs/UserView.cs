@@ -1,5 +1,4 @@
 ﻿using ShSoft.Infrastructure.MVC;
-using System;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
 {
@@ -13,13 +12,6 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
         /// 是否启用
         /// </summary>
         public bool Enabled { get; set; }
-        #endregion
-
-        #region 创建时间 —— DateTime AddedTime
-        /// <summary>
-        /// 创建时间
-        /// </summary>
-        public DateTime AddedTime { get; set; }
         #endregion
     }
 }

@@ -8,6 +8,12 @@
                 window.top.topHelper.updateGridInTab();
             },
 
+            //更新tab里的TreeGrid组件
+            updateTreeGridInTab: function () {
+                //清除选中，刷新表格TreeGrid
+                window.top.topHelper.updateTreeGridInTab();
+            },
+
             //代理方法：调用后台主页面的topHelper.showWindow方法
             showWindow: function (title, url, width, height, resizable) {
                 window.top.topHelper.showWindow(title, url, width, height, resizable);
@@ -47,6 +53,32 @@
                 toolbar: [],
                 //工具栏元素Id
                 toolbarId: null,
+                init: function (url, columns, idFiled) {
+                    this.url = url;
+                    this.columns = columns;
+                    this.idField = idFiled;
+                }
+            },
+            //EasyUI TreeGrid组件属性设置
+            treegrid: {
+                url: null,
+                title: null,
+                columns: null,
+                fitColumns: false,
+                fit: true,
+                idField: "Id",
+                treeField: 'Name',
+                loadMsg: "正在加载...",
+                singleSelect: true,
+                rownumbers: true,
+                queryParams: null,
+                onLoadSuccess: null,
+                //工具栏
+                toolbar: [],
+                //工具栏元素Id
+                toolbarId: null,
+                checkbox: null,
+                footer: null,
                 init: function (url, columns, idFiled) {
                     this.url = url;
                     this.columns = columns;
