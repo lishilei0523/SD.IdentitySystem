@@ -145,7 +145,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure.Repository.EntityFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.Repository.EntityFramework.1.0.2\lib\net45\ShSoft.Infrastructure.Repository.EntityFramework.dll</HintPath>
+      <HintPath>..\..\packages\ShSoft.Infrastructure.Repository.EntityFramework.1.0.3\lib\net45\ShSoft.Infrastructure.Repository.EntityFramework.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure.Repository.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
