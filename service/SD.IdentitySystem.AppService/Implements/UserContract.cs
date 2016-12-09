@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
-using SD.CacheManager;
+﻿using SD.CacheManager;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
@@ -14,6 +10,10 @@ using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.Global.Transaction;
 using ShSoft.ValueObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.ServiceModel;
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -68,7 +68,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public void CreateUser(string loginId, string realName, string password)
         {
             //验证参数
-            Assert.IsFalse(this.ExistsUser(loginId), "登录名\"{0}\"已存在，请重试！");
+            Assert.IsFalse(this.ExistsUser(loginId), string.Format("登录名\"{0}\"已存在，请重试！", loginId));
 
             User user = new User(loginId, realName, password);
 
