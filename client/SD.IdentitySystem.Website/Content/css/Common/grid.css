@@ -12,3 +12,13 @@
 .datagrid-body table td, .datagrid-header-inner table td {
     padding: 5px;
 }
+
+.aLink {
+    text-decoration: none;
+    color: #0094ff;
+}
+
+    .aLink:hover {
+        color: #ffffff;
+        background-color: #0094ff;
+    }
