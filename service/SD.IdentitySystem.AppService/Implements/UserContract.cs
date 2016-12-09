@@ -320,7 +320,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户菜单树</returns>
         public IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo)
         {
-            IEnumerable<Menu> menus = this._repMediator.UserRoleRep.GetMenus(loginId, systemNo);
+            IEnumerable<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, systemNo);
+            IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
+
+            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -338,7 +341,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>角色列表</returns>
         public IEnumerable<RoleInfo> GetRoles(string loginId, string systemNo)
         {
-            IEnumerable<Role> roles = this._repMediator.UserRoleRep.GetRoles(loginId, systemNo);
+            IEnumerable<Role> roles = this._repMediator.RoleRep.Find(loginId, systemNo);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -356,7 +359,8 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>权限列表</returns>
         public IEnumerable<AuthorityInfo> GetAuthorities(string loginId, string systemNo)
         {
-            IEnumerable<Authority> authorities = this._repMediator.UserRoleRep.GetAuthorities(loginId, systemNo);
+            IEnumerable<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, systemNo);
+            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());

@@ -49,6 +49,22 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
+        #region # 根据角色获取权限列表 —— IEnumerable<Authority> FindByRole(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 根据角色获取权限列表
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>权限列表</returns>
+        public IEnumerable<Authority> FindByRole(IEnumerable<Guid> roleIds)
+        {
+            Expression<Func<Authority, bool>> condition =
+                x =>
+                    x.Roles.Any(y => roleIds.Contains(y.Id));
+
+            return base.Find(condition).AsEnumerable();
+        }
+        #endregion
+
         #region # 根据角色获取权限Id列表 —— IEnumerable<Authority> FindIdsByRole(...
         /// <summary>
         /// 根据角色获取权限Id列表
@@ -58,6 +74,22 @@ namespace SD.IdentitySystem.Repository.Implements
         public IEnumerable<Guid> FindIdsByRole(Guid roleId)
         {
             return base.Find(x => x.Roles.Any(y => y.Id == roleId)).Select(x => x.Id).AsEnumerable();
+        }
+        #endregion
+
+        #region # 根据角色获取权限Id列表 —— IEnumerable<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 根据角色获取权限Id列表
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>权限Id列表</returns>
+        public IEnumerable<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
+        {
+            Expression<Func<Authority, bool>> condition =
+                x =>
+                    x.Roles.Any(y => roleIds.Contains(y.Id));
+
+            return base.Find(condition).Select(x => x.Id).AsEnumerable();
         }
         #endregion
 

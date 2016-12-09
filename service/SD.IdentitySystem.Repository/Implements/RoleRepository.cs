@@ -48,6 +48,42 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
+        #region # 获取角色列表 —— IEnumerable<Role> GetRoles(string loginId, string systemNo)
+        /// <summary>
+        /// 获取角色列表
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>角色列表</returns>
+        public IEnumerable<Role> Find(string loginId, string systemNo)
+        {
+            Expression<Func<Role, bool>> condition =
+                x =>
+                    x.Users.Any(y => y.Number == loginId) &&
+                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo);
+
+            return this.Find(condition).AsEnumerable();
+        }
+        #endregion
+
+        #region # 获取角色Id列表 —— IEnumerable<Guid> FindIds(string loginId, string systemNo)
+        /// <summary>
+        /// 获取角色Id列表
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>角色Id列表</returns>
+        public IEnumerable<Guid> FindIds(string loginId, string systemNo)
+        {
+            Expression<Func<Role, bool>> condition =
+                x =>
+                    x.Users.Any(y => y.Number == loginId) &&
+                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo);
+
+            return this.Find(condition).Select(x => x.Id).AsEnumerable();
+        }
+        #endregion
+
         #region # 获取系统管理员角色 —— Role GetManagerRole(string systemNo)
         /// <summary>
         /// 获取系统管理员角色

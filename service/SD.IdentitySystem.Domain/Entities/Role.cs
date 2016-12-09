@@ -1,8 +1,8 @@
-﻿using System;
+﻿using ShSoft.Common.PoweredByLee;
+using ShSoft.Infrastructure.EntityBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using ShSoft.Common.PoweredByLee;
-using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -20,7 +20,7 @@ namespace SD.IdentitySystem.Domain.Entities
         protected Role()
         {
             //初始化导航属性
-            this.UserRoles = new HashSet<UserRole>();
+            this.Users = new HashSet<User>();
             this.Authorities = new HashSet<Authority>();
         }
         #endregion
@@ -67,11 +67,11 @@ namespace SD.IdentitySystem.Domain.Entities
         public string Description { get; private set; }
         #endregion
 
-        #region 导航属性 - 用户角色集 —— ICollection<UserRole> UserRoles
+        #region 导航属性 - 用户集 —— ICollection<User> Users
         /// <summary>
-        /// 导航属性 - 用户角色集
+        /// 导航属性 - 用户集
         /// </summary>
-        public virtual ICollection<UserRole> UserRoles { get; private set; }
+        public virtual ICollection<User> Users { get; private set; }
         #endregion
 
         #region 导航属性 - 权限集 —— ICollection<Authority> Authorities
@@ -175,13 +175,10 @@ namespace SD.IdentitySystem.Domain.Entities
         /// </summary>
         public void ClearRelation()
         {
-            foreach (UserRole userRole in this.UserRoles.ToArray())
+            foreach (User user in this.Users.ToArray())
             {
-                this.UserRoles.Remove(userRole);
-                userRole.User.UserRoles.Remove(userRole);
-                userRole.User = null;
-                userRole.Role = null;
-                userRole.SystemNo = null;
+                this.Users.Remove(user);
+                user.Roles.Remove(this);
             }
         }
         #endregion

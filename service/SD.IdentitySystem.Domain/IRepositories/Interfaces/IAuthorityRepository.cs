@@ -37,6 +37,24 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         IEnumerable<Authority> FindByRole(Guid roleId);
         #endregion
 
+        #region # 根据角色获取权限列表 —— IEnumerable<Authority> FindByRole(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 根据角色获取权限列表
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>权限列表</returns>
+        IEnumerable<Authority> FindByRole(IEnumerable<Guid> roleIds);
+        #endregion
+
+        #region # 根据角色获取权限Id列表 —— IEnumerable<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 根据角色获取权限Id列表
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>权限Id列表</returns>
+        IEnumerable<Guid> FindIdsByRole(IEnumerable<Guid> roleIds);
+        #endregion
+
         #region # 根据角色获取权限Id列表 —— IEnumerable<Authority> FindIdsByRole(...
         /// <summary>
         /// 根据角色获取权限Id列表

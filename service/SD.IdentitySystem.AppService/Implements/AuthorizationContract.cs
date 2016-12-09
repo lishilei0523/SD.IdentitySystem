@@ -10,7 +10,6 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.Global.Transaction;
-using ShSoft.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -71,11 +70,8 @@ namespace SD.IdentitySystem.AppService.Implements
             Assert.IsFalse(this._repMediator.UserRep.Exists(adminLoginId), string.Format("登录名：\"{0}\"已存在，请重试！", adminLoginId));
 
             InfoSystem infoSystem = new InfoSystem(systemNo, systemName, adminLoginId);
-            string adminName = string.Format("{0}管理员", infoSystem.Name);
-            User admin = new User(adminLoginId, adminName, Constants.InitialPassword);
 
             this._unitOfWork.RegisterAdd(infoSystem);
-            this._unitOfWork.RegisterAdd(admin);
             this._unitOfWork.UnitedCommit();
 
             //清除缓存
@@ -373,7 +369,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
 
-            if (currentRole.UserRoles.Any())
+            if (currentRole.Users.Any())
             {
                 throw new InvalidOperationException(string.Format("角色\"{0}\"已被用户使用，不可删除！", currentRole.Name));
             }
@@ -425,7 +421,9 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>信息系统列表</returns>
         public IEnumerable<InfoSystemInfo> GetInfoSystemsByUser(string loginId)
         {
-            IEnumerable<string> systemNos = this._repMediator.UserRoleRep.GetInfoSystemNos(loginId);
+            User currentUser = this._repMediator.UserRep.Single(loginId);
+
+            IEnumerable<string> systemNos = currentUser.GetInfoSystemNos();
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
 
             return systems.Values.Select(x => x.ToDTO());

@@ -1,15 +1,15 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
-using System.Linq;
-using System.Linq.Expressions;
-using SD.CacheManager;
+﻿using SD.CacheManager;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.Toolkits.EntityFramework.Extensions;
 using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.Constants;
 using ShSoft.Infrastructure.Repository.EntityFramework;
+using System;
+using System.Collections.Generic;
+using System.Data;
+using System.Linq;
+using System.Linq.Expressions;
 
 namespace SD.IdentitySystem.Repository.Implements
 {
@@ -33,7 +33,7 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             Expression<Func<User, bool>> condition =
                 x =>
-                    (string.IsNullOrEmpty(systemNo) || x.UserRoles.Any(y => y.SystemNo == systemNo)) &&
+                    (string.IsNullOrEmpty(systemNo) || x.Roles.Any(y => y.SystemNo == systemNo)) &&
                     (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
 
             return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();

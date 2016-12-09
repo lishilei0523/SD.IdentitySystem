@@ -172,10 +172,10 @@
     <Compile Include="Base\DataInitializer.cs" />
     <Compile Include="Base\DbSession.cs" />
     <Compile Include="Base\UnitOfWork.cs" />
+    <Compile Include="EntityConfigurations\UserConfig.cs" />
     <Compile Include="EntityConfigurations\RoleConfig.cs" />
     <Compile Include="EntityConfigurations\MenuConfig.cs" />
     <Compile Include="Implements\AuthorityRepository.cs" />
-    <Compile Include="Implements\UserRoleRepository.cs" />
     <Compile Include="Implements\LoginRecordRepository.cs" />
     <Compile Include="Implements\MenuRepository.cs" />
     <Compile Include="Implements\InfoSystemRepository.cs" />

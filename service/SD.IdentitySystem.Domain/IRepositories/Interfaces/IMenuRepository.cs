@@ -42,5 +42,14 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <returns>菜单名称是否存在</returns>
         bool Exists(Guid? parentId, string menuName);
         #endregion
+
+        #region # 根据权限获取菜单列表 —— IEnumerable<Menu> FindByAuthority(IEnumerable<Guid>...
+        /// <summary>
+        /// 根据权限获取菜单列表
+        /// </summary>
+        /// <param name="authorityIds">权限Id集</param>
+        /// <returns>菜单列表</returns>
+        IEnumerable<Menu> FindByAuthority(IEnumerable<Guid> authorityIds);
+        #endregion
     }
 }

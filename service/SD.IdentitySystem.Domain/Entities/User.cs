@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using ShSoft.Common.PoweredByLee;
+﻿using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.EntityBase;
 using ShSoft.ValueObjects;
+using System;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -21,7 +21,7 @@ namespace SD.IdentitySystem.Domain.Entities
         protected User()
         {
             //初始化导航属性
-            this.UserRoles = new HashSet<UserRole>();
+            this.Roles = new HashSet<Role>();
 
             //默认值
             this.Enabled = true;
@@ -82,11 +82,11 @@ namespace SD.IdentitySystem.Domain.Entities
         public bool Enabled { get; private set; }
         #endregion
 
-        #region 导航属性 - 用户角色集 —— ICollection<UserRole> UserRoles
+        #region 导航属性 - 角色集 —— ICollection<Role> Roles
         /// <summary>
-        /// 导航属性 - 用户角色集
+        /// 导航属性 - 角色集
         /// </summary>
-        public virtual ICollection<UserRole> UserRoles { get; private set; }
+        public virtual ICollection<Role> Roles { get; private set; }
         #endregion
 
         #endregion
@@ -227,7 +227,8 @@ namespace SD.IdentitySystem.Domain.Entities
 
             foreach (Role role in roles)
             {
-                this.UserRoles.Add(new UserRole(systemNo, this, role));
+                this.Roles.Add(role);
+                role.Users.Add(this);
             }
         }
         #endregion
@@ -238,14 +239,22 @@ namespace SD.IdentitySystem.Domain.Entities
         /// </summary>
         public void ClearRelation()
         {
-            foreach (UserRole userRole in this.UserRoles.ToArray())
+            foreach (Role role in this.Roles.ToArray())
             {
-                this.UserRoles.Remove(userRole);
-                userRole.Role.UserRoles.Remove(userRole);
-                userRole.User = null;
-                userRole.Role = null;
-                userRole.SystemNo = null;
+                this.Roles.Remove(role);
+                role.Users.Remove(this);
             }
+        }
+        #endregion
+
+        #region 获取信息系统编号列表 —— IEnumerable<string> GetInfoSystemNos()
+        /// <summary>
+        /// 获取信息系统编号列表
+        /// </summary>
+        /// <returns>信息系统编号列表</returns>
+        public IEnumerable<string> GetInfoSystemNos()
+        {
+            return this.Roles.Select(x => x.SystemNo).Distinct();
         }
         #endregion
 

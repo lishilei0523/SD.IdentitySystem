@@ -1,10 +1,10 @@
-﻿using System;
+﻿using SD.IdentitySystem.Domain.Entities;
+using SD.IdentitySystem.Domain.IRepositories.Interfaces;
+using ShSoft.Infrastructure.Repository.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using SD.IdentitySystem.Domain.Entities;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using ShSoft.Infrastructure.Repository.EntityFramework;
 
 namespace SD.IdentitySystem.Repository.Implements
 {
@@ -61,6 +61,22 @@ namespace SD.IdentitySystem.Repository.Implements
                 return base.Exists(x => x.IsRoot && x.Name == menuName);
             }
             return base.Exists(x => x.ParentNode != null && x.ParentNode.Id == parentId && x.Name == menuName);
+        }
+        #endregion
+
+        #region # 根据权限获取菜单列表 —— IEnumerable<Menu> FindByAuthority(IEnumerable<Guid>...
+        /// <summary>
+        /// 根据权限获取菜单列表
+        /// </summary>
+        /// <param name="authorityIds">权限Id集</param>
+        /// <returns>菜单列表</returns>
+        public IEnumerable<Menu> FindByAuthority(IEnumerable<Guid> authorityIds)
+        {
+            Expression<Func<Menu, bool>> condition =
+                x =>
+                    x.Authorities.Any(y => authorityIds.Contains(y.Id));
+
+            return base.Find(condition).AsEnumerable();
         }
         #endregion
     }
