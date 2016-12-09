@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using SD.Toolkits.Recursion.Tree;
 using ShSoft.Infrastructure.EntityBase;
@@ -37,8 +38,14 @@ namespace SD.IdentitySystem.Domain.Entities
         public Menu(string systemNo, string menuName, int sort, string url, string icon, Menu parentNode)
             : this()
         {
-            //验证参数
-            base.CheckName(menuName);
+            #region # 验证参数
+
+            if (parentNode != null && parentNode.SystemNo != systemNo)
+            {
+                throw new InvalidOperationException("子级菜单的信息系统必须与父级菜单一致！");
+            }
+
+            #endregion
 
             base.Name = menuName;
             base.Sort = sort;

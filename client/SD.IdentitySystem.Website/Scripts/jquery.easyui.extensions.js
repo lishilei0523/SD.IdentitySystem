@@ -37,7 +37,9 @@
                 idField: "Id",
                 loadMsg: "正在加载...",
                 //多选
-                singleSelect: false,
+                singleSelect: true,
+                selectOnCheck: false,
+                checkOnSelect: false,
                 rownumbers: true,
                 //启用分页
                 pagination: true,

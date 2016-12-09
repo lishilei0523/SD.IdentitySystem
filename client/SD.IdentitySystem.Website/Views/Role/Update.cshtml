@@ -5,6 +5,7 @@
 }
 
 @section header{
+    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
     <script type="text/javascript" src="~/Content/scripts/Role/Update.js"></script>
 }
 
@@ -18,7 +19,7 @@
                 <tr>
                     <td class="tdTitle">信息系统：</td>
                     <td class="tdContent">
-                        <input class="easyui-textbox" type="text" value="@Model.SystemName" data-options="editable:false,width:210" />
+                        <input class="easyui-textbox" type="text" value="@Model.SystemName" data-options="readonly:true,width:210" />
                     </td>
                 </tr>
                 <tr>

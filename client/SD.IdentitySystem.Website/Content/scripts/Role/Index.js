@@ -99,20 +99,20 @@ function removeRole(roleId) {
 //删除选中角色
 function removeRoles() {
     //获取所有的选中行
-    var selectedRows = $("#tbGrid").datagrid("getSelections");
+    var checkedRows = $("#tbGrid").datagrid("getChecked");
 
     //判断角色有没有选中
-    if (selectedRows.length > 0) {
+    if (checkedRows.length > 0) {
         $.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
             if (confirm) {
                 //填充角色Id数组
-                var selectedRoleIds = [];
-                for (var i = 0; i < selectedRows.length; i++) {
-                    selectedRoleIds.push(selectedRows[i].Id);
+                var checkedRoleIds = [];
+                for (var i = 0; i < checkedRows.length; i++) {
+                    checkedRoleIds.push(checkedRows[i].Id);
                 }
 
                 //JSON格式转换
-                var params = $.global.appendArray(null, selectedRoleIds, "roleIds");
+                var params = $.global.appendArray(null, checkedRoleIds, "roleIds");
 
                 $.ajax({
                     type: "POST",

@@ -176,11 +176,10 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\css\Common\Form.css" />
     <Content Include="Content\css\Common\Grid.css" />
     <Content Include="Content\css\Common\TreeGrid.css" />
-    <Content Include="Content\css\User\Add.css" />
     <Content Include="Content\css\User\Login.css" />
-    <Content Include="Content\css\User\ResetPassword.css" />
     <Content Include="Content\images\banner-pic.gif" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\login_bottom.jpg" />
@@ -189,7 +188,9 @@
     <Content Include="Content\images\login_top.jpg" />
     <Content Include="Content\images\qzonebg.gif" />
     <Content Include="Content\scripts\Home\Index.js" />
+    <Content Include="Content\scripts\Menu\Add.js" />
     <Content Include="Content\scripts\Menu\Index.js" />
+    <Content Include="Content\scripts\Menu\Update.js" />
     <Content Include="Content\scripts\Role\Update.js" />
     <Content Include="Content\scripts\Role\Add.js" />
     <Content Include="Content\scripts\Role\Index.js" />
@@ -602,6 +603,8 @@
     <Content Include="Views\Authority\Index.cshtml" />
     <Content Include="Views\InfoSystem\Index.cshtml" />
     <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\Add.cshtml" />
+    <Content Include="Views\Menu\Update.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

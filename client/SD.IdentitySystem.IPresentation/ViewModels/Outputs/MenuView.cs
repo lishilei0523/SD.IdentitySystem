@@ -48,6 +48,13 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
         public bool IsLeaf { get; set; }
         #endregion
 
+        #region 排序 —— int Sort
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int Sort { get; set; }
+        #endregion
+
 
         //Others
 

@@ -5,7 +5,7 @@ var topHelper = {};
 $(function () {
     //初始化用户菜单
     $("#menuTree").tree({
-        url: "/Menu/GetMenuTree",
+        url: "/Menu/GetMenuTree/00",
         animate: true,
         lines: true,
         onClick: function (node) {

@@ -76,12 +76,12 @@ function getMenus(queryParams) {
 
 //创建菜单
 function createMenu() {
-    $.easyuiExt.showWindow("创建菜单", "/Menu/Add", 840, 680);
+    $.easyuiExt.showWindow("创建菜单", "/Menu/Add", 480, 468);
 }
 
 //修改菜单
 function updateMenu(menuId) {
-    $.easyuiExt.showWindow("修改菜单", "/Menu/Update/" + menuId, 840, 680);
+    $.easyuiExt.showWindow("修改菜单", "/Menu/Update/" + menuId, 480, 468);
 }
 
 //删除菜单

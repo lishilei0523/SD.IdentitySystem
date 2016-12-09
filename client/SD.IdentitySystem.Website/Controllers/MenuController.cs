@@ -1,14 +1,13 @@
-﻿using SD.IdentitySystem.IPresentation.Interfaces;
+﻿using System;
+using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using ShSoft.Infrastructure.MVC;
 using ShSoft.Infrastructure.MVC.Filters;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
-using SD.IdentitySystem.Presentation.Maps;
-using ShSoft.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -31,14 +30,21 @@ namespace SD.IdentitySystem.Website.Controllers
         private readonly IInfoSystemPresenter _systemPresenter;
 
         /// <summary>
+        /// 权限服务接口
+        /// </summary>
+        private readonly IAuthorizationContract _authorizationContract;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
         /// <param name="menuPresenter">菜单呈现器</param>
         /// <param name="systemPresenter">信息系统呈现器</param>
-        public MenuController(IMenuPresenter menuPresenter, IInfoSystemPresenter systemPresenter)
+        /// <param name="authorizationContract">权限服务接口</param>
+        public MenuController(IMenuPresenter menuPresenter, IInfoSystemPresenter systemPresenter, IAuthorizationContract authorizationContract)
         {
             this._menuPresenter = menuPresenter;
             this._systemPresenter = systemPresenter;
+            this._authorizationContract = authorizationContract;
         }
 
         #endregion
@@ -60,20 +66,86 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
+        #region # 加载创建菜单视图 —— ViewResult Add()
+        /// <summary>
+        /// 加载创建菜单视图
+        /// </summary>
+        /// <returns>创建菜单视图</returns>
+        [HttpGet]
+        public ViewResult Add()
+        {
+            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            base.ViewBag.InfoSystems = systems;
+
+            return base.View();
+        }
+        #endregion
+
+        #region # 加载修改菜单视图 —— ViewResult Update(Guid id)
+        /// <summary>
+        /// 加载修改菜单视图
+        /// </summary>
+        /// <param name="id">菜单Id</param>
+        /// <returns>修改菜单视图</returns>
+        [HttpGet]
+        public ViewResult Update(Guid id)
+        {
+            MenuView currentMenu = this._menuPresenter.GetMenu(id);
+
+            return base.View(currentMenu);
+        }
+        #endregion
+
 
         //命令部分
+
+        #region # 创建菜单 —— void CreateMenu(string systemNo, string menuName...
+        /// <summary>
+        /// 创建菜单
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="menuName">菜单名称</param>
+        /// <param name="sort">排序</param>
+        /// <param name="url">链接地址</param>
+        /// <param name="icon">图标</param>
+        /// <param name="parentId">父级菜单Id</param>
+        [HttpPost]
+        public void CreateMenu(string systemNo, string menuName, int sort, string url, string icon, Guid? parentId)
+        {
+            this._authorizationContract.CreateMenu(systemNo, menuName, sort, url, icon, parentId);
+        }
+        #endregion
+
+        #region # 修改菜单 —— void UpdateMenu(Guid menuId, string menuName...
+        /// <summary>
+        /// 修改菜单
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <param name="menuName">菜单名称</param>
+        /// <param name="sort">排序</param>
+        /// <param name="url">链接地址</param>
+        /// <param name="icon">图标</param>
+        [HttpPost]
+        public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string icon)
+        {
+            this._authorizationContract.UpdateMenu(menuId, menuName, sort, url, icon);
+        }
+        #endregion
 
 
         //查询部分
 
-        #region # 获取菜单树 —— JsonResult GetMenuTree()
+        #region # 获取菜单树 —— JsonResult GetMenuTree(string id)
         /// <summary>
         /// 获取菜单树
         /// </summary>
+        /// <param name="id">信息系统编号</param>
         /// <returns>菜单树</returns>
-        public JsonResult GetMenuTree()
+        public JsonResult GetMenuTree(string id)
         {
-            IEnumerable<Node> menuTree = this._menuPresenter.GetMenuTree("00");
+            string systemNo = id;
+
+            IEnumerable<Node> menuTree = this._menuPresenter.GetMenuTree(systemNo);
 
             return base.Json(menuTree, JsonRequestBehavior.AllowGet);
         }

@@ -89,7 +89,7 @@ function getUsers(queryParams) {
 
 //创建用户
 function createUser() {
-    $.easyuiExt.showWindow("创建用户", "/User/Add", 360, 240);
+    $.easyuiExt.showWindow("创建用户", "/User/Add", 360, 260);
 }
 
 //重置密码
@@ -119,20 +119,20 @@ function removeUser(loginId) {
 //删除选中用户
 function removeUsers() {
     //获取所有的选中行
-    var selectedRows = $("#tbGrid").datagrid("getSelections");
+    var checkedRows = $("#tbGrid").datagrid("getChecked");
 
     //判断用户有没有选中
-    if (selectedRows.length > 0) {
+    if (checkedRows.length > 0) {
         $.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
             if (confirm) {
                 //填充用户登录名数组
-                var selectedLoginIds = [];
-                for (var i = 0; i < selectedRows.length; i++) {
-                    selectedLoginIds.push(selectedRows[i].Number);
+                var checkedLoginIds = [];
+                for (var i = 0; i < checkedRows.length; i++) {
+                    checkedLoginIds.push(checkedRows[i].Number);
                 }
 
                 //JSON格式转换
-                var params = $.global.appendArray(null, selectedLoginIds, "loginIds");
+                var params = $.global.appendArray(null, checkedLoginIds, "loginIds");
 
                 $.ajax({
                     type: "POST",

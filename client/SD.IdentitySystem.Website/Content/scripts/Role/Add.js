@@ -57,7 +57,7 @@ function createRole() {
             $.easyuiExt.closeWindow();
         },
         error: function (error) {
-            $.messager.alert("Error", error.responseText);
+            $.easyuiExt.messager.alert("Error", error.responseText);
         }
     });
 }
