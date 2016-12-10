@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 using SD.Toolkits.Recursion.Tree;
 using ShSoft.Infrastructure.EntityBase;
 
@@ -40,6 +41,10 @@ namespace SD.IdentitySystem.Domain.Entities
         {
             #region # 验证参数
 
+            if (string.IsNullOrWhiteSpace(menuName))
+            {
+                throw new ArgumentNullException("menuName", "菜单名称不可为空！");
+            }
             if (parentNode != null && parentNode.SystemNo != systemNo)
             {
                 throw new InvalidOperationException("子级菜单的信息系统必须与父级菜单一致！");
@@ -54,6 +59,9 @@ namespace SD.IdentitySystem.Domain.Entities
             this.Icon = icon;
             this.ParentNode = parentNode;
             this.IsRoot = parentNode == null;
+
+            //初始化关键字
+            this.InitKeywords();
         }
         #endregion
 
@@ -134,13 +142,22 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="icon">图标</param>
         public void UpdateInfo(string menuName, int sort, string url, string icon)
         {
-            //验证参数
-            base.CheckName(menuName);
+            #region # 验证参数
+
+            if (string.IsNullOrWhiteSpace(menuName))
+            {
+                throw new ArgumentNullException("menuName", "菜单名称不可为空！");
+            }
+
+            #endregion
 
             base.Name = menuName;
             base.Sort = sort;
             this.Url = url;
             this.Icon = icon;
+
+            //初始化关键字
+            this.InitKeywords();
         }
         #endregion
 
@@ -152,6 +169,30 @@ namespace SD.IdentitySystem.Domain.Entities
         public IEnumerable<Authority> GetAuthorities()
         {
             return this.Authorities.Where(x => !x.Deleted);
+        }
+        #endregion
+
+        #region 初始化关键字 —— void InitKeywords()
+        /// <summary>
+        /// 初始化关键字
+        /// </summary>
+        private void InitKeywords()
+        {
+            StringBuilder keywordsBuilder = new StringBuilder();
+            keywordsBuilder.Append(this.GetTreePath());
+
+            base.SetKeywords(keywordsBuilder.ToString());
+        }
+        #endregion
+
+        #region 重写ToString()方法
+        /// <summary>
+        /// 重写ToString()方法
+        /// </summary>
+        /// <returns></returns>
+        public override string ToString()
+        {
+            return this.Name;
         }
         #endregion
 

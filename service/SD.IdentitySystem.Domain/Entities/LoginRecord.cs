@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.IdentitySystem.Domain.Entities
@@ -32,6 +33,9 @@ namespace SD.IdentitySystem.Domain.Entities
             this.LoginId = loginId;
             this.RealName = realName;
             this.IP = ip;
+
+            //初始化关键字
+            this.InitKeywords();
         }
         #endregion
 
@@ -65,6 +69,24 @@ namespace SD.IdentitySystem.Domain.Entities
         /// IP地址
         /// </summary>
         public string IP { get; private set; }
+        #endregion
+
+        #endregion
+
+        #region # 方法
+
+        #region 初始化关键字 —— void InitKeywords()
+        /// <summary>
+        /// 初始化关键字
+        /// </summary>
+        private void InitKeywords()
+        {
+            StringBuilder keywordsBuilder = new StringBuilder();
+            keywordsBuilder.Append(this.LoginId);
+            keywordsBuilder.Append(this.RealName);
+
+            base.SetKeywords(keywordsBuilder.ToString());
+        }
         #endregion
 
         #endregion

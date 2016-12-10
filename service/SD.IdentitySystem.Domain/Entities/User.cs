@@ -4,6 +4,7 @@ using ShSoft.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -60,7 +61,9 @@ namespace SD.IdentitySystem.Domain.Entities
             base.Number = loginId;
             base.Name = realName;
             this.Password = password.ToMD5();
-            base.SetKeywords(loginId + realName);
+
+            //初始化关键字
+            this.InitKeywords();
         }
         #endregion
 
@@ -255,6 +258,23 @@ namespace SD.IdentitySystem.Domain.Entities
         public IEnumerable<string> GetInfoSystemNos()
         {
             return this.Roles.Select(x => x.SystemNo).Distinct();
+        }
+        #endregion
+
+
+        //Private
+
+        #region 初始化关键字 —— void InitKeywords()
+        /// <summary>
+        /// 初始化关键字
+        /// </summary>
+        private void InitKeywords()
+        {
+            StringBuilder keywordsBuilder = new StringBuilder();
+            keywordsBuilder.Append(base.Number);
+            keywordsBuilder.Append(base.Name);
+
+            base.SetKeywords(keywordsBuilder.ToString());
         }
         #endregion
 
