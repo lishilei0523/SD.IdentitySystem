@@ -265,7 +265,15 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="menuId">菜单Id</param>
         public void RemoveMenu(Guid menuId)
         {
-            this._unitOfWork.RegisterRemove<Menu>(menuId);
+            //递归删除
+            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
+
+            foreach (Menu subMenu in currentMenu.SubNodes.ToArray())
+            {
+                this.RemoveMenu(subMenu.Id);
+            }
+
+            this._unitOfWork.RegisterPhysicsRemove<Menu>(menuId);
             this._unitOfWork.UnitedCommit();
         }
         #endregion

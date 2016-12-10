@@ -99,17 +99,17 @@ function resetPassord(loginId) {
 
 //删除用户
 function removeUser(loginId) {
-    $.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
+    $.easyuiExt.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
         if (confirm) {
             $.ajax({
                 type: "post",
                 url: "/User/RemoveUser/" + loginId,
                 success: function () {
-                    $.messager.alert("OK", "删除成功！");
+                    $.easyuiExt.messager.alert("OK", "删除成功！");
                     $.easyuiExt.updateGridInTab();
                 },
                 error: function (error) {
-                    $.messager.alert("Error", error.responseText);
+                    $.easyuiExt.messager.alert("Error", error.responseText);
                 }
             });
         }
@@ -123,7 +123,7 @@ function removeUsers() {
 
     //判断用户有没有选中
     if (checkedRows.length > 0) {
-        $.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
+        $.easyuiExt.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
             if (confirm) {
                 //填充用户登录名数组
                 var checkedLoginIds = [];
@@ -139,24 +139,24 @@ function removeUsers() {
                     url: "/User/RemoveUsers",
                     data: params,
                     success: function () {
-                        $.messager.alert("OK", "删除成功！");
+                        $.easyuiExt.messager.alert("OK", "删除成功！");
                         $.easyuiExt.updateGridInTab();
                     },
                     error: function (error) {
-                        $.messager.alert("Error", error.responseText);
+                        $.easyuiExt.messager.alert("Error", error.responseText);
                     }
                 });
             }
         });
     }
     else {
-        $.messager.alert("警告", "请选中要删除的用户！");
+        $.easyuiExt.messager.alert("警告", "请选中要删除的用户！");
     }
 }
 
 //启用用户
 function enableUser(loginId) {
-    $.messager.confirm("Warning", "确定要启用吗？", function (confirm) {
+    $.easyuiExt.messager.confirm("Warning", "确定要启用吗？", function (confirm) {
         if (confirm) {
             $.ajax({
                 type: "post",
@@ -174,7 +174,7 @@ function enableUser(loginId) {
 
 //停用用户
 function disableUser(loginId) {
-    $.messager.confirm("Warning", "确定要停用吗？", function (confirm) {
+    $.easyuiExt.messager.confirm("Warning", "确定要停用吗？", function (confirm) {
         if (confirm) {
             $.ajax({
                 type: "post",

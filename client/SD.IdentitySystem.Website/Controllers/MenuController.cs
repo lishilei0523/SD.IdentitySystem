@@ -132,6 +132,35 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
+        #region # 删除菜单 —— void RemoveMenu(Guid id)
+        /// <summary>
+        /// 删除菜单
+        /// </summary>
+        /// <param name="id">菜单Id</param>
+        [HttpPost]
+        public void RemoveMenu(Guid id)
+        {
+            this._authorizationContract.RemoveMenu(id);
+        }
+        #endregion
+
+        #region # 批量删除菜单 —— void RemoveMenus(IEnumerable<Guid> menuIds)
+        /// <summary>
+        /// 批量删除菜单
+        /// </summary>
+        /// <param name="menuIds">菜单Id集</param>
+        [HttpPost]
+        public void RemoveMenus(IEnumerable<Guid> menuIds)
+        {
+            menuIds = menuIds ?? new Guid[0];
+
+            foreach (Guid menuId in menuIds)
+            {
+                this._authorizationContract.RemoveMenu(menuId);
+            }
+        }
+        #endregion
+
 
         //查询部分
 

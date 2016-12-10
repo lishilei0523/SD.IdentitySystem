@@ -79,17 +79,17 @@ function updateRole(roleId) {
 
 //删除角色
 function removeRole(roleId) {
-    $.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
+    $.easyuiExt.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
         if (confirm) {
             $.ajax({
                 type: "post",
                 url: "/Role/RemoveRole/" + roleId,
                 success: function () {
-                    $.messager.alert("OK", "删除成功！");
+                    $.easyuiExt.messager.alert("OK", "删除成功！");
                     $.easyuiExt.updateGridInTab();
                 },
                 error: function (error) {
-                    $.messager.alert("Error", error.responseText);
+                    $.easyuiExt.messager.alert("Error", error.responseText);
                 }
             });
         }
@@ -103,7 +103,7 @@ function removeRoles() {
 
     //判断角色有没有选中
     if (checkedRows.length > 0) {
-        $.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
+        $.easyuiExt.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
             if (confirm) {
                 //填充角色Id数组
                 var checkedRoleIds = [];
@@ -119,18 +119,18 @@ function removeRoles() {
                     url: "/Role/RemoveRoles",
                     data: params,
                     success: function () {
-                        $.messager.alert("OK", "删除成功！");
+                        $.easyuiExt.messager.alert("OK", "删除成功！");
                         $.easyuiExt.updateGridInTab();
                     },
                     error: function (error) {
-                        $.messager.alert("Error", error.responseText);
+                        $.easyuiExt.messager.alert("Error", error.responseText);
                     }
                 });
             }
         });
     }
     else {
-        $.messager.alert("警告", "请选中要删除的角色！");
+        $.easyuiExt.messager.alert("警告", "请选中要删除的角色！");
     }
 }
 

@@ -90,13 +90,13 @@ function removeMenu(menuId) {
         if (confirm) {
             $.ajax({
                 type: "post",
-                url: "/Menu/RemoveRole/" + menuId,
+                url: "/Menu/RemoveMenu/" + menuId,
                 success: function () {
-                    $.messager.alert("OK", "删除成功！");
+                    $.easyuiExt.messager.alert("OK", "删除成功！");
                     $.easyuiExt.updateTreeGridInTab();
                 },
                 error: function (error) {
-                    $.messager.alert("Error", error.responseText);
+                    $.easyuiExt.messager.alert("Error", error.responseText);
                 }
             });
         }
@@ -110,7 +110,7 @@ function removeMenus() {
 
     //判断菜单有没有选中
     if (checkedRows.length > 0) {
-        $.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
+        $.easyuiExt.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
             if (confirm) {
                 //填充菜单Id数组
                 var checkedMenuIds = [];
@@ -123,21 +123,21 @@ function removeMenus() {
 
                 $.ajax({
                     type: "POST",
-                    url: "/Role/RemoveMenus",
+                    url: "/Menu/RemoveMenus",
                     data: params,
                     success: function () {
-                        $.messager.alert("OK", "删除成功！");
+                        $.easyuiExt.messager.alert("OK", "删除成功！");
                         $.easyuiExt.updateTreeGridInTab();
                     },
                     error: function (error) {
-                        $.messager.alert("Error", error.responseText);
+                        $.easyuiExt.messager.alert("Error", error.responseText);
                     }
                 });
             }
         });
     }
     else {
-        $.messager.alert("警告", "请选中要删除的菜单！");
+        $.easyuiExt.messager.alert("警告", "请选中要删除的菜单！");
     }
 }
 
