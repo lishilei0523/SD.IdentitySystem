@@ -438,6 +438,26 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
+        #region # 分页获取信息系统列表 —— PageModel<InfoSystemInfo> GetInfoSystemsByPage(string keywords...
+        /// <summary>
+        /// 分页获取信息系统列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>信息系统列表</returns>
+        public PageModel<InfoSystemInfo> GetInfoSystemsByPage(string keywords, int pageIndex, int pageSize)
+        {
+            int rowCount, pageCount;
+
+            IEnumerable<InfoSystem> specSystems = this._repMediator.InfoSystemRep.FindByPage(keywords, pageIndex, pageSize, out rowCount, out pageCount);
+
+            IEnumerable<InfoSystemInfo> specSystemInfos = specSystems.Select(x => x.ToDTO());
+
+            return new PageModel<InfoSystemInfo>(specSystemInfos, pageIndex, pageSize, pageCount, rowCount);
+        }
+        #endregion
+
 
         #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo...
         /// <summary>
