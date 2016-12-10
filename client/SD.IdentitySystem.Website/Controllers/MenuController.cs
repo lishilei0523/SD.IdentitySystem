@@ -1,13 +1,13 @@
-﻿using System;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Infrastructure.MVC;
 using ShSoft.Infrastructure.MVC.Filters;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -210,7 +210,7 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
-        #region # 获取菜单TreeGrid —— PageModel<MenuView> GetMenuTreeGrid(string keywords...
+        #region # 获取菜单TreeGrid —— JsonResult GetMenuTreeGrid(string systemNo)
         /// <summary>
         /// 获取菜单TreeGrid
         /// </summary>

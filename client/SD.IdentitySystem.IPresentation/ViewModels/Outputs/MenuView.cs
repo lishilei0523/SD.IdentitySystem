@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+﻿using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using ShSoft.Infrastructure.MVC;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
 {

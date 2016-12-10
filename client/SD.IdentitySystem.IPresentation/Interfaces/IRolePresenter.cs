@@ -1,9 +1,9 @@
-﻿using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+﻿using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.MVC;
 using System;
 using System.Collections.Generic;
-using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 
 namespace SD.IdentitySystem.IPresentation.Interfaces
 {
