@@ -1,5 +1,4 @@
-﻿using System.Collections.Generic;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using ShSoft.Common.PoweredByLee;
 
@@ -10,20 +9,6 @@ namespace SD.IdentitySystem.AppService.Maps
     /// </summary>
     public static class UserMap
     {
-        #region # 信息系统映射 —— static InfoSystemInfo ToDTO(this InfoSystem infoSystem)
-        /// <summary>
-        /// 信息系统映射
-        /// </summary>
-        /// <param name="infoSystem">信息系统领域模型</param>
-        /// <returns>信息系统数据传输对象</returns>
-        public static InfoSystemInfo ToDTO(this InfoSystem infoSystem)
-        {
-            InfoSystemInfo systemInfo = Transform<InfoSystem, InfoSystemInfo>.Map(infoSystem);
-
-            return systemInfo;
-        }
-        #endregion
-
         #region # 用户映射 —— static UserInfo ToDTO(this User user)
         /// <summary>
         /// 用户映射

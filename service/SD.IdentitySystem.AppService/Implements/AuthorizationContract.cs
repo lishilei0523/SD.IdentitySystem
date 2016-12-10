@@ -94,6 +94,9 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterSave(currentSystem);
             this._unitOfWork.Commit();
+
+            //清除缓存
+            CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
         }
         #endregion
 

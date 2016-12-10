@@ -45,6 +45,9 @@ namespace SD.IdentitySystem.Domain.Entities
 
             //挂起领域事件
             EventMediator.Suspend(new InfoSystemCreatedEvent(this.Number, this.Name, this.AdminLoginId));
+
+            //初始化关键字
+            base.SetKeywords(base.Name);
         }
         #endregion
 
