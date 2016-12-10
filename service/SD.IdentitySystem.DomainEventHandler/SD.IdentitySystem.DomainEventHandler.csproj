@@ -80,6 +80,10 @@
       <HintPath>..\..\packages\SD.IOC.Core.1.0.5\lib\net45\SD.IOC.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SD.Toolkits.Recursion, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.Recursion.1.0.4\lib\net45\SD.Toolkits.Recursion.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ShSoft.Common.1.0.6\lib\net45\ShSoft.Common.dll</HintPath>
       <Private>True</Private>
