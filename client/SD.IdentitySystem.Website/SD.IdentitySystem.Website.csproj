@@ -55,7 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.7\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.8\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -191,6 +191,7 @@
     <Content Include="Content\scripts\Authority\Add.js" />
     <Content Include="Content\scripts\Authority\Index.js" />
     <Content Include="Content\scripts\Home\Index.js" />
+    <Content Include="Content\scripts\InfoSystem\Index.js" />
     <Content Include="Content\scripts\Menu\Add.js" />
     <Content Include="Content\scripts\Menu\Index.js" />
     <Content Include="Content\scripts\Menu\Update.js" />
@@ -610,6 +611,8 @@
     <Content Include="Views\Menu\Update.cshtml" />
     <Content Include="Views\Authority\Add.cshtml" />
     <Content Include="Views\Authority\Update.cshtml" />
+    <Content Include="Views\InfoSystem\Add.cshtml" />
+    <Content Include="Views\InfoSystem\Init.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

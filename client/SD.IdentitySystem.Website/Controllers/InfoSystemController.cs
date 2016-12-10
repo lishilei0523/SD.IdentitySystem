@@ -3,6 +3,9 @@ using SD.IdentitySystem.IPresentation.Interfaces;
 using ShSoft.Infrastructure.MVC;
 using ShSoft.Infrastructure.MVC.Filters;
 using System.Web.Mvc;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using ShSoft.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -49,6 +52,83 @@ namespace SD.IdentitySystem.Website.Controllers
         public ViewResult Index()
         {
             return base.View();
+        }
+        #endregion
+
+        #region # 加载创建信息系统视图 —— ViewResult Add()
+        /// <summary>
+        /// 加载创建信息系统视图
+        /// </summary>
+        /// <returns>创建信息系统视图</returns>
+        [HttpGet]
+        public ViewResult Add()
+        {
+            return base.View();
+        }
+        #endregion
+
+        #region # 加载初始化信息系统视图 —— ViewResult Init(string id)
+        /// <summary>
+        /// 加载初始化信息系统视图
+        /// </summary>
+        /// <param name="id">信息系统编号</param>
+        /// <returns>初始化信息系统视图</returns>
+        [HttpGet]
+        public ViewResult Init(string id)
+        {
+            InfoSystemView currentSystem = this._systemPresenter.GetInfoSystem(id);
+
+            return base.View(currentSystem);
+        }
+        #endregion
+
+
+        //命令部分
+
+        #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
+        /// <summary>
+        /// 创建信息系统
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="systemName">信息系统名称</param>
+        /// <param name="adminLoginId">系统管理员账号</param>
+        [HttpPost]
+        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId)
+        {
+            this._authorizationContract.CreateInfoSystem(systemNo, systemName, adminLoginId);
+        }
+        #endregion
+
+        #region # 初始化信息系统 —— void InitInfoSystem(string systemNo, string host...
+        /// <summary>
+        /// 初始化信息系统
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="host">主机名称</param>
+        /// <param name="port">端口</param>
+        /// <param name="index">首页</param>
+        [HttpPost]
+        public void InitInfoSystem(string systemNo, string host, int port, string index)
+        {
+            this._authorizationContract.InitInfoSystem(systemNo, host, port, index);
+        }
+        #endregion
+
+
+        //查询部分
+
+        #region # 获取信息系统列表 —— JsonResult GetInfoSystems(string keywords, int page...
+        /// <summary>
+        /// 获取信息系统列表
+        /// </summary>
+        /// <returns>信息系统列表</returns>
+        public JsonResult GetInfoSystems(string keywords, int page, int rows)
+        {
+            PageModel<InfoSystemView> pageModel = this._systemPresenter.GetInfoSystems(keywords, page, rows);
+
+            Grid<InfoSystemView> grid = new Grid<InfoSystemView>(pageModel.RowCount, pageModel.Datas);
+
+            return base.Json(grid, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

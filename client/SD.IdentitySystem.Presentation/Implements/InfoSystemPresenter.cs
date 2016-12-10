@@ -5,6 +5,7 @@ using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using System.Collections.Generic;
 using System.Linq;
+using ShSoft.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.Presentation.Implements
 {
@@ -43,6 +44,25 @@ namespace SD.IdentitySystem.Presentation.Implements
             IEnumerable<InfoSystemView> systemViews = systemInfos.Select(x => x.ToViewModel());
 
             return systemViews;
+        }
+        #endregion
+
+        #region # 分页获取信息系统列表 —— PageModel<InfoSystemView> GetInfoSystems(string keywords...
+        /// <summary>
+        /// 分页获取信息系统列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>信息系统列表</returns>
+        public PageModel<InfoSystemView> GetInfoSystems(string keywords, int pageIndex, int pageSize)
+        {
+            PageModel<InfoSystemInfo> pageModel = this._authorizationContract.GetInfoSystemsByPage(keywords, pageIndex, pageSize);
+
+            IEnumerable<InfoSystemView> systemViews = pageModel.Datas.Select(x => x.ToViewModel());
+
+            return new PageModel<InfoSystemView>(systemViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+
         }
         #endregion
 

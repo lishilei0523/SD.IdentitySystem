@@ -1,6 +1,33 @@
 ﻿@{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "信息系统管理";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+@section header{
+    <link type="text/css" href="~/Content/css/Common/Grid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/scripts/InfoSystem/Index.js"></script>
+}
+
+<div class="main">
+    @*工具栏*@
+    <div id="toolbar" class="datagrid-toolbar" style="padding: 5px; height: auto">
+        @*按钮区*@
+        <div style="margin-bottom: 5px">
+            <a href="#" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="createSystem();">新增</a>
+        </div>
+
+        @*表单区*@
+        <div style="margin-left: 5px">
+            <form id="frmQueries">
+                关键字：<input class="easyui-textbox" type="text" id="txtKeywords" name="keywords" style="width: 210px" data-options="prompt:'信息系统名称'" />
+
+                <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchSystems();">搜索</a>
+            </form>
+        </div>
+    </div>
+
+    @*列表*@
+    <div id="dvGrid" class="gridDiv">
+        <table id="tbGrid"></table>
+    </div>
+</div>

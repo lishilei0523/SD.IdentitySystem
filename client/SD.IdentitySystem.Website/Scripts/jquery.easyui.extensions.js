@@ -55,6 +55,7 @@
                 toolbar: [],
                 //工具栏元素Id
                 toolbarId: null,
+                footer: null,
                 init: function (url, columns, idFiled) {
                     this.url = url;
                     this.columns = columns;
