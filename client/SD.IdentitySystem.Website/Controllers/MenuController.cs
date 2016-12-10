@@ -186,6 +186,8 @@ namespace SD.IdentitySystem.Website.Controllers
         [HttpPost]
         public void RelateAuthorities(Guid menuId, IEnumerable<Guid> authorityIds)
         {
+            authorityIds = authorityIds ?? new Guid[0];
+
             this._authorizationContract.RelateAuthorities(menuId, authorityIds);
         }
         #endregion
