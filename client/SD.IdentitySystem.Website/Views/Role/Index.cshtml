@@ -22,7 +22,7 @@
         <div style="margin-left: 5px">
             <form id="frmQueries">
                 信息系统：
-                <select class="easyui-combobox" id="slSystem" name="systemNo" data-options="editable:false" style="width: 150px">
+                <select class="easyui-combobox" id="slSystem" name="systemNo" data-options="editable:false" style="width: 210px">
                     <option value="" selected="selected">全部</option>
                     @foreach (InfoSystemView system in ViewBag.InfoSystems)
                     {
@@ -30,7 +30,7 @@
                     }
                 </select>
 
-                关键字：<input class="easyui-textbox" type="text" id="txtKeywords" name="keywords" />
+                关键字：<input class="easyui-textbox" type="text" id="txtKeywords" name="keywords" style="width: 210px" data-options="prompt:'角色名称'" />
 
                 <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchRoles();">搜索</a>
             </form>
