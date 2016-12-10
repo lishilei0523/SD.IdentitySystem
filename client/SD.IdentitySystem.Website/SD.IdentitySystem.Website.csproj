@@ -191,7 +191,9 @@
     <Content Include="Content\scripts\Authority\Add.js" />
     <Content Include="Content\scripts\Authority\Index.js" />
     <Content Include="Content\scripts\Home\Index.js" />
+    <Content Include="Content\scripts\InfoSystem\Add.js" />
     <Content Include="Content\scripts\InfoSystem\Index.js" />
+    <Content Include="Content\scripts\InfoSystem\Init.js" />
     <Content Include="Content\scripts\Menu\Add.js" />
     <Content Include="Content\scripts\Menu\Index.js" />
     <Content Include="Content\scripts\Menu\Update.js" />

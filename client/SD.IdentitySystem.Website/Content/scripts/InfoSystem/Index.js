@@ -59,12 +59,12 @@ function getSystems(queryParams) {
 
 //创建信息系统
 function createSystem() {
-    $.easyuiExt.showWindow("创建信息系统", "/InfoSystem/Add", 840, 680);
+    $.easyuiExt.showWindow("创建信息系统", "/InfoSystem/Add", 480, 368);
 }
 
 //初始化信息系统
 function initSystem(systemNo) {
-    $.easyuiExt.showWindow("初始化信息系统", "/InfoSystem/Init/" + systemNo, 840, 680);
+    $.easyuiExt.showWindow("初始化信息系统", "/InfoSystem/Init/" + systemNo, 480, 368);
 }
 
 //搜索
