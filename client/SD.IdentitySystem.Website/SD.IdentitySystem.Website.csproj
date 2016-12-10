@@ -164,6 +164,7 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Content Include="Content\scripts\Authority\Update.js" />
     <Compile Include="Controllers\AuthorityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoSystemController.cs" />
@@ -187,6 +188,7 @@
     <Content Include="Content\images\login_sTop.jpg" />
     <Content Include="Content\images\login_top.jpg" />
     <Content Include="Content\images\qzonebg.gif" />
+    <Content Include="Content\scripts\Authority\Add.js" />
     <Content Include="Content\scripts\Authority\Index.js" />
     <Content Include="Content\scripts\Home\Index.js" />
     <Content Include="Content\scripts\Menu\Add.js" />
