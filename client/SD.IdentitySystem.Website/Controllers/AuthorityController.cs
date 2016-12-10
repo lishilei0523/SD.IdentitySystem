@@ -8,6 +8,7 @@ using ShSoft.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using SD.IdentitySystem.IAppService.DTOs.Inputs;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -67,8 +68,127 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
+        #region # 加载创建权限视图 —— ViewResult Add()
+        /// <summary>
+        /// 加载创建权限视图
+        /// </summary>
+        /// <returns>创建权限视图</returns>
+        [HttpGet]
+        public ViewResult Add()
+        {
+            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            base.ViewBag.InfoSystems = systems;
+
+            return base.View();
+        }
+        #endregion
+
+        #region # 加载修改权限视图 —— ViewResult Update(Guid id)
+        /// <summary>
+        /// 加载修改权限视图
+        /// </summary>
+        /// <param name="id">权限Id</param>
+        /// <returns>修改权限视图</returns>
+        [HttpGet]
+        public ViewResult Update(Guid id)
+        {
+            AuthorityView currentAuthority = this._authorityPresenter.GetAuthority(id);
+
+            return base.View(currentAuthority);
+        }
+        #endregion
+
 
         //命令部分
+
+        #region # 创建权限 —— void CreateAuthority(string systemNo, string authorityName...
+        /// <summary>
+        /// 创建权限
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="authorityName">权限名称</param>
+        /// <param name="englishName">英文名称</param>
+        /// <param name="description">描述</param>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        [HttpPost]
+        public void CreateAuthority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        {
+            //构造参数模型
+            AuthorityParam param = new AuthorityParam
+            {
+                AuthorityName = authorityName,
+                EnglishName = englishName,
+                Description = description,
+                AssemblyName = assemblyName,
+                Namespace = @namespace,
+                ClassName = className,
+                MethodName = methodName
+            };
+
+            this._authorizationContract.CreateAuthorities(systemNo, new[] { param });
+        }
+        #endregion
+
+        #region # 修改权限 —— void UpdateAuthority(Guid authorityId, string authorityName...
+        /// <summary>
+        /// 修改权限
+        /// </summary>
+        /// <param name="authorityId">权限Id</param>
+        /// <param name="authorityName">权限名称</param>
+        /// <param name="englishName">英文名称</param>
+        /// <param name="description">描述</param>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        [HttpPost]
+        public void UpdateAuthority(Guid authorityId, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        {
+            //构造参数模型
+            AuthorityParam param = new AuthorityParam
+            {
+                AuthorityName = authorityName,
+                EnglishName = englishName,
+                Description = description,
+                AssemblyName = assemblyName,
+                Namespace = @namespace,
+                ClassName = className,
+                MethodName = methodName
+            };
+
+            this._authorizationContract.UpdateAuthority(authorityId, param);
+        }
+        #endregion
+
+        #region # 删除权限 —— void RemoveAuthority(Guid id)
+        /// <summary>
+        /// 删除权限
+        /// </summary>
+        /// <param name="id">权限Id</param>
+        [HttpPost]
+        public void RemoveAuthority(Guid id)
+        {
+            this._authorizationContract.RemoveAuthority(id);
+        }
+        #endregion
+
+        #region # 批量删除权限 —— void RemoveAuthorities(IEnumerable<Guid> authorityIds)
+        /// <summary>
+        /// 批量删除权限
+        /// </summary>
+        /// <param name="authorityIds">权限Id集</param>
+        [HttpPost]
+        public void RemoveAuthorities(IEnumerable<Guid> authorityIds)
+        {
+            foreach (Guid authorityId in authorityIds)
+            {
+                this._authorizationContract.RemoveAuthority(authorityId);
+            }
+        }
+        #endregion
 
 
         //查询部分

@@ -187,6 +187,7 @@
     <Content Include="Content\images\login_sTop.jpg" />
     <Content Include="Content\images\login_top.jpg" />
     <Content Include="Content\images\qzonebg.gif" />
+    <Content Include="Content\scripts\Authority\Index.js" />
     <Content Include="Content\scripts\Home\Index.js" />
     <Content Include="Content\scripts\Menu\Add.js" />
     <Content Include="Content\scripts\Menu\Index.js" />
@@ -605,6 +606,8 @@
     <Content Include="Views\Menu\Index.cshtml" />
     <Content Include="Views\Menu\Add.cshtml" />
     <Content Include="Views\Menu\Update.cshtml" />
+    <Content Include="Views\Authority\Add.cshtml" />
+    <Content Include="Views\Authority\Update.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>
