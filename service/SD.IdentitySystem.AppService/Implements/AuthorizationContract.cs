@@ -276,7 +276,45 @@ namespace SD.IdentitySystem.AppService.Implements
                 this.RemoveMenu(subMenu.Id);
             }
 
+            //清空关联
+            currentMenu.ClearRelations();
+
             this._unitOfWork.RegisterPhysicsRemove<Menu>(menuId);
+            this._unitOfWork.UnitedCommit();
+        }
+        #endregion
+
+        #region # 关联权限 —— void RelateAuthorities(Guid menuId...
+        /// <summary>
+        /// 关联权限
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <param name="authorityIds">权限Id集</param>
+        public void RelateAuthorities(Guid menuId, IEnumerable<Guid> authorityIds)
+        {
+            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
+
+            #region # 验证
+
+            if (!currentMenu.IsLeaf)
+            {
+                throw new InvalidOperationException("非叶子级菜单不可关联权限！");
+            }
+
+            #endregion
+
+            IList<Authority> authorities = new List<Authority>();
+
+            foreach (Guid authorityId in authorityIds)
+            {
+                Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
+
+                authorities.Add(currentAuthority);
+            }
+
+            currentMenu.RelateAuthorities(authorities);
+
+            this._unitOfWork.RegisterSave(currentMenu);
             this._unitOfWork.UnitedCommit();
         }
         #endregion

@@ -127,6 +127,16 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void RemoveMenu(Guid menuId);
         #endregion
 
+        #region # 关联权限 —— void RelateAuthorities(Guid menuId...
+        /// <summary>
+        /// 关联权限
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <param name="authorityIds">权限Id集</param>
+        [OperationContract]
+        void RelateAuthorities(Guid menuId, IEnumerable<Guid> authorityIds);
+        #endregion
+
 
         #region # 创建角色 —— Guid CreateRole(string systemNo, string roleName...
         /// <summary>

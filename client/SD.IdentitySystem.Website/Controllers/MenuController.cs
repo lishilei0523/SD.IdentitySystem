@@ -4,6 +4,7 @@ using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using ShSoft.Infrastructure.MVC;
 using ShSoft.Infrastructure.MVC.Filters;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Web.Mvc;
 using SD.IdentitySystem.IAppService.Interfaces;
@@ -96,6 +97,21 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
+        #region # 加载关联权限视图 —— ViewResult RelateAuthority(Guid id)
+        /// <summary>
+        /// 加载关联权限视图
+        /// </summary>
+        /// <param name="id">菜单Id</param>
+        /// <returns>关联权限视图</returns>
+        [HttpGet]
+        public ViewResult RelateAuthority(Guid id)
+        {
+            MenuView currentMenu = this._menuPresenter.GetMenu(id);
+
+            return base.View(currentMenu);
+        }
+        #endregion
+
 
         //命令部分
 
@@ -158,6 +174,19 @@ namespace SD.IdentitySystem.Website.Controllers
             {
                 this._authorizationContract.RemoveMenu(menuId);
             }
+        }
+        #endregion
+
+        #region # 关联权限 —— void RelateAuthorities(Guid menuId...
+        /// <summary>
+        /// 关联权限
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <param name="authorityIds">权限Id集</param>
+        [HttpPost]
+        public void RelateAuthorities(Guid menuId, IEnumerable<Guid> authorityIds)
+        {
+            this._authorizationContract.RelateAuthorities(menuId, authorityIds);
         }
         #endregion
 

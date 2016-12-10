@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using SD.Toolkits.Recursion.Tree;
+using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.IdentitySystem.Domain.Entities
@@ -48,6 +49,10 @@ namespace SD.IdentitySystem.Domain.Entities
             if (parentNode != null && parentNode.SystemNo != systemNo)
             {
                 throw new InvalidOperationException("子级菜单的信息系统必须与父级菜单一致！");
+            }
+            if (parentNode != null && parentNode.Authorities.Any())
+            {
+                throw new InvalidOperationException("已关联权限的菜单不可增加子菜单！");
             }
 
             #endregion
@@ -158,6 +163,47 @@ namespace SD.IdentitySystem.Domain.Entities
 
             //初始化关键字
             this.InitKeywords();
+        }
+        #endregion
+
+        #region 关联权限 —— void RelateAuthorities(IEnumerable<Authority> authorities)
+        /// <summary>
+        /// 关联权限
+        /// </summary>
+        /// <param name="authorities">权限集</param>
+        public void RelateAuthorities(IEnumerable<Authority> authorities)
+        {
+            #region # 验证
+
+            if (!this.IsLeaf)
+            {
+                throw new InvalidOperationException("非叶子级菜单不可关联权限！");
+            }
+
+            #endregion
+
+            //先清空
+            this.ClearRelations();
+
+            foreach (Authority authority in authorities)
+            {
+                this.Authorities.Add(authority);
+                authority.MenuLeaves.Add(this);
+            }
+        }
+        #endregion
+
+        #region 清空关联 —— void ClearRelations()
+        /// <summary>
+        /// 清空关联
+        /// </summary>
+        public void ClearRelations()
+        {
+            foreach (Authority authority in this.Authorities.ToArray())
+            {
+                this.Authorities.Remove(authority);
+                authority.MenuLeaves.Remove(this);
+            }
         }
         #endregion
 

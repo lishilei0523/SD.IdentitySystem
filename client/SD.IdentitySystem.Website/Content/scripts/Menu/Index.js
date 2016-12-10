@@ -30,6 +30,23 @@ function getMenus(queryParams) {
                 }
             },
             {
+                field: "RelateAuthority",
+                title: "关联权限",
+                width: 60,
+                formatter: function (value, row) {
+                    if (row.IsLeaf) {
+                        var start = '<a class="aLink" href="javascript: relateAuthority(\'';
+                        var end = '\');" >关联权限</a>';
+                        var element = start + row.Id + end;
+
+                        return element;
+                    }
+                    else {
+                        return null;
+                    }
+                }
+            },
+            {
                 field: "Update",
                 title: "编辑",
                 width: 35,
@@ -82,6 +99,11 @@ function createMenu() {
 //修改菜单
 function updateMenu(menuId) {
     $.easyuiExt.showWindow("修改菜单", "/Menu/Update/" + menuId, 480, 468);
+}
+
+//关联权限
+function relateAuthority(menuId) {
+    $.easyuiExt.showWindow("关联权限", "/Menu/RelateAuthority/" + menuId, 480, 548);
 }
 
 //删除菜单

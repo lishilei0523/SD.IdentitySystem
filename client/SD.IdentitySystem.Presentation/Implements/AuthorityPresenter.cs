@@ -174,8 +174,8 @@ namespace SD.IdentitySystem.Presentation.Implements
             MenuInfo currentMenu = this._authorizationContract.GetMenu(menuId);
             IEnumerable<AuthorityView> menuAuthorities = this.GetAuthoritiesByMenu(menuId).ToArray();
 
-            //获取菜单所在信息系统的权限树 TODO 修改服务DTO，增加SystemNo属性
-            Node authroityTree = this.GetAuthorityTree(currentMenu.InfoSystemInfo.Number);
+            //获取菜单所在信息系统的权限树
+            Node authroityTree = this.GetAuthorityTree(currentMenu.SystemNo);
 
             //遍历子节点集（权限集）
             foreach (Node node in authroityTree.children)
