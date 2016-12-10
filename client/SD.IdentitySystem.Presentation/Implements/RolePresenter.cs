@@ -138,7 +138,6 @@ namespace SD.IdentitySystem.Presentation.Implements
         public IEnumerable<Node> GetRoleTreeByUser(string loginId)
         {
             //获取当前用户及其角色集
-            UserInfo currentUser = this._userContract.GetUser(loginId);
             IEnumerable<RoleView> userRoles = this.GetRolesByUser(loginId).ToArray();
 
             //获取信息系统/角色树

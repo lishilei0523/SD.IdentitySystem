@@ -189,71 +189,48 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 为用户分配角色
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemRoles">信息系统、角色Id字典</param>
-        /// <remarks>IDictionary[string, IEnumerable[Guid]]，[信息系统编号，角色Id集]</remarks>
+        /// <param name="roleIds">角色Id集</param>
         [OperationBehavior(TransactionScopeRequired = true)]
-        public void SetRoles(string loginId, IDictionary<string, IEnumerable<Guid>> systemRoles)
+        public void SetRoles(string loginId, IEnumerable<Guid> roleIds)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
 
-            foreach (KeyValuePair<string, IEnumerable<Guid>> systemRole in systemRoles)
+            IList<Role> roles = new List<Role>();
+
+            foreach (Guid roleId in roleIds)
             {
-                InfoSystem currentSystem = this._repMediator.InfoSystemRep.Single(systemRole.Key);
+                Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
 
-                IList<Role> roles = new List<Role>();
-
-                foreach (Guid roleId in systemRole.Value)
-                {
-                    Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
-
-                    if (currentRole.SystemNo != currentSystem.Number)
-                    {
-                        throw new InvalidOperationException(string.Format("角色\"{0}\"与信息系统\"{1}\"不匹配！", roleId, systemRole.Key));
-                    }
-
-                    roles.Add(currentRole);
-                }
-
-                currentUser.SetRoles(currentSystem.Number, roles);
+                roles.Add(currentRole);
             }
 
+            currentUser.SetRoles(roles);
 
             this._unitOfWork.RegisterSave(currentUser);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
 
-        #region # 为用户追加角色 —— void AppendRoles(string loginId, IEnumerable<Guid> roleIds)
+        #region # 为用户追加角色 —— void AppendRoles(string loginId...
         /// <summary>
         /// 为用户追加角色
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemRoles">信息系统、角色Id字典</param>
-        /// <remarks>IDictionary[string, IEnumerable[Guid]]，[信息系统编号，角色Id集]</remarks>
-        public void AppendRoles(string loginId, IDictionary<string, IEnumerable<Guid>> systemRoles)
+        /// <param name="roleIds">角色Id集</param>
+        public void AppendRoles(string loginId, IEnumerable<Guid> roleIds)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
 
-            foreach (var systemRole in systemRoles)
+            IList<Role> roles = new List<Role>();
+
+            foreach (Guid roleId in roleIds)
             {
-                InfoSystem currentSystem = this._repMediator.InfoSystemRep.Single(systemRole.Key);
+                Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
 
-                IList<Role> roles = new List<Role>();
-
-                foreach (Guid roleId in systemRole.Value)
-                {
-                    Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
-
-                    if (currentRole.SystemNo != currentSystem.Number)
-                    {
-                        throw new InvalidOperationException(string.Format("角色\"{0}\"与信息系统\"{1}\"不匹配！", roleId, systemRole.Key));
-                    }
-
-                    roles.Add(currentRole);
-                }
-
-                currentUser.AppendRoles(currentSystem.Number, roles);
+                roles.Add(currentRole);
             }
+
+            currentUser.AppendRoles(roles);
 
             this._unitOfWork.RegisterSave(currentUser);
             this._unitOfWork.UnitedCommit();

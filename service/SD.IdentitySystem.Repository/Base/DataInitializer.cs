@@ -186,10 +186,10 @@ namespace SD.IdentitySystem.Repository.Base
 
                     //追加系统管理员权限
                     User systemAdmin = this._users.Single(x => x.Number == currentSystem.AdminLoginId);
-                    systemAdmin.AppendRoles(currentSystem.Number, new[] { role });
+                    systemAdmin.AppendRoles(new[] { role });
 
                     //追加超级管理员权限
-                    superAdmin.AppendRoles(currentSystem.Number, new[] { role });
+                    superAdmin.AppendRoles(new[] { role });
                 }
             }
         }

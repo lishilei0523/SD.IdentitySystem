@@ -189,13 +189,12 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 分配角色 —— void SetRoles(string systemNo, IEnumerable<Role> roles)
+        #region 分配角色 —— void SetRoles(IEnumerable<Role> roles)
         /// <summary>
         /// 分配角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roles">角色集</param>
-        public void SetRoles(string systemNo, IEnumerable<Role> roles)
+        public void SetRoles(IEnumerable<Role> roles)
         {
             #region # 验证参数
 
@@ -207,17 +206,16 @@ namespace SD.IdentitySystem.Domain.Entities
             #endregion
 
             this.ClearRelation();
-            this.AppendRoles(systemNo, roles);
+            this.AppendRoles(roles);
         }
         #endregion
 
-        #region 追加角色 —— void AppendRoles(string systemNo, IEnumerable<Role> roles)
+        #region 追加角色 —— void AppendRoles(IEnumerable<Role> roles)
         /// <summary>
         /// 追加角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="roles">角色集</param>
-        public void AppendRoles(string systemNo, IEnumerable<Role> roles)
+        public void AppendRoles(IEnumerable<Role> roles)
         {
             #region # 验证参数
 

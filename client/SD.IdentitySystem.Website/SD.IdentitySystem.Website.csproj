@@ -55,7 +55,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.8\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.0.9\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -204,6 +204,7 @@
     <Content Include="Content\scripts\User\Index.js" />
     <Content Include="Content\scripts\User\Login.js" />
     <Content Include="Content\scripts\User\ResetPassword.js" />
+    <Content Include="Content\scripts\User\SetRole.js" />
     <Content Include="Content\themes\black\accordion.css" />
     <Content Include="Content\themes\black\calendar.css" />
     <Content Include="Content\themes\black\combo.css" />
@@ -615,6 +616,7 @@
     <Content Include="Views\Authority\Update.cshtml" />
     <Content Include="Views\InfoSystem\Add.cshtml" />
     <Content Include="Views\InfoSystem\Init.cshtml" />
+    <Content Include="Views\User\SetRole.cshtml" />
   </ItemGroup>
   <ItemGroup />
   <ItemGroup>

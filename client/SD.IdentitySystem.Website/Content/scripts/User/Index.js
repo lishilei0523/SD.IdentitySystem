@@ -63,6 +63,18 @@ function getUsers(queryParams) {
                 }
             },
             {
+                field: "SetRole",
+                title: "分配角色",
+                width: 60,
+                formatter: function (value, row) {
+                    var start = '<a class="aLink" href="javascript: setRole(\'';
+                    var end = '\');" >分配角色</a>';
+                    var element = start + row.Number + end;
+
+                    return element;
+                }
+            },
+            {
                 field: "Remove",
                 title: "删除",
                 width: 35,
@@ -95,6 +107,11 @@ function createUser() {
 //重置密码
 function resetPassord(loginId) {
     $.easyuiExt.showWindow("重置密码", "/User/ResetPassword/" + loginId, 360, 230);
+}
+
+//分配角色
+function setRole(loginId) {
+    $.easyuiExt.showWindow("分配角色", "/User/SetRole/" + loginId, 480, 548);
 }
 
 //删除用户

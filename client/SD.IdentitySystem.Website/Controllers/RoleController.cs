@@ -191,5 +191,21 @@ namespace SD.IdentitySystem.Website.Controllers
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }
         #endregion
+
+        #region # 获取用户的信息系统/角色树 —— JsonResult GetRoleTree(string id)
+        /// <summary>
+        /// 获取用户的信息系统/角色树
+        /// </summary>
+        /// <param name="id">用户登录名</param>
+        /// <returns>信息系统/角色树</returns>
+        public JsonResult GetRoleTree(string id)
+        {
+            string loginId = id;
+
+            IEnumerable<Node> tree = this._rolePresenter.GetRoleTreeByUser(loginId);
+
+            return base.Json(tree, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
     }
 }

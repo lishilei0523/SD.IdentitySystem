@@ -54,8 +54,8 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
             Role adminRole = new Role("系统管理员", eventSource.SystemNo, "系统管理员", Constants.ManagerRoleNo);
 
             //为超级管理员与系统管理员追加角色
-            admin.AppendRoles(eventSource.SystemNo, new[] { adminRole });
-            systemAdmin.AppendRoles(eventSource.SystemNo, new[] { adminRole });
+            admin.AppendRoles(new[] { adminRole });
+            systemAdmin.AppendRoles(new[] { adminRole });
 
             //创建系统根级菜单
             Menu systemMenu = new Menu(eventSource.SystemNo, eventSource.SystemName, 0, null, null, null);

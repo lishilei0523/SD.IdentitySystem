@@ -80,11 +80,10 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// 为用户分配角色
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemRoles">信息系统、角色Id字典</param>
-        /// <remarks>IDictionary[string, IEnumerable[Guid]]，[信息系统编号，角色Id集]</remarks>
+        /// <param name="roleIds">角色Id集</param>
         [OperationContract]
         [TransactionFlow(TransactionFlowOption.Allowed)]
-        void SetRoles(string loginId, IDictionary<string, IEnumerable<Guid>> systemRoles);
+        void SetRoles(string loginId, IEnumerable<Guid> roleIds);
         #endregion
 
         #region # 为用户追加角色 —— void AppendRoles(string loginId...
@@ -92,10 +91,9 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// 为用户追加角色
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="systemRoles">信息系统、角色Id字典</param>
-        /// <remarks>IDictionary[string, IEnumerable[Guid]]，[信息系统编号，角色Id集]</remarks>
+        /// <param name="roleIds">角色Id集</param>
         [OperationContract]
-        void AppendRoles(string loginId, IDictionary<string, IEnumerable<Guid>> systemRoles);
+        void AppendRoles(string loginId, IEnumerable<Guid> roleIds);
         #endregion
 
 

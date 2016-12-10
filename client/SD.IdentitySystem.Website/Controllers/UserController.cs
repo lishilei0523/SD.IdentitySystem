@@ -114,6 +114,21 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
+        #region # 加载分配角色视图 —— ViewResult SetRole(string id)
+        /// <summary>
+        /// 加载分配角色视图
+        /// </summary>
+        /// <param name="id">用户登录名</param>
+        /// <returns>分配角色视图</returns>
+        [HttpGet]
+        public ViewResult SetRole(string id)
+        {
+            base.ViewBag.LoginId = id;
+
+            return base.View();
+        }
+        #endregion
+
 
         //命令部分
 
@@ -264,6 +279,19 @@ namespace SD.IdentitySystem.Website.Controllers
         {
             this._userContract.DisableUser(id);
         }
+        #endregion
+
+        #region # 分配角色 —— void SetRoles(string loginId, IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 分配角色
+        /// </summary>
+        /// <param name="loginId">用户登录名</param>
+        /// <param name="roleIds">角色Id集</param>
+        [HttpPost]
+        public void SetRoles(string loginId, IEnumerable<Guid> roleIds)
+        {
+            this._userContract.SetRoles(loginId, roleIds);
+        } 
         #endregion
 
 
