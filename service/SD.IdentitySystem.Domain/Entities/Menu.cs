@@ -1,10 +1,9 @@
-﻿using System;
+﻿using SD.Toolkits.Recursion.Tree;
+using ShSoft.Infrastructure.EntityBase;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SD.Toolkits.Recursion.Tree;
-using ShSoft.Common.PoweredByLee;
-using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -204,17 +203,6 @@ namespace SD.IdentitySystem.Domain.Entities
                 this.Authorities.Remove(authority);
                 authority.MenuLeaves.Remove(this);
             }
-        }
-        #endregion
-
-        #region 获取权限集 —— IEnumerable<Authority> GetAuthorities()
-        /// <summary>
-        /// 获取权限集
-        /// </summary>
-        /// <returns>权限集</returns>
-        public IEnumerable<Authority> GetAuthorities()
-        {
-            return this.Authorities.Where(x => !x.Deleted);
         }
         #endregion
 

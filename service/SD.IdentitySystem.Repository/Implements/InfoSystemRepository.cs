@@ -1,8 +1,7 @@
-﻿using System.Collections.Generic;
-using System.Linq;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using ShSoft.Infrastructure.Repository.EntityFramework;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.Repository.Implements
 {
@@ -11,17 +10,6 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class InfoSystemRepository : EFRepositoryProvider<InfoSystem>, IInfoSystemRepository
     {
-        #region # 获取信息系统编号列表 —— IEnumerable<string> FindAllNos()
-        /// <summary>
-        /// 获取信息系统编号列表
-        /// </summary>
-        /// <returns>信息系统编号列表</returns>
-        public IEnumerable<string> FindAllNos()
-        {
-            return this.FindNos(x => true).AsEnumerable();
-        }
-        #endregion
-
         #region # 获取信息系统字典 —— IDictionary<string, InfoSystem> FindDictionary()
         /// <summary>
         /// 获取信息系统字典

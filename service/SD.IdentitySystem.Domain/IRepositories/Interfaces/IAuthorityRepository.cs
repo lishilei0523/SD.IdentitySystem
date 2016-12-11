@@ -28,6 +28,15 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         IEnumerable<Guid> FindAuthorityIds(string systemNo);
         #endregion
 
+        #region # 根据菜单获取权限列表 —— IEnumerable<Authority> FindByMenu(Guid menuId)
+        /// <summary>
+        /// 根据菜单获取权限列表
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>权限列表</returns>
+        IEnumerable<Authority> FindByMenu(Guid menuId);
+        #endregion
+
         #region # 根据角色获取权限列表 —— IEnumerable<Authority> FindByRole(...
         /// <summary>
         /// 根据角色获取权限列表

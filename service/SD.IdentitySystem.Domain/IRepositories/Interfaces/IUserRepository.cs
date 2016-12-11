@@ -9,7 +9,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// </summary>
     public interface IUserRepository : IRepository<User>
     {
-        #region # 分页获取用户列表 —— IEnumerable<User> GetUsers(string systemNo...
+        #region # 分页获取用户列表 —— IEnumerable<User> FindByPage(string systemNo...
         /// <summary>
         /// 分页获取用户列表
         /// </summary>

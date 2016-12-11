@@ -100,6 +100,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implements\InfoSystemService.cs" />
+    <Compile Include="Implements\RoleService.cs" />
     <Compile Include="Implements\UserService.cs" />
     <Compile Include="Implements\NumberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

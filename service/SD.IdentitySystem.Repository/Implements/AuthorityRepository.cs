@@ -37,6 +37,18 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
+        #region # 根据菜单获取权限列表 —— IEnumerable<Authority> FindByMenu(Guid menuId)
+        /// <summary>
+        /// 根据菜单获取权限列表
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>权限列表</returns>
+        public IEnumerable<Authority> FindByMenu(Guid menuId)
+        {
+            return base.Find(x => x.MenuLeaves.Any(y => y.Id == menuId)).AsEnumerable();
+        }
+        #endregion
+
         #region # 根据角色获取权限列表 —— IEnumerable<Authority> FindByRole(...
         /// <summary>
         /// 根据角色获取权限列表

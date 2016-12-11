@@ -1,7 +1,4 @@
-﻿using System;
-using System.ServiceModel;
-using System.Threading.Tasks;
-using SD.CacheManager;
+﻿using SD.CacheManager;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
@@ -9,6 +6,9 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.Constants;
 using ShSoft.ValueObjects.CustomExceptions;
+using System;
+using System.ServiceModel;
+using System.Threading.Tasks;
 using User = SD.IdentitySystem.Domain.Entities.User;
 
 namespace SD.IdentitySystem.AppService.Implements

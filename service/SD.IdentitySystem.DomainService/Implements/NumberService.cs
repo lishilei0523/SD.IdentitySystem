@@ -1,6 +1,6 @@
-﻿using System;
-using SD.IdentitySystem.Domain.IDomainServices;
+﻿using SD.IdentitySystem.Domain.IDomainServices;
 using SD.Toolkits.NoGenerator.Facade;
+using System;
 
 namespace SD.IdentitySystem.DomainService.Implements
 {

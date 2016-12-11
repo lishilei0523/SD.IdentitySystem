@@ -55,7 +55,8 @@ namespace SD.IdentitySystem.AppService.Implements
 
         #endregion
 
-        ////////////////////////////////命令部分////////////////////////////////
+
+        //命令部分
 
         #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
         /// <summary>
@@ -431,7 +432,7 @@ namespace SD.IdentitySystem.AppService.Implements
         #endregion
 
 
-        ////////////////////////////////查询部分////////////////////////////////
+        //查询部分
 
         #region # 获取信息系统 —— InfoSystemInfo GetInfoSystem(string systemNo)
         /// <summary>
@@ -554,7 +555,7 @@ namespace SD.IdentitySystem.AppService.Implements
             //验证叶子节点
             Assert.IsTrue(currentMenu.IsLeaf, string.Format("Id为\"{0}\"的菜单不是叶子节点！", menuId));
 
-            IEnumerable<Authority> authorities = currentMenu.GetAuthorities();
+            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByMenu(menuId);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -768,7 +769,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>是否存在</returns>
         public bool ExistsRole(string systemNo, Guid? roleId, string roleName)
         {
-            return this._svcMediator.InfoSystemSvc.ExistsRole(systemNo, roleId, roleName);
+            return this._svcMediator.RoleSvc.ExistsRole(systemNo, roleId, roleName);
         }
         #endregion
     }

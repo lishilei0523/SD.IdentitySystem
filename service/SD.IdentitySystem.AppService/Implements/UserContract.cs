@@ -55,7 +55,8 @@ namespace SD.IdentitySystem.AppService.Implements
 
         #endregion
 
-        ////////////////////////////////命令部分////////////////////////////////
+
+        //命令部分
 
         #region # 创建用户 —— void CreateUser(string loginId, string realName...
         /// <summary>
@@ -238,7 +239,7 @@ namespace SD.IdentitySystem.AppService.Implements
         #endregion
 
 
-        ////////////////////////////////查询部分////////////////////////////////
+        //查询部分
 
         #region # 获取用户 —— UserInfo GetUser(string loginId)
         /// <summary>

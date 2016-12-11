@@ -1,5 +1,5 @@
-using System.Data.Entity.Migrations;
 using SD.IdentitySystem.Repository.Base;
+using System.Data.Entity.Migrations;
 
 namespace SD.IdentitySystem.Repository.Migrations
 {

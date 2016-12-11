@@ -13,28 +13,6 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class MenuRepository : EFRepositoryProvider<Menu>, IMenuRepository
     {
-        #region # 分页获取菜单列表 —— IEnumerable<Menu> FindByPage(string keywords...
-        /// <summary>
-        /// 分页获取菜单列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <param name="rowCount">总记录条数</param>
-        /// <param name="pageCount">总页数</param>
-        /// <returns>菜单列表</returns>
-        public IEnumerable<Menu> FindByPage(string keywords, string systemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount)
-        {
-            Expression<Func<Menu, bool>> condition =
-                x =>
-                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
-                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo);
-
-            return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
-        }
-        #endregion
-
         #region # 获取菜单列表 —— IEnumerable<Menu> FindBySystem(string systemNo)
         /// <summary>
         /// 获取菜单列表

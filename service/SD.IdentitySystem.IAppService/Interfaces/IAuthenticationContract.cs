@@ -1,7 +1,7 @@
-﻿using System;
-using System.ServiceModel;
-using ShSoft.Infrastructure;
+﻿using ShSoft.Infrastructure;
 using ShSoft.Infrastructure.Constants;
+using System;
+using System.ServiceModel;
 
 namespace SD.IdentitySystem.IAppService.Interfaces
 {

@@ -1,10 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
+﻿using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using ShSoft.Infrastructure.EntityBase;
 using ShSoft.Infrastructure.EventBase.Mediator;
+using System;
+using System.Collections.Generic;
+using System.Text;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -194,31 +193,6 @@ namespace SD.IdentitySystem.Domain.Entities
             #endregion
 
             this.MenuLeaves.Add(menuLeaf);
-        }
-        #endregion
-
-        #region 清空角色集 —— void RemoveRoles()
-        /// <summary>
-        /// 清空角色集
-        /// </summary>
-        public void RemoveRoles()
-        {
-            foreach (Role role in this.Roles.ToArray())
-            {
-                this.Roles.Remove(role);
-                role.Authorities.Remove(this);
-            }
-        }
-        #endregion
-
-        #region 获取菜单（叶子节点）列表 —— IEnumerable<Menu> GetMenus()
-        /// <summary>
-        /// 获取菜单（叶子节点）列表
-        /// </summary>
-        /// <returns>菜单（叶子节点）列表</returns>
-        public IEnumerable<Menu> GetMenus()
-        {
-            return this.MenuLeaves.Where(x => !x.Deleted);
         }
         #endregion
 

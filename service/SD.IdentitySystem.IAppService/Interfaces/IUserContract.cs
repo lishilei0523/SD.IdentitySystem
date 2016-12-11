@@ -1,9 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ServiceModel;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using ShSoft.Infrastructure;
 using ShSoft.Infrastructure.DTOBase;
+using System;
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace SD.IdentitySystem.IAppService.Interfaces
 {
@@ -13,7 +13,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     [ServiceContract(Namespace = "http://SD.IdentitySystem.IAppService.Interfaces")]
     public interface IUserContract : IApplicationService
     {
-        ////////////////////////////////命令部分////////////////////////////////
+        //命令部分
 
         #region # 创建用户 —— void CreateUser(string loginId, string realName...
         /// <summary>
@@ -97,7 +97,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         #endregion
 
 
-        ////////////////////////////////查询部分////////////////////////////////
+        //查询部分
 
         #region # 获取用户 —— UserInfo GetUser(string loginId)
         /// <summary>

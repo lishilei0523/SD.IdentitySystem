@@ -1,6 +1,6 @@
-﻿using System;
+﻿using ShSoft.Infrastructure.EntityBase;
+using System;
 using System.Text;
-using ShSoft.Infrastructure.EntityBase;
 
 namespace SD.IdentitySystem.Domain.Entities
 {

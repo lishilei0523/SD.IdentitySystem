@@ -158,31 +158,6 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 获取权限集 —— IEnumerable<Authority> GetAuthorities()
-        /// <summary>
-        /// 获取权限集
-        /// </summary>
-        /// <returns>权限集</returns>
-        public IEnumerable<Authority> GetAuthorities()
-        {
-            return this.Authorities.Where(x => !x.Deleted);
-        }
-        #endregion
-
-        #region 清空角色关系 —— void ClearRelation()
-        /// <summary>
-        /// 清空角色关系
-        /// </summary>
-        public void ClearRelation()
-        {
-            foreach (User user in this.Users.ToArray())
-            {
-                this.Users.Remove(user);
-                user.Roles.Remove(this);
-            }
-        }
-        #endregion
-
 
         //Private
 

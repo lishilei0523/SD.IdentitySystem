@@ -14,7 +14,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     [ServiceContract(Namespace = "http://SD.IdentitySystem.IAppService.Interfaces")]
     public interface IAuthorizationContract : IApplicationService
     {
-        ////////////////////////////////命令部分////////////////////////////////
+        //命令部分
 
         #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
         /// <summary>
@@ -193,7 +193,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         #endregion
 
 
-        ////////////////////////////////查询部分////////////////////////////////
+        //查询部分
 
         #region # 获取信息系统 —— InfoSystemInfo GetInfoSystem(string systemNo)
         /// <summary>
