@@ -1,4 +1,6 @@
-﻿@{
+﻿@using ShSoft.Common.PoweredByLee
+@using ApplicationType = ShSoft.ValueObjects.Enums.ApplicationType
+@{
     ViewBag.Title = "创建信息系统";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -28,6 +30,17 @@
                     <td class="tdTitle">系统管理员账号：</td>
                     <td class="tdContent">
                         <input class="easyui-textbox" type="text" name="adminLoginId" data-options="required:true,width:210" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">应用程序类型：</td>
+                    <td class="tdContent">
+                        <select class="easyui-combobox" id="slAppType" name="applicationType" data-options="editable:false" style="width: 210px">
+                            @foreach (Tuple<int, string, string> enumInfo in typeof(ApplicationType).GetEnumMemberInfos())
+                            {
+                                <option value="@enumInfo.Item1">@enumInfo.Item3</option>
+                            }
+                        </select>
                     </td>
                 </tr>
             </table>

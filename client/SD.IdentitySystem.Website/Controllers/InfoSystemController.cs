@@ -5,6 +5,7 @@ using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.MVC;
 using ShSoft.Infrastructure.MVC.Filters;
+using ShSoft.ValueObjects.Enums;
 using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website.Controllers
@@ -92,10 +93,11 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="systemName">信息系统名称</param>
         /// <param name="adminLoginId">系统管理员账号</param>
+        /// <param name="applicationType">应用程序类型</param>
         [HttpPost]
-        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId)
+        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
         {
-            this._authorizationContract.CreateInfoSystem(systemNo, systemName, adminLoginId);
+            this._authorizationContract.CreateInfoSystem(systemNo, systemName, adminLoginId, applicationType);
         }
         #endregion
 

@@ -6,6 +6,7 @@ using SD.IdentitySystem.Domain.Mediators;
 using ShSoft.Infrastructure.Global;
 using ShSoft.Infrastructure.RepositoryBase;
 using ShSoft.ValueObjects;
+using ShSoft.ValueObjects.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
@@ -124,7 +125,7 @@ namespace SD.IdentitySystem.Repository.Base
         {
             if (this._repMediator.InfoSystemRep.Count() == 0)
             {
-                this._systems.Add(new InfoSystem("00", "身份认证", "identity"));
+                this._systems.Add(new InfoSystem("00", "身份认证", "identity", ApplicationType.Web));
             }
         }
         #endregion

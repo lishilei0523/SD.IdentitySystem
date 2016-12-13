@@ -27,7 +27,8 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="systemName">系统名称</param>
         /// <param name="systemNo">系统编号</param>
         /// <param name="adminLoginId">管理员登录名</param>
-        public InfoSystem(string systemNo, string systemName, string adminLoginId)
+        /// <param name="applicationType">应用程序类型</param>
+        public InfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
             : this()
         {
             #region # 验证参数
@@ -42,6 +43,7 @@ namespace SD.IdentitySystem.Domain.Entities
             base.Number = systemNo;
             base.Name = systemName;
             this.AdminLoginId = adminLoginId;
+            this.ApplicationType = applicationType;
 
             //挂起领域事件
             EventMediator.Suspend(new InfoSystemCreatedEvent(this.Number, this.Name, this.AdminLoginId));

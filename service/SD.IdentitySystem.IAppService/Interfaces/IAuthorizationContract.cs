@@ -2,6 +2,7 @@
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using ShSoft.Infrastructure;
 using ShSoft.Infrastructure.DTOBase;
+using ShSoft.ValueObjects.Enums;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;
@@ -23,8 +24,9 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="systemNo">组织编号</param>
         /// <param name="systemName">信息系统名称</param>
         /// <param name="adminLoginId">系统管理员登录名</param>
+        /// <param name="applicationType">应用程序类型</param>
         [OperationContract]
-        void CreateInfoSystem(string systemNo, string systemName, string adminLoginId);
+        void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType);
         #endregion
 
         #region # 初始化信息系统 —— void InitInfoSystem(string systemNo, string host...

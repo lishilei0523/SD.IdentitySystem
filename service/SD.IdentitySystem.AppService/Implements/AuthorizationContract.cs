@@ -14,6 +14,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
+using ValueObjects = ShSoft.ValueObjects.Enums;
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -59,18 +60,20 @@ namespace SD.IdentitySystem.AppService.Implements
         //命令部分
 
         #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
+
         /// <summary>
         /// 创建信息系统
         /// </summary>
         /// <param name="systemNo">组织编号</param>
         /// <param name="systemName">信息系统名称</param>
         /// <param name="adminLoginId">系统管理员登录名</param>
-        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId)
+        /// <param name="applicationType">应用程序类型</param>
+        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ValueObjects.ApplicationType applicationType)
         {
             //验证
             Assert.IsFalse(this._repMediator.UserRep.Exists(adminLoginId), string.Format("登录名：\"{0}\"已存在，请重试！", adminLoginId));
 
-            InfoSystem infoSystem = new InfoSystem(systemNo, systemName, adminLoginId);
+            InfoSystem infoSystem = new InfoSystem(systemNo, systemName, adminLoginId, applicationType);
 
             this._unitOfWork.RegisterAdd(infoSystem);
             this._unitOfWork.UnitedCommit();
