@@ -88,6 +88,7 @@
     <Compile Include="ViewModels\Formats\EasyUI\Node.cs" />
     <Compile Include="ViewModels\Outputs\AuthorityView.cs" />
     <Compile Include="ViewModels\Outputs\InfoSystemView.cs" />
+    <Compile Include="ViewModels\Outputs\LoginRecordView.cs" />
     <Compile Include="ViewModels\Outputs\MenuView.cs" />
     <Compile Include="ViewModels\Outputs\RoleView.cs" />
     <Compile Include="ViewModels\Outputs\UserView.cs" />

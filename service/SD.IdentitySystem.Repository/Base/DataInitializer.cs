@@ -198,21 +198,23 @@ namespace SD.IdentitySystem.Repository.Base
 
         #region # 初始化菜单 —— void InitMenus()
         /// <summary>
-        /// 初始化菜单
-        /// </summary>
+        /// 初始化菜单/// </summary>
         private void InitMenus()
         {
             if (this._repMediator.MenuRep.Count() == 0)
             {
                 Menu root = new Menu("00", "身份认证系统", 1, null, null, null);
                 Menu systemManagement = new Menu("00", "信息系统管理", 2, "/InfoSystem/Index", null, root);
-                Menu userManagement = new Menu("00", "用户管理", 3, "/User/Index", null, root);
-                Menu roleManagement = new Menu("00", "角色管理", 4, "/Role/Index", null, root);
-                Menu menuManagement = new Menu("00", "菜单管理", 5, "/Menu/Index", null, root);
-                Menu authorityManagement = new Menu("00", "权限管理", 6, "/Authority/Index", null, root);
+                Menu loginRecordManagement = new Menu("00", "登录记录", 3, "/LoginRecord/Index", null, root);
+                Menu userManagement = new Menu("00", "用户管理", 4, "/User/Index", null, root);
+                Menu roleManagement = new Menu("00", "角色管理", 5, "/Role/Index", null, root);
+                Menu menuManagement = new Menu("00", "菜单管理", 6, "/Menu/Index", null, root);
+                Menu authorityManagement = new Menu("00", "权限管理", 7, "/Authority/Index", null, root);
+
 
                 this._menus.Add(root);
                 this._menus.Add(systemManagement);
+                this._menus.Add(loginRecordManagement);
                 this._menus.Add(userManagement);
                 this._menus.Add(roleManagement);
                 this._menus.Add(menuManagement);

@@ -346,5 +346,28 @@ namespace SD.IdentitySystem.AppService.Implements
             return authorities.Select(x => x.ToDTO(systemInfos));
         }
         #endregion
+
+
+        #region # 获取用户登录记录列表 —— PageModel<LoginRecordInfo> GetLoginRecords(string keywords...
+        /// <summary>
+        /// 获取用户登录记录列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="startTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户登录记录列表</returns>
+        public PageModel<LoginRecordInfo> GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
+        {
+            int rowCount, pageCount;
+
+            IEnumerable<LoginRecord> records = this._repMediator.LoginRecordRep.FindByPage(keywords, startTime, endTime, pageIndex, pageSize, out rowCount, out pageCount);
+
+            IEnumerable<LoginRecordInfo> recordInfos = records.Select(x => x.ToDTO());
+
+            return new PageModel<LoginRecordInfo>(recordInfos, pageIndex, pageSize, pageCount, rowCount);
+        }
+        #endregion
     }
 }

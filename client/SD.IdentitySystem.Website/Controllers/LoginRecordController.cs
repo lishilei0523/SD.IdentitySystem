@@ -1,0 +1,72 @@
+﻿using System;
+using System.Web.Mvc;
+using SD.IdentitySystem.IPresentation.Interfaces;
+using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using ShSoft.Infrastructure.DTOBase;
+using ShSoft.Infrastructure.MVC;
+
+namespace SD.IdentitySystem.Website.Controllers
+{
+    /// <summary>
+    /// 用户登录记录控制器
+    /// </summary>
+    public class LoginRecordController : BaseController
+    {
+        #region # 字段及构造器
+
+        /// <summary>
+        /// 用户呈现器接口
+        /// </summary>
+        private readonly IUserPresenter _userPresenter;
+
+        /// <summary>
+        /// 字段及依赖注入构造器
+        /// </summary>
+        /// <param name="userPresenter">用户呈现器接口</param>
+        public LoginRecordController(IUserPresenter userPresenter)
+        {
+            this._userPresenter = userPresenter;
+        }
+
+        #endregion
+
+
+        //视图部分
+
+        #region # 加载首页视图 —— ViewResult Index()
+        /// <summary>
+        /// 加载首页视图
+        /// </summary>
+        /// <returns>首页视图</returns>
+        [HttpGet]
+        public ViewResult Index()
+        {
+            return base.View();
+        }
+        #endregion
+
+
+        //查询部分
+
+        #region # 分页获取用户登录记录列表 —— JsonResult GetLoginRecords(string keywords...
+        /// <summary>
+        /// 分页获取用户登录记录列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="startTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="page">页码</param>
+        /// <param name="rows">页容量</param>
+        /// <returns>用户登录记录列表</returns>
+        public JsonResult GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int page, int rows)
+        {
+            PageModel<LoginRecordView> pageModel = this._userPresenter.GetLoginRecords(keywords, startTime, endTime, page, rows);
+
+            Grid<LoginRecordView> grid = new Grid<LoginRecordView>(pageModel.RowCount, pageModel.Datas);
+
+            return base.Json(grid, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+    }
+}

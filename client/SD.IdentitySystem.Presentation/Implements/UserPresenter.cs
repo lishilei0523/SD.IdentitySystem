@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using System;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
@@ -62,6 +63,26 @@ namespace SD.IdentitySystem.Presentation.Implements
             UserInfo userInfo = this._userContract.GetUser(loginId);
 
             return userInfo.ToViewModel();
+        }
+        #endregion
+
+        #region # 分页获取用户登录记录列表 —— PageModel<LoginRecordView> GetLoginRecords(string keywords...
+        /// <summary>
+        /// 分页获取用户登录记录列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="startTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户登录记录列表</returns>
+        public PageModel<LoginRecordView> GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
+        {
+            PageModel<LoginRecordInfo> pageModel = this._userContract.GetLoginRecords(keywords, startTime, endTime, pageIndex, pageSize);
+
+            IEnumerable<LoginRecordView> recordViews = pageModel.Datas.Select(x => x.ToViewModel());
+
+            return new PageModel<LoginRecordView>(recordViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
         }
         #endregion
     }

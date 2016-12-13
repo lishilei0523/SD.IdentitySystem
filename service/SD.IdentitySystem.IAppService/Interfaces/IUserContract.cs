@@ -165,5 +165,20 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         [OperationContract]
         IEnumerable<AuthorityInfo> GetAuthorities(string loginId, string systemNo);
         #endregion
+
+
+        #region # 获取用户登录记录列表 —— PageModel<LoginRecordInfo> GetLoginRecords(string keywords...
+        /// <summary>
+        /// 获取用户登录记录列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="startTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户登录记录列表</returns>
+        [OperationContract]
+        PageModel<LoginRecordInfo> GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize);
+        #endregion
     }
 }

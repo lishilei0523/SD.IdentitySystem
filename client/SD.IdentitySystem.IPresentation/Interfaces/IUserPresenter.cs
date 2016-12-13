@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+﻿using System;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.MVC;
 
@@ -28,6 +29,19 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// <param name="loginId">登录名</param>
         /// <returns>用户</returns>
         UserView GetUser(string loginId);
+        #endregion
+
+        #region # 分页获取用户登录记录列表 —— PageModel<LoginRecordView> GetLoginRecords(string keywords...
+        /// <summary>
+        /// 分页获取用户登录记录列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="startTime">开始时间</param>
+        /// <param name="endTime">结束时间</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户登录记录列表</returns>
+        PageModel<LoginRecordView> GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize);
         #endregion
     }
 }
