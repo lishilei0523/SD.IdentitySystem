@@ -70,6 +70,6 @@
             color: #1336dd;
         }
 
-#dvUpdatePwd table input {
-    width: 240px;
+#dvUpdatePwd td {
+    padding: 5px;
 }

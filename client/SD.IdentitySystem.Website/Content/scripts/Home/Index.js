@@ -9,21 +9,8 @@ $(function () {
         animate: true,
         lines: true,
         onClick: function (node) {
-            addTab(node.text, node.attributes.href, node.attributes.isLeaf);
+            createTab(node.text, node.attributes.href, node.attributes.isLeaf);
         }
-    });
-
-    //初始化修改密码窗口
-    $("#dvUpdatePwd").window({
-        width: 350,
-        height: 200,
-        maximizable: false,
-        resizable: false,
-        draggable: false,
-        modal: true,
-        minimizable: false,
-        collapsible: false,
-        closed: true
     });
 
     //初始化公共窗体
@@ -118,8 +105,8 @@ $(function () {
 
 //注销
 function logout() {
-    $.messager.confirm("警告", "确定注销当前用户吗？", function (result) {
-        if (result) {
+    $.messager.confirm("Warning", "确定注销当前用户吗？", function (confirm) {
+        if (confirm) {
             $.ajax({
                 type: "POST",
                 url: "/User/Logout",
@@ -134,29 +121,29 @@ function logout() {
     });
 }
 
-//修改密码窗口
+//打开修改密码窗口
 function openChangePassword() {
     $("#dvUpdatePwd").window("open");
-    $("#dvUpdatePwd").window("setTitle", "修改密码");
     $("#fmUpdatePwd").form("clear");
 }
 
 //修改密码
 function changePassword() {
-    var oldPassword = $("#oldPassword").val();
+    //获取用户输入密码
     var newPassword = $("#newPassword").val();
     var confirmPassword = $("#confirmPassword").val();
-    if (oldPassword.length === 0 ||
-        newPassword.length === 0 ||
-        confirmPassword.length === 0) {
-        $.messageBox.showError("密码不可为空，请重新输入！");
-    }
-    else if (newPassword !== confirmPassword) {
-        $.messageBox.showError("两次密码不一致，请重试！");
+
+    //判断用户输入
+    if (newPassword !== confirmPassword) {
+        $.messager.alert("Warning", "两次密码不一致，请重试！");
+        return;
     }
     else {
+        //填充用户登录名
         var loginId = $("#spLoginId").text();
         $("#hdLoginId").val(loginId);
+
+        //提交表单
         $("#fmUpdatePwd").submit();
     }
 }
@@ -168,20 +155,20 @@ function updatingPassword() {
 
 //修改密码成功
 function updateSucceed() {
-    $.messageBox.showSuccess("修改成功");
+    $.messager.alert("OK", "修改成功");
     $("#dvUpdatePwd").window("close");
 }
 
 //修改密码失败
 function updateFailed(result) {
-    $.messageBox.showError(result.responseText);
-    $("#dvUpdatePwd").window("close");
+    $.messager.alert("Warning", result.responseText);
 }
 
-//添加选项卡
-function addTab(title, url, isLeaf) {
+//创建选项卡
+function createTab(title, url, isLeaf) {
     //判断是否是链接
     if (isLeaf) {
+        //如果选项卡存在，刷新
         if ($("#tabs").tabs("exists", title)) {
             var currTab = $("#tabs").tabs("getSelected");
             $("#tabs").tabs("select", title);
@@ -195,6 +182,7 @@ function addTab(title, url, isLeaf) {
                 });
             }
         }
+            //如果选项卡不存在，创建
         else {
             var content = createFrame(url);
             $("#tabs").tabs("add", {
@@ -206,7 +194,7 @@ function addTab(title, url, isLeaf) {
     }
 }
 
-//创建iframe
+//创建选项卡中的iframe
 function createFrame(url) {
     var tabHeight = $("#tabs").height() - 35;
     var frame = '<iframe scrolling="auto" frameborder="0"  src="' + url + '" style="width:100%;height:' + tabHeight + 'px;"></iframe>';

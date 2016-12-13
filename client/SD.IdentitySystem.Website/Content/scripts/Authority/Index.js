@@ -131,7 +131,7 @@ function removeAuthorities() {
         });
     }
     else {
-        $.easyuiExt.messager.alert("警告", "请选中要删除的权限！");
+        $.easyuiExt.messager.alert("Warning", "请选中要删除的权限！");
     }
 }
 

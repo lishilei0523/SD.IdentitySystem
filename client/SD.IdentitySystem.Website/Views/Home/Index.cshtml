@@ -64,51 +64,60 @@
     </div>
 
     @*修改密码对话框*@
-    <div id="dvUpdatePwd">
+    <div id="dvUpdatePwd" class="easyui-window" title="修改密码" style="padding: 5px;" data-options="width:360,height:230,maximizable: false,resizable: false,draggable: false,modal: true,minimizable: false,collapsible: false,closed: true,footer: '#footer'">
         @using (Ajax.BeginForm("UpdatePassword",
-            new
-            {
-                controller = "User"
-            },
-            new AjaxOptions
-            {
-                HttpMethod = "post",
-                OnBegin = "updatingPassword",
-                OnSuccess = "updateSucceed",
-                OnFailure = "updateFailed"
-            },
-            new
-            {
-                id = "fmUpdatePwd"
-            }))
+        new
+        {
+            controller = "User"
+        },
+        new AjaxOptions
+        {
+            HttpMethod = "post",
+            OnBegin = "updatingPassword",
+            OnSuccess = "updateSucceed",
+            OnFailure = "updateFailed"
+        },
+        new
+        {
+            id = "fmUpdatePwd"
+        }))
         {
             @*隐藏域，携带LoginId*@
             <input type="hidden" name="loginId" id="hdLoginId" />
-            <table style="width: 100%; text-align: right">
+            <table style="margin: 10px auto;">
                 <tr>
                     <td>旧密码:</td>
-                    <td>@Html.Password("oldPassword")</td>
+                    <td>
+                        <input class="easyui-textbox" type="password" id="oldPassword" name="oldPassword" data-options="required:true,iconCls:'icon-lock',width:210" />
+                    </td>
                 </tr>
                 <tr>
                     <td>新密码:</td>
-                    <td>@Html.Password("newPassword")</td>
+                    <td>
+                        <input class="easyui-textbox" type="password" id="newPassword" name="newPassword" data-options="required:true,iconCls:'icon-lock',width:210" />
+                    </td>
+
                 </tr>
                 <tr>
                     <td>确认密码:</td>
-                    <td>@Html.Password("confirmPassword")</td>
+                    <td>
+                        <input class="easyui-textbox" type="password" id="confirmPassword" name="confirmPassword" data-options="required:true,iconCls:'icon-lock',width:210" />
+                    </td>
                 </tr>
             </table>
-            <div style="text-align: center; padding: 15px;">
-                <a class="easyui-linkbutton" data-options="iconCls:'icon-ok'" onclick="changePassword();">保存</a>
-                <a class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onclick="javascript: $('#fmUpdatePwd').form('reset');">重置</a>
-                <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="javascript: $('#dvUpdatePwd').window('close');">取消</a>
+            <div id="footer" style="padding: 5px;">
+                <div style="float: right;">
+                    <a class="easyui-linkbutton c6" data-options="iconCls:'icon-ok'" onclick="changePassword();" style="width: 90px">保存</a>
+                    <a class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onclick="javascript: $('#fmUpdatePwd').form('reset');" style="width: 90px">重置</a>
+                    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="javascript: $('#dvUpdatePwd').window('close');" style="width: 90px">取消</a>
+                </div>
             </div>
         }
     </div>
 
     @*公共窗口*@
     <div id="commonWindow">
-        <iframe id="comFrame" style="width: 100%; height: 98%; border: 0;"></iframe>
+        <iframe style="width: 100%; height: 98%; border: 0;"></iframe>
     </div>
 </body>
 </html>

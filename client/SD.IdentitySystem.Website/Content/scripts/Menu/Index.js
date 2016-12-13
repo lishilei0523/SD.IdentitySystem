@@ -159,7 +159,7 @@ function removeMenus() {
         });
     }
     else {
-        $.easyuiExt.messager.alert("警告", "请选中要删除的菜单！");
+        $.easyuiExt.messager.alert("Warning", "请选中要删除的菜单！");
     }
 }
 
