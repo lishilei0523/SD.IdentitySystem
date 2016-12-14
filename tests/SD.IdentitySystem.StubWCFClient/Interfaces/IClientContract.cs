@@ -10,9 +10,15 @@ namespace SD.IdentitySystem.StubWCFClient.Interfaces
     public interface IClientContract : IApplicationService
     {
         /// <summary>
-        /// 获取订单
+        /// 获取消息头
         /// </summary>
-        /// <returns>订单</returns>
+        /// <returns>消息头</returns>
+        /// <remarks>
+        /// 此方法用于测试，
+        /// 将客户端发送的消息头发送给WCF服务端，
+        /// 并接收WCF服务端返回的消息头，
+        /// 再返回给客户端
+        /// </remarks>
         [OperationContract]
         string GetHeader();
     }
