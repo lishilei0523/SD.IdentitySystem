@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package>
+  <metadata>
+    <id>SD.IdentitySystem.WCFAuthentication.Windows</id>
+    <version>1.0.0.0</version>
+    <title>SD.IdentitySystem.WCFAuthentication.Windows</title>
+    <authors>Lee</authors>
+    <description>WCF/Windows客户端身份认证工具</description>
+  </metadata>
+  <files>
+    <file src="*.transform" target="content" />
+  </files>
+</package>

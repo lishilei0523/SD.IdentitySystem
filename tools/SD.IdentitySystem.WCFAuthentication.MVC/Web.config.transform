@@ -1,0 +1,10 @@
+﻿<configuration>
+  <system.serviceModel>
+    <extensions>
+      <behaviorExtensions>
+        <!--WCF/MVC客户端身份认证扩展配置-->
+        <add name="mvcClientAuthentication" type="SD.IdentitySystem.WCFAuthentication.MVC.AuthenticationBehaviorElement, SD.IdentitySystem.WCFAuthentication.MVC"/>
+      </behaviorExtensions>
+    </extensions>
+  </system.serviceModel>
+</configuration>
