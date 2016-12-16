@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Diagnostics;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
@@ -25,20 +26,14 @@ namespace SD.IdentitySystem.WCFAuthentication.MVC
             //MVC客户端获取公钥处理
             object loginInfo = HttpContext.Current.Session[SessionConstants.CurrentUserKey];
 
-            #region # 非空验证
-
-            if (loginInfo == null)
+            if (loginInfo != null)
             {
-                throw new ApplicationException("未登录，请重新登录！");
+                Guid publishKey = ((LoginInfo)loginInfo).PublicKey;
+
+                //添加消息头
+                MessageHeader header = MessageHeader.CreateHeader(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace, publishKey);
+                request.Headers.Add(header);
             }
-
-            #endregion
-
-            Guid publishKey = ((LoginInfo)loginInfo).PublicKey;
-
-            //添加消息头
-            MessageHeader header = MessageHeader.CreateHeader(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace, publishKey);
-            request.Headers.Add(header);
 
             return null;
         }

@@ -58,6 +58,10 @@
       <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.1.3\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SD.IdentitySystem.WCFAuthentication.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.MVC.1.0.0.0\lib\net45\SD.IdentitySystem.WCFAuthentication.MVC.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.1.0.7\lib\net45\SD.IOC.Core.dll</HintPath>
       <Private>True</Private>
