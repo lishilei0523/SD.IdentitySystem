@@ -10,6 +10,7 @@ using ShSoft.ValueObjects.Enums;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 
 namespace SD.IdentitySystem.Repository.Base
 {
@@ -78,7 +79,6 @@ namespace SD.IdentitySystem.Repository.Base
         public void Initialize()
         {
             Initializer.InitSessionId();
-            CacheMediator.Clear();
 
             this.InitAdmin();
             this.InitInfoSystems();
