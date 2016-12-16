@@ -22,6 +22,11 @@ namespace SD.IdentitySystem.AppService.Implements
         #region # 字段及依赖注入构造器
 
         /// <summary>
+        /// 同步锁
+        /// </summary>
+        private static readonly object _Sync = new object();
+
+        /// <summary>
         /// 仓储中介者
         /// </summary>
         private readonly RepositoryMediator _repMediator;
@@ -57,39 +62,41 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>公钥</returns>
         public LoginInfo Login(string loginId, string password, string ip)
         {
-            User currentUser = this._repMediator.UserRep.SingleOrDefaultFromCache(loginId);
-
-            #region # 验证
-
-            if (currentUser == null)
+            lock (_Sync)
             {
-                throw new InvalidOperationException(string.Format("用户名\"{0}\"不存在！", loginId));
+                User currentUser = this._repMediator.UserRep.SingleOrDefaultFromCache(loginId);
+
+                #region # 验证
+
+                if (currentUser == null)
+                {
+                    throw new InvalidOperationException(string.Format("用户名\"{0}\"不存在！", loginId));
+                }
+                if (!currentUser.Enabled)
+                {
+                    throw new InvalidOperationException("用户已停用！");
+                }
+                if (currentUser.Password != password.ToMD5())
+                {
+                    throw new InvalidOperationException("登录失败，密码错误！");
+                }
+
+                #endregion
+
+                //生成公钥
+                Guid publicKey = Guid.NewGuid();
+
+                //生成登录信息
+                LoginInfo loginInfo = this.BuildLoginInfo(publicKey, currentUser);
+
+                //以公钥为键，登录信息为值，存入分布式缓存
+                CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(20));
+
+                //生成登录记录
+                Task.Run(() => this.GenerateLoginRecord(publicKey, currentUser, ip)).Wait();
+
+                return loginInfo;
             }
-            if (!currentUser.Enabled)
-            {
-                throw new InvalidOperationException("用户已停用！");
-            }
-            if (currentUser.Password != password.ToMD5())
-            {
-                throw new InvalidOperationException("登录失败，密码错误！");
-            }
-
-            #endregion
-
-            //生成公钥
-            Guid publicKey = Guid.NewGuid();
-
-
-            //生成登录信息
-            LoginInfo loginInfo = this.BuildLoginInfo(publicKey, currentUser);
-
-            //以公钥为键，登录信息为值，存入分布式缓存
-            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(20));
-
-            //生成登录记录
-            Task.Run(() => this.GenerateLoginRecord(publicKey, currentUser, ip)).Wait();
-
-            return loginInfo;
         }
         #endregion
 
@@ -101,16 +108,19 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>是否通过</returns>
         public void Authenticate(Guid publicKey)
         {
-            //以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
-            LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
-
-            if (loginInfo == null)
+            lock (_Sync)
             {
-                throw new NoPermissionException("公钥失效，请重新登录！");
-            }
+                //以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
+                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
 
-            //通过后，重新设置缓存过期时间为20分钟
-            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(20));
+                if (loginInfo == null)
+                {
+                    throw new NoPermissionException("公钥失效，请重新登录！");
+                }
+
+                //通过后，重新设置缓存过期时间为20分钟
+                CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(20));
+            }
         }
         #endregion
 
