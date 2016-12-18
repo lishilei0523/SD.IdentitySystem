@@ -1,5 +1,7 @@
-﻿using SD.AOP.Core.Aspects.ForMethod;
-using SD.CacheManager;
+﻿using System.Collections.Generic;
+using System.Linq;
+using System.Transactions;
+using SD.AOP.Core.Aspects.ForMethod;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
@@ -7,10 +9,6 @@ using ShSoft.Infrastructure.Global;
 using ShSoft.Infrastructure.RepositoryBase;
 using ShSoft.ValueObjects;
 using ShSoft.ValueObjects.Enums;
-using System.Collections.Generic;
-using System.Linq;
-using System.Transactions;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 
 namespace SD.IdentitySystem.Repository.Base
 {
