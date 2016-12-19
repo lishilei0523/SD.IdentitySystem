@@ -105,11 +105,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.6\lib\net45\ShSoft.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.7\lib\net45\ShSoft.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.AOP.1.0.0.0\lib\net45\ShSoft.Infrastructure.AOP.dll</HintPath>
+      <HintPath>..\..\packages\ShSoft.Infrastructure.AOP.1.0.1\lib\net45\ShSoft.Infrastructure.AOP.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure.EventBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
