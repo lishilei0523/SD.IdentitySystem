@@ -75,7 +75,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.Infrastructure.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.MVC.1.0.9\lib\net45\ShSoft.Infrastructure.MVC.dll</HintPath>
+      <HintPath>..\..\packages\ShSoft.Infrastructure.MVC.1.1.0\lib\net45\ShSoft.Infrastructure.MVC.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="ShSoft.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
