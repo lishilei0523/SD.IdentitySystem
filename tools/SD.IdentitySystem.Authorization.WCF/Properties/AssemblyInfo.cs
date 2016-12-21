@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SD.IdentitySystem.Authorization.WCF")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("授权工具 - WCF客户端")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ShSoft")]
+[assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.Authorization.WCF")]
-[assembly: AssemblyCopyright("Copyright © ShSoft 2016")]
+[assembly: AssemblyCopyright("Copyright © SD 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

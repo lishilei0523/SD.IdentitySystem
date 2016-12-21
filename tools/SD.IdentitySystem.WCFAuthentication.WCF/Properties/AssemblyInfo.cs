@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SD.IdentitySystem.WCFAuthentication.WCF")]
 [assembly: AssemblyDescription("WCF身份认证工具 - WCF客户端/服务端")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ShSoft")]
+[assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.WCFAuthentication.WCF")]
-[assembly: AssemblyCopyright("Copyright © ShSoft 2016")]
+[assembly: AssemblyCopyright("Copyright © SD 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

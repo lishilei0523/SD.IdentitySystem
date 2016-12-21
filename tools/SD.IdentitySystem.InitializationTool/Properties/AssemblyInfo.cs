@@ -9,7 +9,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.InitializationTool")]
-[assembly: AssemblyCopyright("Copyright © ShSoft 2016")]
+[assembly: AssemblyCopyright("Copyright © SD 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
