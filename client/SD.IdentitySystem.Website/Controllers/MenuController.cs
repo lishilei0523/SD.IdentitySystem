@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
+using ShSoft.ValueObjects.Attributes;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -56,7 +57,9 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <summary>
         /// 加载首页视图
         /// </summary>
-        /// <returns></returns>
+        /// <returns>首页视图</returns>
+        [HttpGet]
+        [RequireAuthorization("菜单管理首页视图")]
         public ViewResult Index()
         {
             IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
@@ -72,6 +75,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <returns>创建菜单视图</returns>
         [HttpGet]
+        [RequireAuthorization("创建菜单视图")]
         public ViewResult Add()
         {
             IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
@@ -88,6 +92,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="id">菜单Id</param>
         /// <returns>修改菜单视图</returns>
         [HttpGet]
+        [RequireAuthorization("修改菜单视图")]
         public ViewResult Update(Guid id)
         {
             MenuView currentMenu = this._menuPresenter.GetMenu(id);
@@ -103,6 +108,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="id">菜单Id</param>
         /// <returns>关联权限视图</returns>
         [HttpGet]
+        [RequireAuthorization("关联权限视图")]
         public ViewResult RelateAuthority(Guid id)
         {
             MenuView currentMenu = this._menuPresenter.GetMenu(id);
@@ -125,6 +131,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="icon">图标</param>
         /// <param name="parentId">父级菜单Id</param>
         [HttpPost]
+        [RequireAuthorization("创建菜单")]
         public void CreateMenu(string systemNo, string menuName, int sort, string url, string icon, Guid? parentId)
         {
             this._authorizationContract.CreateMenu(systemNo, menuName, sort, url, icon, parentId);
@@ -141,6 +148,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="url">链接地址</param>
         /// <param name="icon">图标</param>
         [HttpPost]
+        [RequireAuthorization("修改菜单")]
         public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string icon)
         {
             this._authorizationContract.UpdateMenu(menuId, menuName, sort, url, icon);
@@ -153,6 +161,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <param name="id">菜单Id</param>
         [HttpPost]
+        [RequireAuthorization("删除菜单")]
         public void RemoveMenu(Guid id)
         {
             this._authorizationContract.RemoveMenu(id);
@@ -165,6 +174,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <param name="menuIds">菜单Id集</param>
         [HttpPost]
+        [RequireAuthorization("批量删除菜单")]
         public void RemoveMenus(IEnumerable<Guid> menuIds)
         {
             menuIds = menuIds ?? new Guid[0];
@@ -183,6 +193,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="menuId">菜单Id</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
+        [RequireAuthorization("关联权限")]
         public void RelateAuthorities(Guid menuId, IEnumerable<Guid> authorityIds)
         {
             authorityIds = authorityIds ?? new Guid[0];
@@ -200,6 +211,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <param name="id">信息系统编号</param>
         /// <returns>菜单树</returns>
+        [RequireAuthorization("获取菜单树")]
         public JsonResult GetMenuTree(string id)
         {
             string systemNo = id;
@@ -216,6 +228,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>菜单TreeGrid</returns>
+        [RequireAuthorization("获取菜单树形表格")]
         public JsonResult GetMenuTreeGrid(string systemNo)
         {
             IEnumerable<MenuView> menus = this._menuPresenter.GetMenuTreeGrid(systemNo).ToArray();

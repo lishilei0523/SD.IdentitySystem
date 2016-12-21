@@ -8,6 +8,7 @@ using ShSoft.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
+using ShSoft.ValueObjects.Attributes;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -65,6 +66,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <returns>首页视图</returns>
         [HttpGet]
+        [RequireAuthorization("角色管理首页视图")]
         public ViewResult Index()
         {
             IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
@@ -80,6 +82,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <returns>创建角色视图</returns>
         [HttpGet]
+        [RequireAuthorization("创建角色视图")]
         public ViewResult Add()
         {
             IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
@@ -96,6 +99,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="id">角色Id</param>
         /// <returns>修改角色视图</returns>
         [HttpGet]
+        [RequireAuthorization("修改角色视图")]
         public ViewResult Update(Guid id)
         {
             RoleView currentRole = this._rolePresenter.GetRole(id);
@@ -116,6 +120,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
+        [RequireAuthorization("创建角色")]
         public void CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
             authorityIds = authorityIds ?? new Guid[0];
@@ -133,6 +138,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
+        [RequireAuthorization("修改角色")]
         public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
             authorityIds = authorityIds ?? new Guid[0];
@@ -147,6 +153,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <param name="id">角色Id</param>
         [HttpPost]
+        [RequireAuthorization("删除角色")]
         public void RemoveRole(Guid id)
         {
             this._authorizationContract.RemoveRole(id);
@@ -159,6 +166,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <param name="roleIds">角色Id集</param>
         [HttpPost]
+        [RequireAuthorization("批量删除角色")]
         public void RemoveRoles(IEnumerable<Guid> roleIds)
         {
             roleIds = roleIds ?? new Guid[0];
@@ -182,6 +190,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>角色列表</returns>
+        [RequireAuthorization("获取角色列表")]
         public JsonResult GetRoles(string systemNo, string keywords, int page, int rows)
         {
             PageModel<RoleView> pageModel = this._rolePresenter.GetRolesByPage(systemNo, keywords, page, rows);
@@ -198,6 +207,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <param name="id">用户登录名</param>
         /// <returns>信息系统/角色树</returns>
+        [RequireAuthorization("获取用户的信息系统-角色树")]
         public JsonResult GetRoleTree(string id)
         {
             string loginId = id;

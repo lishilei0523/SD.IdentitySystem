@@ -5,6 +5,7 @@ using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using ShSoft.Infrastructure.DTOBase;
 using ShSoft.Infrastructure.MVC;
+using ShSoft.ValueObjects.Attributes;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -40,6 +41,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <returns>首页视图</returns>
         [HttpGet]
+        [RequireAuthorization("登录记录首页视图")]
         public ViewResult Index()
         {
             return base.View();
@@ -59,6 +61,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>用户登录记录列表</returns>
+        [RequireAuthorization("分页获取用户登录记录列表")]
         public JsonResult GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
             PageModel<LoginRecordView> pageModel = this._userPresenter.GetLoginRecords(keywords, startTime, endTime, page, rows);

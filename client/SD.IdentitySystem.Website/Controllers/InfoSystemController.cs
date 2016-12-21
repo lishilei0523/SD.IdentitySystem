@@ -7,6 +7,7 @@ using ShSoft.Infrastructure.MVC;
 using ShSoft.Infrastructure.MVC.Filters;
 using ShSoft.ValueObjects.Enums;
 using System.Web.Mvc;
+using ShSoft.ValueObjects.Attributes;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -50,6 +51,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <returns>首页视图</returns>
         [HttpGet]
+        [RequireAuthorization("信息系统管理首页视图")]
         public ViewResult Index()
         {
             return base.View();
@@ -62,6 +64,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// </summary>
         /// <returns>创建信息系统视图</returns>
         [HttpGet]
+        [RequireAuthorization("创建信息系统视图")]
         public ViewResult Add()
         {
             return base.View();
@@ -75,6 +78,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="id">信息系统编号</param>
         /// <returns>初始化信息系统视图</returns>
         [HttpGet]
+        [RequireAuthorization("初始化信息系统视图")]
         public ViewResult Init(string id)
         {
             InfoSystemView currentSystem = this._systemPresenter.GetInfoSystem(id);
@@ -95,6 +99,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="adminLoginId">系统管理员账号</param>
         /// <param name="applicationType">应用程序类型</param>
         [HttpPost]
+        [RequireAuthorization("创建信息系统")]
         public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
         {
             this._authorizationContract.CreateInfoSystem(systemNo, systemName, adminLoginId, applicationType);
@@ -110,6 +115,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="port">端口</param>
         /// <param name="index">首页</param>
         [HttpPost]
+        [RequireAuthorization("初始化信息系统")]
         public void InitInfoSystem(string systemNo, string host, int port, string index)
         {
             this._authorizationContract.InitInfoSystem(systemNo, host, port, index);
@@ -124,6 +130,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// 获取信息系统列表
         /// </summary>
         /// <returns>信息系统列表</returns>
+        [RequireAuthorization("获取信息系统列表")]
         public JsonResult GetInfoSystems(string keywords, int page, int rows)
         {
             PageModel<InfoSystemView> pageModel = this._systemPresenter.GetInfoSystems(keywords, page, rows);
