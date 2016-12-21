@@ -106,6 +106,7 @@ namespace SD.IdentitySystem.InitializationTool
                 AuthorityParam authorityParam = new AuthorityParam
                 {
                     AssemblyName = assembly.GetName().Name,
+                    Namespace = methodInfo.DeclaringType.Namespace,
                     ClassName = methodInfo.DeclaringType.Name,
                     MethodName = methodInfo.Name,
                     AuthorityName = attribute.AuthorityName,
