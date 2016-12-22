@@ -1,7 +1,7 @@
-﻿using System;
-using SD.IdentitySystem.StubWCFClient.Interfaces;
+﻿using SD.IdentitySystem.StubWCFClient.Interfaces;
 using SD.IOC.Core.Mediator;
-using ShSoft.ValueObjects;
+using ShSoft.Infrastructure.Constants;
+using System;
 
 namespace SD.IdentitySystem.WCFClientTests
 {
@@ -12,11 +12,11 @@ namespace SD.IdentitySystem.WCFClientTests
         /// </summary>
         static void Main()
         {
-            //伪造一个公钥
-            Guid fakePublishKey = Guid.NewGuid();
+            //伪造一个登录信息
+            LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
 
-            //将公钥存入约定位置
-            AppDomain.CurrentDomain.SetData(SessionKey.CurrentPublishKey, fakePublishKey);
+            //将登录信息存入约定位置
+            AppDomain.CurrentDomain.SetData(CacheConstants.CurrentUserKey, fakeLoginInfo);
 
             //实例化WCF客户端服务接口
             IClientContract clientContract = ResolveMediator.Resolve<IClientContract>();
@@ -25,7 +25,7 @@ namespace SD.IdentitySystem.WCFClientTests
             string header = clientContract.GetHeader();
 
             //如果消息头内容即是上述伪造的公钥，即说明整个认证过程没问题
-            if (fakePublishKey.ToString() == header)
+            if (fakeLoginInfo.PublicKey.ToString() == header)
             {
                 Console.WriteLine("认证通过！");
             }

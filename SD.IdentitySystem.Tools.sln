@@ -24,7 +24,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8C7E75
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.MVC", "tools\SD.IdentitySystem.WCFAuthentication.MVC\SD.IdentitySystem.WCFAuthentication.MVC.csproj", "{FA4CA095-26A0-4E6F-B297-D98115A577D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.Windows(未完成)", "tools\SD.IdentitySystem.WCFAuthentication.Windows\SD.IdentitySystem.WCFAuthentication.Windows(未完成).csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.Windows", "tools\SD.IdentitySystem.WCFAuthentication.Windows\SD.IdentitySystem.WCFAuthentication.Windows.csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.WCF", "tools\SD.IdentitySystem.WCFAuthentication.WCF\SD.IdentitySystem.WCFAuthentication.WCF.csproj", "{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}"
 EndProject

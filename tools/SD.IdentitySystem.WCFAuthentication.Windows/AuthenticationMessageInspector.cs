@@ -1,8 +1,9 @@
-﻿using System;
+﻿using ShSoft.Infrastructure.Constants;
+using ShSoft.ValueObjects;
+using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
-using ShSoft.ValueObjects;
 
 namespace SD.IdentitySystem.WCFAuthentication.Windows
 {
@@ -20,22 +21,16 @@ namespace SD.IdentitySystem.WCFAuthentication.Windows
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //Windows客户端获取公钥处理
-            object publicKeyObject = AppDomain.CurrentDomain.GetData(SessionKey.CurrentPublishKey);
+            object loginInfo = AppDomain.CurrentDomain.GetData(CacheConstants.CurrentUserKey);
 
-            #region # 非空验证
-
-            if (publicKeyObject == null)
+            if (loginInfo != null)
             {
-                throw new ApplicationException("公钥数据丢失，请检查程序！");
+                Guid publishKey = ((LoginInfo)loginInfo).PublicKey;
+
+                //添加消息头
+                MessageHeader header = MessageHeader.CreateHeader(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace, publishKey);
+                request.Headers.Add(header);
             }
-
-            #endregion
-
-            Guid publishKey = (Guid)publicKeyObject;
-
-            //添加消息头
-            MessageHeader header = MessageHeader.CreateHeader(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace, publishKey);
-            request.Headers.Add(header);
 
             return null;
         }

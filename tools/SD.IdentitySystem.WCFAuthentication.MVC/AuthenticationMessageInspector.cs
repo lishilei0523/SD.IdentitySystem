@@ -1,12 +1,10 @@
-﻿using System;
-using System.Diagnostics;
+﻿using ShSoft.Infrastructure.Constants;
+using ShSoft.ValueObjects;
+using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 using System.Web;
-using ShSoft.Infrastructure.Constants;
-using ShSoft.Infrastructure.MVC.Constants;
-using ShSoft.ValueObjects;
 
 namespace SD.IdentitySystem.WCFAuthentication.MVC
 {
@@ -24,7 +22,7 @@ namespace SD.IdentitySystem.WCFAuthentication.MVC
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //MVC客户端获取公钥处理
-            object loginInfo = HttpContext.Current.Session[SessionConstants.CurrentUserKey];
+            object loginInfo = HttpContext.Current.Session[CacheConstants.CurrentUserKey];
 
             if (loginInfo != null)
             {

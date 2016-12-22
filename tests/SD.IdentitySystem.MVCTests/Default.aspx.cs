@@ -1,10 +1,8 @@
-﻿using System;
-using System.Web.UI;
-using SD.IdentitySystem.StubWCFServer.Interfaces;
+﻿using SD.IdentitySystem.StubWCFServer.Interfaces;
 using SD.IOC.Core.Mediator;
 using ShSoft.Infrastructure.Constants;
-using ShSoft.Infrastructure.MVC.Constants;
-using ShSoft.ValueObjects;
+using System;
+using System.Web.UI;
 
 namespace SD.IdentitySystem.MVCTests
 {
@@ -18,8 +16,8 @@ namespace SD.IdentitySystem.MVCTests
             //伪造一个登录信息
             LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
 
-            //将公钥存入约定位置
-            base.Session.Add(SessionConstants.CurrentUserKey, fakeLoginInfo);
+            //将登录信息存入约定位置
+            base.Session.Add(CacheConstants.CurrentUserKey, fakeLoginInfo);
 
             //实例化WCF服务端服务接口
             IServerContract serverContract = ResolveMediator.Resolve<IServerContract>();
