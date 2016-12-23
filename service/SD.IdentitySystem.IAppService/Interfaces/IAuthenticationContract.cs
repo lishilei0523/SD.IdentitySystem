@@ -1,6 +1,5 @@
 ﻿using ShSoft.Infrastructure;
 using ShSoft.Infrastructure.Constants;
-using System;
 using System.ServiceModel;
 
 namespace SD.IdentitySystem.IAppService.Interfaces
@@ -21,15 +20,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <returns>公钥</returns>
         [OperationContract]
         LoginInfo Login(string loginId, string password, string ip);
-        #endregion
-
-        #region # 认证 —— void Authenticate(Guid publicKey)
-        /// <summary>
-        /// 认证
-        /// </summary>
-        /// <param name="publicKey">公钥</param>
-        [OperationContract]
-        void Authenticate(Guid publicKey);
         #endregion
     }
 }

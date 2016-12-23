@@ -85,12 +85,8 @@
       <HintPath>..\..\packages\SD.CacheManager.Redis.1.0.5\lib\net45\SD.CacheManager.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.1.3\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="SD.IdentitySystem.WCFAuthentication.WCF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.1.0.1\lib\net45\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.1.0.2\lib\net45\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -225,6 +221,10 @@
     <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj">
       <Project>{20443d88-d509-43c6-942c-0ce1923bc91e}</Project>
       <Name>SD.IdentitySystem.Domain</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj">
+      <Project>{52bf9a76-1b01-4c29-8067-e6f1c88896fd}</Project>
+      <Name>SD.IdentitySystem.IAppService</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj">
       <Project>{33f75ac9-f2cc-4117-a04d-e701ef897924}</Project>

@@ -172,30 +172,6 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 设置菜单 —— void AppendMenu(Menu menuLeaf)
-        /// <summary>
-        /// 设置菜单
-        /// </summary>
-        /// <param name="menuLeaf">菜单（叶子节点）</param>
-        public void AppendMenu(Menu menuLeaf)
-        {
-            #region # 验证参数
-
-            if (menuLeaf == null)
-            {
-                throw new ArgumentNullException("menuLeaf", @"菜单不可为空！");
-            }
-            if (!menuLeaf.IsLeaf)
-            {
-                throw new ArgumentOutOfRangeException("menuLeaf", @"菜单必须是叶子节点！");
-            }
-
-            #endregion
-
-            this.MenuLeaves.Add(menuLeaf);
-        }
-        #endregion
-
 
         //Private
 

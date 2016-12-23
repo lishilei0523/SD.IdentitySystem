@@ -1,11 +1,12 @@
-﻿using System;
+﻿using SD.CacheManager;
+using ShSoft.Infrastructure.Constants;
+using ShSoft.ValueObjects;
+using ShSoft.ValueObjects.CustomExceptions;
+using System;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
-using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IOC.Core.Mediator;
-using ShSoft.ValueObjects;
 
 namespace SD.IdentitySystem.WCFAuthentication.WCF
 {
@@ -14,6 +15,11 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
     /// </summary>
     internal class AuthenticationMessageInspector : IDispatchMessageInspector, IClientMessageInspector
     {
+        /// <summary>
+        /// 同步锁
+        /// </summary>
+        private static readonly object _Sync = new object();
+
         #region # Implements of IDispatchMessageInspector
 
         /// <summary>
@@ -26,10 +32,8 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
         public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
         {
             //如果是身份认证接口，无需认证
-            if (OperationContext.Current.EndpointDispatcher.ContractName != typeof(IAuthenticationContract).Name)
+            if (OperationContext.Current.EndpointDispatcher.ContractName != "IAuthenticationContract")
             {
-                IAuthenticationContract authenticationContract = ResolveMediator.Resolve<IAuthenticationContract>();
-
                 //获取消息头
                 MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
 
@@ -43,10 +47,22 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
                 #endregion
 
                 //读取消息头中的公钥
-                Guid publishKey = headers.GetHeader<Guid>(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace);
+                Guid publicKey = headers.GetHeader<Guid>(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace);
 
                 //认证
-                authenticationContract.Authenticate(publishKey);
+                lock (_Sync)
+                {
+                    //以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
+                    LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
+
+                    if (loginInfo == null)
+                    {
+                        throw new NoPermissionException("身份过期，请重新登录！");
+                    }
+
+                    //通过后，重新设置缓存过期时间为20分钟
+                    CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(20));
+                }
             }
 
             return null;

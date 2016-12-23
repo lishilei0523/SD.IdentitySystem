@@ -172,29 +172,6 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 为权限设置菜单 —— void AppendMenu(Guid menuId...
-        /// <summary>
-        /// 为权限设置菜单
-        /// </summary>
-        /// <param name="menuId">菜单Id（叶子节点）</param>
-        /// <param name="authorityIds">权限Id集</param>
-        public void AppendMenu(Guid menuId, IEnumerable<Guid> authorityIds)
-        {
-            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
-
-            foreach (Guid authorityId in authorityIds)
-            {
-                Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
-                currentAuthority.AppendMenu(currentMenu);
-
-                this._unitOfWork.RegisterSave(currentAuthority);
-            }
-
-            this._unitOfWork.RegisterSave(currentMenu);
-            this._unitOfWork.UnitedCommit();
-        }
-        #endregion
-
         #region # 删除权限 —— void RemoveAuthority(Guid authorityId)
         /// <summary>
         /// 删除权限

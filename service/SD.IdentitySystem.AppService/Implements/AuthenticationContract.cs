@@ -5,7 +5,6 @@ using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
 using ShSoft.Common.PoweredByLee;
 using ShSoft.Infrastructure.Constants;
-using ShSoft.ValueObjects.CustomExceptions;
 using System;
 using System.ServiceModel;
 using System.Threading.Tasks;
@@ -96,30 +95,6 @@ namespace SD.IdentitySystem.AppService.Implements
                 Task.Run(() => this.GenerateLoginRecord(publicKey, currentUser, ip)).Wait();
 
                 return loginInfo;
-            }
-        }
-        #endregion
-
-        #region # 认证 —— void Authenticate(Guid publicKey)
-        /// <summary>
-        /// 认证
-        /// </summary>
-        /// <param name="publicKey">公钥</param>
-        /// <returns>是否通过</returns>
-        public void Authenticate(Guid publicKey)
-        {
-            lock (_Sync)
-            {
-                //以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
-                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
-
-                if (loginInfo == null)
-                {
-                    throw new NoPermissionException("公钥失效，请重新登录！");
-                }
-
-                //通过后，重新设置缓存过期时间为20分钟
-                CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(20));
             }
         }
         #endregion

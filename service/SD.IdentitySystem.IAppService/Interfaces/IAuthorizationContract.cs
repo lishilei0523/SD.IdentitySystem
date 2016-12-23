@@ -72,16 +72,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void UpdateAuthority(Guid authorityId, AuthorityParam authorityParam);
         #endregion
 
-        #region # 为权限设置菜单 —— void AppendMenu(Guid menuId...
-        /// <summary>
-        /// 为权限设置菜单
-        /// </summary>
-        /// <param name="menuId">菜单Id（叶子节点）</param>
-        /// <param name="authorityIds">权限Id集</param>
-        [OperationContract]
-        void AppendMenu(Guid menuId, IEnumerable<Guid> authorityIds);
-        #endregion
-
         #region # 删除权限 —— void RemoveAuthority(Guid authorityId)
         /// <summary>
         /// 删除权限
