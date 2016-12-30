@@ -84,10 +84,6 @@
       <HintPath>..\..\packages\SD.IOC.Integration.MVC.1.0.5\lib\net45\SD.IOC.Integration.MVC.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SD.Toolkits.SessionSharing, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.SessionSharing.1.0.1\lib\net45\SD.Toolkits.SessionSharing.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
     <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ShSoft.Common.1.0.6\lib\net45\ShSoft.Common.dll</HintPath>
       <Private>True</Private>
