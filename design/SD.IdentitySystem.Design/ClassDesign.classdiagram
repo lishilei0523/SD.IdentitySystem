@@ -1,0 +1,263 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="a6c3104c-1b42-47f9-9332-1cb903c6d476" name="ClassDesign" linkedPackageId="3908648a-4249-4e46-9df2-113aeadce31b" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
+  <profileInstances>
+    <packageHasProfileInstances Id="1c6e37e8-7d47-4cf8-9130-062a0686c740">
+      <profileInstance Id="537c7641-7a6a-46f5-9352-97161e4bfc54" name="StandardProfileL2">
+        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+      </profileInstance>
+      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+    </packageHasProfileInstances>
+    <packageHasProfileInstances Id="03b8d7c3-dd4b-4b5d-9989-08c428d83c8b">
+      <profileInstance Id="8e17b9a0-c271-4284-97f0-e0dd8c939065" name="StandardProfileL3">
+        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+      </profileInstance>
+      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <logicalClassDesignerModelHasPackages>
+      <package Id="8a43c595-73b9-4c7f-a057-943e2b3400eb" name="上下文">
+        <elementDefinition Id="352aa957-41b3-411c-92cc-4711ac36aac0" />
+        <packagedElements>
+          <packageHasNamedElement>
+            <class Id="51887c60-687a-4105-b048-7356db32ba0a" name="信息系统" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="e0ec0a89-ad79-45b2-8640-cf340a76123d" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="ba321978-d19d-485a-809b-0ec7521e09f1" name="用户" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="71870129-7b1a-4b2c-b0aa-578c70126a80" />
+              <targetEnds>
+                <association Id="07751ba0-186a-4ea3-a7bf-9b5e4b0a7528" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="ec32ade5-a4ba-4cb5-b3d3-5761a6f8526b" LastKnownName="角色" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="a4533f46-6312-465b-8356-bdef1f3e5948" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                        <lowerValueInternal>
+                          <literalString Id="024b36be-1636-467f-bf8f-d7f785d418e9" name="Lower" value="*">
+                            <elementDefinition Id="7b3a06fb-330f-4e2a-8251-d9c0978b66b9" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="896cfa47-a59d-478e-84b5-680946dd21a3" name="Upper" value="*">
+                            <elementDefinition Id="ad6d2f03-ff68-454e-b0d1-716b9586bf1e" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="9bbea18a-d363-4e83-b440-2ec607f69251" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="b540f5f0-a206-4ebf-8c7d-c41845950ebf" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <lowerValueInternal>
+                          <literalString Id="10a48eef-9aa1-4785-9d31-25f38c13c58c" name="Lower" value="*">
+                            <elementDefinition Id="dfb90493-0e3d-4404-a9ad-86ed6cb16bea" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="ab2122a3-51ad-4cd2-9c4a-c218b00830c3" name="Upper" value="*">
+                            <elementDefinition Id="7b2337b5-2b54-448f-8283-dde4c7e29139" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="f3bb9eb6-d65e-439d-8fae-b2a20210e0a1" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="afdb9af3-d75c-45f7-b6d7-84c79c040353" />
+                </association>
+                <association Id="bf211f2b-00e2-4ee7-ba0c-e5dbbf65946a" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="51887c60-687a-4105-b048-7356db32ba0a" LastKnownName="信息系统" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="75cb6ab1-5681-4c47-a0f3-d2716ec3a95d" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <lowerValueInternal>
+                          <literalString Id="4f7153f0-b81c-4706-bdf7-efadf88326d0" name="Lower" value="*">
+                            <elementDefinition Id="a2733f09-c735-4728-8756-fea12ed937ea" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="05712b2f-caa0-438a-8d0f-443e10222692" name="Upper" value="*">
+                            <elementDefinition Id="ec62fd56-560a-4644-a51d-771b269944f3" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="12833822-9370-4bb5-9bd5-e795fe864783" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="880dd61b-9769-435e-b28e-50ec1c0b3783" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="23e8be8d-dd7a-4e81-b631-b6d457fad4b7" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="d0141875-4bf3-4567-9b83-be1716e9bb27" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="ec32ade5-a4ba-4cb5-b3d3-5761a6f8526b" name="角色" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="63edee49-f30c-40de-973a-a960c2d70cfa" />
+              <targetEnds>
+                <association Id="aebbce7b-4240-40c3-99a9-e26cfedac8df" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="a53cd596-e5d3-415e-8e86-79afd83158ce" LastKnownName="权限" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="45c53fcd-b7a4-4975-8f70-2d1542adecd3" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                        <lowerValueInternal>
+                          <literalString Id="6d9c9370-dd5b-4612-8973-b1350cede4f2" name="Lower" value="*">
+                            <elementDefinition Id="997a79cc-9c5d-4600-836f-a1b34f80d0b3" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="01b07124-1310-4008-8521-c8153d89d5aa" name="Upper" value="*">
+                            <elementDefinition Id="88b89ca9-95b7-474b-9027-82166c924f3d" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="49974270-e626-4564-8c5f-648672f41b47" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="addb0d1e-f917-4f80-83ea-b6677a97cf43" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <lowerValueInternal>
+                          <literalString Id="4388fc0c-20fe-449f-a320-00d2cb88b77f" name="Lower" value="*">
+                            <elementDefinition Id="369baf4a-9fa6-4f9a-a4f6-b32013a6fc0d" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="e038aa2f-5b82-445f-ade9-8775b88a0bd4" name="Upper" value="*">
+                            <elementDefinition Id="467b95b3-920c-4975-a9c8-f5d5463aac37" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="d62bf62d-c9e7-41bc-b880-1899a7da2f10" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="df997aa3-438a-4a18-9a43-d50c8ede3164" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="a53cd596-e5d3-415e-8e86-79afd83158ce" name="权限" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="ea0a0e66-ddd9-4e4e-a661-04fcb7935c73" />
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="328391a4-0a83-49b2-b5b3-297d5aa79f3f" name="菜单" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="b19b9923-171f-473f-bd77-cf973d9960a8" />
+              <targetEnds>
+                <association Id="927819e6-4abe-4dd4-b318-7b5008657fee" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="a53cd596-e5d3-415e-8e86-79afd83158ce" LastKnownName="权限" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="ef500c6a-054b-4b92-bf75-3bfb88172f00" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="Shared" isComposite="false" isNavigableOwned="false">
+                        <lowerValueInternal>
+                          <literalString Id="24d806f2-a276-4def-a757-9f4d605e7925" name="Lower" value="*">
+                            <elementDefinition Id="d5f93411-d304-41f1-a150-7de918d2a926" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="a2e9b4fd-8e8c-4543-8ff9-63f9fef1cbac" name="Upper" value="*">
+                            <elementDefinition Id="2b04b57e-bbe7-43de-befe-f990a3acfd92" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="6304ca30-45b8-4ad2-944d-893b3d46e127" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="c6f65109-41da-4722-8138-e4858858e8b6" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <lowerValueInternal>
+                          <literalString Id="77ef49a9-4887-494f-bbd4-c82b4262704f" name="Lower" value="*">
+                            <elementDefinition Id="dd120aab-7e5c-46d4-a207-b5bead1dd21c" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="1f3f52a8-a281-4d00-b01c-8d44c9eb695a" name="Upper" value="*">
+                            <elementDefinition Id="de414dad-3e8b-4617-90b2-419349505bb4" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="98f92cf3-e1b9-49bc-b179-12b9ddf84ebf" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="1db8b400-354c-4cce-9cb7-8cbc7ce24f0a" />
+                </association>
+                <association Id="c9bbcfce-364f-455e-ab9b-824104cf57aa" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="51887c60-687a-4105-b048-7356db32ba0a" LastKnownName="信息系统" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="11818731-1f49-427b-add7-872707111a54" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <lowerValueInternal>
+                          <literalString Id="c91787b2-b7bf-4131-81e8-2975ca328edb" name="Lower" value="*">
+                            <elementDefinition Id="3d634472-f6ce-471a-ac4e-cdd8294703a7" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="dcc22d3a-cd58-40a2-be28-d7c725cb7d84" name="Upper" value="*">
+                            <elementDefinition Id="5158ec33-22b7-4cde-923f-bed1da7e23fb" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="251c0001-8b16-4432-a026-8fce8a4b986e" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="1ab3b87d-5dcb-4777-b94e-bc28e93a2b5f" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <lowerValueInternal>
+                          <literalString Id="d923f68d-f1a9-457b-b724-e68b49a0c138" name="Lower" value="1">
+                            <elementDefinition Id="869aff71-704b-4fb3-b47f-1de40cac9226" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="a7954c57-a807-4a6b-8d5b-1f26608d8655" name="Upper" value="1">
+                            <elementDefinition Id="7775b242-c84b-4f1c-8e60-a008ed846f29" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="6e87897a-0627-4b78-bdd9-adcc192710b9" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="c7e7fc9a-8573-4d86-9865-4a1464b1582a" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+          <packageHasNamedElement>
+            <class Id="1c4b78e3-5684-49b3-a683-00b4df77cf5f" name="登录记录" isAbstract="false" isLeaf="false" isActiveClass="false">
+              <elementDefinition Id="b478dd0a-aaa3-4e5d-aca0-061259f47add" />
+              <targetEnds>
+                <association Id="4b4e4f45-89c0-4a54-aaf6-cb1842b913aa" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="ba321978-d19d-485a-809b-0ec7521e09f1" LastKnownName="用户" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="66547557-8e7f-4d9b-bcd2-1248f47931dc" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <lowerValueInternal>
+                          <literalString Id="cdd5755b-7766-4ea0-9f65-033536e11720" name="Lower" value="*">
+                            <elementDefinition Id="e2a8f533-f7da-4a4a-acbc-8d5ba1bc0a42" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="b5c88b87-5213-42fa-a47d-4e476788b2ac" name="Upper" value="*">
+                            <elementDefinition Id="b4c27f6b-1ed2-40f4-ad71-cb285c4435dc" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="bbbffa13-be56-4468-a715-e9539c764b6e" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="cde58ee3-c657-4261-ba60-3a64d9d65c46" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="82c29889-16c8-44f8-b577-2c68327dd98f" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="4168672f-c32c-4620-94fe-402c7a6f8d30" />
+                </association>
+              </targetEnds>
+            </class>
+          </packageHasNamedElement>
+        </packagedElements>
+      </package>
+    </logicalClassDesignerModelHasPackages>
+  </packagedElements>
+  <package Id="3908648a-4249-4e46-9df2-113aeadce31b" name="SD.IdentitySystem.Design">
+    <elementDefinition Id="5cd6bb4f-ed0a-4bb5-a6e4-a8d9cd761860" />
+  </package>
+</logicalClassDesignerModel>
