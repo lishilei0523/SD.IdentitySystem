@@ -1,19 +1,5 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <logicalClassDesignerModel xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/ModelStore" dslVersion="1.0.0.0" Id="a6c3104c-1b42-47f9-9332-1cb903c6d476" name="ClassDesign" linkedPackageId="3908648a-4249-4e46-9df2-113aeadce31b" xmlns="http://schemas.microsoft.com/dsltools/LogicalClassDesigner">
-  <profileInstances>
-    <packageHasProfileInstances Id="1c6e37e8-7d47-4cf8-9130-062a0686c740">
-      <profileInstance Id="537c7641-7a6a-46f5-9352-97161e4bfc54" name="StandardProfileL2">
-        <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
-      </profileInstance>
-      <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
-    </packageHasProfileInstances>
-    <packageHasProfileInstances Id="03b8d7c3-dd4b-4b5d-9989-08c428d83c8b">
-      <profileInstance Id="8e17b9a0-c271-4284-97f0-e0dd8c939065" name="StandardProfileL3">
-        <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
-      </profileInstance>
-      <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
-    </packageHasProfileInstances>
-  </profileInstances>
   <packagedElements>
     <logicalClassDesignerModelHasPackages>
       <package Id="8a43c595-73b9-4c7f-a057-943e2b3400eb" name="上下文">
@@ -64,32 +50,6 @@
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="afdb9af3-d75c-45f7-b6d7-84c79c040353" />
                 </association>
-                <association Id="bf211f2b-00e2-4ee7-ba0c-e5dbbf65946a" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
-                  <classMoniker Id="51887c60-687a-4105-b048-7356db32ba0a" LastKnownName="信息系统" />
-                  <relationshipOwnedElementsInternal>
-                    <associationHasOwnedEnds>
-                      <memberEnd Id="75cb6ab1-5681-4c47-a0f3-d2716ec3a95d" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
-                        <lowerValueInternal>
-                          <literalString Id="4f7153f0-b81c-4706-bdf7-efadf88326d0" name="Lower" value="*">
-                            <elementDefinition Id="a2733f09-c735-4728-8756-fea12ed937ea" />
-                          </literalString>
-                        </lowerValueInternal>
-                        <upperValueInternal>
-                          <literalString Id="05712b2f-caa0-438a-8d0f-443e10222692" name="Upper" value="*">
-                            <elementDefinition Id="ec62fd56-560a-4644-a51d-771b269944f3" />
-                          </literalString>
-                        </upperValueInternal>
-                        <elementDefinition Id="12833822-9370-4bb5-9bd5-e795fe864783" />
-                      </memberEnd>
-                    </associationHasOwnedEnds>
-                    <associationHasOwnedEnds>
-                      <memberEnd Id="880dd61b-9769-435e-b28e-50ec1c0b3783" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
-                        <elementDefinition Id="23e8be8d-dd7a-4e81-b631-b6d457fad4b7" />
-                      </memberEnd>
-                    </associationHasOwnedEnds>
-                  </relationshipOwnedElementsInternal>
-                  <elementDefinition Id="d0141875-4bf3-4567-9b83-be1716e9bb27" />
-                </association>
               </targetEnds>
             </class>
           </packageHasNamedElement>
@@ -132,6 +92,32 @@
                     </associationHasOwnedEnds>
                   </relationshipOwnedElementsInternal>
                   <elementDefinition Id="df997aa3-438a-4a18-9a43-d50c8ede3164" />
+                </association>
+                <association Id="e9621d29-a405-4eb4-9b6a-0c18892220ab" isDerived="false" sourceEndRoleName="" targetEndRoleName="" isLeaf="false" isAbstract="false">
+                  <classMoniker Id="51887c60-687a-4105-b048-7356db32ba0a" LastKnownName="信息系统" />
+                  <relationshipOwnedElementsInternal>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="1dc5c8ed-fc83-420d-b14b-b806990fa2bc" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false" isNavigableOwned="false">
+                        <lowerValueInternal>
+                          <literalString Id="ba0775b2-5781-4a8e-afec-6a68466cc35f" name="Lower" value="*">
+                            <elementDefinition Id="c53790a6-6dbb-4186-b701-b8217b5c79b3" />
+                          </literalString>
+                        </lowerValueInternal>
+                        <upperValueInternal>
+                          <literalString Id="fd37ba62-6315-46f1-876b-264135e0d6a8" name="Upper" value="*">
+                            <elementDefinition Id="a8b54777-3779-444e-9542-b810eeeeb4cb" />
+                          </literalString>
+                        </upperValueInternal>
+                        <elementDefinition Id="7c26b827-602e-491e-b04f-f4318c03bc7a" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                    <associationHasOwnedEnds>
+                      <memberEnd Id="cfd2a25d-5e50-4ef5-9510-60aa9524d83f" isLeaf="false" isStatic="false" isReadOnly="false" isDerived="false" isDerivedUnion="false" aggregation="None" isComposite="false">
+                        <elementDefinition Id="fc88bed3-f4fe-4f3b-9f5d-924fedcae7c0" />
+                      </memberEnd>
+                    </associationHasOwnedEnds>
+                  </relationshipOwnedElementsInternal>
+                  <elementDefinition Id="1afc6119-4b31-4db7-8715-d685f3dcf969" />
                 </association>
               </targetEnds>
             </class>
@@ -259,5 +245,19 @@
   </packagedElements>
   <package Id="3908648a-4249-4e46-9df2-113aeadce31b" name="SD.IdentitySystem.Design">
     <elementDefinition Id="5cd6bb4f-ed0a-4bb5-a6e4-a8d9cd761860" />
+    <profileInstances>
+      <packageHasProfileInstances Id="1c6e37e8-7d47-4cf8-9130-062a0686c740">
+        <profileInstance Id="537c7641-7a6a-46f5-9352-97161e4bfc54" name="StandardProfileL2">
+          <elementDefinition Id="e34d544e-0fea-4ed6-ac5e-1b74119ac791" />
+        </profileInstance>
+        <elementDefinition Id="0caec977-1f8c-4ba3-a7db-8cc9ad9cc73b" />
+      </packageHasProfileInstances>
+      <packageHasProfileInstances Id="03b8d7c3-dd4b-4b5d-9989-08c428d83c8b">
+        <profileInstance Id="8e17b9a0-c271-4284-97f0-e0dd8c939065" name="StandardProfileL3">
+          <elementDefinition Id="532ea607-fb19-44b8-8502-3351b05452be" />
+        </profileInstance>
+        <elementDefinition Id="29349502-908c-4fda-9054-c48619c59ed0" />
+      </packageHasProfileInstances>
+    </profileInstances>
   </package>
 </logicalClassDesignerModel>
