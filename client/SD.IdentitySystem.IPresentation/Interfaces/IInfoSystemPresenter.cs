@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
-using ShSoft.Infrastructure.DTOBase;
-using ShSoft.Infrastructure.MVC;
+using SD.Infrastructure.DTOBase;
+using SD.Infrastructure.MVC;
 using System.Collections.Generic;
 
 namespace SD.IdentitySystem.IPresentation.Interfaces

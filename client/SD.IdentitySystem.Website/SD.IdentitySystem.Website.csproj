@@ -59,6 +59,10 @@
       <HintPath>..\..\packages\Newtonsoft.Json.7.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="PanGu, Version=2.3.1.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.PanGu.2.3.1\lib\net20\PanGu.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="PostSharp, Version=4.1.15.0, Culture=neutral, PublicKeyToken=b13fd38b8f9c99d7, processorArchitecture=MSIL">
       <HintPath>..\..\packages\PostSharp.4.1.15\lib\net35-client\PostSharp.dll</HintPath>
       <Private>True</Private>
@@ -68,12 +72,24 @@
       <HintPath>..\..\packages\SD.AOP.Core.1.0.5\lib\net45\SD.AOP.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.1.4\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+    <Reference Include="SD.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Common.1.0.0\lib\net45\SD.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SD.IdentitySystem.WCFAuthentication.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.MVC.1.0.3\lib\net45\SD.IdentitySystem.WCFAuthentication.MVC.dll</HintPath>
+    <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.1.5\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.1.0.0\lib\net45\SD.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.AOP.1.0.0\lib\net45\SD.Infrastructure.AOP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.MVC.1.0.0\lib\net45\SD.Infrastructure.MVC.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -84,28 +100,8 @@
       <HintPath>..\..\packages\SD.IOC.Integration.MVC.1.0.5\lib\net45\SD.IOC.Integration.MVC.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Common.1.0.6\lib\net45\ShSoft.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Common.Libraries, Version=2.9.2.2, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Common.Libraries.1.0.3\lib\net45\ShSoft.Common.Libraries.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.8\lib\net45\ShSoft.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.AOP.1.0.1\lib\net45\ShSoft.Infrastructure.AOP.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.MVC.1.1.1\lib\net45\ShSoft.Infrastructure.MVC.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.ValueObjects.1.1.5\lib\net45\ShSoft.ValueObjects.dll</HintPath>
+    <Reference Include="SD.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.ValueObjects.1.0.0\lib\net45\SD.ValueObjects.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="StackExchange.Redis.StrongName, Version=1.0.316.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
@@ -569,9 +565,16 @@
     <Content Include="Content\themes\metro\validatebox.css" />
     <Content Include="Content\themes\metro\window.css" />
     <Content Include="Content\themes\mobile.css" />
+    <Content Include="DictionaryFiles\ChsDoubleName1.txt" />
+    <Content Include="DictionaryFiles\ChsDoubleName2.txt" />
+    <Content Include="DictionaryFiles\ChsSingleName.txt" />
+    <Content Include="DictionaryFiles\Stopword.txt" />
+    <Content Include="DictionaryFiles\Synonym.txt" />
+    <Content Include="DictionaryFiles\Wildcard.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\themes\material\images\Thumbs.db" />
+    <Content Include="DictionaryFiles\Dictionary.dct" />
     <None Include="Properties\PublishProfiles\Default.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\datetools.js" />

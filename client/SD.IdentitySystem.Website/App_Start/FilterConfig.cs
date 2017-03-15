@@ -1,4 +1,4 @@
-﻿using ShSoft.Infrastructure.MVC.Filters;
+﻿using SD.Infrastructure.MVC.Filters;
 using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website

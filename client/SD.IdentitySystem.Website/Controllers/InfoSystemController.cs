@@ -2,12 +2,12 @@
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
-using ShSoft.Infrastructure.DTOBase;
-using ShSoft.Infrastructure.MVC;
-using ShSoft.Infrastructure.MVC.Filters;
-using ShSoft.ValueObjects.Enums;
 using System.Web.Mvc;
-using ShSoft.ValueObjects.Attributes;
+using SD.Infrastructure.DTOBase;
+using SD.Infrastructure.MVC;
+using SD.Infrastructure.MVC.Filters;
+using SD.ValueObjects.Attributes;
+using SD.ValueObjects.Enums;
 
 namespace SD.IdentitySystem.Website.Controllers
 {

@@ -4,7 +4,7 @@ using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
-using ShSoft.Infrastructure.DTOBase;
+using SD.Infrastructure.DTOBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;

@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
-using ShSoft.Infrastructure.MVC;
+using SD.Infrastructure.MVC;
 using System.Collections.Generic;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
