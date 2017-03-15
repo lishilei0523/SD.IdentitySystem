@@ -569,16 +569,9 @@
     <Content Include="Content\themes\metro\validatebox.css" />
     <Content Include="Content\themes\metro\window.css" />
     <Content Include="Content\themes\mobile.css" />
-    <Content Include="DictionaryFiles\ChsDoubleName1.txt" />
-    <Content Include="DictionaryFiles\ChsDoubleName2.txt" />
-    <Content Include="DictionaryFiles\ChsSingleName.txt" />
-    <Content Include="DictionaryFiles\Stopword.txt" />
-    <Content Include="DictionaryFiles\Synonym.txt" />
-    <Content Include="DictionaryFiles\Wildcard.txt" />
     <Content Include="favicon.ico" />
     <Content Include="Global.asax" />
     <Content Include="Content\themes\material\images\Thumbs.db" />
-    <Content Include="DictionaryFiles\Dictionary.dct" />
     <None Include="Properties\PublishProfiles\Default.pubxml" />
     <None Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\datetools.js" />
