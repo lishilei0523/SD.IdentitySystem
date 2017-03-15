@@ -2,12 +2,12 @@
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
-using ShSoft.Infrastructure.RepositoryBase;
-using ShSoft.ValueObjects;
-using ShSoft.ValueObjects.Enums;
+using SD.Infrastructure.RepositoryBase;
+using SD.ValueObjects;
 using System.Collections.Generic;
 using System.Linq;
 using System.Transactions;
+using SD.ValueObjects.Enums;
 
 namespace SD.IdentitySystem.Repository.Base
 {

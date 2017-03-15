@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SD.IdentitySystem.IAppService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ShSoft")]
+[assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.IAppService")]
-[assembly: AssemblyCopyright("Copyright © ShSoft 2016")]
+[assembly: AssemblyCopyright("Copyright © SD 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

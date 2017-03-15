@@ -2,7 +2,7 @@
 using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
-using ShSoft.Infrastructure.EventBase;
+using SD.Infrastructure.EventBase;
 using System;
 
 namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext

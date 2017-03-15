@@ -1,5 +1,5 @@
-﻿using ShSoft.Infrastructure;
-using ShSoft.Infrastructure.Constants;
+﻿using SD.Infrastructure;
+using SD.Infrastructure.Constants;
 using System.ServiceModel;
 
 namespace SD.IdentitySystem.IAppService.Interfaces

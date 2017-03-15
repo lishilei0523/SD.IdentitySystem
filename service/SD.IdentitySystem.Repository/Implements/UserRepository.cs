@@ -1,10 +1,10 @@
 ﻿using SD.CacheManager;
+using SD.Common.PoweredByLee;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
+using SD.Infrastructure.Constants;
+using SD.Infrastructure.Repository.EntityFramework;
 using SD.Toolkits.EntityFramework.Extensions;
-using ShSoft.Common.PoweredByLee;
-using ShSoft.Infrastructure.Constants;
-using ShSoft.Infrastructure.Repository.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Data;

@@ -1,4 +1,4 @@
-﻿using ShSoft.Infrastructure.EventBase;
+﻿using SD.Infrastructure.EventBase;
 
 namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
 {

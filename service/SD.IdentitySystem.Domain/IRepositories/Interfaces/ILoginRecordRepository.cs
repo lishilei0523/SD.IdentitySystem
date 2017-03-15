@@ -1,7 +1,7 @@
-﻿using System;
+﻿using SD.IdentitySystem.Domain.Entities;
+using SD.Infrastructure.RepositoryBase;
+using System;
 using System.Collections.Generic;
-using SD.IdentitySystem.Domain.Entities;
-using ShSoft.Infrastructure.RepositoryBase;
 
 namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
 {

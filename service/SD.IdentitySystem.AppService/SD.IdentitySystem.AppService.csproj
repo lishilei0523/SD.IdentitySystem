@@ -89,8 +89,32 @@
       <HintPath>..\..\packages\SD.CacheManager.Redis.1.0.5\lib\net45\SD.CacheManager.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SD.IdentitySystem.WCFAuthentication.WCF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.1.0.2\lib\net45\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
+    <Reference Include="SD.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Common.1.0.0\lib\net45\SD.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.1.0.0\lib\net45\SD.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.AOP.1.0.0\lib\net45\SD.Infrastructure.AOP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure.EventBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.EventBase.1.0.0\lib\net45\SD.Infrastructure.EventBase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure.EventStoreProvider.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.EventStoreProvider.Redis.1.0.0\lib\net45\SD.Infrastructure.EventStoreProvider.Redis.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure.Global, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.Global.1.0.0\lib\net45\SD.Infrastructure.Global.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure.WCF.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.WCF.Server.1.0.1\lib\net45\SD.Infrastructure.WCF.Server.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
@@ -109,6 +133,10 @@
       <HintPath>..\..\packages\SD.Toolkits.Redis.1.0.5\lib\net45\SD.Toolkits.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SD.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.ValueObjects.1.0.0\lib\net45\SD.ValueObjects.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="ServiceStack.Common, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceStack.Common.3.9.71\lib\net35\ServiceStack.Common.dll</HintPath>
       <Private>True</Private>
@@ -123,38 +151,6 @@
     </Reference>
     <Reference Include="ServiceStack.Text, Version=3.9.71.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\ServiceStack.Text.3.9.71\lib\net35\ServiceStack.Text.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Common.1.0.7\lib\net45\ShSoft.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.8\lib\net45\ShSoft.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.AOP.1.0.1\lib\net45\ShSoft.Infrastructure.AOP.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure.EventBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.EventBase.1.0.0.0\lib\net45\ShSoft.Infrastructure.EventBase.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure.EventStoreProvider.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.EventStoreProvider.Redis.1.0.4\lib\net45\ShSoft.Infrastructure.EventStoreProvider.Redis.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure.Global, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.Global.1.0.0.0\lib\net45\ShSoft.Infrastructure.Global.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure.WCF.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.WCF.Server.1.0.1\lib\net45\ShSoft.Infrastructure.WCF.Server.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.ValueObjects.1.1.5\lib\net45\ShSoft.ValueObjects.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System.ComponentModel.Composition" />

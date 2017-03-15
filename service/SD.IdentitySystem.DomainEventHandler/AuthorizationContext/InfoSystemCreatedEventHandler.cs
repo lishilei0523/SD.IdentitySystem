@@ -1,8 +1,8 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using SD.IdentitySystem.Domain.IRepositories;
-using ShSoft.Infrastructure.EventBase;
-using ShSoft.ValueObjects;
+using SD.Infrastructure.EventBase;
+using SD.ValueObjects;
 
 namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
 {

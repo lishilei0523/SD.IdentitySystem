@@ -1,4 +1,4 @@
-﻿using ShSoft.Infrastructure.DTOBase;
+﻿using SD.Infrastructure.DTOBase;
 using System.Runtime.Serialization;
 
 namespace SD.IdentitySystem.IAppService.DTOs.Outputs

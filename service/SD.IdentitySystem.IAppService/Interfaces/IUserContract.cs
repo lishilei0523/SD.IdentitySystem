@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using ShSoft.Infrastructure;
-using ShSoft.Infrastructure.DTOBase;
+using SD.Infrastructure;
+using SD.Infrastructure.DTOBase;
 using System;
 using System.Collections.Generic;
 using System.ServiceModel;

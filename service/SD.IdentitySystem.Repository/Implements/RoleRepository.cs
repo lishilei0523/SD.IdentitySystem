@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using ShSoft.Infrastructure.Repository.EntityFramework;
-using ShSoft.ValueObjects;
+using SD.Infrastructure.Repository.EntityFramework;
+using SD.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;

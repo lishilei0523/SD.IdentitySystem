@@ -1,6 +1,6 @@
-﻿using ShSoft.Infrastructure.AOP.Aspects.ForAny;
-using System.Reflection;
+﻿using System.Reflection;
 using System.Runtime.InteropServices;
+using SD.Infrastructure.AOP.Aspects.ForAny;
 
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SD.IdentitySystem.DomainEventHandler")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ShSoft")]
+[assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.DomainEventHandler")]
-[assembly: AssemblyCopyright("Copyright © ShSoft 2016")]
+[assembly: AssemblyCopyright("Copyright © SD 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

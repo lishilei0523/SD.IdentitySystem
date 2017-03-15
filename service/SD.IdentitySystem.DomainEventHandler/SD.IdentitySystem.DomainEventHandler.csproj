@@ -80,6 +80,22 @@
       <HintPath>..\..\packages\SD.AOP.Core.1.0.5\lib\net45\SD.AOP.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SD.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Common.1.0.0\lib\net45\SD.Common.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.1.0.0\lib\net45\SD.Infrastructure.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.AOP.1.0.0\lib\net45\SD.Infrastructure.AOP.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure.EventBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.EventBase.1.0.0\lib\net45\SD.Infrastructure.EventBase.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.1.0.7\lib\net45\SD.IOC.Core.dll</HintPath>
       <Private>True</Private>
@@ -88,24 +104,8 @@
       <HintPath>..\..\packages\SD.Toolkits.Recursion.1.0.4\lib\net45\SD.Toolkits.Recursion.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Common.1.0.7\lib\net45\ShSoft.Common.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.8\lib\net45\ShSoft.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.AOP.1.0.1\lib\net45\ShSoft.Infrastructure.AOP.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.Infrastructure.EventBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.EventBase.1.0.0.0\lib\net45\ShSoft.Infrastructure.EventBase.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.ValueObjects.1.1.5\lib\net45\ShSoft.ValueObjects.dll</HintPath>
+    <Reference Include="SD.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.ValueObjects.1.0.0\lib\net45\SD.ValueObjects.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

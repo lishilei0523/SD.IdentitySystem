@@ -1,6 +1,6 @@
-﻿using SD.IdentitySystem.Domain.Entities;
+﻿using SD.Common.PoweredByLee;
+using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using ShSoft.Common.PoweredByLee;
 using System.Collections.Generic;
 
 namespace SD.IdentitySystem.AppService.Maps

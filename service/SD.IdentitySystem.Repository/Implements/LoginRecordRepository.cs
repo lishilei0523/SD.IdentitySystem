@@ -1,10 +1,10 @@
-﻿using System;
+﻿using SD.IdentitySystem.Domain.Entities;
+using SD.IdentitySystem.Domain.IRepositories.Interfaces;
+using SD.Infrastructure.Repository.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using SD.IdentitySystem.Domain.Entities;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using ShSoft.Infrastructure.Repository.EntityFramework;
 
 namespace SD.IdentitySystem.Repository.Implements
 {

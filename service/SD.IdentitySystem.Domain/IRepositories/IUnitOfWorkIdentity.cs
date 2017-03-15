@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
-using ShSoft.Infrastructure.RepositoryBase;
+using SD.Infrastructure.RepositoryBase;
 using System.Collections.Generic;
 
 namespace SD.IdentitySystem.Domain.IRepositories

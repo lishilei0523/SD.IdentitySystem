@@ -1,4 +1,5 @@
 ﻿using SD.CacheManager;
+using SD.Common.PoweredByLee;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
@@ -7,14 +8,13 @@ using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
-using ShSoft.Common.PoweredByLee;
-using ShSoft.Infrastructure.DTOBase;
-using ShSoft.Infrastructure.Global.Transaction;
+using SD.Infrastructure.DTOBase;
+using SD.Infrastructure.Global.Transaction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using ValueObjects = ShSoft.ValueObjects.Enums;
+using ApplicationType = SD.ValueObjects.Enums.ApplicationType;
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -68,7 +68,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="systemName">信息系统名称</param>
         /// <param name="adminLoginId">系统管理员登录名</param>
         /// <param name="applicationType">应用程序类型</param>
-        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ValueObjects.ApplicationType applicationType)
+        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
         {
             //验证
             Assert.IsFalse(this._repMediator.UserRep.Exists(adminLoginId), string.Format("登录名：\"{0}\"已存在，请重试！", adminLoginId));

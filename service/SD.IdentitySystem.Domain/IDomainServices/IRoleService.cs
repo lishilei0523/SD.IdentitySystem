@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
-using ShSoft.Infrastructure.DomainServiceBase;
+using SD.Infrastructure.DomainServiceBase;
 using System;
 
 namespace SD.IdentitySystem.Domain.IDomainServices

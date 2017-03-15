@@ -1,10 +1,10 @@
-﻿using ShSoft.Common.PoweredByLee;
-using ShSoft.Infrastructure.EntityBase;
-using ShSoft.ValueObjects;
+﻿using SD.Common.PoweredByLee;
+using SD.Infrastructure.EntityBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using SD.ValueObjects;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -40,8 +40,6 @@ namespace SD.IdentitySystem.Domain.Entities
             : this()
         {
             #region # 验证参数
-
-            base.CheckName(loginId);
 
             if (string.IsNullOrWhiteSpace(password))
             {

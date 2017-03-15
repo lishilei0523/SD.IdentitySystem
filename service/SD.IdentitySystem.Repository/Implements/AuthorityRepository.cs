@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using ShSoft.Infrastructure.Repository.EntityFramework;
+using SD.Infrastructure.Repository.EntityFramework;
 using System;
 using System.Collections.Generic;
 using System.Linq;

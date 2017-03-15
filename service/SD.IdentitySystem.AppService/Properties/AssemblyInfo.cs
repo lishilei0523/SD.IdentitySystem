@@ -1,4 +1,4 @@
-﻿using ShSoft.Infrastructure.AOP.Aspects.ForAny;
+﻿using SD.Infrastructure.AOP.Aspects.ForAny;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -8,9 +8,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("SD.IdentitySystem.AppService")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("ShSoft")]
+[assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.AppService")]
-[assembly: AssemblyCopyright("版权所有(C) ShSoft 2016")]
+[assembly: AssemblyCopyright("版权所有(C) SD 2016")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

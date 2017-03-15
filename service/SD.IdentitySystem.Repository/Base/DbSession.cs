@@ -1,5 +1,5 @@
-﻿using ShSoft.Infrastructure.Constants;
-using ShSoft.Infrastructure.Repository.EntityFramework.Base;
+﻿using SD.Infrastructure.Constants;
+using SD.Infrastructure.Repository.EntityFramework.Base;
 using System.Configuration;
 using System.Data.Entity;
 using Configuration = SD.IdentitySystem.Repository.Migrations.Configuration;

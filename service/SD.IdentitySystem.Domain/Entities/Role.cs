@@ -1,5 +1,5 @@
-﻿using ShSoft.Common.PoweredByLee;
-using ShSoft.Infrastructure.EntityBase;
+﻿using SD.Common.PoweredByLee;
+using SD.Infrastructure.EntityBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -95,9 +95,6 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="description">角色描述</param>
         public void UpdateInfo(string roleName, string description)
         {
-            //验证参数
-            base.CheckName(roleName);
-
             base.Name = roleName;
             this.Description = description;
 

@@ -1,4 +1,4 @@
-﻿using ShSoft.Infrastructure.EntityBase;
+﻿using SD.Infrastructure.EntityBase;
 using System;
 using System.Text;
 
