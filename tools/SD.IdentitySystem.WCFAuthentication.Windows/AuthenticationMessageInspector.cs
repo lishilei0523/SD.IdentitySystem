@@ -1,9 +1,9 @@
-﻿using ShSoft.Infrastructure.Constants;
-using ShSoft.ValueObjects;
-using System;
+﻿using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
+using SD.Infrastructure.Constants;
+using SD.ValueObjects;
 
 namespace SD.IdentitySystem.WCFAuthentication.Windows
 {

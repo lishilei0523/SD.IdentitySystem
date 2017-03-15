@@ -1,13 +1,13 @@
-﻿using System;
+﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.IAppService.Interfaces;
+using SD.ValueObjects.Attributes;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SD.IdentitySystem.IAppService.DTOs.Inputs;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IAppService.Interfaces;
-using ShSoft.ValueObjects.Attributes;
 
 namespace SD.IdentitySystem.InitializationTool
 {

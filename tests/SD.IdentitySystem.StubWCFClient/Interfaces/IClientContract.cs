@@ -1,12 +1,12 @@
-﻿using System.ServiceModel;
-using ShSoft.Infrastructure;
+﻿using SD.Infrastructure;
+using System.ServiceModel;
 
 namespace SD.IdentitySystem.StubWCFClient.Interfaces
 {
     /// <summary>
     /// WCF客户端契约接口
     /// </summary>
-    [ServiceContract(Namespace = "http://ShSoft.Infrastructure.WCFTests.Interfaces")]
+    [ServiceContract(Namespace = "http://SD.Infrastructure.WCFTests.Interfaces")]
     public interface IClientContract : IApplicationService
     {
         /// <summary>

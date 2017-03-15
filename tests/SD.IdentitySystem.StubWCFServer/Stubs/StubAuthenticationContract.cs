@@ -1,6 +1,6 @@
-﻿using System;
-using SD.IdentitySystem.IAppService.Interfaces;
-using ShSoft.Infrastructure.Constants;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
+using SD.Infrastructure.Constants;
+using System;
 
 namespace SD.IdentitySystem.StubWCFServer.Stubs
 {

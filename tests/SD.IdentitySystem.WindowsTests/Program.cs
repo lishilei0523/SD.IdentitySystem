@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.StubWCFServer.Interfaces;
+using SD.Infrastructure.Constants;
 using SD.IOC.Core.Mediator;
-using ShSoft.Infrastructure.Constants;
 using System;
 
 namespace SD.IdentitySystem.WindowsTests

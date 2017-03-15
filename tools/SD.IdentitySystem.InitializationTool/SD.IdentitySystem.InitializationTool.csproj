@@ -59,19 +59,19 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.1.3\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.1.5\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.1.0.0\lib\net45\SD.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.1.0.7\lib\net45\SD.IOC.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="ShSoft.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.Infrastructure.1.0.8\lib\net45\ShSoft.Infrastructure.dll</HintPath>
-      <Private>True</Private>
-    </Reference>
-    <Reference Include="ShSoft.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\ShSoft.ValueObjects.1.1.5\lib\net45\ShSoft.ValueObjects.dll</HintPath>
+    <Reference Include="SD.ValueObjects, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.ValueObjects.1.0.0\lib\net45\SD.ValueObjects.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />

@@ -1,7 +1,7 @@
-﻿using System;
+﻿using PostSharp.Aspects;
+using SD.ValueObjects.Attributes;
+using System;
 using System.Reflection;
-using PostSharp.Aspects;
-using ShSoft.ValueObjects.Attributes;
 
 namespace SD.IdentitySystem.Authorization.Windows.Aspects
 {

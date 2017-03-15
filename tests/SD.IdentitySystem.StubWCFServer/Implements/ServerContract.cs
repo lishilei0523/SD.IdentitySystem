@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SD.IdentitySystem.StubWCFServer.Interfaces;
+using SD.ValueObjects;
+using System;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using SD.IdentitySystem.StubWCFServer.Interfaces;
-using ShSoft.ValueObjects;
 
 namespace SD.IdentitySystem.StubWCFServer.Implements
 {

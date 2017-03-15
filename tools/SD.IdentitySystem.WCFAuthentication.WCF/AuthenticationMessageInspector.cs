@@ -1,12 +1,12 @@
-﻿using SD.CacheManager;
-using ShSoft.Infrastructure.Constants;
-using ShSoft.ValueObjects;
-using ShSoft.ValueObjects.CustomExceptions;
-using System;
+﻿using System;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
+using SD.CacheManager;
+using SD.Infrastructure.Constants;
+using SD.ValueObjects;
+using SD.ValueObjects.CustomExceptions;
 
 namespace SD.IdentitySystem.WCFAuthentication.WCF
 {

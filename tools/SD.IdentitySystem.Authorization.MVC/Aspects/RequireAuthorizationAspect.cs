@@ -1,13 +1,13 @@
-﻿using System;
+﻿using PostSharp.Aspects;
+using SD.Common.PoweredByLee;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.ValueObjects;
+using SD.ValueObjects.Attributes;
+using SD.ValueObjects.CustomExceptions;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using PostSharp.Aspects;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using ShSoft.Common.PoweredByLee;
-using ShSoft.ValueObjects;
-using ShSoft.ValueObjects.Attributes;
-using ShSoft.ValueObjects.CustomExceptions;
 
 namespace SD.IdentitySystem.Authorization.MVC.Aspects
 {
