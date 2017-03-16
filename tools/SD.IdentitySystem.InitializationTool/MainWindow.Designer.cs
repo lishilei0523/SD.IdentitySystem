@@ -61,7 +61,7 @@ namespace SD.IdentitySystem.InitializationTool
             this.Brn_OpenFile.TabIndex = 17;
             this.Brn_OpenFile.Text = "打开";
             this.Brn_OpenFile.UseVisualStyleBackColor = true;
-            this.Brn_OpenFile.Click += new System.EventHandler(this.Brn_OpenFile_Click);
+            this.Brn_OpenFile.Click += new System.EventHandler(this.Btn_OpenFile_Click);
             // 
             // Cbx_SystemKind
             // 

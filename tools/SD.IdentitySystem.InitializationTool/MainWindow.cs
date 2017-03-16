@@ -50,7 +50,7 @@ namespace SD.IdentitySystem.InitializationTool
         /// <summary>
         /// 打开文件
         /// </summary>
-        private void Brn_OpenFile_Click(object sender, EventArgs e)
+        private void Btn_OpenFile_Click(object sender, EventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog { Filter = @"dll files (*.dll)|*.dll" };
 
