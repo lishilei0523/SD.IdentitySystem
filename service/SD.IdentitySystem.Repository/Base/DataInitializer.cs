@@ -1,13 +1,19 @@
 ﻿using SD.AOP.Core.Aspects.ForMethod;
+using SD.CacheManager;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
+using SD.Infrastructure.Constants;
+using SD.Infrastructure.Repository.EntityFramework;
 using SD.Infrastructure.RepositoryBase;
 using SD.ValueObjects;
+using SD.ValueObjects.Enums;
+using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Transactions;
-using SD.ValueObjects.Enums;
 
 namespace SD.IdentitySystem.Repository.Base
 {
@@ -91,6 +97,9 @@ namespace SD.IdentitySystem.Repository.Base
 
                 this._unitOfWork.Commit();
             }
+
+            //注册获取用户信息事件
+            EFUnitOfWorkProvider.GetLoginInfo += this.EFUnitOfWorkProvider_GetLoginInfo;
         }
         #endregion
 
@@ -215,6 +224,36 @@ namespace SD.IdentitySystem.Repository.Base
                 this._menus.Add(menuManagement);
                 this._menus.Add(authorityManagement);
             }
+        }
+        #endregion
+
+        #region # 获取用户信息 —— LoginInfo EFUnitOfWorkProvider_GetLoginInfo()
+        /// <summary>
+        /// 获取用户信息
+        /// </summary>
+        /// <returns>用户信息</returns>
+        private LoginInfo EFUnitOfWorkProvider_GetLoginInfo()
+        {
+            if (OperationContext.Current != null)
+            {
+                //获取消息头
+                MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
+
+                if (!headers.Any(x => x.Name == Constants.WcfAuthHeaderName && x.Namespace == Constants.WcfAuthHeaderNamespace))
+                {
+                    return null;
+                }
+
+                //读取消息头中的公钥
+                Guid publicKey = headers.GetHeader<Guid>(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace);
+
+                //以公钥为键，查询分布式缓存
+                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
+
+                return loginInfo;
+            }
+
+            return null;
         }
         #endregion
     }

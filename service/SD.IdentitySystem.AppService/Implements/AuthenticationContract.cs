@@ -121,7 +121,6 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 生成登录记录
         /// </summary>
         /// <param name="publicKey">公钥</param>
-
         /// <param name="user">用户</param>
         /// <param name="ip">IP地址</param>
         private void GenerateLoginRecord(Guid publicKey, User user, string ip)
