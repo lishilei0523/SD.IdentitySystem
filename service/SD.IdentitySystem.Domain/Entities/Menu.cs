@@ -10,7 +10,7 @@ namespace SD.IdentitySystem.Domain.Entities
     /// <summary>
     /// 菜单
     /// </summary>
-    public class Menu : AggregateRootEntity, ITree<Menu>
+    public class Menu : AggregateRootEntity, ISortable, ITree<Menu>
     {
         #region # 构造器
 
@@ -57,7 +57,7 @@ namespace SD.IdentitySystem.Domain.Entities
             #endregion
 
             base.Name = menuName;
-            base.Sort = sort;
+            this.Sort = sort;
             this.SystemNo = systemNo;
             this.Url = url;
             this.Icon = icon;
@@ -92,6 +92,13 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 图标
         /// </summary>
         public string Icon { get; private set; }
+        #endregion
+
+        #region 排序 —— int Sort
+        /// <summary>
+        /// 排序
+        /// </summary>
+        public int Sort { get; private set; }
         #endregion
 
         #region 是否是根级节点 —— bool IsRoot
@@ -156,7 +163,7 @@ namespace SD.IdentitySystem.Domain.Entities
             #endregion
 
             base.Name = menuName;
-            base.Sort = sort;
+            this.Sort = sort;
             this.Url = url;
             this.Icon = icon;
 

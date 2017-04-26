@@ -92,8 +92,8 @@
       <HintPath>..\..\packages\SD.Common.1.0.0\lib\net45\SD.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.1.0.0\lib\net45\SD.Infrastructure.dll</HintPath>
+    <Reference Include="SD.Infrastructure">
+      <HintPath>..\..\packages\SD.Infrastructure.1.0.1\lib\net45\SD.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

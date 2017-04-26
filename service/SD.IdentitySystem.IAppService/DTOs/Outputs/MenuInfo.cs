@@ -33,6 +33,14 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         public string Icon { get; set; }
         #endregion
 
+        #region 排序 —— int Sort
+        /// <summary>
+        /// 排序
+        /// </summary>
+        [DataMember]
+        public int Sort { get; set; }
+        #endregion
+
         #region 是否是根级节点 —— bool IsRoot
         /// <summary>
         /// 是否是根级节点
