@@ -11,7 +11,7 @@ namespace SD.IdentitySystem.Repository.Implements
     /// <summary>
     /// 菜单仓储实现
     /// </summary>
-    public class MenuRepository : EFRepositoryProvider<Menu>, IMenuRepository
+    public class MenuRepository : EFAggRootRepositoryProvider<Menu>, IMenuRepository
     {
         #region # 获取菜单列表 —— IEnumerable<Menu> FindBySystem(string systemNo)
         /// <summary>

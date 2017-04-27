@@ -8,7 +8,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// <summary>
     /// 权限仓储接口
     /// </summary>
-    public interface IAuthorityRepository : IRepository<Authority>
+    public interface IAuthorityRepository : IAggRootRepository<Authority>
     {
         #region # 根据信息系统获取权限列表 —— IEnumerable<Authority> FindBySystem(...
         /// <summary>

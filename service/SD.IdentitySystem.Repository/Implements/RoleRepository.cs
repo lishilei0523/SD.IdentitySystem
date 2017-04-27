@@ -12,7 +12,7 @@ namespace SD.IdentitySystem.Repository.Implements
     /// <summary>
     /// 角色仓储实现
     /// </summary>
-    public class RoleRepository : EFRepositoryProvider<Role>, IRoleRepository
+    public class RoleRepository : EFAggRootRepositoryProvider<Role>, IRoleRepository
     {
         #region # 获取角色列表 —— IEnumerable<Role> FindBySystem(string systemNo)
         /// <summary>

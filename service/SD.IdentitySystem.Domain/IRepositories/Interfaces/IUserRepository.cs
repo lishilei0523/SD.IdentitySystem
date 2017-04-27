@@ -7,7 +7,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// <summary>
     /// 用户仓储接口
     /// </summary>
-    public interface IUserRepository : IRepository<User>
+    public interface IUserRepository : IAggRootRepository<User>
     {
         #region # 分页获取用户列表 —— IEnumerable<User> FindByPage(string systemNo...
         /// <summary>

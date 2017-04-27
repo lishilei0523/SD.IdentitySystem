@@ -8,7 +8,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// <summary>
     /// 登录记录仓储接口
     /// </summary>
-    public interface ILoginRecordRepository : IRepository<LoginRecord>
+    public interface ILoginRecordRepository : IAggRootRepository<LoginRecord>
     {
         #region # 分页获取用户登录记录列表 —— IEnumerable<LoginRecord> FindByPage(string keywords...
         /// <summary>

@@ -11,7 +11,7 @@ namespace SD.IdentitySystem.Repository.Implements
     /// <summary>
     /// 登录记录仓储实现
     /// </summary>
-    public class LoginRecordRepository : EFRepositoryProvider<LoginRecord>, ILoginRecordRepository
+    public class LoginRecordRepository : EFAggRootRepositoryProvider<LoginRecord>, ILoginRecordRepository
     {
         #region # 分页获取用户登录记录列表 —— IEnumerable<LoginRecord> FindByPage(string keywords...
         /// <summary>

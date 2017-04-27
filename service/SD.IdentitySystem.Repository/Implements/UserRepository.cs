@@ -16,7 +16,7 @@ namespace SD.IdentitySystem.Repository.Implements
     /// <summary>
     /// 用户仓储实现
     /// </summary>
-    public class UserRepository : EFRepositoryProvider<User>, IUserRepository
+    public class UserRepository : EFAggRootRepositoryProvider<User>, IUserRepository
     {
         #region # 分页获取用户列表 —— IEnumerable<User> FindByPage(string systemNo...
         /// <summary>

@@ -8,7 +8,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// <summary>
     /// 角色仓储接口
     /// </summary>
-    public interface IRoleRepository : IRepository<Role>
+    public interface IRoleRepository : IAggRootRepository<Role>
     {
         #region # 获取角色列表 —— IEnumerable<Role> FindBySystem(string systemNo)
         /// <summary>

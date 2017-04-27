@@ -11,7 +11,7 @@ namespace SD.IdentitySystem.Repository.Implements
     /// <summary>
     /// 权限仓储实现
     /// </summary>
-    public class AuthorityRepository : EFRepositoryProvider<Authority>, IAuthorityRepository
+    public class AuthorityRepository : EFAggRootRepositoryProvider<Authority>, IAuthorityRepository
     {
         #region # 根据信息系统获取权限集 —— IEnumerable<Authority> FindBySystem(...
         /// <summary>

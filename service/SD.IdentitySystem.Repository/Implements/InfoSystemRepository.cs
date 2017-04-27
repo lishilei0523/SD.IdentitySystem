@@ -8,7 +8,7 @@ namespace SD.IdentitySystem.Repository.Implements
     /// <summary>
     /// 信息系统仓储实现
     /// </summary>
-    public class InfoSystemRepository : EFRepositoryProvider<InfoSystem>, IInfoSystemRepository
+    public class InfoSystemRepository : EFAggRootRepositoryProvider<InfoSystem>, IInfoSystemRepository
     {
         #region # 获取信息系统字典 —— IDictionary<string, InfoSystem> FindDictionary()
         /// <summary>

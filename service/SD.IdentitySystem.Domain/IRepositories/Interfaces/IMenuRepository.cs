@@ -8,7 +8,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// <summary>
     /// 菜单仓储接口
     /// </summary>
-    public interface IMenuRepository : IRepository<Menu>
+    public interface IMenuRepository : IAggRootRepository<Menu>
     {
         #region # 获取菜单列表 —— IEnumerable<Menu> FindBySystem(string systemNo)
         /// <summary>

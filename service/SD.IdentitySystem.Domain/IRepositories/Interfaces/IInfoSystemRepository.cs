@@ -7,7 +7,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// <summary>
     /// 信息系统仓储接口
     /// </summary>
-    public interface IInfoSystemRepository : IRepository<InfoSystem>
+    public interface IInfoSystemRepository : IAggRootRepository<InfoSystem>
     {
         #region # 获取信息系统字典 —— IDictionary<string, InfoSystem> FindDictionary()
         /// <summary>
