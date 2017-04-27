@@ -1,5 +1,4 @@
-﻿using SD.CacheManager;
-using SD.Common.PoweredByLee;
+﻿using SD.Common.PoweredByLee;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
@@ -75,9 +74,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterAdd(user);
             this._unitOfWork.UnitedCommit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IUserRepository).FullName);
         }
         #endregion
 
@@ -95,9 +91,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterSave(currentUser);
             this._unitOfWork.UnitedCommit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IUserRepository).FullName);
         }
         #endregion
 
@@ -114,9 +107,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterSave(currentUser);
             this._unitOfWork.UnitedCommit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IUserRepository).FullName);
         }
         #endregion
 
@@ -132,9 +122,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterSave(currentUser);
             this._unitOfWork.UnitedCommit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IUserRepository).FullName);
         }
         #endregion
 
@@ -150,9 +137,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterSave(currentUser);
             this._unitOfWork.UnitedCommit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IUserRepository).FullName);
         }
         #endregion
 
@@ -179,9 +163,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterPhysicsRemove<User>(loginId);
             this._unitOfWork.UnitedCommit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IUserRepository).FullName);
         }
         #endregion
 
@@ -284,7 +265,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>是否存在</returns>
         public bool ExistsUser(string loginId)
         {
-            return this._repMediator.UserRep.ExistsFromCache(loginId);
+            return this._repMediator.UserRep.Exists(loginId);
         }
         #endregion
 

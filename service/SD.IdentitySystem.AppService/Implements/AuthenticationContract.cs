@@ -62,7 +62,7 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             lock (_Sync)
             {
-                User currentUser = this._repMediator.UserRep.SingleOrDefaultFromCache(loginId);
+                User currentUser = this._repMediator.UserRep.SingleOrDefault(loginId);
 
                 #region # 验证
 
