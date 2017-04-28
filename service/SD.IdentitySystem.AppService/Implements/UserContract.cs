@@ -2,17 +2,17 @@
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.Global.Transaction;
+using SD.Toolkits.Recursion.Tree;
+using SD.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using SD.ValueObjects;
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -283,6 +283,7 @@ namespace SD.IdentitySystem.AppService.Implements
             IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
 
             IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds);
+            menus = menus.TailRecurseParentNodes();
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
