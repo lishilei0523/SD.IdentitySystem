@@ -132,7 +132,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
         [OperationContract]
-        PageModel<UserInfo> GetUsersByRole(string keywords, Guid roleId, int pageIndex, int pageSize);
+        PageModel<UserInfo> GetUsersByRole(string keywords, Guid? roleId, int pageIndex, int pageSize);
         #endregion
 
         #region # 根据账号集获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...

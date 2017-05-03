@@ -266,7 +266,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
-        public PageModel<UserInfo> GetUsersByRole(string keywords, Guid roleId, int pageIndex, int pageSize)
+        public PageModel<UserInfo> GetUsersByRole(string keywords, Guid? roleId, int pageIndex, int pageSize)
         {
             int rowCount, pageCount;
 

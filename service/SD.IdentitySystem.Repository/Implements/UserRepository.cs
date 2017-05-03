@@ -35,7 +35,7 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 根据角色获取用户列表 —— IEnumerable<User> FindByPage(string keywords, Guid roleId...
+        #region # 根据角色获取用户列表 —— IEnumerable<User> FindByPage(string keywords, Guid? roleId...
         /// <summary>
         /// 根据角色获取用户列表
         /// </summary>
@@ -46,12 +46,12 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <param name="rowCount">总记录条数</param>
         /// <param name="pageCount">总页数</param>
         /// <returns>用户列表</returns>
-        public IEnumerable<User> FindByPage(string keywords, Guid roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        public IEnumerable<User> FindByPage(string keywords, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
             Expression<Func<User, bool>> condition =
                 x =>
                     (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
-                    x.Roles.Any(y => y.Id == roleId);
+                    (roleId == null || x.Roles.Any(y => y.Id == roleId));
 
             return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
         }
