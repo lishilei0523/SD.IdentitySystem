@@ -257,6 +257,42 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
+        #region # 根据角色获取用户列表 —— PageModel<UserInfo> GetUsersByRole(string keywords...
+        /// <summary>
+        /// 根据角色获取用户列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="roleId">角色Id</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户列表</returns>
+        public PageModel<UserInfo> GetUsersByRole(string keywords, Guid roleId, int pageIndex, int pageSize)
+        {
+            int rowCount, pageCount;
+
+            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(keywords, roleId, pageIndex, pageSize, out rowCount, out pageCount);
+
+            IEnumerable<UserInfo> specUserInfos = specUsers.Select(x => x.ToDTO());
+
+            return new PageModel<UserInfo>(specUserInfos, pageIndex, pageSize, pageCount, rowCount);
+        }
+        #endregion
+
+        #region # 根据账号集获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
+        /// <summary>
+        /// 根据账号集获取用户字典
+        /// </summary>
+        /// <param name="loginIds">账号集</param>
+        /// <returns>用户字典</returns>
+        public IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds)
+        {
+            IDictionary<string, User> users = this._repMediator.UserRep.Find(loginIds);
+            IDictionary<string, UserInfo> userInfos = users.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return userInfos;
+        }
+        #endregion
+
         #region # 是否存在用户 —— bool ExistsUser(string loginId)
         /// <summary>
         /// 是否存在用户

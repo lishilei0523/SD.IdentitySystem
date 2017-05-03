@@ -122,6 +122,29 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         PageModel<UserInfo> GetUsers(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
 
+        #region # 根据角色获取用户列表 —— PageModel<UserInfo> GetUsersByRole(string keywords...
+        /// <summary>
+        /// 根据角色获取用户列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="roleId">角色Id</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户列表</returns>
+        [OperationContract]
+        PageModel<UserInfo> GetUsersByRole(string keywords, Guid roleId, int pageIndex, int pageSize);
+        #endregion
+
+        #region # 根据账号集获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
+        /// <summary>
+        /// 根据账号集获取用户字典
+        /// </summary>
+        /// <param name="loginIds">账号集</param>
+        /// <returns>用户字典</returns>
+        [OperationContract]
+        IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds);
+        #endregion
+
         #region # 是否存在用户 —— bool ExistsUser(string loginId)
         /// <summary>
         /// 是否存在用户
