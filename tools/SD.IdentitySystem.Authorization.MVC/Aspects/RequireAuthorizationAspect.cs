@@ -1,9 +1,9 @@
 ﻿using PostSharp.Aspects;
 using SD.Common.PoweredByLee;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.ValueObjects;
-using SD.ValueObjects.Attributes;
-using SD.ValueObjects.CustomExceptions;
+using SD.Infrastructure.Attributes;
+using SD.Infrastructure.Constants;
+using SD.Infrastructure.CustomExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;

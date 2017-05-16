@@ -1,9 +1,8 @@
-﻿using System;
+﻿using SD.Infrastructure.Constants;
+using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
-using SD.Infrastructure.Constants;
-using SD.ValueObjects;
 
 namespace SD.IdentitySystem.WCFAuthentication.Windows
 {
@@ -21,14 +20,14 @@ namespace SD.IdentitySystem.WCFAuthentication.Windows
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //Windows客户端获取公钥处理
-            object loginInfo = AppDomain.CurrentDomain.GetData(CacheConstants.CurrentUserKey);
+            object loginInfo = AppDomain.CurrentDomain.GetData(SessionKey.CurrentUser);
 
             if (loginInfo != null)
             {
                 Guid publishKey = ((LoginInfo)loginInfo).PublicKey;
 
                 //添加消息头
-                MessageHeader header = MessageHeader.CreateHeader(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace, publishKey);
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
                 request.Headers.Add(header);
             }
 

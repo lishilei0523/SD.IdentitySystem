@@ -1,5 +1,5 @@
 ﻿using PostSharp.Aspects;
-using SD.ValueObjects.Attributes;
+using SD.Infrastructure.Attributes;
 using System;
 using System.Reflection;
 

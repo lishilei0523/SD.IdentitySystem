@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.ValueObjects.Attributes;
+using SD.Infrastructure.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Linq;
