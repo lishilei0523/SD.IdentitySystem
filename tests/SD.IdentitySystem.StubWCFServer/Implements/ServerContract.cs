@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.StubWCFServer.Interfaces;
-using SD.ValueObjects;
+using SD.Infrastructure.Constants;
 using System;
 using System.Linq;
 using System.ServiceModel;
@@ -25,7 +25,7 @@ namespace SD.IdentitySystem.StubWCFServer.Implements
 
             #region # 验证消息头
 
-            if (!headers.Any(x => x.Name == Constants.WcfAuthHeaderName && x.Namespace == Constants.WcfAuthHeaderNamespace))
+            if (!headers.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
             {
                 throw new NullReferenceException("身份认证消息头不存在，请检查程序！");
             }
@@ -33,7 +33,7 @@ namespace SD.IdentitySystem.StubWCFServer.Implements
             #endregion
 
             //读取消息头中的公钥
-            Guid publishKey = headers.GetHeader<Guid>(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace);
+            Guid publishKey = headers.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
 
             return publishKey.ToString();
         }

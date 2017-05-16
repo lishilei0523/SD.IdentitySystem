@@ -1,7 +1,7 @@
-﻿using SD.Infrastructure.Constants;
-using SD.Infrastructure.Repository.EntityFramework.Base;
-using System.Configuration;
+﻿using System.Configuration;
 using System.Data.Entity;
+using SD.Infrastructure.Constants;
+using SD.Infrastructure.Repository.EntityFramework.Base;
 using Configuration = SD.IdentitySystem.Repository.Migrations.Configuration;
 
 namespace SD.IdentitySystem.Repository.Base

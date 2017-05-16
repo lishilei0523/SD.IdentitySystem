@@ -1,8 +1,8 @@
-﻿using SD.IdentitySystem.Domain.Entities;
+﻿using System.Collections.Generic;
+using System.Linq;
+using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.Infrastructure.Repository.EntityFramework;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SD.IdentitySystem.Repository.Base
 {

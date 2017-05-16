@@ -1,6 +1,6 @@
-﻿using SD.Infrastructure.DTOBase;
-using System;
+﻿using System;
 using System.Runtime.Serialization;
+using SD.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.IAppService.DTOs.Outputs
 {

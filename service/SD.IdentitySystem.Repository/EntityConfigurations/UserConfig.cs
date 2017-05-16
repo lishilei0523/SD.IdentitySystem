@@ -1,6 +1,6 @@
-﻿using SD.IdentitySystem.Domain.Entities;
+﻿using System.Data.Entity.ModelConfiguration;
+using SD.IdentitySystem.Domain.Entities;
 using SD.Infrastructure.Constants;
-using System.Data.Entity.ModelConfiguration;
 
 namespace SD.IdentitySystem.Repository.EntityConfigurations
 {

@@ -1,6 +1,6 @@
-﻿using SD.Infrastructure.DTOBase;
-using SD.ValueObjects.Enums;
-using System.Runtime.Serialization;
+﻿using System.Runtime.Serialization;
+using SD.Infrastructure.Constants;
+using SD.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.IAppService.DTOs.Outputs
 {

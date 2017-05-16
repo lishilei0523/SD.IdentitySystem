@@ -1,10 +1,10 @@
 ﻿using SD.Common.PoweredByLee;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using SD.ValueObjects;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -163,7 +163,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// </summary>
         public void ResetPassword()
         {
-            this.Password = Constants.InitialPassword.ToMD5();
+            this.Password = CommonConstants.InitialPassword.ToMD5();
         }
         #endregion
 

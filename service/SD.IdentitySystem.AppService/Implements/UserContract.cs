@@ -5,10 +5,10 @@ using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.Global.Transaction;
 using SD.Toolkits.Recursion.Tree;
-using SD.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -151,7 +151,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #region # 验证
 
-            if (loginId == Constants.AdminLoginId)
+            if (loginId == CommonConstants.AdminLoginId)
             {
                 throw new InvalidOperationException("超级管理员不可删除！");
             }

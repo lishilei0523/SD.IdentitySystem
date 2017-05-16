@@ -1,9 +1,9 @@
-﻿using SD.IdentitySystem.Domain.Entities;
+﻿using System;
+using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.Infrastructure.EventBase;
-using System;
 
 namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
 {

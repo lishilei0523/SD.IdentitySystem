@@ -1,8 +1,8 @@
-﻿using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
+﻿using System;
+using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
 using SD.Infrastructure.EventBase.Mediator;
-using System;
-using SD.ValueObjects.Enums;
 
 namespace SD.IdentitySystem.Domain.Entities
 {

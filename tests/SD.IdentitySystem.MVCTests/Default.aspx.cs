@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.MVCTests
             LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
 
             //将登录信息存入约定位置
-            base.Session.Add(CacheConstants.CurrentUserKey, fakeLoginInfo);
+            base.Session.Add(SessionKey.CurrentUser, fakeLoginInfo);
 
             //实例化WCF服务端服务接口
             IServerContract serverContract = ResolveMediator.Resolve<IServerContract>();

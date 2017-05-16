@@ -1,7 +1,7 @@
-﻿using SD.Infrastructure.MVC;
-using SD.ValueObjects.Attributes;
-using System.Web.Mvc;
+﻿using SD.Infrastructure.Attributes;
+using SD.Infrastructure.MVC;
 using SD.Infrastructure.MVC.Filters;
+using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website.Controllers
 {

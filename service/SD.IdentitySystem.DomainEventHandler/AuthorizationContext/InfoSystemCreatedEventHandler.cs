@@ -1,8 +1,8 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using SD.IdentitySystem.Domain.IRepositories;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.EventBase;
-using SD.ValueObjects;
 
 namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
 {
@@ -44,14 +44,14 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
         public void Handle(InfoSystemCreatedEvent eventSource)
         {
             //获取超级管理员用户
-            User admin = this._unitOfWork.Resolve<User>(Constants.AdminLoginId);
+            User admin = this._unitOfWork.Resolve<User>(CommonConstants.AdminLoginId);
 
             //创建系统管理员用户
             string adminName = string.Format("{0}管理员", eventSource.SystemName);
-            User systemAdmin = new User(eventSource.AdminLoginId, adminName, Constants.InitialPassword);
+            User systemAdmin = new User(eventSource.AdminLoginId, adminName, CommonConstants.InitialPassword);
 
             //创建系统管理员角色
-            Role adminRole = new Role("系统管理员", eventSource.SystemNo, "系统管理员", Constants.ManagerRoleNo);
+            Role adminRole = new Role("系统管理员", eventSource.SystemNo, "系统管理员", CommonConstants.ManagerRoleNo);
 
             //为超级管理员与系统管理员追加角色
             admin.AppendRoles(new[] { adminRole });

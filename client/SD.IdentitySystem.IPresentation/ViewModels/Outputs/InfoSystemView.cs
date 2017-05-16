@@ -1,7 +1,5 @@
-﻿using SD.Infrastructure.MVC;
-using SD.ValueObjects.Enums;
-
-
+﻿using SD.Infrastructure.Constants;
+using SD.Infrastructure.MVC;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
 {

@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.Repository.EntityFramework;
-using SD.ValueObjects;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -96,14 +96,14 @@ namespace SD.IdentitySystem.Repository.Implements
 
             #region # 验证业务
 
-            if (specRoles.All(x => x.Number != Constants.ManagerRoleNo))
+            if (specRoles.All(x => x.Number != CommonConstants.ManagerRoleNo))
             {
                 throw new ApplicationException(string.Format("未为编号为\"{0}\"的信息系统初始化系统管理员角色！", systemNo));
             }
 
             #endregion
 
-            return specRoles.Single(x => x.Number == Constants.ManagerRoleNo);
+            return specRoles.Single(x => x.Number == CommonConstants.ManagerRoleNo);
         }
         #endregion
 
@@ -119,14 +119,14 @@ namespace SD.IdentitySystem.Repository.Implements
 
             #region # 验证业务
 
-            if (specRoles.All(x => x.Number != Constants.ManagerRoleNo))
+            if (specRoles.All(x => x.Number != CommonConstants.ManagerRoleNo))
             {
                 throw new ApplicationException(string.Format("未为编号为\"{0}\"的信息系统初始化系统管理员角色！", systemNo));
             }
 
             #endregion
 
-            return specRoles.Where(x => x.Number == Constants.ManagerRoleNo).Select(x => x.Id).Single();
+            return specRoles.Where(x => x.Number == CommonConstants.ManagerRoleNo).Select(x => x.Id).Single();
         }
         #endregion
 

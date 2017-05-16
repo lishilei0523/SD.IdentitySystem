@@ -1,18 +1,12 @@
 ﻿using SD.AOP.Core.Aspects.ForMethod;
-using SD.CacheManager;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Repository.EntityFramework;
 using SD.Infrastructure.RepositoryBase;
-using SD.ValueObjects;
-using SD.ValueObjects.Enums;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
 using System.Transactions;
 
 namespace SD.IdentitySystem.Repository.Base
@@ -99,7 +93,7 @@ namespace SD.IdentitySystem.Repository.Base
             }
 
             //注册获取用户信息事件
-            EFUnitOfWorkProvider.GetLoginInfo += this.EFUnitOfWorkProvider_GetLoginInfo;
+            EFUnitOfWorkProvider.GetLoginInfo += () => Membership.LoginInfo;
         }
         #endregion
 
@@ -112,9 +106,9 @@ namespace SD.IdentitySystem.Repository.Base
         /// </summary>
         private void InitAdmin()
         {
-            if (!this._repMediator.UserRep.Exists(Constants.AdminLoginId))
+            if (!this._repMediator.UserRep.Exists(CommonConstants.AdminLoginId))
             {
-                User admin = new User(Constants.AdminLoginId, "超级管理员", Constants.InitialPassword);
+                User admin = new User(CommonConstants.AdminLoginId, "超级管理员", CommonConstants.InitialPassword);
 
                 this._users.Add(admin);
             }
@@ -142,7 +136,7 @@ namespace SD.IdentitySystem.Repository.Base
         {
             foreach (InfoSystem system in this._systems)
             {
-                this._users.Add(new User(system.AdminLoginId, string.Format("{0}系统管理员", system.Name), Constants.InitialPassword));
+                this._users.Add(new User(system.AdminLoginId, string.Format("{0}系统管理员", system.Name), CommonConstants.InitialPassword));
             }
         }
         #endregion
@@ -155,7 +149,7 @@ namespace SD.IdentitySystem.Repository.Base
         {
             foreach (InfoSystem system in this._systems)
             {
-                Role adminRole = new Role("系统管理员", system.Number, "系统管理员", Constants.ManagerRoleNo);
+                Role adminRole = new Role("系统管理员", system.Number, "系统管理员", CommonConstants.ManagerRoleNo);
 
                 #region # 给角色授权
 
@@ -182,7 +176,7 @@ namespace SD.IdentitySystem.Repository.Base
             if (this._systems.Any())
             {
                 //获取超级管理员
-                User superAdmin = this._users.Single(x => x.Number == Constants.AdminLoginId);
+                User superAdmin = this._users.Single(x => x.Number == CommonConstants.AdminLoginId);
 
                 foreach (Role role in this._roles)
                 {
@@ -224,36 +218,6 @@ namespace SD.IdentitySystem.Repository.Base
                 this._menus.Add(menuManagement);
                 this._menus.Add(authorityManagement);
             }
-        }
-        #endregion
-
-        #region # 获取用户信息 —— LoginInfo EFUnitOfWorkProvider_GetLoginInfo()
-        /// <summary>
-        /// 获取用户信息
-        /// </summary>
-        /// <returns>用户信息</returns>
-        private LoginInfo EFUnitOfWorkProvider_GetLoginInfo()
-        {
-            if (OperationContext.Current != null)
-            {
-                //获取消息头
-                MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
-
-                if (!headers.Any(x => x.Name == Constants.WcfAuthHeaderName && x.Namespace == Constants.WcfAuthHeaderNamespace))
-                {
-                    return null;
-                }
-
-                //读取消息头中的公钥
-                Guid publicKey = headers.GetHeader<Guid>(Constants.WcfAuthHeaderName, Constants.WcfAuthHeaderNamespace);
-
-                //以公钥为键，查询分布式缓存
-                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
-
-                return loginInfo;
-            }
-
-            return null;
         }
         #endregion
     }

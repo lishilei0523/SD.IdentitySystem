@@ -1,5 +1,4 @@
 ﻿using SD.CacheManager;
-using SD.Common.PoweredByLee;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
@@ -14,7 +13,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using ApplicationType = SD.ValueObjects.Enums.ApplicationType;
+using SD.Common.PoweredByLee;
+using ApplicationType = SD.Infrastructure.Constants.ApplicationType;
 
 namespace SD.IdentitySystem.AppService.Implements
 {

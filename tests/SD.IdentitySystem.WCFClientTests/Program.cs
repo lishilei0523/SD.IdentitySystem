@@ -16,7 +16,7 @@ namespace SD.IdentitySystem.WCFClientTests
             LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
 
             //将登录信息存入约定位置
-            AppDomain.CurrentDomain.SetData(CacheConstants.CurrentUserKey, fakeLoginInfo);
+            AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, fakeLoginInfo);
 
             //实例化WCF客户端服务接口
             IClientContract clientContract = ResolveMediator.Resolve<IClientContract>();
