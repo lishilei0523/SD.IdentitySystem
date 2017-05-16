@@ -46,6 +46,7 @@
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.Web" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Membership.cs" />

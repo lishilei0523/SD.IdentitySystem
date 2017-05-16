@@ -4,6 +4,7 @@ using System;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+using System.Web;
 
 // ReSharper disable once CheckNamespace
 namespace SD.IdentitySystem
@@ -21,6 +22,7 @@ namespace SD.IdentitySystem
         {
             get
             {
+                //服务端获取
                 if (OperationContext.Current != null)
                 {
                     //获取消息头
@@ -39,8 +41,22 @@ namespace SD.IdentitySystem
 
                     return loginInfo;
                 }
+                //Web端获取
+                if (HttpContext.Current != null)
+                {
+                    //从Session中获取
+                    LoginInfo loginInfo = HttpContext.Current.Session[SessionKey.CurrentUser] as LoginInfo;
 
-                return null;
+                    return loginInfo;
+                }
+                //客户端获取
+                else
+                {
+                    //从AppDomain中获取
+                    LoginInfo loginInfo = AppDomain.CurrentDomain.GetData(SessionKey.CurrentUser) as LoginInfo;
+
+                    return loginInfo;
+                }
             }
         }
     }
