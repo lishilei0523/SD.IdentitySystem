@@ -53,17 +53,5 @@ namespace SD.IdentitySystem.DomainService.Implements
             return false;
         }
         #endregion
-
-        #region # 获取聚合根实体关键字 —— string GetKeywords(Role entity)
-        /// <summary>
-        /// 获取聚合根实体关键字
-        /// </summary>
-        /// <param name="entity">聚合根实体对象</param>
-        /// <returns>关键字</returns>
-        public string GetKeywords(Role entity)
-        {
-            return entity.Keywords;
-        }
-        #endregion
     }
 }

@@ -1,11 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ServiceModel;
-using SD.IdentitySystem.IAppService.DTOs.Inputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.Infrastructure;
+using SD.Infrastructure.AppServiceBase;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
+using System;
+using System.Collections.Generic;
+using System.ServiceModel;
 
 namespace SD.IdentitySystem.IAppService.Interfaces
 {

@@ -1,5 +1,6 @@
 ﻿using System.ServiceModel;
 using SD.Infrastructure;
+using SD.Infrastructure.AppServiceBase;
 using SD.Infrastructure.Constants;
 
 namespace SD.IdentitySystem.IAppService.Interfaces

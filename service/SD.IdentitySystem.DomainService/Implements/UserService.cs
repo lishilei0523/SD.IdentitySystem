@@ -1,5 +1,4 @@
-﻿using SD.IdentitySystem.Domain.Entities;
-using SD.IdentitySystem.Domain.IDomainServices;
+﻿using SD.IdentitySystem.Domain.IDomainServices;
 using SD.IdentitySystem.Domain.Mediators;
 
 namespace SD.IdentitySystem.DomainService.Implements
@@ -25,18 +24,6 @@ namespace SD.IdentitySystem.DomainService.Implements
             this._repMediator = repMediator;
         }
 
-        #endregion
-
-        #region # 获取聚合根实体关键字 —— string GetKeywords(User entity)
-        /// <summary>
-        /// 获取聚合根实体关键字
-        /// </summary>
-        /// <param name="entity">聚合根实体对象</param>
-        /// <returns>关键字</returns>
-        public string GetKeywords(User entity)
-        {
-            return entity.Keywords;
-        }
         #endregion
     }
 }

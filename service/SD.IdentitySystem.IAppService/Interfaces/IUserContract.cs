@@ -1,9 +1,9 @@
-﻿using System;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.Infrastructure.AppServiceBase;
+using SD.Infrastructure.DTOBase;
+using System;
 using System.Collections.Generic;
 using System.ServiceModel;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.Infrastructure;
-using SD.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.IAppService.Interfaces
 {
