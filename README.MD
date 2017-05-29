@@ -21,3 +21,11 @@
         如果服务端运行失败，请检查是不是没装Redis（附件中有）
 
         默认账号：admin，密码：888888
+
+![登录](https://git.oschina.net/uploads/images/2017/0529/175100_85d0afeb_372841.png "登录")
+![首页](https://git.oschina.net/uploads/images/2017/0529/175138_4d6d131a_372841.jpeg "首页")
+![菜单管理](https://git.oschina.net/uploads/images/2017/0529/175208_075c0a11_372841.png "菜单管理")
+![菜单管理权限](https://git.oschina.net/uploads/images/2017/0529/175233_1c16ae98_372841.png "菜单管理权限")
+![用户管理](https://git.oschina.net/uploads/images/2017/0529/175251_14e3c127_372841.png "用户管理")
+![用户分配角色](https://git.oschina.net/uploads/images/2017/0529/175306_fd5487f1_372841.png "用户分配角色")
+![创建角色](https://git.oschina.net/uploads/images/2017/0529/175358_a0e006c2_372841.png "创建角色")
