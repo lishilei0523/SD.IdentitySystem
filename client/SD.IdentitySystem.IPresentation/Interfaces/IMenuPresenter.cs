@@ -33,6 +33,16 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         IEnumerable<MenuView> GetMenus(string systemNo);
         #endregion
 
+        #region # 获取用户菜单树 —— IEnumerable<Node> GetMenuTree(string loginId, string systemNo)
+        /// <summary>
+        /// 获取用户菜单树
+        /// </summary>
+        /// <param name="loginId">用户登录名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>菜单树</returns>
+        IEnumerable<Node> GetMenuTree(string loginId, string systemNo);
+        #endregion
+
         #region # 获取菜单树 —— IEnumerable<Node> GetMenuTree(string systemNo)
         /// <summary>
         /// 获取菜单树

@@ -3,9 +3,15 @@ var topHelper = {};
 
 //DOM初始化事件
 $(function () {
+
+    debugger;
+    //获取当前登录用户
+    var loginId = $("#spLoginId").text();
+    var systemNo = "00";
+
     //初始化用户菜单
     $("#menuTree").tree({
-        url: "/Menu/GetMenuTree/00",
+        url: "/Menu/GetMenuTreeByUser?loginId=" + loginId + "&systemNo=" + systemNo,
         animate: true,
         lines: true,
         onClick: function (node) {

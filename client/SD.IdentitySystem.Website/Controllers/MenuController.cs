@@ -3,6 +3,7 @@ using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.MVC;
 using SD.Infrastructure.MVC.Filters;
 using System;
@@ -204,6 +205,25 @@ namespace SD.IdentitySystem.Website.Controllers
 
 
         //查询部分
+
+        #region # 获取用户菜单树 —— JsonResult GetMenuTreeByUser(string loginId, string systemNo)
+        /// <summary>
+        /// 获取用户菜单树
+        /// </summary>
+        /// <param name="loginId">信息系统编号</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>菜单树</returns>
+        [RequireAuthorization("获取用户菜单树")]
+        public JsonResult GetMenuTreeByUser(string loginId, string systemNo)
+        {
+            IEnumerable<Node> menuTree = loginId == CommonConstants.AdminLoginId
+                ? this._menuPresenter.GetMenuTree(systemNo)
+                : this._menuPresenter.GetMenuTree(loginId, systemNo);
+
+            return base.Json(menuTree, JsonRequestBehavior.AllowGet);
+        }
+
+        #endregion
 
         #region # 获取菜单树 —— JsonResult GetMenuTree(string id)
         /// <summary>

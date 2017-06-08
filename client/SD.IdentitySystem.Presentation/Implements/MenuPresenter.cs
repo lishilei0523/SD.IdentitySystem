@@ -19,6 +19,11 @@ namespace SD.IdentitySystem.Presentation.Implements
         #region # 字段及构造器
 
         /// <summary>
+        /// 用户服务接口
+        /// </summary>
+        private readonly IUserContract _userContract;
+
+        /// <summary>
         /// 权限服务接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
@@ -26,9 +31,11 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
+        /// <param name="userContract">用户服务接口</param>
         /// <param name="authorizationContract">权限服务接口</param>
-        public MenuPresenter(IAuthorizationContract authorizationContract)
+        public MenuPresenter(IUserContract userContract, IAuthorizationContract authorizationContract)
         {
+            this._userContract = userContract;
             this._authorizationContract = authorizationContract;
         }
 
@@ -62,10 +69,27 @@ namespace SD.IdentitySystem.Presentation.Implements
         public IEnumerable<MenuView> GetMenus(string systemNo)
         {
             IEnumerable<MenuInfo> menuInfos = this._authorizationContract.GetMenus(systemNo);
-
             IEnumerable<MenuView> menuViews = menuInfos.Select(x => x.ToViewModel());
 
             return menuViews;
+        }
+        #endregion
+
+        #region # 获取用户菜单树 —— IEnumerable<Node> GetMenuTree(string loginId, string systemNo)
+        /// <summary>
+        /// 获取用户菜单树
+        /// </summary>
+        /// <param name="loginId">用户登录名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>菜单树</returns>
+        public IEnumerable<Node> GetMenuTree(string loginId, string systemNo)
+        {
+            IEnumerable<MenuInfo> menuInfos = this._userContract.GetMenus(loginId, systemNo);
+            IEnumerable<MenuView> menuViews = menuInfos.Select(x => x.ToViewModel());
+
+            ICollection<Node> menuTree = menuViews.ToTree(null);
+
+            return menuTree;
         }
         #endregion
 
