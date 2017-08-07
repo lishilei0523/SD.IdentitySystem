@@ -11,6 +11,8 @@
  * under the terms set out in this paragraph. All notices and licenses
  * below are for informational purposes only.
  *
+ * jQuery validation plugin 1.10.0; Copyright (c) 2006 - 2011 Jörn Zaefferer; http://opensource.org/licenses/mit-license.php
+ *
  * NUGET: END LICENSE TEXT */
 /*
 * This file has been commented to support Visual Studio Intellisense.
@@ -18,7 +20,7 @@
 * intended to be used only for design-time IntelliSense.  Please use the
 * standard jQuery library for all production use.
 *
-* Comment version: 1.11.1
+* Comment version: 1.10.0
 */
 
 /*
@@ -29,9 +31,12 @@
 * for informational purposes only and are not the license terms under
 * which Microsoft distributed this file.
 *
-* jQuery Validation Plugin - v1.11.1 - 2/4/2013
-* https://github.com/jzaefferer/jquery-validation
-* Copyright (c) 2013 Jörn Zaefferer; Licensed MIT
+* jQuery validation plugin 1.10.0
+*
+* http://bassistance.de/jquery-plugins/jquery-plugin-validation/
+* http://docs.jquery.com/Plugins/Validation
+*
+* Copyright (c) 2006 - 2011 Jörn Zaefferer
 *
 */
 
