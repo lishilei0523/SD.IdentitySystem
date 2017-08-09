@@ -18,7 +18,7 @@ function getAuthorities(queryParams) {
             { field: "ck", checkbox: true, halign: "center" },
             { field: "Id", title: "Id", halign: "center", hidden: true },
             { field: "Name", title: "权限名称", halign: "center", width: 120 },
-            { field: "SystemName", title: "所属系统", halign: "center", width: 70 },
+            { field: "SystemName", title: "所属系统", halign: "center", width: 120 },
             { field: "AuthorityPath", title: "权限路径", halign: "center" },
             { field: "Description", title: "权限描述", halign: "center", width: 200 },
             {

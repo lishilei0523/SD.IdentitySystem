@@ -36,7 +36,7 @@ namespace SD.IdentitySystem.InitializationTool
         /// </summary>
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            IEnumerable<InfoSystemInfo> systems = this._authorizationContract.GetInfoSystems().ToArray();
+            IEnumerable<InfoSystemInfo> systems = this._authorizationContract.GetInfoSystems().OrderBy(x => x.Number).ToArray();
 
             foreach (InfoSystemInfo system in systems)
             {
