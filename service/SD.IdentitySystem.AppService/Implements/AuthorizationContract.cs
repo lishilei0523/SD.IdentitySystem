@@ -1,4 +1,5 @@
 ﻿using SD.CacheManager;
+using SD.Common.PoweredByLee;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
@@ -13,7 +14,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using SD.Common.PoweredByLee;
 using ApplicationType = SD.Infrastructure.Constants.ApplicationType;
 
 namespace SD.IdentitySystem.AppService.Implements
@@ -377,7 +377,7 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             Role role = this._unitOfWork.Resolve<Role>(roleId);
 
-            role.UpdateInfo(roleName, roleName);
+            role.UpdateInfo(roleName, description);
 
             IEnumerable<Authority> authorities = authorityIds.Distinct().Select(authorityId => this._unitOfWork.Resolve<Authority>(authorityId));
             role.SetAuthorities(authorities);

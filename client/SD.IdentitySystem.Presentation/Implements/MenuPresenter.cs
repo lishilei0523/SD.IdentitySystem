@@ -69,7 +69,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         public IEnumerable<MenuView> GetMenus(string systemNo)
         {
             IEnumerable<MenuInfo> menuInfos = this._authorizationContract.GetMenus(systemNo);
-            IEnumerable<MenuView> menuViews = menuInfos.Select(x => x.ToViewModel());
+            IEnumerable<MenuView> menuViews = menuInfos.OrderBy(x => x.Sort).Select(x => x.ToViewModel());
 
             return menuViews;
         }
