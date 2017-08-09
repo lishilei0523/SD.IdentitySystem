@@ -1,10 +1,11 @@
-﻿using System;
+﻿using SD.IdentitySystem.Domain.Entities;
+using SD.IdentitySystem.Domain.IRepositories.Interfaces;
+using SD.Infrastructure.Constants;
+using SD.Infrastructure.Repository.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using SD.IdentitySystem.Domain.Entities;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using SD.Infrastructure.Repository.EntityFramework;
 
 namespace SD.IdentitySystem.Repository.Implements
 {
@@ -28,6 +29,7 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             Expression<Func<User, bool>> condition =
                 x =>
+                    (x.Number != CommonConstants.AdminLoginId) &&
                     (string.IsNullOrEmpty(systemNo) || x.Roles.Any(y => y.SystemNo == systemNo)) &&
                     (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
 
