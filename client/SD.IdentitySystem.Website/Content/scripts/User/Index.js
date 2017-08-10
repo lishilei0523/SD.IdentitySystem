@@ -111,7 +111,7 @@ function resetPassord(loginId) {
 
 //分配角色
 function setRole(loginId) {
-    $.easyuiExt.showWindow("分配角色", "/User/SetRole/" + loginId, 480, 548);
+    $.easyuiExt.showWindow("分配角色", "/User/SetRole/" + loginId, 480, 642);
 }
 
 //删除用户
