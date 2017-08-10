@@ -59,11 +59,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.2.1\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.2.2\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.1.0.5\lib\net45\SD.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.1.0.9\lib\net45\SD.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">

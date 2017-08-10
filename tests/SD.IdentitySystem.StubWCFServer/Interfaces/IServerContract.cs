@@ -1,4 +1,4 @@
-﻿using SD.Infrastructure;
+﻿using SD.Infrastructure.AppServiceBase;
 using System.ServiceModel;
 
 namespace SD.IdentitySystem.StubWCFServer.Interfaces
