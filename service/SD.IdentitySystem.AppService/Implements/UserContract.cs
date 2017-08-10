@@ -236,6 +236,21 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
+        #region # 根据关键字获取用户列表 —— IEnumerable<UserInfo> GetUsersByKeywords(string keywords)
+        /// <summary>
+        /// 根据关键字获取用户列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <returns>用户列表</returns>
+        public IEnumerable<UserInfo> GetUsersByKeywords(string keywords)
+        {
+            IEnumerable<User> users = this._repMediator.UserRep.Find(keywords);
+            IEnumerable<UserInfo> userInfos = users.Select(x => x.ToDTO());
+
+            return userInfos;
+        }
+        #endregion
+
         #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsers(string systemNo...
         /// <summary>
         /// 分页获取用户列表

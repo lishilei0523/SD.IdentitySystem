@@ -43,7 +43,6 @@ namespace SD.IdentitySystem.InitializationTool
                 this.Cbx_SystemKind.Items.Add(system);
             }
 
-            this.Cbx_SystemKind.SelectedItem = systems.FirstOrDefault();
             this.Cbx_SystemKind.DisplayMember = "Name";
         }
 

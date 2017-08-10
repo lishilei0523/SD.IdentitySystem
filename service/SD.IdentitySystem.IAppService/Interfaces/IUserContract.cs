@@ -109,6 +109,16 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         UserInfo GetUser(string loginId);
         #endregion
 
+        #region # 根据关键字获取用户列表 —— IEnumerable<UserInfo> GetUsersByKeywords(string keywords)
+        /// <summary>
+        /// 根据关键字获取用户列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <returns>用户列表</returns>
+        [OperationContract]
+        IEnumerable<UserInfo> GetUsersByKeywords(string keywords);
+        #endregion
+
         #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsers(string systemNo...
         /// <summary>
         /// 分页获取用户列表
