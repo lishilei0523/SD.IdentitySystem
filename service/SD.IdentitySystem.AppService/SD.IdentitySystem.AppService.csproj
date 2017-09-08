@@ -94,7 +94,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.WCFAuthentication.WCF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.1.0.4\lib\net45\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.1.0.5\lib\net45\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
