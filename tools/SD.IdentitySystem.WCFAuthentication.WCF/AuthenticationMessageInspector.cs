@@ -2,6 +2,7 @@
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using System;
+using System.Configuration;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -14,10 +15,43 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
     /// </summary>
     internal class AuthenticationMessageInspector : IDispatchMessageInspector, IClientMessageInspector
     {
+        #region # 字段及构造器
+
         /// <summary>
         /// 同步锁
         /// </summary>
-        private static readonly object _Sync = new object();
+        private static readonly object _Sync;
+
+        /// <summary>
+        /// 身份过期时间
+        /// </summary>
+        private static readonly int _Timeout;
+
+        /// <summary>
+        /// 静态构造器
+        /// </summary>
+        static AuthenticationMessageInspector()
+        {
+            _Sync = new object();
+
+            string authenticationTimeout = ConfigurationManager.AppSettings[CommonConstants.AuthenticationTimeoutAppSettingKey];
+
+            if (!string.IsNullOrWhiteSpace(authenticationTimeout))
+            {
+                if (!int.TryParse(authenticationTimeout, out _Timeout))
+                {
+                    //默认20分钟
+                    _Timeout = 20;
+                }
+            }
+            else
+            {
+                //默认20分钟
+                _Timeout = 20;
+            }
+        }
+
+        #endregion
 
         #region # Implements of IDispatchMessageInspector
 
@@ -59,8 +93,8 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
                         throw new NoPermissionException("身份过期，请重新登录！");
                     }
 
-                    //通过后，重新设置缓存过期时间为20分钟
-                    CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(20));
+                    //通过后，重新设置缓存过期时间
+                    CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
                 }
             }
 

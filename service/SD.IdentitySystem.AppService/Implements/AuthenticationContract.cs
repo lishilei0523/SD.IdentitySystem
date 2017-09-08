@@ -6,6 +6,7 @@ using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using System;
+using System.Configuration;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
@@ -22,7 +23,37 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 同步锁
         /// </summary>
-        private static readonly object _Sync = new object();
+        private static readonly object _Sync;
+
+        /// <summary>
+        /// 身份过期时间
+        /// </summary>
+        private static readonly int _Timeout;
+
+        /// <summary>
+        /// 静态构造器
+        /// </summary>
+        static AuthenticationContract()
+        {
+            _Sync = new object();
+
+            string authenticationTimeout = ConfigurationManager.AppSettings[CommonConstants.AuthenticationTimeoutAppSettingKey];
+
+            if (!string.IsNullOrWhiteSpace(authenticationTimeout))
+            {
+                if (!int.TryParse(authenticationTimeout, out _Timeout))
+                {
+                    //默认20分钟
+                    _Timeout = 20;
+                }
+            }
+            else
+            {
+                //默认20分钟
+                _Timeout = 20;
+            }
+        }
+
 
         /// <summary>
         /// 仓储中介者
@@ -88,7 +119,7 @@ namespace SD.IdentitySystem.AppService.Implements
                 LoginInfo loginInfo = this.BuildLoginInfo(publicKey, currentUser);
 
                 //以公钥为键，登录信息为值，存入分布式缓存
-                CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(20));
+                CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
 
                 //生成登录记录
                 Task.Run(() => this.GenerateLoginRecord(publicKey, currentUser, ip)).Wait();

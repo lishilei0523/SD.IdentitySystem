@@ -65,11 +65,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.AOP.Core, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.AOP.Core.1.0.7\lib\net45\SD.AOP.Core.dll</HintPath>
+      <HintPath>..\..\packages\SD.AOP.Core.1.0.8\lib\net45\SD.AOP.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.1.0.2\lib\net45\SD.Common.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.1.0.3\lib\net45\SD.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -81,7 +81,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.1.0.9\lib\net45\SD.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.1.1.0\lib\net45\SD.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
