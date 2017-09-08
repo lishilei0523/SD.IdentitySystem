@@ -6,7 +6,6 @@ using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using System;
-using System.Configuration;
 using System.ServiceModel;
 using System.Threading.Tasks;
 
@@ -37,11 +36,9 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             _Sync = new object();
 
-            string authenticationTimeout = ConfigurationManager.AppSettings[CommonConstants.AuthenticationTimeoutAppSettingKey];
-
-            if (!string.IsNullOrWhiteSpace(authenticationTimeout))
+            if (!string.IsNullOrWhiteSpace(WebConfigSetting.AuthenticationTimeout))
             {
-                if (!int.TryParse(authenticationTimeout, out _Timeout))
+                if (!int.TryParse(WebConfigSetting.AuthenticationTimeout, out _Timeout))
                 {
                     //默认20分钟
                     _Timeout = 20;
