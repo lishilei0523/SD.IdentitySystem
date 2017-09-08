@@ -2,7 +2,6 @@
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using System;
-using System.Configuration;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -34,11 +33,9 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
         {
             _Sync = new object();
 
-            string authenticationTimeout = ConfigurationManager.AppSettings[CommonConstants.AuthenticationTimeoutAppSettingKey];
-
-            if (!string.IsNullOrWhiteSpace(authenticationTimeout))
+            if (!string.IsNullOrWhiteSpace(WebConfigSetting.AuthenticationTimeout))
             {
-                if (!int.TryParse(authenticationTimeout, out _Timeout))
+                if (!int.TryParse(WebConfigSetting.AuthenticationTimeout, out _Timeout))
                 {
                     //默认20分钟
                     _Timeout = 20;
