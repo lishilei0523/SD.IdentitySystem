@@ -3,6 +3,7 @@ using SD.Infrastructure.EntityBase;
 using SD.Infrastructure.EventBase.Mediator;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace SD.IdentitySystem.Domain.Entities
@@ -169,6 +170,20 @@ namespace SD.IdentitySystem.Domain.Entities
             //初始化权限路径与关键字
             this.InitPath();
             this.InitKeywords();
+        }
+        #endregion
+
+        #region 清空关联 —— void ClearRelations()
+        /// <summary>
+        /// 清空关联
+        /// </summary>
+        public void ClearRelations()
+        {
+            foreach (Menu menu in this.MenuLeaves.ToArray())
+            {
+                this.MenuLeaves.Remove(menu);
+                menu.Authorities.Remove(this);
+            }
         }
         #endregion
 
