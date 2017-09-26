@@ -161,7 +161,7 @@ namespace SD.IdentitySystem.AppService.Implements
             //清空用户关系
             currentUser.ClearRelation();
 
-            this._unitOfWork.RegisterPhysicsRemove<User>(loginId);
+            this._unitOfWork.RegisterPhysicsRemove<User>(currentUser);
             this._unitOfWork.UnitedCommit();
         }
         #endregion

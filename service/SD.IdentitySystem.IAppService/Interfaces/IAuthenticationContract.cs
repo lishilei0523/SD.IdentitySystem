@@ -1,7 +1,6 @@
-﻿using System.ServiceModel;
-using SD.Infrastructure;
-using SD.Infrastructure.AppServiceBase;
+﻿using SD.Infrastructure.AppServiceBase;
 using SD.Infrastructure.Constants;
+using System.ServiceModel;
 
 namespace SD.IdentitySystem.IAppService.Interfaces
 {
@@ -11,7 +10,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     [ServiceContract(Namespace = "http://SD.IdentitySystem.IAppService.Interfaces")]
     public interface IAuthenticationContract : IApplicationService
     {
-        #region # 登录 —— LoginInfo Login(string loginId, string password...
+        #region # 登录 —— LoginInfo Login(string loginId, string password)
         /// <summary>
         /// 登录
         /// </summary>
@@ -20,7 +19,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="ip">IP地址</param>
         /// <returns>公钥</returns>
         [OperationContract]
-        LoginInfo Login(string loginId, string password, string ip);
+        LoginInfo Login(string loginId, string password);
         #endregion
     }
 }

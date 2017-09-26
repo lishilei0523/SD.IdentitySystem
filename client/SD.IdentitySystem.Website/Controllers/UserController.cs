@@ -163,11 +163,8 @@ namespace SD.IdentitySystem.Website.Controllers
             //清空验证码
             base.ClearValidCode();
 
-            //获取客户端IP地址
-            string currentIp = base.Request.UserHostAddress;
-
             //验证登录
-            base.LoginInfo = this._authenticationContract.Login(loginId, password, currentIp);
+            base.LoginInfo = this._authenticationContract.Login(loginId, password);
         }
         #endregion
 

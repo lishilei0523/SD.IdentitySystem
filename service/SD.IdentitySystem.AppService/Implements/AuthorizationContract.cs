@@ -1,5 +1,4 @@
-﻿using SD.AOP.Core.Aspects.ForMethod;
-using SD.CacheManager;
+﻿using SD.CacheManager;
 using SD.Common.PoweredByLee;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
@@ -15,7 +14,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
-using System.Transactions;
 using ApplicationType = SD.Infrastructure.Constants.ApplicationType;
 
 namespace SD.IdentitySystem.AppService.Implements
@@ -179,16 +177,12 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 删除权限
         /// </summary>
         /// <param name="authorityId">权限Id</param>
-        [TransactionAspect(TransactionScopeOption.RequiresNew)]
         public void RemoveAuthority(Guid authorityId)
         {
             Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
             currentAuthority.ClearRelations();
 
-            this._unitOfWork.RegisterSave(currentAuthority);
-            this._unitOfWork.Commit();
-
-            this._unitOfWork.RegisterRemove<Authority>(authorityId);
+            this._unitOfWork.RegisterRemove<Authority>(currentAuthority);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
@@ -415,7 +409,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #endregion
 
-            this._unitOfWork.RegisterPhysicsRemove<Role>(roleId);
+            this._unitOfWork.RegisterPhysicsRemove<Role>(currentRole);
             this._unitOfWork.UnitedCommit();
         }
         #endregion

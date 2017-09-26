@@ -7,6 +7,7 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using System;
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.AppService.Implements
@@ -78,7 +79,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
         //Implements
 
-        #region # 登录 —— Guid Login(string loginId, string password...
+        #region # 登录 —— Guid Login(string loginId, string password)
         /// <summary>
         /// 登录
         /// </summary>
@@ -86,7 +87,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="password">密码</param>
         /// <param name="ip">IP地址</param>
         /// <returns>公钥</returns>
-        public LoginInfo Login(string loginId, string password, string ip)
+        public LoginInfo Login(string loginId, string password)
         {
             lock (_Sync)
             {
@@ -112,11 +113,14 @@ namespace SD.IdentitySystem.AppService.Implements
                 //生成公钥
                 Guid publicKey = Guid.NewGuid();
 
-                //生成登录信息
+                //生成登录信息，以公钥为键，登录信息为值，存入分布式缓存
                 LoginInfo loginInfo = this.BuildLoginInfo(publicKey, currentUser);
-
-                //以公钥为键，登录信息为值，存入分布式缓存
                 CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
+
+                //获取客户端IP
+                MessageProperties properties = OperationContext.Current.IncomingMessageProperties;
+                RemoteEndpointMessageProperty endpoint = (RemoteEndpointMessageProperty)properties[RemoteEndpointMessageProperty.Name];
+                string ip = endpoint.Address;
 
                 //生成登录记录
                 Task.Run(() => this.GenerateLoginRecord(publicKey, currentUser, ip)).Wait();
