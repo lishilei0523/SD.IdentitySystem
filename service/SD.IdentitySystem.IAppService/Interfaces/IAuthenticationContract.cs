@@ -16,7 +16,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="password">密码</param>
-        /// <param name="ip">IP地址</param>
         /// <returns>公钥</returns>
         [OperationContract]
         LoginInfo Login(string loginId, string password);
