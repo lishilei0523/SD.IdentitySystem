@@ -123,8 +123,13 @@ namespace SD.IdentitySystem.AppService.Implements
                 LoginInfo loginInfo = new LoginInfo(currentUser.Number, currentUser.Name, publicKey);
                 CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
 
+                //获取客户端IP
+                MessageProperties properties = OperationContext.Current.IncomingMessageProperties;
+                RemoteEndpointMessageProperty endpoint = (RemoteEndpointMessageProperty)properties[RemoteEndpointMessageProperty.Name];
+                string ip = endpoint.Address;
+
                 //生成登录记录
-                Task.Run(() => this.GenerateLoginRecord(publicKey, currentUser)).Wait();
+                Task.Run(() => this.GenerateLoginRecord(publicKey, ip, currentUser)).Wait();
 
                 return loginInfo;
             }
@@ -165,19 +170,15 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 生成登录记录 —— void GenerateLoginRecord(Guid publicKey, User user)
+        #region # 生成登录记录 —— void GenerateLoginRecord(Guid publicKey, string ip...
         /// <summary>
         /// 生成登录记录
         /// </summary>
         /// <param name="publicKey">公钥</param>
+        /// <param name="ip">IP地址</param>
         /// <param name="user">用户</param>
-        private void GenerateLoginRecord(Guid publicKey, User user)
+        private void GenerateLoginRecord(Guid publicKey, string ip, User user)
         {
-            //获取客户端IP
-            MessageProperties properties = OperationContext.Current.IncomingMessageProperties;
-            RemoteEndpointMessageProperty endpoint = (RemoteEndpointMessageProperty)properties[RemoteEndpointMessageProperty.Name];
-            string ip = endpoint.Address;
-
             //生成记录
             LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
 
