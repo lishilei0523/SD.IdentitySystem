@@ -69,11 +69,11 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.1.0.4\lib\net45\SD.Common.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.1.0.5\lib\net45\SD.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.2.4\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.2.5\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.WCFAuthentication.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
