@@ -5,7 +5,10 @@ using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
+using SD.Infrastructure.CustomExceptions;
 using System;
+using System.Configuration;
+using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Threading.Tasks;
@@ -90,6 +93,10 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             lock (_Sync)
             {
+                /****************验证机器****************/
+                this.AuthenticateMachine();
+
+                /****************登录验证****************/
                 User currentUser = this._repMediator.UserRep.SingleOrDefault(loginId);
 
                 #region # 验证
@@ -113,16 +120,11 @@ namespace SD.IdentitySystem.AppService.Implements
                 Guid publicKey = Guid.NewGuid();
 
                 //生成登录信息，以公钥为键，登录信息为值，存入分布式缓存
-                LoginInfo loginInfo = this.BuildLoginInfo(publicKey, currentUser);
+                LoginInfo loginInfo = new LoginInfo(currentUser.Number, currentUser.Name, publicKey);
                 CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
 
-                //获取客户端IP
-                MessageProperties properties = OperationContext.Current.IncomingMessageProperties;
-                RemoteEndpointMessageProperty endpoint = (RemoteEndpointMessageProperty)properties[RemoteEndpointMessageProperty.Name];
-                string ip = endpoint.Address;
-
                 //生成登录记录
-                Task.Run(() => this.GenerateLoginRecord(publicKey, currentUser, ip)).Wait();
+                Task.Run(() => this.GenerateLoginRecord(publicKey, currentUser)).Wait();
 
                 return loginInfo;
             }
@@ -132,30 +134,50 @@ namespace SD.IdentitySystem.AppService.Implements
 
         //Private
 
-        #region # 构造登录信息 —— LoginInfo BuildLoginInfo(Guid publicKey...
+        #region # 验证服务器机器 —— void AuthenticateMachine()
         /// <summary>
-        /// 构造登录信息
+        /// 验证服务器机器
         /// </summary>
-        /// <param name="publicKey">公钥</param>
-        /// <param name="user">用户</param>
-        /// <returns>登录信息</returns>
-        private LoginInfo BuildLoginInfo(Guid publicKey, User user)
+        private void AuthenticateMachine()
         {
-            LoginInfo loginInfo = new LoginInfo(user.Number, user.Name, publicKey);
+            //读取配置文件，是否开启服务器机器验证
+            string authenticateMachineStr = ConfigurationManager.AppSettings["AuthenticateMachine"];
+            bool authenticateMachine;
 
-            return loginInfo;
+            if (!bool.TryParse(authenticateMachineStr, out authenticateMachine))
+            {
+                authenticateMachine = true;
+            }
+            if (authenticateMachine)
+            {
+                string machineCode = CommonExtension.GetMachineCode();
+                Server currentServer = this._repMediator.ServerRep.SingleOrDefault(machineCode);
+
+                if (currentServer == null)
+                {
+                    throw new NoPermissionException(string.Format("服务器\"{0}\"未授权！", Dns.GetHostName()));
+                }
+                if (DateTime.Today > currentServer.ServiceOverDate)
+                {
+                    throw new NoPermissionException(string.Format("服务器\"{0}\"授权已过期！", currentServer.Name));
+                }
+            }
         }
         #endregion
 
-        #region # 生成登录记录 —— void GenerateLoginRecord(Guid publicKey...
+        #region # 生成登录记录 —— void GenerateLoginRecord(Guid publicKey, User user)
         /// <summary>
         /// 生成登录记录
         /// </summary>
         /// <param name="publicKey">公钥</param>
         /// <param name="user">用户</param>
-        /// <param name="ip">IP地址</param>
-        private void GenerateLoginRecord(Guid publicKey, User user, string ip)
+        private void GenerateLoginRecord(Guid publicKey, User user)
         {
+            //获取客户端IP
+            MessageProperties properties = OperationContext.Current.IncomingMessageProperties;
+            RemoteEndpointMessageProperty endpoint = (RemoteEndpointMessageProperty)properties[RemoteEndpointMessageProperty.Name];
+            string ip = endpoint.Address;
+
             //生成记录
             LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
 

@@ -17,6 +17,47 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     {
         //命令部分
 
+        #region # 创建服务器 —— void CreateServer(string uniqueCode, string hostName...
+        /// <summary>
+        /// 创建服务器
+        /// </summary>
+        /// <param name="uniqueCode">唯一码</param>
+        /// <param name="hostName">主机名</param>
+        /// <param name="serviceOverDate">服务停止日期</param>
+        [OperationContract]
+        void CreateServer(string uniqueCode, string hostName, DateTime serviceOverDate);
+        #endregion
+
+        #region # 修改服务器主机名 —— void UpdateServerHostName(Guid serverId, string hostName)
+        /// <summary>
+        /// 修改服务器主机名
+        /// </summary>
+        /// <param name="serverId">服务器Id</param>
+        /// <param name="hostName">主机名</param>
+        [OperationContract]
+        void UpdateServerHostName(Guid serverId, string hostName);
+        #endregion
+
+        #region # 修改服务停止日期 —— void UpdateServiceOverDate(Guid serverId...
+        /// <summary>
+        /// 修改服务停止日期
+        /// </summary>
+        /// <param name="serverId">服务器Id</param>
+        /// <param name="serviceOverDate">服务停止日期</param>
+        [OperationContract]
+        void UpdateServiceOverDate(Guid serverId, DateTime serviceOverDate);
+        #endregion
+
+        #region # 删除服务器 —— void RemoveServer(Guid serverId)
+        /// <summary>
+        /// 删除服务器
+        /// </summary>
+        /// <param name="serverId">服务器Id</param>
+        [OperationContract]
+        void RemoveServer(Guid serverId);
+        #endregion
+
+
         #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
         /// <summary>
         /// 创建信息系统
@@ -186,6 +227,29 @@ namespace SD.IdentitySystem.IAppService.Interfaces
 
 
         //查询部分
+
+        #region # 分页获取服务器列表 —— PageModel<ServerInfo> GetServersByPage(string keywords...
+        /// <summary>
+        /// 分页获取服务器列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>服务器列表</returns>
+        [OperationContract]
+        PageModel<ServerInfo> GetServersByPage(string keywords, int pageIndex, int pageSize);
+        #endregion
+
+        #region # 获取服务器 —— ServerInfo GetServer(Guid serverId)
+        /// <summary>
+        /// 获取服务器
+        /// </summary>
+        /// <param name="serverId">服务器Id</param>
+        /// <returns>服务器</returns>
+        [OperationContract]
+        ServerInfo GetServer(Guid serverId);
+        #endregion
+
 
         #region # 获取信息系统 —— InfoSystemInfo GetInfoSystem(string systemNo)
         /// <summary>

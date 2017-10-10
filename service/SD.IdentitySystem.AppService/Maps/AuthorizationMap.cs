@@ -10,6 +10,18 @@ namespace SD.IdentitySystem.AppService.Maps
     /// </summary>
     public static class AuthorizationMap
     {
+        #region # 服务器映射 —— static ServerInfo ToDTO(this Server server)
+        /// <summary>
+        /// 服务器映射
+        /// </summary>
+        public static ServerInfo ToDTO(this Server server)
+        {
+            ServerInfo serverInfo = Transform<Server, ServerInfo>.Map(server);
+
+            return serverInfo;
+        }
+        #endregion
+
         #region # 信息系统映射 —— static InfoSystemInfo ToDTO(this InfoSystem infoSystem)
         /// <summary>
         /// 信息系统映射

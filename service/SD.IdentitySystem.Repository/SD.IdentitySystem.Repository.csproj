@@ -89,7 +89,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.1.0.4\lib\net45\SD.Common.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.1.0.5\lib\net45\SD.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
@@ -136,10 +136,14 @@
     <Compile Include="Base\DataInitializer.cs" />
     <Compile Include="Base\DbSession.cs" />
     <Compile Include="Base\UnitOfWork.cs" />
+    <Compile Include="EntityConfigurations\AuthorityConfig.cs" />
+    <Compile Include="EntityConfigurations\InfoSystemConfig.cs" />
+    <Compile Include="EntityConfigurations\ServerConfig.cs" />
     <Compile Include="EntityConfigurations\UserConfig.cs" />
     <Compile Include="EntityConfigurations\RoleConfig.cs" />
     <Compile Include="EntityConfigurations\MenuConfig.cs" />
     <Compile Include="Implements\AuthorityRepository.cs" />
+    <Compile Include="Implements\ServerRepository.cs" />
     <Compile Include="Implements\LoginRecordRepository.cs" />
     <Compile Include="Implements\MenuRepository.cs" />
     <Compile Include="Implements\InfoSystemRepository.cs" />
