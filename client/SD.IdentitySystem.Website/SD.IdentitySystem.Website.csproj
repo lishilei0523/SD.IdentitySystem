@@ -187,6 +187,7 @@
     <Compile Include="Controllers\LoginRecordController.cs" />
     <Compile Include="Controllers\MenuController.cs" />
     <Compile Include="Controllers\RoleController.cs" />
+    <Compile Include="Controllers\ServerController.cs" />
     <Compile Include="Controllers\UserController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -221,6 +222,7 @@
     <Content Include="Content\scripts\Role\Add.js" />
     <Content Include="Content\scripts\Role\Index.js" />
     <Content Include="Content\scripts\Role\Update.js" />
+    <Content Include="Content\scripts\Server\Index.js" />
     <Content Include="Content\scripts\User\Add.js" />
     <Content Include="Content\scripts\User\Index.js" />
     <Content Include="Content\scripts\User\Login.js" />
@@ -642,6 +644,9 @@
     <Content Include="Views\User\Login.cshtml" />
     <Content Include="Views\User\ResetPassword.cshtml" />
     <Content Include="Views\User\SetRole.cshtml" />
+    <Content Include="Views\Server\Index.cshtml" />
+    <Content Include="Views\Server\Add.cshtml" />
+    <Content Include="Views\Server\Update.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">

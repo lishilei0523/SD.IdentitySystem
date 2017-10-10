@@ -1,0 +1,29 @@
+﻿@section header{
+    <link type="text/css" href="~/Content/css/Common/Grid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/scripts/Server/Index.js"></script>
+}
+
+<div class="main">
+    @*工具栏*@
+    <div id="toolbar" class="datagrid-toolbar" style="padding: 5px; height: auto">
+        @*按钮区*@
+        <div style="margin-bottom: 5px">
+            <a href="#" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="createServer();">新增</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="removeServers();">删除</a>
+        </div>
+
+        @*表单区*@
+        <div style="margin-left: 5px">
+            <form id="frmQueries">
+                关键字：<input class="easyui-textbox" type="text" id="txtKeywords" name="keywords" style="width: 210px" data-options="prompt:'主机名'" />
+
+                <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchServers();">搜索</a>
+            </form>
+        </div>
+    </div>
+
+    @*列表*@
+    <div id="dvGrid" class="gridDiv">
+        <table id="tbGrid"></table>
+    </div>
+</div>

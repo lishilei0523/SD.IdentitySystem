@@ -194,7 +194,6 @@ namespace SD.IdentitySystem.Website.Controllers
         public JsonResult GetRoles(string systemNo, string keywords, int page, int rows)
         {
             PageModel<RoleView> pageModel = this._rolePresenter.GetRolesByPage(systemNo, keywords, page, rows);
-
             Grid<RoleView> grid = new Grid<RoleView>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
