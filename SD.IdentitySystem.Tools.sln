@@ -34,6 +34,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Membershi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - 用户工具", "01 - 用户工具", "{623424A5-633C-42E2-BD48-8C2F375417E1}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.MachineCodeTool", "SD.IdentitySystem.MachineCodeTool\SD.IdentitySystem.MachineCodeTool.csproj", "{1ADB97CB-60D3-4D0F-99CA-744EB0726868}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -72,6 +74,10 @@ Global
 		{B8C46017-C7C3-47FB-854B-11967165C080}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B8C46017-C7C3-47FB-854B-11967165C080}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B8C46017-C7C3-47FB-854B-11967165C080}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1ADB97CB-60D3-4D0F-99CA-744EB0726868}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1ADB97CB-60D3-4D0F-99CA-744EB0726868}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1ADB97CB-60D3-4D0F-99CA-744EB0726868}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1ADB97CB-60D3-4D0F-99CA-744EB0726868}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -85,5 +91,6 @@ Global
 		{55E99FFF-1BCC-423F-B945-931A4F2BF2D3} = {4391B3BF-4B53-474A-8636-14BFA15DDB7B}
 		{18524D7D-9812-4EFC-9902-7123E3A167BB} = {B1F655D7-0873-4D79-A8AE-942A6A464EA6}
 		{B8C46017-C7C3-47FB-854B-11967165C080} = {623424A5-633C-42E2-BD48-8C2F375417E1}
+		{1ADB97CB-60D3-4D0F-99CA-744EB0726868} = {E738CC7C-C2A8-4038-ABD2-CD6205A1989B}
 	EndGlobalSection
 EndGlobal
