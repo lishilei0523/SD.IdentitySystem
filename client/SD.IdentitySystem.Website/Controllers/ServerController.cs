@@ -91,6 +91,35 @@ namespace SD.IdentitySystem.Website.Controllers
 
         //命令部分
 
+        #region # 创建服务器 —— void CreateServer(string uniqueCode, string hostName...
+        /// <summary>
+        /// 创建服务器
+        /// </summary>
+        /// <param name="uniqueCode">唯一码</param>
+        /// <param name="hostName">主机名</param>
+        /// <param name="serviceOverDate">服务停止日期</param>
+        [HttpPost]
+        [RequireAuthorization("创建服务器")]
+        public void CreateServer(string uniqueCode, string hostName, DateTime serviceOverDate)
+        {
+            this._authorizationContract.CreateServer(uniqueCode, hostName, serviceOverDate);
+        }
+        #endregion
+
+        #region # 修改服务器 —— void UpdateServer(Guid serverId, DateTime serviceOverDate)
+        /// <summary>
+        /// 修改服务器
+        /// </summary>
+        /// <param name="serverId">服务器Id</param>
+        /// <param name="serviceOverDate">服务停止日期</param>
+        [HttpPost]
+        [RequireAuthorization("修改服务器")]
+        public void UpdateServer(Guid serverId, DateTime serviceOverDate)
+        {
+            this._authorizationContract.UpdateServiceOverDate(serverId, serviceOverDate);
+        }
+        #endregion
+
         #region # 删除服务器 —— void RemoveServer(Guid id)
         /// <summary>
         /// 删除服务器

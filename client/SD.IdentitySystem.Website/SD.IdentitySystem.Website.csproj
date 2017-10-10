@@ -222,7 +222,9 @@
     <Content Include="Content\scripts\Role\Add.js" />
     <Content Include="Content\scripts\Role\Index.js" />
     <Content Include="Content\scripts\Role\Update.js" />
+    <Content Include="Content\scripts\Server\Add.js" />
     <Content Include="Content\scripts\Server\Index.js" />
+    <Content Include="Content\scripts\Server\Update.js" />
     <Content Include="Content\scripts\User\Add.js" />
     <Content Include="Content\scripts\User\Index.js" />
     <Content Include="Content\scripts\User\Login.js" />

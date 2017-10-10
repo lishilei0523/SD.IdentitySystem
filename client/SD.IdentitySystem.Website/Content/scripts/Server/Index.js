@@ -67,12 +67,12 @@ function getServers(queryParams) {
 
 //创建服务器
 function createServer() {
-    $.easyuiExt.showWindow("创建服务器", "/Server/Add", 360, 260);
+    $.easyuiExt.showWindow("创建服务器", "/Server/Add", 360, 310);
 }
 
 //修改服务器
 function updateServer(serverId) {
-    $.easyuiExt.showWindow("修改服务器", "/Server/Update/" + serverId, 360, 260);
+    $.easyuiExt.showWindow("修改服务器", "/Server/Update/" + serverId, 360, 310);
 }
 
 //删除服务器
