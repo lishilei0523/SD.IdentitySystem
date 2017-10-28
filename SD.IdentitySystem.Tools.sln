@@ -34,7 +34,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Membershi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - 用户工具", "01 - 用户工具", "{623424A5-633C-42E2-BD48-8C2F375417E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.MachineCodeTool", "SD.IdentitySystem.MachineCodeTool\SD.IdentitySystem.MachineCodeTool.csproj", "{1ADB97CB-60D3-4D0F-99CA-744EB0726868}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.MachineCodeTool", "tools\SD.IdentitySystem.MachineCodeTool\SD.IdentitySystem.MachineCodeTool.csproj", "{1ADB97CB-60D3-4D0F-99CA-744EB0726868}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
