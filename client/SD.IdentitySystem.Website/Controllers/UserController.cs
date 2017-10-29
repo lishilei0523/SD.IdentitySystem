@@ -4,7 +4,7 @@ using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.MVC;
+using SD.Infrastructure.MVC.Base;
 using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
@@ -16,7 +16,8 @@ namespace SD.IdentitySystem.Website.Controllers
     /// 用户控制器
     /// </summary>
     [ExceptionFilter]
-    public class UserController : BaseController
+    [AuthorizationFilter]
+    public class UserController : Controller
     {
         #region # 字段及构造器
 
@@ -112,7 +113,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("重置密码视图")]
         public ViewResult ResetPassword(string id)
         {
-            base.ViewBag.LoginId = base.LoginInfo == null ? null : base.LoginInfo.LoginId;
+            base.ViewBag.LoginId = OperationContext.LoginInfo == null ? null : OperationContext.LoginInfo.LoginId;
 
             return base.View();
         }
@@ -150,10 +151,10 @@ namespace SD.IdentitySystem.Website.Controllers
         {
             #region # 校验验证码
 
-            if (base.ValidCode != null && base.ValidCode != validCode)
+            if (OperationContext.ValidCode != null && OperationContext.ValidCode != validCode)
             {
                 //清空验证码
-                base.ClearValidCode();
+                OperationContext.ClearValidCode();
 
                 throw new InvalidOperationException("验证码错误！");
             }
@@ -161,10 +162,20 @@ namespace SD.IdentitySystem.Website.Controllers
             #endregion
 
             //清空验证码
-            base.ClearValidCode();
+            OperationContext.ClearValidCode();
 
             //验证登录
-            base.LoginInfo = this._authenticationContract.Login(loginId, password);
+            OperationContext.LoginInfo = this._authenticationContract.Login(loginId, password);
+        }
+        #endregion
+
+        #region # 注销 —— void Logout()
+        /// <summary>
+        /// 注销
+        /// </summary>
+        public void Logout()
+        {
+            OperationContext.Logout();
         }
         #endregion
 
@@ -306,6 +317,20 @@ namespace SD.IdentitySystem.Website.Controllers
 
 
         //查询部分
+
+        #region # 获取验证码图片 —— FileContentResult GetValidCode()
+        /// <summary>
+        /// 获取验证码图片
+        /// </summary>
+        /// <returns>验证码图片二进制内容</returns>
+        [AllowAnonymous]
+        public FileContentResult GetValidCode()
+        {
+            FileContentResult fileResult = OperationContext.GetValidCode();
+
+            return fileResult;
+        }
+        #endregion
 
         #region # 获取用户列表 —— JsonResult GetUsers(string systemNo, string keywords...
         /// <summary>

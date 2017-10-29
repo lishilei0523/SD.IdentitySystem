@@ -4,7 +4,6 @@ using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.MVC;
 using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
@@ -16,7 +15,8 @@ namespace SD.IdentitySystem.Website.Controllers
     /// 服务器控制器
     /// </summary>
     [ExceptionFilter]
-    public class ServerController : BaseController
+    [AuthorizationFilter]
+    public class ServerController : Controller
     {
         #region # 字段及构造器
 

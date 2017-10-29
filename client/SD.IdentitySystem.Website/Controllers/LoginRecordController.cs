@@ -3,7 +3,7 @@ using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.MVC;
+using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Web.Mvc;
 
@@ -12,7 +12,9 @@ namespace SD.IdentitySystem.Website.Controllers
     /// <summary>
     /// 用户登录记录控制器
     /// </summary>
-    public class LoginRecordController : BaseController
+    [ExceptionFilter]
+    [AuthorizationFilter]
+    public class LoginRecordController : Controller
     {
         #region # 字段及构造器
 
