@@ -22,9 +22,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static MenuView ToViewModel(this MenuInfo menuInfo)
         {
             MenuView menuView = Transform<MenuInfo, MenuView>.Map(menuInfo);
-
             menuView.SystemName = menuInfo.InfoSystemInfo.Name;
-            menuView.Parent = menuInfo.ParentMenu == null ? null : menuInfo.ParentMenu.ToViewModel();
 
             return menuView;
         }
@@ -79,7 +77,7 @@ namespace SD.IdentitySystem.Presentation.Maps
             else
             {
                 //从给定Id向下遍历
-                foreach (MenuView menu in menus.Where(x => x.Parent != null && x.Parent.Id == parentId.Value))
+                foreach (MenuView menu in menus.Where(x => x.ParentMenuId != null && x.ParentMenuId == parentId.Value))
                 {
                     Node node = menu.ToNode();
 
@@ -125,11 +123,11 @@ namespace SD.IdentitySystem.Presentation.Maps
         {
             foreach (MenuView menuView in menus)
             {
-                if (menuView.Parent != null && menuView.Parent.Id == menu.Id)
+                if (menuView.ParentMenuId != null && menuView.ParentMenuId == menu.Id)
                 {
                     menu.children.Add(menuView);
                     menu.type = menu.IsLeaf ? "pack" : "folder";
-                    menuView.Parent = null;
+                    menuView.ParentMenuId = null;
 
                     FillChildren(menuView, menus);
                 }

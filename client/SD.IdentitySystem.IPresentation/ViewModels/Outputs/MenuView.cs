@@ -1,5 +1,6 @@
 ﻿using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.Infrastructure.MVC;
+using System;
 using System.Collections.Generic;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
@@ -55,6 +56,13 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
         public int Sort { get; set; }
         #endregion
 
+        #region 父级菜单Id —— Guid? ParentMenuId
+        /// <summary>
+        /// 父级菜单Id
+        /// </summary>
+        public Guid? ParentMenuId { get; set; }
+        #endregion
+
 
         //Others
 
@@ -77,13 +85,6 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
         /// 类型
         /// </summary>
         public string type { get; set; }
-        #endregion
-
-        #region 导航属性 - 父级菜单 —— MenuView Parent
-        /// <summary>
-        /// 导航属性 - 父级菜单
-        /// </summary>
-        public MenuView Parent { get; set; }
         #endregion
 
         #region 导航属性 - 子级菜单集 —— ICollection<MenuView> children
