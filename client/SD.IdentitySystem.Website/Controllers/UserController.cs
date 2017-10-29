@@ -173,6 +173,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <summary>
         /// 注销
         /// </summary>
+        [HttpPost]
         public void Logout()
         {
             OperationContext.Logout();
