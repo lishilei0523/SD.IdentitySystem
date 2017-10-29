@@ -1,6 +1,7 @@
 ﻿using SD.Common.PoweredByLee;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using System;
 using System.Collections.Generic;
 
 namespace SD.IdentitySystem.AppService.Maps
@@ -48,8 +49,7 @@ namespace SD.IdentitySystem.AppService.Maps
             MenuInfo menuInfo = Transform<Menu, MenuInfo>.Map(menu);
 
             menuInfo.InfoSystemInfo = systemInfos[menu.SystemNo];
-
-            menuInfo.ParentMenu = menu.ParentNode == null ? null : menu.ParentNode.ToDTO(systemInfos);
+            menuInfo.ParentMenuId = menu.ParentNode == null ? (Guid?)null : menu.ParentNode.Id;
 
             return menuInfo;
         }

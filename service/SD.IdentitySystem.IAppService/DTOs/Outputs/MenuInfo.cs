@@ -1,5 +1,6 @@
-﻿using System.Runtime.Serialization;
-using SD.Infrastructure.DTOBase;
+﻿using SD.Infrastructure.DTOBase;
+using System;
+using System.Runtime.Serialization;
 
 namespace SD.IdentitySystem.IAppService.DTOs.Outputs
 {
@@ -57,6 +58,14 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         public bool IsLeaf { get; set; }
         #endregion
 
+        #region 父级菜单Id —— Guid? ParentMenuId
+        /// <summary>
+        /// 父级菜单Id
+        /// </summary>
+        [DataMember]
+        public Guid? ParentMenuId { get; set; }
+        #endregion
+
 
         //导航属性
 
@@ -66,14 +75,6 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         /// </summary>
         [DataMember]
         public InfoSystemInfo InfoSystemInfo { get; set; }
-        #endregion
-
-        #region 导航属性 - 父级菜单 —— MenuInfo ParentMenu
-        /// <summary>
-        /// 导航属性 - 父级菜单
-        /// </summary>
-        [DataMember]
-        public MenuInfo ParentMenu { get; set; }
         #endregion
     }
 }
