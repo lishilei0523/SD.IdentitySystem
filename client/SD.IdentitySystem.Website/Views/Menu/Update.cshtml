@@ -3,8 +3,6 @@
 @{
     ViewBag.Title = "修改菜单";
     Layout = "~/Views/Shared/_Layout.cshtml";
-
-    string ParentName = base.Model.Parent == null ? null : base.Model.Parent.Name;
 }
 
 @section header{
@@ -26,7 +24,7 @@
                 <tr>
                     <td class="tdTitle">上级菜单：</td>
                     <td class="tdContent">
-                        <input class="easyui-textbox" type="text" data-options="readonly:true,width:210" value="@ParentName" />
+                        <input class="easyui-textbox" type="text" data-options="readonly:true,width:210" value="@ViewBag.ParentName" />
                     </td>
                 </tr>
                 <tr>

@@ -97,6 +97,9 @@ namespace SD.IdentitySystem.Website.Controllers
         public ViewResult Update(Guid id)
         {
             MenuView currentMenu = this._menuPresenter.GetMenu(id);
+            MenuView parentMenu = currentMenu.ParentMenuId == null ? null : this._menuPresenter.GetMenu(currentMenu.ParentMenuId.Value);
+
+            base.ViewBag.ParentName = parentMenu == null ? string.Empty : parentMenu.Name;
 
             return base.View(currentMenu);
         }
