@@ -1,13 +1,13 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.DTOBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Presentation.Implements
 {

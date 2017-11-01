@@ -32,6 +32,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="SD.FormatModel.EasyUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.FormatModel.EasyUI.1.0.0\lib\net45\SD.FormatModel.EasyUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.1.1.2\lib\net45\SD.Infrastructure.dll</HintPath>
       <Private>True</Private>
@@ -48,9 +52,6 @@
     <Compile Include="Interfaces\IServerPresenter.cs" />
     <Compile Include="Interfaces\IUserPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ViewModels\Formats\EasyUI\Grid.cs" />
-    <Compile Include="ViewModels\Formats\EasyUI\ITreeGrid.cs" />
-    <Compile Include="ViewModels\Formats\EasyUI\Node.cs" />
     <Compile Include="ViewModels\Outputs\AuthorityView.cs" />
     <Compile Include="ViewModels\Outputs\InfoSystemView.cs" />
     <Compile Include="ViewModels\Outputs\LoginRecordView.cs" />

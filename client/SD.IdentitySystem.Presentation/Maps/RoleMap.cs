@@ -1,6 +1,6 @@
 ﻿using SD.Common.PoweredByLee;
+using SD.FormatModel.EasyUI;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 
 namespace SD.IdentitySystem.Presentation.Maps

@@ -1,4 +1,4 @@
-﻿using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+﻿using SD.FormatModel.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.PresentationBase;

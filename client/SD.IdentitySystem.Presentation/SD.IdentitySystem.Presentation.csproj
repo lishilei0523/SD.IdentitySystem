@@ -54,6 +54,10 @@
       <HintPath>..\..\packages\SD.Common.1.0.5\lib\net45\SD.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
+    <Reference Include="SD.FormatModel.EasyUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.FormatModel.EasyUI.1.0.0\lib\net45\SD.FormatModel.EasyUI.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.2.6\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>

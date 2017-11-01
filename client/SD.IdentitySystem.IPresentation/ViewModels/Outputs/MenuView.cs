@@ -1,4 +1,4 @@
-﻿using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
+﻿using SD.FormatModel.EasyUI;
 using SD.Infrastructure.PresentationBase;
 using System;
 using System.Collections.Generic;
