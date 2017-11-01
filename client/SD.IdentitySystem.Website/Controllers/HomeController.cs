@@ -1,5 +1,5 @@
 ﻿using SD.Infrastructure.Attributes;
-using SD.Infrastructure.MVC.Base;
+using SD.Infrastructure.MVC;
 using SD.Infrastructure.MVC.Filters;
 using System.Web.Mvc;
 

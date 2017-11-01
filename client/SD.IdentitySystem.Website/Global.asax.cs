@@ -1,5 +1,4 @@
 ﻿using System.Web.Mvc;
-using System.Web.Optimization;
 using System.Web.Routing;
 
 namespace SD.IdentitySystem.Website
@@ -15,7 +14,6 @@ namespace SD.IdentitySystem.Website
 
             FilterConfig.RegisterGlobalFilters(GlobalFilters.Filters);
             RouteConfig.RegisterRoutes(RouteTable.Routes);
-            BundleConfig.RegisterBundles(BundleTable.Bundles);
         }
     }
 }

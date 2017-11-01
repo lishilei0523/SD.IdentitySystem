@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.MVC;
+using SD.Infrastructure.PresentationBase;
 using System;
 using System.Collections.Generic;
 

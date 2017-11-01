@@ -1,4 +1,4 @@
-﻿using SD.Infrastructure.MVC;
+﻿using SD.Infrastructure.PresentationBase;
 
 namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
 {

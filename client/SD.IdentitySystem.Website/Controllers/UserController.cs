@@ -4,7 +4,7 @@ using SD.IdentitySystem.IPresentation.ViewModels.Formats.EasyUI;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.MVC.Base;
+using SD.Infrastructure.MVC;
 using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
