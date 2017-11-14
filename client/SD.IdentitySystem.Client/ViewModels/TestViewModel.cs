@@ -1,4 +1,6 @@
 ﻿
+using SD.IdentitySystem.Client.Commons;
+
 namespace SD.IdentitySystem.Client.ViewModels
 {
     public class TestViewModel : DocumentBase
@@ -30,7 +32,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         }
 
         /// <summary>
-        /// 主窗体
+        /// 文档管理器
         /// </summary>
         public override IDocumentManager DocumentManager
         {

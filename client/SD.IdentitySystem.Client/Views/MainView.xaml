@@ -70,7 +70,7 @@
                             <avalonDock:LayoutAnchorable Title="系统菜单" CanAutoHide="True" CanHide="False" CanDockAsTabbedDocument="False" CanTogglePin="False" CanFloat="False">
                                 <TreeView ItemsSource="{Binding Menus}">
                                     <TreeView.ItemTemplate>
-                                        <HierarchicalDataTemplate ItemsSource="{Binding MenuItems}">
+                                        <HierarchicalDataTemplate ItemsSource="{Binding children}">
                                             <TextBlock Text="{Binding Name}" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]"/>
                                         </HierarchicalDataTemplate>
                                     </TreeView.ItemTemplate>

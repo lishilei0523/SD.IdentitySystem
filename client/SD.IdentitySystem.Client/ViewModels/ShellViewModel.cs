@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using SD.IdentitySystem.Client.Commons;
 using System;
 using System.Diagnostics;
 using System.Windows.Threading;

@@ -151,11 +151,12 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="DocumentBase.cs" />
-    <Compile Include="IDocumentManager.cs" />
-    <Compile Include="Models\Menu.cs" />
+    <Compile Include="Commons\DocumentBase.cs" />
+    <Compile Include="Commons\DocumentManagerBase.cs" />
+    <Compile Include="Commons\IDocumentManager.cs" />
+    <Compile Include="Models\MenuView.cs" />
+    <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
-    <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModels\MainViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />

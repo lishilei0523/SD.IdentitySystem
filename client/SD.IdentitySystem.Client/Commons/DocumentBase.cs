@@ -1,9 +1,14 @@
-﻿using Caliburn.Micro;
+﻿using SD.IdentitySystem.Client.Annotations;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Windows.Input;
 
-namespace SD.IdentitySystem.Client
+namespace SD.IdentitySystem.Client.Commons
 {
-    public abstract class DocumentBase : PropertyChangedBase
+    /// <summary>
+    /// 文档基类
+    /// </summary>
+    public abstract class DocumentBase : INotifyPropertyChanged
     {
         #region 属性
 
@@ -21,10 +26,12 @@ namespace SD.IdentitySystem.Client
         public abstract string Url { get; }
         #endregion
 
+        #region 文档管理器 —— abstract IDocumentManager DocumentManager
         /// <summary>
         /// 文档管理器
         /// </summary>
         public abstract IDocumentManager DocumentManager { get; }
+        #endregion
 
         #region 关闭命令 —— ICommand CloseCommand
         /// <summary>
@@ -34,7 +41,7 @@ namespace SD.IdentitySystem.Client
         {
             get
             {
-                return new RelayCommand(x => this.Close(), x => true);
+                return new RelayCommand(x => this.Close());
             }
         }
         #endregion
@@ -43,32 +50,14 @@ namespace SD.IdentitySystem.Client
         /// <summary>
         /// 是否活动
         /// </summary>
-        private bool _active;
-
-        /// <summary>
-        /// 是否活动
-        /// </summary>
-        public bool Active
-        {
-            get { return this._active; }
-            set { this.Set(ref this._active, value); }
-        }
+        public bool Active { get; set; }
         #endregion
 
         #region 是否选中 —— bool Selected
         /// <summary>
         /// 是否选中
         /// </summary>
-        private bool _selected;
-
-        /// <summary>
-        /// 是否选中
-        /// </summary>
-        public bool Selected
-        {
-            get { return this._selected; }
-            set { this.Set(ref this._selected, value); }
-        }
+        public bool Selected { get; set; }
         #endregion
 
         #endregion
@@ -104,6 +93,19 @@ namespace SD.IdentitySystem.Client
             }
         }
         #endregion
+
+        #endregion
+
+        #region # 属性通知相关
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
+        [NotifyPropertyChangedInvocator]
+        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        {
+            PropertyChangedEventHandler handler = this.PropertyChanged;
+            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+        }
 
         #endregion
     }

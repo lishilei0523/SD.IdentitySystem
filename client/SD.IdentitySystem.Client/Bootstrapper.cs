@@ -1,10 +1,10 @@
 ﻿using Caliburn.Micro;
+using SD.IdentitySystem.Client.ViewModels;
 using SD.IOC.Core.Mediator;
 using System;
 using System.Collections.Generic;
 using System.Windows;
 using System.Windows.Threading;
-using SD.IdentitySystem.Client.ViewModels;
 
 namespace SD.IdentitySystem.Client
 {
@@ -14,33 +14,11 @@ namespace SD.IdentitySystem.Client
     public class Bootstrapper : BootstrapperBase
     {
         /// <summary>
-        /// 导航服务
-        /// </summary>
-        private static INavigationService _NavigationService;
-
-        /// <summary>
-        /// 导航服务
-        /// </summary>
-        public static INavigationService NavigationService
-        {
-            get { return _NavigationService; }
-        }
-
-        /// <summary>
-        /// 初始化导航服务
-        /// </summary>
-        /// <param name="navigationService"></param>
-        public static void InitNavigationService(INavigationService navigationService)
-        {
-            _NavigationService = navigationService;
-        }
-
-        /// <summary>
         /// 构造器
         /// </summary>
         public Bootstrapper()
         {
-            this.Initialize();
+            base.Initialize();
         }
 
         /// <summary>
@@ -48,7 +26,7 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            this.DisplayRootViewFor<ShellViewModel>();
+            base.DisplayRootViewFor<ShellViewModel>();
         }
 
         /// <summary>
