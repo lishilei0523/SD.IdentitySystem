@@ -1,6 +1,8 @@
 ﻿using Caliburn.Micro;
 using SD.IdentitySystem.Client.Commons;
-using SD.IdentitySystem.Client.Models;
+using SD.IdentitySystem.IPresentation.Interfaces;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.Client.ViewModels
 {
@@ -9,13 +11,19 @@ namespace SD.IdentitySystem.Client.ViewModels
     /// </summary>
     public class MainViewModel : DocumentManagerBase
     {
-        #region # 构造器
+        #region # 依赖注入构造器
+
+        /// <summary>
+        /// 菜单呈现器接口
+        /// </summary>
+        private readonly IMenuPresenter _menuPresenter;
+
         /// <summary>
         /// 构造器
         /// </summary>
-        public MainViewModel()
+        public MainViewModel(IMenuPresenter menuPresenter)
         {
-            this.Menus = new BindableCollection<MenuView>();
+            this._menuPresenter = menuPresenter;
 
             //初始化菜单
             this.InitMenus();
@@ -24,7 +32,7 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 属性
 
-        #region 菜单列表 —— BindableCollection<Menu> Menus
+        #region 菜单列表 —— BindableCollection<Node> Menus
         /// <summary>
         /// 菜单列表
         /// </summary>
@@ -41,21 +49,8 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public void InitMenus()
         {
-            MenuView menu1 = new MenuView("文件", "File", 1);
-            MenuView menu11 = new MenuView("新建", "SD.IdentitySystem.Client.ViewModels.TestViewModel", 1);
-            MenuView menu12 = new MenuView("打开", "Open", 2);
-            menu1.children.Add(menu11);
-            menu1.children.Add(menu12);
-
-            MenuView menu2 = new MenuView("编辑", "Eidt", 2);
-            MenuView menu21 = new MenuView("撤销", "U", 1);
-            MenuView menu22 = new MenuView("重做", "F", 2);
-            menu2.children.Add(menu21);
-            menu2.children.Add(menu22);
-
-
-            this.Menus.Add(menu1);
-            this.Menus.Add(menu2);
+            IEnumerable<MenuView> menus = this._menuPresenter.GetMenuTreeGrid("00");
+            this.Menus = new BindableCollection<MenuView>(menus);
         }
         #endregion
 
