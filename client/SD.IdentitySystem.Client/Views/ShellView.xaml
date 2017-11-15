@@ -4,47 +4,13 @@
                        xmlns:cal="http://www.caliburnproject.org"
                        xmlns:controls="clr-namespace:MahApps.Metro.Controls;assembly=MahApps.Metro"
                        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-                       xmlns:avalonDock="http://schemas.xceed.com/wpf/xaml/avalondock"
                        Height="800" Width="1280"
                        WindowStartupLocation="CenterScreen"
                        BorderThickness="0"
                        GlowBrush="Black"
                        Title="身份认证系统">
-
-    <controls:MetroWindow.Resources>
-        <Style TargetType="{x:Type TreeViewItem}">
-            <Setter Property="IsExpanded" Value="True"/>
-            <Setter Property="FontFamily" Value="微软雅黑"/>
-            <Setter Property="FontSize" Value="16"/>
-            <Setter Property="Template">
-                <Setter.Value>
-                    <ControlTemplate TargetType="TreeViewItem">
-                        <Grid>
-                            <Expander x:Name="Exp" Background="#E8E8EC" BorderThickness="0" IsExpanded="{TemplateBinding TreeViewItem.IsExpanded}">
-                                <Expander.Header>
-                                    <ContentPresenter x:Name="ExpCP" ContentSource="Header"/>
-                                </Expander.Header>
-                                <ItemsPresenter/>
-                            </Expander>
-                            <Border x:Name="CP" Padding="25,0,0,0" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" Visibility="Collapsed">
-                                <ContentPresenter ContentSource="Header" HorizontalAlignment="Left" VerticalAlignment="Center" />
-                            </Border>
-                        </Grid>
-                        <ControlTemplate.Triggers>
-                            <Trigger Property="HasItems" Value="false">
-                                <Setter TargetName="Exp" Property="Visibility" Value="Collapsed"/>
-                                <Setter TargetName="CP" Property="Visibility" Value="Visible" />
-                            </Trigger>
-                            <Trigger Property="IsMouseOver" Value="True">
-                                <Setter Property="Background" Value="#EFEFF2"/>
-                            </Trigger>
-                        </ControlTemplate.Triggers>
-                    </ControlTemplate>
-                </Setter.Value>
-            </Setter>
-        </Style>
-    </controls:MetroWindow.Resources>
-
+    
+    <!--标题栏按钮-->
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
             <Button ToolTip="访问我的码云" cal:Message.Attach="LaunchGitOsc()">
@@ -52,6 +18,15 @@
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
+
+    <!--飞窗-->
+    <controls:MetroWindow.Flyouts>
+        <controls:FlyoutsControl>
+            <controls:Flyout Theme="Adapt" AreAnimationsEnabled="True" Margin="{Binding Flyout.Margin}" Header="{Binding Flyout.Title}" Position="{Binding Flyout.Position}" IsOpen="{Binding Flyout.IsOpen}">
+                <ContentControl cal:View.Model="{Binding Flyout}" />
+            </controls:Flyout>
+        </controls:FlyoutsControl>
+    </controls:MetroWindow.Flyouts>
 
     <Grid >
         <Grid.RowDefinitions>
@@ -68,6 +43,7 @@
         <StatusBar Grid.Row="1" Foreground="Black" BorderThickness="0 1 0 0" BorderBrush="Gray">
             <StatusBarItem Margin="10 0 0 0" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
+                    <Button Content="测试Flyout" cal:Message.Attach="[Event Click] = [Action TestFlyout]"/>
                     <TextBlock Text="当前登录用户："></TextBlock>
                     <TextBlock Text="admin"></TextBlock>
                 </StackPanel>

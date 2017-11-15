@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
+using MahApps.Metro.Controls;
 using SD.IdentitySystem.Client.Commons;
 using System;
 using System.Diagnostics;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace SD.IdentitySystem.Client.ViewModels
@@ -18,6 +20,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         public ShellViewModel(IDocumentManager documentManager)
         {
             this.DocumentManager = documentManager;
+
             //初始化计时器
             this.InitTimer();
         }
@@ -46,6 +49,22 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// 主窗体
         /// </summary>
         public IDocumentManager DocumentManager { get; private set; }
+        #endregion
+
+        #region 飞窗 —— FlyoutBase Flyout
+        /// <summary>
+        /// 飞窗
+        /// </summary>
+        private FlyoutBase _flyout;
+
+        /// <summary>
+        /// 飞窗
+        /// </summary>
+        public FlyoutBase Flyout
+        {
+            get { return this._flyout; }
+            set { this.Set(ref this._flyout, value); }
+        }
         #endregion
 
         #endregion
@@ -78,6 +97,12 @@ namespace SD.IdentitySystem.Client.ViewModels
             Process.Start("https://gitee.com/lishilei0523");
         }
         #endregion
+
+
+        public void TestFlyout()
+        {
+            this.Flyout = new Test2ViewModel("测试2", Position.Right, new Thickness(240, 30, 0, 35));
+        }
 
         #endregion
     }
