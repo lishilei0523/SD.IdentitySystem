@@ -95,7 +95,7 @@
                     <Style TargetType="{x:Type avalonDock:LayoutItem}">
                         <Setter Property="Title" Value="{Binding Model.Title}"/>
                         <Setter Property="CloseCommand" Value="{Binding Model.CloseCommand}"/>
-                        <Setter Property="IsActive" Value="{Binding Model.IsActive ,Mode=TwoWay}"/>
+                        <Setter Property="IsActive" Value="{Binding Model.Active ,Mode=TwoWay}"/>
                     </Style>
                 </avalonDock:DockingManager.LayoutItemContainerStyle>
                 <avalonDock:LayoutRoot>
