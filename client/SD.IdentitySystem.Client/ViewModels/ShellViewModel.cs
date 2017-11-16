@@ -59,7 +59,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// <summary>
         /// 菜单列表
         /// </summary>
-        public BindableCollection<MenuView> Menus { get; set; }
+        public BindableCollection<MenuView> Menus { get; private set; }
         #endregion
 
         #endregion
