@@ -104,26 +104,26 @@ namespace SD.IdentitySystem.Client.Commons
         /// <summary>
         /// 打开飞窗
         /// </summary>
-        /// <returns>飞窗</returns>
+        /// <param name="type">飞窗类型</param>
         public void OpenFlyout(Type type)
         {
             //验证
             Assert.IsTrue(type.IsSubclassOf(typeof(FlyoutBase)), "给定类型不是飞窗！");
 
             this.Flyout = (FlyoutBase)ResolveMediator.Resolve(type);
-            this.Flyout.Active = true;
+            this.Flyout.Open();
         }
         #endregion
 
         #region 打开飞窗 —— void OpenFlyout<T>()
         /// <summary>
-        /// 打开飞窗
+        /// 获取飞窗
         /// </summary>
-        /// <returns>飞窗</returns>
+        /// <typeparam name="T">飞窗类型</typeparam>
         public void OpenFlyout<T>() where T : FlyoutBase
         {
-            this.Flyout = (FlyoutBase)ResolveMediator.Resolve<T>();
-            this.Flyout.Active = true;
+            this.Flyout = ResolveMediator.Resolve<T>();
+            this.Flyout.Open();
         }
         #endregion
 

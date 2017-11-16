@@ -36,7 +36,7 @@ namespace SD.IdentitySystem.Client.Commons
         public bool Active
         {
             get { return this._active; }
-            set { this.Set(ref this._active, value); }
+            protected set { this.Set(ref this._active, value); }
         }
         #endregion
 

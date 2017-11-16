@@ -22,7 +22,7 @@ namespace SD.IdentitySystem.Client.Commons
         public Position Position
         {
             get { return this._position; }
-            set { this.Set(ref this._position, value); }
+            protected set { this.Set(ref this._position, value); }
         }
         #endregion
 
@@ -38,7 +38,7 @@ namespace SD.IdentitySystem.Client.Commons
         public Thickness Margin
         {
             get { return this._margin; }
-            set { this.Set(ref this._margin, value); }
+            protected set { this.Set(ref this._margin, value); }
         }
         #endregion
 

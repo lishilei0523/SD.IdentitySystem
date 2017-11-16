@@ -26,7 +26,6 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            ElementManager.Current = ResolveMediator.Resolve<IElementManager>();
 
             base.DisplayRootViewFor<IElementManager>();
         }

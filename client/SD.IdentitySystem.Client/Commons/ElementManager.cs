@@ -1,78 +1,82 @@
 ﻿using Caliburn.Micro;
+using SD.IOC.Core.Mediator;
 using System;
 
 namespace SD.IdentitySystem.Client.Commons
 {
+    /// <summary>
+    /// 元素管理器静态工具类
+    /// </summary>
     public static class ElementManager
     {
+        #region # 字段及构造器
 
-        public static IElementManager Current;
+        /// <summary>
+        /// 元素管理器实例
+        /// </summary>
+        private static readonly IElementManager _Current;
 
+        /// <summary>
+        /// 静态构造器
+        /// </summary>
+        static ElementManager()
+        {
+            _Current = ResolveMediator.Resolve<IElementManager>();
+        }
 
-        #region 文档列表 —— static BindableCollection<DocumentBase> Documents
+        #endregion
+
+        #region # 文档列表 —— static BindableCollection<DocumentBase> Documents
         /// <summary>
         /// 文档列表
         /// </summary>
         public static BindableCollection<DocumentBase> Documents
         {
-            get { return Current.Documents; }
+            get { return _Current.Documents; }
         }
         #endregion
 
-        #region 飞窗 —— static FlyoutBase Flyout
-        /// <summary>
-        /// 飞窗
-        /// </summary>
-        public static FlyoutBase Flyout
-        {
-            get { return Current.Flyout; }
-        }
-        #endregion
-
-
-
-
-        #region 获取文档 —— static DocumentBase GetDocument(Type type)
+        #region # 获取文档 —— static DocumentBase GetDocument(Type type)
         /// <summary>
         /// 获取文档
         /// </summary>
         /// <returns>文档</returns>
         public static DocumentBase GetDocument(Type type)
         {
-            return Current.GetDocument(type);
+            return _Current.GetDocument(type);
         }
         #endregion
 
-        #region 获取文档 —— static DocumentBase GetDocument<T>()
+        #region # 获取文档 —— static DocumentBase GetDocument<T>()
         /// <summary>
         /// 获取文档
         /// </summary>
         /// <returns>文档</returns>
         public static DocumentBase GetDocument<T>() where T : DocumentBase
         {
-            return Current.GetDocument<T>();
+            return _Current.GetDocument<T>();
         }
         #endregion
 
-        #region 打开飞窗 —— void OpenFlyout(Type type)
+        #region # 打开飞窗 —— void OpenFlyout(Type type)
         /// <summary>
         /// 打开飞窗
         /// </summary>
-        /// <returns>飞窗</returns>
+        /// <param name="type">飞窗类型</param>
         public static void OpenFlyout(Type type)
         {
-            Current.OpenFlyout(type);
+            _Current.OpenFlyout(type);
         }
         #endregion
 
-        #region 获取飞窗 —— static void OpenFlyout<T>()
+        #region # 获取飞窗 —— static void OpenFlyout<T>()
         /// <summary>
         /// 获取飞窗
         /// </summary>
-        /// <returns>飞窗</returns>
+        /// <typeparam name="T">飞窗类型</typeparam>
         public static void OpenFlyout<T>() where T : FlyoutBase
         {
-            Current.OpenFlyout<T>();
+            _Current.OpenFlyout<T>();
         }
         #endregion
     }
