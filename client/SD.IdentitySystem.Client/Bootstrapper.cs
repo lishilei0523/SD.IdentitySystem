@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using SD.IdentitySystem.Client.ViewModels;
+using SD.IdentitySystem.Client.Commons;
 using SD.IOC.Core.Mediator;
 using System;
 using System.Collections.Generic;
@@ -26,7 +26,9 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            base.DisplayRootViewFor<ShellViewModel>();
+            ElementManager.Current = ResolveMediator.Resolve<IElementManager>();
+
+            base.DisplayRootViewFor<IElementManager>();
         }
 
         /// <summary>

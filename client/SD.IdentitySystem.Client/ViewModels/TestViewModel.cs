@@ -6,13 +6,24 @@ namespace SD.IdentitySystem.Client.ViewModels
 {
     public class TestViewModel : FlyoutBase
     {
-        /// <summary>
-        /// 创建飞窗
-        /// </summary>
-        public TestViewModel(string title, Position position, Thickness margin)
-            : base(title, position, margin)
+        public TestViewModel()
         {
-
+            this.Position = Position.Right;
+            this.Active = false;
+            this.Margin = new Thickness(240, 30, 0, 0);
         }
+
+        #region Overrides of ElementBase
+
+        /// <summary>
+        /// 标题
+        /// </summary>
+        public override string Title
+        {
+            get { return "测试飞窗"; }
+        }
+
+
+        #endregion
     }
 }

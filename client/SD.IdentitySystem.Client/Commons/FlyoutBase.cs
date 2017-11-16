@@ -6,42 +6,66 @@ namespace SD.IdentitySystem.Client.Commons
     /// <summary>
     /// 飞窗基类
     /// </summary>
-    public abstract class FlyoutBase
+    public abstract class FlyoutBase : ElementBase
     {
-        /// <summary>
-        /// 无参构造器
-        /// </summary>
-        protected FlyoutBase() { }
+        #region # 属性
 
+        #region 位置 —— Position Position
         /// <summary>
-        /// 创建飞窗
+        /// 位置
         /// </summary>
-        protected FlyoutBase(string title, Position position, Thickness margin)
-        {
-            this.Title = title;
-            this.Position = position;
-            this.Margin = margin;
-            this.IsOpen = true;
-        }
-
-        /// <summary>
-        /// 标题
-        /// </summary>
-        public string Title { get; set; }
+        private Position _position;
 
         /// <summary>
         /// 位置
         /// </summary>
-        public Position Position { get; set; }
+        public Position Position
+        {
+            get { return this._position; }
+            set { this.Set(ref this._position, value); }
+        }
+        #endregion
+
+        #region 外边距 —— Thickness Margin
+        /// <summary>
+        /// 外边距
+        /// </summary>
+        private Thickness _margin;
 
         /// <summary>
         /// 外边距
         /// </summary>
-        public Thickness Margin { get; set; }
+        public Thickness Margin
+        {
+            get { return this._margin; }
+            set { this.Set(ref this._margin, value); }
+        }
+        #endregion
 
+        #endregion
+
+        #region # 方法
+
+        #region 打开 —— override void Open()
         /// <summary>
-        /// 是否打开
+        /// 打开
         /// </summary>
-        public bool IsOpen { get; set; }
+        public override void Open()
+        {
+            this.Active = true;
+        }
+        #endregion
+
+        #region 关闭 —— override void Close()
+        /// <summary>
+        /// 关闭
+        /// </summary>
+        public override void Close()
+        {
+            this.Active = false;
+        }
+        #endregion
+
+        #endregion
     }
 }

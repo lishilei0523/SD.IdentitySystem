@@ -1,9 +1,10 @@
 ﻿using Caliburn.Micro;
-using MahApps.Metro.Controls;
 using SD.IdentitySystem.Client.Commons;
+using SD.IdentitySystem.IPresentation.Interfaces;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using System;
+using System.Collections.Generic;
 using System.Diagnostics;
-using System.Windows;
 using System.Windows.Threading;
 
 namespace SD.IdentitySystem.Client.ViewModels
@@ -11,19 +12,29 @@ namespace SD.IdentitySystem.Client.ViewModels
     /// <summary>
     /// 应用程序外壳
     /// </summary>
-    public class ShellViewModel : Screen
+    public class ShellViewModel : ElementManagerBase
     {
         #region # 依赖注入构造器
+
+        /// <summary>
+        /// 菜单呈现器接口
+        /// </summary>
+        private readonly IMenuPresenter _menuPresenter;
+
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public ShellViewModel(IDocumentManager documentManager)
+        public ShellViewModel(IMenuPresenter menuPresenter)
         {
-            this.DocumentManager = documentManager;
+            this._menuPresenter = menuPresenter;
 
             //初始化计时器
             this.InitTimer();
+
+            //初始化菜单
+            this.InitMenus();
         }
+
         #endregion
 
         #region # 属性
@@ -44,32 +55,26 @@ namespace SD.IdentitySystem.Client.ViewModels
         }
         #endregion
 
-        #region 主窗体 —— IDocumentManager DocumentManager
+        #region 菜单列表 —— BindableCollection<Node> Menus
         /// <summary>
-        /// 主窗体
+        /// 菜单列表
         /// </summary>
-        public IDocumentManager DocumentManager { get; private set; }
-        #endregion
-
-        #region 飞窗 —— FlyoutBase Flyout
-        /// <summary>
-        /// 飞窗
-        /// </summary>
-        private FlyoutBase _flyout;
-
-        /// <summary>
-        /// 飞窗
-        /// </summary>
-        public FlyoutBase Flyout
-        {
-            get { return this._flyout; }
-            set { this.Set(ref this._flyout, value); }
-        }
+        public BindableCollection<MenuView> Menus { get; set; }
         #endregion
 
         #endregion
 
         #region # 方法
+
+        #region 访问我的码云 —— void LaunchGitOsc()
+        /// <summary>
+        /// 访问我的码云
+        /// </summary>
+        public void LaunchGitOsc()
+        {
+            Process.Start("https://gitee.com/lishilei0523");
+        }
+        #endregion
 
         #region 初始化计时器 —— void InitTimer()
         /// <summary>
@@ -88,20 +93,38 @@ namespace SD.IdentitySystem.Client.ViewModels
         }
         #endregion
 
-        #region 访问我的码云 —— void LaunchGitOsc()
+        #region 初始化菜单 —— void InitMenus()
         /// <summary>
-        /// 访问我的码云
+        /// 初始化菜单
         /// </summary>
-        public void LaunchGitOsc()
+        public void InitMenus()
         {
-            Process.Start("https://gitee.com/lishilei0523");
+            IEnumerable<MenuView> menus = this._menuPresenter.GetMenuTreeGrid("00");
+            this.Menus = new BindableCollection<MenuView>(menus);
+        }
+        #endregion
+
+        #region 导航至菜单 —— void Navigate(Menu menu)
+        /// <summary>
+        /// 导航至菜单
+        /// </summary>
+        /// <param name="menu">菜单</param>
+        public void Navigate(MenuView menu)
+        {
+            Type type = Type.GetType(menu.Url);
+            DocumentBase document = base.GetDocument(type);
+
+            if (document != null)
+            {
+                document.Open();
+            }
         }
         #endregion
 
 
         public void TestFlyout()
         {
-            this.Flyout = new Test2ViewModel("测试2", Position.Right, new Thickness(240, 30, 0, 35));
+            ElementManager.OpenFlyout<TestViewModel>();
         }
 
         #endregion
