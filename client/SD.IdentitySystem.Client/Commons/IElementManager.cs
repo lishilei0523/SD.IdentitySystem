@@ -37,7 +37,7 @@ namespace SD.IdentitySystem.Client.Commons
         void OpenFlyout(Type type);
 
         /// <summary>
-        /// 获取飞窗
+        /// 打开飞窗
         /// </summary>
         /// <typeparam name="T">飞窗类型</typeparam>
         void OpenFlyout<T>() where T : FlyoutBase;

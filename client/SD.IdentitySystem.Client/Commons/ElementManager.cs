@@ -69,9 +69,9 @@ namespace SD.IdentitySystem.Client.Commons
         }
         #endregion
 
-        #region # 获取飞窗 —— static void OpenFlyout<T>()
+        #region # 打开飞窗 —— static void OpenFlyout<T>()
         /// <summary>
-        /// 获取飞窗
+        /// 打开飞窗
         /// </summary>
         /// <typeparam name="T">飞窗类型</typeparam>
         public static void OpenFlyout<T>() where T : FlyoutBase

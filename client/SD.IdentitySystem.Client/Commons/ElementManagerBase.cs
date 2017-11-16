@@ -117,7 +117,7 @@ namespace SD.IdentitySystem.Client.Commons
 
         #region 打开飞窗 —— void OpenFlyout<T>()
         /// <summary>
-        /// 获取飞窗
+        /// 打开飞窗
         /// </summary>
         /// <typeparam name="T">飞窗类型</typeparam>
         public void OpenFlyout<T>() where T : FlyoutBase
