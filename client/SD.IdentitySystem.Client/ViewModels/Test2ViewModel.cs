@@ -3,7 +3,7 @@ using SD.IdentitySystem.Client.Commons;
 
 namespace SD.IdentitySystem.Client.ViewModels
 {
-    public class Test2ViewModel : FlyoutBase
+    public class Test2ViewModel : DocumentBase
     {
         #region Overrides of ElementBase
 
@@ -12,10 +12,16 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public override string Title
         {
-            get { throw new System.NotImplementedException(); }
+            get { return "选项卡1"; }
         }
 
 
         #endregion
+
+
+        public void TestFlyout()
+        {
+            ElementManager.OpenFlyout<TestViewModel>();
+        }
     }
 }

@@ -9,19 +9,6 @@ namespace SD.IdentitySystem.Client.Commons
     {
         #region 属性
 
-        #region 关闭命令 —— ICommand CloseCommand
-        /// <summary>
-        /// 关闭命令
-        /// </summary>
-        public ICommand CloseCommand
-        {
-            get
-            {
-                return new RelayCommand(x => this.Close());
-            }
-        }
-        #endregion
-
         #region 是否选中 —— bool Selected
         /// <summary>
         /// 是否选中
@@ -34,7 +21,20 @@ namespace SD.IdentitySystem.Client.Commons
         public bool Selected
         {
             get { return this._selected; }
-            set { this.Set(ref this._selected, value); }
+            protected set { this.Set(ref this._selected, value); }
+        }
+        #endregion
+
+        #region 只读属性 - 关闭命令 —— ICommand CloseCommand
+        /// <summary>
+        /// 关闭命令
+        /// </summary>
+        public ICommand CloseCommand
+        {
+            get
+            {
+                return new RelayCommand(x => this.Close());
+            }
         }
         #endregion
 

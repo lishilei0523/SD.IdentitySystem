@@ -36,25 +36,25 @@ namespace SD.IdentitySystem.Client.Commons
         }
         #endregion
 
-        #region # 获取文档 —— static DocumentBase GetDocument(Type type)
+        #region # 打开文档 —— static void OpenDocument(Type type)
         /// <summary>
-        /// 获取文档
+        /// 打开文档
         /// </summary>
-        /// <returns>文档</returns>
-        public static DocumentBase GetDocument(Type type)
+        /// <param name="type">文档类型</param>
+        public static void OpenDocument(Type type)
         {
-            return _Current.GetDocument(type);
+            _Current.OpenDocument(type);
         }
         #endregion
 
-        #region # 获取文档 —— static DocumentBase GetDocument<T>()
+        #region # 打开文档 —— static void OpenDocument<T>()
         /// <summary>
-        /// 获取文档
+        /// 打开文档
         /// </summary>
-        /// <returns>文档</returns>
-        public static DocumentBase GetDocument<T>() where T : DocumentBase
+        /// <typeparam name="T">文档类型</typeparam>
+        public static void OpenDocument<T>() where T : DocumentBase
         {
-            return _Current.GetDocument<T>();
+            _Current.OpenDocument<T>();
         }
         #endregion
 

@@ -112,19 +112,14 @@ namespace SD.IdentitySystem.Client.ViewModels
         public void Navigate(MenuView menu)
         {
             Type type = Type.GetType(menu.Url);
-            DocumentBase document = base.GetDocument(type);
-
-            if (document != null)
-            {
-                document.Open();
-            }
+            ElementManager.OpenDocument(type);
         }
         #endregion
 
 
-        public void TestFlyout()
+        public void TestTab()
         {
-            ElementManager.OpenFlyout<TestViewModel>();
+            ElementManager.OpenDocument<Test2ViewModel>();
         }
 
         #endregion

@@ -19,16 +19,16 @@ namespace SD.IdentitySystem.Client.Commons
         FlyoutBase Flyout { get; }
 
         /// <summary>
-        /// 获取文档
+        /// 打开文档
         /// </summary>
-        /// <returns>文档</returns>
-        DocumentBase GetDocument(Type type);
+        /// <param name="type">文档类型</param>
+        void OpenDocument(Type type);
 
         /// <summary>
-        /// 获取文档
+        /// 打开文档
         /// </summary>
-        /// <returns>文档</returns>
-        DocumentBase GetDocument<T>() where T : DocumentBase;
+        /// <typeparam name="T">文档类型</typeparam>
+        void OpenDocument<T>() where T : DocumentBase;
 
         /// <summary>
         /// 打开飞窗

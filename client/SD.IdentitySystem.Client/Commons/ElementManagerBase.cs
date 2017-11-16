@@ -59,12 +59,12 @@ namespace SD.IdentitySystem.Client.Commons
 
         #region # 方法
 
-        #region 获取文档 —— DocumentBase GetDocument(Type type)
+        #region 打开文档 —— void OpenDocument(Type type)
         /// <summary>
-        /// 获取文档
+        /// 打开文档
         /// </summary>
-        /// <returns>文档</returns>
-        public DocumentBase GetDocument(Type type)
+        /// <param name="type">文档类型</param>
+        public void OpenDocument(Type type)
         {
             //验证
             Assert.IsTrue(type.IsSubclassOf(typeof(DocumentBase)), "给定类型不是文档！");
@@ -77,16 +77,16 @@ namespace SD.IdentitySystem.Client.Commons
                 this.Documents.Add(document);
             }
 
-            return document;
+            document.Open();
         }
         #endregion
 
-        #region 获取文档 —— DocumentBase GetDocument<T>()
+        #region 打开文档 —— void OpenDocument<T>()
         /// <summary>
-        /// 获取文档
+        /// 打开文档
         /// </summary>
-        /// <returns>文档</returns>
-        public DocumentBase GetDocument<T>() where T : DocumentBase
+        /// <typeparam name="T">文档类型</typeparam>
+        public void OpenDocument<T>() where T : DocumentBase
         {
             DocumentBase document = this.Documents.SingleOrDefault(x => x.GetType().FullName == typeof(T).FullName);
 
@@ -96,7 +96,7 @@ namespace SD.IdentitySystem.Client.Commons
                 this.Documents.Add(document);
             }
 
-            return document;
+            document.Open();
         }
         #endregion
 
