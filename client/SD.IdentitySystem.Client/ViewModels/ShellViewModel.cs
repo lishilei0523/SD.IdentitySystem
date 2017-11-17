@@ -2,6 +2,7 @@
 using SD.IdentitySystem.Client.Commons;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.Infrastructure.Constants;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -51,7 +52,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         public string CurrentTime
         {
             get { return this._currentTime; }
-            set { this.Set(ref this._currentTime, value); }
+            private set { this.Set(ref this._currentTime, value); }
         }
         #endregion
 
@@ -60,6 +61,22 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// 菜单列表
         /// </summary>
         public BindableCollection<MenuView> Menus { get; private set; }
+        #endregion
+
+        #region 只读属性 - 当前登录用户 —— string CurrentUser
+        /// <summary>
+        /// 只读属性 - 当前登录用户
+        /// </summary>
+        public string CurrentUser
+        {
+            get
+            {
+                //存入Session
+                LoginInfo loginInfo = (LoginInfo)AppDomain.CurrentDomain.GetData(SessionKey.CurrentUser);
+
+                return loginInfo.LoginId;
+            }
+        }
         #endregion
 
         #endregion
