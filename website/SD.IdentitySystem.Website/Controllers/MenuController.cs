@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.FormatModel.EasyUI;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
@@ -8,7 +9,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Mvc;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -132,13 +132,14 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序</param>
         /// <param name="url">链接地址</param>
+        /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentId">父级菜单Id</param>
         [HttpPost]
         [RequireAuthorization("创建菜单")]
-        public void CreateMenu(string systemNo, string menuName, int sort, string url, string icon, Guid? parentId)
+        public void CreateMenu(string systemNo, string menuName, int sort, string url, string path, string icon, Guid? parentId)
         {
-            this._authorizationContract.CreateMenu(systemNo, menuName, sort, url, icon, parentId);
+            this._authorizationContract.CreateMenu(systemNo, menuName, sort, url, path, icon, parentId);
         }
         #endregion
 
@@ -150,12 +151,13 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序</param>
         /// <param name="url">链接地址</param>
+        /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         [HttpPost]
         [RequireAuthorization("修改菜单")]
-        public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string icon)
+        public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string path, string icon)
         {
-            this._authorizationContract.UpdateMenu(menuId, menuName, sort, url, icon);
+            this._authorizationContract.UpdateMenu(menuId, menuName, sort, url, path, icon);
         }
         #endregion
 

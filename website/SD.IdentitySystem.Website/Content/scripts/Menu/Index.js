@@ -18,6 +18,7 @@ function getMenus(queryParams) {
             { field: "Id", title: "Id", hidden: true },
             { field: "Name", title: "菜单名称", halign: "center", width: 200 },
             { field: "Url", title: "链接地址", halign: "center", width: 200 },
+            { field: "Path", title: "路径", halign: "center", width: 400 },
             { field: "SystemName", title: "所属系统", halign: "center", width: 150 },
             {
                 field: "AddedTime",

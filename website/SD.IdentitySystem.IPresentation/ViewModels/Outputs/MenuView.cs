@@ -27,6 +27,13 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
         public string Url { get; set; }
         #endregion
 
+        #region 路径 —— string Path
+        /// <summary>
+        /// 路径
+        /// </summary>
+        public string Path { get; set; }
+        #endregion
+
         #region 图标 —— string Icon
         /// <summary>
         /// 图标
