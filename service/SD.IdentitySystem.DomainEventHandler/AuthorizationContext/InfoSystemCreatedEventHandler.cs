@@ -58,7 +58,7 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
             systemAdmin.AppendRoles(new[] { adminRole });
 
             //创建系统根级菜单
-            Menu systemMenu = new Menu(eventSource.SystemNo, eventSource.SystemName, 0, null, null, null);
+            Menu systemMenu = new Menu(eventSource.SystemNo, eventSource.SystemName, 0, null, null, null, null);
 
             this._unitOfWork.RegisterAdd(systemAdmin);
             this._unitOfWork.RegisterAdd(adminRole);

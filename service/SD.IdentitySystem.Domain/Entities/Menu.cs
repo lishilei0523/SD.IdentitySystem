@@ -34,9 +34,10 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">菜单排序</param>
         /// <param name="url">链接地址</param>
+        /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentNode">上级菜单</param>
-        public Menu(string systemNo, string menuName, int sort, string url, string icon, Menu parentNode)
+        public Menu(string systemNo, string menuName, int sort, string url, string path, string icon, Menu parentNode)
             : this()
         {
             #region # 验证参数
@@ -60,6 +61,7 @@ namespace SD.IdentitySystem.Domain.Entities
             this.Sort = sort;
             this.SystemNo = systemNo;
             this.Url = url;
+            this.Path = path;
             this.Icon = icon;
             this.ParentNode = parentNode;
             this.IsRoot = parentNode == null;
@@ -80,11 +82,18 @@ namespace SD.IdentitySystem.Domain.Entities
         public string SystemNo { get; private set; }
         #endregion
 
-        #region 链接地址 —— string Url
+        #region 链接地址(Web适用) —— string Url
         /// <summary>
-        /// 链接地址
+        /// 链接地址(Web适用)
         /// </summary>
         public string Url { get; private set; }
+        #endregion
+
+        #region 路径(Windows适用) —— string Path
+        /// <summary>
+        /// 路径(Windows适用)
+        /// </summary>
+        public string Path { get; private set; }
         #endregion
 
         #region 图标 —— string Icon
@@ -143,15 +152,16 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 方法
 
-        #region 修改菜单信息 —— void UpdateInfo(string menuName, int sort, string url, string icon)
+        #region 修改菜单信息 —— void UpdateInfo(string menuName, int sort, string url...
         /// <summary>
         /// 修改菜单信息
         /// </summary>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">菜单排序</param>
         /// <param name="url">链接地址</param>
+        /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
-        public void UpdateInfo(string menuName, int sort, string url, string icon)
+        public void UpdateInfo(string menuName, int sort, string url, string path, string icon)
         {
             #region # 验证参数
 
@@ -165,6 +175,7 @@ namespace SD.IdentitySystem.Domain.Entities
             base.Name = menuName;
             this.Sort = sort;
             this.Url = url;
+            this.Path = path;
             this.Icon = icon;
 
             //初始化关键字

@@ -18,12 +18,20 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         public string SystemNo { get; set; }
         #endregion
 
-        #region 链接地址 —— string Url
+        #region 链接地址(Web适用) —— string Url
         /// <summary>
-        /// 链接地址
+        /// 链接地址(Web适用)
         /// </summary>
         [DataMember]
         public string Url { get; set; }
+        #endregion
+
+        #region 路径(Windows适用) —— string Path
+        /// <summary>
+        /// 路径(Windows适用)
+        /// </summary>
+        [DataMember]
+        public string Path { get; set; }
         #endregion
 
         #region 图标 —— string Icon

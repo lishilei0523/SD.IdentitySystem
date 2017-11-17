@@ -201,14 +201,14 @@ namespace SD.IdentitySystem.Repository.Base
         {
             if (this._repMediator.MenuRep.Count() == 0)
             {
-                Menu root = new Menu("00", "身份认证系统", 1, null, null, null);
-                Menu serverManagement = new Menu("00", "服务器管理", 2, "/Server/Index", null, root);
-                Menu systemManagement = new Menu("00", "信息系统管理", 3, "/InfoSystem/Index", null, root);
-                Menu loginRecordManagement = new Menu("00", "登录记录", 4, "/LoginRecord/Index", null, root);
-                Menu userManagement = new Menu("00", "用户管理", 5, "/User/Index", null, root);
-                Menu roleManagement = new Menu("00", "角色管理", 6, "/Role/Index", null, root);
-                Menu menuManagement = new Menu("00", "菜单管理", 7, "/Menu/Index", null, root);
-                Menu authorityManagement = new Menu("00", "权限管理", 8, "/Authority/Index", null, root);
+                Menu root = new Menu("00", "身份认证系统", 1, null, null, null, null);
+                Menu serverManagement = new Menu("00", "服务器管理", 2, "/Server/Index", null, null, root);
+                Menu systemManagement = new Menu("00", "信息系统管理", 3, "/InfoSystem/Index", null, null, root);
+                Menu loginRecordManagement = new Menu("00", "登录记录", 4, "/LoginRecord/Index", null, null, root);
+                Menu userManagement = new Menu("00", "用户管理", 5, "/User/Index", null, null, root);
+                Menu roleManagement = new Menu("00", "角色管理", 6, "/Role/Index", null, null, root);
+                Menu menuManagement = new Menu("00", "菜单管理", 7, "/Menu/Index", null, null, root);
+                Menu authorityManagement = new Menu("00", "权限管理", 8, "/Authority/Index", null, null, root);
 
                 this._menus.Add(root);
                 this._menus.Add(serverManagement);

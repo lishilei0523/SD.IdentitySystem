@@ -131,11 +131,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
+        /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentId">上级菜单Id</param>
         /// <returns>菜单Id</returns>
         [OperationContract]
-        Guid CreateMenu(string systemNo, string menuName, int sort, string url, string icon, Guid? parentId);
+        Guid CreateMenu(string systemNo, string menuName, int sort, string url, string path, string icon, Guid? parentId);
         #endregion
 
         #region # 修改菜单 —— void UpdateMenu(Guid menuId, string menuName...
@@ -146,9 +147,10 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
+        /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         [OperationContract]
-        void UpdateMenu(Guid menuId, string menuName, int sort, string url, string icon);
+        void UpdateMenu(Guid menuId, string menuName, int sort, string url, string path, string icon);
         #endregion
 
         #region # 删除菜单 —— void RemoveMenu(Guid menuId)

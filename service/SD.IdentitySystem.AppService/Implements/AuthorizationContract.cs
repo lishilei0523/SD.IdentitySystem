@@ -260,17 +260,18 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
+        /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentId">上级菜单Id</param>
         /// <returns>菜单Id</returns>
-        public Guid CreateMenu(string systemNo, string menuName, int sort, string url, string icon, Guid? parentId)
+        public Guid CreateMenu(string systemNo, string menuName, int sort, string url, string path, string icon, Guid? parentId)
         {
             //验证参数
             Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), string.Format("编号为\"{0}\"的信息系统不存在！", systemNo));
             Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, menuName), "给定菜单级别下菜单名称已存在！");
 
             Menu parentMenu = parentId == null ? null : this._unitOfWork.Resolve<Menu>(parentId.Value);
-            Menu menu = new Menu(systemNo, menuName, sort, url, icon, parentMenu);
+            Menu menu = new Menu(systemNo, menuName, sort, url, path, icon, parentMenu);
 
             this._unitOfWork.RegisterAdd(menu);
             this._unitOfWork.UnitedCommit();
@@ -287,8 +288,9 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
+        /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
-        public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string icon)
+        public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string path, string icon)
         {
             Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
 
@@ -302,7 +304,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #endregion
 
-            currentMenu.UpdateInfo(menuName, sort, url, icon);
+            currentMenu.UpdateInfo(menuName, sort, url, path, icon);
 
             this._unitOfWork.RegisterSave(currentMenu);
             this._unitOfWork.UnitedCommit();
