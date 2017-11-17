@@ -1,5 +1,6 @@
 ﻿using Caliburn.Micro;
 using SD.IdentitySystem.Client.Commons;
+using SD.IdentitySystem.Client.ViewModels;
 using SD.IOC.Core.Mediator;
 using System;
 using System.Collections.Generic;
@@ -26,16 +27,20 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            base.DisplayRootViewFor<IElementManager>();
+            base.DisplayRootViewFor<LoginViewModel>();
         }
 
         /// <summary>
         /// 异常事件
         /// </summary>
-        protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
+        protected override async void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs e)
         {
             e.Handled = true;
-            MessageBox.Show(e.Exception.Message, "An error as occurred", MessageBoxButton.OK);
+
+            Exception exception = e.Exception;
+            string errorMessage = exception == null ? null : exception.Message;
+
+            await ElementManager.ShowMessage("应用程序错误", errorMessage);
         }
 
         /// <summary>

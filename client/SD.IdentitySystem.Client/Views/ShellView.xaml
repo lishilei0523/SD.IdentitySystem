@@ -128,7 +128,6 @@
         <StatusBar Grid.Row="1" Foreground="Black" BorderThickness="0 1 0 0" BorderBrush="Gray">
             <StatusBarItem Margin="10 0 0 0" HorizontalAlignment="Left">
                 <StackPanel Orientation="Horizontal">
-                    <Button Content="测试选项卡" cal:Message.Attach="[Event Click] = [Action TestTab]"/>
                     <TextBlock Text="当前登录用户："></TextBlock>
                     <TextBlock Text="admin"></TextBlock>
                 </StackPanel>

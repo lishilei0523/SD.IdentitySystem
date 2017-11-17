@@ -1,6 +1,10 @@
 ﻿using Caliburn.Micro;
+using MahApps.Metro.Controls;
+using MahApps.Metro.Controls.Dialogs;
 using SD.IOC.Core.Mediator;
 using System;
+using System.Threading.Tasks;
+using System.Windows;
 
 namespace SD.IdentitySystem.Client.Commons
 {
@@ -77,6 +81,21 @@ namespace SD.IdentitySystem.Client.Commons
         public static void OpenFlyout<T>() where T : FlyoutBase
         {
             _Current.OpenFlyout<T>();
+        }
+        #endregion
+
+        #region # 打开消息框 —— static async Task ShowMessage(string title...
+        /// <summary>
+        /// 打开消息框
+        /// </summary>
+        /// <param name="title">标题</param>
+        /// <param name="message">消息</param>
+        /// <param name="style">样式</param>
+        /// <param name="config">配置</param>
+        public static async Task ShowMessage(string title, string message, MessageDialogStyle style = MessageDialogStyle.Affirmative, MetroDialogSettings config = null)
+        {
+            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+            await currentView.ShowMessageAsync(title, message, style, config);
         }
         #endregion
     }

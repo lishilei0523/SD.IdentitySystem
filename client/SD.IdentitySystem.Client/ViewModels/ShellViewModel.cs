@@ -116,12 +116,6 @@ namespace SD.IdentitySystem.Client.ViewModels
         }
         #endregion
 
-
-        public void TestTab()
-        {
-            ElementManager.OpenDocument<Test2ViewModel>();
-        }
-
         #endregion
     }
 }
