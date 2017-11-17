@@ -5,6 +5,7 @@ using SD.Infrastructure.Constants;
 using SD.IOC.Core.Mediator;
 using System;
 using System.Diagnostics;
+using System.Windows.Input;
 
 namespace SD.IdentitySystem.Client.ViewModels
 {
@@ -72,6 +73,19 @@ namespace SD.IdentitySystem.Client.ViewModels
         {
             get { return this._password; }
             private set { this.Set(ref this._password, value); }
+        }
+        #endregion
+
+        #region 只读属性 - 登录命令 —— ICommand LoginCommand
+        /// <summary>
+        /// 登录命令
+        /// </summary>
+        public ICommand LoginCommand
+        {
+            get
+            {
+                return new RelayCommand(x => this.Login());
+            }
         }
         #endregion
 

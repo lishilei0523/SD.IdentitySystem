@@ -35,7 +35,7 @@ namespace SD.IdentitySystem.Client.Commons
         public BindableCollection<DocumentBase> Documents
         {
             get { return this._documents; }
-            set { this.Set(ref this._documents, value); }
+            protected set { this.Set(ref this._documents, value); }
         }
         #endregion
 
@@ -51,7 +51,7 @@ namespace SD.IdentitySystem.Client.Commons
         public FlyoutBase Flyout
         {
             get { return this._flyout; }
-            set { this.Set(ref this._flyout, value); }
+            protected set { this.Set(ref this._flyout, value); }
         }
         #endregion
 

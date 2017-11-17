@@ -76,6 +76,9 @@
                          commons:PasswordHelper.Password="{Binding Password, Mode=TwoWay}"
                          controls:TextBoxHelper.Watermark="密码" 
                          controls:TextBoxHelper.ClearTextButton="{Binding RelativeSource={RelativeSource Self}, Path=(controls:TextBoxHelper.HasText), Mode=OneWay}">
+                <PasswordBox.InputBindings>
+                    <KeyBinding Key="Enter" Command="{Binding LoginCommand}"/>
+                </PasswordBox.InputBindings>
             </PasswordBox>
         </Grid>
         <!--按钮-->
