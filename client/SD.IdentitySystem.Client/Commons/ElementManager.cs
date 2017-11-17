@@ -95,6 +95,13 @@ namespace SD.IdentitySystem.Client.Commons
         public static async Task ShowMessage(string title, string message, MessageDialogStyle style = MessageDialogStyle.Affirmative, MetroDialogSettings config = null)
         {
             MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+
+            if (currentView == null)
+            {
+                ViewAware viewAware = (ViewAware)_Current;
+                currentView = (MetroWindow)viewAware.GetView();
+            }
+
             await currentView.ShowMessageAsync(title, message, style, config);
         }
         #endregion
