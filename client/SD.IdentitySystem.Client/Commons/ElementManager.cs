@@ -47,7 +47,10 @@ namespace SD.IdentitySystem.Client.Commons
         /// <param name="type">文档类型</param>
         public static void OpenDocument(Type type)
         {
-            _Current.OpenDocument(type);
+            if (type != null)
+            {
+                _Current.OpenDocument(type);
+            }
         }
         #endregion
 
@@ -69,7 +72,10 @@ namespace SD.IdentitySystem.Client.Commons
         /// <param name="type">飞窗类型</param>
         public static void OpenFlyout(Type type)
         {
-            _Current.OpenFlyout(type);
+            if (type != null)
+            {
+                _Current.OpenFlyout(type);
+            }
         }
         #endregion
 

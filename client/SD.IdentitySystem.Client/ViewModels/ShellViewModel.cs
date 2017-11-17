@@ -111,7 +111,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// <param name="menu">菜单</param>
         public void Navigate(MenuView menu)
         {
-            Type type = Type.GetType(menu.Url);
+            Type type = Type.GetType(menu.Path);
             ElementManager.OpenDocument(type);
         }
         #endregion
