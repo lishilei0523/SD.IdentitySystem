@@ -221,9 +221,6 @@
     </Page>
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="favicon.ico" />
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\website\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
       <Project>{e252094f-979a-4655-b864-e600c33ab75d}</Project>
       <Name>SD.IdentitySystem.IPresentation</Name>
