@@ -40,9 +40,9 @@ namespace SD.IdentitySystem.Client.ViewModels
             base.DisplayName = null;
 
             //自动登录
-            this.LoginId = "admin";
-            this.Password = "888888";
-            this.Login();
+            //this.LoginId = "admin";
+            //this.Password = "888888";
+            //this.Login();
         }
 
         #endregion

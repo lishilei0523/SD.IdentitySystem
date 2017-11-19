@@ -1,8 +1,10 @@
 ﻿using Caliburn.Micro;
+using MahApps.Metro.Controls.Dialogs;
 using SD.IdentitySystem.Client.Commons;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Constants;
+using SD.IOC.Core.Mediator;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
@@ -23,11 +25,17 @@ namespace SD.IdentitySystem.Client.ViewModels
         private readonly IMenuPresenter _menuPresenter;
 
         /// <summary>
+        /// 窗体管理器
+        /// </summary>
+        private readonly IWindowManager _windowManager;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public ShellViewModel(IMenuPresenter menuPresenter)
+        public ShellViewModel(IMenuPresenter menuPresenter, IWindowManager windowManager)
         {
             this._menuPresenter = menuPresenter;
+            this._windowManager = windowManager;
 
             //初始化计时器
             this.InitTimer();
@@ -93,6 +101,38 @@ namespace SD.IdentitySystem.Client.ViewModels
         }
         #endregion
 
+        #region 用户注销 —— async void Logout()
+        /// <summary>
+        /// 用户注销
+        /// </summary>
+        public async void Logout()
+        {
+            MessageDialogResult result = await ElementManager.ShowMessage("警告", "确定要注销吗？", MessageDialogStyle.AffirmativeAndNegative);
+
+            if (result == MessageDialogResult.Affirmative)
+            {
+                this.LogoutInternal();
+            }
+        }
+        #endregion
+
+        #region 修改密码 —— void UpdatePassword()
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        public void UpdatePassword()
+        {
+            UpdatePasswordViewModel flyout = ElementManager.OpenFlyout<UpdatePasswordViewModel>();
+            flyout.FlyoutCloseEvent += x =>
+            {
+                if (((UpdatePasswordViewModel)x).PasswordChanged)
+                {
+                    this.LogoutInternal();
+                }
+            };
+        }
+        #endregion
+
         #region 初始化计时器 —— void InitTimer()
         /// <summary>
         /// 初始化计时器
@@ -116,8 +156,11 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public void InitMenus()
         {
-            IEnumerable<MenuView> menus = this._menuPresenter.GetMenuTreeGrid("00");
-            this.Menus = new BindableCollection<MenuView>(menus);
+            if (Membership.LoginInfo != null)
+            {
+                IEnumerable<MenuView> menus = this._menuPresenter.GetMenuTreeGrid("00");
+                this.Menus = new BindableCollection<MenuView>(menus);
+            }
         }
         #endregion
 
@@ -130,6 +173,24 @@ namespace SD.IdentitySystem.Client.ViewModels
         {
             Type type = Type.GetType(menu.Path);
             ElementManager.OpenDocument(type);
+        }
+        #endregion
+
+        #region 注销 —— void LogoutInternal()
+        /// <summary>
+        /// 注销
+        /// </summary>
+        private void LogoutInternal()
+        {
+            //清空Session
+            AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, null);
+
+            //跳转到登录窗体
+            LoginViewModel loginViewModel = ResolveMediator.Resolve<LoginViewModel>();
+            this._windowManager.ShowWindow(loginViewModel);
+
+            //关闭当前窗口
+            this.TryClose();
         }
         #endregion
 

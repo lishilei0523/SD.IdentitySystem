@@ -46,7 +46,7 @@
         </Style>
     </controls:MetroWindow.Resources>
 
-    <!--标题栏按钮-->
+    <!--标题栏左侧按钮-->
     <controls:MetroWindow.LeftWindowCommands>
         <controls:WindowCommands>
             <Button ToolTip="访问我的码云" cal:Message.Attach="LaunchGitOsc()">
@@ -54,6 +54,14 @@
             </Button>
         </controls:WindowCommands>
     </controls:MetroWindow.LeftWindowCommands>
+
+    <!--标题栏右侧按钮-->
+    <controls:MetroWindow.RightWindowCommands>
+        <controls:WindowCommands ShowLastSeparator="False">
+            <Button Content="注销用户" cal:Message.Attach="[Event Click] = [Action Logout()]"/>
+            <Button Content="修改密码" cal:Message.Attach="[Event Click] = [Action UpdatePassword()]"/>
+        </controls:WindowCommands>
+    </controls:MetroWindow.RightWindowCommands>
 
     <!--飞窗-->
     <controls:MetroWindow.Flyouts>

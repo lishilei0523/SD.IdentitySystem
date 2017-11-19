@@ -37,10 +37,10 @@ namespace SD.IdentitySystem.Client
         {
             e.Handled = true;
 
-            Exception exception = e.Exception;
-            string errorMessage = exception == null ? null : exception.Message;
+            Exception exception = e.Exception.GetInnerException();
+            string errorMessage = exception == null ? null : exception.GetErrorMessage();
 
-            await ElementManager.ShowMessage("应用程序错误", errorMessage);
+            await ElementManager.ShowMessage("错误", errorMessage);
         }
 
         /// <summary>
