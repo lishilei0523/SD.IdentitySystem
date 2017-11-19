@@ -119,5 +119,77 @@ namespace SD.IdentitySystem.Client.Commons
             return await currentView.ShowMessageAsync(title, message, style, config);
         }
         #endregion
+
+        #region # 打开遮罩 —— static void ShowOverlay()
+        /// <summary>
+        /// 打开遮罩
+        /// </summary>
+        public static void ShowOverlay()
+        {
+            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+
+            if (currentView == null)
+            {
+                ViewAware viewAware = (ViewAware)_Current;
+                currentView = (MetroWindow)viewAware.GetView();
+            }
+
+            currentView.ShowOverlay();
+        }
+        #endregion
+
+        #region # 打开遮罩 —— static async Task ShowOverlayAsync()
+        /// <summary>
+        /// 打开遮罩
+        /// </summary>
+        public static async Task ShowOverlayAsync()
+        {
+            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+
+            if (currentView == null)
+            {
+                ViewAware viewAware = (ViewAware)_Current;
+                currentView = (MetroWindow)viewAware.GetView();
+            }
+
+            await currentView.ShowOverlayAsync();
+        }
+        #endregion
+
+        #region # 隐藏遮罩 —— static void HideOverlay()
+        /// <summary>
+        /// 隐藏遮罩
+        /// </summary>
+        public static void HideOverlay()
+        {
+            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+
+            if (currentView == null)
+            {
+                ViewAware viewAware = (ViewAware)_Current;
+                currentView = (MetroWindow)viewAware.GetView();
+            }
+
+            currentView.HideOverlay();
+        }
+        #endregion
+
+        #region # 隐藏遮罩 —— static async Task HideOverlayAsync()
+        /// <summary>
+        /// 隐藏遮罩
+        /// </summary>
+        public static async Task HideOverlayAsync()
+        {
+            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+
+            if (currentView == null)
+            {
+                ViewAware viewAware = (ViewAware)_Current;
+                currentView = (MetroWindow)viewAware.GetView();
+            }
+
+            await currentView.HideOverlayAsync();
+        }
+        #endregion
     }
 }
