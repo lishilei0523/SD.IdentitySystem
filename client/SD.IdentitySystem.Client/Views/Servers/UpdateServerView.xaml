@@ -15,11 +15,27 @@
 
         <!--表单-->
         <ScrollViewer Grid.Row="0" VerticalScrollBarVisibility="Auto">
-            <StackPanel Orientation="Vertical">
-                <TextBox Text="{Binding ServerId}" Visibility="Hidden" />
-                <TextBox controls:TextBoxHelper.Watermark="主机名" Text="{Binding HostName}" />
-                <DatePicker Margin="0 10 0 0" controls:TextBoxHelper.Watermark="服务停止日期" SelectedDate="{Binding ServiceOverDate}" />
-            </StackPanel>
+            <Grid>
+                <StackPanel Orientation="Vertical">
+                    <TextBox Text="{Binding ServerId}" Visibility="Hidden" />
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" VerticalAlignment="Center">主机名：</TextBlock>
+                        <TextBox Grid.Column="1" controls:TextBoxHelper.Watermark="主机名" Text="{Binding HostName}" />
+                    </Grid>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="90"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Grid.Column="0" Margin="0 10 0 0" VerticalAlignment="Center">服务停止日期：</TextBlock>
+                        <DatePicker Grid.Column="1" Margin="0 10 0 0" controls:TextBoxHelper.Watermark="服务停止日期" SelectedDate="{Binding ServiceOverDate}" />
+                    </Grid>
+                </StackPanel>
+            </Grid>
         </ScrollViewer>
 
         <!--按钮-->
