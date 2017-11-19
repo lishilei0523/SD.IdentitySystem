@@ -13,14 +13,14 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace SD.IdentitySystem.Client.Views
+namespace SD.IdentitySystem.Client.Views.Servers
 {
     /// <summary>
-    /// ServerView.xaml 的交互逻辑
+    /// UpdateServerView.xaml 的交互逻辑
     /// </summary>
-    public partial class ServerView : UserControl
+    public partial class UpdateServerView : UserControl
     {
-        public ServerView()
+        public UpdateServerView()
         {
             InitializeComponent();
         }

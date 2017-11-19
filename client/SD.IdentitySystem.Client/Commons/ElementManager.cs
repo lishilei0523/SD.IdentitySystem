@@ -40,57 +40,65 @@ namespace SD.IdentitySystem.Client.Commons
         }
         #endregion
 
-        #region # 打开文档 —— static void OpenDocument(Type type)
+        #region # 打开文档 —— static DocumentBase OpenDocument(Type type)
         /// <summary>
         /// 打开文档
         /// </summary>
         /// <param name="type">文档类型</param>
-        public static void OpenDocument(Type type)
+        /// <returns>文档</returns>
+        public static DocumentBase OpenDocument(Type type)
         {
             if (type != null)
             {
-                _Current.OpenDocument(type);
+                return _Current.OpenDocument(type);
             }
+
+            return null;
         }
         #endregion
 
-        #region # 打开文档 —— static void OpenDocument<T>()
+        #region # 打开文档 —— static DocumentBase OpenDocument<T>()
         /// <summary>
         /// 打开文档
         /// </summary>
         /// <typeparam name="T">文档类型</typeparam>
-        public static void OpenDocument<T>() where T : DocumentBase
+        /// <returns>文档</returns>
+        public static DocumentBase OpenDocument<T>() where T : DocumentBase
         {
-            _Current.OpenDocument<T>();
+            return _Current.OpenDocument<T>();
         }
         #endregion
 
-        #region # 打开飞窗 —— void OpenFlyout(Type type)
+        #region # 打开飞窗 —— static FlyoutBase OpenFlyout(Type type)
         /// <summary>
         /// 打开飞窗
         /// </summary>
         /// <param name="type">飞窗类型</param>
-        public static void OpenFlyout(Type type)
+        /// <returns>飞窗</returns>
+        public static FlyoutBase OpenFlyout(Type type)
         {
             if (type != null)
             {
-                _Current.OpenFlyout(type);
+                return _Current.OpenFlyout(type);
             }
+
+            return null;
         }
         #endregion
 
-        #region # 打开飞窗 —— static void OpenFlyout<T>()
+        #region # 打开飞窗 —— static T OpenFlyout<T>()
         /// <summary>
         /// 打开飞窗
         /// </summary>
         /// <typeparam name="T">飞窗类型</typeparam>
-        public static void OpenFlyout<T>() where T : FlyoutBase
+        /// <returns>飞窗</returns>
+        public static T OpenFlyout<T>() where T : FlyoutBase
         {
-            _Current.OpenFlyout<T>();
+            return _Current.OpenFlyout<T>();
         }
         #endregion
 
-        #region # 打开消息框 —— static async Task ShowMessage(string title...
+        #region # 打开消息框 —— static async Task<MessageDialogResult> ShowMessage(...
         /// <summary>
         /// 打开消息框
         /// </summary>
@@ -98,7 +106,7 @@ namespace SD.IdentitySystem.Client.Commons
         /// <param name="message">消息</param>
         /// <param name="style">样式</param>
         /// <param name="config">配置</param>
-        public static async Task ShowMessage(string title, string message, MessageDialogStyle style = MessageDialogStyle.Affirmative, MetroDialogSettings config = null)
+        public static async Task<MessageDialogResult> ShowMessage(string title, string message, MessageDialogStyle style = MessageDialogStyle.Affirmative, MetroDialogSettings config = null)
         {
             MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
 
@@ -108,7 +116,7 @@ namespace SD.IdentitySystem.Client.Commons
                 currentView = (MetroWindow)viewAware.GetView();
             }
 
-            await currentView.ShowMessageAsync(title, message, style, config);
+            return await currentView.ShowMessageAsync(title, message, style, config);
         }
         #endregion
     }

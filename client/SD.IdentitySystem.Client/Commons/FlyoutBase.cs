@@ -1,4 +1,5 @@
 ﻿using MahApps.Metro.Controls;
+using System;
 using System.Windows;
 
 namespace SD.IdentitySystem.Client.Commons
@@ -8,6 +9,17 @@ namespace SD.IdentitySystem.Client.Commons
     /// </summary>
     public abstract class FlyoutBase : ElementBase
     {
+        #region # 事件
+
+        #region 飞窗关闭事件 —— event Action<FlyoutBase> FlyoutCloseEvent
+        /// <summary>
+        /// 飞窗关闭事件
+        /// </summary>
+        public event Action<FlyoutBase> FlyoutCloseEvent;
+        #endregion
+
+        #endregion
+
         #region # 属性
 
         #region 位置 —— Position Position
@@ -63,6 +75,11 @@ namespace SD.IdentitySystem.Client.Commons
         public override void Close()
         {
             this.Active = false;
+
+            if (this.FlyoutCloseEvent != null)
+            {
+                this.FlyoutCloseEvent.Invoke(this);
+            }
         }
         #endregion
 

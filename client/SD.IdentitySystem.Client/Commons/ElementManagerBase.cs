@@ -59,12 +59,13 @@ namespace SD.IdentitySystem.Client.Commons
 
         #region # 方法
 
-        #region 打开文档 —— void OpenDocument(Type type)
+        #region 打开文档 —— DocumentBase OpenDocument(Type type)
         /// <summary>
         /// 打开文档
         /// </summary>
         /// <param name="type">文档类型</param>
-        public void OpenDocument(Type type)
+        /// <returns>文档</returns>
+        public DocumentBase OpenDocument(Type type)
         {
             //验证
             Assert.IsTrue(type.IsSubclassOf(typeof(DocumentBase)), "给定类型不是文档！");
@@ -78,15 +79,18 @@ namespace SD.IdentitySystem.Client.Commons
             }
 
             document.Open();
+
+            return document;
         }
         #endregion
 
-        #region 打开文档 —— void OpenDocument<T>()
+        #region 打开文档 —— T OpenDocument<T>()
         /// <summary>
         /// 打开文档
         /// </summary>
         /// <typeparam name="T">文档类型</typeparam>
-        public void OpenDocument<T>() where T : DocumentBase
+        /// <returns>文档</returns>
+        public T OpenDocument<T>() where T : DocumentBase
         {
             DocumentBase document = this.Documents.SingleOrDefault(x => x.GetType().FullName == typeof(T).FullName);
 
@@ -97,33 +101,41 @@ namespace SD.IdentitySystem.Client.Commons
             }
 
             document.Open();
+
+            return (T)document;
         }
         #endregion
 
-        #region 打开飞窗 —— void OpenFlyout(Type type)
+        #region 打开飞窗 —— FlyoutBase OpenFlyout(Type type)
         /// <summary>
         /// 打开飞窗
         /// </summary>
         /// <param name="type">飞窗类型</param>
-        public void OpenFlyout(Type type)
+        /// <returns>飞窗</returns>
+        public FlyoutBase OpenFlyout(Type type)
         {
             //验证
             Assert.IsTrue(type.IsSubclassOf(typeof(FlyoutBase)), "给定类型不是飞窗！");
 
             this.Flyout = (FlyoutBase)ResolveMediator.Resolve(type);
             this.Flyout.Open();
+
+            return this.Flyout;
         }
         #endregion
 
-        #region 打开飞窗 —— void OpenFlyout<T>()
+        #region 打开飞窗 —— T OpenFlyout<T>()
         /// <summary>
         /// 打开飞窗
         /// </summary>
         /// <typeparam name="T">飞窗类型</typeparam>
-        public void OpenFlyout<T>() where T : FlyoutBase
+        /// <returns>飞窗</returns>
+        public T OpenFlyout<T>() where T : FlyoutBase
         {
             this.Flyout = ResolveMediator.Resolve<T>();
             this.Flyout.Open();
+
+            return (T)this.Flyout;
         }
         #endregion
 

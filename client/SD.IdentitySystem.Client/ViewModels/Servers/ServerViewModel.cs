@@ -1,11 +1,13 @@
 ﻿using Caliburn.Micro;
+using MahApps.Metro.Controls.Dialogs;
 using SD.IdentitySystem.Client.Commons;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Interfaces;
 
-namespace SD.IdentitySystem.Client.ViewModels
+namespace SD.IdentitySystem.Client.ViewModels.Servers
 {
     /// <summary>
     /// 服务器ViewModel
@@ -20,12 +22,19 @@ namespace SD.IdentitySystem.Client.ViewModels
         private readonly IServerPresenter _serverPresenter;
 
         /// <summary>
+        /// 权限服务接口
+        /// </summary>
+        private readonly IAuthorizationContract _authorizationContract;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
         /// <param name="serverPresenter">服务器呈现器接口</param>
-        public ServerViewModel(IServerPresenter serverPresenter)
+        /// <param name="authorizationContract">权限服务接口</param>
+        public ServerViewModel(IServerPresenter serverPresenter, IAuthorizationContract authorizationContract)
         {
             this._serverPresenter = serverPresenter;
+            this._authorizationContract = authorizationContract;
 
             //默认值
             this.PageIndex = 1;
@@ -141,6 +150,47 @@ namespace SD.IdentitySystem.Client.ViewModels
             PageModel<ServerView> pageModel = this._serverPresenter.GetServersByPage(this.Keywords, this.PageIndex, this.PageSize);
             this.RowCount = pageModel.RowCount;
             this.Servers = new BindableCollection<ServerView>(pageModel.Datas);
+        }
+        #endregion
+
+        #region 创建服务器 —— void CreateServer()
+        /// <summary>
+        /// 创建服务器
+        /// </summary>
+        public void CreateServer()
+        {
+            CreateServerViewModel flyout = ElementManager.OpenFlyout<CreateServerViewModel>();
+            flyout.FlyoutCloseEvent += x => this.RefreshData();
+        }
+        #endregion
+
+        #region 修改服务器 —— void UpdateServer(ServerView server)
+        /// <summary>
+        /// 修改服务器
+        /// </summary>
+        public void UpdateServer(ServerView server)
+        {
+            UpdateServerViewModel flyout = ElementManager.OpenFlyout<UpdateServerViewModel>();
+            flyout.Initialize(server.Id, server.Name, server.ServiceOverDate);
+
+            flyout.FlyoutCloseEvent += x => this.RefreshData();
+        }
+        #endregion
+
+        #region 删除服务器 —— async void RemoveServer(ServerView server)
+        /// <summary>
+        /// 删除服务器
+        /// </summary>
+        /// <param name="server">服务器</param>
+        public async void RemoveServer(ServerView server)
+        {
+            MessageDialogResult result = await ElementManager.ShowMessage("警告", "确定要删除吗？", MessageDialogStyle.AffirmativeAndNegative);
+
+            if (result == MessageDialogResult.Affirmative)
+            {
+                this._authorizationContract.RemoveServer(server.Id);
+                this.Servers.Remove(server);
+            }
         }
         #endregion
 

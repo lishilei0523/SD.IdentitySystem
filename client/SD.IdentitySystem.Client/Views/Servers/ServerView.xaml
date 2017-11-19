@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="SD.IdentitySystem.Client.Views.ServerView"
+﻿<UserControl x:Class="SD.IdentitySystem.Client.Views.Servers.ServerView"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -29,7 +29,8 @@
                     <Button Width="50"
                             Height="50"
                             Margin="0"
-                            Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}">
+                            Style="{DynamicResource MahApps.Metro.Styles.MetroCircleButtonStyle}"
+                            cal:Message.Attach="[Event Click] = [Action CreateServer()]">
                         <iconPacks:PackIconModern Width="20" Height="20" Kind="Add" />
                     </Button>
                 </StackPanel>
@@ -71,14 +72,20 @@
                 <DataGridTemplateColumn Header="设置" MinWidth="75">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="设置" Width="50" Style="{DynamicResource SquareButtonStyle}"/>
+                            <Button Content="设置"
+                                    Width="50" 
+                                    Style="{DynamicResource SquareButtonStyle}"
+                                    cal:Message.Attach="[Event Click] = [Action UpdateServer($datacontext)]"/>
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>
                 <DataGridTemplateColumn Header="删除" MinWidth="75">
                     <DataGridTemplateColumn.CellTemplate>
                         <DataTemplate>
-                            <Button Content="删除" Width="50" Style="{DynamicResource SquareButtonStyle}"/>
+                            <Button Content="删除" 
+                                    Width="50"
+                                    Style="{DynamicResource SquareButtonStyle}"
+                                    cal:Message.Attach="[Event Click] = [Action RemoveServer($datacontext)]" />
                         </DataTemplate>
                     </DataGridTemplateColumn.CellTemplate>
                 </DataGridTemplateColumn>

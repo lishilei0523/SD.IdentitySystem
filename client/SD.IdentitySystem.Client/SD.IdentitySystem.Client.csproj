@@ -181,13 +181,21 @@
     <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\ServerViewModel.cs" />
+    <Compile Include="ViewModels\Servers\CreateServerViewModel.cs" />
+    <Compile Include="ViewModels\Servers\ServerViewModel.cs" />
+    <Compile Include="ViewModels\Servers\UpdateServerViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\ServerView.xaml.cs">
+    <Compile Include="Views\Servers\CreateServerView.xaml.cs">
+      <DependentUpon>CreateServerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Servers\ServerView.xaml.cs">
       <DependentUpon>ServerView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Servers\UpdateServerView.xaml.cs">
+      <DependentUpon>UpdateServerView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\ShellView.xaml.cs">
       <DependentUpon>ShellView.xaml</DependentUpon>
@@ -233,7 +241,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\ServerView.xaml">
+    <Page Include="Views\Servers\CreateServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Servers\ServerView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Servers\UpdateServerView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

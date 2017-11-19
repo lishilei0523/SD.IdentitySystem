@@ -22,24 +22,28 @@ namespace SD.IdentitySystem.Client.Commons
         /// 打开文档
         /// </summary>
         /// <param name="type">文档类型</param>
-        void OpenDocument(Type type);
+        /// <returns>文档</returns>
+        DocumentBase OpenDocument(Type type);
 
         /// <summary>
         /// 打开文档
         /// </summary>
         /// <typeparam name="T">文档类型</typeparam>
-        void OpenDocument<T>() where T : DocumentBase;
+        /// <returns>文档</returns>
+        T OpenDocument<T>() where T : DocumentBase;
 
         /// <summary>
         /// 打开飞窗
         /// </summary>
         /// <param name="type">飞窗类型</param>
-        void OpenFlyout(Type type);
+        /// <returns>飞窗</returns>
+        FlyoutBase OpenFlyout(Type type);
 
         /// <summary>
         /// 打开飞窗
         /// </summary>
         /// <typeparam name="T">飞窗类型</typeparam>
-        void OpenFlyout<T>() where T : FlyoutBase;
+        /// <returns>飞窗</returns>
+        T OpenFlyout<T>() where T : FlyoutBase;
     }
 }
