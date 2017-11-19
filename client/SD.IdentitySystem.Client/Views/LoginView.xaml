@@ -83,7 +83,7 @@
         </Grid>
         <!--按钮-->
         <StackPanel Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
-            <Button Content="登 录" Width="300" FontSize="14" VerticalAlignment="Center" Background="{StaticResource AccentColorBrush4}"
+            <Button Content="登  录" Width="300" FontFamily="微软雅黑" FontSize="14" VerticalAlignment="Center" Foreground="#FFFFFF" Background="{StaticResource DisabledMenuItemForeground}"
                     cal:Message.Attach="[Event Click] = [Action Login()]"/>
         </StackPanel>
     </Grid>
