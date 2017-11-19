@@ -188,7 +188,6 @@
     <Compile Include="Commons\Interfaces\IPageable.cs" />
     <Compile Include="Commons\PasswordHelper.cs" />
     <Compile Include="Commons\RelayCommand.cs" />
-    <Compile Include="Converters\DateConverter.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Servers\CreateServerViewModel.cs" />
