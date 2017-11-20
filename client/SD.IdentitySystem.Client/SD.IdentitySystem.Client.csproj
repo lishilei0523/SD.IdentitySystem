@@ -189,12 +189,16 @@
     <Compile Include="Commons\PasswordHelper.cs" />
     <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\InfoSystems\InfoSystemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Servers\CreateServerViewModel.cs" />
     <Compile Include="ViewModels\Servers\ServerViewModel.cs" />
     <Compile Include="ViewModels\Servers\UpdateServerViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\UpdatePasswordViewModel.cs" />
+    <Compile Include="Views\InfoSystems\InfoSystemView.xaml.cs">
+      <DependentUpon>InfoSystemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
@@ -247,6 +251,10 @@
   </ItemGroup>
   <ItemGroup>
     <Page Include="Commons\Controls\Pager.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\InfoSystems\InfoSystemView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
