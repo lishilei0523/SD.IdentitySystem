@@ -4,6 +4,7 @@ using MahApps.Metro.Controls.Dialogs;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
+using SD.IOC.Core.Mediator;
 
 namespace SD.IdentitySystem.Client.Commons
 {
@@ -25,10 +26,9 @@ namespace SD.IdentitySystem.Client.Commons
         /// <summary>
         /// 初始化
         /// </summary>
-        /// <param name="elementManager">元素管理器实例</param>
-        public static void Init(IElementManager elementManager)
+        public static void Init()
         {
-            _Current = elementManager;
+            _Current = ResolveMediator.Resolve<IElementManager>();
         }
         #endregion
 
