@@ -162,6 +162,10 @@ namespace SD.IdentitySystem.Client.Commons
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
             }
+            else if (currentView == null)
+            {
+                return MessageDialogResult.Negative;
+            }
             else
             {
                 return MessageDialogResult.Negative;
@@ -183,6 +187,10 @@ namespace SD.IdentitySystem.Client.Commons
             {
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
+            }
+            else if (currentView == null)
+            {
+                return;
             }
             else
             {
@@ -206,6 +214,10 @@ namespace SD.IdentitySystem.Client.Commons
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
             }
+            else if (currentView == null)
+            {
+                return;
+            }
             else
             {
                 return;
@@ -228,6 +240,10 @@ namespace SD.IdentitySystem.Client.Commons
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
             }
+            else if (currentView == null)
+            {
+                return;
+            }
             else
             {
                 return;
@@ -249,6 +265,10 @@ namespace SD.IdentitySystem.Client.Commons
             {
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
+            }
+            else if (currentView == null)
+            {
+                return;
             }
             else
             {
