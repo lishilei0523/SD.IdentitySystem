@@ -1,10 +1,10 @@
 ﻿using Caliburn.Micro;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
+using SD.IOC.Core.Mediator;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
-using SD.IOC.Core.Mediator;
 
 namespace SD.IdentitySystem.Client.Commons
 {
@@ -22,7 +22,7 @@ namespace SD.IdentitySystem.Client.Commons
 
         #endregion
 
-        #region # 初始化 —— static void Init(IElementManager elementManager)
+        #region # 初始化 —— static void Init()
         /// <summary>
         /// 初始化
         /// </summary>
