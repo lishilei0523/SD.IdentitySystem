@@ -119,8 +119,11 @@ namespace SD.IdentitySystem.Client.ViewModels
             //存入Session
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
 
-            //跳转到主窗体
+            //初始化元素管理器
             IElementManager elementManager = ResolveMediator.Resolve<IElementManager>();
+            ElementManager.Init(elementManager);
+
+            //跳转到主窗体
             this._windowManager.ShowWindow(elementManager);
 
             //关闭当前窗口

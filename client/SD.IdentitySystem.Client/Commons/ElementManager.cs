@@ -1,7 +1,6 @@
 ﻿using Caliburn.Micro;
 using MahApps.Metro.Controls;
 using MahApps.Metro.Controls.Dialogs;
-using SD.IOC.Core.Mediator;
 using System;
 using System.Threading.Tasks;
 using System.Windows;
@@ -13,21 +12,24 @@ namespace SD.IdentitySystem.Client.Commons
     /// </summary>
     public static class ElementManager
     {
-        #region # 字段及构造器
+        #region # 字段
 
         /// <summary>
         /// 元素管理器实例
         /// </summary>
-        private static readonly IElementManager _Current;
+        private static IElementManager _Current;
 
+        #endregion
+
+        #region # 初始化 —— static void Init(IElementManager elementManager)
         /// <summary>
-        /// 静态构造器
+        /// 初始化
         /// </summary>
-        static ElementManager()
+        /// <param name="elementManager">元素管理器实例</param>
+        public static void Init(IElementManager elementManager)
         {
-            _Current = ResolveMediator.Resolve<IElementManager>();
+            _Current = elementManager;
         }
-
         #endregion
 
         #region # 文档列表 —— static BindableCollection<DocumentBase> Documents
@@ -36,7 +38,19 @@ namespace SD.IdentitySystem.Client.Commons
         /// </summary>
         public static BindableCollection<DocumentBase> Documents
         {
-            get { return _Current.Documents; }
+            get
+            {
+                #region # 验证
+
+                if (_Current == null)
+                {
+                    throw new ApplicationException("元素管理器未初始化！");
+                }
+
+                #endregion
+
+                return _Current.Documents;
+            }
         }
         #endregion
 
@@ -48,12 +62,20 @@ namespace SD.IdentitySystem.Client.Commons
         /// <returns>文档</returns>
         public static DocumentBase OpenDocument(Type type)
         {
-            if (type != null)
+            #region # 验证
+
+            if (_Current == null)
             {
-                return _Current.OpenDocument(type);
+                throw new ApplicationException("元素管理器未初始化！");
+            }
+            if (type == null)
+            {
+                return null;
             }
 
-            return null;
+            #endregion
+
+            return _Current.OpenDocument(type);
         }
         #endregion
 
@@ -65,6 +87,15 @@ namespace SD.IdentitySystem.Client.Commons
         /// <returns>文档</returns>
         public static DocumentBase OpenDocument<T>() where T : DocumentBase
         {
+            #region # 验证
+
+            if (_Current == null)
+            {
+                throw new ApplicationException("元素管理器未初始化！");
+            }
+
+            #endregion
+
             return _Current.OpenDocument<T>();
         }
         #endregion
@@ -77,12 +108,20 @@ namespace SD.IdentitySystem.Client.Commons
         /// <returns>飞窗</returns>
         public static FlyoutBase OpenFlyout(Type type)
         {
-            if (type != null)
+            #region # 验证
+
+            if (_Current == null)
             {
-                return _Current.OpenFlyout(type);
+                throw new ApplicationException("元素管理器未初始化！");
+            }
+            if (type == null)
+            {
+                return null;
             }
 
-            return null;
+            #endregion
+
+            return _Current.OpenFlyout(type);
         }
         #endregion
 
@@ -94,6 +133,14 @@ namespace SD.IdentitySystem.Client.Commons
         /// <returns>飞窗</returns>
         public static T OpenFlyout<T>() where T : FlyoutBase
         {
+            #region # 验证
+
+            if (_Current == null)
+            {
+                throw new ApplicationException("元素管理器未初始化！");
+            }
+            #endregion
+
             return _Current.OpenFlyout<T>();
         }
         #endregion
@@ -108,12 +155,16 @@ namespace SD.IdentitySystem.Client.Commons
         /// <param name="config">配置</param>
         public static async Task<MessageDialogResult> ShowMessage(string title, string message, MessageDialogStyle style = MessageDialogStyle.Affirmative, MetroDialogSettings config = null)
         {
-            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+            MetroWindow currentView = Application.Current.MainWindow as MetroWindow;
 
-            if (currentView == null)
+            if (currentView == null && _Current != null)
             {
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
+            }
+            else
+            {
+                return MessageDialogResult.Negative;
             }
 
             return await currentView.ShowMessageAsync(title, message, style, config);
@@ -126,12 +177,16 @@ namespace SD.IdentitySystem.Client.Commons
         /// </summary>
         public static void ShowOverlay()
         {
-            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+            MetroWindow currentView = Application.Current.MainWindow as MetroWindow;
 
-            if (currentView == null)
+            if (currentView == null && _Current != null)
             {
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
+            }
+            else
+            {
+                return;
             }
 
             currentView.ShowOverlay();
@@ -144,12 +199,16 @@ namespace SD.IdentitySystem.Client.Commons
         /// </summary>
         public static async Task ShowOverlayAsync()
         {
-            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+            MetroWindow currentView = Application.Current.MainWindow as MetroWindow;
 
-            if (currentView == null)
+            if (currentView == null && _Current != null)
             {
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
+            }
+            else
+            {
+                return;
             }
 
             await currentView.ShowOverlayAsync();
@@ -162,12 +221,16 @@ namespace SD.IdentitySystem.Client.Commons
         /// </summary>
         public static void HideOverlay()
         {
-            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+            MetroWindow currentView = Application.Current.MainWindow as MetroWindow;
 
-            if (currentView == null)
+            if (currentView == null && _Current != null)
             {
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
+            }
+            else
+            {
+                return;
             }
 
             currentView.HideOverlay();
@@ -180,12 +243,16 @@ namespace SD.IdentitySystem.Client.Commons
         /// </summary>
         public static async Task HideOverlayAsync()
         {
-            MetroWindow currentView = (MetroWindow)Application.Current.MainWindow;
+            MetroWindow currentView = Application.Current.MainWindow as MetroWindow;
 
-            if (currentView == null)
+            if (currentView == null && _Current != null)
             {
                 ViewAware viewAware = (ViewAware)_Current;
                 currentView = (MetroWindow)viewAware.GetView();
+            }
+            else
+            {
+                return;
             }
 
             await currentView.HideOverlayAsync();
