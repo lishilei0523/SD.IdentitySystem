@@ -300,14 +300,13 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         private void Btn_PrevPage_Click(object sender, RoutedEventArgs e)
         {
-            this.PageIndex--;
-
             if (this.PageIndex <= MinPageIndex)
             {
                 this.PageIndex = MinPageIndex;
                 return;
             }
 
+            this.PageIndex--;
             this.RaiseEvent(new RoutedEventArgs(RefreshEvent, this));
         }
         #endregion
@@ -320,11 +319,11 @@ namespace SD.Infrastructure.WPF.Controls
         {
             if (this.PageIndex >= this.PageCount)
             {
+                this.PageIndex = this.PageCount;
                 return;
             }
 
             this.PageIndex++;
-
             this.RaiseEvent(new RoutedEventArgs(RefreshEvent, this));
         }
         #endregion

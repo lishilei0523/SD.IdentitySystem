@@ -123,8 +123,8 @@ namespace SD.IdentitySystem.Client.ViewModels
             ElementManager.Init();
 
             //跳转到主窗体
-            ShellViewModel shellViewModel = ResolveMediator.Resolve<ShellViewModel>();
-            this._windowManager.ShowWindow(shellViewModel);
+            IElementManager elementManager = ResolveMediator.Resolve<IElementManager>();
+            this._windowManager.ShowWindow(elementManager);
 
             //关闭当前窗口
             this.TryClose();
