@@ -185,10 +185,12 @@
     <Compile Include="Commons\ExceptionExtension.cs" />
     <Compile Include="Commons\FlyoutBase.cs" />
     <Compile Include="Commons\IElementManager.cs" />
+    <Compile Include="Commons\Interfaces\IInitialize.cs" />
     <Compile Include="Commons\Interfaces\IPageable.cs" />
     <Compile Include="Commons\PasswordHelper.cs" />
     <Compile Include="Commons\RelayCommand.cs" />
     <Compile Include="Properties\Annotations.cs" />
+    <Compile Include="ViewModels\InfoSystems\CreateInfoSystemViewModel.cs" />
     <Compile Include="ViewModels\InfoSystems\InfoSystemViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\Servers\CreateServerViewModel.cs" />
@@ -196,6 +198,9 @@
     <Compile Include="ViewModels\Servers\UpdateServerViewModel.cs" />
     <Compile Include="ViewModels\ShellViewModel.cs" />
     <Compile Include="ViewModels\UpdatePasswordViewModel.cs" />
+    <Compile Include="Views\InfoSystems\CreateInfoSystemView.xaml.cs">
+      <DependentUpon>CreateInfoSystemView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\InfoSystems\InfoSystemView.xaml.cs">
       <DependentUpon>InfoSystemView.xaml</DependentUpon>
     </Compile>
@@ -253,6 +258,10 @@
     <Page Include="Commons\Controls\Pager.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\InfoSystems\CreateInfoSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InfoSystems\InfoSystemView.xaml">
       <Generator>MSBuild:Compile</Generator>

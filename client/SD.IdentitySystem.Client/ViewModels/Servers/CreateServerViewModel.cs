@@ -27,8 +27,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Servers
             this._authorizationContract = authorizationContract;
 
             //默认值
-            this.Position = Position.Right;
-            this.Margin = new Thickness(700, 30, 0, 30);
+            base.Position = Position.Right;
+            base.Margin = new Thickness(700, 30, 0, 30);
             this.ServiceOverDate = DateTime.Today;
         }
 
@@ -106,6 +106,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Servers
         public async void CreateServer()
         {
             this._authorizationContract.CreateServer(this.UniqueCode, this.HostName, this.ServiceOverDate);
+
+            this.ExecuteOk = true;
             await ElementManager.ShowMessage("OK", "创建成功！");
             this.Close();
         }

@@ -9,6 +9,16 @@ namespace SD.IdentitySystem.Client.Commons
     /// </summary>
     public abstract class FlyoutBase : ElementBase
     {
+        #region # 构造器
+        /// <summary>
+        /// 构造器
+        /// </summary>
+        protected FlyoutBase()
+        {
+            this.ExecuteOk = false;
+        }
+        #endregion
+
         #region # 事件
 
         #region 飞窗关闭事件 —— event Action<FlyoutBase> FlyoutCloseEvent
@@ -54,6 +64,13 @@ namespace SD.IdentitySystem.Client.Commons
         }
         #endregion
 
+        #region 是否执行成功 —— bool ExecuteOk
+        /// <summary>
+        /// 是否执行成功
+        /// </summary>
+        public bool ExecuteOk { get; protected set; }
+        #endregion
+
         #endregion
 
         #region # 方法
@@ -76,7 +93,7 @@ namespace SD.IdentitySystem.Client.Commons
         {
             this.Active = false;
 
-            if (this.FlyoutCloseEvent != null)
+            if (this.ExecuteOk && this.FlyoutCloseEvent != null)
             {
                 this.FlyoutCloseEvent.Invoke(this);
             }

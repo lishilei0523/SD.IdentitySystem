@@ -171,7 +171,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Servers
         public void UpdateServer(ServerView server)
         {
             UpdateServerViewModel flyout = ElementManager.OpenFlyout<UpdateServerViewModel>();
-            flyout.Initialize(server.Id, server.Name, server.ServiceOverDate);
+            flyout.Initialize(server);
 
             flyout.FlyoutCloseEvent += x => this.RefreshData();
         }
@@ -184,7 +184,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Servers
         /// <param name="server">服务器</param>
         public async void RemoveServer(ServerView server)
         {
-            MessageDialogResult result = await ElementManager.ShowMessage("警告", "确定要删除吗？", MessageDialogStyle.AffirmativeAndNegative);
+            MetroDialogSettings setting = new MetroDialogSettings
+            {
+                AffirmativeButtonText = "确定",
+                NegativeButtonText = "取消"
+            };
+
+            MessageDialogResult result = await ElementManager.ShowMessage("警告", "确定要删除吗？", MessageDialogStyle.AffirmativeAndNegative, setting);
 
             if (result == MessageDialogResult.Affirmative)
             {

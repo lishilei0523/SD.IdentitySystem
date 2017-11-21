@@ -1,6 +1,8 @@
 ﻿using MahApps.Metro.Controls;
 using SD.IdentitySystem.Client.Commons;
+using SD.IdentitySystem.Client.Commons.Interfaces;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using System;
 using System.Windows;
 
@@ -9,7 +11,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Servers
     /// <summary>
     /// 修改服务器ViewModel
     /// </summary>
-    public class UpdateServerViewModel : FlyoutBase
+    public class UpdateServerViewModel : FlyoutBase, IInitialize<ServerView>
     {
         #region # 依赖注入构造器
 
@@ -29,7 +31,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Servers
             //默认值
             this.Position = Position.Right;
             this.Margin = new Thickness(700, 30, 0, 30);
-            this.Initialized = false;
         }
 
         #endregion
@@ -78,13 +79,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Servers
         }
         #endregion
 
-        #region 是否已初始化 —— bool Initialized
-        /// <summary>
-        /// 是否已初始化
-        /// </summary>
-        public bool Initialized { get; private set; }
-        #endregion
-
         #region 服务停止日期 —— DateTime ServiceOverDate
         /// <summary>
         /// 服务停止日期
@@ -106,19 +100,16 @@ namespace SD.IdentitySystem.Client.ViewModels.Servers
 
         #region # 方法
 
-        #region 初始化 —— void Initialize(Guid serverId, string hostName...
+        #region 初始化 —— void Initialize(ServerView server)
         /// <summary>
         /// 初始化
         /// </summary>
-        /// <param name="serverId">服务器Id</param>
-        /// <param name="hostName">主机名</param>
-        /// <param name="serviceOverDate">服务停止日期</param>
-        public void Initialize(Guid serverId, string hostName, DateTime serviceOverDate)
+        /// <param name="server">服务器</param>
+        public void Initialize(ServerView server)
         {
-            this.ServerId = serverId;
-            this.HostName = hostName;
-            this.ServiceOverDate = serviceOverDate;
-            this.Initialized = true;
+            this.ServerId = server.Id;
+            this.HostName = server.Name;
+            this.ServiceOverDate = server.ServiceOverDate;
         }
         #endregion
 
@@ -128,14 +119,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Servers
         /// </summary>
         public async void UpdateServer()
         {
-            //验证
-            if (this.Initialized)
-            {
-                this._authorizationContract.UpdateServerHostName(this.ServerId, this.HostName);
-                this._authorizationContract.UpdateServiceOverDate(this.ServerId, this.ServiceOverDate);
-                await ElementManager.ShowMessage("OK", "修改成功！");
-                this.Close();
-            }
+            this._authorizationContract.UpdateServerHostName(this.ServerId, this.HostName);
+            this._authorizationContract.UpdateServiceOverDate(this.ServerId, this.ServiceOverDate);
+
+            this.ExecuteOk = true;
+            await ElementManager.ShowMessage("OK", "修改成功！");
+            this.Close();
         }
         #endregion
 

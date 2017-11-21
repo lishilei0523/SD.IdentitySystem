@@ -144,6 +144,28 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystems
         }
         #endregion
 
+        #region 创建信息系统 —— void CreateInfoSystem()
+        /// <summary>
+        /// 创建信息系统
+        /// </summary>
+        public void CreateInfoSystem()
+        {
+            CreateInfoSystemViewModel flyout = ElementManager.OpenFlyout<CreateInfoSystemViewModel>();
+            flyout.FlyoutCloseEvent += x => this.RefreshData();
+        }
+        #endregion
+
+        #region 初始化信息系统 —— void InitInfoSystem(InfoSystemView infoSystem)
+        /// <summary>
+        /// 初始化信息系统
+        /// </summary>
+        /// <param name="infoSystem">信息系统</param>
+        public void InitInfoSystem(InfoSystemView infoSystem)
+        {
+
+        }
+        #endregion
+
         #endregion
     }
 }
