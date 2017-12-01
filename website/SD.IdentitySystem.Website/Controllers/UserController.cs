@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.FormatModel.EasyUI;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
@@ -8,7 +9,6 @@ using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -113,7 +113,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("重置密码视图")]
         public ViewResult ResetPassword(string id)
         {
-            base.ViewBag.LoginId = OperationContext.LoginInfo == null ? null : OperationContext.LoginInfo.LoginId;
+            base.ViewBag.LoginId = id;
 
             return base.View();
         }

@@ -171,25 +171,6 @@ namespace SD.IdentitySystem.Client.Commons
                 return MessageDialogResult.Negative;
             }
 
-            if (config == null)
-            {
-                switch (style)
-                {
-                    case MessageDialogStyle.Affirmative:
-                        config = new MetroDialogSettings { AffirmativeButtonText = "确定" };
-                        break;
-                    case MessageDialogStyle.AffirmativeAndNegative:
-                        break;
-                    case MessageDialogStyle.AffirmativeAndNegativeAndSingleAuxiliary:
-                        break;
-                    case MessageDialogStyle.AffirmativeAndNegativeAndDoubleAuxiliary:
-                        break;
-                    default:
-                        throw new ArgumentOutOfRangeException("style", style, null);
-                }
-            }
-
-
             return await currentView.ShowMessageAsync(title, message, style, config);
         }
         #endregion
