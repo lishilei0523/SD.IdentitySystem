@@ -161,6 +161,7 @@ function updatingPassword() {
 
 //修改密码成功
 function updateSucceed() {
+    $.messageBox.close();
     $.messager.alert("OK", "修改成功");
     $("#dvUpdatePwd").window("close");
 }
