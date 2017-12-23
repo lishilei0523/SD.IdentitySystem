@@ -40,8 +40,9 @@
       <HintPath>..\..\packages\Autofac.4.6.2\lib\net45\Autofac.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="AutoMapper, Version=6.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.6.1.1\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="Caliburn.Micro, Version=3.2.0.0, Culture=neutral, PublicKeyToken=8e5891231f2ed21f, processorArchitecture=MSIL">
@@ -73,7 +74,8 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Common, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.1.0.5\lib\net45\SD.Common.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\SD.Common.1.0.6\lib\net45\SD.Common.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.FormatModel.EasyUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
