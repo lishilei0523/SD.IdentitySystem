@@ -2,6 +2,7 @@
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Attributes;
+using SD.Infrastructure.Constants;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -17,6 +18,11 @@ namespace SD.IdentitySystem.InitializationTool
     public partial class MainWindow : Form
     {
         /// <summary>
+        /// 身份认证服务契约接口
+        /// </summary>
+        private readonly IAuthenticationContract _authenticationContract;
+
+        /// <summary>
         /// 权限服务契约接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
@@ -25,10 +31,20 @@ namespace SD.IdentitySystem.InitializationTool
         /// 构造器
         /// </summary>
         /// <param name="authorizationContract">权限服务契约接口</param>
-        public MainWindow(IAuthorizationContract authorizationContract)
+        /// <param name="authenticationContract">身份认证服务契约接口</param>
+        public MainWindow(IAuthorizationContract authorizationContract, IAuthenticationContract authenticationContract)
         {
             this._authorizationContract = authorizationContract;
+            this._authenticationContract = authenticationContract;
             this.InitializeComponent();
+
+            //用户名/密码
+            string loginId = CommonConstants.AdminLoginId;
+            string password = CommonConstants.InitialPassword;
+
+            //登录
+            LoginInfo loginInfo = this._authenticationContract.Login(loginId, password);
+            AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
         }
 
         /// <summary>
@@ -36,6 +52,7 @@ namespace SD.IdentitySystem.InitializationTool
         /// </summary>
         private void MainWindow_Load(object sender, EventArgs e)
         {
+            //加载信息系统列表
             IEnumerable<InfoSystemInfo> systems = this._authorizationContract.GetInfoSystems().OrderBy(x => x.Number).ToArray();
 
             foreach (InfoSystemInfo system in systems)
