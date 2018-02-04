@@ -1,5 +1,5 @@
 ﻿using PostSharp.Aspects;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.Authorization.MVC.Toolkits;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Web;
-using SD.IdentitySystem.Authorization.MVC.Toolkits;
 
 namespace SD.IdentitySystem.Authorization.MVC.Aspects
 {
@@ -30,11 +29,11 @@ namespace SD.IdentitySystem.Authorization.MVC.Aspects
                 //获取方法路径
                 string methodPath = eventArgs.Method.GetMethodPath();
 
-                object sessionObj = HttpContext.Current.Session[SessionKey.CurrentAuthorities];
+                object sessionAuthorityPaths = HttpContext.Current.Session[SessionKey.CurrentAuthorities];
 
                 #region # 验证Session
 
-                if (sessionObj == null)
+                if (sessionAuthorityPaths == null)
                 {
                     throw new ApplicationException("Session中无权限信息，请检查程序！");
                 }
@@ -42,15 +41,15 @@ namespace SD.IdentitySystem.Authorization.MVC.Aspects
                 #endregion
 
                 //从Session中取出权限集
-                IEnumerable<AuthorityInfo> currentAuthorities = sessionObj.ToString().JsonToObject<IEnumerable<AuthorityInfo>>();
+                IList<string> currentAuthorityPaths = sessionAuthorityPaths.ToString().JsonToObject<IList<string>>();
 
                 #region # 验证权限
 
-                if (currentAuthorities == null)
+                if (currentAuthorityPaths == null)
                 {
                     throw new ApplicationException("Session中无权限信息，请检查程序！");
                 }
-                if (currentAuthorities.All(x => x.AuthorityPath != methodPath))
+                if (currentAuthorityPaths.All(path => path != methodPath))
                 {
                     throw new NoPermissionException("您没有权限，请联系系统管理员！");
                 }
