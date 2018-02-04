@@ -1,5 +1,4 @@
 ﻿using PostSharp.Aspects;
-using SD.Common.PoweredByLee;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
@@ -8,6 +7,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
+using System.Web;
+using SD.IdentitySystem.Authorization.MVC.Toolkits;
 
 namespace SD.IdentitySystem.Authorization.MVC.Aspects
 {
@@ -29,7 +30,7 @@ namespace SD.IdentitySystem.Authorization.MVC.Aspects
                 //获取方法路径
                 string methodPath = eventArgs.Method.GetMethodPath();
 
-                object sessionObj = HttpAssitant.Session[SessionKey.CurrentAuthorities];
+                object sessionObj = HttpContext.Current.Session[SessionKey.CurrentAuthorities];
 
                 #region # 验证Session
 
