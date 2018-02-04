@@ -13,7 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Initializ
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Authorization.WCF(未完成)", "tools\SD.IdentitySystem.Authorization.WCF\SD.IdentitySystem.Authorization.WCF(未完成).csproj", "{1E301BC9-D93A-4141-9987-DE216393E582}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Authorization.Windows(未完成)", "tools\SD.IdentitySystem.Authorization.Windows\SD.IdentitySystem.Authorization.Windows(未完成).csproj", "{8EEF3BA8-243D-440E-95D7-FABD5931B882}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Authorization.Windows", "tools\SD.IdentitySystem.Authorization.Windows\SD.IdentitySystem.Authorization.Windows.csproj", "{8EEF3BA8-243D-440E-95D7-FABD5931B882}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{8C7E75B7-2A87-414B-A713-64A7BA58B61F}"
 	ProjectSection(SolutionItems) = preProject
