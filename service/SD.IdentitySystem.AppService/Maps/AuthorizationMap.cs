@@ -1,8 +1,10 @@
 ﻿using SD.Common.PoweredByLee;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.Infrastructure.Constants;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SD.IdentitySystem.AppService.Maps
 {
@@ -52,6 +54,63 @@ namespace SD.IdentitySystem.AppService.Maps
             menuInfo.ParentMenuId = menu.ParentNode == null ? (Guid?)null : menu.ParentNode.Id;
 
             return menuInfo;
+        }
+        #endregion
+
+        #region # 菜单节点映射 —— static LoginMenuInfo ToNode(this Menu menu)
+        /// <summary>
+        /// 菜单节点映射
+        /// </summary>
+        public static LoginMenuInfo ToNode(this Menu menu)
+        {
+            return new LoginMenuInfo
+            {
+                ParentId = menu.ParentNode == null ? (Guid?)null : menu.ParentNode.Id,
+                Id = menu.Id,
+                Name = menu.Name,
+                Sort = menu.Sort,
+                Icon = menu.Icon,
+                Path = menu.Path,
+                Url = menu.Url
+            };
+        }
+        #endregion
+
+        #region # 菜单树映射 —— static ICollection<LoginMenuInfo> ToTree(this...
+        /// <summary>
+        /// 菜单树映射
+        /// </summary>
+        public static ICollection<LoginMenuInfo> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
+        {
+            //验证
+            menus = menus == null ? new Menu[0] : menus.ToArray();
+
+            //声明容器
+            ICollection<LoginMenuInfo> loginMenuInfos = new HashSet<LoginMenuInfo>();
+
+            //判断父级菜单Id是否为null
+            if (!parentId.HasValue)
+            {
+                //从根级开始遍历
+                foreach (Menu menu in menus.Where(x => x.IsRoot))
+                {
+                    LoginMenuInfo menuInfo = menu.ToNode();
+                    loginMenuInfos.Add(menuInfo);
+                    menuInfo.SubMenuInfos = menus.ToTree(menuInfo.Id);
+                }
+            }
+            else
+            {
+                //从给定Id向下遍历
+                foreach (Menu menu in menus.Where(x => x.ParentNode != null && x.ParentNode.Id == parentId.Value))
+                {
+                    LoginMenuInfo menuInfo = menu.ToNode();
+                    loginMenuInfos.Add(menuInfo);
+                    menuInfo.SubMenuInfos = menus.ToTree(menuInfo.Id);
+                }
+            }
+
+            return loginMenuInfos;
         }
         #endregion
 

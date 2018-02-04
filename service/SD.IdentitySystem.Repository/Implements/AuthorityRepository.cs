@@ -1,10 +1,10 @@
-﻿using System;
+﻿using SD.IdentitySystem.Domain.Entities;
+using SD.IdentitySystem.Domain.IRepositories.Interfaces;
+using SD.Infrastructure.Repository.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using SD.IdentitySystem.Domain.Entities;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using SD.Infrastructure.Repository.EntityFramework;
 
 namespace SD.IdentitySystem.Repository.Implements
 {
@@ -74,6 +74,22 @@ namespace SD.IdentitySystem.Repository.Implements
                     x.Roles.Any(y => roleIds.Contains(y.Id));
 
             return base.Find(condition).AsEnumerable();
+        }
+        #endregion
+
+        #region # 根据角色获取权限路径列表 —— ICollection<string> FindPathsByRole(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 根据角色获取权限路径列表
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>权限路径列表</returns>
+        public ICollection<string> FindPathsByRole(IEnumerable<Guid> roleIds)
+        {
+            Expression<Func<Authority, bool>> condition =
+                x =>
+                    x.Roles.Any(y => roleIds.Contains(y.Id));
+
+            return base.Find(condition).Select(x => x.AuthorityPath).Distinct().ToArray();
         }
         #endregion
 

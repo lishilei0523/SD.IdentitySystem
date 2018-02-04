@@ -1,12 +1,15 @@
 ﻿using SD.CacheManager;
 using SD.Common.PoweredByLee;
+using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
+using SD.Toolkits.Recursion.Tree;
 using System;
+using System.Collections.Generic;
 using System.Configuration;
 using System.Net;
 using System.ServiceModel;
@@ -119,8 +122,23 @@ namespace SD.IdentitySystem.AppService.Implements
                 //生成公钥
                 Guid publicKey = Guid.NewGuid();
 
-                //生成登录信息，以公钥为键，登录信息为值，存入分布式缓存
+                //生成登录信息
                 LoginInfo loginInfo = new LoginInfo(currentUser.Number, currentUser.Name, publicKey);
+
+                ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, null);
+
+                /*菜单部分*/
+                IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
+                IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds);
+                menus = menus.TailRecurseParentNodes();
+                ICollection<LoginMenuInfo> menuTree = menus.ToTree(null);
+                loginInfo.LoginMenuInfos.AddRange(menuTree);
+
+                /*权限部分*/
+                ICollection<string> authorityPaths = this._repMediator.AuthorityRep.FindPathsByRole(roleIds);
+                loginInfo.AuthorityPaths.AddRange(authorityPaths);
+
+                //以公钥为键，登录信息为值，存入分布式缓存
                 CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
 
                 //获取客户端IP

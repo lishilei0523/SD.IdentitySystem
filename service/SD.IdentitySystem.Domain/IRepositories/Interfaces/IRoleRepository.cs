@@ -43,14 +43,14 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         IEnumerable<Role> Find(string loginId, string systemNo);
         #endregion
 
-        #region # 获取角色Id列表 —— IEnumerable<Guid> FindIds(string loginId, string systemNo)
+        #region # 获取角色Id列表 —— ICollection<Guid> FindIds(string loginId, string systemNo)
         /// <summary>
         /// 获取角色Id列表
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色Id列表</returns>
-        IEnumerable<Guid> FindIds(string loginId, string systemNo);
+        ICollection<Guid> FindIds(string loginId, string systemNo);
         #endregion
 
         #region # 获取系统管理员角色 —— Role GetManagerRole(string systemNo)
