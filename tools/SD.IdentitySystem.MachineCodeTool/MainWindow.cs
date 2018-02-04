@@ -19,7 +19,7 @@ namespace SD.IdentitySystem.MachineCodeTool
         /// </summary>
         private void Btn_CalculateMachineCode_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrWhiteSpace(this.Txt_MachineCode.Text))
+            if (string.IsNullOrEmpty(this.Txt_MachineCode.Text))
             {
                 string machineCode = CommonExtension.GetMachineCode();
                 this.Txt_MachineCode.Text = machineCode;
@@ -31,7 +31,14 @@ namespace SD.IdentitySystem.MachineCodeTool
         /// </summary>
         private void Btn_Copy_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrEmpty(this.Txt_MachineCode.Text))
+            {
+                MessageBox.Show(@"请先计算再复制！", @"Warning");
+                return;
+            }
+
             Clipboard.SetDataObject(this.Txt_MachineCode.Text);
+            MessageBox.Show(@"复制成功", @"OK");
         }
     }
 }
