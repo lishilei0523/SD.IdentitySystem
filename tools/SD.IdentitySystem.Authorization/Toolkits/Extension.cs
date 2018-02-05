@@ -1,9 +1,8 @@
-﻿using Newtonsoft.Json;
-using System;
+﻿using System;
 using System.Reflection;
 using System.Text;
 
-namespace SD.IdentitySystem.Authorization.Windows.Toolkits
+namespace SD.IdentitySystem.Authorization.Toolkits
 {
     /// <summary>
     /// 扩展工具类
@@ -50,37 +49,6 @@ namespace SD.IdentitySystem.Authorization.Windows.Toolkits
             pathBuilder.Append(method.Name);
 
             return pathBuilder.ToString();
-        }
-        #endregion
-
-        #region # JSON字符串反序列化为对象扩展方法 —— static T JsonToObject<T>(this string json)
-        /// <summary>
-        /// JSON字符串反序列化为对象扩展方法
-        /// </summary>
-        /// <typeparam name="T">对象类型</typeparam>
-        /// <param name="json">JSON字符串</param>
-        /// <returns>给定类型对象</returns>
-        /// <exception cref="ArgumentNullException">JSON字符串为空</exception>
-        /// <exception cref="InvalidOperationException">反序列化为给定类型失败</exception>
-        public static T JsonToObject<T>(this string json)
-        {
-            #region # 验证参数
-
-            if (string.IsNullOrWhiteSpace(json))
-            {
-                throw new ArgumentNullException("json", @"JSON字符串不可为空！");
-            }
-
-            #endregion
-
-            try
-            {
-                return JsonConvert.DeserializeObject<T>(json);
-            }
-            catch (InvalidOperationException)
-            {
-                throw new InvalidOperationException(string.Format("无法将源JSON反序列化为给定类型\"{0}\"，请检查类型后重试！", typeof(T).Name));
-            }
         }
         #endregion
     }

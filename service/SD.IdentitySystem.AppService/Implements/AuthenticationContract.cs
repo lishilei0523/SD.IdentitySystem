@@ -7,10 +7,12 @@ using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
+using SD.Infrastructure.MemberShip;
 using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
+using System.Linq;
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -125,7 +127,14 @@ namespace SD.IdentitySystem.AppService.Implements
                 //生成登录信息
                 LoginInfo loginInfo = new LoginInfo(currentUser.Number, currentUser.Name, publicKey);
 
+                #region # 登录信息的信息系统部分/菜单部分/权限部分
+
                 ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, null);
+
+                /*信息系统部分*/
+                IEnumerable<string> systemNos = currentUser.GetInfoSystemNos();
+                IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
+                loginInfo.LoginSystemInfos.AddRange(systems.Values.Select(x => x.ToLoginSystemInfo()));
 
                 /*菜单部分*/
                 IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
@@ -135,8 +144,10 @@ namespace SD.IdentitySystem.AppService.Implements
                 loginInfo.LoginMenuInfos.AddRange(menuTree);
 
                 /*权限部分*/
-                ICollection<string> authorityPaths = this._repMediator.AuthorityRep.FindPathsByRole(roleIds);
-                loginInfo.AuthorityPaths.AddRange(authorityPaths);
+                IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
+                loginInfo.LoginAuthorityInfos = authorities.GroupBy(x => x.SystemNo).ToDictionary(x => x.Key, x => x.Select(y => y.ToLoginAuthorityInfo()).ToArray());
+
+                #endregion
 
                 //以公钥为键，登录信息为值，存入分布式缓存
                 CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));

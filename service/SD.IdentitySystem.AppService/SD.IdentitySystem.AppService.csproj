@@ -92,16 +92,17 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.Membership.1.0.1\lib\net45\SD.IdentitySystem.Membership.dll</HintPath>
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\..\packages\SD.IdentitySystem.Membership.1.0.3\lib\net45\SD.IdentitySystem.Membership.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.WCFAuthentication.WCF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.1.0.5\lib\net45\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.1.0.6\lib\net45\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
-      <HintPath>..\..\packages\SD.Infrastructure.1.1.6\lib\net45\SD.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.1.1.7\lib\net45\SD.Infrastructure.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">

@@ -1,7 +1,7 @@
 ﻿using SD.Common.PoweredByLee;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.Infrastructure.Constants;
+using SD.Infrastructure.MemberShip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +39,16 @@ namespace SD.IdentitySystem.AppService.Maps
         }
         #endregion
 
+        #region # 信息系统登录信息映射 —— static LoginSystemInfo ToLoginSystemInfo(this InfoSystem infoSystem)
+        /// <summary>
+        /// 信息系统登录信息映射
+        /// </summary>
+        public static LoginSystemInfo ToLoginSystemInfo(this InfoSystem infoSystem)
+        {
+            return new LoginSystemInfo(infoSystem.Number, infoSystem.Name, infoSystem.Index);
+        }
+        #endregion
+
         #region # 菜单映射 —— static MenuInfo ToDTO(this Menu menu...
         /// <summary>
         /// 菜单映射
@@ -57,14 +67,15 @@ namespace SD.IdentitySystem.AppService.Maps
         }
         #endregion
 
-        #region # 菜单节点映射 —— static LoginMenuInfo ToNode(this Menu menu)
+        #region # 菜单登录信息映射 —— static LoginMenuInfo ToNode(this Menu menu)
         /// <summary>
-        /// 菜单节点映射
+        /// 菜单登录信息映射
         /// </summary>
         public static LoginMenuInfo ToNode(this Menu menu)
         {
             return new LoginMenuInfo
             {
+                SystemNo = menu.SystemNo,
                 ParentId = menu.ParentNode == null ? (Guid?)null : menu.ParentNode.Id,
                 Id = menu.Id,
                 Name = menu.Name,
@@ -128,6 +139,16 @@ namespace SD.IdentitySystem.AppService.Maps
             authorityInfo.InfoSystemInfo = systemInfos[authority.SystemNo];
 
             return authorityInfo;
+        }
+        #endregion
+
+        #region # 权限登录信息映射 —— static LoginAuthorityInfo ToLoginAuthorityInfo(this Authority authority)
+        /// <summary>
+        /// 权限登录信息映射
+        /// </summary>
+        public static LoginAuthorityInfo ToLoginAuthorityInfo(this Authority authority)
+        {
+            return new LoginAuthorityInfo(authority.Name, authority.EnglishName, authority.AuthorityPath);
         }
         #endregion
 

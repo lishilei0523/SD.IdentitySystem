@@ -1,15 +1,13 @@
 ﻿using PostSharp.Aspects;
-using SD.IdentitySystem.Authorization.MVC.Toolkits;
+using SD.IdentitySystem.Authorization.Toolkits;
 using SD.Infrastructure.Attributes;
-using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
-using System.Web;
 
-namespace SD.IdentitySystem.Authorization.MVC.Aspects
+namespace SD.IdentitySystem.Authorization.Aspects
 {
     /// <summary>
     /// 需要权限验证AOP特性类
@@ -26,35 +24,23 @@ namespace SD.IdentitySystem.Authorization.MVC.Aspects
         {
             if (eventArgs.Method.IsDefined(typeof(RequireAuthorizationAttribute)))
             {
-                //获取方法路径
+                //获取正在执行的方法路径
                 string methodPath = eventArgs.Method.GetMethodPath();
 
-                object sessionAuthorityPaths = HttpContext.Current.Session[SessionKey.CurrentAuthorities];
-
-                #region # 验证Session
-
-                if (sessionAuthorityPaths == null)
+                //验证登录信息是否为null
+                if (Membership.LoginInfo == null)
                 {
-                    throw new ApplicationException("Session中无权限信息，请检查程序！");
+                    throw new ApplicationException("当前登录信息为空，请重新登录！");
                 }
 
-                #endregion
+                //从登录信息中取出权限集
+                IEnumerable<string> currentAuthorityPaths = Membership.LoginInfo.LoginAuthorityInfos.Values.SelectMany(x => x).Select(x => x.AuthorityPath);
 
-                //从Session中取出权限集
-                IList<string> currentAuthorityPaths = sessionAuthorityPaths.ToString().JsonToObject<IList<string>>();
-
-                #region # 验证权限
-
-                if (currentAuthorityPaths == null)
-                {
-                    throw new ApplicationException("Session中无权限信息，请检查程序！");
-                }
+                //验证权限
                 if (currentAuthorityPaths.All(path => path != methodPath))
                 {
                     throw new NoPermissionException("您没有权限，请联系系统管理员！");
                 }
-
-                #endregion
             }
         }
     }

@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("SD.IdentitySystem.Authorization.Windows")]
-[assembly: AssemblyDescription("授权工具 - Windows客户端")]
+[assembly: AssemblyTitle("SD.IdentitySystem.Authorization")]
+[assembly: AssemblyDescription("授权工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
-[assembly: AssemblyProduct("SD.IdentitySystem.Authorization.Windows")]
+[assembly: AssemblyProduct("SD.IdentitySystem.Authorization")]
 [assembly: AssemblyCopyright("Copyright © SD 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +19,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("ed83be41-754f-4803-b1dd-6eec22850d41")]
+[assembly: Guid("d6d101d9-e4d2-49ea-8421-2d820e24c704")]
 
 // 程序集的版本信息由下面四个值组成: 
 //
