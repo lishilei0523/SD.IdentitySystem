@@ -59,12 +59,12 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
-    <Reference Include="SD.IdentitySystem.IAppService">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.2.8\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+    <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.1.2.9\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SD.IdentitySystem.WCFAuthentication.Windows">
-      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.Windows.1.0.3\lib\net45\SD.IdentitySystem.WCFAuthentication.Windows.dll</HintPath>
+    <Reference Include="SD.IdentitySystem.WCFAuthentication.Windows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.Windows.1.0.4\lib\net45\SD.IdentitySystem.WCFAuthentication.Windows.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
