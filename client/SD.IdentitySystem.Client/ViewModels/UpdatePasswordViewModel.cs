@@ -1,7 +1,7 @@
 ﻿using MahApps.Metro.Controls;
 using SD.IdentitySystem.Client.Commons;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.Infrastructure.Constants;
+using SD.Infrastructure.MemberShip;
 using System;
 using System.Windows;
 

@@ -4,6 +4,7 @@ using SD.IdentitySystem.Client.Commons;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Constants;
+using SD.Infrastructure.MemberShip;
 using SD.IOC.Core.Mediator;
 using System;
 using System.Collections.Generic;
@@ -80,7 +81,7 @@ namespace SD.IdentitySystem.Client.ViewModels
             get
             {
                 //存入Session
-                LoginInfo loginInfo = (LoginInfo)AppDomain.CurrentDomain.GetData(SessionKey.CurrentUser);
+                LoginInfo loginInfo = Membership.LoginInfo;
 
                 return loginInfo.LoginId;
             }
