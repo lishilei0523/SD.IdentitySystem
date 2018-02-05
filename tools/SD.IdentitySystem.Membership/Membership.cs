@@ -1,5 +1,6 @@
 ﻿using SD.CacheManager;
 using SD.Infrastructure.Constants;
+using SD.Infrastructure.MemberShip;
 using System;
 using System.Linq;
 using System.ServiceModel;
