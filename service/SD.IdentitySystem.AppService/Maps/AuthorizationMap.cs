@@ -103,7 +103,7 @@ namespace SD.IdentitySystem.AppService.Maps
             if (!parentId.HasValue)
             {
                 //从根级开始遍历
-                foreach (Menu menu in menus.Where(x => x.IsRoot))
+                foreach (Menu menu in menus.OrderBy(x => x.Sort).Where(x => x.IsRoot))
                 {
                     LoginMenuInfo menuInfo = menu.ToNode();
                     loginMenuInfos.Add(menuInfo);
@@ -113,7 +113,7 @@ namespace SD.IdentitySystem.AppService.Maps
             else
             {
                 //从给定Id向下遍历
-                foreach (Menu menu in menus.Where(x => x.ParentNode != null && x.ParentNode.Id == parentId.Value))
+                foreach (Menu menu in menus.OrderBy(x => x.Sort).Where(x => x.ParentNode != null && x.ParentNode.Id == parentId.Value))
                 {
                     LoginMenuInfo menuInfo = menu.ToNode();
                     loginMenuInfos.Add(menuInfo);
