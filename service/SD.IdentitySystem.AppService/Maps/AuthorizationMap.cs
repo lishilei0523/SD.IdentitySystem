@@ -45,7 +45,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// </summary>
         public static LoginSystemInfo ToLoginSystemInfo(this InfoSystem infoSystem)
         {
-            return new LoginSystemInfo(infoSystem.Number, infoSystem.Name, infoSystem.Index);
+            return new LoginSystemInfo(infoSystem.Number, infoSystem.Name, infoSystem.ApplicationType, infoSystem.Index);
         }
         #endregion
 
