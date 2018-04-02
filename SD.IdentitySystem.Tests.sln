@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.40629.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.25420.1
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = ".nuget", ".nuget", "{96FE9B45-B87F-4A98-B666-364C3F1936CC}"
 	ProjectSection(SolutionItems) = preProject
@@ -24,15 +24,15 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - WCF客户端测试", "
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Stubs", "04 - Stubs", "{9B2E861F-F56E-4BFB-A83C-8A5A71B1047C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCFServer", "tests\SD.IdentitySystem.StubWCFServer\SD.IdentitySystem.StubWCFServer.csproj", "{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCF.Server", "tests\SD.IdentitySystem.StubWCF.Server\SD.IdentitySystem.StubWCF.Server.csproj", "{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCFClient", "tests\SD.IdentitySystem.StubWCFClient\SD.IdentitySystem.StubWCFClient.csproj", "{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCF.Client", "tests\SD.IdentitySystem.StubWCF.Client\SD.IdentitySystem.StubWCF.Client.csproj", "{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WindowsTests", "tests\SD.IdentitySystem.WindowsTests\SD.IdentitySystem.WindowsTests.csproj", "{BABA3361-BEB6-4381-A870-BF7BD76C477C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Windows.Tests", "tests\SD.IdentitySystem.Windows.Tests\SD.IdentitySystem.Windows.Tests.csproj", "{BABA3361-BEB6-4381-A870-BF7BD76C477C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFClientTests", "tests\SD.IdentitySystem.WCFClientTests\SD.IdentitySystem.WCFClientTests.csproj", "{C9297885-9F2A-4722-A993-EBAB6B659878}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFClient.Tests", "tests\SD.IdentitySystem.WCFClient.Tests\SD.IdentitySystem.WCFClient.Tests.csproj", "{C9297885-9F2A-4722-A993-EBAB6B659878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.MVCTests", "tests\SD.IdentitySystem.MVCTests\SD.IdentitySystem.MVCTests.csproj", "{C6896688-B725-465A-8B5B-83F6549D64EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.MVC.Tests", "tests\SD.IdentitySystem.MVC.Tests\SD.IdentitySystem.MVC.Tests.csproj", "{C6896688-B725-465A-8B5B-83F6549D64EE}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.Windows", "tools\SD.IdentitySystem.WCFAuthentication.Windows\SD.IdentitySystem.WCFAuthentication.Windows.csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
 EndProject
