@@ -108,7 +108,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
                 if (currentUser == null)
                 {
-                    throw new InvalidOperationException(string.Format("用户名\"{0}\"不存在！", loginId));
+                    throw new InvalidOperationException($"用户名\"{loginId}\"不存在！");
                 }
                 if (!currentUser.Enabled)
                 {
@@ -158,7 +158,7 @@ namespace SD.IdentitySystem.AppService.Implements
                 string ip = endpoint.Address;
 
                 //生成登录记录
-                Task.Run(() => this.GenerateLoginRecord(publicKey, ip, currentUser)).Wait();
+                this.GenerateLoginRecord(publicKey, ip, currentUser).Wait();
 
                 return loginInfo;
             }
@@ -189,30 +189,30 @@ namespace SD.IdentitySystem.AppService.Implements
 
                 if (currentServer == null)
                 {
-                    throw new NoPermissionException(string.Format("服务器\"{0}\"未授权！", Dns.GetHostName()));
+                    throw new NoPermissionException($"服务器\"{Dns.GetHostName()}\"未授权！");
                 }
                 if (DateTime.Today > currentServer.ServiceOverDate)
                 {
-                    throw new NoPermissionException(string.Format("服务器\"{0}\"授权已过期！", currentServer.Name));
+                    throw new NoPermissionException($"服务器\"{currentServer.Name}\"授权已过期！");
                 }
             }
         }
         #endregion
 
-        #region # 生成登录记录 —— void GenerateLoginRecord(Guid publicKey, string ip...
+        #region # 生成登录记录 —— async Task GenerateLoginRecord(Guid publicKey, string ip...
         /// <summary>
         /// 生成登录记录
         /// </summary>
         /// <param name="publicKey">公钥</param>
         /// <param name="ip">IP地址</param>
         /// <param name="user">用户</param>
-        private void GenerateLoginRecord(Guid publicKey, string ip, User user)
+        private async Task GenerateLoginRecord(Guid publicKey, string ip, User user)
         {
             //生成记录
             LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
 
             this._unitOfWork.RegisterAdd(loginRecord);
-            this._unitOfWork.Commit();
+            await this._unitOfWork.CommitAsync();
         }
         #endregion
     }
