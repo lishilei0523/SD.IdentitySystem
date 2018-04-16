@@ -118,7 +118,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure.Global, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.Global.1.0.1\lib\net461\SD.Infrastructure.Global.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.Global.1.0.2\lib\net461\SD.Infrastructure.Global.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure.WCF.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
