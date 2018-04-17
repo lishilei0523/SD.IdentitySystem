@@ -1,5 +1,4 @@
-﻿using SD.AOP.Core.Aspects.ForMethod;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.Infrastructure.Constants;
@@ -7,7 +6,6 @@ using SD.Infrastructure.Repository.EntityFramework;
 using SD.Infrastructure.RepositoryBase;
 using System.Collections.Generic;
 using System.Linq;
-using System.Transactions;
 
 namespace SD.IdentitySystem.Repository.Base
 {
@@ -72,7 +70,6 @@ namespace SD.IdentitySystem.Repository.Base
         /// <summary>
         /// 初始化基础数据
         /// </summary>
-        [TransactionAspect(TransactionScopeOption.RequiresNew)]
         public void Initialize()
         {
             this.InitAdmin();
