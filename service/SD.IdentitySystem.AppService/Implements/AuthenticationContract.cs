@@ -96,6 +96,20 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>登录信息</returns>
         public LoginInfo Login(string loginId, string password)
         {
+            #region # 验证参数
+
+            if (string.IsNullOrWhiteSpace(loginId))
+            {
+                throw new ArgumentNullException(nameof(loginId), "用户名不可为空！");
+            }
+
+            if (string.IsNullOrWhiteSpace(password))
+            {
+                throw new ArgumentNullException(nameof(password), "密码不可为空！");
+            }
+
+            #endregion
+
             lock (_Sync)
             {
                 /****************验证机器****************/
