@@ -28,6 +28,7 @@
     <UseGlobalApplicationHostFile />
     <DontImportPostSharp>True</DontImportPostSharp>
     <TargetFrameworkProfile />
+    <Use64BitIISExpress />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -110,16 +111,14 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure.EventBase, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.EventBase.1.0.1\lib\net461\SD.Infrastructure.EventBase.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\SD.Infrastructure.EventBase.1.0.2\lib\net461\SD.Infrastructure.EventBase.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.EventStoreProvider.Redis, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.EventStoreProvider.Redis.1.0.1\lib\net461\SD.Infrastructure.EventStoreProvider.Redis.dll</HintPath>
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.Infrastructure.Global, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.Global.1.0.2\lib\net461\SD.Infrastructure.Global.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\SD.Infrastructure.Global.1.0.3\lib\net461\SD.Infrastructure.Global.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.WCF.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.WCF.Server.1.0.2\lib\net461\SD.Infrastructure.WCF.Server.dll</HintPath>
