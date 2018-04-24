@@ -1,4 +1,4 @@
-﻿using PostSharp.Aspects;
+﻿using ArxOne.MrAdvice.Advice;
 using SD.IdentitySystem.Authorization.Toolkits;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.CustomExceptions;
@@ -14,18 +14,18 @@ namespace SD.IdentitySystem.Authorization.Aspects
     /// </summary>
     [Serializable]
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
-    public sealed class RequireAuthorizationAspect : OnMethodBoundaryAspect
+    public sealed class RequireAuthorizationAspect : Attribute, IMethodAdvice
     {
         /// <summary>
-        /// 执行方法开始事件
+        /// 拦截方法
         /// </summary>
-        /// <param name="eventArgs">方法元数据</param>
-        public override void OnEntry(MethodExecutionArgs eventArgs)
+        /// <param name="context">方法元数据</param>
+        public void Advise(MethodAdviceContext context)
         {
-            if (eventArgs.Method.IsDefined(typeof(RequireAuthorizationAttribute)))
+            if (context.TargetMethod.IsDefined(typeof(RequireAuthorizationAttribute)))
             {
                 //获取正在执行的方法路径
-                string methodPath = eventArgs.Method.GetMethodPath();
+                string methodPath = context.TargetMethod.GetMethodPath();
 
                 //验证登录信息是否为null
                 if (Membership.LoginInfo == null)
@@ -42,6 +42,8 @@ namespace SD.IdentitySystem.Authorization.Aspects
                     throw new NoPermissionException("您没有权限，请联系系统管理员！");
                 }
             }
+
+            context.Proceed();
         }
     }
 }
