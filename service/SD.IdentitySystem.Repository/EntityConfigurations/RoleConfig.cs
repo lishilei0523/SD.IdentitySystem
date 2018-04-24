@@ -15,7 +15,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public RoleConfig()
         {
-            this.HasMany(role => role.Authorities).WithMany(authority => authority.Roles).Map(map => map.ToTable(string.Format("{0}Role_Authority", WebConfigSetting.TablePrefix)));
+            this.HasMany(role => role.Authorities).WithMany(authority => authority.Roles).Map(map => map.ToTable($"{GlobalSetting.TablePrefix}Role_Authority"));
 
             //设置信息系统编号长度
             this.Property(role => role.SystemNo).HasMaxLength(16);

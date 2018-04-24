@@ -15,7 +15,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public MenuConfig()
         {
-            this.HasMany(menu => menu.Authorities).WithMany(authority => authority.MenuLeaves).Map(map => map.ToTable(string.Format("{0}Menu_Authority", WebConfigSetting.TablePrefix)));
+            this.HasMany(menu => menu.Authorities).WithMany(authority => authority.MenuLeaves).Map(map => map.ToTable($"{GlobalSetting.TablePrefix}Menu_Authority"));
 
             //设置信息系统编号长度
             this.Property(menu => menu.SystemNo).HasMaxLength(16);

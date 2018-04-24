@@ -17,6 +17,7 @@ using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.Threading.Tasks;
+using NetFX = SD.Common.NetFx.PoweredByLee;
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -45,9 +46,9 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             _Sync = new object();
 
-            if (!string.IsNullOrWhiteSpace(WebConfigSetting.AuthenticationTimeout))
+            if (!string.IsNullOrWhiteSpace(GlobalSetting.AuthenticationTimeout))
             {
-                if (!int.TryParse(WebConfigSetting.AuthenticationTimeout, out _Timeout))
+                if (!int.TryParse(GlobalSetting.AuthenticationTimeout, out _Timeout))
                 {
                     //默认20分钟
                     _Timeout = 20;
@@ -198,7 +199,7 @@ namespace SD.IdentitySystem.AppService.Implements
             }
             if (authenticateMachine)
             {
-                string machineCode = CommonExtension.GetMachineCode();
+                string machineCode = NetFX.CommonExtension.GetMachineCode();
                 Server currentServer = this._repMediator.ServerRep.SingleOrDefault(machineCode);
 
                 if (currentServer == null)

@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.Domain.IDomainServices;
-using SD.Toolkits.NoGenerator.Facade;
+using SD.Toolkits.SerialNumber.Facade;
 using System;
 
 namespace SD.IdentitySystem.DomainService.Implements
