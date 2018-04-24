@@ -93,12 +93,10 @@
       <HintPath>..\..\packages\SD.Common.NetFx.1.0.0\lib\net35\SD.Common.NetFx.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.Membership.1.0.3\lib\net45\SD.IdentitySystem.Membership.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\SD.IdentitySystem.Membership.2.0.0\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.WCFAuthentication.WCF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.1.0.6\lib\net45\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.2.0.0\lib\net461\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.2.0.0\lib\netstandard2.0\SD.Infrastructure.dll</HintPath>
