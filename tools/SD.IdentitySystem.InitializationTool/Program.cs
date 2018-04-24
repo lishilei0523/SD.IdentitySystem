@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SD.IOC.Core.Mediators;
+using System;
 using System.Windows.Forms;
-using SD.IOC.Core.Mediator;
 
 namespace SD.IdentitySystem.InitializationTool
 {

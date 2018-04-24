@@ -34,9 +34,9 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
         {
             _Sync = new object();
 
-            if (!string.IsNullOrWhiteSpace(WebConfigSetting.AuthenticationTimeout))
+            if (!string.IsNullOrWhiteSpace(GlobalSetting.AuthenticationTimeout))
             {
-                if (!int.TryParse(WebConfigSetting.AuthenticationTimeout, out _Timeout))
+                if (!int.TryParse(GlobalSetting.AuthenticationTimeout, out _Timeout))
                 {
                     //默认20分钟
                     _Timeout = 20;
