@@ -1,4 +1,4 @@
-﻿using SD.Common.PoweredByLee;
+﻿using SD.Common.NetFx.PoweredByLee;
 using System;
 using System.Windows.Forms;
 
