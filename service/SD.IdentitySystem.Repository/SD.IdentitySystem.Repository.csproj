@@ -96,20 +96,19 @@
       <HintPath>..\..\packages\SD.IdentitySystem.Membership.2.0.0\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.2.0.0\lib\netstandard2.0\SD.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.2.0.1\lib\netstandard2.0\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.0\lib\netstandard2.0\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.Repository.EntityFramework, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.Repository.EntityFramework.2.0.0\lib\net461\SD.Infrastructure.Repository.EntityFramework.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.Repository.EntityFramework.2.0.1\lib\net461\SD.Infrastructure.Repository.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.0\lib\netstandard2.0\SD.IOC.Core.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.EntityFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.EntityFramework.1.0.3\lib\net45\SD.Toolkits.EntityFramework.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\SD.Toolkits.EntityFramework.1.0.4\lib\net45\SD.Toolkits.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Recursion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Recursion.2.0.0\lib\netstandard2.0\SD.Toolkits.Recursion.dll</HintPath>
