@@ -502,15 +502,15 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取服务器 —— ServerInfo GetServer(Guid serverId)
+        #region # 获取服务器 —— ServerInfo GetServer(string uniqueCode)
         /// <summary>
         /// 获取服务器
         /// </summary>
-        /// <param name="serverId">服务器Id</param>
+        /// <param name="uniqueCode">服务器唯一机器码</param>
         /// <returns>服务器</returns>
-        public ServerInfo GetServer(Guid serverId)
+        public ServerInfo GetServer(string uniqueCode)
         {
-            Server currentServer = this._repMediator.ServerRep.Single(serverId);
+            Server currentServer = this._repMediator.ServerRep.Single(uniqueCode);
             ServerInfo currentServerInfo = currentServer.ToDTO();
 
             return currentServerInfo;

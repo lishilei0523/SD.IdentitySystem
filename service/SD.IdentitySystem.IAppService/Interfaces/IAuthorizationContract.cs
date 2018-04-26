@@ -242,14 +242,14 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         PageModel<ServerInfo> GetServersByPage(string keywords, int pageIndex, int pageSize);
         #endregion
 
-        #region # 获取服务器 —— ServerInfo GetServer(Guid serverId)
+        #region # 获取服务器 —— ServerInfo GetServer(string uniqueCode)
         /// <summary>
         /// 获取服务器
         /// </summary>
-        /// <param name="serverId">服务器Id</param>
+        /// <param name="uniqueCode">服务器唯一机器码</param>
         /// <returns>服务器</returns>
         [OperationContract]
-        ServerInfo GetServer(Guid serverId);
+        ServerInfo GetServer(string uniqueCode);
         #endregion
 
 
