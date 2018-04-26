@@ -129,6 +129,9 @@
     <Reference Include="SD.Toolkits.Recursion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Recursion.2.0.0\lib\netstandard2.0\SD.Toolkits.Recursion.dll</HintPath>
     </Reference>
+    <Reference Include="SD.Toolkits.Redis, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.Redis.2.0.0\lib\netstandard2.0\SD.Toolkits.Redis.dll</HintPath>
+    </Reference>
     <Reference Include="StackExchange.Redis, Version=1.2.6.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.1.2.6\lib\net46\StackExchange.Redis.dll</HintPath>
     </Reference>
