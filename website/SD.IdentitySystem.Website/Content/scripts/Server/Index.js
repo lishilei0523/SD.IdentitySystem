@@ -17,6 +17,7 @@ function getServers(queryParams) {
         [
             { field: "ck", checkbox: true, halign: "center" },
             { field: "Id", title: "Id", halign: "center", hidden: true },
+            { field: "Number", title: "Number", halign: "center", hidden: true },
             { field: "Name", title: "主机名", halign: "center", width: 120 },
             {
                 field: "ServiceOverDate",
