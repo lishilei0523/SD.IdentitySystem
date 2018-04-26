@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.FormatModel.EasyUI;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
@@ -7,7 +8,6 @@ using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -72,7 +72,7 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
-        #region # 加载修改服务器视图 —— ViewResult Update(Guid id)
+        #region # 加载修改服务器视图 —— ViewResult Update(string id)
         /// <summary>
         /// 加载修改服务器视图
         /// </summary>
@@ -80,7 +80,7 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <returns>修改服务器视图</returns>
         [HttpGet]
         [RequireAuthorization("修改服务器视图")]
-        public ViewResult Update(Guid id)
+        public ViewResult Update(string id)
         {
             ServerView currentServer = this._serverPresenter.GetServer(id);
 

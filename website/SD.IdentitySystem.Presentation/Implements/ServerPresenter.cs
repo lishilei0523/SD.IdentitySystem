@@ -4,7 +4,6 @@ using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.DTOBase;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -50,15 +49,15 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 获取服务器 —— ServerView GetServer(Guid serverId)
+        #region # 获取服务器 —— ServerView GetServer(string uniqueCode)
         /// <summary>
         /// 获取服务器
         /// </summary>
-        /// <param name="serverId">服务器Id</param>
+        /// <param name="uniqueCode">服务器机器唯一码</param>
         /// <returns>服务器</returns>
-        public ServerView GetServer(Guid serverId)
+        public ServerView GetServer(string uniqueCode)
         {
-            ServerInfo currentServerInfo = this._authorizationContract.GetServer(serverId);
+            ServerInfo currentServerInfo = this._authorizationContract.GetServer(uniqueCode);
             ServerView currentServerView = currentServerInfo.ToViewModel();
 
             return currentServerView;

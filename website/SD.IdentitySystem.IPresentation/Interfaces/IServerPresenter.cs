@@ -1,7 +1,6 @@
 ﻿using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.PresentationBase;
-using System;
 
 namespace SD.IdentitySystem.IPresentation.Interfaces
 {
@@ -21,13 +20,13 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         PageModel<ServerView> GetServersByPage(string keywords, int pageIndex, int pageSize);
         #endregion
 
-        #region # 获取服务器 —— ServerView GetServer(Guid serverId)
+        #region # 获取服务器 —— ServerView GetServer(string uniqueCode)
         /// <summary>
         /// 获取服务器
         /// </summary>
-        /// <param name="serverId">服务器Id</param>
+        /// <param name="uniqueCode">服务器机器唯一码</param>
         /// <returns>服务器</returns>
-        ServerView GetServer(Guid serverId);
+        ServerView GetServer(string uniqueCode);
         #endregion
     }
 }

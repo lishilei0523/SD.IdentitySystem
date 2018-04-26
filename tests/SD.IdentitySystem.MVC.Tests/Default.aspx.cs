@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.StubWCF.Server.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
-using SD.IOC.Core.Mediator;
+using SD.IOC.Core.Mediators;
 using System;
 using System.Web.UI;
 

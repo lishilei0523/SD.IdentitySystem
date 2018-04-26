@@ -35,7 +35,7 @@ function getServers(queryParams) {
                 formatter: function (value, row) {
                     var start = '<a class="aLink" href="javascript: updateServer(\'';
                     var end = '\');" >设置</a>';
-                    var element = start + row.Id + end;
+                    var element = start + row.Number + end;
 
                     return element;
                 }
@@ -71,8 +71,8 @@ function createServer() {
 }
 
 //修改服务器
-function updateServer(serverId) {
-    $.easyuiExt.showWindow("修改服务器", "/Server/Update/" + serverId, 360, 310);
+function updateServer(uniqueCode) {
+    $.easyuiExt.showWindow("修改服务器", "/Server/Update/" + uniqueCode, 360, 310);
 }
 
 //删除服务器
