@@ -16,7 +16,6 @@ using System.Linq;
 using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using System.Threading.Tasks;
 using NetFX = SD.Common.NetFx.PoweredByLee;
 
 namespace SD.IdentitySystem.AppService.Implements
@@ -173,7 +172,7 @@ namespace SD.IdentitySystem.AppService.Implements
                 string ip = endpoint.Address;
 
                 //生成登录记录
-                this.GenerateLoginRecord(publicKey, ip, currentUser).Wait();
+                this.GenerateLoginRecord(publicKey, ip, currentUser);
 
                 return loginInfo;
             }
@@ -214,20 +213,20 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 生成登录记录 —— async Task GenerateLoginRecord(Guid publicKey, string ip...
+        #region # 生成登录记录 —— void GenerateLoginRecord(Guid publicKey, string ip, User user)
         /// <summary>
         /// 生成登录记录
         /// </summary>
         /// <param name="publicKey">公钥</param>
         /// <param name="ip">IP地址</param>
         /// <param name="user">用户</param>
-        private async Task GenerateLoginRecord(Guid publicKey, string ip, User user)
+        private void GenerateLoginRecord(Guid publicKey, string ip, User user)
         {
             //生成记录
             LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
 
             this._unitOfWork.RegisterAdd(loginRecord);
-            await this._unitOfWork.CommitAsync();
+            this._unitOfWork.Commit();
         }
         #endregion
     }
