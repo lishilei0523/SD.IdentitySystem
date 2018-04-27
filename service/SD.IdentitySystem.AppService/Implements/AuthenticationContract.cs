@@ -87,7 +87,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
         //Implements
 
-        #region # 登录 —— Guid Login(string loginId, string password)
+        #region # 登录 —— LoginInfo Login(string loginId, string password)
         /// <summary>
         /// 登录
         /// </summary>
