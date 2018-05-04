@@ -24,7 +24,8 @@ namespace SD.IdentitySystem
             get
             {
                 //服务端获取
-                if (OperationContext.Current != null)
+                if (OperationContext.Current != null &&
+                    OperationContext.Current.EndpointDispatcher.ContractName != "IAuthenticationContract")
                 {
                     //获取消息头
                     MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
