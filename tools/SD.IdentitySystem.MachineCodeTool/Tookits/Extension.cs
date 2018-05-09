@@ -74,18 +74,12 @@ namespace SD.IdentitySystem.MachineCodeTool.Tookits
         /// <returns>机器唯一码</returns>
         public static string GetMachineCode()
         {
-            ICollection<string> hardDiskIds = Extension.GetHardDiskIds();
-            ICollection<string> macs = Extension.GetMacAddresses();
-
+            ICollection<string> macs = GetMacAddresses();
             StringBuilder builder = new StringBuilder();
 
-            if (hardDiskIds.Any())
+            foreach (string mac in macs.OrderBy(x => x))
             {
-                builder.Append(hardDiskIds.First());
-            }
-            if (macs.Any())
-            {
-                builder.Append(macs.First());
+                builder.Append(mac);
             }
 
             string machineCode = builder.ToString().ToMD5();

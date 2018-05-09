@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.IAppServi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService", "service\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj", "{1490AFC6-998C-4E2C-A7D1-BC6C3CB0EA4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseReader", "tools\SD.IdentitySystem.LicenseReader\SD.IdentitySystem.LicenseReader.csproj", "{9B041114-0488-4FDA-8CE3-6581A7C1DA03}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{1490AFC6-998C-4E2C-A7D1-BC6C3CB0EA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1490AFC6-998C-4E2C-A7D1-BC6C3CB0EA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1490AFC6-998C-4E2C-A7D1-BC6C3CB0EA4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9B041114-0488-4FDA-8CE3-6581A7C1DA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9B041114-0488-4FDA-8CE3-6581A7C1DA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9B041114-0488-4FDA-8CE3-6581A7C1DA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9B041114-0488-4FDA-8CE3-6581A7C1DA03}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
