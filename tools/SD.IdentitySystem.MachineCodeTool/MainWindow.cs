@@ -1,4 +1,4 @@
-﻿using SD.Common.NetFx.PoweredByLee;
+﻿using SD.IdentitySystem.MachineCodeTool.Tookits;
 using System;
 using System.Windows.Forms;
 
@@ -21,7 +21,7 @@ namespace SD.IdentitySystem.MachineCodeTool
         {
             if (string.IsNullOrEmpty(this.Txt_MachineCode.Text))
             {
-                string machineCode = CommonExtension.GetMachineCode();
+                string machineCode = Extension.GetMachineCode();
                 this.Txt_MachineCode.Text = machineCode;
             }
         }
