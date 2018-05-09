@@ -59,70 +59,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
         //命令部分
 
-        #region # 创建服务器 —— void CreateServer(string uniqueCode, string hostName...
-        /// <summary>
-        /// 创建服务器
-        /// </summary>
-        /// <param name="uniqueCode">唯一码</param>
-        /// <param name="hostName">主机名</param>
-        /// <param name="serviceOverDate">服务停止日期</param>
-        public void CreateServer(string uniqueCode, string hostName, DateTime serviceOverDate)
-        {
-            //验证参数
-            Assert.IsFalse(this._repMediator.ServerRep.Exists(uniqueCode), "服务器唯一码已存在！");
-
-            Server server = new Server(uniqueCode, hostName, serviceOverDate);
-
-            this._unitOfWork.RegisterAdd(server);
-            this._unitOfWork.UnitedCommit();
-        }
-        #endregion
-
-        #region # 修改服务器主机名 —— void UpdateServerHostName(Guid serverId, string hostName)
-        /// <summary>
-        /// 修改服务器主机名
-        /// </summary>
-        /// <param name="serverId">服务器Id</param>
-        /// <param name="hostName">主机名</param>
-        public void UpdateServerHostName(Guid serverId, string hostName)
-        {
-            Server currentServer = this._unitOfWork.Resolve<Server>(serverId);
-            currentServer.UpdateHostName(hostName);
-
-            this._unitOfWork.RegisterSave(currentServer);
-            this._unitOfWork.UnitedCommit();
-        }
-        #endregion
-
-        #region # 修改服务停止日期 —— void UpdateServiceOverDate(string serverId...
-        /// <summary>
-        /// 修改服务停止日期
-        /// </summary>
-        /// <param name="serverId">服务器Id</param>
-        /// <param name="serviceOverDate">服务停止日期</param>
-        public void UpdateServiceOverDate(Guid serverId, DateTime serviceOverDate)
-        {
-            Server currentServer = this._unitOfWork.Resolve<Server>(serverId);
-            currentServer.UpdateServiceOverDate(serviceOverDate);
-
-            this._unitOfWork.RegisterSave(currentServer);
-            this._unitOfWork.UnitedCommit();
-        }
-        #endregion
-
-        #region # 删除服务器 —— void RemoveServer(Guid serverId)
-        /// <summary>
-        /// 删除服务器
-        /// </summary>
-        /// <param name="serverId">服务器Id</param>
-        public void RemoveServer(Guid serverId)
-        {
-            this._unitOfWork.RegisterRemove<Server>(serverId);
-            this._unitOfWork.Commit();
-        }
-        #endregion
-
-
         #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
 
         /// <summary>
@@ -135,7 +71,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
         {
             //验证
-            Assert.IsFalse(this._repMediator.UserRep.Exists(adminLoginId), string.Format("登录名：\"{0}\"已存在，请重试！", adminLoginId));
+            Assert.IsFalse(this._repMediator.UserRep.Exists(adminLoginId), $"登录名：\"{adminLoginId}\"已存在，请重试！");
 
             InfoSystem infoSystem = new InfoSystem(systemNo, systemName, adminLoginId, applicationType);
 
@@ -198,7 +134,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public IEnumerable<Guid> CreateAuthorities(string systemNo, IEnumerable<AuthorityParam> authorityParams)
         {
             //验证
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), string.Format("编号为\"{0}\"的信息系统不存在！", systemNo));
+            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
 
             IList<Guid> authorityIds = new List<Guid>();
 
@@ -267,7 +203,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public Guid CreateMenu(string systemNo, string menuName, int sort, string url, string path, string icon, Guid? parentId)
         {
             //验证参数
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), string.Format("编号为\"{0}\"的信息系统不存在！", systemNo));
+            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
             Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, menuName), "给定菜单级别下菜单名称已存在！");
 
             Menu parentMenu = parentId == null ? null : this._unitOfWork.Resolve<Menu>(parentId.Value);
@@ -298,7 +234,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             if (menuName != currentMenu.Name)
             {
-                Guid? parentId = currentMenu.ParentNode == null ? (Guid?)null : currentMenu.ParentNode.Id;
+                Guid? parentId = currentMenu.ParentNode?.Id;
                 Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, menuName), "给定菜单级别下菜单名称已存在！");
             }
 
@@ -470,7 +406,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             if (currentRole.Users.Any())
             {
-                throw new InvalidOperationException(string.Format("角色\"{0}\"已被用户使用，不可删除！", currentRole.Name));
+                throw new InvalidOperationException($"角色\"{currentRole.Name}\"已被用户使用，不可删除！");
             }
 
             #endregion
@@ -482,41 +418,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
 
         //查询部分
-
-        #region # 分页获取服务器列表 —— PageModel<ServerInfo> GetServersByPage(string keywords...
-        /// <summary>
-        /// 分页获取服务器列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>服务器列表</returns>
-        public PageModel<ServerInfo> GetServersByPage(string keywords, int pageIndex, int pageSize)
-        {
-            int rowCount, pageCount;
-
-            IEnumerable<Server> servers = this._repMediator.ServerRep.FindByPage(keywords, pageIndex, pageSize, out rowCount, out pageCount);
-            IEnumerable<ServerInfo> serverInfos = servers.Select(x => x.ToDTO());
-
-            return new PageModel<ServerInfo>(serverInfos, pageIndex, pageSize, pageCount, rowCount);
-        }
-        #endregion
-
-        #region # 获取服务器 —— ServerInfo GetServer(string uniqueCode)
-        /// <summary>
-        /// 获取服务器
-        /// </summary>
-        /// <param name="uniqueCode">服务器唯一机器码</param>
-        /// <returns>服务器</returns>
-        public ServerInfo GetServer(string uniqueCode)
-        {
-            Server currentServer = this._repMediator.ServerRep.Single(uniqueCode);
-            ServerInfo currentServerInfo = currentServer.ToDTO();
-
-            return currentServerInfo;
-        }
-        #endregion
-
 
         #region # 获取信息系统 —— InfoSystemInfo GetInfoSystem(string systemNo)
         /// <summary>
@@ -637,7 +538,7 @@ namespace SD.IdentitySystem.AppService.Implements
             Menu currentMenu = this._repMediator.MenuRep.Single(menuId);
 
             //验证叶子节点
-            Assert.IsTrue(currentMenu.IsLeaf, string.Format("Id为\"{0}\"的菜单不是叶子节点！", menuId));
+            Assert.IsTrue(currentMenu.IsLeaf, $"Id为\"{menuId}\"的菜单不是叶子节点！");
 
             IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByMenu(menuId);
 

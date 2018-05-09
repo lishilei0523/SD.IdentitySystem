@@ -133,7 +133,7 @@ namespace SD.IdentitySystem.Repository.Base
         {
             foreach (InfoSystem system in this._systems)
             {
-                this._users.Add(new User(system.AdminLoginId, string.Format("{0}系统管理员", system.Name), CommonConstants.InitialPassword));
+                this._users.Add(new User(system.AdminLoginId, $"{system.Name}系统管理员", CommonConstants.InitialPassword));
             }
         }
         #endregion
@@ -199,16 +199,14 @@ namespace SD.IdentitySystem.Repository.Base
             if (this._repMediator.MenuRep.Count() == 0)
             {
                 Menu root = new Menu("00", "身份认证系统", 1, null, null, null, null);
-                Menu serverManagement = new Menu("00", "服务器管理", 2, "/Server/Index", null, null, root);
-                Menu systemManagement = new Menu("00", "信息系统管理", 3, "/InfoSystem/Index", null, null, root);
-                Menu loginRecordManagement = new Menu("00", "登录记录", 4, "/LoginRecord/Index", null, null, root);
-                Menu userManagement = new Menu("00", "用户管理", 5, "/User/Index", null, null, root);
-                Menu roleManagement = new Menu("00", "角色管理", 6, "/Role/Index", null, null, root);
-                Menu menuManagement = new Menu("00", "菜单管理", 7, "/Menu/Index", null, null, root);
-                Menu authorityManagement = new Menu("00", "权限管理", 8, "/Authority/Index", null, null, root);
+                Menu systemManagement = new Menu("00", "信息系统管理", 2, "/InfoSystem/Index", null, null, root);
+                Menu loginRecordManagement = new Menu("00", "登录记录", 3, "/LoginRecord/Index", null, null, root);
+                Menu userManagement = new Menu("00", "用户管理", 4, "/User/Index", null, null, root);
+                Menu roleManagement = new Menu("00", "角色管理", 5, "/Role/Index", null, null, root);
+                Menu menuManagement = new Menu("00", "菜单管理", 6, "/Menu/Index", null, null, root);
+                Menu authorityManagement = new Menu("00", "权限管理", 7, "/Authority/Index", null, null, root);
 
                 this._menus.Add(root);
-                this._menus.Add(serverManagement);
                 this._menus.Add(systemManagement);
                 this._menus.Add(loginRecordManagement);
                 this._menus.Add(userManagement);

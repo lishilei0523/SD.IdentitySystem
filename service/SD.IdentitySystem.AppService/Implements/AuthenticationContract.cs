@@ -11,9 +11,7 @@ using SD.Infrastructure.MemberShip;
 using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
-using System.Configuration;
 using System.Linq;
-using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using NetFX = SD.Common.NetFx.PoweredByLee;
@@ -188,26 +186,29 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         private void AuthenticateMachine()
         {
-            //读取配置文件，是否开启服务器机器验证
-            string authenticateMachineStr = ConfigurationManager.AppSettings["AuthenticateMachine"];
-            bool authenticateMachine;
-
-            if (!bool.TryParse(authenticateMachineStr, out authenticateMachine))
-            {
-                authenticateMachine = true;
-            }
+            bool authenticateMachine = true;
+#if DEBUG
+            authenticateMachine = false;
+#endif
             if (authenticateMachine)
             {
-                string machineCode = NetFX.CommonExtension.GetMachineCode();
-                Server currentServer = this._repMediator.ServerRep.SingleOrDefault(machineCode);
+                License? license = LicenseReader.GetLicense();
 
-                if (currentServer == null)
+                if (license == null)
                 {
-                    throw new NoPermissionException($"服务器\"{Dns.GetHostName()}\"未授权！");
+                    throw new NoPermissionException("未找到许可证，请联系系统管理员！");
                 }
-                if (DateTime.Today > currentServer.ServiceOverDate)
+
+                string uniqueCode = NetFX.CommonExtension.GetMachineCode();
+                bool equal = string.Equals(license.Value.UniqueCode, uniqueCode, StringComparison.CurrentCultureIgnoreCase);
+
+                if (!equal)
                 {
-                    throw new NoPermissionException($"服务器\"{currentServer.Name}\"授权已过期！");
+                    throw new NoPermissionException("许可证授权与本机不匹配，请联系系统管理员！");
+                }
+                if (DateTime.Today > license.Value.ExpiredDate)
+                {
+                    throw new NoPermissionException("许可证授权已过期，请联系系统管理员！");
                 }
             }
         }

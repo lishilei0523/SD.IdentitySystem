@@ -10,9 +10,8 @@ namespace SD.IdentitySystem.Domain.Mediators
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public RepositoryMediator(IServerRepository serverRep, IInfoSystemRepository systemRep, IUserRepository userRep, IAuthorityRepository authorityRep, IMenuRepository menuRep, IRoleRepository roleRep, ILoginRecordRepository loginRecordRep)
+        public RepositoryMediator(IInfoSystemRepository systemRep, IUserRepository userRep, IAuthorityRepository authorityRep, IMenuRepository menuRep, IRoleRepository roleRep, ILoginRecordRepository loginRecordRep)
         {
-            this.ServerRep = serverRep;
             this.InfoSystemRep = systemRep;
             this.UserRep = userRep;
             this.AuthorityRep = authorityRep;
@@ -20,11 +19,6 @@ namespace SD.IdentitySystem.Domain.Mediators
             this.RoleRep = roleRep;
             this.LoginRecordRep = loginRecordRep;
         }
-
-        /// <summary>
-        /// 服务器仓储接口
-        /// </summary>
-        public IServerRepository ServerRep { get; private set; }
 
         /// <summary>
         /// 信息系统仓储接口

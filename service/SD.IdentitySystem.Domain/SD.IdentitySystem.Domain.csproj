@@ -123,7 +123,6 @@
     <Compile Include="Entities\LoginRecord.cs" />
     <Compile Include="Entities\Menu.cs" />
     <Compile Include="Entities\Role.cs" />
-    <Compile Include="Entities\Server.cs" />
     <Compile Include="Entities\User.cs" />
     <Compile Include="EventSources\AuthorizationContext\AuthorityCreatedEvent.cs" />
     <Compile Include="EventSources\AuthorizationContext\InfoSystemCreatedEvent.cs" />
@@ -136,7 +135,6 @@
     <Compile Include="IRepositories\Interfaces\ILoginRecordRepository.cs" />
     <Compile Include="IRepositories\Interfaces\IMenuRepository.cs" />
     <Compile Include="IRepositories\Interfaces\IRoleRepository.cs" />
-    <Compile Include="IRepositories\Interfaces\IServerRepository.cs" />
     <Compile Include="IRepositories\Interfaces\IUserRepository.cs" />
     <Compile Include="IRepositories\IUnitOfWorkIdentity.cs" />
     <Compile Include="Mediators\DomainServiceMediator.cs" />
