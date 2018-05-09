@@ -58,7 +58,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.2.0.1\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.2.0.2\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.2.0.2\lib\netstandard2.0\SD.Infrastructure.dll</HintPath>
@@ -82,12 +82,10 @@
   <ItemGroup>
     <Compile Include="Implements\AuthorityPresenter.cs" />
     <Compile Include="Implements\InfoSystemPresenter.cs" />
-    <Compile Include="Implements\ServerPresenter.cs" />
     <Compile Include="Implements\MenuPresenter.cs" />
     <Compile Include="Implements\RolePresenter.cs" />
     <Compile Include="Implements\UserPresenter.cs" />
     <Compile Include="Maps\AuthorityMap.cs" />
-    <Compile Include="Maps\ServerMap.cs" />
     <Compile Include="Maps\InfoSytemMap.cs" />
     <Compile Include="Maps\MenuMap.cs" />
     <Compile Include="Maps\RoleMap.cs" />
