@@ -91,7 +91,7 @@
       <HintPath>..\..\packages\SD.Common.2.0.0\lib\netstandard2.0\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.Common.NetFx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.NetFx.1.0.1\lib\net35\SD.Common.NetFx.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.NetFx.1.0.2\lib\net35\SD.Common.NetFx.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.LicenseReader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.LicenseReader.1.0.3\lib\net461\SD.IdentitySystem.LicenseReader.dll</HintPath>
