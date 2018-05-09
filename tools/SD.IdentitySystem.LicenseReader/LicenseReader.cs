@@ -3,6 +3,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using System;
 using System.IO;
+using System.Linq;
 
 // ReSharper disable once CheckNamespace
 namespace SD.IdentitySystem
@@ -13,9 +14,32 @@ namespace SD.IdentitySystem
     public static class LicenseReader
     {
         /// <summary>
+        /// 分隔符
+        /// </summary>
+        private const string Separator = @"\";
+
+        /// <summary>
         /// 许可证路径
         /// </summary>
-        private static readonly string _LicencePath = AppDomain.CurrentDomain.BaseDirectory + CommonConstants.LicenseFileName;
+        private static readonly string _LicencePath;
+
+        /// <summary>
+        /// 静态构造器
+        /// </summary>
+        static LicenseReader()
+        {
+            string runtimeDir = AppDomain.CurrentDomain.BaseDirectory;
+            string endChar = runtimeDir.Last().ToString();
+
+            if (endChar == Separator)
+            {
+                _LicencePath = runtimeDir + CommonConstants.LicenseFileName;
+            }
+            else
+            {
+                _LicencePath = runtimeDir + Separator + CommonConstants.LicenseFileName;
+            }
+        }
 
         /// <summary>
         /// 获取许可证
