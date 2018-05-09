@@ -7,8 +7,8 @@
     <ProjectGuid>{C90BB590-ED19-4451-B9FB-30415BEC1958}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SD.IdentitySystem.IAppService.NET45</RootNamespace>
-    <AssemblyName>SD.IdentitySystem.IAppService.NET45</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.IAppService</RootNamespace>
+    <AssemblyName>SD.IdentitySystem.IAppService</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -20,7 +20,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SD.IdentitySystem.IAppService.NET45.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\SD.IdentitySystem.IAppService.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -29,7 +29,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SD.IdentitySystem.IAppService.NET45.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\SD.IdentitySystem.IAppService.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
