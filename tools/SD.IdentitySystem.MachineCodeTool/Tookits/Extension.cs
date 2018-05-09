@@ -1,8 +1,11 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Management;
+using System.Net.NetworkInformation;
 using System.Security.Cryptography;
 using System.Text;
+using Microsoft.Win32;
 
 namespace SD.IdentitySystem.MachineCodeTool.Tookits
 {
@@ -11,62 +14,6 @@ namespace SD.IdentitySystem.MachineCodeTool.Tookits
     /// </summary>
     internal static class Extension
     {
-        #region # 获取硬盘唯一码列表 —— static ICollection<string> GetHardDiskIds()
-        /// <summary>
-        /// 获取硬盘唯一码列表
-        /// </summary>
-        /// <returns>硬盘唯一码列表</returns>
-        public static ICollection<string> GetHardDiskIds()
-        {
-            ManagementObjectSearcher searcher = new ManagementObjectSearcher("SELECT * FROM Win32_PhysicalMedia");
-            ManagementObjectCollection managementObjects = searcher.Get();
-
-            ICollection<string> hardDiskIds = new HashSet<string>();
-
-            foreach (ManagementBaseObject managementBase in managementObjects)
-            {
-                ManagementObject management = (ManagementObject)managementBase;
-                object serial = management["SerialNumber"];
-
-                if (serial != null)
-                {
-                    string hardDiskId = serial.ToString().Trim();
-                    hardDiskIds.Add(hardDiskId);
-                }
-            }
-
-            return hardDiskIds;
-        }
-        #endregion
-
-        #region # 获取MAC地址列表 —— static ICollection<string> GetMacAddresses()
-        /// <summary>
-        /// 获取MAC地址列表
-        /// </summary>
-        /// <returns>MAC地址列表</returns>
-        public static ICollection<string> GetMacAddresses()
-        {
-            ManagementClass managementClass = new ManagementClass("Win32_NetworkAdapterConfiguration");
-            ManagementObjectCollection managementObjects = managementClass.GetInstances();
-
-            ICollection<string> macAddresses = new HashSet<string>();
-
-            foreach (ManagementBaseObject managementBase in managementObjects)
-            {
-                ManagementObject management = (ManagementObject)managementBase;
-                object mac = management["MacAddress"];
-
-                if (mac != null)
-                {
-                    string macAddress = mac.ToString().Trim();
-                    macAddresses.Add(macAddress);
-                }
-            }
-
-            return macAddresses;
-        }
-        #endregion
-
         #region # 获取机器唯一码 —— static string GetMachineCode()
         /// <summary>
         /// 获取机器唯一码
@@ -74,15 +21,30 @@ namespace SD.IdentitySystem.MachineCodeTool.Tookits
         /// <returns>机器唯一码</returns>
         public static string GetMachineCode()
         {
-            ICollection<string> macs = GetMacAddresses();
-            StringBuilder builder = new StringBuilder();
+            const string keyPrefix = @"SYSTEM\CurrentControlSet\Control\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}";
 
-            foreach (string mac in macs.OrderBy(x => x))
+            PhysicalAddress physicalAddress = null;
+
+            IEnumerable<NetworkInterface> networkInterfaces = NetworkInterface.GetAllNetworkInterfaces().Where(x => x.NetworkInterfaceType == NetworkInterfaceType.Ethernet);
+
+            foreach (NetworkInterface networkInterface in networkInterfaces)
             {
-                builder.Append(mac);
+                string registryKeyPath = $@"{keyPrefix}\{networkInterface.Id}\Connection";
+                RegistryKey registryKey = Registry.LocalMachine.OpenSubKey(registryKeyPath, false);
+                string pnpInstanceId = registryKey?.GetValue("PnpInstanceID", string.Empty).ToString();
+
+                if (pnpInstanceId != null && pnpInstanceId.Length > 3 && pnpInstanceId.Substring(0, 3) == "PCI")
+                {
+                    physicalAddress = networkInterface.GetPhysicalAddress();
+                }
             }
 
-            string machineCode = builder.ToString().ToMD5();
+            if (physicalAddress == null)
+            {
+                throw new SystemException("物理网卡不存在，请联系管理员！");
+            }
+
+            string machineCode = physicalAddress.ToString().ToMD5();
 
             return machineCode;
         }
