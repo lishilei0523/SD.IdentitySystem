@@ -15,8 +15,13 @@ namespace SD.IdentitySystem
         /// 获取许可证
         /// </summary>
         /// <returns>许可证</returns>
-        public static License GetLicense()
+        public static License? GetLicense()
         {
+            if (!File.Exists(CommonConstants.LicenseFileName))
+            {
+                return null;
+            }
+
             using (FileStream fileStream = new FileStream(CommonConstants.LicenseFileName, FileMode.Open))
             {
                 using (BinaryReader binaryReader = new BinaryReader(fileStream))
