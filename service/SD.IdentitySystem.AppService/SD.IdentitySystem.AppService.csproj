@@ -94,7 +94,7 @@
       <HintPath>..\..\packages\SD.Common.NetFx.1.0.2\lib\net35\SD.Common.NetFx.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.LicenseReader, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.LicenseReader.1.0.3\lib\net461\SD.IdentitySystem.LicenseReader.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.LicenseReader.1.0.5\lib\net461\SD.IdentitySystem.LicenseReader.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.Membership.2.0.0\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
