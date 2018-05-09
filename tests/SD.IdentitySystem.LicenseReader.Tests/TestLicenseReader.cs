@@ -17,11 +17,12 @@ namespace SD.IdentitySystem.Tests
         [TestMethod]
         public void ReadLicenseTest()
         {
-            License license = LicenseReader.GetLicense();
+            License? license = LicenseReader.GetLicense();
 
-            Assert.IsTrue(license.EnterpriseName == "SD");
-            Assert.IsTrue(license.UniqueCode == "0c0d247db5ad777ede9b88839887a217");
-            Assert.IsTrue(license.ExpiredDate == CommonConstants.MaxDateTime);
+            Assert.IsTrue(license != null);
+            Assert.IsTrue(license.Value.EnterpriseName == "SD");
+            Assert.IsTrue(license.Value.UniqueCode == "0c0d247db5ad777ede9b88839887a217");
+            Assert.IsTrue(license.Value.ExpiredDate == CommonConstants.MaxDateTime);
         }
     }
 }
