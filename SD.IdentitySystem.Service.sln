@@ -25,6 +25,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.IAppServi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService", "service\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj", "{1490AFC6-998C-4E2C-A7D1-BC6C3CB0EA4C}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.IAppService.NET45", "service\SD.IdentitySystem.IAppService.NET45\SD.IdentitySystem.IAppService.NET45.csproj", "{C90BB590-ED19-4451-B9FB-30415BEC1958}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -55,6 +57,10 @@ Global
 		{1490AFC6-998C-4E2C-A7D1-BC6C3CB0EA4C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1490AFC6-998C-4E2C-A7D1-BC6C3CB0EA4C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1490AFC6-998C-4E2C-A7D1-BC6C3CB0EA4C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C90BB590-ED19-4451-B9FB-30415BEC1958}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C90BB590-ED19-4451-B9FB-30415BEC1958}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C90BB590-ED19-4451-B9FB-30415BEC1958}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C90BB590-ED19-4451-B9FB-30415BEC1958}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -66,6 +72,7 @@ Global
 		{33F75AC9-F2CC-4117-A04D-E701EF897924} = {736BB2F7-0FF7-4CAD-9713-BB82C3EDF7D1}
 		{52BF9A76-1B01-4C29-8067-E6F1C88896FD} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
 		{1490AFC6-998C-4E2C-A7D1-BC6C3CB0EA4C} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
+		{C90BB590-ED19-4451-B9FB-30415BEC1958} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9428DB86-89E0-425E-9C5A-836EC410CD83}

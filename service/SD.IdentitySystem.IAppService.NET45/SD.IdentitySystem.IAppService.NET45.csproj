@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{C90BB590-ED19-4451-B9FB-30415BEC1958}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SD.IdentitySystem.IAppService.NET45</RootNamespace>
+    <AssemblyName>SD.IdentitySystem.IAppService.NET45</AssemblyName>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Debug\SD.IdentitySystem.IAppService.NET45.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SD.IdentitySystem.IAppService.NET45.xml</DocumentationFile>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.1.2.2\lib\net45\SD.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Inputs\AuthorityParam.cs">
+      <Link>DTOs\Inputs\AuthorityParam.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Inputs\InfoSystemParam.cs">
+      <Link>DTOs\Inputs\InfoSystemParam.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\AuthorityInfo.cs">
+      <Link>DTOs\Outputs\AuthorityInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\InfoSystemInfo.cs">
+      <Link>DTOs\Outputs\InfoSystemInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\LoginRecordInfo.cs">
+      <Link>DTOs\Outputs\LoginRecordInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\MenuInfo.cs">
+      <Link>DTOs\Outputs\MenuInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\RoleInfo.cs">
+      <Link>DTOs\Outputs\RoleInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\UserInfo.cs">
+      <Link>DTOs\Outputs\UserInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\Interfaces\IAuthorizationContract.cs">
+      <Link>Interfaces\IAuthorizationContract.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\Interfaces\IAuthenticationContract.cs">
+      <Link>Interfaces\IAuthenticationContract.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\Interfaces\IUserContract.cs">
+      <Link>Interfaces\IUserContract.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\Properties\AssemblyInfo.cs">
+      <Link>Properties\AssemblyInfo.cs</Link>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
