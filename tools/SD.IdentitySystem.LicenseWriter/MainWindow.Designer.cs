@@ -35,6 +35,7 @@
             this.label2 = new System.Windows.Forms.Label();
             this.Dtp_ExpiredDate = new System.Windows.Forms.DateTimePicker();
             this.Btn_CreateLicense = new System.Windows.Forms.Button();
+            this.Btn_LoadLocalMachine = new System.Windows.Forms.Button();
             this.SuspendLayout();
             // 
             // label3
@@ -111,12 +112,23 @@
             this.Btn_CreateLicense.UseVisualStyleBackColor = true;
             this.Btn_CreateLicense.Click += new System.EventHandler(this.Btn_CreateLicense_Click);
             // 
+            // Btn_LoadLocalMachine
+            // 
+            this.Btn_LoadLocalMachine.Location = new System.Drawing.Point(423, 99);
+            this.Btn_LoadLocalMachine.Name = "Btn_LoadLocalMachine";
+            this.Btn_LoadLocalMachine.Size = new System.Drawing.Size(69, 23);
+            this.Btn_LoadLocalMachine.TabIndex = 37;
+            this.Btn_LoadLocalMachine.Text = "加载本机";
+            this.Btn_LoadLocalMachine.UseVisualStyleBackColor = true;
+            this.Btn_LoadLocalMachine.Click += new System.EventHandler(this.Btn_LoadLocalMachine_Click);
+            // 
             // MainWindow
             // 
             this.AcceptButton = this.Btn_CreateLicense;
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(504, 335);
+            this.ClientSize = new System.Drawing.Size(513, 335);
+            this.Controls.Add(this.Btn_LoadLocalMachine);
             this.Controls.Add(this.Btn_CreateLicense);
             this.Controls.Add(this.Dtp_ExpiredDate);
             this.Controls.Add(this.label2);
@@ -143,6 +155,7 @@
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.DateTimePicker Dtp_ExpiredDate;
         private System.Windows.Forms.Button Btn_CreateLicense;
+        private System.Windows.Forms.Button Btn_LoadLocalMachine;
     }
 }
 

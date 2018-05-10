@@ -51,6 +51,15 @@ namespace SD.IdentitySystem.LicenseWriter
         }
 
         /// <summary>
+        /// 加载本机机器码按钮点击事件
+        /// </summary>
+        private void Btn_LoadLocalMachine_Click(object sender, EventArgs e)
+        {
+            string uniqueCode = UniqueCode.Compute();
+            this.Txt_UniqueCode.Text = uniqueCode;
+        }
+
+        /// <summary>
         /// 创建许可证文件
         /// </summary>
         private void CreateLicenseFile(License license)
