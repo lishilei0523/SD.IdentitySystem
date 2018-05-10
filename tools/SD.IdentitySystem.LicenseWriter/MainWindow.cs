@@ -1,6 +1,6 @@
-﻿using SD.IdentitySystem.Tookits;
-using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+﻿using SD.IdentitySystem.LicenseManager;
+using SD.IdentitySystem.LicenseManager.Models;
+using SD.IdentitySystem.LicenseManager.Tookits;
 using System;
 using System.IO;
 using System.Windows.Forms;
@@ -33,12 +33,12 @@ namespace SD.IdentitySystem.LicenseWriter
             string uniqueCode = this.Txt_UniqueCode.Text;
             DateTime expiredDate = this.Dtp_ExpiredDate.Value;
 
-            if (string.IsNullOrWhiteSpace(enterpriseName))
+            if (string.IsNullOrEmpty(enterpriseName))
             {
                 MessageBox.Show(@"企业名称不可为空！", @"警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(uniqueCode))
+            if (string.IsNullOrEmpty(uniqueCode))
             {
                 MessageBox.Show(@"唯一码不可为空！", @"警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
@@ -59,7 +59,7 @@ namespace SD.IdentitySystem.LicenseWriter
             string aesString = binaryString.Encrypt();
             byte[] buffer = aesString.ToBuffer();
 
-            using (FileStream fileStream = new FileStream(CommonConstants.LicenseFileName, FileMode.Create))
+            using (FileStream fileStream = new FileStream(Constants.LicenseFileName, FileMode.Create))
             {
                 using (BinaryWriter binaryWriter = new BinaryWriter(fileStream))
                 {

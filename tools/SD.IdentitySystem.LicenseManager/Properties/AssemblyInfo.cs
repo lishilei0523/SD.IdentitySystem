@@ -1,14 +1,15 @@
 ﻿using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("SD.IdentitySystem.LicenseReader")]
-[assembly: AssemblyDescription("许可证读取工具")]
+[assembly: AssemblyTitle("SD.IdentitySystem.LicenseManager")]
+[assembly: AssemblyDescription("许可证管理工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
-[assembly: AssemblyProduct("SD.IdentitySystem.LicenseReader")]
+[assembly: AssemblyProduct("SD.IdentitySystem.LicenseManager")]
 [assembly: AssemblyCopyright("Copyright © SD 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -19,7 +20,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("9b041114-0488-4fda-8ce3-6581a7c1da03")]
+[assembly: Guid("9db7a34c-ca30-4ec9-91d5-c6e46078e6f1")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
@@ -33,3 +34,7 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+
+[assembly: InternalsVisibleTo("SD.IdentitySystem.LicenseWriter")]
+[assembly: InternalsVisibleTo("SD.IdentitySystem.UniqueCode")]

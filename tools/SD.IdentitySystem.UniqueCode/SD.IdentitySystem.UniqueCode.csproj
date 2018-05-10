@@ -7,8 +7,8 @@
     <ProjectGuid>{1ADB97CB-60D3-4D0F-99CA-744EB0726868}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SD.IdentitySystem.MachineCodeTool</RootNamespace>
-    <AssemblyName>SD.IdentitySystem.MachineCodeTool</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.UniqueCode</RootNamespace>
+    <AssemblyName>SD.IdentitySystem.UniqueCode</AssemblyName>
     <TargetFrameworkVersion>v3.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
@@ -39,9 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
-    <Reference Include="System.Core" />
     <Reference Include="System.Drawing" />
-    <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Deployment" />
     <Reference Include="System.Windows.Forms" />
   </ItemGroup>
@@ -54,7 +52,6 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tookits\Extension.cs" />
     <EmbeddedResource Include="MainWindow.resx">
       <DependentUpon>MainWindow.cs</DependentUpon>
     </EmbeddedResource>
@@ -80,6 +77,12 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj">
+      <Project>{9db7a34c-ca30-4ec9-91d5-c6e46078e6f1}</Project>
+      <Name>SD.IdentitySystem.LicenseManager</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

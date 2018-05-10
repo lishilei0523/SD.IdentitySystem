@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace SD.IdentitySystem.MachineCodeTool.Properties {
+namespace SD.IdentitySystem.UniqueCode.Properties {
     using System;
     
     
@@ -39,7 +39,7 @@ namespace SD.IdentitySystem.MachineCodeTool.Properties {
         internal static global::System.Resources.ResourceManager ResourceManager {
             get {
                 if (object.ReferenceEquals(resourceMan, null)) {
-                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SD.IdentitySystem.MachineCodeTool.Properties.Resources", typeof(Resources).Assembly);
+                    global::System.Resources.ResourceManager temp = new global::System.Resources.ResourceManager("SD.IdentitySystem.UniqueCode.Properties.Resources", typeof(Resources).Assembly);
                     resourceMan = temp;
                 }
                 return resourceMan;

@@ -1,12 +1,9 @@
-﻿using SD.IdentitySystem.Tookits;
-using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+﻿using SD.IdentitySystem.LicenseManager.Models;
 using System;
 using System.IO;
 using System.Linq;
 
-// ReSharper disable once CheckNamespace
-namespace SD.IdentitySystem
+namespace SD.IdentitySystem.LicenseManager.Tookits
 {
     /// <summary>
     /// 许可证读取器
@@ -33,11 +30,11 @@ namespace SD.IdentitySystem
 
             if (endChar == Separator)
             {
-                _LicencePath = runtimeDir + CommonConstants.LicenseFileName;
+                _LicencePath = runtimeDir + Constants.LicenseFileName;
             }
             else
             {
-                _LicencePath = runtimeDir + Separator + CommonConstants.LicenseFileName;
+                _LicencePath = runtimeDir + Separator + Constants.LicenseFileName;
             }
         }
 

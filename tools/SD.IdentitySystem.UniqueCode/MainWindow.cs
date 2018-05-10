@@ -1,8 +1,7 @@
-﻿using SD.IdentitySystem.MachineCodeTool.Tookits;
-using System;
+﻿using System;
 using System.Windows.Forms;
 
-namespace SD.IdentitySystem.MachineCodeTool
+namespace SD.IdentitySystem.UniqueCode
 {
     public partial class MainWindow : Form
     {
@@ -21,7 +20,7 @@ namespace SD.IdentitySystem.MachineCodeTool
         {
             if (string.IsNullOrEmpty(this.Txt_MachineCode.Text))
             {
-                string machineCode = Extension.GetMachineCode();
+                string machineCode = LicenseManager.Tookits.UniqueCode.Compute();
                 this.Txt_MachineCode.Text = machineCode;
             }
         }

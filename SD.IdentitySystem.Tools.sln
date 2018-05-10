@@ -23,15 +23,13 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Membershi
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - 用户工具", "03 - 用户工具", "{623424A5-633C-42E2-BD48-8C2F375417E1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.MachineCodeTool", "tools\SD.IdentitySystem.MachineCodeTool\SD.IdentitySystem.MachineCodeTool.csproj", "{1ADB97CB-60D3-4D0F-99CA-744EB0726868}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.UniqueCode", "tools\SD.IdentitySystem.UniqueCode\SD.IdentitySystem.UniqueCode.csproj", "{1ADB97CB-60D3-4D0F-99CA-744EB0726868}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseWriter", "tools\SD.IdentitySystem.LicenseWriter\SD.IdentitySystem.LicenseWriter.csproj", "{8B2C63C4-2F19-47A9-B45E-DABD4E379624}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseReader", "tools\SD.IdentitySystem.LicenseReader\SD.IdentitySystem.LicenseReader.csproj", "{9B041114-0488-4FDA-8CE3-6581A7C1DA03}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - 许可证工具", "02 - 许可证工具", "{CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseReader.NET45", "tools\SD.IdentitySystem.LicenseReader.NET45\SD.IdentitySystem.LicenseReader.NET45.csproj", "{5063A0E0-0537-4FA2-B73E-6722E5CAF630}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseManager", "tools\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj", "{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -71,14 +69,10 @@ Global
 		{8B2C63C4-2F19-47A9-B45E-DABD4E379624}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8B2C63C4-2F19-47A9-B45E-DABD4E379624}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8B2C63C4-2F19-47A9-B45E-DABD4E379624}.Release|Any CPU.Build.0 = Release|Any CPU
-		{9B041114-0488-4FDA-8CE3-6581A7C1DA03}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{9B041114-0488-4FDA-8CE3-6581A7C1DA03}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{9B041114-0488-4FDA-8CE3-6581A7C1DA03}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{9B041114-0488-4FDA-8CE3-6581A7C1DA03}.Release|Any CPU.Build.0 = Release|Any CPU
-		{5063A0E0-0537-4FA2-B73E-6722E5CAF630}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{5063A0E0-0537-4FA2-B73E-6722E5CAF630}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{5063A0E0-0537-4FA2-B73E-6722E5CAF630}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{5063A0E0-0537-4FA2-B73E-6722E5CAF630}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -92,8 +86,7 @@ Global
 		{B8C46017-C7C3-47FB-854B-11967165C080} = {623424A5-633C-42E2-BD48-8C2F375417E1}
 		{1ADB97CB-60D3-4D0F-99CA-744EB0726868} = {CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}
 		{8B2C63C4-2F19-47A9-B45E-DABD4E379624} = {CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}
-		{9B041114-0488-4FDA-8CE3-6581A7C1DA03} = {CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}
-		{5063A0E0-0537-4FA2-B73E-6722E5CAF630} = {CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}
+		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1} = {CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68A6A707-43D9-49D2-A1D9-140E19A613F2}

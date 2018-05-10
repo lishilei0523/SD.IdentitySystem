@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace SD.IdentitySystem.MachineCodeTool
+namespace SD.IdentitySystem.UniqueCode
 {
     static class Program
     {

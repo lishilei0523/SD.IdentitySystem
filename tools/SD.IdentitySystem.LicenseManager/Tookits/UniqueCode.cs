@@ -1,25 +1,21 @@
-﻿using System;
+﻿using Microsoft.Win32;
+using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Management;
 using System.Net.NetworkInformation;
-using System.Security.Cryptography;
-using System.Text;
-using Microsoft.Win32;
 
-namespace SD.IdentitySystem.MachineCodeTool.Tookits
+namespace SD.IdentitySystem.LicenseManager.Tookits
 {
     /// <summary>
-    /// 扩展方法
+    /// 唯一码
     /// </summary>
-    internal static class Extension
+    public static class UniqueCode
     {
-        #region # 获取机器唯一码 —— static string GetMachineCode()
+        #region # 计算机器唯一码 —— static string Compute()
         /// <summary>
-        /// 获取机器唯一码
+        /// 计算机器唯一码
         /// </summary>
-        /// <returns>机器唯一码</returns>
-        public static string GetMachineCode()
+        public static string Compute()
         {
             const string keyPrefix = @"SYSTEM\CurrentControlSet\Control\Network\{4D36E972-E325-11CE-BFC1-08002BE10318}";
 
@@ -44,34 +40,9 @@ namespace SD.IdentitySystem.MachineCodeTool.Tookits
                 throw new SystemException("物理网卡不存在，请联系管理员！");
             }
 
-            string machineCode = physicalAddress.ToString().ToMD5();
+            string machineCode = physicalAddress.ToString().ToHash();
 
             return machineCode;
-        }
-        #endregion
-
-
-        //Private
-
-        #region # 计算字符串MD5值扩展方法 —— static string ToMD5(this string text)
-        /// <summary>
-        /// 计算字符串MD5值扩展方法
-        /// </summary>
-        /// <param name="text">待转换的字符串</param>
-        /// <returns>MD5值</returns>
-        private static string ToMD5(this string text)
-        {
-            byte[] buffer = Encoding.Default.GetBytes(text);
-            using (MD5 md5 = MD5.Create())
-            {
-                buffer = md5.ComputeHash(buffer);
-                StringBuilder md5Builder = new StringBuilder();
-                foreach (byte @byte in buffer)
-                {
-                    md5Builder.Append(@byte.ToString("x2"));
-                }
-                return md5Builder.ToString();
-            }
         }
         #endregion
     }
