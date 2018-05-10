@@ -3,13 +3,13 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
+using SD.Infrastructure.MemberShip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using SD.Infrastructure.MemberShip;
 
 namespace SD.IdentitySystem.InitializationTool
 {
