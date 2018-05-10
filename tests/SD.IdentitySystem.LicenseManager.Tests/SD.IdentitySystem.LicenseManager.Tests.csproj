@@ -4,12 +4,12 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{85DDC2D4-2A67-4C48-A8EC-EC2BDBC874A5}</ProjectGuid>
+    <ProjectGuid>{F569D535-EE1B-46EC-9F67-F6A0B76761FA}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SD.IdentitySystem.LicenseReader.NET45.Tests</RootNamespace>
-    <AssemblyName>SD.IdentitySystem.LicenseReader.NET45.Tests</AssemblyName>
-    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
+    <RootNamespace>SD.IdentitySystem.LicenseReader.Tests</RootNamespace>
+    <AssemblyName>SD.IdentitySystem.LicenseReader.Tests</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{3AC096D0-A1C2-E12C-1390-A8335801FDAB};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">15.0</VisualStudioVersion>
@@ -44,28 +44,31 @@
     <Reference Include="Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions, Version=14.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MSTest.TestFramework.1.2.0\lib\net45\Microsoft.VisualStudio.TestPlatform.TestFramework.Extensions.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.1.2.2\lib\net45\SD.Infrastructure.dll</HintPath>
+    <Reference Include="SD.Infrastructure, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.2.0.1\lib\netstandard2.0\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Configuration.ConfigurationManager.4.4.1\lib\net461\System.Configuration.ConfigurationManager.dll</HintPath>
+    </Reference>
     <Reference Include="System.Core" />
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="..\SD.IdentitySystem.LicenseReader.Tests\Properties\AssemblyInfo.cs">
-      <Link>Properties\AssemblyInfo.cs</Link>
-    </Compile>
-    <Compile Include="..\SD.IdentitySystem.LicenseReader.Tests\TestLicenseReader.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TestLicenseReader.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\SD.IdentitySystem.LicenseReader.Tests\License.key">
+    <None Include="License.key">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\tools\SD.IdentitySystem.LicenseReader.NET45\SD.IdentitySystem.LicenseReader.NET45.csproj">
-      <Project>{5063a0e0-0537-4fa2-b73e-6722e5caf630}</Project>
-      <Name>SD.IdentitySystem.LicenseReader.NET45</Name>
+    <ProjectReference Include="..\..\tools\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj">
+      <Project>{9db7a34c-ca30-4ec9-91d5-c6e46078e6f1}</Project>
+      <Name>SD.IdentitySystem.LicenseManager</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets" Condition="Exists('$(VSToolsPath)\TeamTest\Microsoft.TestTools.targets')" />

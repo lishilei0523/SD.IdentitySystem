@@ -5,6 +5,8 @@ using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.LicenseManager.Models;
+using SD.IdentitySystem.LicenseManager.Tookits;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.MemberShip;
@@ -14,7 +16,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
-using NetFX = SD.Common.NetFx.PoweredByLee;
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -199,7 +200,7 @@ namespace SD.IdentitySystem.AppService.Implements
                     throw new NoPermissionException("未找到许可证，请联系系统管理员！");
                 }
 
-                string uniqueCode = NetFX.CommonExtension.GetMachineCode();
+                string uniqueCode = UniqueCode.Compute();
                 bool equal = string.Equals(license.Value.UniqueCode, uniqueCode, StringComparison.CurrentCultureIgnoreCase);
 
                 if (!equal)

@@ -54,12 +54,11 @@
     <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
     </Reference>
-    <Reference Include="SD.IdentitySystem.IAppService">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.2.0.2\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
-      <Private>True</Private>
+    <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.2.0.4\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.2.0.2\lib\netstandard2.0\SD.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.2.0.1\lib\netstandard2.0\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.0\lib\netstandard2.0\SD.IOC.Core.dll</HintPath>
