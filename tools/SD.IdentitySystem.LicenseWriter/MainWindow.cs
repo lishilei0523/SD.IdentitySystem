@@ -20,18 +20,21 @@ namespace SD.IdentitySystem.LicenseWriter
             this.InitializeComponent();
 
             //默认值
-            this.Dtp_ExpiredDate.Value = DateTime.Today;
-            this.Dtp_ExpiredDate.MinDate = DateTime.Today;
+            this.Dtp_ServiceExpiredDate.Value = DateTime.Today;
+            this.Dtp_LicenseExpiredDate.Value = DateTime.Today;
+            this.Dtp_ServiceExpiredDate.MinDate = DateTime.Today;
+            this.Dtp_ServiceExpiredDate.MinDate = DateTime.Today;
         }
 
         /// <summary>
         /// 生成许可证按钮点击事件
         /// </summary>
-        private void Btn_CreateLicense_Click(object sender, System.EventArgs e)
+        private void Btn_CreateLicense_Click(object sender, EventArgs e)
         {
             string enterpriseName = this.Txt_EnterpriseName.Text;
             string uniqueCode = this.Txt_UniqueCode.Text;
-            DateTime expiredDate = this.Dtp_ExpiredDate.Value;
+            DateTime serviceExpiredDate = this.Dtp_ServiceExpiredDate.Value;
+            DateTime licenseExpiredDate = this.Dtp_LicenseExpiredDate.Value;
 
             if (string.IsNullOrEmpty(enterpriseName))
             {
@@ -44,7 +47,7 @@ namespace SD.IdentitySystem.LicenseWriter
                 return;
             }
 
-            License license = new License(enterpriseName, uniqueCode, expiredDate);
+            License license = new License(enterpriseName, uniqueCode, serviceExpiredDate, licenseExpiredDate);
             this.CreateLicenseFile(license);
 
             MessageBox.Show(@"生成成功", @"OK", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -57,6 +60,30 @@ namespace SD.IdentitySystem.LicenseWriter
         {
             string uniqueCode = UniqueCode.Compute();
             this.Txt_UniqueCode.Text = uniqueCode;
+        }
+
+        /// <summary>
+        /// 打开按钮点击事件
+        /// </summary>
+        private void Btn_OpenLicense_Click(object sender, EventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog { Filter = @"License files (*.key)|*.key" };
+            dialog.ShowDialog();
+
+            string licenseFileName = dialog.FileName;
+
+            if (!string.IsNullOrEmpty(licenseFileName))
+            {
+                License? license = LicenseReader.GetLicense(licenseFileName);
+
+                if (license.HasValue)
+                {
+                    this.Txt_EnterpriseName.Text = license.Value.EnterpriseName;
+                    this.Txt_UniqueCode.Text = license.Value.UniqueCode;
+                    this.Dtp_ServiceExpiredDate.Value = license.Value.ServiceExpiredDate;
+                    this.Dtp_LicenseExpiredDate.Value = license.Value.LicenseExpiredDate;
+                }
+            }
         }
 
         /// <summary>

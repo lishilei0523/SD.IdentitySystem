@@ -41,17 +41,26 @@ namespace SD.IdentitySystem.LicenseManager.Tookits
         /// <summary>
         /// 获取许可证
         /// </summary>
+        /// <param name="licensePath">许可证路径</param>
         /// <returns>许可证</returns>
-        public static License? GetLicense()
+        public static License? GetLicense(string licensePath = null)
         {
-            if (!File.Exists(_LicencePath))
+            #region # 验证
+
+            if (string.IsNullOrEmpty(licensePath))
+            {
+                licensePath = _LicencePath;
+            }
+            if (!File.Exists(licensePath))
             {
                 return null;
             }
 
+            #endregion
+
             try
             {
-                using (FileStream fileStream = new FileStream(_LicencePath, FileMode.Open))
+                using (FileStream fileStream = new FileStream(licensePath, FileMode.Open))
                 {
                     using (BinaryReader binaryReader = new BinaryReader(fileStream))
                     {

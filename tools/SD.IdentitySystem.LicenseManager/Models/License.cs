@@ -13,13 +13,15 @@ namespace SD.IdentitySystem.LicenseManager.Models
         /// </summary>
         /// <param name="enterpriseName">企业名称</param>
         /// <param name="uniqueCode">唯一码</param>
-        /// <param name="expiredDate">过期日期</param>
-        public License(string enterpriseName, string uniqueCode, DateTime expiredDate)
+        /// <param name="serviceExpiredDate">服务过期日期</param>
+        /// <param name="licenseExpiredDate">授权过期日期</param>
+        public License(string enterpriseName, string uniqueCode, DateTime serviceExpiredDate, DateTime licenseExpiredDate)
             : this()
         {
             this.EnterpriseName = enterpriseName;
             this.UniqueCode = uniqueCode;
-            this.ExpiredDate = expiredDate;
+            this.ServiceExpiredDate = serviceExpiredDate;
+            this.LicenseExpiredDate = licenseExpiredDate;
         }
 
         /// <summary>
@@ -33,8 +35,13 @@ namespace SD.IdentitySystem.LicenseManager.Models
         public string UniqueCode { get; set; }
 
         /// <summary>
-        /// 过期日期
+        /// 服务过期日期
         /// </summary>
-        public DateTime ExpiredDate { get; set; }
+        public DateTime ServiceExpiredDate { get; set; }
+
+        /// <summary>
+        /// 授权过期日期
+        /// </summary>
+        public DateTime LicenseExpiredDate { get; set; }
     }
 }
