@@ -207,7 +207,7 @@ namespace SD.IdentitySystem.AppService.Implements
                 {
                     throw new NoPermissionException("许可证授权与本机不匹配，请联系系统管理员！");
                 }
-                if (DateTime.Today > license.Value.ExpiredDate)
+                if (DateTime.Today > license.Value.LicenseExpiredDate)
                 {
                     throw new NoPermissionException("许可证授权已过期，请联系系统管理员！");
                 }
