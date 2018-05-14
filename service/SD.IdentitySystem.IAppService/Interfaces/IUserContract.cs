@@ -23,7 +23,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="realName">真实姓名</param>
         /// <param name="password">密码</param>
         [OperationContract]
-        [TransactionFlow(TransactionFlowOption.Allowed)]
         void CreateUser(string loginId, string realName, string password);
         #endregion
 
@@ -82,7 +81,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="loginId">登录名</param>
         /// <param name="roleIds">角色Id集</param>
         [OperationContract]
-        [TransactionFlow(TransactionFlowOption.Allowed)]
         void SetRoles(string loginId, IEnumerable<Guid> roleIds);
         #endregion
 

@@ -1,0 +1,59 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Version>2.0.4</Version>
+    <Authors>Lee</Authors>
+    <Company>SD</Company>
+    <AssemblyVersion>2.0.0.0</AssemblyVersion>
+    <Description>身份认证系统服务接口</Description>
+    <Copyright>Copyright © SD 2018</Copyright>
+    <AssemblyName>SD.IdentitySystem.IAppService</AssemblyName>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.0\SD.IdentitySystem.IAppService.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.0\SD.IdentitySystem.IAppService.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Inputs\AuthorityParam.cs">
+      <Link>DTOs\Inputs\AuthorityParam.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Inputs\InfoSystemParam.cs">
+      <Link>DTOs\Inputs\InfoSystemParam.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\AuthorityInfo.cs">
+      <Link>DTOs\Outputs\AuthorityInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\InfoSystemInfo.cs">
+      <Link>DTOs\Outputs\InfoSystemInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\LoginRecordInfo.cs">
+      <Link>DTOs\Outputs\LoginRecordInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\MenuInfo.cs">
+      <Link>DTOs\Outputs\MenuInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\RoleInfo.cs">
+      <Link>DTOs\Outputs\RoleInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\DTOs\Outputs\UserInfo.cs">
+      <Link>DTOs\Outputs\UserInfo.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\Interfaces\IAuthorizationContract.cs">
+      <Link>Interfaces\IAuthorizationContract.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\Interfaces\IAuthenticationContract.cs">
+      <Link>Interfaces\IAuthenticationContract.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.IAppService\Interfaces\IUserContract.cs">
+      <Link>Interfaces\IUserContract.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Infrastructure" Version="2.0.2" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.4.2" />
+  </ItemGroup>
+</Project>
