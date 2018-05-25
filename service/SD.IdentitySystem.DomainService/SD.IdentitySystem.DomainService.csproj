@@ -67,8 +67,8 @@
       <HintPath>..\..\packages\SD.AOP.Core.2.0.1\lib\netstandard2.0\SD.AOP.Core.dll</HintPath>
       <Private>True</Private>
     </Reference>
-    <Reference Include="SD.Infrastructure, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.2.0.1\lib\netstandard2.0\SD.Infrastructure.dll</HintPath>
+    <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.2.0.4\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.0\lib\netstandard2.0\SD.Infrastructure.AOP.dll</HintPath>

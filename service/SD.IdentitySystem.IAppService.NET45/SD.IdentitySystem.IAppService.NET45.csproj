@@ -32,8 +32,8 @@
     <DocumentationFile>bin\Release\SD.IdentitySystem.IAppService.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.1.2.0\lib\net45\SD.Infrastructure.dll</HintPath>
+    <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.2.0.4\lib\net45\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Runtime.Serialization" />
