@@ -57,8 +57,8 @@
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.IAppService.2.0.4\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.2.0.1\lib\netstandard2.0\SD.Infrastructure.dll</HintPath>
+    <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.2.0.4\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.0\lib\netstandard2.0\SD.IOC.Core.dll</HintPath>
