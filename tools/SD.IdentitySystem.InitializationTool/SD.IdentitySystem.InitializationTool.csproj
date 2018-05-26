@@ -68,8 +68,8 @@
     <Reference Include="SD.IdentitySystem.WCFAuthentication.Windows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.Windows.1.0.4\lib\net45\SD.IdentitySystem.WCFAuthentication.Windows.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.1.2.0\lib\net45\SD.Infrastructure.dll</HintPath>
+    <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.2.0.4\lib\net45\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=1.0.1.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.1.0.8\lib\net45\SD.IOC.Core.dll</HintPath>
