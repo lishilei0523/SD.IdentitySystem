@@ -194,17 +194,17 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="roles">角色集</param>
         public void SetRoles(IEnumerable<Role> roles)
         {
-            #region # 验证参数
+            roles = roles?.ToArray() ?? new Role[0];
 
-            if (roles == null)
+            if (!roles.Any())
             {
-                throw new ArgumentNullException("roles", @"角色集不可为null！");
+                this.ClearRelation();
             }
-
-            #endregion
-
-            this.ClearRelation();
-            this.AppendRoles(roles);
+            else
+            {
+                this.ClearRelation();
+                this.AppendRoles(roles);
+            }
         }
         #endregion
 

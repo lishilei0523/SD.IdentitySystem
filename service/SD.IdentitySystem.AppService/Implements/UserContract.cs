@@ -64,11 +64,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">登录名</param>
         /// <param name="realName">真实姓名</param>
         /// <param name="password">密码</param>
-        [OperationBehavior(TransactionScopeRequired = true)]
         public void CreateUser(string loginId, string realName, string password)
         {
             //验证参数
-            Assert.IsFalse(this.ExistsUser(loginId), string.Format("登录名\"{0}\"已存在，请重试！", loginId));
+            Assert.IsFalse(this.ExistsUser(loginId), $"登录名\"{loginId}\"已存在，请重试！");
 
             User user = new User(loginId, realName, password);
 
@@ -161,7 +160,7 @@ namespace SD.IdentitySystem.AppService.Implements
             //清空用户关系
             currentUser.ClearRelation();
 
-            this._unitOfWork.RegisterRemove<User>(currentUser);
+            this._unitOfWork.RegisterPhysicsRemove<User>(currentUser);
             this._unitOfWork.UnitedCommit();
         }
         #endregion
@@ -172,20 +171,12 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="roleIds">角色Id集</param>
-        [OperationBehavior(TransactionScopeRequired = true)]
         public void SetRoles(string loginId, IEnumerable<Guid> roleIds)
         {
+            roleIds = roleIds?.Distinct().ToArray() ?? new Guid[0];
+
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
-
-            IList<Role> roles = new List<Role>();
-
-            foreach (Guid roleId in roleIds)
-            {
-                Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
-
-                roles.Add(currentRole);
-            }
-
+            ICollection<Role> roles = this._unitOfWork.ResolveRange<Role>(roleIds);
             currentUser.SetRoles(roles);
 
             this._unitOfWork.RegisterSave(currentUser);
