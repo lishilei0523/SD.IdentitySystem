@@ -167,8 +167,14 @@ namespace SD.IdentitySystem.AppService.Implements
 
                 //获取客户端IP
                 MessageProperties properties = OperationContext.Current.IncomingMessageProperties;
-                RemoteEndpointMessageProperty endpoint = (RemoteEndpointMessageProperty)properties[RemoteEndpointMessageProperty.Name];
-                string ip = endpoint.Address;
+
+                string ip = "localhost";
+
+                if (properties.ContainsKey(RemoteEndpointMessageProperty.Name))
+                {
+                    RemoteEndpointMessageProperty endpoint = (RemoteEndpointMessageProperty)properties[RemoteEndpointMessageProperty.Name];
+                    ip = endpoint.Address;
+                }
 
                 //生成登录记录
                 this.GenerateLoginRecord(publicKey, ip, currentUser);
