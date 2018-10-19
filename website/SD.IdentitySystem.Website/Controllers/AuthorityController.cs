@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
+﻿using SD.FormatModel.EasyUI;
+using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
@@ -8,7 +9,6 @@ using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -201,26 +201,6 @@ namespace SD.IdentitySystem.Website.Controllers
 
         //查询部分
 
-        #region # 分页获取权限列表 —— JsonResult GetAuthorities(string systemNo...
-        /// <summary>
-        /// 分页获取权限列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="page">页码</param>
-        /// <param name="rows">页容量</param>
-        /// <returns>权限列表</returns>
-        [RequireAuthorization("分页获取权限列表")]
-        public JsonResult GetAuthorities(string systemNo, string keywords, int page, int rows)
-        {
-            PageModel<AuthorityView> pageModel = this._authorityPresenter.GetAuthoritiesByPage(systemNo, keywords, page, rows);
-
-            Grid<AuthorityView> grid = new Grid<AuthorityView>(pageModel.RowCount, pageModel.Datas);
-
-            return base.Json(grid, JsonRequestBehavior.AllowGet);
-        }
-        #endregion
-
         #region # 获取信息系统/权限树 —— JsonResult GetAuthorityTree(string id)
         /// <summary>
         /// 获取信息系统/权限树
@@ -231,7 +211,6 @@ namespace SD.IdentitySystem.Website.Controllers
         public JsonResult GetAuthorityTree(string id)
         {
             Node node = this._authorityPresenter.GetAuthorityTree(id);
-
             IEnumerable<Node> tree = new[] { node };
 
             return base.Json(tree, JsonRequestBehavior.AllowGet);
@@ -248,7 +227,6 @@ namespace SD.IdentitySystem.Website.Controllers
         public JsonResult GetAuthorityTreeByRole(Guid id)
         {
             Node node = this._authorityPresenter.GetAuthorityTreeByRole(id);
-
             IEnumerable<Node> tree = new[] { node };
 
             return base.Json(tree, JsonRequestBehavior.AllowGet);
@@ -265,10 +243,28 @@ namespace SD.IdentitySystem.Website.Controllers
         public JsonResult GetAuthorityTreeByMenu(Guid id)
         {
             Node node = this._authorityPresenter.GetAuthorityTreeByMenu(id);
-
             IEnumerable<Node> tree = new[] { node };
 
             return base.Json(tree, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region # 分页获取权限列表 —— JsonResult GetAuthoritiesByPage(string systemNo...
+        /// <summary>
+        /// 分页获取权限列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="keywords">关键字</param>
+        /// <param name="page">页码</param>
+        /// <param name="rows">页容量</param>
+        /// <returns>权限列表</returns>
+        [RequireAuthorization("分页获取权限列表")]
+        public JsonResult GetAuthoritiesByPage(string systemNo, string keywords, int page, int rows)
+        {
+            PageModel<AuthorityView> pageModel = this._authorityPresenter.GetAuthoritiesByPage(systemNo, keywords, page, rows);
+            Grid<AuthorityView> grid = new Grid<AuthorityView>(pageModel.RowCount, pageModel.Datas);
+
+            return base.Json(grid, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

@@ -107,27 +107,14 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         UserInfo GetUser(string loginId);
         #endregion
 
-        #region # 根据关键字获取用户列表 —— IEnumerable<UserInfo> GetUsersByKeywords(string keywords)
+        #region # 获取用户列表 —— IEnumerable<UserInfo> GetUsers(string keywords)
         /// <summary>
-        /// 根据关键字获取用户列表
+        /// 获取用户列表
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <returns>用户列表</returns>
         [OperationContract]
-        IEnumerable<UserInfo> GetUsersByKeywords(string keywords);
-        #endregion
-
-        #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsers(string systemNo...
-        /// <summary>
-        /// 分页获取用户列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>用户列表</returns>
-        [OperationContract]
-        PageModel<UserInfo> GetUsers(string systemNo, string keywords, int pageIndex, int pageSize);
+        IEnumerable<UserInfo> GetUsers(string keywords);
         #endregion
 
         #region # 根据角色获取用户列表 —— PageModel<UserInfo> GetUsersByRole(string keywords...
@@ -143,14 +130,27 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         PageModel<UserInfo> GetUsersByRole(string keywords, Guid? roleId, int pageIndex, int pageSize);
         #endregion
 
-        #region # 根据账号集获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
+        #region # 根据登录名获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
         /// <summary>
-        /// 根据账号集获取用户字典
+        /// 根据登录名获取用户字典
         /// </summary>
-        /// <param name="loginIds">账号集</param>
+        /// <param name="loginIds">登录名集</param>
         /// <returns>用户字典</returns>
         [OperationContract]
         IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds);
+        #endregion
+
+        #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsersByPage(string systemNo...
+        /// <summary>
+        /// 分页获取用户列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户列表</returns>
+        [OperationContract]
+        PageModel<UserInfo> GetUsersByPage(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
 
         #region # 是否存在用户 —— bool ExistsUser(string loginId)
@@ -163,8 +163,17 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         bool ExistsUser(string loginId);
         #endregion
 
+        #region # 获取用户信息系统列表 —— IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId)
+        /// <summary>
+        /// 获取用户信息系统列表
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <returns>信息系统列表</returns>
+        [OperationContract]
+        IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId);
+        #endregion
 
-        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo)
+        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo)
         /// <summary>
         /// 获取用户菜单树
         /// </summary>
@@ -172,10 +181,10 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>用户菜单树</returns>
         [OperationContract]
-        IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo);
+        IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo);
         #endregion
 
-        #region # 获取用户角色列表 —— IEnumerable<RoleInfo> GetRoles(string loginId, string systemNo)
+        #region # 获取用户角色列表 —— IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
         /// <summary>
         /// 获取用户角色列表
         /// </summary>
@@ -183,10 +192,10 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
         [OperationContract]
-        IEnumerable<RoleInfo> GetRoles(string loginId, string systemNo);
+        IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo);
         #endregion
 
-        #region # 获取用户权限列表 —— IEnumerable<AuthorityInfo> GetAuthorities(string loginId...
+        #region # 获取用户权限列表 —— IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId...
         /// <summary>
         /// 获取用户权限列表
         /// </summary>
@@ -194,22 +203,21 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限列表</returns>
         [OperationContract]
-        IEnumerable<AuthorityInfo> GetAuthorities(string loginId, string systemNo);
+        IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string systemNo);
         #endregion
 
-
-        #region # 获取用户登录记录列表 —— PageModel<LoginRecordInfo> GetLoginRecords(string keywords...
+        #region # 分页获取登录记录列表 —— PageModel<LoginRecordInfo> GetLoginRecordsByPage(string keywords...
         /// <summary>
-        /// 获取用户登录记录列表
+        /// 分页获取登录记录列表
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="startTime">开始时间</param>
         /// <param name="endTime">结束时间</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
-        /// <returns>用户登录记录列表</returns>
+        /// <returns>登录记录列表</returns>
         [OperationContract]
-        PageModel<LoginRecordInfo> GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize);
+        PageModel<LoginRecordInfo> GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize);
         #endregion
     }
 }

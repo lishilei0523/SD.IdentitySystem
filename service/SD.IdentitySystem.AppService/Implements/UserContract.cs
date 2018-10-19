@@ -220,36 +220,18 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 根据关键字获取用户列表 —— IEnumerable<UserInfo> GetUsersByKeywords(string keywords)
+        #region # 获取用户列表 —— IEnumerable<UserInfo> GetUsers(string keywords)
         /// <summary>
-        /// 根据关键字获取用户列表
+        /// 获取用户列表
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <returns>用户列表</returns>
-        public IEnumerable<UserInfo> GetUsersByKeywords(string keywords)
+        public IEnumerable<UserInfo> GetUsers(string keywords)
         {
             IEnumerable<User> users = this._repMediator.UserRep.Find(keywords);
             IEnumerable<UserInfo> userInfos = users.Select(x => x.ToDTO());
 
             return userInfos;
-        }
-        #endregion
-
-        #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsers(string systemNo...
-        /// <summary>
-        /// 分页获取用户列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>用户列表</returns>
-        public PageModel<UserInfo> GetUsers(string systemNo, string keywords, int pageIndex, int pageSize)
-        {
-            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
-            IEnumerable<UserInfo> specUserInfos = specUsers.Select(x => x.ToDTO());
-
-            return new PageModel<UserInfo>(specUserInfos, pageIndex, pageSize, pageCount, rowCount);
         }
         #endregion
 
@@ -271,11 +253,11 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 根据账号集获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
+        #region # 根据登录名获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
         /// <summary>
-        /// 根据账号集获取用户字典
+        /// 根据登录名获取用户字典
         /// </summary>
-        /// <param name="loginIds">账号集</param>
+        /// <param name="loginIds">登录名集</param>
         /// <returns>用户字典</returns>
         public IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds)
         {
@@ -283,6 +265,24 @@ namespace SD.IdentitySystem.AppService.Implements
             IDictionary<string, UserInfo> userInfos = users.ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
             return userInfos;
+        }
+        #endregion
+
+        #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsersByPage(string systemNo...
+        /// <summary>
+        /// 分页获取用户列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户列表</returns>
+        public PageModel<UserInfo> GetUsersByPage(string systemNo, string keywords, int pageIndex, int pageSize)
+        {
+            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
+            IEnumerable<UserInfo> specUserInfos = specUsers.Select(x => x.ToDTO());
+
+            return new PageModel<UserInfo>(specUserInfos, pageIndex, pageSize, pageCount, rowCount);
         }
         #endregion
 
@@ -298,6 +298,22 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
+        #region # 获取用户信息系统列表 —— IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId)
+        /// <summary>
+        /// 获取用户信息系统列表
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <returns>信息系统列表</returns>
+        public IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId)
+        {
+            User currentUser = this._repMediator.UserRep.Single(loginId);
+
+            IEnumerable<string> systemNos = currentUser.GetInfoSystemNos();
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
+
+            return systems.Values.Select(x => x.ToDTO());
+        }
+        #endregion
 
         #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo)
         /// <summary>
@@ -306,7 +322,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>用户菜单树</returns>
-        public IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo)
+        public IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo)
         {
             IEnumerable<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, systemNo);
             IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
@@ -328,7 +344,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
-        public IEnumerable<RoleInfo> GetRoles(string loginId, string systemNo)
+        public IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
         {
             IEnumerable<Role> roles = this._repMediator.RoleRep.Find(loginId, systemNo);
 
@@ -346,7 +362,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限列表</returns>
-        public IEnumerable<AuthorityInfo> GetAuthorities(string loginId, string systemNo)
+        public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string systemNo)
         {
             IEnumerable<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, systemNo);
             IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
@@ -358,10 +374,9 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-
-        #region # 获取用户登录记录列表 —— PageModel<LoginRecordInfo> GetLoginRecords(string keywords...
+        #region # 分页获取用户登录记录列表 —— PageModel<LoginRecordInfo> GetLoginRecordsByPage(string keywords...
         /// <summary>
-        /// 获取用户登录记录列表
+        /// 分页获取用户登录记录列表
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="startTime">开始时间</param>
@@ -369,7 +384,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户登录记录列表</returns>
-        public PageModel<LoginRecordInfo> GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
+        public PageModel<LoginRecordInfo> GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
         {
             IEnumerable<LoginRecord> records = this._repMediator.LoginRecordRep.FindByPage(keywords, startTime, endTime, pageIndex, pageSize, out int rowCount, out int pageCount);
             IEnumerable<LoginRecordInfo> recordInfos = records.Select(x => x.ToDTO());

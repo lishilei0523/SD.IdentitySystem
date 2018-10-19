@@ -10,7 +10,7 @@ $(function () {
 //加载用户列表
 function getRecords(queryParams) {
     //指定url
-    $.easyuiExt.datagrid.url = "/LoginRecord/GetLoginRecords";
+    $.easyuiExt.datagrid.url = "/LoginRecord/GetLoginRecordsByPage";
 
     //定义列
     $.easyuiExt.datagrid.columns = [

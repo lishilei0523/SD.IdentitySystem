@@ -63,7 +63,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.2.0.4\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.2.0.5\lib\net45\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.WCFAuthentication.Windows, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.Windows.2.0.1\lib\net45\SD.IdentitySystem.WCFAuthentication.Windows.dll</HintPath>

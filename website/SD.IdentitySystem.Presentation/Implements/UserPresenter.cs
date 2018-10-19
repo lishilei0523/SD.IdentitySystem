@@ -33,25 +33,6 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 分页获取用户列表 —— PageModel<UserView> GetUsers(string systemNo...
-        /// <summary>
-        /// 分页获取用户列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>用户列表</returns>
-        public PageModel<UserView> GetUsers(string systemNo, string keywords, int pageIndex, int pageSize)
-        {
-            PageModel<UserInfo> pageModel = this._userContract.GetUsers(systemNo, keywords, pageIndex, pageSize);
-
-            IEnumerable<UserView> userViews = pageModel.Datas.Select(x => x.ToViewModel());
-
-            return new PageModel<UserView>(userViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
-        }
-        #endregion
-
         #region # 获取用户 —— UserView GetUser(string loginId)
         /// <summary>
         /// 获取用户
@@ -66,20 +47,37 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 分页获取用户登录记录列表 —— PageModel<LoginRecordView> GetLoginRecords(string keywords...
+        #region # 分页获取用户列表 —— PageModel<UserView> GetUsersByPage(string systemNo...
         /// <summary>
-        /// 分页获取用户登录记录列表
+        /// 分页获取用户列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>用户列表</returns>
+        public PageModel<UserView> GetUsersByPage(string systemNo, string keywords, int pageIndex, int pageSize)
+        {
+            PageModel<UserInfo> pageModel = this._userContract.GetUsersByPage(systemNo, keywords, pageIndex, pageSize);
+            IEnumerable<UserView> userViews = pageModel.Datas.Select(x => x.ToViewModel());
+
+            return new PageModel<UserView>(userViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+        }
+        #endregion
+
+        #region # 分页获取登录记录列表 —— PageModel<LoginRecordView> GetLoginRecordsByPage(string keywords...
+        /// <summary>
+        /// 分页获取登录记录列表
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="startTime">开始时间</param>
         /// <param name="endTime">结束时间</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
-        /// <returns>用户登录记录列表</returns>
-        public PageModel<LoginRecordView> GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
+        /// <returns>登录记录列表</returns>
+        public PageModel<LoginRecordView> GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
         {
-            PageModel<LoginRecordInfo> pageModel = this._userContract.GetLoginRecords(keywords, startTime, endTime, pageIndex, pageSize);
-
+            PageModel<LoginRecordInfo> pageModel = this._userContract.GetLoginRecordsByPage(keywords, startTime, endTime, pageIndex, pageSize);
             IEnumerable<LoginRecordView> recordViews = pageModel.Datas.Select(x => x.ToViewModel());
 
             return new PageModel<LoginRecordView>(recordViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);

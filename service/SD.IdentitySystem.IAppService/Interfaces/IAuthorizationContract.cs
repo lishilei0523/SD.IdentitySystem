@@ -50,7 +50,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void InitInfoSystems(IEnumerable<InfoSystemParam> initParams);
         #endregion
 
-
         #region # 批量创建权限 —— IEnumerable<Guid> CreateAuthorities(string systemNo...
         /// <summary>
         /// 批量创建权限
@@ -80,7 +79,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         [OperationContract]
         void RemoveAuthority(Guid authorityId);
         #endregion
-
 
         #region # 创建菜单 —— Guid CreateMenu(string systemNo, string menuName...
         /// <summary>
@@ -131,7 +129,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void RelateAuthorities(Guid menuId, IEnumerable<Guid> authorityIds);
         #endregion
 
-
         #region # 创建角色 —— Guid CreateRole(string systemNo, string roleName...
         /// <summary>
         /// 创建角色
@@ -143,6 +140,18 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <returns>角色Id</returns>
         [OperationContract]
         Guid CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds);
+        #endregion
+
+        #region # 修改角色 —— void UpdateRole(Guid roleId, string roleName...
+        /// <summary>
+        /// 修改角色
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        /// <param name="roleName">角色名称</param>
+        /// <param name="description">角色描述</param>
+        /// <param name="authorityIds">权限Id集</param>
+        [OperationContract]
+        void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds);
         #endregion
 
         #region # 为角色分配权限 —— void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
@@ -163,18 +172,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="authorityIds">权限Id集</param>
         [OperationContract]
         void AppendAuthorities(Guid roleId, IEnumerable<Guid> authorityIds);
-        #endregion
-
-        #region # 修改角色 —— void UpdateRole(Guid roleId, string roleName...
-        /// <summary>
-        /// 修改角色
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        /// <param name="roleName">角色名称</param>
-        /// <param name="description">角色描述</param>
-        /// <param name="authorityIds">权限Id集</param>
-        [OperationContract]
-        void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds);
         #endregion
 
         #region # 删除角色 —— void RemoveRole(Guid roleId)
@@ -208,16 +205,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         IEnumerable<InfoSystemInfo> GetInfoSystems();
         #endregion
 
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystemsByUser(string loginId)
-        /// <summary>
-        /// 获取信息系统列表
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <returns>信息系统列表</returns>
-        [OperationContract]
-        IEnumerable<InfoSystemInfo> GetInfoSystemsByUser(string loginId);
-        #endregion
-
         #region # 分页获取信息系统列表 —— PageModel<InfoSystemInfo> GetInfoSystemsByPage(string keywords...
         /// <summary>
         /// 分页获取信息系统列表
@@ -230,18 +217,14 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         PageModel<InfoSystemInfo> GetInfoSystemsByPage(string keywords, int pageIndex, int pageSize);
         #endregion
 
-
-        #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo...
+        #region # 获取权限 —— AuthorityInfo GetAuthority(Guid authorityId)
         /// <summary>
-        /// 分页获取权限列表
+        /// 获取权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>权限列表</returns>
+        /// <param name="authorityId">权限Id</param>
+        /// <returns>权限视图模型</returns>
         [OperationContract]
-        PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
+        AuthorityInfo GetAuthority(Guid authorityId);
         #endregion
 
         #region # 获取权限列表 —— IEnumerable<AuthorityInfo> GetAuthorities(string systemNo)
@@ -252,6 +235,16 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <returns>权限列表</returns>
         [OperationContract]
         IEnumerable<AuthorityInfo> GetAuthorities(string systemNo);
+        #endregion
+
+        #region # 获取权限Id列表 —— IEnumerable<Guid> GetAuthorityIds(string systemNo)
+        /// <summary>
+        /// 获取权限Id列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>权限Id列表</returns>
+        [OperationContract]
+        IEnumerable<Guid> GetAuthorityIds(string systemNo);
         #endregion
 
         #region # 根据菜单获取权限列表 —— IEnumerable<AuthorityInfo> GetAuthoritiesByMenu(...
@@ -284,24 +277,17 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         IEnumerable<Guid> GetAuthorityIdsByRole(Guid roleId);
         #endregion
 
-        #region # 获取权限Id列表 —— IEnumerable<Guid> GetAuthorityIds(string systemNo)
+        #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo...
         /// <summary>
-        /// 获取权限Id列表
+        /// 分页获取权限列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限Id列表</returns>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>权限列表</returns>
         [OperationContract]
-        IEnumerable<Guid> GetAuthorityIds(string systemNo);
-        #endregion
-
-        #region # 获取权限 —— AuthorityInfo GetAuthority(Guid authorityId)
-        /// <summary>
-        /// 获取权限
-        /// </summary>
-        /// <param name="authorityId">权限Id</param>
-        /// <returns>权限视图模型</returns>
-        [OperationContract]
-        AuthorityInfo GetAuthority(Guid authorityId);
+        PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
 
         #region # 是否存在权限 —— bool ExistsAuthority(string assemblyName, string @namespace...
@@ -317,6 +303,25 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName);
         #endregion
 
+        #region # 获取菜单 —— MenuInfo GetMenu(Guid menuId)
+        /// <summary>
+        /// 获取菜单
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>菜单</returns>
+        [OperationContract]
+        MenuInfo GetMenu(Guid menuId);
+        #endregion
+
+        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo)
+        /// <summary>
+        /// 获取菜单列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>菜单列表</returns>
+        [OperationContract]
+        IEnumerable<MenuInfo> GetMenus(string systemNo);
+        #endregion
 
         #region # 分页获取菜单列表 —— PageModel<MenuInfo> GetMenusByPage(string keywords...
         /// <summary>
@@ -330,27 +335,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         [OperationContract]
         PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize);
         #endregion
-
-        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo)
-        /// <summary>
-        /// 获取菜单列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>菜单列表</returns>
-        [OperationContract]
-        IEnumerable<MenuInfo> GetMenus(string systemNo);
-        #endregion
-
-        #region # 获取菜单 —— MenuInfo GetMenu(Guid menuId)
-        /// <summary>
-        /// 获取菜单
-        /// </summary>
-        /// <param name="menuId">菜单Id</param>
-        /// <returns>菜单</returns>
-        [OperationContract]
-        MenuInfo GetMenu(Guid menuId);
-        #endregion
-
 
         #region # 获取角色 —— RoleInfo GetRole(Guid roleId)
         /// <summary>

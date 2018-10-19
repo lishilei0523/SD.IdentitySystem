@@ -10,7 +10,7 @@ $(function () {
 //加载权限列表
 function getAuthorities(queryParams) {
     //指定url
-    $.easyuiExt.datagrid.url = "/Authority/GetAuthorities";
+    $.easyuiExt.datagrid.url = "/Authority/GetAuthoritiesByPage";
 
     //定义列
     $.easyuiExt.datagrid.columns = [

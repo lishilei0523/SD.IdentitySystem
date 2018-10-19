@@ -11,7 +11,7 @@ $(function () {
 
     //初始化用户菜单
     $("#menuTree").tree({
-        url: "/Menu/GetMenuTreeByUser?loginId=" + loginId + "&systemNo=" + systemNo,
+        url: "/Menu/GetUserMenuTree?loginId=" + loginId + "&systemNo=" + systemNo,
         animate: true,
         lines: true,
         onClick: function (node) {
@@ -189,7 +189,7 @@ function createTab(title, url, isLeaf) {
                 });
             }
         }
-            //如果选项卡不存在，创建
+        //如果选项卡不存在，创建
         else {
             var content = createFrame(url);
             $("#tabs").tabs("add", {

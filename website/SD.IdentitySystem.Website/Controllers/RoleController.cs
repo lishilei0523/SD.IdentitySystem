@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.FormatModel.EasyUI;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
@@ -7,7 +8,6 @@ using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -181,39 +181,38 @@ namespace SD.IdentitySystem.Website.Controllers
 
         //查询部分
 
-        #region # 获取角色列表 —— JsonResult GetRoles(string systemNo, string keywords...
-        /// <summary>
-        /// 获取角色列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="page">页码</param>
-        /// <param name="rows">页容量</param>
-        /// <returns>角色列表</returns>
-        [RequireAuthorization("获取角色列表")]
-        public JsonResult GetRoles(string systemNo, string keywords, int page, int rows)
-        {
-            PageModel<RoleView> pageModel = this._rolePresenter.GetRolesByPage(systemNo, keywords, page, rows);
-            Grid<RoleView> grid = new Grid<RoleView>(pageModel.RowCount, pageModel.Datas);
-
-            return base.Json(grid, JsonRequestBehavior.AllowGet);
-        }
-        #endregion
-
-        #region # 获取用户的信息系统/角色树 —— JsonResult GetRoleTree(string id)
+        #region # 获取用户的信息系统/角色树 —— JsonResult GetUserSystemRoleTree(string id)
         /// <summary>
         /// 获取用户的信息系统/角色树
         /// </summary>
         /// <param name="id">用户登录名</param>
         /// <returns>信息系统/角色树</returns>
         [RequireAuthorization("获取用户的信息系统-角色树")]
-        public JsonResult GetRoleTree(string id)
+        public JsonResult GetUserSystemRoleTree(string id)
         {
             string loginId = id;
-
-            IEnumerable<Node> tree = this._rolePresenter.GetRoleTreeByUser(loginId);
+            IEnumerable<Node> tree = this._rolePresenter.GetUserSystemRoleTree(loginId);
 
             return base.Json(tree, JsonRequestBehavior.AllowGet);
+        }
+        #endregion
+
+        #region # 分页获取角色列表 —— JsonResult GetRolesByPage(string systemNo, string keywords...
+        /// <summary>
+        /// 分页获取角色列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="keywords">关键字</param>
+        /// <param name="page">页码</param>
+        /// <param name="rows">页容量</param>
+        /// <returns>角色列表</returns>
+        [RequireAuthorization("分页获取角色列表")]
+        public JsonResult GetRolesByPage(string systemNo, string keywords, int page, int rows)
+        {
+            PageModel<RoleView> pageModel = this._rolePresenter.GetRolesByPage(systemNo, keywords, page, rows);
+            Grid<RoleView> grid = new Grid<RoleView>(pageModel.RowCount, pageModel.Datas);
+
+            return base.Json(grid, JsonRequestBehavior.AllowGet);
         }
         #endregion
     }

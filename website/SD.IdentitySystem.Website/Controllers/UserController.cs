@@ -333,20 +333,19 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
-        #region # 获取用户列表 —— JsonResult GetUsers(string systemNo, string keywords...
+        #region # 分页获取用户列表 —— JsonResult GetUsersByPage(string systemNo, string keywords...
         /// <summary>
-        /// 获取用户列表
+        /// 分页获取用户列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>用户列表</returns>
-        [RequireAuthorization("获取用户列表")]
-        public JsonResult GetUsers(string systemNo, string keywords, int page, int rows)
+        [RequireAuthorization("分页获取用户列表")]
+        public JsonResult GetUsersByPage(string systemNo, string keywords, int page, int rows)
         {
-            PageModel<UserView> pageModel = this._userPresenter.GetUsers(systemNo, keywords, page, rows);
-
+            PageModel<UserView> pageModel = this._userPresenter.GetUsersByPage(systemNo, keywords, page, rows);
             Grid<UserView> grid = new Grid<UserView>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

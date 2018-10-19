@@ -41,22 +41,17 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 分页获取菜单列表 —— PageModel<MenuView> GetMenusByPage(string keywords...
+        #region # 获取菜单 —— MenuView GetMenu(Guid menuId)
         /// <summary>
-        /// 分页获取菜单列表
+        /// 获取菜单
         /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>菜单列表</returns>
-        public PageModel<MenuView> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>菜单</returns>
+        public MenuView GetMenu(Guid menuId)
         {
-            PageModel<MenuInfo> pageModel = this._authorizationContract.GetMenusByPage(keywords, systemNo, pageIndex, pageSize);
+            MenuInfo menuInfo = this._authorizationContract.GetMenu(menuId);
 
-            IEnumerable<MenuView> menuViews = pageModel.Datas.Select(x => x.ToViewModel());
-
-            return new PageModel<MenuView>(menuViews, pageIndex, pageSize, pageModel.PageCount, pageModel.RowCount);
+            return menuInfo.ToViewModel();
         }
         #endregion
 
@@ -72,24 +67,6 @@ namespace SD.IdentitySystem.Presentation.Implements
             IEnumerable<MenuView> menuViews = menuInfos.OrderBy(x => x.Sort).Select(x => x.ToViewModel());
 
             return menuViews;
-        }
-        #endregion
-
-        #region # 获取用户菜单树 —— IEnumerable<Node> GetMenuTree(string loginId, string systemNo)
-        /// <summary>
-        /// 获取用户菜单树
-        /// </summary>
-        /// <param name="loginId">用户登录名</param>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>菜单树</returns>
-        public IEnumerable<Node> GetMenuTree(string loginId, string systemNo)
-        {
-            IEnumerable<MenuInfo> menuInfos = this._userContract.GetMenus(loginId, systemNo);
-            IEnumerable<MenuView> menuViews = menuInfos.Select(x => x.ToViewModel());
-
-            ICollection<Node> menuTree = menuViews.ToTree(null);
-
-            return menuTree;
         }
         #endregion
 
@@ -109,17 +86,21 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 获取菜单 —— MenuView GetMenu(Guid menuId)
+        #region # 获取用户菜单树 —— IEnumerable<Node> GetUserMenuTree(string loginId, string systemNo)
         /// <summary>
-        /// 获取菜单
+        /// 获取用户菜单树
         /// </summary>
-        /// <param name="menuId">菜单Id</param>
-        /// <returns>菜单</returns>
-        public MenuView GetMenu(Guid menuId)
+        /// <param name="loginId">用户登录名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>菜单树</returns>
+        public IEnumerable<Node> GetUserMenuTree(string loginId, string systemNo)
         {
-            MenuInfo menuInfo = this._authorizationContract.GetMenu(menuId);
+            IEnumerable<MenuInfo> menuInfos = this._userContract.GetUserMenus(loginId, systemNo);
+            IEnumerable<MenuView> menuViews = menuInfos.Select(x => x.ToViewModel());
 
-            return menuInfo.ToViewModel();
+            ICollection<Node> menuTree = menuViews.ToTree(null);
+
+            return menuTree;
         }
         #endregion
 
@@ -137,5 +118,23 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
+        #region # 分页获取菜单列表 —— PageModel<MenuView> GetMenusByPage(string keywords...
+        /// <summary>
+        /// 分页获取菜单列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>菜单列表</returns>
+        public PageModel<MenuView> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        {
+            PageModel<MenuInfo> pageModel = this._authorizationContract.GetMenusByPage(keywords, systemNo, pageIndex, pageSize);
+
+            IEnumerable<MenuView> menuViews = pageModel.Datas.Select(x => x.ToViewModel());
+
+            return new PageModel<MenuView>(menuViews, pageIndex, pageSize, pageModel.PageCount, pageModel.RowCount);
+        }
+        #endregion
     }
 }

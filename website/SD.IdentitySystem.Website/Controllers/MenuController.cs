@@ -211,25 +211,6 @@ namespace SD.IdentitySystem.Website.Controllers
 
         //查询部分
 
-        #region # 获取用户菜单树 —— JsonResult GetMenuTreeByUser(string loginId, string systemNo)
-        /// <summary>
-        /// 获取用户菜单树
-        /// </summary>
-        /// <param name="loginId">信息系统编号</param>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>菜单树</returns>
-        [RequireAuthorization("获取用户菜单树")]
-        public JsonResult GetMenuTreeByUser(string loginId, string systemNo)
-        {
-            IEnumerable<Node> menuTree = loginId == CommonConstants.AdminLoginId
-                ? this._menuPresenter.GetMenuTree(systemNo)
-                : this._menuPresenter.GetMenuTree(loginId, systemNo);
-
-            return base.Json(menuTree, JsonRequestBehavior.AllowGet);
-        }
-
-        #endregion
-
         #region # 获取菜单树 —— JsonResult GetMenuTree(string id)
         /// <summary>
         /// 获取菜单树
@@ -240,11 +221,29 @@ namespace SD.IdentitySystem.Website.Controllers
         public JsonResult GetMenuTree(string id)
         {
             string systemNo = id;
-
             IEnumerable<Node> menuTree = this._menuPresenter.GetMenuTree(systemNo);
 
             return base.Json(menuTree, JsonRequestBehavior.AllowGet);
         }
+        #endregion
+
+        #region # 获取用户菜单树 —— JsonResult GetUserMenuTree(string loginId, string systemNo)
+        /// <summary>
+        /// 获取用户菜单树
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>菜单树</returns>
+        [RequireAuthorization("获取用户菜单树")]
+        public JsonResult GetUserMenuTree(string loginId, string systemNo)
+        {
+            IEnumerable<Node> menuTree = loginId == CommonConstants.AdminLoginId
+                ? this._menuPresenter.GetMenuTree(systemNo)
+                : this._menuPresenter.GetUserMenuTree(loginId, systemNo);
+
+            return base.Json(menuTree, JsonRequestBehavior.AllowGet);
+        }
+
         #endregion
 
         #region # 获取菜单TreeGrid —— JsonResult GetMenuTreeGrid(string systemNo)
@@ -257,7 +256,6 @@ namespace SD.IdentitySystem.Website.Controllers
         public JsonResult GetMenuTreeGrid(string systemNo)
         {
             IEnumerable<MenuView> menus = this._menuPresenter.GetMenuTreeGrid(systemNo).ToArray();
-
             Grid<MenuView> grid = new Grid<MenuView>(menus.Count(), menus);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

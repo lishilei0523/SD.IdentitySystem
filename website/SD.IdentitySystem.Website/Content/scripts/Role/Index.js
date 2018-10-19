@@ -10,7 +10,7 @@ $(function () {
 //加载角色列表
 function getRoles(queryParams) {
     //指定url
-    $.easyuiExt.datagrid.url = "/Role/GetRoles";
+    $.easyuiExt.datagrid.url = "/Role/GetRolesByPage";
 
     //定义列
     $.easyuiExt.datagrid.columns = [

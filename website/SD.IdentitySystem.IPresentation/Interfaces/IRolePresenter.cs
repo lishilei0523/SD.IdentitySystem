@@ -12,6 +12,15 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IRolePresenter : IPresenter
     {
+        #region # 获取角色 —— RoleView GetRole(Guid roleId)
+        /// <summary>
+        /// 获取角色
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>角色</returns>
+        RoleView GetRole(Guid roleId);
+        #endregion
+
         #region # 获取角色列表 —— IEnumerable<RoleView> GetRoles(string systemNo)
         /// <summary>
         /// 获取角色列表
@@ -21,13 +30,30 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         IEnumerable<RoleView> GetRoles(string systemNo);
         #endregion
 
-        #region # 根据用户获取角色列表 —— IEnumerable<RoleView> GetRolesByUser(string loginId)
+        #region # 获取用户角色列表 —— IEnumerable<RoleView> GetUserRoles(string loginId)
         /// <summary>
-        /// 根据用户获取角色列表
+        /// 获取用户角色列表
         /// </summary>
         /// <param name="loginId">用户登录名</param>
         /// <returns>角色列表</returns>
-        IEnumerable<RoleView> GetRolesByUser(string loginId);
+        IEnumerable<RoleView> GetUserRoles(string loginId);
+        #endregion
+
+        #region # 获取信息系统/角色树 —— IEnumerable<Node> GetInfoSystemRoleTree()
+        /// <summary>
+        /// 获取信息系统/角色树
+        /// </summary>
+        /// <returns>信息系统/角色树</returns>
+        IEnumerable<Node> GetSystemRoleTree();
+        #endregion
+
+        #region # 获取用户的信息系统/角色树 —— IEnumerable<Node> GetUserSystemRoleTree(string loginId)
+        /// <summary>
+        /// 获取用户的信息系统/角色树
+        /// </summary>
+        /// <param name="loginId">用户登录名</param>
+        /// <returns>信息系统/角色树</returns>
+        IEnumerable<Node> GetUserSystemRoleTree(string loginId);
         #endregion
 
         #region # 分页获取角色列表 —— PageModel<RoleView> GetRolesByPage(string systemNo...
@@ -40,32 +66,6 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
         PageModel<RoleView> GetRolesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
-        #endregion
-
-        #region # 获取角色 —— RoleView GetRole(Guid roleId)
-        /// <summary>
-        /// 获取角色
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        /// <returns>角色</returns>
-        RoleView GetRole(Guid roleId);
-        #endregion
-
-        #region # 获取信息系统/角色树 —— IEnumerable<Node> GetRoleTree()
-        /// <summary>
-        /// 获取信息系统/角色树
-        /// </summary>
-        /// <returns>信息系统/角色树</returns>
-        IEnumerable<Node> GetRoleTree();
-        #endregion
-
-        #region # 获取用户的信息系统/角色树 —— IEnumerable<Node> GetRoleTreeByUser(string loginId)
-        /// <summary>
-        /// 获取用户的信息系统/角色树
-        /// </summary>
-        /// <param name="loginId">用户登录名</param>
-        /// <returns>信息系统/角色树</returns>
-        IEnumerable<Node> GetRoleTreeByUser(string loginId);
         #endregion
     }
 }

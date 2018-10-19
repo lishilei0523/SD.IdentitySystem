@@ -12,16 +12,13 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IAuthorityPresenter : IPresenter
     {
-        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo...
+        #region # 获取权限 —— AuthorityView GetAuthority(Guid authorityId)
         /// <summary>
-        /// 分页获取权限列表
+        /// 获取权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>权限列表</returns>
-        PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
+        /// <param name="authorityId">权限Id</param>
+        /// <returns>权限视图模型</returns>
+        AuthorityView GetAuthority(Guid authorityId);
         #endregion
 
         #region # 根据信息系统获取权限列表 —— IEnumerable<AuthorityView> GetAuthoritiesBySystem(...
@@ -51,15 +48,6 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         IEnumerable<AuthorityView> GetAuthoritiesByRole(Guid roleId);
         #endregion
 
-        #region # 获取权限 —— AuthorityView GetAuthority(Guid authorityId)
-        /// <summary>
-        /// 获取权限
-        /// </summary>
-        /// <param name="authorityId">权限Id</param>
-        /// <returns>权限视图模型</returns>
-        AuthorityView GetAuthority(Guid authorityId);
-        #endregion
-
         #region # 获取信息系统的权限树 —— Node GetAuthorityTree(string systemNo)
         /// <summary>
         /// 获取信息系统的权限树
@@ -85,6 +73,18 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// <param name="menuId">菜单Id</param>
         /// <returns>权限树</returns>
         Node GetAuthorityTreeByMenu(Guid menuId);
+        #endregion
+
+        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo...
+        /// <summary>
+        /// 分页获取权限列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>权限列表</returns>
+        PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
         #endregion
     }
 }

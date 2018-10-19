@@ -34,22 +34,17 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo...
+        #region # 获取权限 —— AuthorityView GetAuthority(Guid authorityId)
         /// <summary>
-        /// 分页获取权限列表
+        /// 获取权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>权限列表</returns>
-        public PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize)
+        /// <param name="authorityId">权限Id</param>
+        /// <returns>权限视图模型</returns>
+        public AuthorityView GetAuthority(Guid authorityId)
         {
-            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(systemNo, keywords, pageIndex, pageSize);
+            AuthorityInfo authorityInfo = this._authorizationContract.GetAuthority(authorityId);
 
-            IEnumerable<AuthorityView> authorityViews = pageModel.Datas.Select(x => x.ToViewModel());
-
-            return new PageModel<AuthorityView>(authorityViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+            return authorityInfo.ToViewModel();
         }
         #endregion
 
@@ -62,7 +57,6 @@ namespace SD.IdentitySystem.Presentation.Implements
         public IEnumerable<AuthorityView> GetAuthoritiesBySystem(string systemNo)
         {
             PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(systemNo, null, 1, int.MaxValue);
-
             IEnumerable<AuthorityView> authorities = pageModel.Datas.Select(x => x.ToViewModel());
 
             return authorities;
@@ -78,7 +72,6 @@ namespace SD.IdentitySystem.Presentation.Implements
         public IEnumerable<AuthorityView> GetAuthoritiesByMenu(Guid menuId)
         {
             IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthoritiesByMenu(menuId);
-
             IEnumerable<AuthorityView> authorityViews = authorityInfos.Select(x => x.ToViewModel());
 
             return authorityViews;
@@ -94,24 +87,9 @@ namespace SD.IdentitySystem.Presentation.Implements
         public IEnumerable<AuthorityView> GetAuthoritiesByRole(Guid roleId)
         {
             IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthoritiesByRole(roleId);
-
             IEnumerable<AuthorityView> authorityViews = authorityInfos.Select(x => x.ToViewModel());
 
             return authorityViews;
-        }
-        #endregion
-
-        #region # 获取权限 —— AuthorityView GetAuthority(Guid authorityId)
-        /// <summary>
-        /// 获取权限
-        /// </summary>
-        /// <param name="authorityId">权限Id</param>
-        /// <returns>权限视图模型</returns>
-        public AuthorityView GetAuthority(Guid authorityId)
-        {
-            AuthorityInfo authorityInfo = this._authorizationContract.GetAuthority(authorityId);
-
-            return authorityInfo.ToViewModel();
         }
         #endregion
 
@@ -124,9 +102,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         public Node GetAuthorityTree(string systemNo)
         {
             InfoSystemInfo system = this._authorizationContract.GetInfoSystem(systemNo);
-
             IEnumerable<AuthorityView> authorities = this.GetAuthoritiesBySystem(systemNo);
-
             Node node = system.ToViewModel().ToNode(authorities);
 
             return node;
@@ -188,6 +164,24 @@ namespace SD.IdentitySystem.Presentation.Implements
             }
 
             return authroityTree;
+        }
+        #endregion
+
+        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo...
+        /// <summary>
+        /// 分页获取权限列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>权限列表</returns>
+        public PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize)
+        {
+            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(systemNo, keywords, pageIndex, pageSize);
+            IEnumerable<AuthorityView> authorityViews = pageModel.Datas.Select(x => x.ToViewModel());
+
+            return new PageModel<AuthorityView>(authorityViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
         }
         #endregion
     }

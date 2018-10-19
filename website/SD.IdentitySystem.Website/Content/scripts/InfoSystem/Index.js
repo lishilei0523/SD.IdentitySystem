@@ -10,7 +10,7 @@ $(function () {
 //加载信息系统列表
 function getSystems(queryParams) {
     //指定url
-    $.easyuiExt.datagrid.url = "/InfoSystem/GetInfoSystems";
+    $.easyuiExt.datagrid.url = "/InfoSystem/GetInfoSystemsByPage";
 
     //定义列
     $.easyuiExt.datagrid.columns = [

@@ -7,11 +7,11 @@
   <system.serviceModel>
     <client>
       <!--身份认证服务契约配置-->
-      <endpoint address="http://localhost:4973/Hosts/AuthenticationContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="SD.IdentitySystem.IAppService.Interfaces.IAuthenticationContract" name="SD.IdentitySystem.IAppService.Interfaces.IAuthenticationContract" behaviorConfiguration="DefaultBehavior" />
+      <endpoint address="net.tcp://localhost:49730/Hosts/AuthenticationContract.svc" binding="netTcpBinding" bindingConfiguration="TcpBinding" contract="SD.IdentitySystem.IAppService.Interfaces.IAuthenticationContract" name="SD.IdentitySystem.IAppService.Interfaces.IAuthenticationContract" behaviorConfiguration="DefaultBehavior" />
       <!--用户服务契约配置-->
-      <endpoint address="http://localhost:4973/Hosts/UserContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="SD.IdentitySystem.IAppService.Interfaces.IUserContract" name="SD.IdentitySystem.IAppService.Interfaces.IUserContract" behaviorConfiguration="DefaultBehavior" />
+      <endpoint address="net.tcp://localhost:49730/Hosts/UserContract.svc" binding="netTcpBinding" bindingConfiguration="TcpBinding" contract="SD.IdentitySystem.IAppService.Interfaces.IUserContract" name="SD.IdentitySystem.IAppService.Interfaces.IUserContract" behaviorConfiguration="DefaultBehavior" />
       <!--权限服务契约配置-->
-      <endpoint address="http://localhost:4973/Hosts/AuthorizationContract.svc" binding="wsHttpBinding" bindingConfiguration="DefaultBinding" contract="SD.IdentitySystem.IAppService.Interfaces.IAuthorizationContract" name="SD.IdentitySystem.IAppService.Interfaces.IAuthorizationContract" behaviorConfiguration="DefaultBehavior"/>
+      <endpoint address="net.tcp://localhost:49730/Hosts/AuthorizationContract.svc" binding="netTcpBinding" bindingConfiguration="TcpBinding" contract="SD.IdentitySystem.IAppService.Interfaces.IAuthorizationContract" name="SD.IdentitySystem.IAppService.Interfaces.IAuthorizationContract" behaviorConfiguration="DefaultBehavior" />
     </client>
   </system.serviceModel>
 </configuration>

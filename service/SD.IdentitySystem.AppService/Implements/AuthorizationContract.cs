@@ -123,7 +123,6 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-
         #region # 批量创建权限 —— IEnumerable<Guid> CreateAuthorities(string systemNo...
         /// <summary>
         /// 批量创建权限
@@ -186,7 +185,6 @@ namespace SD.IdentitySystem.AppService.Implements
             this._unitOfWork.UnitedCommit();
         }
         #endregion
-
 
         #region # 创建菜单 —— Guid CreateMenu(string systemNo, string menuName...
         /// <summary>
@@ -305,7 +303,6 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-
         #region # 创建角色 —— Guid CreateRole(string systemNo, string roleName...
         /// <summary>
         /// 创建角色
@@ -332,6 +329,29 @@ namespace SD.IdentitySystem.AppService.Implements
 
             return role.Id;
         }
+        #endregion
+
+        #region # 修改角色 —— void UpdateRole(Guid roleId, string roleName...
+        /// <summary>
+        /// 修改角色
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        /// <param name="roleName">角色名称</param>
+        /// <param name="description">角色描述</param>
+        /// <param name="authorityIds">权限Id集</param>
+        public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
+        {
+            Role role = this._unitOfWork.Resolve<Role>(roleId);
+
+            role.UpdateInfo(roleName, description);
+
+            IEnumerable<Authority> authorities = authorityIds.Distinct().Select(authorityId => this._unitOfWork.Resolve<Authority>(authorityId));
+            role.SetAuthorities(authorities);
+
+            this._unitOfWork.RegisterSave(role);
+            this._unitOfWork.UnitedCommit();
+        }
+
         #endregion
 
         #region # 为角色分配权限 —— void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
@@ -368,29 +388,6 @@ namespace SD.IdentitySystem.AppService.Implements
             this._unitOfWork.RegisterSave(role);
             this._unitOfWork.UnitedCommit();
         }
-        #endregion
-
-        #region # 修改角色 —— void UpdateRole(Guid roleId, string roleName...
-        /// <summary>
-        /// 修改角色
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        /// <param name="roleName">角色名称</param>
-        /// <param name="description">角色描述</param>
-        /// <param name="authorityIds">权限Id集</param>
-        public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
-        {
-            Role role = this._unitOfWork.Resolve<Role>(roleId);
-
-            role.UpdateInfo(roleName, description);
-
-            IEnumerable<Authority> authorities = authorityIds.Distinct().Select(authorityId => this._unitOfWork.Resolve<Authority>(authorityId));
-            role.SetAuthorities(authorities);
-
-            this._unitOfWork.RegisterSave(role);
-            this._unitOfWork.UnitedCommit();
-        }
-
         #endregion
 
         #region # 删除角色 —— void RemoveRole(Guid roleId)
@@ -448,23 +445,6 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string loginId)
-        /// <summary>
-        /// 获取信息系统列表
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <returns>信息系统列表</returns>
-        public IEnumerable<InfoSystemInfo> GetInfoSystemsByUser(string loginId)
-        {
-            User currentUser = this._repMediator.UserRep.Single(loginId);
-
-            IEnumerable<string> systemNos = currentUser.GetInfoSystemNos();
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
-
-            return systems.Values.Select(x => x.ToDTO());
-        }
-        #endregion
-
         #region # 分页获取信息系统列表 —— PageModel<InfoSystemInfo> GetInfoSystemsByPage(string keywords...
         /// <summary>
         /// 分页获取信息系统列表
@@ -482,26 +462,20 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-
-        #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo...
+        #region # 获取权限 —— AuthorityInfo GetAuthority(Guid authorityId)
         /// <summary>
-        /// 分页获取权限列表
+        /// 获取权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="keywords">关键字</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>权限列表</returns>
-        public PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize)
+        /// <param name="authorityId">权限Id</param>
+        /// <returns>权限视图模型</returns>
+        public AuthorityInfo GetAuthority(Guid authorityId)
         {
-            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
+            Authority currentAuthority = this._repMediator.AuthorityRep.Single(authorityId);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            IEnumerable<AuthorityInfo> authorityInfos = authorities.Select(x => x.ToDTO(systemInfos));
-
-            return new PageModel<AuthorityInfo>(authorityInfos, pageIndex, pageSize, pageCount, rowCount);
+            return currentAuthority.ToDTO(systemInfos);
         }
         #endregion
 
@@ -519,6 +493,18 @@ namespace SD.IdentitySystem.AppService.Implements
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
             return authorities.Select(x => x.ToDTO(systemInfos));
+        }
+        #endregion
+
+        #region # 获取权限Id列表 —— IEnumerable<Guid> GetAuthorityIds(string systemNo)
+        /// <summary>
+        /// 获取权限Id列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>权限Id列表</returns>
+        public IEnumerable<Guid> GetAuthorityIds(string systemNo)
+        {
+            return this._repMediator.AuthorityRep.FindAuthorityIds(systemNo);
         }
         #endregion
 
@@ -577,32 +563,25 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取权限Id列表 —— IEnumerable<Guid> GetAuthorityIds(string systemNo)
+        #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo...
         /// <summary>
-        /// 获取权限Id列表
+        /// 分页获取权限列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限Id列表</returns>
-        public IEnumerable<Guid> GetAuthorityIds(string systemNo)
+        /// <param name="keywords">关键字</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <returns>权限列表</returns>
+        public PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize)
         {
-            return this._repMediator.AuthorityRep.FindAuthorityIds(systemNo);
-        }
-        #endregion
-
-        #region # 获取权限 —— AuthorityInfo GetAuthority(Guid authorityId)
-        /// <summary>
-        /// 获取权限
-        /// </summary>
-        /// <param name="authorityId">权限Id</param>
-        /// <returns>权限视图模型</returns>
-        public AuthorityInfo GetAuthority(Guid authorityId)
-        {
-            Authority currentAuthority = this._repMediator.AuthorityRep.Single(authorityId);
+            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            return currentAuthority.ToDTO(systemInfos);
+            IEnumerable<AuthorityInfo> authorityInfos = authorities.Select(x => x.ToDTO(systemInfos));
+
+            return new PageModel<AuthorityInfo>(authorityInfos, pageIndex, pageSize, pageCount, rowCount);
         }
         #endregion
 
@@ -621,6 +600,39 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
+        #region # 获取菜单 —— MenuInfo GetMenu(Guid menuId)
+        /// <summary>
+        /// 获取菜单
+        /// </summary>
+        /// <param name="menuId">菜单Id</param>
+        /// <returns>菜单</returns>
+        public MenuInfo GetMenu(Guid menuId)
+        {
+            Menu currentMenu = this._repMediator.MenuRep.Single(menuId);
+
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return currentMenu.ToDTO(systemInfos);
+        }
+        #endregion
+
+        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo)
+        /// <summary>
+        /// 获取菜单列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>菜单列表</returns>
+        public IEnumerable<MenuInfo> GetMenus(string systemNo)
+        {
+            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindBySystem(systemNo);
+
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
+            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return menus.Select(x => x.ToDTO(systemInfos));
+        }
+        #endregion
 
         #region # 分页获取菜单列表 —— PageModel<MenuInfo> GetMenusByPage(string keywords...
         /// <summary>
@@ -643,41 +655,6 @@ namespace SD.IdentitySystem.AppService.Implements
             return new PageModel<MenuInfo>(specMenuInfos, pageIndex, pageSize, pageCount, rowCount);
         }
         #endregion
-
-        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo)
-        /// <summary>
-        /// 获取菜单列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>菜单列表</returns>
-        public IEnumerable<MenuInfo> GetMenus(string systemNo)
-        {
-            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindBySystem(systemNo);
-
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return menus.Select(x => x.ToDTO(systemInfos));
-        }
-        #endregion
-
-        #region # 获取菜单 —— MenuInfo GetMenu(Guid menuId)
-        /// <summary>
-        /// 获取菜单
-        /// </summary>
-        /// <param name="menuId">菜单Id</param>
-        /// <returns>菜单</returns>
-        public MenuInfo GetMenu(Guid menuId)
-        {
-            Menu currentMenu = this._repMediator.MenuRep.Single(menuId);
-
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return currentMenu.ToDTO(systemInfos);
-        }
-        #endregion
-
 
         #region # 获取角色 —— RoleInfo GetRole(Guid roleId)
         /// <summary>

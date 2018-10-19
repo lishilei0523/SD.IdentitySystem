@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.FormatModel.EasyUI;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
@@ -6,7 +7,6 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.MVC.Filters;
 using System.Web.Mvc;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Website.Controllers
 {
@@ -125,16 +125,15 @@ namespace SD.IdentitySystem.Website.Controllers
 
         //查询部分
 
-        #region # 获取信息系统列表 —— JsonResult GetInfoSystems(string keywords, int page...
+        #region # 分页获取信息系统列表 —— JsonResult GetInfoSystemsByPage(string keywords, int page...
         /// <summary>
-        /// 获取信息系统列表
+        /// 分页获取信息系统列表
         /// </summary>
         /// <returns>信息系统列表</returns>
-        [RequireAuthorization("获取信息系统列表")]
-        public JsonResult GetInfoSystems(string keywords, int page, int rows)
+        [RequireAuthorization("分页获取信息系统列表")]
+        public JsonResult GetInfoSystemsByPage(string keywords, int page, int rows)
         {
-            PageModel<InfoSystemView> pageModel = this._systemPresenter.GetInfoSystems(keywords, page, rows);
-
+            PageModel<InfoSystemView> pageModel = this._systemPresenter.GetInfoSystemsByPage(keywords, page, rows);
             Grid<InfoSystemView> grid = new Grid<InfoSystemView>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

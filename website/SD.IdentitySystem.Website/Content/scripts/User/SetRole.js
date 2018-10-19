@@ -9,7 +9,7 @@
 //初始化信息系统/角色树
 function initRoleTree(loginId) {
     $("#roleTree").tree({
-        url: "/Role/GetRoleTree/" + loginId,
+        url: "/Role/GetUserSystemRoleTree/" + loginId,
         animate: true,
         lines: true,
         checkbox: function (node) {
