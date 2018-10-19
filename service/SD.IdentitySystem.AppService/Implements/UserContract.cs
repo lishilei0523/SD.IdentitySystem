@@ -25,11 +25,6 @@ namespace SD.IdentitySystem.AppService.Implements
         #region # 字段及依赖注入构造器
 
         /// <summary>
-        /// 领域服务中介者
-        /// </summary>
-        private readonly DomainServiceMediator _svcMediator;
-
-        /// <summary>
         /// 仓储中介者
         /// </summary>
         private readonly RepositoryMediator _repMediator;
@@ -42,12 +37,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="svcMediator">领域服务中介者</param>
         /// <param name="repMediator">仓储中介者</param>
         /// <param name="unitOfWork">单元事务</param>
-        public UserContract(DomainServiceMediator svcMediator, RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
+        public UserContract(RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
         {
-            this._svcMediator = svcMediator;
             this._repMediator = repMediator;
             this._unitOfWork = unitOfWork;
         }
@@ -253,10 +246,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户列表</returns>
         public PageModel<UserInfo> GetUsers(string systemNo, string keywords, int pageIndex, int pageSize)
         {
-            int rowCount, pageCount;
-
-            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out rowCount, out pageCount);
-
+            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
             IEnumerable<UserInfo> specUserInfos = specUsers.Select(x => x.ToDTO());
 
             return new PageModel<UserInfo>(specUserInfos, pageIndex, pageSize, pageCount, rowCount);
@@ -274,10 +264,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户列表</returns>
         public PageModel<UserInfo> GetUsersByRole(string keywords, Guid? roleId, int pageIndex, int pageSize)
         {
-            int rowCount, pageCount;
-
-            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(keywords, roleId, pageIndex, pageSize, out rowCount, out pageCount);
-
+            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(keywords, roleId, pageIndex, pageSize, out int rowCount, out int pageCount);
             IEnumerable<UserInfo> specUserInfos = specUsers.Select(x => x.ToDTO());
 
             return new PageModel<UserInfo>(specUserInfos, pageIndex, pageSize, pageCount, rowCount);
@@ -384,10 +371,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户登录记录列表</returns>
         public PageModel<LoginRecordInfo> GetLoginRecords(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
         {
-            int rowCount, pageCount;
-
-            IEnumerable<LoginRecord> records = this._repMediator.LoginRecordRep.FindByPage(keywords, startTime, endTime, pageIndex, pageSize, out rowCount, out pageCount);
-
+            IEnumerable<LoginRecord> records = this._repMediator.LoginRecordRep.FindByPage(keywords, startTime, endTime, pageIndex, pageSize, out int rowCount, out int pageCount);
             IEnumerable<LoginRecordInfo> recordInfos = records.Select(x => x.ToDTO());
 
             return new PageModel<LoginRecordInfo>(recordInfos, pageIndex, pageSize, pageCount, rowCount);

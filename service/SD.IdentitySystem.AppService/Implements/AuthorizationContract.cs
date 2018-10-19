@@ -475,10 +475,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>信息系统列表</returns>
         public PageModel<InfoSystemInfo> GetInfoSystemsByPage(string keywords, int pageIndex, int pageSize)
         {
-            int rowCount, pageCount;
-
-            IEnumerable<InfoSystem> specSystems = this._repMediator.InfoSystemRep.FindByPage(keywords, pageIndex, pageSize, out rowCount, out pageCount);
-
+            IEnumerable<InfoSystem> specSystems = this._repMediator.InfoSystemRep.FindByPage(keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
             IEnumerable<InfoSystemInfo> specSystemInfos = specSystems.Select(x => x.ToDTO());
 
             return new PageModel<InfoSystemInfo>(specSystemInfos, pageIndex, pageSize, pageCount, rowCount);
@@ -497,9 +494,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>权限列表</returns>
         public PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize)
         {
-            int rowCount, pageCount;
-
-            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out rowCount, out pageCount);
+            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -638,9 +633,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>菜单列表</returns>
         public PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize)
         {
-            int rowCount, pageCount;
-
-            IEnumerable<Menu> specMenus = this._repMediator.MenuRep.FindByPage(keywords, pageIndex, pageSize, out rowCount, out pageCount);
+            IEnumerable<Menu> specMenus = this._repMediator.MenuRep.FindByPage(keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -731,9 +724,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>角色列表</returns>
         public PageModel<RoleInfo> GetRolesByPage(string systemNo, string keywords, int pageIndex, int pageSize)
         {
-            int rowCount, pageCount;
-
-            IEnumerable<Role> roles = this._repMediator.RoleRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out rowCount, out pageCount);
+            IEnumerable<Role> roles = this._repMediator.RoleRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
