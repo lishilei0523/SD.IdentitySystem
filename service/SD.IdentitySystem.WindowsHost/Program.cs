@@ -24,7 +24,7 @@ namespace SD.IdentitySystem.WindowsHost
 
                 config.SetServiceName(_ServiceName);
                 config.SetDisplayName(_ServiceDisplayName);
-                config.SetDisplayName(_ServiceDescription);
+                config.SetDescription(_ServiceDescription);
             });
         }
     }
