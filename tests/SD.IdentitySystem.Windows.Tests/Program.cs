@@ -1,7 +1,9 @@
-﻿using SD.IdentitySystem.StubWCF.Server.Interfaces;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SD.IdentitySystem.StubWCF.Server.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.IOC.Core.Mediators;
+using SD.IOC.Extension.NetFx;
 using System;
 
 namespace SD.IdentitySystem.Windows.Tests
@@ -13,6 +15,12 @@ namespace SD.IdentitySystem.Windows.Tests
         /// </summary>
         static void Main()
         {
+            //初始化容器
+            IServiceCollection builder = ResolveMediator.GetServiceCollection();
+            builder.RegisterConfigs();
+            ResolveMediator.Build();
+
+
             //伪造一个登录信息
             LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
 
