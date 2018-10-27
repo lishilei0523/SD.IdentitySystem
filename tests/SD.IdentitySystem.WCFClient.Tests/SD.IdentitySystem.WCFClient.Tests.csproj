@@ -61,6 +61,9 @@
     <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.0\lib\netstandard2.0\SD.IOC.Core.dll</HintPath>
     </Reference>
+    <Reference Include="SD.IOC.Extension.NetFx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IOC.Extension.NetFx.1.0.0\lib\net461\SD.IOC.Extension.NetFx.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Configuration.ConfigurationManager, Version=4.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">

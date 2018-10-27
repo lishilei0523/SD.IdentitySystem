@@ -1,8 +1,10 @@
-﻿using SD.IdentitySystem.StubWCF.Client.Interfaces;
+﻿using Microsoft.Extensions.DependencyInjection;
+using SD.IdentitySystem.StubWCF.Client.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.IOC.Core.Mediators;
 using System;
+using SD.IOC.Extension.NetFx;
 
 namespace SD.IdentitySystem.WCFClient.Tests
 {
@@ -13,6 +15,9 @@ namespace SD.IdentitySystem.WCFClient.Tests
         /// </summary>
         static void Main()
         {
+            //初始化容器
+            InitContainer();
+
             //伪造一个登录信息
             LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
 
@@ -33,6 +38,17 @@ namespace SD.IdentitySystem.WCFClient.Tests
 
             ResolveMediator.Dispose();
             Console.ReadKey();
+        }
+
+        /// <summary>
+        /// 初始化依赖注入容器
+        /// </summary>
+        static void InitContainer()
+        {
+            IServiceCollection builder = ResolveMediator.GetServiceCollection();
+            builder.RegisterConfigs();
+
+            ResolveMediator.Build();
         }
     }
 }

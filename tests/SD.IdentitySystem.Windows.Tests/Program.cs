@@ -16,10 +16,7 @@ namespace SD.IdentitySystem.Windows.Tests
         static void Main()
         {
             //初始化容器
-            IServiceCollection builder = ResolveMediator.GetServiceCollection();
-            builder.RegisterConfigs();
-            ResolveMediator.Build();
-
+            InitContainer();
 
             //伪造一个登录信息
             LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
@@ -41,6 +38,17 @@ namespace SD.IdentitySystem.Windows.Tests
 
             ResolveMediator.Dispose();
             Console.ReadKey();
+        }
+
+        /// <summary>
+        /// 初始化依赖注入容器
+        /// </summary>
+        static void InitContainer()
+        {
+            IServiceCollection builder = ResolveMediator.GetServiceCollection();
+            builder.RegisterConfigs();
+
+            ResolveMediator.Build();
         }
     }
 }
