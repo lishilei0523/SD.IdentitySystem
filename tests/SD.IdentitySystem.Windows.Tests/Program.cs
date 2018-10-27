@@ -27,7 +27,7 @@ namespace SD.IdentitySystem.Windows.Tests
             //实例化服务接口
             IServerContract serverContract = ResolveMediator.Resolve<IServerContract>();
 
-            //调用服务获取消息头，
+            //调用服务获取消息头
             string header = serverContract.GetHeader();
 
             //如果消息头内容即是上述伪造的公钥，即说明整个认证过程没问题
