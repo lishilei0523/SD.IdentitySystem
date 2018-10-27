@@ -115,7 +115,6 @@
     <Compile Include="Implements\ServerContract.cs" />
     <Compile Include="Interfaces\IServerContract.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Stubs\StubAuthenticationContract.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />

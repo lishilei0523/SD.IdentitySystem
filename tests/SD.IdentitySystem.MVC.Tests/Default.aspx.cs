@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.StubWCF.Server.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
@@ -20,7 +21,8 @@ namespace SD.IdentitySystem.MVC.Tests
             InitContainer();
 
             //伪造一个登录信息
-            LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
+            IAuthenticationContract authenticationContract = ResolveMediator.Resolve<IAuthenticationContract>();
+            LoginInfo fakeLoginInfo = authenticationContract.Login(CommonConstants.AdminLoginId, CommonConstants.InitialPassword);
 
             //将登录信息存入约定位置
             base.Session.Add(SessionKey.CurrentUser, fakeLoginInfo);
@@ -28,7 +30,7 @@ namespace SD.IdentitySystem.MVC.Tests
             //实例化WCF服务端服务接口
             IServerContract serverContract = ResolveMediator.Resolve<IServerContract>();
 
-            //调用服务获取消息头，
+            //调用服务获取消息头
             string header = serverContract.GetHeader();
 
             //如果消息头内容即是上述伪造的公钥，即说明整个认证过程没问题
@@ -43,7 +45,7 @@ namespace SD.IdentitySystem.MVC.Tests
         /// <summary>
         /// 初始化依赖注入容器
         /// </summary>
-        static void InitContainer()
+        private static void InitContainer()
         {
             IServiceCollection builder = ResolveMediator.GetServiceCollection();
             builder.RegisterConfigs();

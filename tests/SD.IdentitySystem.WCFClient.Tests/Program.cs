@@ -1,10 +1,11 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.StubWCF.Client.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.IOC.Core.Mediators;
-using System;
 using SD.IOC.Extension.NetFx;
+using System;
 
 namespace SD.IdentitySystem.WCFClient.Tests
 {
@@ -19,7 +20,8 @@ namespace SD.IdentitySystem.WCFClient.Tests
             InitContainer();
 
             //伪造一个登录信息
-            LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
+            IAuthenticationContract authenticationContract = ResolveMediator.Resolve<IAuthenticationContract>();
+            LoginInfo fakeLoginInfo = authenticationContract.Login(CommonConstants.AdminLoginId, CommonConstants.InitialPassword);
 
             //将登录信息存入约定位置
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, fakeLoginInfo);

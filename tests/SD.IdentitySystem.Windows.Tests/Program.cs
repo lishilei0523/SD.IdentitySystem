@@ -1,4 +1,5 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.StubWCF.Server.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
@@ -19,7 +20,8 @@ namespace SD.IdentitySystem.Windows.Tests
             InitContainer();
 
             //伪造一个登录信息
-            LoginInfo fakeLoginInfo = new LoginInfo(null, null, Guid.NewGuid());
+            IAuthenticationContract authenticationContract = ResolveMediator.Resolve<IAuthenticationContract>();
+            LoginInfo fakeLoginInfo = authenticationContract.Login(CommonConstants.AdminLoginId, CommonConstants.InitialPassword);
 
             //将登录信息存入约定位置
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, fakeLoginInfo);
