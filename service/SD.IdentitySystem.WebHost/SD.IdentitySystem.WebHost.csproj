@@ -89,7 +89,7 @@
       <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.0\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.WCF.Server, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.WCF.Server.2.0.0\lib\net461\SD.Infrastructure.WCF.Server.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.WCF.Server.2.0.1\lib\net461\SD.Infrastructure.WCF.Server.dll</HintPath>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.0\lib\netstandard2.0\SD.IOC.Core.dll</HintPath>
