@@ -74,7 +74,7 @@
       <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.WCF.2.0.0\lib\net461\SD.IdentitySystem.WCFAuthentication.WCF.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.2.0.4\lib\net46\SD.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.2.0.5\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.0\lib\netstandard2.0\SD.Infrastructure.AOP.dll</HintPath>
@@ -83,7 +83,7 @@
       <HintPath>..\..\packages\SD.Infrastructure.EventBase.2.0.0\lib\netstandard2.0\SD.Infrastructure.EventBase.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.EventStoreProvider.Redis, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.EventStoreProvider.Redis.2.0.0\lib\netstandard2.0\SD.Infrastructure.EventStoreProvider.Redis.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.EventStoreProvider.Redis.2.0.1\lib\netstandard2.0\SD.Infrastructure.EventStoreProvider.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.Global, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.0\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
