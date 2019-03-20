@@ -82,7 +82,7 @@
       <HintPath>..\..\packages\SD.IdentitySystem.IAppService.2.0.5\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.WCFAuthentication.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.MVC.2.0.1\lib\net45\SD.IdentitySystem.WCFAuthentication.MVC.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.MVC.2.0.2\lib\net46\SD.IdentitySystem.WCFAuthentication.MVC.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.2.0.4\lib\net46\SD.Infrastructure.dll</HintPath>
@@ -102,6 +102,9 @@
     </Reference>
     <Reference Include="SD.IOC.Integration.MVC, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Integration.MVC.2.0.0\lib\net461\SD.IOC.Integration.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.Toolkits.AsyncHttpContext, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.AsyncHttpContext.1.0.1\lib\net46\SD.Toolkits.AsyncHttpContext.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis.StrongName, Version=1.2.6.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.StrongName.1.2.6\lib\net45\StackExchange.Redis.StrongName.dll</HintPath>

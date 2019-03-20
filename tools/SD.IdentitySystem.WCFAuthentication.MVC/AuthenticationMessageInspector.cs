@@ -1,5 +1,6 @@
 ﻿using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
+using SD.Toolkits.AsyncHttpContext;
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -21,8 +22,15 @@ namespace SD.IdentitySystem.WCFAuthentication.MVC
         /// <returns></returns>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
+            HttpContext httpContext = HttpContextReader.Current;
+
+            if (httpContext == null)
+            {
+                throw new NullReferenceException("HttpContext为null，请检查程序！");
+            }
+
             //MVC客户端获取公钥处理
-            object loginInfo = HttpContext.Current.Session[SessionKey.CurrentUser];
+            object loginInfo = httpContext.Session[SessionKey.CurrentUser];
 
             if (loginInfo != null)
             {
