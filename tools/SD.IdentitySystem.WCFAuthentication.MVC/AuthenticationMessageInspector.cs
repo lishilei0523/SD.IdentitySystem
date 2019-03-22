@@ -22,7 +22,7 @@ namespace SD.IdentitySystem.WCFAuthentication.MVC
         /// <returns></returns>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
-            HttpContext httpContext = HttpContextReader.Current;
+            HttpContext httpContext = HttpContext.Current ?? HttpContextReader.Current;
 
             if (httpContext == null)
             {
