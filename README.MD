@@ -1,6 +1,6 @@
 
 
-#### 框架地址：https://gitee.com/lishilei0523/S.D.Framework2015
+#### 框架地址：https://gitee.com/lishilei0523/SD.Framework
 
 -----------------------------------
 ##### 2018.05.09 - 项目近期调整说明
