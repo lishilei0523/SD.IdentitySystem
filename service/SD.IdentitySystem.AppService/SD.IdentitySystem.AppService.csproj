@@ -33,8 +33,8 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=6.2.2.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.6.2.2\lib\net45\AutoMapper.dll</HintPath>
+    <Reference Include="AutoMapper, Version=8.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\AutoMapper.8.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.2.0.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.dll</HintPath>
@@ -55,13 +55,13 @@
       <HintPath>..\..\packages\SD.CacheManager.2.0.0\lib\netstandard2.0\SD.CacheManager.dll</HintPath>
     </Reference>
     <Reference Include="SD.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.2.0.0\lib\netstandard2.0\SD.Common.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.2.0.3\lib\netstandard2.0\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.LicenseManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.LicenseManager.1.0.2\lib\net35\SD.IdentitySystem.LicenseManager.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.2.0.5\lib\net46\SD.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.2.0.9\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.0\lib\netstandard2.0\SD.Infrastructure.AOP.dll</HintPath>
@@ -85,8 +85,16 @@
     </Reference>
     <Reference Include="System.Core" />
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Data.SqlClient, Version=4.5.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.Data.SqlClient.4.6.0\lib\net461\System.Data.SqlClient.dll</HintPath>
+    </Reference>
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\System.ValueTuple.4.5.0\lib\net461\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Implements\AuthenticationContract.cs" />
