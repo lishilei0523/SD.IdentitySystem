@@ -210,6 +210,11 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("获取信息系统-权限树")]
         public JsonResult GetAuthorityTree(string id)
         {
+            if (string.IsNullOrWhiteSpace(id))
+            {
+                return base.Json(null, JsonRequestBehavior.AllowGet);
+            }
+
             Node node = this._authorityPresenter.GetAuthorityTree(id);
             IEnumerable<Node> tree = new[] { node };
 

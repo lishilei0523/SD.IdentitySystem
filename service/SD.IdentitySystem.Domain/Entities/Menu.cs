@@ -62,7 +62,12 @@ namespace SD.IdentitySystem.Domain.Entities
             base.Name = menuName;
             this.Sort = sort;
             this.SystemNo = systemNo;
-            this.ApplicationType = parentNode?.ApplicationType ?? applicationType;
+            this.ApplicationType =
+                parentNode?.ApplicationType == null
+                    ? applicationType
+                    : parentNode.ApplicationType == ApplicationType.Complex
+                        ? applicationType
+                        : parentNode.ApplicationType;
             this.Url = url;
             this.Path = path;
             this.Icon = icon;

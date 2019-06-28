@@ -1,12 +1,14 @@
 ﻿@using SD.IdentitySystem.IPresentation.ViewModels.Outputs
 @{
-                /**/
+    /**/
 
-                ViewBag.Title = "创建菜单";
-                Layout = "~/Views/Shared/_Layout.cshtml";
+    /**/
 
-                IEnumerable<InfoSystemView> Systems = ((IEnumerable<InfoSystemView>)ViewBag.InfoSystems).OrderBy(x => x.Number);
-                IDictionary<int, string> ApplicationTypeDescriptions = ViewBag.ApplicationTypeDescriptions;
+    ViewBag.Title = "创建菜单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    IEnumerable<InfoSystemView> Systems = ((IEnumerable<InfoSystemView>)ViewBag.InfoSystems).OrderBy(x => x.Number);
+    IDictionary<int, string> ApplicationTypeDescriptions = ViewBag.ApplicationTypeDescriptions;
 }
 
 @section header{
@@ -33,7 +35,7 @@
                 <tr>
                     <td class="tdTitle">应用程序类型：</td>
                     <td class="tdContent">
-                        <select class="easyui-combobox" id="slApplicationType" name="applicationType" data-options="required:true,editable:false,onSelect:systemSelected" style="width: 210px">
+                        <select class="easyui-combobox" id="slApplicationType" name="applicationType" data-options="required:true,editable:false,onSelect:applicationTypeSelected" style="width: 210px">
                             <option value="" selected="selected"></option>
                             @foreach (KeyValuePair<int, string> kv in ApplicationTypeDescriptions)
                             {
