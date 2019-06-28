@@ -3,15 +3,16 @@ var topHelper = {};
 
 //DOM初始化事件
 $(function () {
-
-    debugger;
     //获取当前登录用户
     var loginId = $("#spLoginId").text();
+
+    //常量
     var systemNo = "00";
+    var applicationType = 0;
 
     //初始化用户菜单
     $("#menuTree").tree({
-        url: "/Menu/GetUserMenuTree?loginId=" + loginId + "&systemNo=" + systemNo,
+        url: "/Menu/GetUserMenuTree?loginId=" + loginId + "&systemNo=" + systemNo + "&applicationType=" + applicationType,
         animate: true,
         lines: true,
         onClick: function (node) {
@@ -180,7 +181,7 @@ function createTab(title, url, isLeaf) {
             var currTab = $("#tabs").tabs("getSelected");
             $("#tabs").tabs("select", title);
             url = $(currTab.panel("options").content).attr("src");
-            if (url != undefined) {
+            if (url !== undefined) {
                 $("#tabs").tabs("update", {
                     tab: currTab,
                     options: {

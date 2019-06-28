@@ -1,4 +1,5 @@
-﻿using SD.Infrastructure.EventBase;
+﻿using SD.Infrastructure.Constants;
+using SD.Infrastructure.EventBase;
 
 namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
 {
@@ -22,12 +23,14 @@ namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="systemName">信息系统名称</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="adminLoginId">管理员登录名</param>
-        public InfoSystemCreatedEvent(string systemNo, string systemName, string adminLoginId)
+        public InfoSystemCreatedEvent(string systemNo, string systemName, ApplicationType applicationType, string adminLoginId)
             : this()
         {
             this.SystemNo = systemNo;
             this.SystemName = systemName;
+            this.ApplicationType = applicationType;
             this.AdminLoginId = adminLoginId;
         }
         #endregion
@@ -48,6 +51,13 @@ namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
         /// 信息系统名称
         /// </summary>
         public string SystemName { get; set; }
+        #endregion
+
+        #region 应用程序类型 —— ApplicationType ApplicationType
+        /// <summary>
+        /// 应用程序类型
+        /// </summary>
+        public ApplicationType ApplicationType { get; set; }
         #endregion
 
         #region 管理员登录名 —— string AdminLoginId

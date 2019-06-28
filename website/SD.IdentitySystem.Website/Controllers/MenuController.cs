@@ -1,4 +1,5 @@
-﻿using SD.FormatModel.EasyUI;
+﻿using SD.Common.PoweredByLee;
+using SD.FormatModel.EasyUI;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
@@ -64,7 +65,10 @@ namespace SD.IdentitySystem.Website.Controllers
         public ViewResult Index()
         {
             IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            IDictionary<int, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumDictionary();
+
             base.ViewBag.InfoSystems = systems;
+            base.ViewBag.ApplicationTypeDescriptions = applicationTypeDescriptions;
 
             return base.View();
         }
@@ -80,7 +84,10 @@ namespace SD.IdentitySystem.Website.Controllers
         public ViewResult Add()
         {
             IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            IDictionary<int, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumDictionary();
+
             base.ViewBag.InfoSystems = systems;
+            base.ViewBag.ApplicationTypeDescriptions = applicationTypeDescriptions;
 
             return base.View();
         }
@@ -124,11 +131,12 @@ namespace SD.IdentitySystem.Website.Controllers
 
         //命令部分
 
-        #region # 创建菜单 —— void CreateMenu(string systemNo, string menuName...
+        #region # 创建菜单 —— void CreateMenu(string systemNo, ApplicationType applicationType...
         /// <summary>
         /// 创建菜单
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序</param>
         /// <param name="url">链接地址</param>
@@ -137,9 +145,9 @@ namespace SD.IdentitySystem.Website.Controllers
         /// <param name="parentId">父级菜单Id</param>
         [HttpPost]
         [RequireAuthorization("创建菜单")]
-        public void CreateMenu(string systemNo, string menuName, int sort, string url, string path, string icon, Guid? parentId)
+        public void CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentId)
         {
-            this._authorizationContract.CreateMenu(systemNo, menuName, sort, url, path, icon, parentId);
+            this._authorizationContract.CreateMenu(systemNo, applicationType, menuName, sort, url, path, icon, parentId);
         }
         #endregion
 
@@ -211,51 +219,53 @@ namespace SD.IdentitySystem.Website.Controllers
 
         //查询部分
 
-        #region # 获取菜单树 —— JsonResult GetMenuTree(string id)
+        #region # 获取菜单树 —— JsonResult GetMenuTree(string systemNo...
         /// <summary>
         /// 获取菜单树
         /// </summary>
-        /// <param name="id">信息系统编号</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
         [RequireAuthorization("获取菜单树")]
-        public JsonResult GetMenuTree(string id)
+        public JsonResult GetMenuTree(string systemNo, ApplicationType? applicationType)
         {
-            string systemNo = id;
-            IEnumerable<Node> menuTree = this._menuPresenter.GetMenuTree(systemNo);
+            IEnumerable<Node> menuTree = this._menuPresenter.GetMenuTree(systemNo, applicationType);
 
             return base.Json(menuTree, JsonRequestBehavior.AllowGet);
         }
         #endregion
 
-        #region # 获取用户菜单树 —— JsonResult GetUserMenuTree(string loginId, string systemNo)
+        #region # 获取用户菜单树 —— JsonResult GetUserMenuTree(string loginId, string systemNo...
         /// <summary>
         /// 获取用户菜单树
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
         [RequireAuthorization("获取用户菜单树")]
-        public JsonResult GetUserMenuTree(string loginId, string systemNo)
+        public JsonResult GetUserMenuTree(string loginId, string systemNo, ApplicationType? applicationType)
         {
             IEnumerable<Node> menuTree = loginId == CommonConstants.AdminLoginId
-                ? this._menuPresenter.GetMenuTree(systemNo)
-                : this._menuPresenter.GetUserMenuTree(loginId, systemNo);
+                ? this._menuPresenter.GetMenuTree(systemNo, applicationType)
+                : this._menuPresenter.GetUserMenuTree(loginId, systemNo, applicationType);
 
             return base.Json(menuTree, JsonRequestBehavior.AllowGet);
         }
 
         #endregion
 
-        #region # 获取菜单TreeGrid —— JsonResult GetMenuTreeGrid(string systemNo)
+        #region # 获取菜单TreeGrid —— JsonResult GetMenuTreeGrid(string systemNo...
         /// <summary>
         /// 获取菜单TreeGrid
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单TreeGrid</returns>
         [RequireAuthorization("获取菜单树形表格")]
-        public JsonResult GetMenuTreeGrid(string systemNo)
+        public JsonResult GetMenuTreeGrid(string systemNo, ApplicationType? applicationType)
         {
-            IEnumerable<MenuView> menus = this._menuPresenter.GetMenuTreeGrid(systemNo).ToArray();
+            IEnumerable<MenuView> menus = this._menuPresenter.GetMenuTreeGrid(systemNo, applicationType).ToArray();
             Grid<MenuView> grid = new Grid<MenuView>(menus.Count(), menus);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

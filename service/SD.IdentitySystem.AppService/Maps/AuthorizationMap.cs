@@ -64,7 +64,8 @@ namespace SD.IdentitySystem.AppService.Maps
             return new LoginMenuInfo
             {
                 SystemNo = menu.SystemNo,
-                ParentId = menu.ParentNode == null ? (Guid?)null : menu.ParentNode.Id,
+                ApplicationType = menu.ApplicationType,
+                ParentId = menu.ParentNode?.Id,
                 Id = menu.Id,
                 Name = menu.Name,
                 Sort = menu.Sort,
@@ -82,7 +83,7 @@ namespace SD.IdentitySystem.AppService.Maps
         public static ICollection<LoginMenuInfo> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
         {
             //验证
-            menus = menus == null ? new Menu[0] : menus.ToArray();
+            menus = menus?.ToArray() ?? new Menu[0];
 
             //声明容器
             ICollection<LoginMenuInfo> loginMenuInfos = new HashSet<LoginMenuInfo>();

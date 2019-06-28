@@ -1,4 +1,5 @@
-﻿using SD.Infrastructure.DTOBase;
+﻿using SD.Infrastructure.Constants;
+using SD.Infrastructure.DTOBase;
 using System;
 using System.Runtime.Serialization;
 
@@ -16,6 +17,14 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         /// </summary>
         [DataMember]
         public string SystemNo { get; set; }
+        #endregion
+
+        #region 应用程序类型 —— ApplicationType ApplicationType
+        /// <summary>
+        /// 应用程序类型
+        /// </summary>
+        [DataMember]
+        public ApplicationType ApplicationType { get; set; }
         #endregion
 
         #region 链接地址(Web适用) —— string Url

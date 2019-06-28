@@ -151,7 +151,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
                 /*菜单部分*/
                 IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
-                IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds);
+                IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, null);
                 menus = menus.TailRecurseParentNodes();
                 ICollection<LoginMenuInfo> menuTree = menus.ToTree(null);
                 loginInfo.LoginMenuInfos.AddRange(menuTree);

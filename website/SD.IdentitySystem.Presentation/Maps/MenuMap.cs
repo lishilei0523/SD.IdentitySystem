@@ -1,10 +1,10 @@
 ﻿using SD.Common.PoweredByLee;
+using SD.FormatModel.EasyUI;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Presentation.Maps
 {
@@ -23,6 +23,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         {
             MenuView menuView = Transform<MenuInfo, MenuView>.Map(menuInfo);
             menuView.SystemName = menuInfo.InfoSystemInfo.Name;
+            menuView.ApplicationType = menuInfo.ApplicationType.GetEnumMember();
 
             return menuView;
         }

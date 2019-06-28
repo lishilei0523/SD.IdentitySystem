@@ -1,5 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.Infrastructure.AppServiceBase;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using System;
 using System.Collections.Generic;
@@ -173,15 +174,16 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId);
         #endregion
 
-        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo)
+        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo...
         /// <summary>
         /// 获取用户菜单树
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>用户菜单树</returns>
         [OperationContract]
-        IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo);
+        IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo, ApplicationType? applicationType);
         #endregion
 
         #region # 获取用户角色列表 —— IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)

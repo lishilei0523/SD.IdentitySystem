@@ -315,19 +315,20 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo)
+        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetMenus(string loginId, string systemNo...
         /// <summary>
         /// 获取用户菜单树
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>用户菜单树</returns>
-        public IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo)
+        public IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo, ApplicationType? applicationType)
         {
             IEnumerable<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, systemNo);
             IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
 
-            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds);
+            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, applicationType);
             menus = menus.TailRecurseParentNodes();
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();

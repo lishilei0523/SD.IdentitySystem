@@ -1,4 +1,5 @@
-﻿using SD.Infrastructure.EntityBase;
+﻿using SD.Infrastructure.Constants;
+using SD.Infrastructure.EntityBase;
 using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
@@ -31,13 +32,14 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 创建菜单构造器
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">菜单排序</param>
         /// <param name="url">链接地址</param>
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentNode">上级菜单</param>
-        public Menu(string systemNo, string menuName, int sort, string url, string path, string icon, Menu parentNode)
+        public Menu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Menu parentNode)
             : this()
         {
             #region # 验证参数
@@ -60,6 +62,7 @@ namespace SD.IdentitySystem.Domain.Entities
             base.Name = menuName;
             this.Sort = sort;
             this.SystemNo = systemNo;
+            this.ApplicationType = parentNode?.ApplicationType ?? applicationType;
             this.Url = url;
             this.Path = path;
             this.Icon = icon;
@@ -80,6 +83,13 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 信息系统编号
         /// </summary>
         public string SystemNo { get; private set; }
+        #endregion
+
+        #region 应用程序类型 —— ApplicationType ApplicationType
+        /// <summary>
+        /// 应用程序类型
+        /// </summary>
+        public ApplicationType ApplicationType { get; private set; }
         #endregion
 
         #region 链接地址(Web适用) —— string Url

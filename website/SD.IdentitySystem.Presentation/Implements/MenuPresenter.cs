@@ -1,13 +1,14 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.FormatModel.EasyUI;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Presentation.Implements
 {
@@ -55,30 +56,32 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 获取菜单列表 —— IEnumerable<MenuView> GetMenus(string systemNo)
+        #region # 获取菜单列表 —— IEnumerable<MenuView> GetMenus(string systemNo...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        public IEnumerable<MenuView> GetMenus(string systemNo)
+        public IEnumerable<MenuView> GetMenus(string systemNo, ApplicationType? applicationType)
         {
-            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.GetMenus(systemNo);
+            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.GetMenus(systemNo, applicationType);
             IEnumerable<MenuView> menuViews = menuInfos.OrderBy(x => x.Sort).Select(x => x.ToViewModel());
 
             return menuViews;
         }
         #endregion
 
-        #region # 获取菜单树 —— IEnumerable<Node> GetMenuTree(string systemNo)
+        #region # 获取菜单树 —— IEnumerable<Node> GetMenuTree(string systemNo...
         /// <summary>
         /// 获取菜单树
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
-        public IEnumerable<Node> GetMenuTree(string systemNo)
+        public IEnumerable<Node> GetMenuTree(string systemNo, ApplicationType? applicationType)
         {
-            IEnumerable<MenuView> menuViews = this.GetMenus(systemNo);
+            IEnumerable<MenuView> menuViews = this.GetMenus(systemNo, applicationType);
 
             ICollection<Node> menuTree = menuViews.ToTree(null);
 
@@ -86,16 +89,17 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 获取用户菜单树 —— IEnumerable<Node> GetUserMenuTree(string loginId, string systemNo)
+        #region # 获取用户菜单树 —— IEnumerable<Node> GetUserMenuTree(string loginId, string systemNo...
         /// <summary>
         /// 获取用户菜单树
         /// </summary>
         /// <param name="loginId">用户登录名</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
-        public IEnumerable<Node> GetUserMenuTree(string loginId, string systemNo)
+        public IEnumerable<Node> GetUserMenuTree(string loginId, string systemNo, ApplicationType? applicationType)
         {
-            IEnumerable<MenuInfo> menuInfos = this._userContract.GetUserMenus(loginId, systemNo);
+            IEnumerable<MenuInfo> menuInfos = this._userContract.GetUserMenus(loginId, systemNo, applicationType);
             IEnumerable<MenuView> menuViews = menuInfos.Select(x => x.ToViewModel());
 
             ICollection<Node> menuTree = menuViews.ToTree(null);
@@ -104,15 +108,16 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 获取菜单TreeGrid —— IEnumerable<MenuView> GetMenuTreeGrid(string systemNo)
+        #region # 获取菜单TreeGrid —— IEnumerable<MenuView> GetMenuTreeGrid(string systemNo...
         /// <summary>
         /// 获取菜单TreeGrid
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单TreeGrid</returns>
-        public IEnumerable<MenuView> GetMenuTreeGrid(string systemNo)
+        public IEnumerable<MenuView> GetMenuTreeGrid(string systemNo, ApplicationType? applicationType)
         {
-            IEnumerable<MenuView> menus = this.GetMenus(systemNo);
+            IEnumerable<MenuView> menus = this.GetMenus(systemNo, applicationType);
 
             return menus.ToTreeGrid();
         }
@@ -124,12 +129,13 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>菜单列表</returns>
-        public PageModel<MenuView> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        public PageModel<MenuView> GetMenusByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
-            PageModel<MenuInfo> pageModel = this._authorizationContract.GetMenusByPage(keywords, systemNo, pageIndex, pageSize);
+            PageModel<MenuInfo> pageModel = this._authorizationContract.GetMenusByPage(keywords, systemNo, applicationType, pageIndex, pageSize);
 
             IEnumerable<MenuView> menuViews = pageModel.Datas.Select(x => x.ToViewModel());
 

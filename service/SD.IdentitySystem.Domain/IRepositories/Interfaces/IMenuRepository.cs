@@ -1,4 +1,5 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.RepositoryBase;
 using System;
 using System.Collections.Generic;
@@ -10,13 +11,29 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// </summary>
     public interface IMenuRepository : IAggRootRepository<Menu>
     {
-        #region # 获取菜单列表 —— IEnumerable<Menu> FindBySystem(string systemNo)
+        #region # 分页获取菜单列表 —— ICollection<Menu> FindByPage(string keywords, string systemNo...
+        /// <summary>
+        /// 分页获取菜单列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <param name="rowCount"></param>
+        /// <param name="pageCount"></param>
+        /// <returns>菜单列表</returns>
+        ICollection<Menu> FindByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount);
+        #endregion
+
+        #region # 获取菜单列表 —— ICollection<Menu> FindBySystem(string systemNo...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        IEnumerable<Menu> FindBySystem(string systemNo);
+        ICollection<Menu> FindBySystem(string systemNo, ApplicationType? applicationType);
         #endregion
 
         #region # 根据上级菜单Id判断菜单是否存在 —— bool Exists(Guid? parentId, string menuName)
@@ -29,13 +46,14 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         bool Exists(Guid? parentId, string menuName);
         #endregion
 
-        #region # 根据权限获取菜单列表 —— IEnumerable<Menu> FindByAuthority(IEnumerable<Guid>...
+        #region # 根据权限获取菜单列表 —— ICollection<Menu> FindByAuthority(IEnumerable<Guid>...
         /// <summary>
         /// 根据权限获取菜单列表
         /// </summary>
         /// <param name="authorityIds">权限Id集</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        IEnumerable<Menu> FindByAuthority(IEnumerable<Guid> authorityIds);
+        ICollection<Menu> FindByAuthority(IEnumerable<Guid> authorityIds, ApplicationType? applicationType);
         #endregion
     }
 }

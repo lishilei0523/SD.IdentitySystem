@@ -1,8 +1,8 @@
-﻿using System;
-using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
+﻿using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
 using SD.Infrastructure.EventBase.Mediator;
+using System;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -46,7 +46,7 @@ namespace SD.IdentitySystem.Domain.Entities
             this.ApplicationType = applicationType;
 
             //挂起领域事件
-            EventMediator.Suspend(new InfoSystemCreatedEvent(this.Number, this.Name, this.AdminLoginId));
+            EventMediator.Suspend(new InfoSystemCreatedEvent(this.Number, this.Name, this.ApplicationType, this.AdminLoginId));
 
             //初始化关键字
             base.SetKeywords(base.Name);

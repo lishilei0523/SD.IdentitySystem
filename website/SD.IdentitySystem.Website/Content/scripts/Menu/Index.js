@@ -20,6 +20,7 @@ function getMenus(queryParams) {
             { field: "Url", title: "链接地址", halign: "center", width: 200 },
             { field: "Path", title: "路径", halign: "center", width: 400 },
             { field: "SystemName", title: "所属系统", halign: "center", width: 150 },
+            { field: "ApplicationType", title: "应用程序类型", halign: "center", width: 150 },
             {
                 field: "AddedTime",
                 title: "创建时间",

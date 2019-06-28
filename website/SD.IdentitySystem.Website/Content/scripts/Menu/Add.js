@@ -1,16 +1,17 @@
 ﻿$(function () {
     //获取用户选中的信息系统编号
     var systemNo = $("#slSystem").val();
+    var applicationType = $("#slApplicationType").val();
 
     //初始化菜单树
-    initMenuTree(systemNo);
+    initMenuTree(systemNo, applicationType);
 
 });
 
 //初始化菜单树
-function initMenuTree(systemNo) {
+function initMenuTree(systemNo, applicationType) {
     $("#slMenu").combotree({
-        url: "/Menu/GetMenuTree/" + systemNo,
+        url: "/Menu/GetMenuTree?systemNo=" + systemNo + "&applicationType=" + applicationType,
         animate: true,
         lines: true,
         checkbox: true,

@@ -80,11 +80,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void RemoveAuthority(Guid authorityId);
         #endregion
 
-        #region # 创建菜单 —— Guid CreateMenu(string systemNo, string menuName...
+        #region # 创建菜单 —— Guid CreateMenu(string systemNo, ApplicationType applicationType...
         /// <summary>
         /// 创建菜单
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
@@ -93,7 +94,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="parentId">上级菜单Id</param>
         /// <returns>菜单Id</returns>
         [OperationContract]
-        Guid CreateMenu(string systemNo, string menuName, int sort, string url, string path, string icon, Guid? parentId);
+        Guid CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentId);
         #endregion
 
         #region # 修改菜单 —— void UpdateMenu(Guid menuId, string menuName...
@@ -313,14 +314,15 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         MenuInfo GetMenu(Guid menuId);
         #endregion
 
-        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo)
+        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
         [OperationContract]
-        IEnumerable<MenuInfo> GetMenus(string systemNo);
+        IEnumerable<MenuInfo> GetMenus(string systemNo, ApplicationType? applicationType);
         #endregion
 
         #region # 分页获取菜单列表 —— PageModel<MenuInfo> GetMenusByPage(string keywords...
@@ -329,11 +331,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>菜单列表</returns>
         [OperationContract]
-        PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize);
+        PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize);
         #endregion
 
         #region # 获取角色 —— RoleInfo GetRole(Guid roleId)

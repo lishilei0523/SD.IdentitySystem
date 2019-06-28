@@ -87,6 +87,13 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
         public string SystemName { get; set; }
         #endregion
 
+        #region 应用程序类型 —— string ApplicationType
+        /// <summary>
+        /// 应用程序类型
+        /// </summary>
+        public string ApplicationType { get; set; }
+        #endregion
+
         #region 类型 —— string type
         /// <summary>
         /// 类型

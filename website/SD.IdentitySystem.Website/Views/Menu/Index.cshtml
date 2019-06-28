@@ -4,6 +4,7 @@
     Layout = "~/Views/Shared/_Layout.cshtml";
 
     IEnumerable<InfoSystemView> Systems = ((IEnumerable<InfoSystemView>)ViewBag.InfoSystems).OrderBy(x => x.Number);
+    IDictionary<int, string> ApplicationTypeDescriptions = ViewBag.ApplicationTypeDescriptions;
 }
 
 @section header{
@@ -31,6 +32,15 @@
                         <option value="@system.Number">@system.Name</option>
                     }
                 </select>
+                应用程序类型：
+                <select class="easyui-combobox" id="slApplicationType" name="applicationType" data-options="editable:false" style="width: 210px">
+                    <option value="" selected="selected">全部</option>
+                    @foreach (KeyValuePair<int, string> kv in ApplicationTypeDescriptions)
+                    {
+                        <option value="@kv.Key">@kv.Value</option>
+                    }
+                </select>
+
                 <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchMenus();">搜索</a>
             </form>
         </div>

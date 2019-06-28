@@ -191,6 +191,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 创建菜单
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序（倒序）</param>
         /// <param name="url">链接地址</param>
@@ -198,14 +199,14 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="icon">图标</param>
         /// <param name="parentId">上级菜单Id</param>
         /// <returns>菜单Id</returns>
-        public Guid CreateMenu(string systemNo, string menuName, int sort, string url, string path, string icon, Guid? parentId)
+        public Guid CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentId)
         {
             //验证参数
             Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
             Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, menuName), "给定菜单级别下菜单名称已存在！");
 
             Menu parentMenu = parentId == null ? null : this._unitOfWork.Resolve<Menu>(parentId.Value);
-            Menu menu = new Menu(systemNo, menuName, sort, url, path, icon, parentMenu);
+            Menu menu = new Menu(systemNo, applicationType, menuName, sort, url, path, icon, parentMenu);
 
             this._unitOfWork.RegisterAdd(menu);
             this._unitOfWork.UnitedCommit();
@@ -617,18 +618,19 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo)
+        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        public IEnumerable<MenuInfo> GetMenus(string systemNo)
+        public IEnumerable<MenuInfo> GetMenus(string systemNo, ApplicationType? applicationType)
         {
-            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindBySystem(systemNo);
+            ICollection<Menu> menus = this._repMediator.MenuRep.FindBySystem(systemNo, applicationType);
 
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            IEnumerable<string> systemNos = menus.Select(x => x.SystemNo);
+            IDictionary<string, InfoSystemInfo> systemInfos = this._repMediator.InfoSystemRep.Find(systemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
             return menus.Select(x => x.ToDTO(systemInfos));
         }
@@ -640,17 +642,18 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>菜单列表</returns>
-        public PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        public PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
-            IEnumerable<Menu> specMenus = this._repMediator.MenuRep.FindByPage(keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
+            ICollection<Menu> menus = this._repMediator.MenuRep.FindByPage(keywords, systemNo, applicationType, pageIndex, pageSize, out int rowCount, out int pageCount);
 
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            IEnumerable<string> systemNos = menus.Select(x => x.SystemNo);
+            IDictionary<string, InfoSystemInfo> systemInfos = this._repMediator.InfoSystemRep.Find(systemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            IEnumerable<MenuInfo> specMenuInfos = specMenus.Select(x => x.ToDTO(systemInfos));
+            IEnumerable<MenuInfo> specMenuInfos = menus.Select(x => x.ToDTO(systemInfos));
 
             return new PageModel<MenuInfo>(specMenuInfos, pageIndex, pageSize, pageCount, rowCount);
         }
