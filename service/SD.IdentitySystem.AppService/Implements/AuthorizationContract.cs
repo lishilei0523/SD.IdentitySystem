@@ -203,7 +203,7 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             //验证参数
             Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
-            Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, menuName), "给定菜单级别下菜单名称已存在！");
+            Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, applicationType, menuName), "给定菜单级别下，相同应用程序类型的菜单名称已存在！");
 
             Menu parentMenu = parentId == null ? null : this._unitOfWork.Resolve<Menu>(parentId.Value);
             Menu menu = new Menu(systemNo, applicationType, menuName, sort, url, path, icon, parentMenu);
@@ -234,7 +234,7 @@ namespace SD.IdentitySystem.AppService.Implements
             if (menuName != currentMenu.Name)
             {
                 Guid? parentId = currentMenu.ParentNode?.Id;
-                Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, menuName), "给定菜单级别下菜单名称已存在！");
+                Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, currentMenu.ApplicationType, menuName), "给定菜单级别下，相同应用程序类型的菜单名称已存在！");
             }
 
             #endregion

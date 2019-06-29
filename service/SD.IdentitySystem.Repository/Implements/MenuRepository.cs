@@ -57,20 +57,36 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 根据上级菜单Id判断菜单是否存在 —— bool Exists(Guid? parentId, string menuName)
+        #region # 根据上级菜单Id判断菜单是否存在 —— bool Exists(Guid? parentId, ApplicationType applicationType...
         /// <summary>
         /// 根据上级菜单Id判断菜单是否存在
         /// </summary>
         /// <param name="parentId">上级菜单Id</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
         /// <returns>菜单名称是否存在</returns>
-        public bool Exists(Guid? parentId, string menuName)
+        public bool Exists(Guid? parentId, ApplicationType applicationType, string menuName)
         {
+            Expression<Func<Menu, bool>> condition;
+
             if (parentId == null)
             {
-                return base.Exists(x => x.IsRoot && x.Name == menuName);
+                condition =
+                   x =>
+                       x.IsRoot &&
+                       x.ApplicationType == applicationType &&
+                       x.Name == menuName;
             }
-            return base.Exists(x => x.ParentNode != null && x.ParentNode.Id == parentId && x.Name == menuName);
+            else
+            {
+                condition =
+                    x =>
+                        x.ParentNode.Id == parentId &&
+                        x.ApplicationType == applicationType &&
+                        x.Name == menuName;
+            }
+
+            return base.Exists(condition);
         }
         #endregion
 
