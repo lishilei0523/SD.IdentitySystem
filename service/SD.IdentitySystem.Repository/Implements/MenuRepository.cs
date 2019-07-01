@@ -2,6 +2,7 @@
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Repository.EntityFramework;
+using SD.Infrastructure.RepositoryBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,13 +29,25 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>菜单列表</returns>
         public ICollection<Menu> FindByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
-            Expression<Func<Menu, bool>> condition =
-                x =>
-                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
-                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo) &&
-                    (applicationType == null || x.ApplicationType == applicationType);
+            IQueryable<Menu> menus = base.FindAllInner();
 
-            return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).ToList();
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                menus = menus.Where(x => x.Keywords.Contains(keywords));
+            }
+            if (!string.IsNullOrWhiteSpace(systemNo))
+            {
+                menus = menus.Where(x => x.SystemNo == systemNo);
+            }
+            if (applicationType != null)
+            {
+                menus = menus.Where(x => x.ApplicationType == applicationType || x.ApplicationType == ApplicationType.Complex);
+            }
+
+            IOrderedQueryable<Menu> orderedMenus = menus.OrderByDescending(x => x.AddedTime);
+            menus = orderedMenus.ToPage(pageIndex, pageSize, out rowCount, out pageCount);
+
+            return menus.ToList();
         }
         #endregion
 
@@ -47,13 +60,18 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>菜单列表</returns>
         public ICollection<Menu> FindBySystem(string systemNo, ApplicationType? applicationType)
         {
-            Expression<Func<Menu, bool>> condition =
-                x =>
-                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo) &&
-                    (applicationType == null || x.ApplicationType == applicationType);
+            IQueryable<Menu> menus = base.FindAllInner();
 
+            if (!string.IsNullOrEmpty(systemNo))
+            {
+                menus = menus.Where(x => x.SystemNo == systemNo);
+            }
+            if (applicationType != null)
+            {
+                menus = menus.Where(x => x.ApplicationType == applicationType || x.ApplicationType == ApplicationType.Complex);
+            }
 
-            return base.Find(condition).ToList();
+            return menus.ToList();
         }
         #endregion
 
