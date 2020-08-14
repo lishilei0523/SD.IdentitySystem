@@ -118,24 +118,27 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
         /// <returns></returns>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
-            //WCF客户端获取公钥处理
-            MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
-
-            #region # 验证消息头
-
-            if (!headers.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
+            if (OperationContext.Current != null)
             {
-                throw new NullReferenceException("身份认证消息头不存在，请检查程序！");
+                //WCF客户端获取公钥处理
+                MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
+
+                #region # 验证消息头
+
+                if (!headers.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
+                {
+                    throw new NullReferenceException("身份认证消息头不存在，请检查程序！");
+                }
+
+                #endregion
+
+                //读取消息头中的公钥
+                Guid publishKey = headers.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
+
+                //添加消息头
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
+                request.Headers.Add(header);
             }
-
-            #endregion
-
-            //读取消息头中的公钥
-            Guid publishKey = headers.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
-
-            //添加消息头
-            MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
-            request.Headers.Add(header);
 
             return null;
         }

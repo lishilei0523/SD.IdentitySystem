@@ -24,21 +24,19 @@ namespace SD.IdentitySystem.WCFAuthentication.MVC
         {
             HttpContext httpContext = HttpContext.Current ?? HttpContextReader.Current;
 
-            if (httpContext == null)
+            if (httpContext != null)
             {
-                throw new NullReferenceException("HttpContext为null，请检查程序！");
-            }
+                //MVC客户端获取公钥处理
+                object loginInfo = httpContext.Session[SessionKey.CurrentUser];
 
-            //MVC客户端获取公钥处理
-            object loginInfo = httpContext.Session[SessionKey.CurrentUser];
+                if (loginInfo != null)
+                {
+                    Guid publishKey = ((LoginInfo)loginInfo).PublicKey;
 
-            if (loginInfo != null)
-            {
-                Guid publishKey = ((LoginInfo)loginInfo).PublicKey;
-
-                //添加消息头
-                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
-                request.Headers.Add(header);
+                    //添加消息头
+                    MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
+                    request.Headers.Add(header);
+                }
             }
 
             return null;
