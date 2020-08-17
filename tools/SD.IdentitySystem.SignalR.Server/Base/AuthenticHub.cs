@@ -1,5 +1,6 @@
-﻿using SD.IdentitySystem.SignalR.Server.Toolkits;
+﻿using SD.CacheManager;
 using SD.Infrastructure.Constants;
+using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.MessageBase;
 using SD.Infrastructure.SignalR.Server.Base;
@@ -72,13 +73,17 @@ namespace SD.IdentitySystem.SignalR.Server.Base
             lock (_Sync)
             {
                 //认证
-                string loginInfoStr = base.Context.Headers.Get(SessionKey.CurrentUser);
-                if (string.IsNullOrWhiteSpace(loginInfoStr))
+                string publicKey = base.Context.Headers.Get(SessionKey.CurrentPublishKey);
+                if (string.IsNullOrWhiteSpace(publicKey))
                 {
                     throw new NullReferenceException("身份信息不存在，请检查程序！");
                 }
 
-                LoginInfo loginInfo = loginInfoStr.JsonToObject<LoginInfo>();
+                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey);
+                if (loginInfo == null)
+                {
+                    throw new NoPermissionException("身份过期，请重新登录！");
+                }
 
                 //用户/连接字典
                 if (_UserConnections.ContainsKey(loginInfo.LoginId))
@@ -95,36 +100,6 @@ namespace SD.IdentitySystem.SignalR.Server.Base
         }
 
         /// <summary>
-        /// 客户端重新连接事件
-        /// </summary>
-        public override Task OnReconnected()
-        {
-            lock (_Sync)
-            {
-                //认证
-                string loginInfoStr = base.Context.Headers.Get(SessionKey.CurrentUser);
-                if (string.IsNullOrWhiteSpace(loginInfoStr))
-                {
-                    throw new NullReferenceException("身份信息不存在，请检查程序！");
-                }
-
-                LoginInfo loginInfo = loginInfoStr.JsonToObject<LoginInfo>();
-
-                //用户/连接字典
-                if (_UserConnections.ContainsKey(loginInfo.LoginId))
-                {
-                    _UserConnections[loginInfo.LoginId] = base.Context.ConnectionId;
-                }
-                else
-                {
-                    _UserConnections.Add(loginInfo.LoginId, base.Context.ConnectionId);
-                }
-
-                return base.OnReconnected();
-            }
-        }
-
-        /// <summary>
         /// 客户端断开连接事件
         /// </summary>
         public override Task OnDisconnected(bool stopCalled)
@@ -132,18 +107,22 @@ namespace SD.IdentitySystem.SignalR.Server.Base
             lock (_Sync)
             {
                 //认证
-                string loginInfoStr = base.Context.Headers.Get(SessionKey.CurrentUser);
-                if (string.IsNullOrWhiteSpace(loginInfoStr))
+                string publicKey = base.Context.Headers.Get(SessionKey.CurrentPublishKey);
+                if (string.IsNullOrWhiteSpace(publicKey))
                 {
                     return base.OnDisconnected(stopCalled);
                 }
 
-                LoginInfo loginInfo = loginInfoStr.JsonToObject<LoginInfo>();
+                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey);
+                if (loginInfo == null)
+                {
+                    return base.OnDisconnected(stopCalled);
+                }
 
                 //用户/连接字典
                 if (_UserConnections.ContainsKey(loginInfo.LoginId))
                 {
-                    _UserConnections.Remove(loginInfo.LoginId);
+                    _UserConnections.Remove(publicKey);
                 }
 
                 return base.OnDisconnected(stopCalled);
