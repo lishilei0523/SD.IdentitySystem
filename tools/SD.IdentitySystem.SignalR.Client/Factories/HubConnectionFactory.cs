@@ -7,17 +7,16 @@ using System.Collections.Generic;
 namespace SD.IdentitySystem.SignalR.Client.Factories
 {
     /// <summary>
-    /// Hub连接工厂
+    /// 认证Hub连接工厂
     /// </summary>
     public static class HubConnectionFactory
     {
         /// <summary>
         /// 创建认证Hub连接
         /// </summary>
-        public static HubConnection CreateAuthenticConnection(string url)
+        public static HubConnection CreateAuthenticConnection(string url, LoginInfo loginInfo)
         {
             HubConnection connection = new HubConnection(url);
-            LoginInfo loginInfo = Membership.LoginInfo;
             connection.Headers.Add(SessionKey.CurrentUser, loginInfo.ToJson());
 
             return connection;
@@ -26,10 +25,9 @@ namespace SD.IdentitySystem.SignalR.Client.Factories
         /// <summary>
         /// 创建认证Hub连接
         /// </summary>
-        public static HubConnection CreateAuthenticConnection(string url, IDictionary<string, string> queryString, bool useDefaultUrl)
+        public static HubConnection CreateAuthenticConnection(string url, LoginInfo loginInfo, IDictionary<string, string> queryString, bool useDefaultUrl)
         {
             HubConnection connection = new HubConnection(url, queryString, useDefaultUrl);
-            LoginInfo loginInfo = Membership.LoginInfo;
             connection.Headers.Add(SessionKey.CurrentUser, loginInfo.ToJson());
 
             return connection;
