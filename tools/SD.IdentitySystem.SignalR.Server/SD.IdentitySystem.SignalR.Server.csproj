@@ -55,7 +55,7 @@
       <HintPath>..\..\packages\SD.Infrastructure.2.1.8\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.SignalR.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.SignalR.Server.1.0.0\lib\net461\SD.Infrastructure.SignalR.Server.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.SignalR.Server.1.0.1\lib\net461\SD.Infrastructure.SignalR.Server.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -68,6 +68,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Base\AuthenticHub.cs" />
+    <Compile Include="Middlewares\AuthenticMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

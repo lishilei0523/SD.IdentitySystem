@@ -1,10 +1,6 @@
-﻿using SD.CacheManager;
-using SD.Infrastructure.Constants;
-using SD.Infrastructure.CustomExceptions;
-using SD.Infrastructure.MemberShip;
-using SD.Infrastructure.MessageBase;
+﻿using SD.Infrastructure.MessageBase;
+using SD.Infrastructure.SignalR;
 using SD.Infrastructure.SignalR.Server.Base;
-using System;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -42,6 +38,7 @@ namespace SD.IdentitySystem.SignalR.Server.Base
 
         #region # 方法
 
+        #region 交换消息 —— override void Exchange(T message)
         /// <summary>
         /// 交换消息
         /// </summary>
@@ -60,74 +57,63 @@ namespace SD.IdentitySystem.SignalR.Server.Base
                 base.Exchange(message);
             }
         }
-
         #endregion
 
-        #region # 事件
-
+        #region 客户端连接事件 —— override Task OnConnected()
         /// <summary>
         /// 客户端连接事件
         /// </summary>
         public override Task OnConnected()
         {
-            lock (_Sync)
+            if (SignalSection.Setting.Authorized)
             {
-                //认证
-                string publicKey = base.Context.Headers.Get(SessionKey.CurrentPublishKey);
-                if (string.IsNullOrWhiteSpace(publicKey))
+                lock (_Sync)
                 {
-                    throw new NullReferenceException("身份信息不存在，请检查程序！");
-                }
+                    string loginId = base.Context.User.Identity.Name;
 
-                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey);
-                if (loginInfo == null)
-                {
-                    throw new NoPermissionException("身份过期，请重新登录！");
-                }
+                    //用户/连接字典
+                    if (_UserConnections.ContainsKey(loginId))
+                    {
+                        _UserConnections[loginId] = base.Context.ConnectionId;
+                    }
+                    else
+                    {
+                        _UserConnections.Add(loginId, base.Context.ConnectionId);
+                    }
 
-                //用户/连接字典
-                if (_UserConnections.ContainsKey(loginInfo.LoginId))
-                {
-                    _UserConnections[loginInfo.LoginId] = base.Context.ConnectionId;
+                    return base.OnConnected();
                 }
-                else
-                {
-                    _UserConnections.Add(loginInfo.LoginId, base.Context.ConnectionId);
-                }
-
-                return base.OnConnected();
             }
-        }
 
+            return base.OnConnected();
+        }
+        #endregion
+
+        #region 客户端断开连接事件 —— override Task OnDisconnected(bool stopCalled)
         /// <summary>
         /// 客户端断开连接事件
         /// </summary>
         public override Task OnDisconnected(bool stopCalled)
         {
-            lock (_Sync)
+            if (SignalSection.Setting.Authorized)
             {
-                //认证
-                string publicKey = base.Context.Headers.Get(SessionKey.CurrentPublishKey);
-                if (string.IsNullOrWhiteSpace(publicKey))
+                lock (_Sync)
                 {
+                    string loginId = base.Context.User.Identity.Name;
+
+                    //用户/连接字典
+                    if (_UserConnections.ContainsKey(loginId))
+                    {
+                        _UserConnections.Remove(loginId);
+                    }
+
                     return base.OnDisconnected(stopCalled);
                 }
-
-                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey);
-                if (loginInfo == null)
-                {
-                    return base.OnDisconnected(stopCalled);
-                }
-
-                //用户/连接字典
-                if (_UserConnections.ContainsKey(loginInfo.LoginId))
-                {
-                    _UserConnections.Remove(publicKey);
-                }
-
-                return base.OnDisconnected(stopCalled);
             }
+
+            return base.OnConnected();
         }
+        #endregion
 
         #endregion
     }
