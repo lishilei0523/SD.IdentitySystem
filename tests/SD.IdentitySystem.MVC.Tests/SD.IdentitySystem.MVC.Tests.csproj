@@ -172,7 +172,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\tools\SD.IdentitySystem.WCFAuthentication.MVC\SD.IdentitySystem.WCFAuthentication.MVC.csproj">
+    <ProjectReference Include="..\..\extensions\SD.IdentitySystem.WCFAuthentication.MVC\SD.IdentitySystem.WCFAuthentication.MVC.csproj">
       <Project>{fa4ca095-26a0-4e6f-b297-d98115a577d7}</Project>
       <Name>SD.IdentitySystem.WCFAuthentication.MVC</Name>
     </ProjectReference>
