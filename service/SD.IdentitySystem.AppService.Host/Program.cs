@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using Topshelf;
 
-namespace SD.IdentitySystem.WindowsHost
+namespace SD.IdentitySystem.AppService.Host
 {
     class Program
     {
@@ -22,9 +22,9 @@ namespace SD.IdentitySystem.WindowsHost
                 });
                 config.RunAsLocalSystem();
 
-                config.SetServiceName(_ServiceName);
-                config.SetDisplayName(_ServiceDisplayName);
-                config.SetDescription(_ServiceDescription);
+                config.SetServiceName(Program._ServiceName);
+                config.SetDisplayName(Program._ServiceDisplayName);
+                config.SetDescription(Program._ServiceDescription);
             });
         }
     }

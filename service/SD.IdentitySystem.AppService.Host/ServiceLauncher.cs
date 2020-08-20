@@ -1,8 +1,8 @@
-﻿using SD.IdentitySystem.AppService.Implements;
-using System;
+﻿using System;
 using System.ServiceModel;
+using SD.IdentitySystem.AppService.Implements;
 
-namespace SD.IdentitySystem.WindowsHost
+namespace SD.IdentitySystem.AppService.Host
 {
     /// <summary>
     /// 服务启动器

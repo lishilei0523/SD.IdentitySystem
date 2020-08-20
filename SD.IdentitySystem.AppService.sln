@@ -31,9 +31,9 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Host", "00 - Host", "{
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService", "service\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj", "{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WebHost", "service\SD.IdentitySystem.WebHost\SD.IdentitySystem.WebHost.csproj", "{76B33ADD-3ED7-4CDC-A9B5-6352203E951E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService.WebHost", "service\SD.IdentitySystem.AppService.WebHost\SD.IdentitySystem.AppService.WebHost.csproj", "{76B33ADD-3ED7-4CDC-A9B5-6352203E951E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WindowsHost", "service\SD.IdentitySystem.WindowsHost\SD.IdentitySystem.WindowsHost.csproj", "{96B38C17-6A74-4809-BD4C-8855E0A5A8CA}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService.Host", "service\SD.IdentitySystem.AppService.Host\SD.IdentitySystem.AppService.Host.csproj", "{96B38C17-6A74-4809-BD4C-8855E0A5A8CA}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
