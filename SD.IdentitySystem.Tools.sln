@@ -5,15 +5,15 @@ VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - 系统初始化工具", "01 - 系统初始化工具", "{E738CC7C-C2A8-4038-ABD2-CD6205A1989B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.InitializationTool", "tools\SD.IdentitySystem.InitializationTool\SD.IdentitySystem.InitializationTool.csproj", "{43F6A512-7219-480C-AFF6-CCEBDA75F4AE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.InitializationTool", "Tools\SD.IdentitySystem.InitializationTool\SD.IdentitySystem.InitializationTool.csproj", "{43F6A512-7219-480C-AFF6-CCEBDA75F4AE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.UniqueCode", "tools\SD.IdentitySystem.UniqueCode\SD.IdentitySystem.UniqueCode.csproj", "{1ADB97CB-60D3-4D0F-99CA-744EB0726868}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.UniqueCode", "Tools\SD.IdentitySystem.UniqueCode\SD.IdentitySystem.UniqueCode.csproj", "{1ADB97CB-60D3-4D0F-99CA-744EB0726868}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseWriter", "tools\SD.IdentitySystem.LicenseWriter\SD.IdentitySystem.LicenseWriter.csproj", "{8B2C63C4-2F19-47A9-B45E-DABD4E379624}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseWriter", "Tools\SD.IdentitySystem.LicenseWriter\SD.IdentitySystem.LicenseWriter.csproj", "{8B2C63C4-2F19-47A9-B45E-DABD4E379624}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - 许可证工具", "02 - 许可证工具", "{CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseManager", "tools\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj", "{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseManager", "Tools\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj", "{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

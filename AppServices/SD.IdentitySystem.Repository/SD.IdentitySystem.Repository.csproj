@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{20443D88-D509-43C6-942C-0CE1923BC91E}</ProjectGuid>
+    <ProjectGuid>{33F75AC9-F2CC-4117-A04D-E701EF897924}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SD.IdentitySystem.Domain</RootNamespace>
-    <AssemblyName>SD.IdentitySystem.Domain</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.Repository</RootNamespace>
+    <AssemblyName>SD.IdentitySystem.Repository</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -37,7 +37,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SD.IdentitySystem.Domain.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\SD.IdentitySystem.Repository.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Integration|AnyCPU'">
     <OutputPath>bin\Integration\</OutputPath>
@@ -48,7 +48,7 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Develop|AnyCPU'">
     <OutputPath>bin\Develop\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
-    <DocumentationFile>bin\Release\ShSoft.IdentitySystem.Domain.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\ShSoft.IdentitySystem.Repository.xml</DocumentationFile>
     <Optimize>true</Optimize>
     <DebugType>pdbonly</DebugType>
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -58,6 +58,14 @@
   <ItemGroup>
     <Reference Include="AutoMapper, Version=8.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.8.1.1\lib\net461\AutoMapper.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+      <Private>True</Private>
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
@@ -75,8 +83,14 @@
     <Reference Include="SD.AOP.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.AOP.Core.2.0.3\lib\net461\SD.AOP.Core.dll</HintPath>
     </Reference>
+    <Reference Include="SD.CacheManager, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.CacheManager.2.0.1\lib\net461\SD.CacheManager.dll</HintPath>
+    </Reference>
     <Reference Include="SD.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Common.2.0.5\lib\net461\SD.Common.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.IdentitySystem.Membership, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.Membership.2.0.1\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.2.1.9\lib\net46\SD.Infrastructure.dll</HintPath>
@@ -84,59 +98,46 @@
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.0\lib\netstandard2.0\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure.EventBase, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.EventBase.2.0.0\lib\netstandard2.0\SD.Infrastructure.EventBase.dll</HintPath>
+    <Reference Include="SD.Infrastructure.Repository.EntityFramework, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.Repository.EntityFramework.2.0.2\lib\net461\SD.Infrastructure.Repository.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.2\lib\net461\SD.IOC.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.Toolkits.EntityFramework, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.EntityFramework.1.0.6\lib\net45\SD.Toolkits.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Recursion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Recursion.2.0.2\lib\net461\SD.Toolkits.Recursion.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.ComponentModel.DataAnnotations" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.IO.Compression.FileSystem" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Numerics" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Web" />
-    <Reference Include="System.Xml" />
-    <Reference Include="System.Xml.Linq" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Entities\Authority.cs" />
-    <Compile Include="Entities\InfoSystem.cs" />
-    <Compile Include="Entities\LoginRecord.cs" />
-    <Compile Include="Entities\Menu.cs" />
-    <Compile Include="Entities\Role.cs" />
-    <Compile Include="Entities\User.cs" />
-    <Compile Include="EventSources\AuthorizationContext\AuthorityCreatedEvent.cs" />
-    <Compile Include="EventSources\AuthorizationContext\InfoSystemCreatedEvent.cs" />
-    <Compile Include="IDomainServices\IInfoSystemService.cs" />
-    <Compile Include="IDomainServices\INumberService.cs" />
-    <Compile Include="IDomainServices\IRoleService.cs" />
-    <Compile Include="IDomainServices\IUserService.cs" />
-    <Compile Include="IRepositories\Interfaces\IAuthorityRepository.cs" />
-    <Compile Include="IRepositories\Interfaces\IInfoSystemRepository.cs" />
-    <Compile Include="IRepositories\Interfaces\ILoginRecordRepository.cs" />
-    <Compile Include="IRepositories\Interfaces\IMenuRepository.cs" />
-    <Compile Include="IRepositories\Interfaces\IRoleRepository.cs" />
-    <Compile Include="IRepositories\Interfaces\IUserRepository.cs" />
-    <Compile Include="IRepositories\IUnitOfWorkIdentity.cs" />
-    <Compile Include="Mediators\DomainServiceMediator.cs" />
-    <Compile Include="Mediators\RepositoryMediator.cs" />
+    <Compile Include="Base\DataInitializer.cs" />
+    <Compile Include="Base\DbSession.cs" />
+    <Compile Include="Base\UnitOfWork.cs" />
+    <Compile Include="EntityConfigurations\AuthorityConfig.cs" />
+    <Compile Include="EntityConfigurations\InfoSystemConfig.cs" />
+    <Compile Include="EntityConfigurations\UserConfig.cs" />
+    <Compile Include="EntityConfigurations\RoleConfig.cs" />
+    <Compile Include="EntityConfigurations\MenuConfig.cs" />
+    <Compile Include="Implements\AuthorityRepository.cs" />
+    <Compile Include="Implements\LoginRecordRepository.cs" />
+    <Compile Include="Implements\MenuRepository.cs" />
+    <Compile Include="Implements\InfoSystemRepository.cs" />
+    <Compile Include="Implements\RoleRepository.cs" />
+    <Compile Include="Implements\UserRepository.cs" />
+    <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="ClassDiagram\Main.cd" />
+    <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj">
+      <Project>{20443d88-d509-43c6-942c-0ce1923bc91e}</Project>
+      <Name>SD.IdentitySystem.Domain</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

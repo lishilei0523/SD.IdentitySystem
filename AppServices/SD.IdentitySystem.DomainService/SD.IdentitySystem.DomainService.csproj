@@ -1,17 +1,23 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
   <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}</ProjectGuid>
+    <ProjectGuid>{21AB46C4-2C9B-4D96-AB4F-437AC2F662E6}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SD.IdentitySystem.AppService</RootNamespace>
-    <AssemblyName>SD.IdentitySystem.AppService</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.DomainService</RootNamespace>
+    <AssemblyName>SD.IdentitySystem.DomainService</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
-    <Deterministic>true</Deterministic>
+    <SccProjectName>SAK</SccProjectName>
+    <SccLocalPath>SAK</SccLocalPath>
+    <SccAuxPath>SAK</SccAuxPath>
+    <SccProvider>SAK</SccProvider>
+    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\</SolutionDir>
+    <RestorePackages>true</RestorePackages>
+    <TargetFrameworkProfile />
     <NuGetPackageImportStamp>
     </NuGetPackageImportStamp>
   </PropertyGroup>
@@ -31,17 +37,26 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+    <DocumentationFile>bin\Release\SD.IdentitySystem.DomainService.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Integration|AnyCPU'">
+    <OutputPath>bin\Integration\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Test|AnyCPU'">
+    <OutputPath>bin\Test\</OutputPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Develop|AnyCPU'">
+    <OutputPath>bin\Develop\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <DocumentationFile>bin\Release\ShSoft.IdentitySystem.DomainService.xml</DocumentationFile>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="AutoMapper, Version=8.1.1.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\AutoMapper.8.1.1\lib\net461\AutoMapper.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.2.2.0\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
-    </Reference>
-    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=2.2.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.2.2.0\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
-    </Reference>
+    <Reference Include="Microsoft.CSharp" />
     <Reference Include="MrAdvice, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c0e7e6eab6f293d8, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MrAdvice.2.8.5\lib\net40-client\MrAdvice.dll</HintPath>
     </Reference>
@@ -51,63 +66,32 @@
     <Reference Include="SD.AOP.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.AOP.Core.2.0.3\lib\net461\SD.AOP.Core.dll</HintPath>
     </Reference>
-    <Reference Include="SD.CacheManager, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.CacheManager.2.0.1\lib\net461\SD.CacheManager.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.2.0.5\lib\net461\SD.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.IdentitySystem.LicenseManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.LicenseManager.1.0.2\lib\net35\SD.IdentitySystem.LicenseManager.dll</HintPath>
-    </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.2.1.9\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.0\lib\netstandard2.0\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure.EventBase, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.EventBase.2.0.0\lib\netstandard2.0\SD.Infrastructure.EventBase.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.Infrastructure.Global, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.0\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IOC.Core.2.0.2\lib\net461\SD.IOC.Core.dll</HintPath>
-    </Reference>
     <Reference Include="SD.Toolkits.Recursion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Recursion.2.0.2\lib\net461\SD.Toolkits.Recursion.dll</HintPath>
     </Reference>
+    <Reference Include="SD.Toolkits.SerialNumber, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.SerialNumber.1.0.1\lib\net461\SD.Toolkits.SerialNumber.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="Microsoft.CSharp" />
-    <Reference Include="System.Data" />
-    <Reference Include="System.Data.OracleClient" />
-    <Reference Include="System.Drawing" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Runtime.Serialization" />
-    <Reference Include="System.ServiceModel" />
-    <Reference Include="System.ServiceProcess" />
-    <Reference Include="System.Transactions" />
-    <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implements\AuthenticationContract.cs" />
-    <Compile Include="Implements\AuthorizationContract.cs" />
-    <Compile Include="Implements\UserContract.cs" />
-    <Compile Include="Maps\AuthorizationMap.cs" />
-    <Compile Include="Maps\UserMap.cs" />
+    <Compile Include="Implements\InfoSystemService.cs" />
+    <Compile Include="Implements\RoleService.cs" />
+    <Compile Include="Implements\UserService.cs" />
+    <Compile Include="Implements\NumberService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj">
       <Project>{20443d88-d509-43c6-942c-0ce1923bc91e}</Project>
       <Name>SD.IdentitySystem.Domain</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj">
-      <Project>{52bf9a76-1b01-4c29-8067-e6f1c88896fd}</Project>
-      <Name>SD.IdentitySystem.IAppService</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

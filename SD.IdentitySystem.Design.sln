@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "SD.IdentitySystem.Design", "design\SD.IdentitySystem.Design\SD.IdentitySystem.Design.modelproj", "{CFCC5CAC-1A79-4A73-A6B0-BDD64A73AA9E}"
+Project("{F088123C-0E9E-452A-89E6-6BA2F21D5CAC}") = "SD.IdentitySystem.Design", "Designs\SD.IdentitySystem.Design\SD.IdentitySystem.Design.modelproj", "{CFCC5CAC-1A79-4A73-A6B0-BDD64A73AA9E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

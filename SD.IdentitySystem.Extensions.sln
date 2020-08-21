@@ -7,21 +7,21 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - 授权AOP扩展", "01 
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - WCF身份认证扩展", "03 - WCF身份认证扩展", "{4391B3BF-4B53-474A-8636-14BFA15DDB7B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.MVC", "extensions\SD.IdentitySystem.WCFAuthentication.MVC\SD.IdentitySystem.WCFAuthentication.MVC.csproj", "{FA4CA095-26A0-4E6F-B297-D98115A577D7}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.MVC", "Extensions\SD.IdentitySystem.WCFAuthentication.MVC\SD.IdentitySystem.WCFAuthentication.MVC.csproj", "{FA4CA095-26A0-4E6F-B297-D98115A577D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.Windows", "extensions\SD.IdentitySystem.WCFAuthentication.Windows\SD.IdentitySystem.WCFAuthentication.Windows.csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.Windows", "Extensions\SD.IdentitySystem.WCFAuthentication.Windows\SD.IdentitySystem.WCFAuthentication.Windows.csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.WCF", "extensions\SD.IdentitySystem.WCFAuthentication.WCF\SD.IdentitySystem.WCFAuthentication.WCF.csproj", "{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.WCF", "Extensions\SD.IdentitySystem.WCFAuthentication.WCF\SD.IdentitySystem.WCFAuthentication.WCF.csproj", "{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Authorization", "extensions\SD.IdentitySystem.Authorization\SD.IdentitySystem.Authorization.csproj", "{18524D7D-9812-4EFC-9902-7123E3A167BB}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Authorization", "Extensions\SD.IdentitySystem.Authorization\SD.IdentitySystem.Authorization.csproj", "{18524D7D-9812-4EFC-9902-7123E3A167BB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Membership", "extensions\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj", "{B8C46017-C7C3-47FB-854B-11967165C080}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Membership", "Extensions\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj", "{B8C46017-C7C3-47FB-854B-11967165C080}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - 用户信息扩展", "02 - 用户信息扩展", "{623424A5-633C-42E2-BD48-8C2F375417E1}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - SignalR身份认证扩展", "04 - SignalR身份认证扩展", "{B9961003-A671-435C-94B0-A2E6827B5AC4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.SignalR.Server", "extensions\SD.IdentitySystem.SignalR.Server\SD.IdentitySystem.SignalR.Server.csproj", "{BB3F0707-3302-4203-AA2E-728661D30479}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.SignalR.Server", "Extensions\SD.IdentitySystem.SignalR.Server\SD.IdentitySystem.SignalR.Server.csproj", "{BB3F0707-3302-4203-AA2E-728661D30479}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
