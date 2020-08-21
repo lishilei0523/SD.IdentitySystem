@@ -88,8 +88,7 @@
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.0\lib\netstandard2.0\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.MVC.1.0.5\lib\net45\SD.Infrastructure.MVC.dll</HintPath>
-      <Private>True</Private>
+      <HintPath>..\..\packages\SD.Infrastructure.MVC.1.0.6\lib\net45\SD.Infrastructure.MVC.dll</HintPath>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.2\lib\net461\SD.IOC.Core.dll</HintPath>
