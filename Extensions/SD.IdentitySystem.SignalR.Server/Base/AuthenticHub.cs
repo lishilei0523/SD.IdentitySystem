@@ -89,32 +89,6 @@ namespace SD.IdentitySystem.SignalR.Server.Base
         }
         #endregion
 
-        #region 客户端断开连接事件 —— override Task OnDisconnected(bool stopCalled)
-        /// <summary>
-        /// 客户端断开连接事件
-        /// </summary>
-        public override Task OnDisconnected(bool stopCalled)
-        {
-            if (SignalSection.Setting.Authorized)
-            {
-                lock (_Sync)
-                {
-                    string loginId = base.Context.User.Identity.Name;
-
-                    //用户/连接字典
-                    if (_UserConnections.ContainsKey(loginId))
-                    {
-                        _UserConnections.Remove(loginId);
-                    }
-
-                    return base.OnDisconnected(stopCalled);
-                }
-            }
-
-            return base.OnConnected();
-        }
-        #endregion
-
         #endregion
     }
 }
