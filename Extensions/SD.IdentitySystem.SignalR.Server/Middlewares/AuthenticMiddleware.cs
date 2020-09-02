@@ -30,7 +30,13 @@ namespace SD.IdentitySystem.SignalR.Server.Middlewares
         {
             if (SignalSection.Setting.Authorized)
             {
+                //读Header
                 string publicKey = context.Request.Headers.Get(SessionKey.CurrentPublicKey);
+                if (string.IsNullOrWhiteSpace(publicKey))
+                {
+                    //读QueryString
+                    publicKey = context.Request.Query[SessionKey.CurrentPublicKey];
+                }
                 if (string.IsNullOrWhiteSpace(publicKey))
                 {
                     context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
