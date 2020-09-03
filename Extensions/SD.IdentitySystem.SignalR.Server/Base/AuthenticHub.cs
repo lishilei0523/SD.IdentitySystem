@@ -89,6 +89,36 @@ namespace SD.IdentitySystem.SignalR.Server.Base
         }
         #endregion
 
+        #region 客户端重新连接事件 —— override Task OnReconnected()
+        /// <summary>
+        /// 客户端重新连接事件
+        /// </summary>
+        public override Task OnReconnected()
+        {
+            if (SignalSection.Setting.Authorized)
+            {
+                lock (_Sync)
+                {
+                    string loginId = base.Context.User.Identity.Name;
+
+                    //用户/连接字典
+                    if (_UserConnections.ContainsKey(loginId))
+                    {
+                        _UserConnections[loginId] = base.Context.ConnectionId;
+                    }
+                    else
+                    {
+                        _UserConnections.Add(loginId, base.Context.ConnectionId);
+                    }
+
+                    return base.OnReconnected();
+                }
+            }
+
+            return base.OnReconnected();
+        }
+        #endregion
+
         #endregion
     }
 }
