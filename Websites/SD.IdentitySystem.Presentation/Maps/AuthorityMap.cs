@@ -1,7 +1,7 @@
-﻿using SD.Common.PoweredByLee;
-using SD.FormatModel.EasyUI;
+﻿using SD.FormatModel.EasyUI;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.Toolkits.Mapper;
 
 namespace SD.IdentitySystem.Presentation.Maps
 {
@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <returns>权限视图模型</returns>
         public static AuthorityView ToViewModel(this AuthorityInfo authorityInfo)
         {
-            AuthorityView authorityView = Transform<AuthorityInfo, AuthorityView>.Map(authorityInfo);
+            AuthorityView authorityView = authorityInfo.Map<AuthorityInfo, AuthorityView>();
 
             authorityView.SystemName = authorityInfo.InfoSystemInfo.Name;
 

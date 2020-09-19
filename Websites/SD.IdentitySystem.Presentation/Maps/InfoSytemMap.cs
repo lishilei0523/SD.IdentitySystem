@@ -1,8 +1,9 @@
-﻿using SD.Common.PoweredByLee;
+﻿using SD.Common;
+using SD.FormatModel.EasyUI;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.Toolkits.Mapper;
 using System.Collections.Generic;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Presentation.Maps
 {
@@ -19,7 +20,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <returns>信息系统视图模型</returns>
         public static InfoSystemView ToViewModel(this InfoSystemInfo systemInfo)
         {
-            InfoSystemView systemView = Transform<InfoSystemInfo, InfoSystemView>.Map(systemInfo);
+            InfoSystemView systemView = systemInfo.Map<InfoSystemInfo, InfoSystemView>();
 
             systemView.ApplicationTypeName = systemInfo.ApplicationType.GetEnumMember();
 

@@ -46,10 +46,10 @@
       <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
     </Reference>
     <Reference Include="SD.AOP.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.AOP.Core.2.0.3\lib\net461\SD.AOP.Core.dll</HintPath>
+      <HintPath>..\..\packages\SD.AOP.Core.2.0.6\lib\net461\SD.AOP.Core.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Common, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.2.0.6\lib\net461\SD.Common.dll</HintPath>
+    <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Common.3.0.1\lib\net45\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.FormatModel.EasyUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.FormatModel.EasyUI.1.0.0\lib\net45\SD.FormatModel.EasyUI.dll</HintPath>
@@ -63,6 +63,12 @@
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.0\lib\netstandard2.0\SD.Infrastructure.AOP.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.0\lib\net45\SD.Toolkits.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.Toolkits.Mapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.Mapper.1.0.0\lib\net461\SD.Toolkits.Mapper.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />

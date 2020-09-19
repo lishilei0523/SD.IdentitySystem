@@ -1,6 +1,6 @@
-﻿using SD.Common.PoweredByLee;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.Toolkits.Mapper;
 
 namespace SD.IdentitySystem.Presentation.Maps
 {
@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <returns>用户视图模型</returns>
         public static UserView ToViewModel(this UserInfo userInfo)
         {
-            UserView userView = Transform<UserInfo, UserView>.Map(userInfo);
+            UserView userView = userInfo.Map<UserInfo, UserView>();
 
             return userView;
         }
@@ -31,7 +31,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <returns>登录记录视图模型</returns>
         public static LoginRecordView ToViewModel(this LoginRecordInfo loginRecordInfo)
         {
-            LoginRecordView loginRecordView = Transform<LoginRecordInfo, LoginRecordView>.Map(loginRecordInfo);
+            LoginRecordView loginRecordView = loginRecordInfo.Map<LoginRecordInfo, LoginRecordView>();
 
             return loginRecordView;
         }

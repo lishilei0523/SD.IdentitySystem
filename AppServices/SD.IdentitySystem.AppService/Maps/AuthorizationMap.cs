@@ -1,7 +1,7 @@
-﻿using SD.Common.PoweredByLee;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.Infrastructure.MemberShip;
+using SD.Toolkits.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +21,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <returns>信息系统数据传输对象</returns>
         public static InfoSystemInfo ToDTO(this InfoSystem infoSystem)
         {
-            InfoSystemInfo systemInfo = Transform<InfoSystem, InfoSystemInfo>.Map(infoSystem);
+            InfoSystemInfo systemInfo = infoSystem.Map<InfoSystem, InfoSystemInfo>();
 
             return systemInfo;
         }
@@ -46,7 +46,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <returns>菜单数据传输对象</returns>
         public static MenuInfo ToDTO(this Menu menu, IDictionary<string, InfoSystemInfo> systemInfos)
         {
-            MenuInfo menuInfo = Transform<Menu, MenuInfo>.Map(menu);
+            MenuInfo menuInfo = menu.Map<Menu, MenuInfo>();
 
             menuInfo.InfoSystemInfo = systemInfos[menu.SystemNo];
             menuInfo.ParentMenuId = menu.ParentNode == null ? (Guid?)null : menu.ParentNode.Id;
@@ -123,7 +123,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <returns>权限数据传输对象</returns>
         public static AuthorityInfo ToDTO(this Authority authority, IDictionary<string, InfoSystemInfo> systemInfos)
         {
-            AuthorityInfo authorityInfo = Transform<Authority, AuthorityInfo>.Map(authority);
+            AuthorityInfo authorityInfo = authority.Map<Authority, AuthorityInfo>();
 
             authorityInfo.InfoSystemInfo = systemInfos[authority.SystemNo];
 
@@ -150,7 +150,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <returns>角色数据传输对象</returns>
         public static RoleInfo ToDTO(this Role role, IDictionary<string, InfoSystemInfo> systemInfos)
         {
-            RoleInfo roleInfo = Transform<Role, RoleInfo>.Map(role);
+            RoleInfo roleInfo = role.Map<Role, RoleInfo>();
 
             roleInfo.InfoSystemInfo = systemInfos[role.SystemNo];
 

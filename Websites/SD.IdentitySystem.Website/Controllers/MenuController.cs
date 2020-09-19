@@ -1,4 +1,4 @@
-﻿using SD.Common.PoweredByLee;
+﻿using SD.Common;
 using SD.FormatModel.EasyUI;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;

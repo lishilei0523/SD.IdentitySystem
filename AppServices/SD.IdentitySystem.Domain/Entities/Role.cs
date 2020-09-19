@@ -1,4 +1,4 @@
-﻿using SD.Common.PoweredByLee;
+﻿using SD.Common;
 using SD.Infrastructure.EntityBase;
 using System;
 using System.Collections.Generic;

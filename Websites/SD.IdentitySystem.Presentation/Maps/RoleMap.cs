@@ -1,7 +1,7 @@
-﻿using SD.Common.PoweredByLee;
-using SD.FormatModel.EasyUI;
+﻿using SD.FormatModel.EasyUI;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.Toolkits.Mapper;
 
 namespace SD.IdentitySystem.Presentation.Maps
 {
@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <returns>角色视图模型</returns>
         public static RoleView ToViewModel(this RoleInfo roleInfo)
         {
-            RoleView roleView = Transform<RoleInfo, RoleView>.Map(roleInfo);
+            RoleView roleView = roleInfo.Map<RoleInfo, RoleView>();
 
             roleView.SystemName = roleInfo.InfoSystemInfo.Name;
 

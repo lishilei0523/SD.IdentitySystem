@@ -1,7 +1,8 @@
-﻿using SD.Common.PoweredByLee;
+﻿using SD.Common;
 using SD.FormatModel.EasyUI;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.Toolkits.Mapper;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,7 +22,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <returns>菜单视图模型</returns>
         public static MenuView ToViewModel(this MenuInfo menuInfo)
         {
-            MenuView menuView = Transform<MenuInfo, MenuView>.Map(menuInfo);
+            MenuView menuView = menuInfo.Map<MenuInfo, MenuView>();
             menuView.SystemName = menuInfo.InfoSystemInfo.Name;
             menuView.ApplicationType = menuInfo.ApplicationType.GetEnumMember();
 

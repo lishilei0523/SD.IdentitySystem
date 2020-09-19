@@ -1,6 +1,6 @@
-﻿using SD.Common.PoweredByLee;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.Toolkits.Mapper;
 
 namespace SD.IdentitySystem.AppService.Maps
 {
@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <returns>用户数据传输对象</returns>
         public static UserInfo ToDTO(this User user)
         {
-            return Transform<User, UserInfo>.Map(user);
+            return user.Map<User, UserInfo>();
         }
         #endregion
 
@@ -29,7 +29,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <returns>登录记录数据传输对象</returns>
         public static LoginRecordInfo ToDTO(this LoginRecord loginRecord)
         {
-            return Transform<LoginRecord, LoginRecordInfo>.Map(loginRecord);
+            return loginRecord.Map<LoginRecord, LoginRecordInfo>();
         }
         #endregion
     }

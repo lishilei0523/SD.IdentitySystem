@@ -1,5 +1,5 @@
 ﻿using SD.CacheManager;
-using SD.Common.PoweredByLee;
+using SD.Common;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;

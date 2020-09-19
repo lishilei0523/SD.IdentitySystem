@@ -1,4 +1,4 @@
-﻿using SD.Common.PoweredByLee;
+﻿using SD.Common;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
 using System;
@@ -43,15 +43,15 @@ namespace SD.IdentitySystem.Domain.Entities
 
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new ArgumentNullException("password", @"密码不可为空！");
+                throw new ArgumentNullException(nameof(password), @"密码不可为空！");
             }
             if (loginId.Length < 2 || loginId.Length > 20)
             {
-                throw new ArgumentOutOfRangeException("loginId", @"登录名长度不可小于2或大于20！");
+                throw new ArgumentOutOfRangeException(nameof(loginId), @"登录名长度不可小于2或大于20！");
             }
             if (password.Length < 6 || password.Length > 20)
             {
-                throw new ArgumentOutOfRangeException("password", @"密码长度不可小于6或大于20！");
+                throw new ArgumentOutOfRangeException(nameof(password), @"密码长度不可小于6或大于20！");
             }
 
             #endregion
@@ -108,19 +108,19 @@ namespace SD.IdentitySystem.Domain.Entities
 
             if (string.IsNullOrWhiteSpace(oldPassword))
             {
-                throw new ArgumentNullException("oldPassword", "旧密码不可为空！");
+                throw new ArgumentNullException(nameof(oldPassword), "旧密码不可为空！");
             }
             if (string.IsNullOrWhiteSpace(newPassword))
             {
-                throw new ArgumentNullException("newPassword", "新密码不可为空！");
+                throw new ArgumentNullException(nameof(newPassword), "新密码不可为空！");
             }
             if (newPassword.Length < 6 || newPassword.Length > 20)
             {
-                throw new ArgumentOutOfRangeException("newPassword", "密码长度不可小于6或大于20！");
+                throw new ArgumentOutOfRangeException(nameof(newPassword), "密码长度不可小于6或大于20！");
             }
             if (this.Password != oldPassword.ToMD5())
             {
-                throw new ArgumentOutOfRangeException("oldPassword", @"旧密码不正确！");
+                throw new ArgumentOutOfRangeException(nameof(oldPassword), @"旧密码不正确！");
             }
 
             #endregion
@@ -140,11 +140,11 @@ namespace SD.IdentitySystem.Domain.Entities
 
             if (string.IsNullOrWhiteSpace(newPassword))
             {
-                throw new ArgumentNullException("newPassword", "新密码不可为空！");
+                throw new ArgumentNullException(nameof(newPassword), "新密码不可为空！");
             }
             if (newPassword.Length < 6 || newPassword.Length > 20)
             {
-                throw new ArgumentOutOfRangeException("newPassword", "密码长度不可小于6或大于20！");
+                throw new ArgumentOutOfRangeException(nameof(newPassword), "密码长度不可小于6或大于20！");
             }
             if (newPassword == this.Password)
             {
@@ -219,7 +219,7 @@ namespace SD.IdentitySystem.Domain.Entities
 
             if (roles == null)
             {
-                throw new ArgumentNullException("roles", @"角色集不可为null！");
+                throw new ArgumentNullException(nameof(roles), @"角色集不可为null！");
             }
 
             #endregion
