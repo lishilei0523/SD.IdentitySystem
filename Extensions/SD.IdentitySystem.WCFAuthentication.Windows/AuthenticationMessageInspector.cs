@@ -17,7 +17,6 @@ namespace SD.IdentitySystem.WCFAuthentication.Windows
         /// </summary>
         /// <param name="request">请求消息</param>
         /// <param name="channel">信道</param>
-        /// <returns></returns>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //Windows客户端获取公钥处理

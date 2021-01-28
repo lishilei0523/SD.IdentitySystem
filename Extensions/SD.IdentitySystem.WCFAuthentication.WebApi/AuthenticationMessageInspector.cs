@@ -1,16 +1,15 @@
-﻿using SD.Infrastructure.Constants;
+﻿using SD.IdentitySystem.WebApi.SelfHost.Server.Middlewares;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
-using SD.Toolkits.AsyncHttpContext;
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
-using System.Web;
 
-namespace SD.IdentitySystem.WCFAuthentication.MVC
+namespace SD.IdentitySystem.WCFAuthentication.WebApi
 {
     /// <summary>
-    /// WCF/MVC客户端身份认证消息拦截器
+    /// WCF/WebApi客户端身份认证消息拦截器
     /// </summary>
     internal class AuthenticationMessageInspector : IClientMessageInspector
     {
@@ -21,21 +20,16 @@ namespace SD.IdentitySystem.WCFAuthentication.MVC
         /// <param name="channel">信道</param>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
-            HttpContext httpContext = HttpContext.Current ?? HttpContextReader.Current;
+            //WebApi获取公钥处理
+            LoginInfo loginInfo = AuthenticMiddleware.LoginInfo;
 
-            if (httpContext != null)
+            if (loginInfo != null)
             {
-                //MVC客户端获取公钥处理
-                object loginInfo = httpContext.Session[SessionKey.CurrentUser];
+                Guid publishKey = loginInfo.PublicKey;
 
-                if (loginInfo != null)
-                {
-                    Guid publishKey = ((LoginInfo)loginInfo).PublicKey;
-
-                    //添加消息头
-                    MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
-                    request.Headers.Add(header);
-                }
+                //添加消息头
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
+                request.Headers.Add(header);
             }
 
             return null;

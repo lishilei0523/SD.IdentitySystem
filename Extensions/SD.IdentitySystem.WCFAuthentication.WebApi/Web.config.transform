@@ -1,0 +1,14 @@
+﻿<configuration>
+  <appSettings>
+    <!--身份过期时间，单位：分钟-->
+    <add key="AuthenticationTimeout" value="20" />
+  </appSettings>
+  <system.serviceModel>
+    <extensions>
+      <behaviorExtensions>
+        <!--WCF/WebApi客户端身份认证扩展配置-->
+        <add name="webApiAuthentication" type="SD.IdentitySystem.WCFAuthentication.WebApi.AuthenticationBehaviorElement, SD.IdentitySystem.WCFAuthentication.WebApi"/>
+      </behaviorExtensions>
+    </extensions>
+  </system.serviceModel>
+</configuration>

@@ -59,7 +59,6 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
         /// <param name="request">请求消息</param>
         /// <param name="channel">信道</param>
         /// <param name="instanceContext">WCF实例上下文</param>
-        /// <returns></returns>
         public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
         {
             //如果是身份认证接口，无需认证
@@ -115,7 +114,6 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
         /// </summary>
         /// <param name="request">请求消息</param>
         /// <param name="channel">信道</param>
-        /// <returns></returns>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             if (OperationContext.Current != null)
