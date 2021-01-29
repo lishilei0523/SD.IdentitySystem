@@ -28,6 +28,9 @@ namespace SD.IdentitySystem.WebApi.Tests
             //POST请求多参数绑定
             httpConfiguration.ParameterBindingRules.Insert(0, WrapPostParameterBinding.CreateBindingForMarkedParameters);
 
+            //允许跨域
+            httpConfiguration.EnableCors();
+
             appBuilder.Use<CacheOwinContextMiddleware>();
             appBuilder.Use<PublicKeyExchangeMiddleware>();
         }
