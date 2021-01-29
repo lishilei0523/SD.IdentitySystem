@@ -6,8 +6,8 @@
   <system.serviceModel>
     <extensions>
       <behaviorExtensions>
-        <!--WCF/WebApi客户端身份认证扩展配置-->
-        <add name="webApiAuthentication" type="SD.IdentitySystem.WCFAuthentication.WebApi.AuthenticationBehaviorElement, SD.IdentitySystem.WCFAuthentication.WebApi"/>
+        <!--WCF/OWIN客户端身份认证扩展配置-->
+        <add name="owinAuthentication" type="SD.IdentitySystem.WCFAuthentication.Owin.AuthenticationBehaviorElement, SD.IdentitySystem.WCFAuthentication.Owin"/>
       </behaviorExtensions>
     </extensions>
   </system.serviceModel>

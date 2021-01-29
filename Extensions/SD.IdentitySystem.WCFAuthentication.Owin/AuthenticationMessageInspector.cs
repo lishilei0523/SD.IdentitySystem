@@ -1,15 +1,14 @@
-﻿using SD.IdentitySystem.WebApi.SelfHost.Server.Middlewares;
-using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+﻿using SD.Infrastructure.Constants;
+using SD.Toolkits.Owin.Extensions;
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 
-namespace SD.IdentitySystem.WCFAuthentication.WebApi
+namespace SD.IdentitySystem.WCFAuthentication.Owin
 {
     /// <summary>
-    /// WCF/WebApi客户端身份认证消息拦截器
+    /// WCF/OWIN客户端身份认证消息拦截器
     /// </summary>
     internal class AuthenticationMessageInspector : IClientMessageInspector
     {
@@ -20,15 +19,15 @@ namespace SD.IdentitySystem.WCFAuthentication.WebApi
         /// <param name="channel">信道</param>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
-            //WebApi获取公钥处理
-            LoginInfo loginInfo = AuthenticMiddleware.LoginInfo;
+            //OWIN获取公钥处理
+            string publicKeyStr = OwinContextReader.Current.Get<string>(SessionKey.CurrentPublicKey);
 
-            if (loginInfo != null)
+            if (!string.IsNullOrWhiteSpace(publicKeyStr))
             {
-                Guid publishKey = loginInfo.PublicKey;
+                Guid publicKey = new Guid(publicKeyStr);
 
                 //添加消息头
-                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publicKey);
                 request.Headers.Add(header);
             }
 

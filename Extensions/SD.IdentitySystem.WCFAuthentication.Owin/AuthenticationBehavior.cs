@@ -2,10 +2,10 @@
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 
-namespace SD.IdentitySystem.WCFAuthentication.WebApi
+namespace SD.IdentitySystem.WCFAuthentication.Owin
 {
     /// <summary>
-    /// WCF/WebApi客户端身份认证行为
+    /// WCF/OWIN客户端身份认证行为
     /// </summary>
     internal class AuthenticationBehavior : IEndpointBehavior
     {

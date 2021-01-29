@@ -7,8 +7,8 @@
     <ProjectGuid>{012D79B3-E908-4F00-ACC4-420371FF300E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>SD.IdentitySystem.WCFAuthentication.WebApi</RootNamespace>
-    <AssemblyName>SD.IdentitySystem.WCFAuthentication.WebApi</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.WCFAuthentication.Owin</RootNamespace>
+    <AssemblyName>SD.IdentitySystem.WCFAuthentication.Owin</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <SccProjectName>SAK</SccProjectName>
@@ -27,7 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SD.IdentitySystem.WCFAuthentication.WebApi.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\SD.IdentitySystem.WCFAuthentication.Owin.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,11 +36,20 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SD.IdentitySystem.WCFAuthentication.WebApi.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\SD.IdentitySystem.WCFAuthentication.Owin.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="Microsoft.Owin, Version=4.1.1.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Microsoft.Owin.4.1.1\lib\net45\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin, Version=1.0.0.0, Culture=neutral, PublicKeyToken=f0ebd12fd5e55cc5, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.2.2.0\lib\net45\SD.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.Toolkits.Owin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.Owin.1.0.0\lib\net461\SD.Toolkits.Owin.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
@@ -54,19 +63,14 @@
     <Compile Include="AuthenticationBehaviorElement.cs" />
     <Compile Include="AuthenticationMessageInspector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="PublicKeyExchangeMiddleware.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
     <None Include="App.config.transform" />
     <None Include="packages.config" />
-    <None Include="SD.IdentitySystem.WCFAuthentication.WebApi.nuspec" />
+    <None Include="SD.IdentitySystem.WCFAuthentication.Owin.nuspec" />
     <None Include="Web.config.transform" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SD.IdentitySystem.WebApi.SelfHost.Server\SD.IdentitySystem.WebApi.SelfHost.Server.csproj">
-      <Project>{3aea3c06-6c32-41a2-aa5c-540499f2e135}</Project>
-      <Name>SD.IdentitySystem.WebApi.SelfHost.Server</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

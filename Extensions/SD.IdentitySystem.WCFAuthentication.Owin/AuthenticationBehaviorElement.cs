@@ -1,10 +1,10 @@
 ﻿using System;
 using System.ServiceModel.Configuration;
 
-namespace SD.IdentitySystem.WCFAuthentication.WebApi
+namespace SD.IdentitySystem.WCFAuthentication.Owin
 {
     /// <summary>
-    /// WCF/WebApi客户端身份认证行为扩展元素
+    /// WCF/OWIN客户端身份认证行为扩展元素
     /// </summary>
     internal class AuthenticationBehaviorElement : BehaviorExtensionElement
     {

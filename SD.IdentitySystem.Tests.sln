@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27428.2037
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07 - Extensions", "07 - Extensions", "{BED16DF1-091A-4EAC-9EC7-A25987933B6C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08 - Extensions", "08 - Extensions", "{BED16DF1-091A-4EAC-9EC7-A25987933B6C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.MVC", "Extensions\SD.IdentitySystem.WCFAuthentication.MVC\SD.IdentitySystem.WCFAuthentication.MVC.csproj", "{FA4CA095-26A0-4E6F-B297-D98115A577D7}"
 EndProject
@@ -15,7 +15,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Windows客户端测试
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - WCF客户端测试", "02 - WCF客户端测试", "{80C033FF-4952-4E0E-9D80-4931FBA295D8}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Stubs", "05 - Stubs", "{9B2E861F-F56E-4BFB-A83C-8A5A71B1047C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 - Stubs", "06 - Stubs", "{9B2E861F-F56E-4BFB-A83C-8A5A71B1047C}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCF.Server", "Tests\SD.IdentitySystem.StubWCF.Server\SD.IdentitySystem.StubWCF.Server.csproj", "{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}"
 EndProject
@@ -29,13 +29,19 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.MVC.Tests
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.Windows", "Extensions\SD.IdentitySystem.WCFAuthentication.Windows\SD.IdentitySystem.WCFAuthentication.Windows.csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - 许可证工具测试", "04 - 许可证工具测试", "{074F5A49-ECAA-45C8-A9DF-26D5DEC119A0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - 许可证工具测试", "05 - 许可证工具测试", "{074F5A49-ECAA-45C8-A9DF-26D5DEC119A0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseManager.Tests", "Tests\SD.IdentitySystem.LicenseManager.Tests\SD.IdentitySystem.LicenseManager.Tests.csproj", "{F569D535-EE1B-46EC-9F67-F6A0B76761FA}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseManager", "Tools\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj", "{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 - Tools", "06 - Tools", "{553D6749-CA27-43A0-A984-2819A1620E6F}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07 - Tools", "07 - Tools", "{553D6749-CA27-43A0-A984-2819A1620E6F}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFAuthentication.Owin", "Extensions\SD.IdentitySystem.WCFAuthentication.Owin\SD.IdentitySystem.WCFAuthentication.Owin.csproj", "{012D79B3-E908-4F00-ACC4-420371FF300E}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - WebApi客户端测试", "04 - WebApi客户端测试", "{5324B7B9-FE94-4D10-9F3A-0430F6925F96}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WebApi.Tests", "Tests\SD.IdentitySystem.WebApi.Tests\SD.IdentitySystem.WebApi.Tests.csproj", "{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -146,6 +152,26 @@ Global
 		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Test|Any CPU.ActiveCfg = Release|Any CPU
 		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Test|Any CPU.Build.0 = Release|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Develop|Any CPU.ActiveCfg = Debug|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Develop|Any CPU.Build.0 = Debug|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Integration|Any CPU.ActiveCfg = Release|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Integration|Any CPU.Build.0 = Release|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{012D79B3-E908-4F00-ACC4-420371FF300E}.Test|Any CPU.Build.0 = Release|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Develop|Any CPU.ActiveCfg = Debug|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Develop|Any CPU.Build.0 = Debug|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Integration|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Integration|Any CPU.Build.0 = Release|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Test|Any CPU.ActiveCfg = Release|Any CPU
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}.Test|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -161,6 +187,8 @@ Global
 		{FE93AC6F-B38F-412F-A2B1-2FBE2800C647} = {BED16DF1-091A-4EAC-9EC7-A25987933B6C}
 		{F569D535-EE1B-46EC-9F67-F6A0B76761FA} = {074F5A49-ECAA-45C8-A9DF-26D5DEC119A0}
 		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1} = {553D6749-CA27-43A0-A984-2819A1620E6F}
+		{012D79B3-E908-4F00-ACC4-420371FF300E} = {BED16DF1-091A-4EAC-9EC7-A25987933B6C}
+		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C} = {5324B7B9-FE94-4D10-9F3A-0430F6925F96}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {968BED60-C725-42D3-BB5D-08CD0764B614}

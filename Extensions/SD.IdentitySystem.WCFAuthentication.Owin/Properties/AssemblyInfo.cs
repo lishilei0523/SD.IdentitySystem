@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("SD.IdentitySystem.WCFAuthentication.WebApi")]
-[assembly: AssemblyDescription("WCF身份认证工具 - WebApi客户端")]
+[assembly: AssemblyTitle("SD.IdentitySystem.WCFAuthentication.Owin")]
+[assembly: AssemblyDescription("WCF身份认证工具 - OWIN客户端")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
-[assembly: AssemblyProduct("SD.IdentitySystem.WCFAuthentication.WebApi")]
+[assembly: AssemblyProduct("SD.IdentitySystem.WCFAuthentication.Owin")]
 [assembly: AssemblyCopyright("Copyright © SD 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
