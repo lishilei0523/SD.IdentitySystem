@@ -15,8 +15,12 @@ namespace SD.IdentitySystem.WebApi.Tests.Controllers
     public class HomeController : ApiController
     {
         [HttpGet]
-        public string GetProducts()
+        public string GetProducts(string keywords, int pageIndex, int pageSize)
         {
+            Trace.WriteLine(keywords);
+            Trace.WriteLine(pageIndex);
+            Trace.WriteLine(pageSize);
+
             //伪造一个登录信息
             IAuthenticationContract authenticationContract = ResolveMediator.Resolve<IAuthenticationContract>();
             LoginInfo fakeLoginInfo = authenticationContract.Login(CommonConstants.AdminLoginId, CommonConstants.InitialPassword);
