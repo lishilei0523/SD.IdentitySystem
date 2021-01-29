@@ -6,6 +6,7 @@ using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;
 using SD.Toolkits.WebApi.Extensions;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 [assembly: OwinStartup(typeof(Startup))]
 namespace SD.IdentitySystem.WebApi.Tests
@@ -29,7 +30,7 @@ namespace SD.IdentitySystem.WebApi.Tests
             httpConfiguration.ParameterBindingRules.Insert(0, WrapPostParameterBinding.CreateBindingForMarkedParameters);
 
             //允许跨域
-            httpConfiguration.EnableCors();
+            httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
             appBuilder.Use<CacheOwinContextMiddleware>();
             appBuilder.Use<PublicKeyExchangeMiddleware>();
