@@ -40,6 +40,7 @@ namespace SD.IdentitySystem.WebApi.Tests.Controllers
             return "Hello World";
         }
 
+        [HttpGet]
         public IEnumerable<Order> GetOrders(string keywords, int pageIndex, int pageSize)
         {
             Trace.WriteLine(keywords);
