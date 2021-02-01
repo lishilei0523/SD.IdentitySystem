@@ -27,7 +27,7 @@ namespace SD.IdentitySystem.WebApi.Tests
             );
 
             //POST请求多参数绑定
-            httpConfiguration.ParameterBindingRules.Insert(0, WrapPostParameterBinding.CreateBindingForMarkedParameters);
+            httpConfiguration.RegisterWrapParameterBindingRules();
 
             //允许跨域
             httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));

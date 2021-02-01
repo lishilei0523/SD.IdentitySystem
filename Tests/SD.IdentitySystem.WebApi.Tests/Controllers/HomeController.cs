@@ -15,6 +15,12 @@ namespace SD.IdentitySystem.WebApi.Tests.Controllers
     public class HomeController : ApiController
     {
         [HttpGet]
+        public string GetProducts()
+        {
+            return "Hello World";
+        }
+
+        [HttpGet]
         public string GetProducts(string keywords, int pageIndex, int pageSize)
         {
             Trace.WriteLine(keywords);

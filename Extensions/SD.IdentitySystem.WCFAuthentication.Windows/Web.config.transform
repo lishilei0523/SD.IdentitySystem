@@ -1,8 +1,4 @@
 ﻿<configuration>
-  <appSettings>
-    <!--身份过期时间，单位：分钟-->
-    <add key="AuthenticationTimeout" value="20" />
-  </appSettings>
   <system.serviceModel>
     <extensions>
       <behaviorExtensions>
