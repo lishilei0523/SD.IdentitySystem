@@ -167,14 +167,13 @@ namespace SD.IdentitySystem.AppService.Implements
                 CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
 
                 //获取客户端IP
-                MessageProperties properties = OperationContext.Current.IncomingMessageProperties;
-
                 string ip = "localhost";
-
-                if (properties.ContainsKey(RemoteEndpointMessageProperty.Name))
+                MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
+                if (messageProperties.ContainsKey(RemoteEndpointMessageProperty.Name))
                 {
-                    RemoteEndpointMessageProperty endpoint = (RemoteEndpointMessageProperty)properties[RemoteEndpointMessageProperty.Name];
-                    ip = endpoint.Address;
+                    object messageProperty = messageProperties[RemoteEndpointMessageProperty.Name];
+                    RemoteEndpointMessageProperty remoteEndpointMessageProperty = (RemoteEndpointMessageProperty)messageProperty;
+                    ip = remoteEndpointMessageProperty.Address;
                 }
 
                 //生成登录记录
