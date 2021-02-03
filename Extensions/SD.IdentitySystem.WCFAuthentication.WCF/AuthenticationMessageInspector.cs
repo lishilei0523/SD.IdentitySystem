@@ -61,12 +61,21 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
         /// <param name="instanceContext">WCF实例上下文</param>
         public object AfterReceiveRequest(ref Message request, IClientChannel channel, InstanceContext instanceContext)
         {
-            //如果是身份认证接口，无需认证
-            if (OperationContext.Current.EndpointDispatcher.ContractName != "IAuthenticationContract")
-            {
-                //获取消息头
-                MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
+            //获取消息头
+            MessageHeaders headers = request.Headers;
+            string action = headers.Action;
 
+            EndpointDispatcher endpointDispatcher = OperationContext.Current.EndpointDispatcher;
+            DispatchOperation operationDispatcher = endpointDispatcher.DispatchRuntime.Operations.Single(x => x.Action == action);
+
+            /*
+             * 通过OperationBehavior设置Impersonation属性，
+             * 默认值为ImpersonationOption.NotAllowed，
+             * 当ImpersonationOption.NotAllowed时验证身份，
+             * 如无需验证身份，则将Impersonation属性赋值为ImpersonationOption.Allowed。
+             */
+            if (operationDispatcher.Impersonation == ImpersonationOption.NotAllowed)
+            {
                 #region # 验证消息头
 
                 if (!headers.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
@@ -119,11 +128,11 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
             if (OperationContext.Current != null)
             {
                 //WCF客户端获取公钥处理
-                MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
+                MessageHeaders incomingHeaders = OperationContext.Current.IncomingMessageHeaders;
 
                 #region # 验证消息头
 
-                if (!headers.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
+                if (!incomingHeaders.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
                 {
                     throw new NullReferenceException("身份认证消息头不存在，请检查程序！");
                 }
@@ -131,11 +140,11 @@ namespace SD.IdentitySystem.WCFAuthentication.WCF
                 #endregion
 
                 //读取消息头中的公钥
-                Guid publishKey = headers.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
+                Guid publishKey = incomingHeaders.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
 
                 //添加消息头
-                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
-                request.Headers.Add(header);
+                MessageHeader outgoingheader = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
+                request.Headers.Add(outgoingheader);
             }
 
             return null;

@@ -27,7 +27,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SD.IdentitySystem.WCFAuthentication.WCF.XML</DocumentationFile>
+    <DocumentationFile>bin\Debug\SD.IdentitySystem.WCFAuthentication.WCF.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -36,7 +36,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SD.IdentitySystem.WCFAuthentication.WCF.XML</DocumentationFile>
+    <DocumentationFile>bin\Release\SD.IdentitySystem.WCFAuthentication.WCF.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Integration|AnyCPU'">
     <OutputPath>bin\Integration\</OutputPath>
@@ -87,7 +87,7 @@
     </None>
     <None Include="App.config.transform" />
     <None Include="packages.config" />
-    <None Include="SD.IdentitySystem.WCFAuthentication.Server.nuspec" />
+    <None Include="SD.IdentitySystem.WCFAuthentication.WCF.nuspec" />
     <None Include="Web.config.transform">
       <SubType>Designer</SubType>
     </None>

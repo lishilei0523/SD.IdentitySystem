@@ -93,6 +93,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">登录名</param>
         /// <param name="password">密码</param>
         /// <returns>登录信息</returns>
+        [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
         public LoginInfo Login(string loginId, string password)
         {
             #region # 验证参数
