@@ -12,13 +12,11 @@ namespace SD.IdentitySystem.Domain.Mediators
         /// </summary>
         /// <param name="userSvc">用户领域服务接口</param>
         /// <param name="systemSvc">信息系统领域服务接口</param>
-        /// <param name="numberSvc">编号领域服务</param>
         /// <param name="roleSvc">角色领域服务接口</param>
-        public DomainServiceMediator(IUserService userSvc, IInfoSystemService systemSvc, INumberService numberSvc, IRoleService roleSvc)
+        public DomainServiceMediator(IUserService userSvc, IInfoSystemService systemSvc, IRoleService roleSvc)
         {
             this.UserSvc = userSvc;
             this.InfoSystemSvc = systemSvc;
-            this.NumberSvc = numberSvc;
             this.RoleSvc = roleSvc;
         }
 
@@ -36,10 +34,5 @@ namespace SD.IdentitySystem.Domain.Mediators
         /// 角色领域服务接口
         /// </summary>
         public IRoleService RoleSvc { get; private set; }
-
-        /// <summary>
-        /// 编号领域服务接口
-        /// </summary>
-        public INumberService NumberSvc { get; private set; }
     }
 }
