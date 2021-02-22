@@ -17,7 +17,6 @@ namespace SD.IdentitySystem.AppService.WebApi.Controllers
         /// </summary>
         private readonly IAuthenticationContract _authenticationContract;
 
-
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
