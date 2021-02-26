@@ -16,6 +16,7 @@ function getSystems(queryParams) {
     $.easyuiExt.datagrid.columns = [
         [
             { field: "Id", title: "Id", halign: "center", hidden: true },
+            { field: "Number", title: "信息系统编号", halign: "center", width: 120 },
             { field: "Name", title: "信息系统名称", halign: "center", width: 120 },
             { field: "ApplicationTypeName", title: "应用程序类型名称", halign: "center", width: 180 },
             { field: "AdminLoginId", title: "管理员登录名", halign: "center", width: 120 },
