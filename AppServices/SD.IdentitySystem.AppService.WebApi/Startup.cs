@@ -5,6 +5,7 @@ using SD.IdentitySystem.WCFAuthentication.Owin;
 using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;
 using SD.Toolkits.WebApi.Extensions;
+using Swashbuckle.Application;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -20,6 +21,13 @@ namespace SD.IdentitySystem.AppService.WebApi
         /// <param name="httpConfiguration">Http配置</param>
         protected override void Configuration(IAppBuilder appBuilder, HttpConfiguration httpConfiguration)
         {
+            httpConfiguration.EnableSwagger(config =>
+            {
+                config.IncludeXmlComments("SD.IdentitySystem.AppService.WebApi.xml");
+                config.SingleApiVersion("v1.0", "身份认证系统 WebApi 接口文档");
+            }).EnableSwaggerUi();
+
+            httpConfiguration.MapHttpAttributeRoutes();
             httpConfiguration.Routes.MapHttpRoute(
                 "DefaultApi",
                 "{controller}/{action}/{id}",
