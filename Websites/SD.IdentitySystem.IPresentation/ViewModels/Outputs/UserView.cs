@@ -7,6 +7,13 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
     /// </summary>
     public class UserView : ViewModel
     {
+        #region 私钥 —— string PrivateKey
+        /// <summary>
+        /// 私钥
+        /// </summary>
+        public string PrivateKey { get; set; }
+        #endregion
+
         #region 是否启用 —— bool Enabled
         /// <summary>
         /// 是否启用

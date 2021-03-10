@@ -119,6 +119,22 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
+        #region # 加载重置私钥视图 —— ViewResult ResetPrivateKey(string id)
+        /// <summary>
+        /// 加载重置私钥视图
+        /// </summary>
+        /// <param name="id">用户登录名</param>
+        /// <returns>重置私钥视图</returns>
+        [HttpGet]
+        [RequireAuthorization("重置私钥视图")]
+        public ViewResult ResetPrivateKey(string id)
+        {
+            base.ViewBag.LoginId = id;
+
+            return base.View();
+        }
+        #endregion
+
         #region # 加载分配角色视图 —— ViewResult SetRole(string id)
         /// <summary>
         /// 加载分配角色视图
@@ -273,6 +289,20 @@ namespace SD.IdentitySystem.Website.Controllers
         public void ResetPassword(string loginId, string newPassword, string confirmPassword)
         {
             this._userContract.ResetPassword(loginId, newPassword);
+        }
+        #endregion
+
+        #region # 重置私钥 —— void ResetPrivateKey(string loginId, string privateKey)
+        /// <summary>
+        /// 重置私钥
+        /// </summary>
+        /// <param name="loginId">用户登录名</param>
+        /// <param name="privateKey">私钥</param>
+        [HttpPost]
+        [RequireAuthorization("重置私钥")]
+        public void ResetPrivateKey(string loginId, string privateKey)
+        {
+            this._userContract.SetUserPrivateKey(loginId, privateKey);
         }
         #endregion
 

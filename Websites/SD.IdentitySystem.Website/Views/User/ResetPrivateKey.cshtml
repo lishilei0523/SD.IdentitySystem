@@ -1,0 +1,43 @@
+﻿@{
+    ViewBag.Title = "重置私钥";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/scripts/User/ResetPrivateKey.js"></script>
+}
+
+@using (Ajax.BeginForm("ResetPrivateKey", "User",
+    new AjaxOptions
+    {
+        HttpMethod = "post",
+        OnBegin = "resetBegin",
+        OnSuccess = "resetSucceed",
+        OnFailure = "resetFail"
+    },
+    new
+    {
+        id = "frmResetPrivateKey"
+    }))
+{
+    <div style="width: 100%; height: 100%; float: left; margin: 0;">
+        <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 190px; padding: 10px;">
+            <input type="hidden" name="loginId" value="@ViewBag.LoginId" />
+            <table id="tbReset">
+                <tr>
+                    <td class="tdTitle">新私钥：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="privateKey" data-options="required:true,iconCls:'icon-lock',width:280" />
+                    </td>
+                </tr>
+            </table>
+        </div>
+    </div>
+    <div id="footer" style="padding: 5px;">
+        <div style="float: right;">
+            <a href="#" onclick="javascript: $('#frmResetPrivateKey').submit();" class="easyui-linkbutton c6" data-options="iconCls:'icon-ok'" style="width:90px">确定</a>
+            <a href="#" onclick="javascript: $.easyuiExt.closeWindow();" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:90px">取消</a>
+        </div>
+    </div>
+}

@@ -18,7 +18,8 @@ function getUsers(queryParams) {
             { field: "ck", checkbox: true, halign: "center" },
             { field: "Id", title: "Id", halign: "center", hidden: true },
             { field: "Number", title: "用户名", halign: "center", width: 100 },
-            { field: "Name", title: "真实姓名", halign: "center", width: 120 },
+            { field: "Name", title: "真实姓名", halign: "center", width: 150 },
+            { field: "PrivateKey", title: "私钥", halign: "center", width: 300 },
             {
                 field: "AddedTime",
                 title: "创建时间",
@@ -36,6 +37,18 @@ function getUsers(queryParams) {
                 formatter: function (value, row) {
                     var start = '<a class="aLink" href="javascript: resetPassord(\'';
                     var end = '\');" >重置密码</a>';
+                    var element = start + row.Number + end;
+
+                    return element;
+                }
+            },
+            {
+                field: "ResetPrivateKey",
+                title: "重置私钥",
+                width: 70,
+                formatter: function (value, row) {
+                    var start = '<a class="aLink" href="javascript: resetPrivateKey(\'';
+                    var end = '\');" >重置私钥</a>';
                     var element = start + row.Number + end;
 
                     return element;
@@ -107,6 +120,11 @@ function createUser() {
 //重置密码
 function resetPassord(loginId) {
     $.easyuiExt.showWindow("重置密码", "/User/ResetPassword/" + loginId, 360, 230);
+}
+
+//重置私钥
+function resetPrivateKey(loginId) {
+    $.easyuiExt.showWindow("重置私钥", "/User/ResetPrivateKey/" + loginId, 430, 230);
 }
 
 //分配角色
