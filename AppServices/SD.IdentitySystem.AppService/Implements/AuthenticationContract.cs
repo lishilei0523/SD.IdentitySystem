@@ -102,7 +102,6 @@ namespace SD.IdentitySystem.AppService.Implements
             {
                 throw new ArgumentNullException(nameof(loginId), "用户名不可为空！");
             }
-
             if (string.IsNullOrWhiteSpace(password))
             {
                 throw new ArgumentNullException(nameof(password), "密码不可为空！");
@@ -135,49 +134,53 @@ namespace SD.IdentitySystem.AppService.Implements
 
                 #endregion
 
-                //生成公钥
-                Guid publicKey = Guid.NewGuid();
+                LoginInfo loginInfo = this.BuildLoginInfo(currentUser);
 
-                //生成登录信息
-                LoginInfo loginInfo = new LoginInfo(currentUser.Number, currentUser.Name, publicKey);
+                return loginInfo;
+            }
+        }
+        #endregion
 
-                #region # 登录信息的信息系统部分/菜单部分/权限部分
+        #region # 私钥登录 —— LoginInfo LoginByPrivateKey(string privateKey)
+        /// <summary>
+        /// 私钥登录
+        /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>登录信息</returns>
+        [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
+        public LoginInfo LoginByPrivateKey(string privateKey)
+        {
+            #region # 验证参数
 
-                ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, null);
+            if (string.IsNullOrWhiteSpace(privateKey))
+            {
+                throw new ArgumentNullException(nameof(privateKey), "私钥不可为空！");
+            }
 
-                /*信息系统部分*/
-                IEnumerable<string> systemNos = currentUser.GetInfoSystemNos();
-                IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
-                loginInfo.LoginSystemInfos.AddRange(systems.Values.Select(x => x.ToLoginSystemInfo()));
+            #endregion
 
-                /*菜单部分*/
-                IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
-                IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, null);
-                menus = menus.TailRecurseParentNodes();
-                ICollection<LoginMenuInfo> menuTree = menus.ToTree(null);
-                loginInfo.LoginMenuInfos.AddRange(menuTree);
+            lock (_Sync)
+            {
+                /****************验证机器****************/
+                this.AuthenticateMachine();
 
-                /*权限部分*/
-                IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
-                loginInfo.LoginAuthorityInfos = authorities.GroupBy(x => x.SystemNo).ToDictionary(x => x.Key, x => x.Select(y => y.ToLoginAuthorityInfo()).ToArray());
+                /****************登录验证****************/
+                User currentUser = this._repMediator.UserRep.SingleByPrivateKey(privateKey);
+
+                #region # 验证
+
+                if (currentUser == null)
+                {
+                    throw new InvalidOperationException("私钥不存在！");
+                }
+                if (!currentUser.Enabled)
+                {
+                    throw new InvalidOperationException("用户已停用！");
+                }
 
                 #endregion
 
-                //以公钥为键，登录信息为值，存入分布式缓存
-                CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
-
-                //获取客户端IP
-                string ip = "localhost";
-                MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
-                if (messageProperties.ContainsKey(RemoteEndpointMessageProperty.Name))
-                {
-                    object messageProperty = messageProperties[RemoteEndpointMessageProperty.Name];
-                    RemoteEndpointMessageProperty remoteEndpointMessageProperty = (RemoteEndpointMessageProperty)messageProperty;
-                    ip = remoteEndpointMessageProperty.Address;
-                }
-
-                //生成登录记录
-                this.GenerateLoginRecord(publicKey, ip, currentUser.Number, currentUser.Name);
+                LoginInfo loginInfo = this.BuildLoginInfo(currentUser);
 
                 return loginInfo;
             }
@@ -218,6 +221,63 @@ namespace SD.IdentitySystem.AppService.Implements
                     throw new NoPermissionException("许可证授权已过期，请联系系统管理员！");
                 }
             }
+        }
+        #endregion
+
+        #region # 构造登录信息 —— LoginInfo BuildLoginInfo(User user)
+        /// <summary>
+        /// 构造登录信息
+        /// </summary>
+        /// <param name="user">用户</param>
+        /// <returns>登录信息</returns>
+        private LoginInfo BuildLoginInfo(User user)
+        {
+            //生成公钥
+            Guid publicKey = Guid.NewGuid();
+
+            //生成登录信息
+            LoginInfo loginInfo = new LoginInfo(user.Number, user.Name, publicKey);
+
+            #region # 登录信息的信息系统部分/菜单部分/权限部分
+
+            ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(user.Number, null);
+
+            /*信息系统部分*/
+            IEnumerable<string> systemNos = user.GetInfoSystemNos();
+            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
+            loginInfo.LoginSystemInfos.AddRange(systems.Values.Select(x => x.ToLoginSystemInfo()));
+
+            /*菜单部分*/
+            IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
+            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, null);
+            menus = menus.TailRecurseParentNodes();
+            ICollection<LoginMenuInfo> menuTree = menus.ToTree(null);
+            loginInfo.LoginMenuInfos.AddRange(menuTree);
+
+            /*权限部分*/
+            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
+            loginInfo.LoginAuthorityInfos = authorities.GroupBy(x => x.SystemNo)
+                .ToDictionary(x => x.Key, x => x.Select(y => y.ToLoginAuthorityInfo()).ToArray());
+
+            #endregion
+
+            //以公钥为键，登录信息为值，存入分布式缓存
+            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(AuthenticationContract._Timeout));
+
+            //获取客户端IP
+            string ip = "localhost";
+            MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
+            if (messageProperties.ContainsKey(RemoteEndpointMessageProperty.Name))
+            {
+                object messageProperty = messageProperties[RemoteEndpointMessageProperty.Name];
+                RemoteEndpointMessageProperty remoteEndpointMessageProperty = (RemoteEndpointMessageProperty)messageProperty;
+                ip = remoteEndpointMessageProperty.Address;
+            }
+
+            //生成登录记录
+            this.GenerateLoginRecord(publicKey, ip, user.Number, user.Name);
+
+            return loginInfo;
         }
         #endregion
 

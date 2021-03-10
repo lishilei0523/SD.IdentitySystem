@@ -20,5 +20,15 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         [OperationContract]
         LoginInfo Login(string loginId, string password);
         #endregion
+
+        #region # 私钥登录 —— LoginInfo LoginByPrivateKey(string privateKey)
+        /// <summary>
+        /// 私钥登录
+        /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>登录信息</returns>
+        [OperationContract]
+        LoginInfo LoginByPrivateKey(string privateKey);
+        #endregion
     }
 }

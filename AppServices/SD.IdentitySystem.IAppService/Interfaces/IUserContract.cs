@@ -48,6 +48,16 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void ResetPassword(string loginId, string newPassword);
         #endregion
 
+        #region # 设置用户私钥 —— void SetUserPrivateKey(string loginId, string privateKey)
+        /// <summary>
+        /// 设置用户私钥
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="privateKey">私钥</param>
+        [OperationContract]
+        void SetUserPrivateKey(string loginId, string privateKey);
+        #endregion
+
         #region # 启用用户 —— void EnableUser(string loginId)
         /// <summary>
         /// 启用用户
@@ -162,6 +172,17 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <returns>是否存在</returns>
         [OperationContract]
         bool ExistsUser(string loginId);
+        #endregion
+
+        #region # 是否存在私钥 —— bool ExistsPrivateKey(string loginId, string privateKey)
+        /// <summary>
+        /// 是否存在私钥
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>是否存在</returns>
+        [OperationContract]
+        bool ExistsPrivateKey(string loginId, string privateKey);
         #endregion
 
         #region # 获取用户信息系统列表 —— IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId)

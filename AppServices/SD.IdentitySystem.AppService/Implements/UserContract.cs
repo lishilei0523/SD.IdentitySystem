@@ -7,7 +7,6 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.Global.Transaction;
 using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
@@ -65,7 +64,7 @@ namespace SD.IdentitySystem.AppService.Implements
             User user = new User(loginId, realName, password);
 
             this._unitOfWork.RegisterAdd(user);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -82,7 +81,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentUser.UpdatePassword(oldPassword, newPassword);
 
             this._unitOfWork.RegisterSave(currentUser);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -95,10 +94,36 @@ namespace SD.IdentitySystem.AppService.Implements
         public void ResetPassword(string loginId, string newPassword)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
-            currentUser.UpdatePassword(newPassword);
+            currentUser.SetPassword(newPassword);
 
             this._unitOfWork.RegisterSave(currentUser);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
+        }
+        #endregion
+
+        #region # 设置用户私钥 —— void SetUserPrivateKey(string loginId, string privateKey)
+        /// <summary>
+        /// 设置用户私钥
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="privateKey">私钥</param>
+        public void SetUserPrivateKey(string loginId, string privateKey)
+        {
+            User currentUser = this._unitOfWork.Resolve<User>(loginId);
+
+            #region # 验证
+
+            if (!string.IsNullOrWhiteSpace(privateKey) && currentUser.PrivateKey != privateKey)
+            {
+                Assert.IsFalse(this._repMediator.UserRep.ExistsPrivateKey(null, privateKey), "私钥已存在！");
+            }
+
+            #endregion
+
+            currentUser.SetPrivateKey(privateKey);
+
+            this._unitOfWork.RegisterSave(currentUser);
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -113,7 +138,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentUser.Enable();
 
             this._unitOfWork.RegisterSave(currentUser);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -128,7 +153,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentUser.Disable();
 
             this._unitOfWork.RegisterSave(currentUser);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -154,7 +179,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentUser.ClearRelation();
 
             this._unitOfWork.RegisterPhysicsRemove<User>(currentUser);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -173,7 +198,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentUser.SetRoles(roles);
 
             this._unitOfWork.RegisterSave(currentUser);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -199,7 +224,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentUser.AppendRoles(roles);
 
             this._unitOfWork.RegisterSave(currentUser);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -295,6 +320,19 @@ namespace SD.IdentitySystem.AppService.Implements
         public bool ExistsUser(string loginId)
         {
             return this._repMediator.UserRep.Exists(loginId);
+        }
+        #endregion
+
+        #region # 是否存在私钥 —— bool ExistsPrivateKey(string loginId, string privateKey)
+        /// <summary>
+        /// 是否存在私钥
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>是否存在</returns>
+        public bool ExistsPrivateKey(string loginId, string privateKey)
+        {
+            return this._repMediator.UserRep.ExistsPrivateKey(loginId, privateKey);
         }
         #endregion
 

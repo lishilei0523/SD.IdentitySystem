@@ -1,5 +1,4 @@
 ﻿using SD.Common;
-using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
 using System;
 using System.Collections.Generic;
@@ -26,6 +25,7 @@ namespace SD.IdentitySystem.Domain.Entities
 
             //默认值
             this.Enabled = true;
+            this.PrivateKey = Guid.NewGuid().ToString();
         }
         #endregion
 
@@ -74,6 +74,13 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 密码
         /// </summary>
         public string Password { get; private set; }
+        #endregion
+
+        #region 私钥 —— string PrivateKey
+        /// <summary>
+        /// 私钥
+        /// </summary>
+        public string PrivateKey { get; private set; }
         #endregion
 
         #region 是否启用 —— bool Enabled
@@ -129,41 +136,51 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 修改密码 —— void UpdatePassword(string newPassword)
+        #region 设置密码 —— void UpdatePassword(string password)
         /// <summary>
-        /// 修改密码
+        /// 设置密码
         /// </summary>
-        /// <param name="newPassword">新密码</param>
-        public void UpdatePassword(string newPassword)
+        /// <param name="password">密码</param>
+        public void SetPassword(string password)
         {
             #region # 验证参数
 
-            if (string.IsNullOrWhiteSpace(newPassword))
+            if (string.IsNullOrWhiteSpace(password))
             {
-                throw new ArgumentNullException(nameof(newPassword), "新密码不可为空！");
+                throw new ArgumentNullException(nameof(password), "密码不可为空！");
             }
-            if (newPassword.Length < 6 || newPassword.Length > 20)
+            if (password.Length < 6 || password.Length > 20)
             {
-                throw new ArgumentOutOfRangeException(nameof(newPassword), "密码长度不可小于6或大于20！");
+                throw new ArgumentOutOfRangeException(nameof(password), "密码长度不可小于6或大于20！");
             }
-            if (newPassword == this.Password)
+            if (password == this.Password)
             {
                 return;
             }
 
             #endregion
 
-            this.Password = newPassword.ToMD5();
+            this.Password = password.ToMD5();
         }
         #endregion
 
-        #region 重置密码 —— void ResetPassword()
+        #region 设置私钥 —— void SetPrivateKey(string privateKey)
         /// <summary>
-        /// 重置密码
+        /// 设置私钥
         /// </summary>
-        public void ResetPassword()
+        /// <param name="privateKey">私钥</param>
+        public void SetPrivateKey(string privateKey)
         {
-            this.Password = CommonConstants.InitialPassword.ToMD5();
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(privateKey))
+            {
+                throw new ArgumentNullException(nameof(privateKey), "私钥不可为空！");
+            }
+
+            #endregion
+
+            this.PrivateKey = privateKey.Trim();
         }
         #endregion
 

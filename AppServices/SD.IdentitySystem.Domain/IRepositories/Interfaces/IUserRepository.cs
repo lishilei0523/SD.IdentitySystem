@@ -37,5 +37,24 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <returns>用户列表</returns>
         IEnumerable<User> FindByPage(string keywords, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount);
         #endregion
+
+        #region # 根据私钥获取唯一用户 —— User SingleByPrivateKey(string privateKey)
+        /// <summary>
+        /// 根据私钥获取唯一用户
+        /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>用户</returns>
+        User SingleByPrivateKey(string privateKey);
+        #endregion
+
+        #region # 是否存在私钥 —— bool ExistsPrivateKey(string loginId, string privateKey)
+        /// <summary>
+        /// 是否存在私钥
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>是否存在</returns>
+        bool ExistsPrivateKey(string loginId, string privateKey);
+        #endregion
     }
 }

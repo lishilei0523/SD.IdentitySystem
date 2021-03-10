@@ -58,5 +58,52 @@ namespace SD.IdentitySystem.Repository.Implements
             return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
         }
         #endregion
+
+        #region # 根据私钥获取唯一用户 —— User SingleByPrivateKey(string privateKey)
+        /// <summary>
+        /// 根据私钥获取唯一用户
+        /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>用户</returns>
+        public User SingleByPrivateKey(string privateKey)
+        {
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(privateKey))
+            {
+                throw new ArgumentNullException(nameof(privateKey), "私钥不可为空！");
+            }
+
+            #endregion
+
+            User user = base.SingleOrDefault(x => x.PrivateKey == privateKey);
+
+            return user;
+        }
+        #endregion
+
+        #region # 是否存在私钥 —— bool ExistsPrivateKey(string loginId, string privateKey)
+        /// <summary>
+        /// 是否存在私钥
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>是否存在</returns>
+        public bool ExistsPrivateKey(string loginId, string privateKey)
+        {
+            if (!string.IsNullOrWhiteSpace(loginId))
+            {
+                User user = base.SingleOrDefault(loginId);
+                if (user != null && user.PrivateKey == privateKey)
+                {
+                    return false;
+                }
+
+                return base.Exists(x => x.PrivateKey == privateKey);
+            }
+
+            return base.Exists(x => x.PrivateKey == privateKey);
+        }
+        #endregion
     }
 }

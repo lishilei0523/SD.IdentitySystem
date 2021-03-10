@@ -46,5 +46,21 @@ namespace SD.IdentitySystem.AppService.WebApi.Controllers
             return loginInfo;
         }
         #endregion
+
+        #region # 私钥登录 —— LoginInfo LoginByPrivateKey(string privateKey)
+        /// <summary>
+        /// 私钥登录
+        /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>登录信息</returns>
+        [HttpPost]
+        [WrapPostParameters]
+        public LoginInfo LoginByPrivateKey(string privateKey)
+        {
+            LoginInfo loginInfo = this._authenticationContract.LoginByPrivateKey(privateKey);
+
+            return loginInfo;
+        }
+        #endregion
     }
 }

@@ -19,9 +19,11 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
 
             //设置编号长度
             this.Property(user => user.Number).HasMaxLength(20);
+            this.Property(user => user.PrivateKey).HasMaxLength(64);
 
             //设置索引
             this.HasIndex("IX_Number", IndexType.Unique, table => table.Property(user => user.Number));
+            this.HasIndex("IX_PrivateKey", IndexType.Unique, table => table.Property(user => user.PrivateKey));
         }
     }
 }

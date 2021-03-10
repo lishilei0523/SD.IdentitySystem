@@ -60,7 +60,6 @@ namespace SD.IdentitySystem.AppService.Implements
         //命令部分
 
         #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
-
         /// <summary>
         /// 创建信息系统
         /// </summary>
@@ -167,7 +166,7 @@ namespace SD.IdentitySystem.AppService.Implements
             authority.UpdateInfo(authorityParam.AuthorityName, authorityParam.EnglishName, authorityParam.Description, authorityParam.AssemblyName, authorityParam.Namespace, authorityParam.ClassName, authorityParam.MethodName);
 
             this._unitOfWork.RegisterSave(authority);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -182,7 +181,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentAuthority.ClearRelations();
 
             this._unitOfWork.RegisterRemove<Authority>(currentAuthority);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -209,7 +208,7 @@ namespace SD.IdentitySystem.AppService.Implements
             Menu menu = new Menu(systemNo, applicationType, menuName, sort, url, path, icon, parentMenu);
 
             this._unitOfWork.RegisterAdd(menu);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
 
             return menu.Id;
         }
@@ -242,7 +241,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentMenu.UpdateInfo(menuName, sort, url, path, icon);
 
             this._unitOfWork.RegisterSave(currentMenu);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -265,7 +264,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentMenu.ClearRelations();
 
             this._unitOfWork.RegisterPhysicsRemove<Menu>(menuId);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -300,7 +299,7 @@ namespace SD.IdentitySystem.AppService.Implements
             currentMenu.RelateAuthorities(authorities);
 
             this._unitOfWork.RegisterSave(currentMenu);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -326,7 +325,7 @@ namespace SD.IdentitySystem.AppService.Implements
             role.SetAuthorities(authorities);
 
             this._unitOfWork.RegisterAdd(role);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
 
             return role.Id;
         }
@@ -350,7 +349,7 @@ namespace SD.IdentitySystem.AppService.Implements
             role.SetAuthorities(authorities);
 
             this._unitOfWork.RegisterSave(role);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
 
         #endregion
@@ -369,7 +368,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             role.SetAuthorities(authorities);
             this._unitOfWork.RegisterSave(role);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -387,7 +386,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             role.AppendAuthorities(authorities);
             this._unitOfWork.RegisterSave(role);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -410,7 +409,7 @@ namespace SD.IdentitySystem.AppService.Implements
             #endregion
 
             this._unitOfWork.RegisterPhysicsRemove<Role>(currentRole);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.Commit();
         }
         #endregion
 
