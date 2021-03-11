@@ -167,9 +167,9 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 方法
 
-        #region 修改菜单信息 —— void UpdateInfo(string menuName, int sort, string url...
+        #region 修改菜单 —— void UpdateInfo(string menuName...
         /// <summary>
-        /// 修改菜单信息
+        /// 修改菜单
         /// </summary>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">菜单排序</param>
@@ -178,11 +178,11 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="icon">图标</param>
         public void UpdateInfo(string menuName, int sort, string url, string path, string icon)
         {
-            #region # 验证参数
+            #region # 验证
 
             if (string.IsNullOrWhiteSpace(menuName))
             {
-                throw new ArgumentNullException("menuName", "菜单名称不可为空！");
+                throw new ArgumentNullException(nameof(menuName), "菜单名称不可为空！");
             }
 
             #endregion
@@ -198,7 +198,7 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 关联权限 —— void RelateAuthorities(IEnumerable<Authority> authorities)
+        #region 关联权限 —— void RelateAuthorities(IEnumerable<Authority>...
         /// <summary>
         /// 关联权限
         /// </summary>
@@ -215,8 +215,7 @@ namespace SD.IdentitySystem.Domain.Entities
             #endregion
 
             //先清空
-            this.ClearRelations();
-
+            this.ClearAuthorityRelations();
             foreach (Authority authority in authorities)
             {
                 this.Authorities.Add(authority);
@@ -225,11 +224,11 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 清空关联 —— void ClearRelations()
+        #region 清空权限关联 —— void ClearAuthorityRelations()
         /// <summary>
-        /// 清空关联
+        /// 清空权限关联
         /// </summary>
-        public void ClearRelations()
+        public void ClearAuthorityRelations()
         {
             foreach (Authority authority in this.Authorities.ToArray())
             {
@@ -252,9 +251,9 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 重写ToString()方法
+        #region 重写ToString方法 —— string ToString()
         /// <summary>
-        /// 重写ToString()方法
+        /// 重写ToString方法
         /// </summary>
         /// <returns></returns>
         public override string ToString()

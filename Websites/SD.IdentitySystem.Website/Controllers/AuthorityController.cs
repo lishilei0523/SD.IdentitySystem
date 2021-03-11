@@ -254,19 +254,19 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
-        #region # 分页获取权限列表 —— JsonResult GetAuthoritiesByPage(string systemNo...
+        #region # 分页获取权限列表 —— JsonResult GetAuthoritiesByPage(string keywords...
         /// <summary>
         /// 分页获取权限列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>权限列表</returns>
         [RequireAuthorization("分页获取权限列表")]
-        public JsonResult GetAuthoritiesByPage(string systemNo, string keywords, int page, int rows)
+        public JsonResult GetAuthoritiesByPage(string keywords, string systemNo, int page, int rows)
         {
-            PageModel<AuthorityView> pageModel = this._authorityPresenter.GetAuthoritiesByPage(systemNo, keywords, page, rows);
+            PageModel<AuthorityView> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, systemNo, page, rows);
             Grid<AuthorityView> grid = new Grid<AuthorityView>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

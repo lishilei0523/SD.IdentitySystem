@@ -1,57 +1,33 @@
-﻿using SD.CacheManager;
-using SD.Common;
-using SD.IdentitySystem.AppService.Maps;
-using SD.IdentitySystem.Domain.Entities;
-using SD.IdentitySystem.Domain.IRepositories;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using SD.IdentitySystem.Domain.Mediators;
-using SD.IdentitySystem.IAppService.DTOs.Inputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.Global.Transaction;
+using SD.Toolkits.WebApi.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.ServiceModel;
+using System.Web.Http;
 
-namespace SD.IdentitySystem.AppService.Implements
+namespace SD.IdentitySystem.AppService.WebApi.Controllers
 {
     /// <summary>
-    /// 权限服务契约实现
+    /// 权限WebApi接口
     /// </summary>
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
-    public class AuthorizationContract : IAuthorizationContract
+    public class AuthorizationController : ApiController
     {
         #region # 字段及依赖注入构造器
 
         /// <summary>
-        /// 领域服务中介者
+        /// 用户服务契约接口
         /// </summary>
-        private readonly DomainServiceMediator _svcMediator;
-
-        /// <summary>
-        /// 仓储中介者
-        /// </summary>
-        private readonly RepositoryMediator _repMediator;
-
-        /// <summary>
-        /// 单元事务
-        /// </summary>
-        private readonly IUnitOfWorkIdentity _unitOfWork;
+        private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="svcMediator">领域服务中介者</param>
-        /// <param name="repMediator">仓储中介者</param>
-        /// <param name="unitOfWork">单元事务</param>
-        public AuthorizationContract(DomainServiceMediator svcMediator, RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
+        public AuthorizationController(IAuthorizationContract authorizationContract)
         {
-            this._svcMediator = svcMediator;
-            this._repMediator = repMediator;
-            this._unitOfWork = unitOfWork;
+            this._authorizationContract = authorizationContract;
         }
 
         #endregion
@@ -67,18 +43,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="systemName">信息系统名称</param>
         /// <param name="adminLoginId">系统管理员登录名</param>
         /// <param name="applicationType">应用程序类型</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
         {
-            //验证
-            Assert.IsFalse(this._repMediator.UserRep.Exists(adminLoginId), $"登录名：\"{adminLoginId}\"已存在，请重试！");
-
-            InfoSystem infoSystem = new InfoSystem(systemNo, systemName, adminLoginId, applicationType);
-
-            this._unitOfWork.RegisterAdd(infoSystem);
-            this._unitOfWork.UnitedCommit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
+            this._authorizationContract.CreateInfoSystem(systemNo, systemName, adminLoginId, applicationType);
         }
         #endregion
 
@@ -89,16 +58,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="infoSystemId">信息系统Id</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="systemName">信息系统名称</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void UpdateInfoSystem(Guid infoSystemId, string systemNo, string systemName)
         {
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-            currentSystem.UpdateInfo(systemNo, systemName);
-
-            this._unitOfWork.RegisterSave(currentSystem);
-            this._unitOfWork.Commit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
+            this._authorizationContract.UpdateInfoSystem(infoSystemId, systemNo, systemName);
         }
         #endregion
 
@@ -110,16 +74,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="host">主机名称</param>
         /// <param name="port">端口</param>
         /// <param name="index">首页</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void InitInfoSystem(string systemNo, string host, int port, string index)
         {
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-            currentSystem.Init(host, port, index);
-
-            this._unitOfWork.RegisterSave(currentSystem);
-            this._unitOfWork.Commit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
+            this._authorizationContract.InitInfoSystem(systemNo, host, port, index);
         }
         #endregion
 
@@ -128,19 +87,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 批量初始化信息系统
         /// </summary>
         /// <param name="initParams">初始化信息系统参数模型集</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void InitInfoSystems(IEnumerable<InfoSystemParam> initParams)
         {
-            initParams = initParams?.ToArray() ?? new InfoSystemParam[0];
-
-            foreach (InfoSystemParam param in initParams)
-            {
-                InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(param.SystemNo);
-                currentSystem.Init(param.Host, param.Port, param.Index);
-
-                this._unitOfWork.RegisterSave(currentSystem);
-            }
-
-            this._unitOfWork.Commit();
+            this._authorizationContract.InitInfoSystems(initParams);
         }
         #endregion
 
@@ -156,18 +107,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="namespace">命名空间</param>
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void CreateAuthority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
         {
-            //验证
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
-
-            Authority authority = new Authority(systemNo, authorityName, englishName, description, assemblyName, @namespace, className, methodName);
-
-            //验证
-            Assert.IsFalse(this._repMediator.AuthorityRep.ExistsPath(authority.AuthorityPath), "已存在该权限！");
-
-            this._unitOfWork.RegisterAdd(authority);
-            this._unitOfWork.UnitedCommit();
+            this._authorizationContract.CreateAuthority(systemNo, authorityName, englishName, description, assemblyName, @namespace, className, methodName);
         }
         #endregion
 
@@ -177,24 +121,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="authorityParams">权限参数模型集</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void CreateAuthorities(string systemNo, IEnumerable<AuthorityParam> authorityParams)
         {
-            //验证
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
-
-            IList<Authority> authorities = new List<Authority>();
-            foreach (AuthorityParam param in authorityParams)
-            {
-                Authority authority = new Authority(systemNo, param.AuthorityName, param.EnglishName, param.Description, param.AssemblyName, param.Namespace, param.ClassName, param.MethodName);
-
-                //验证
-                Assert.IsFalse(this._repMediator.AuthorityRep.ExistsPath(authority.AuthorityPath), "已存在该权限！");
-
-                authorities.Add(authority);
-            }
-
-            this._unitOfWork.RegisterAddRange(authorities);
-            this._unitOfWork.UnitedCommit();
+            this._authorizationContract.CreateAuthorities(systemNo, authorityParams);
         }
         #endregion
 
@@ -204,14 +135,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="authorityId">权限Id</param>
         /// <param name="authorityParam">权限参数模型</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void UpdateAuthority(Guid authorityId, AuthorityParam authorityParam)
         {
-            Authority authority = this._unitOfWork.Resolve<Authority>(authorityId);
-
-            authority.UpdateInfo(authorityParam.AuthorityName, authorityParam.EnglishName, authorityParam.Description, authorityParam.AssemblyName, authorityParam.Namespace, authorityParam.ClassName, authorityParam.MethodName);
-
-            this._unitOfWork.RegisterSave(authority);
-            this._unitOfWork.Commit();
+            this._authorizationContract.UpdateAuthority(authorityId, authorityParam);
         }
         #endregion
 
@@ -220,17 +148,15 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 删除权限
         /// </summary>
         /// <param name="authorityId">权限Id</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void RemoveAuthority(Guid authorityId)
         {
-            Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
-            currentAuthority.ClearMenuRelations();
-
-            this._unitOfWork.RegisterRemove<Authority>(currentAuthority);
-            this._unitOfWork.Commit();
+            this._authorizationContract.RemoveAuthority(authorityId);
         }
         #endregion
 
-        #region # 创建菜单 —— void CreateMenu(string systemNo, string menuName...
+        #region # 创建菜单 —— void CreateMenu(string systemNo, ApplicationType applicationType...
         /// <summary>
         /// 创建菜单
         /// </summary>
@@ -242,19 +168,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentNodeId">上级节点Id</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId)
         {
-            //验证参数
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
-            Assert.IsFalse(this._repMediator.MenuRep.Exists(parentNodeId, applicationType, menuName), "给定菜单级别下，相同应用程序类型的菜单名称已存在！");
-
-            Menu parentNode = parentNodeId.HasValue
-                ? this._unitOfWork.Resolve<Menu>(parentNodeId.Value)
-                : null;
-            Menu menu = new Menu(systemNo, applicationType, menuName, sort, url, path, icon, parentNode);
-
-            this._unitOfWork.RegisterAdd(menu);
-            this._unitOfWork.Commit();
+            this._authorizationContract.CreateMenu(systemNo, applicationType, menuName, sort, url, path, icon, parentNodeId);
         }
         #endregion
 
@@ -268,24 +186,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="url">链接地址</param>
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string path, string icon)
         {
-            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
-
-            #region # 验证参数
-
-            if (menuName != currentMenu.Name)
-            {
-                Guid? parentId = currentMenu.ParentNode?.Id;
-                Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, currentMenu.ApplicationType, menuName), "给定菜单级别下，相同应用程序类型的菜单名称已存在！");
-            }
-
-            #endregion
-
-            currentMenu.UpdateInfo(menuName, sort, url, path, icon);
-
-            this._unitOfWork.RegisterSave(currentMenu);
-            this._unitOfWork.Commit();
+            this._authorizationContract.UpdateMenu(menuId, menuName, sort, url, path, icon);
         }
         #endregion
 
@@ -294,21 +199,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 删除菜单
         /// </summary>
         /// <param name="menuId">菜单Id</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void RemoveMenu(Guid menuId)
         {
-            //递归删除
-            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
-
-            foreach (Menu subMenu in currentMenu.SubNodes.ToArray())
-            {
-                this.RemoveMenu(subMenu.Id);
-            }
-
-            //清空关联
-            currentMenu.ClearAuthorityRelations();
-
-            this._unitOfWork.RegisterPhysicsRemove<Menu>(menuId);
-            this._unitOfWork.Commit();
+            this._authorizationContract.RemoveMenu(menuId);
         }
         #endregion
 
@@ -318,24 +213,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="menuId">菜单Id</param>
         /// <param name="authorityIds">权限Id集</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void RelateAuthoritiesToMenu(Guid menuId, IEnumerable<Guid> authorityIds)
         {
-            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
-
-            #region # 验证
-
-            if (!currentMenu.IsLeaf)
-            {
-                throw new InvalidOperationException("非叶子级菜单不可关联权限！");
-            }
-
-            #endregion
-
-            ICollection<Authority> authorities = this._unitOfWork.ResolveRange<Authority>(authorityIds);
-            currentMenu.RelateAuthorities(authorities);
-
-            this._unitOfWork.RegisterSave(currentMenu);
-            this._unitOfWork.Commit();
+            this._authorizationContract.RelateAuthoritiesToMenu(menuId, authorityIds);
         }
         #endregion
 
@@ -347,21 +229,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="roleName">角色名称</param>
         /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
-            //验证
-            authorityIds = authorityIds?.Distinct().ToArray() ?? new Guid[0];
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo));
-
-            //创建角色
-            Role role = new Role(roleName, systemNo, description);
-
-            //分配权限
-            ICollection<Authority> authorities = this._unitOfWork.ResolveRange<Authority>(authorityIds);
-            role.RelateAuthorities(authorities);
-
-            this._unitOfWork.RegisterAdd(role);
-            this._unitOfWork.Commit();
+            this._authorizationContract.CreateRole(systemNo, roleName, description, authorityIds);
         }
         #endregion
 
@@ -373,20 +245,12 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="roleName">角色名称</param>
         /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
-            Role role = this._unitOfWork.Resolve<Role>(roleId);
-
-            role.UpdateInfo(roleName, description);
-
-            //分配权限
-            ICollection<Authority> authorities = this._unitOfWork.ResolveRange<Authority>(authorityIds);
-            role.RelateAuthorities(authorities);
-
-            this._unitOfWork.RegisterSave(role);
-            this._unitOfWork.Commit();
+            this._authorizationContract.UpdateRole(roleId, roleName, description, authorityIds);
         }
-
         #endregion
 
         #region # 关联权限到角色 —— void RelateAuthoritiesToRole(Guid roleId, IEnumerable<Guid> authorityIds)
@@ -395,17 +259,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <param name="authorityIds">权限Id集</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void RelateAuthoritiesToRole(Guid roleId, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds?.Distinct().ToArray() ?? new Guid[0];
-
-            Role role = this._unitOfWork.Resolve<Role>(roleId);
-            ICollection<Authority> authorities = this._unitOfWork.ResolveRange<Authority>(authorityIds);
-
-            role.RelateAuthorities(authorities);
-
-            this._unitOfWork.RegisterSave(role);
-            this._unitOfWork.Commit();
+            this._authorizationContract.RelateAuthoritiesToRole(roleId, authorityIds);
         }
         #endregion
 
@@ -415,18 +273,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <param name="authorityIds">权限Id集</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void AppendAuthoritiesToRole(Guid roleId, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds?.Distinct().ToArray() ?? new Guid[0];
-            if (!authorityIds.Any()) return;
-
-            Role role = this._unitOfWork.Resolve<Role>(roleId);
-            ICollection<Authority> authorities = this._unitOfWork.ResolveRange<Authority>(authorityIds);
-
-            role.AppendAuthorities(authorities);
-
-            this._unitOfWork.RegisterSave(role);
-            this._unitOfWork.Commit();
+            this._authorizationContract.AppendAuthoritiesToRole(roleId, authorityIds);
         }
         #endregion
 
@@ -435,21 +286,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 删除角色
         /// </summary>
         /// <param name="roleId">角色Id</param>
+        [HttpPost]
+        [WrapPostParameters]
         public void RemoveRole(Guid roleId)
         {
-            #region # 验证
-
-            Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
-
-            if (currentRole.Users.Any())
-            {
-                throw new InvalidOperationException($"角色\"{currentRole.Name}\"已被用户使用，不可删除！");
-            }
-
-            #endregion
-
-            this._unitOfWork.RegisterPhysicsRemove<Role>(currentRole);
-            this._unitOfWork.Commit();
+            this._authorizationContract.RemoveRole(roleId);
         }
         #endregion
 
@@ -462,11 +303,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>信息系统</returns>
+        [HttpGet]
         public InfoSystemInfo GetInfoSystem(string systemNo)
         {
-            InfoSystem currentSystem = this._repMediator.InfoSystemRep.Single(systemNo);
-
-            return currentSystem.ToDTO();
+            return this._authorizationContract.GetInfoSystem(systemNo);
         }
         #endregion
 
@@ -475,13 +315,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 获取信息系统列表
         /// </summary>
         /// <returns>信息系统列表</returns>
+        [HttpGet]
         public IEnumerable<InfoSystemInfo> GetInfoSystems()
         {
-            IEnumerable<InfoSystem> systems = this._repMediator.InfoSystemRep.FindAll();
-
-            IEnumerable<InfoSystemInfo> systemInfos = systems.Select(x => x.ToDTO());
-
-            return systemInfos;
+            return this._authorizationContract.GetInfoSystems();
         }
         #endregion
 
@@ -493,12 +330,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>信息系统列表</returns>
+        [HttpGet]
         public PageModel<InfoSystemInfo> GetInfoSystemsByPage(string keywords, int pageIndex, int pageSize)
         {
-            IEnumerable<InfoSystem> specSystems = this._repMediator.InfoSystemRep.FindByPage(keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
-            IEnumerable<InfoSystemInfo> specSystemInfos = specSystems.Select(x => x.ToDTO());
-
-            return new PageModel<InfoSystemInfo>(specSystemInfos, pageIndex, pageSize, pageCount, rowCount);
+            return this._authorizationContract.GetInfoSystemsByPage(keywords, pageIndex, pageSize);
         }
         #endregion
 
@@ -508,14 +343,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="authorityId">权限Id</param>
         /// <returns>权限视图模型</returns>
+        [HttpGet]
         public AuthorityInfo GetAuthority(Guid authorityId)
         {
-            Authority currentAuthority = this._repMediator.AuthorityRep.Single(authorityId);
-
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return currentAuthority.ToDTO(systemInfos);
+            return this._authorizationContract.GetAuthority(authorityId);
         }
         #endregion
 
@@ -528,14 +359,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="menuId">菜单Id</param>
         /// <param name="roleId">角色Id</param>
         /// <returns>权限列表</returns>
+        [HttpGet]
         public IEnumerable<AuthorityInfo> GetAuthorities(string keywords, string systemNo, Guid? menuId, Guid? roleId)
         {
-            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.Find(keywords, systemNo, menuId, roleId);
-
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return authorities.Select(x => x.ToDTO(systemInfos));
+            return this._authorizationContract.GetAuthorities(keywords, systemNo, menuId, roleId);
         }
         #endregion
 
@@ -548,16 +375,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
+        [HttpGet]
         public PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
         {
-            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(keywords, systemNo, pageIndex, pageSize, out int rowCount, out int pageCount);
-
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            IEnumerable<AuthorityInfo> authorityInfos = authorities.Select(x => x.ToDTO(systemInfos));
-
-            return new PageModel<AuthorityInfo>(authorityInfos, pageIndex, pageSize, pageCount, rowCount);
+            return this._authorizationContract.GetAuthoritiesByPage(keywords, systemNo, pageIndex, pageSize);
         }
         #endregion
 
@@ -567,14 +388,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="menuId">菜单Id</param>
         /// <returns>菜单</returns>
+        [HttpGet]
         public MenuInfo GetMenu(Guid menuId)
         {
-            Menu currentMenu = this._repMediator.MenuRep.Single(menuId);
-
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return currentMenu.ToDTO(systemInfos);
+            return this._authorizationContract.GetMenu(menuId);
         }
         #endregion
 
@@ -585,14 +402,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
+        [HttpGet]
         public IEnumerable<MenuInfo> GetMenus(string systemNo, ApplicationType? applicationType)
         {
-            ICollection<Menu> menus = this._repMediator.MenuRep.FindBySystem(systemNo, applicationType);
-
-            IEnumerable<string> systemNos = menus.Select(x => x.SystemNo);
-            IDictionary<string, InfoSystemInfo> systemInfos = this._repMediator.InfoSystemRep.Find(systemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return menus.Select(x => x.ToDTO(systemInfos));
+            return this._authorizationContract.GetMenus(systemNo, applicationType);
         }
         #endregion
 
@@ -606,16 +419,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>菜单列表</returns>
+        [HttpGet]
         public PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
-            ICollection<Menu> menus = this._repMediator.MenuRep.FindByPage(keywords, systemNo, applicationType, pageIndex, pageSize, out int rowCount, out int pageCount);
-
-            IEnumerable<string> systemNos = menus.Select(x => x.SystemNo);
-            IDictionary<string, InfoSystemInfo> systemInfos = this._repMediator.InfoSystemRep.Find(systemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            IEnumerable<MenuInfo> specMenuInfos = menus.Select(x => x.ToDTO(systemInfos));
-
-            return new PageModel<MenuInfo>(specMenuInfos, pageIndex, pageSize, pageCount, rowCount);
+            return this._authorizationContract.GetMenusByPage(keywords, systemNo, applicationType, pageIndex, pageSize);
         }
         #endregion
 
@@ -625,18 +432,14 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <returns>角色</returns>
+        [HttpGet]
         public RoleInfo GetRole(Guid roleId)
         {
-            Role currentRole = this._repMediator.RoleRep.Single(roleId);
-
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return currentRole.ToDTO(systemInfos);
+            return this._authorizationContract.GetRole(roleId);
         }
         #endregion
 
-        #region # 获取角色列表 —— IEnumerable<RoleInfo> GetRoles(string systemNo...
+        #region # 获取角色列表 —— IEnumerable<RoleInfo> GetRoles(string keywords...
         /// <summary>
         /// 获取角色列表
         /// </summary>
@@ -644,14 +447,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
+        [HttpGet]
         public IEnumerable<RoleInfo> GetRoles(string keywords, string loginId, string systemNo)
         {
-            IEnumerable<Role> roles = this._repMediator.RoleRep.Find(keywords, loginId, systemNo);
-
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            return roles.Select(x => x.ToDTO(systemInfos));
+            return this._authorizationContract.GetRoles(keywords, loginId, systemNo);
         }
         #endregion
 
@@ -664,16 +463,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
+        [HttpGet]
         public PageModel<RoleInfo> GetRolesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
         {
-            ICollection<Role> roles = this._repMediator.RoleRep.FindByPage(keywords, systemNo, pageIndex, pageSize, out int rowCount, out int pageCount);
-
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
-
-            IEnumerable<RoleInfo> roleInfos = roles.Select(x => x.ToDTO(systemInfos));
-
-            return new PageModel<RoleInfo>(roleInfos, pageIndex, pageSize, pageCount, rowCount);
+            return this._authorizationContract.GetRolesByPage(keywords, systemNo, pageIndex, pageSize);
         }
         #endregion
 
@@ -686,9 +479,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
         /// <returns>是否存在</returns>
+        [HttpGet]
         public bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName)
         {
-            return this._repMediator.AuthorityRep.ExistsPath(assemblyName, @namespace, className, methodName);
+            return this._authorizationContract.ExistsAuthority(assemblyName, @namespace, className, methodName);
         }
         #endregion
 
@@ -700,9 +494,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
         /// <returns>是否存在</returns>
+        [HttpGet]
         public bool ExistsRole(string systemNo, Guid? roleId, string roleName)
         {
-            return this._svcMediator.RoleSvc.ExistsRole(systemNo, roleId, roleName);
+            return this._authorizationContract.ExistsRole(systemNo, roleId, roleName);
         }
         #endregion
     }

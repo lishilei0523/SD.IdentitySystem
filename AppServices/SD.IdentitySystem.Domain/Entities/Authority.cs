@@ -15,7 +15,7 @@ namespace SD.IdentitySystem.Domain.Entities
     {
         #region # 构造器
 
-        #region 01.无参构造器
+        #region 00.无参构造器
         /// <summary>
         /// 无参构造器
         /// </summary>
@@ -27,7 +27,7 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 02.创建权限构造器
+        #region 01.创建权限构造器
         /// <summary>
         /// 创建权限构造器
         /// </summary>
@@ -42,8 +42,26 @@ namespace SD.IdentitySystem.Domain.Entities
         public Authority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
             : this()
         {
-            //验证参数
-            this.CheckBasicInfo(assemblyName, @namespace, className, methodName);
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(assemblyName))
+            {
+                throw new ArgumentNullException(nameof(assemblyName), "程序集名称不可为空！");
+            }
+            if (string.IsNullOrWhiteSpace(@namespace))
+            {
+                throw new ArgumentNullException(nameof(@namespace), "命名空间不可为空！");
+            }
+            if (string.IsNullOrWhiteSpace(className))
+            {
+                throw new ArgumentNullException(nameof(className), "类名不可为空！");
+            }
+            if (string.IsNullOrWhiteSpace(methodName))
+            {
+                throw new ArgumentNullException(nameof(methodName), "方法名不可为空！");
+            }
+
+            #endregion
 
             base.Name = authorityName;
             this.SystemNo = systemNo;
@@ -123,9 +141,9 @@ namespace SD.IdentitySystem.Domain.Entities
         public string AuthorityPath { get; private set; }
         #endregion
 
-        #region 导航属性 - 菜单（叶子节点） —— ICollection<Menu> MenuLeaves
+        #region 导航属性 - 菜单（叶子节点）集 —— ICollection<Menu> MenuLeaves
         /// <summary>
-        /// 导航属性 - 菜单（叶子节点）
+        /// 导航属性 - 菜单（叶子节点）集
         /// </summary>
         public virtual ICollection<Menu> MenuLeaves { get; private set; }
         #endregion
@@ -141,11 +159,9 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 方法
 
-        //Public
-
-        #region 修改权限信息 —— void UpdateInfo(string authorityName, string englishName...
+        #region 修改权限 —— void UpdateInfo(string authorityName, string englishName...
         /// <summary>
-        /// 修改权限信息
+        /// 修改权限
         /// </summary>
         /// <param name="authorityName">权限名称</param>
         /// <param name="englishName">英文名称</param>
@@ -156,8 +172,26 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="methodName">方法名</param>
         public void UpdateInfo(string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
         {
-            //验证参数
-            this.CheckBasicInfo(assemblyName, @namespace, className, methodName);
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(assemblyName))
+            {
+                throw new ArgumentNullException(nameof(assemblyName), "程序集名称不可为空！");
+            }
+            if (string.IsNullOrWhiteSpace(@namespace))
+            {
+                throw new ArgumentNullException(nameof(@namespace), "命名空间不可为空！");
+            }
+            if (string.IsNullOrWhiteSpace(className))
+            {
+                throw new ArgumentNullException(nameof(className), "类名不可为空！");
+            }
+            if (string.IsNullOrWhiteSpace(methodName))
+            {
+                throw new ArgumentNullException(nameof(methodName), "方法名不可为空！");
+            }
+
+            #endregion
 
             base.Name = authorityName;
             this.EnglishName = englishName;
@@ -173,11 +207,11 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 清空关联 —— void ClearRelations()
+        #region 清空菜单关联 —— void ClearMenuRelations()
         /// <summary>
-        /// 清空关联
+        /// 清空菜单关联
         /// </summary>
-        public void ClearRelations()
+        public void ClearMenuRelations()
         {
             foreach (Menu menu in this.MenuLeaves.ToArray())
             {
@@ -186,9 +220,6 @@ namespace SD.IdentitySystem.Domain.Entities
             }
         }
         #endregion
-
-
-        //Private
 
         #region 初始化权限路径 —— void InitPath()
         /// <summary>
@@ -222,35 +253,6 @@ namespace SD.IdentitySystem.Domain.Entities
             keywordsBuilder.Append(this.AuthorityPath);
 
             base.SetKeywords(keywordsBuilder.ToString());
-        }
-        #endregion
-
-        #region 验证基本信息 —— void CheckBasicInfo(string assemblyName, string @namespace...
-        /// <summary>
-        /// 验证基本信息
-        /// </summary>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
-        private void CheckBasicInfo(string assemblyName, string @namespace, string className, string methodName)
-        {
-            if (string.IsNullOrWhiteSpace(assemblyName))
-            {
-                throw new ArgumentNullException("assemblyName", @"程序集名称不可为空！");
-            }
-            if (string.IsNullOrWhiteSpace(@namespace))
-            {
-                throw new ArgumentNullException("namespace", @"命名空间不可为空！");
-            }
-            if (string.IsNullOrWhiteSpace(className))
-            {
-                throw new ArgumentNullException("className", @"类名不可为空！");
-            }
-            if (string.IsNullOrWhiteSpace(methodName))
-            {
-                throw new ArgumentNullException("methodName", @"方法名不可为空！");
-            }
         }
         #endregion
 

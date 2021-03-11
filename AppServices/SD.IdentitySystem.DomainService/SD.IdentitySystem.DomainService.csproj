@@ -85,9 +85,7 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Implements\InfoSystemService.cs" />
     <Compile Include="Implements\RoleService.cs" />
-    <Compile Include="Implements\UserService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

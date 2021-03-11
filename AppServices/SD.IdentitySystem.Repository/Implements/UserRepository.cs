@@ -14,48 +14,30 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class UserRepository : EFAggRootRepositoryProvider<User>, IUserRepository
     {
-        #region # 分页获取用户列表 —— IEnumerable<User> FindByPage(string systemNo...
+        #region # 分页获取用户列表 —— ICollection<User> FindByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="roleId">角色Id</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount"></param>
         /// <param name="pageCount"></param>
         /// <returns>用户列表</returns>
-        public IEnumerable<User> FindByPage(string systemNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        public ICollection<User> FindByPage(string keywords, string systemNo, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
             Expression<Func<User, bool>> condition =
                 x =>
                     (x.Number != CommonConstants.AdminLoginId) &&
                     (string.IsNullOrEmpty(systemNo) || x.Roles.Any(y => y.SystemNo == systemNo)) &&
+                    (roleId == null || x.Roles.Any(y => y.Id == roleId)) &&
                     (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
 
-            return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
-        }
-        #endregion
+            IQueryable<User> users = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
 
-        #region # 根据角色获取用户列表 —— IEnumerable<User> FindByPage(string keywords, Guid? roleId...
-        /// <summary>
-        /// 根据角色获取用户列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="roleId">角色Id</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <param name="rowCount">总记录条数</param>
-        /// <param name="pageCount">总页数</param>
-        /// <returns>用户列表</returns>
-        public IEnumerable<User> FindByPage(string keywords, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount)
-        {
-            Expression<Func<User, bool>> condition =
-                x =>
-                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
-                    (roleId == null || x.Roles.Any(y => y.Id == roleId));
-
-            return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
+            return users.ToList();
         }
         #endregion
 

@@ -85,29 +85,29 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 重置密码 —— void ResetPassword(string loginId, string newPassword)
+        #region # 重置密码 —— void ResetPassword(string loginId, string password)
         /// <summary>
         /// 重置密码
         /// </summary>
         /// <param name="loginId">登录名</param>
-        /// <param name="newPassword">新密码</param>
-        public void ResetPassword(string loginId, string newPassword)
+        /// <param name="password">新密码</param>
+        public void ResetPassword(string loginId, string password)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
-            currentUser.SetPassword(newPassword);
+            currentUser.SetPassword(password);
 
             this._unitOfWork.RegisterSave(currentUser);
             this._unitOfWork.Commit();
         }
         #endregion
 
-        #region # 设置用户私钥 —— void SetUserPrivateKey(string loginId, string privateKey)
+        #region # 设置私钥 —— void SetPrivateKey(string loginId, string privateKey)
         /// <summary>
-        /// 设置用户私钥
+        /// 设置私钥
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="privateKey">私钥</param>
-        public void SetUserPrivateKey(string loginId, string privateKey)
+        public void SetPrivateKey(string loginId, string privateKey)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
 
@@ -176,54 +176,49 @@ namespace SD.IdentitySystem.AppService.Implements
             #endregion
 
             //清空用户关系
-            currentUser.ClearRelation();
+            currentUser.ClearRoleRelations();
 
             this._unitOfWork.RegisterPhysicsRemove<User>(currentUser);
             this._unitOfWork.Commit();
         }
         #endregion
 
-        #region # 为用户分配角色 —— void SetRoles(string loginId...
+        #region # 关联角色到用户 —— void RelateRolesToUser(string loginId...
         /// <summary>
-        /// 为用户分配角色
+        /// 关联角色到用户
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="roleIds">角色Id集</param>
-        public void SetRoles(string loginId, IEnumerable<Guid> roleIds)
+        public void RelateRolesToUser(string loginId, IEnumerable<Guid> roleIds)
         {
             roleIds = roleIds?.Distinct().ToArray() ?? new Guid[0];
 
-            User currentUser = this._unitOfWork.Resolve<User>(loginId);
+            User user = this._unitOfWork.Resolve<User>(loginId);
             ICollection<Role> roles = this._unitOfWork.ResolveRange<Role>(roleIds);
-            currentUser.SetRoles(roles);
 
-            this._unitOfWork.RegisterSave(currentUser);
+            user.RelateRoles(roles);
+
+            this._unitOfWork.RegisterSave(user);
             this._unitOfWork.Commit();
         }
         #endregion
 
-        #region # 为用户追加角色 —— void AppendRoles(string loginId...
+        #region # 追加角色到用户 —— void AppendRolesToUser(string loginId...
         /// <summary>
-        /// 为用户追加角色
+        /// 追加角色到用户
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="roleIds">角色Id集</param>
-        public void AppendRoles(string loginId, IEnumerable<Guid> roleIds)
+        public void AppendRolesToUser(string loginId, IEnumerable<Guid> roleIds)
         {
-            User currentUser = this._unitOfWork.Resolve<User>(loginId);
+            roleIds = roleIds?.Distinct().ToArray() ?? new Guid[0];
 
-            IList<Role> roles = new List<Role>();
+            User user = this._unitOfWork.Resolve<User>(loginId);
+            ICollection<Role> roles = this._unitOfWork.ResolveRange<Role>(roleIds);
 
-            foreach (Guid roleId in roleIds)
-            {
-                Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
+            user.AppendRoles(roles);
 
-                roles.Add(currentRole);
-            }
-
-            currentUser.AppendRoles(roles);
-
-            this._unitOfWork.RegisterSave(currentUser);
+            this._unitOfWork.RegisterSave(user);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -260,27 +255,9 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 根据角色获取用户列表 —— PageModel<UserInfo> GetUsersByRole(string keywords...
+        #region # 获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
         /// <summary>
-        /// 根据角色获取用户列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="roleId">角色Id</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <returns>用户列表</returns>
-        public PageModel<UserInfo> GetUsersByRole(string keywords, Guid? roleId, int pageIndex, int pageSize)
-        {
-            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(keywords, roleId, pageIndex, pageSize, out int rowCount, out int pageCount);
-            IEnumerable<UserInfo> specUserInfos = specUsers.Select(x => x.ToDTO());
-
-            return new PageModel<UserInfo>(specUserInfos, pageIndex, pageSize, pageCount, rowCount);
-        }
-        #endregion
-
-        #region # 根据登录名获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
-        /// <summary>
-        /// 根据登录名获取用户字典
+        /// 获取用户字典
         /// </summary>
         /// <param name="loginIds">登录名集</param>
         /// <returns>用户字典</returns>
@@ -293,46 +270,22 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsersByPage(string systemNo...
+        #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsersByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="roleId">角色Id</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
-        public PageModel<UserInfo> GetUsersByPage(string systemNo, string keywords, int pageIndex, int pageSize)
+        public PageModel<UserInfo> GetUsersByPage(string keywords, string systemNo, Guid? roleId, int pageIndex, int pageSize)
         {
-            IEnumerable<User> specUsers = this._repMediator.UserRep.FindByPage(systemNo, keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
+            ICollection<User> specUsers = this._repMediator.UserRep.FindByPage(keywords, systemNo, roleId, pageIndex, pageSize, out int rowCount, out int pageCount);
             IEnumerable<UserInfo> specUserInfos = specUsers.Select(x => x.ToDTO());
 
             return new PageModel<UserInfo>(specUserInfos, pageIndex, pageSize, pageCount, rowCount);
-        }
-        #endregion
-
-        #region # 是否存在用户 —— bool ExistsUser(string loginId)
-        /// <summary>
-        /// 是否存在用户
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <returns>是否存在</returns>
-        public bool ExistsUser(string loginId)
-        {
-            return this._repMediator.UserRep.Exists(loginId);
-        }
-        #endregion
-
-        #region # 是否存在私钥 —— bool ExistsPrivateKey(string loginId, string privateKey)
-        /// <summary>
-        /// 是否存在私钥
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <param name="privateKey">私钥</param>
-        /// <returns>是否存在</returns>
-        public bool ExistsPrivateKey(string loginId, string privateKey)
-        {
-            return this._repMediator.UserRep.ExistsPrivateKey(loginId, privateKey);
         }
         #endregion
 
@@ -376,7 +329,7 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取用户角色列表 —— IEnumerable<RoleInfo> GetRoles(string loginId, string systemNo)
+        #region # 获取用户角色列表 —— IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
         /// <summary>
         /// 获取用户角色列表
         /// </summary>
@@ -385,7 +338,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>角色列表</returns>
         public IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
         {
-            IEnumerable<Role> roles = this._repMediator.RoleRep.Find(loginId, systemNo);
+            IEnumerable<Role> roles = this._repMediator.RoleRep.Find(null, loginId, systemNo);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -394,7 +347,7 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取用户权限列表 —— IEnumerable<AuthorityInfo> GetAuthorities(string loginId...
+        #region # 获取用户权限列表 —— IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId...
         /// <summary>
         /// 获取用户权限列表
         /// </summary>
@@ -429,6 +382,31 @@ namespace SD.IdentitySystem.AppService.Implements
             IEnumerable<LoginRecordInfo> recordInfos = records.Select(x => x.ToDTO());
 
             return new PageModel<LoginRecordInfo>(recordInfos, pageIndex, pageSize, pageCount, rowCount);
+        }
+        #endregion
+
+        #region # 是否存在用户 —— bool ExistsUser(string loginId)
+        /// <summary>
+        /// 是否存在用户
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <returns>是否存在</returns>
+        public bool ExistsUser(string loginId)
+        {
+            return this._repMediator.UserRep.Exists(loginId);
+        }
+        #endregion
+
+        #region # 是否存在私钥 —— bool ExistsPrivateKey(string loginId, string privateKey)
+        /// <summary>
+        /// 是否存在私钥
+        /// </summary>
+        /// <param name="loginId">登录名</param>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>是否存在</returns>
+        public bool ExistsPrivateKey(string loginId, string privateKey)
+        {
+            return this._repMediator.UserRep.ExistsPrivateKey(loginId, privateKey);
         }
         #endregion
     }

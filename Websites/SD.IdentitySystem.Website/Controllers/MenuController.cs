@@ -212,7 +212,7 @@ namespace SD.IdentitySystem.Website.Controllers
         {
             authorityIds = authorityIds ?? new Guid[0];
 
-            this._authorizationContract.RelateAuthorities(menuId, authorityIds);
+            this._authorizationContract.RelateAuthoritiesToMenu(menuId, authorityIds);
         }
         #endregion
 

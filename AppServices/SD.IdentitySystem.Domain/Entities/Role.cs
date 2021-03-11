@@ -3,6 +3,7 @@ using SD.Infrastructure.EntityBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -85,11 +86,9 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 方法
 
-        //Public
-
-        #region 修改角色信息 —— void UpdateInfo(string roleName, string description)
+        #region 修改角色 —— void UpdateInfo(string roleName, string description)
         /// <summary>
-        /// 修改角色信息
+        /// 修改角色
         /// </summary>
         /// <param name="roleName">角色名称</param>
         /// <param name="description">角色描述</param>
@@ -103,15 +102,20 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 分配权限 —— void SetAuthorities(IEnumerable<Authority> authorities)
+        #region 分配权限 —— void RelateAuthorities(IEnumerable<Authority> authorities)
         /// <summary>
         /// 分配权限
         /// </summary>
         /// <param name="authorities">权限集</param>
-        public void SetAuthorities(IEnumerable<Authority> authorities)
+        public void RelateAuthorities(IEnumerable<Authority> authorities)
         {
+            authorities = authorities?.ToArray() ?? new Authority[0];
+
             this.ClearAuthorities();
-            this.AppendAuthorities(authorities);
+            if (authorities.Any())
+            {
+                this.AppendAuthorities(authorities);
+            }
         }
         #endregion
 
@@ -122,28 +126,37 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="authorities">权限集</param>
         public void AppendAuthorities(IEnumerable<Authority> authorities)
         {
-            authorities = authorities == null ? new Authority[0] : authorities.ToArray();
+            #region # 验证
 
-            #region # 验证参数
-
-            foreach (Authority authority in authorities)
+            authorities = authorities?.ToArray() ?? new Authority[0];
+            if (!authorities.Any())
             {
-                if (this.SystemNo != authority.SystemNo)
-                {
-                    throw new ArgumentOutOfRangeException("authorities", string.Format("角色与Id为\"{0}\"的权限的信息系统不匹配！角色所在信息系统：\"{1}\"，权限所在信息系统：\"{2}\"", authority.Id, this.SystemNo, authority.SystemNo));
-                }
-                authority.Roles.Add(this);
+                throw new ArgumentNullException(nameof(authorities), "要追加的权限不可为空！");
             }
 
             #endregion
+
+            foreach (Authority authority in authorities)
+            {
+                #region # 验证
+
+                if (this.SystemNo != authority.SystemNo)
+                {
+                    throw new ArgumentOutOfRangeException(nameof(authorities), $"角色与Id为\"{authority.Id}\"的权限的信息系统不匹配！角色所在信息系统：\"{this.SystemNo}\"，权限所在信息系统：\"{authority.SystemNo}\"");
+                }
+
+                #endregion
+
+                authority.Roles.Add(this);
+            }
 
             this.Authorities.AddRange(authorities);
         }
         #endregion
 
-        #region 清空权限集 —— void ClearAuthorities()
+        #region 清空权限 —— void ClearAuthorities()
         /// <summary>
-        /// 清空权限集
+        /// 清空权限
         /// </summary>
         public void ClearAuthorities()
         {
@@ -155,16 +168,18 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-
-        //Private
-
         #region 初始化关键字 —— void InitKeywords()
         /// <summary>
         /// 初始化关键字
         /// </summary>
         private void InitKeywords()
         {
-            base.SetKeywords(this.Name);
+            StringBuilder builder = new StringBuilder();
+            builder.Append(base.Number);
+            builder.Append(base.Name);
+            builder.Append(this.Description);
+
+            base.SetKeywords(builder.ToString());
         }
         #endregion
 

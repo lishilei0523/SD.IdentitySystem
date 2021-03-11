@@ -19,16 +19,16 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         UserView GetUser(string loginId);
         #endregion
 
-        #region # 分页获取用户列表 —— PageModel<UserView> GetUsersByPage(string systemNo...
+        #region # 分页获取用户列表 —— PageModel<UserView> GetUsersByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
-        PageModel<UserView> GetUsersByPage(string systemNo, string keywords, int pageIndex, int pageSize);
+        PageModel<UserView> GetUsersByPage(string keywords, string systemNo, int pageIndex, int pageSize);
         #endregion
 
         #region # 分页获取登录记录列表 —— PageModel<LoginRecordView> GetLoginRecordsByPage(string keywords...

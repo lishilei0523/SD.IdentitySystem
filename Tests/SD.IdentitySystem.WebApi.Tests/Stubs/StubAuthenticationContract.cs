@@ -14,6 +14,16 @@ namespace SD.IdentitySystem.WebApi.Tests.Stubs
         /// <summary>
         /// 登录
         /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>登录信息</returns>
+        public LoginInfo Logon(string privateKey)
+        {
+            return null;
+        }
+
+        /// <summary>
+        /// 登录
+        /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="password">密码</param>
         /// <returns>登录信息</returns>

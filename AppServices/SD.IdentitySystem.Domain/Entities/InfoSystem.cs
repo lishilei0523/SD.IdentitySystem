@@ -3,6 +3,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
 using SD.Infrastructure.EventBase.Mediator;
 using System;
+using System.Text;
 
 namespace SD.IdentitySystem.Domain.Entities
 {
@@ -13,29 +14,29 @@ namespace SD.IdentitySystem.Domain.Entities
     {
         #region # 构造器
 
-        #region 01.无参构造器
+        #region 00.无参构造器
         /// <summary>
         /// 无参构造器
         /// </summary>
         protected InfoSystem() { }
         #endregion
 
-        #region 02.创建信息系统
+        #region 01.创建信息系统构造器
         /// <summary>
-        /// 创建信息系统
+        /// 创建信息系统构造器
         /// </summary>
-        /// <param name="systemName">系统名称</param>
-        /// <param name="systemNo">系统编号</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="systemName">信息系统名称</param>
         /// <param name="adminLoginId">管理员登录名</param>
         /// <param name="applicationType">应用程序类型</param>
         public InfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
             : this()
         {
-            #region # 验证参数
+            #region # 验证
 
             if (string.IsNullOrWhiteSpace(systemNo))
             {
-                throw new ArgumentNullException("systemNo", @"系统编号不可为空！");
+                throw new ArgumentNullException(nameof(systemNo), @"信息系统编号不可为空！");
             }
 
             #endregion
@@ -49,7 +50,7 @@ namespace SD.IdentitySystem.Domain.Entities
             EventMediator.Suspend(new InfoSystemCreatedEvent(this.Number, this.Name, this.ApplicationType, this.AdminLoginId));
 
             //初始化关键字
-            base.SetKeywords(base.Name);
+            this.InitKeywords();
         }
         #endregion
 
@@ -96,6 +97,31 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 方法
 
+        #region 修改信息系统 —— void UpdateInfo(string systemNo, string systemName)
+        /// <summary>
+        /// 修改信息系统
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="systemName">信息系统名称</param>
+        public void UpdateInfo(string systemNo, string systemName)
+        {
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(systemNo))
+            {
+                throw new ArgumentNullException(nameof(systemNo), @"信息系统编号不可为空！");
+            }
+
+            #endregion
+
+            base.Number = systemNo;
+            base.Name = systemName;
+
+            //初始化关键字
+            this.InitKeywords();
+        }
+        #endregion
+
         #region 初始化 —— void Init(string host, int port, string index)
         /// <summary>
         /// 初始化
@@ -108,6 +134,20 @@ namespace SD.IdentitySystem.Domain.Entities
             this.Host = host;
             this.Port = port;
             this.Index = index;
+        }
+        #endregion
+
+        #region 初始化关键字 —— void InitKeywords()
+        /// <summary>
+        /// 初始化关键字
+        /// </summary>
+        private void InitKeywords()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(base.Number);
+            builder.Append(base.Name);
+
+            base.SetKeywords(builder.ToString());
         }
         #endregion
 

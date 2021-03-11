@@ -10,6 +10,16 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     [ServiceContract(Namespace = "http://SD.IdentitySystem.IAppService.Interfaces")]
     public interface IAuthenticationContract : IApplicationService
     {
+        #region # 登录 —— LoginInfo Logon(string privateKey)
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>登录信息</returns>
+        [OperationContract]
+        LoginInfo Logon(string privateKey);
+        #endregion
+
         #region # 登录 —— LoginInfo Login(string loginId, string password)
         /// <summary>
         /// 登录
@@ -19,16 +29,6 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <returns>登录信息</returns>
         [OperationContract]
         LoginInfo Login(string loginId, string password);
-        #endregion
-
-        #region # 私钥登录 —— LoginInfo LoginByPrivateKey(string privateKey)
-        /// <summary>
-        /// 私钥登录
-        /// </summary>
-        /// <param name="privateKey">私钥</param>
-        /// <returns>登录信息</returns>
-        [OperationContract]
-        LoginInfo LoginByPrivateKey(string privateKey);
         #endregion
     }
 }

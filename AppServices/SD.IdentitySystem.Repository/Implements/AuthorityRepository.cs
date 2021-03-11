@@ -13,133 +13,99 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class AuthorityRepository : EFAggRootRepositoryProvider<Authority>, IAuthorityRepository
     {
-        #region # 根据信息系统获取权限集 —— IEnumerable<Authority> FindBySystem(...
+        #region # 分页获取权限列表 —— ICollection<Authority> FindByPage(string keywords...
         /// <summary>
-        /// 根据信息系统获取权限集
+        /// 分页获取权限列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限集</returns>
-        public IEnumerable<Authority> FindBySystem(string systemNo)
-        {
-            return base.Find(x => x.SystemNo == systemNo).AsEnumerable();
-        }
-        #endregion
-
-        #region # 根据信息系统获取权限Id集 —— IEnumerable<Guid> FindAuthorityIds(string systemNo)
-        /// <summary>
-        /// 根据信息系统获取权限Id集
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限Id集</returns>
-        public IEnumerable<Guid> FindAuthorityIds(string systemNo)
-        {
-            return base.FindIds(x => x.SystemNo == systemNo).AsEnumerable();
-        }
-        #endregion
-
-        #region # 根据菜单获取权限列表 —— IEnumerable<Authority> FindByMenu(Guid menuId)
-        /// <summary>
-        /// 根据菜单获取权限列表
-        /// </summary>
-        /// <param name="menuId">菜单Id</param>
-        /// <returns>权限列表</returns>
-        public IEnumerable<Authority> FindByMenu(Guid menuId)
-        {
-            return base.Find(x => x.MenuLeaves.Any(y => y.Id == menuId)).AsEnumerable();
-        }
-        #endregion
-
-        #region # 根据角色获取权限列表 —— IEnumerable<Authority> FindByRole(...
-        /// <summary>
-        /// 根据角色获取权限列表
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        /// <returns>权限列表</returns>
-        public IEnumerable<Authority> FindByRole(Guid roleId)
-        {
-            return base.Find(x => x.Roles.Any(y => y.Id == roleId)).AsEnumerable();
-        }
-        #endregion
-
-        #region # 根据角色获取权限列表 —— IEnumerable<Authority> FindByRole(IEnumerable<Guid> roleIds)
-        /// <summary>
-        /// 根据角色获取权限列表
-        /// </summary>
-        /// <param name="roleIds">角色Id集</param>
-        /// <returns>权限列表</returns>
-        public IEnumerable<Authority> FindByRole(IEnumerable<Guid> roleIds)
-        {
-            Expression<Func<Authority, bool>> condition =
-                x =>
-                    x.Roles.Any(y => roleIds.Contains(y.Id));
-
-            return base.Find(condition).AsEnumerable();
-        }
-        #endregion
-
-        #region # 根据角色获取权限路径列表 —— ICollection<string> FindPathsByRole(IEnumerable<Guid> roleIds)
-        /// <summary>
-        /// 根据角色获取权限路径列表
-        /// </summary>
-        /// <param name="roleIds">角色Id集</param>
-        /// <returns>权限路径列表</returns>
-        public ICollection<string> FindPathsByRole(IEnumerable<Guid> roleIds)
-        {
-            Expression<Func<Authority, bool>> condition =
-                x =>
-                    x.Roles.Any(y => roleIds.Contains(y.Id));
-
-            return base.Find(condition).Select(x => x.AuthorityPath).Distinct().ToArray();
-        }
-        #endregion
-
-        #region # 根据角色获取权限Id列表 —— IEnumerable<Authority> FindIdsByRole(...
-        /// <summary>
-        /// 根据角色获取权限Id列表
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        /// <returns>权限Id列表</returns>
-        public IEnumerable<Guid> FindIdsByRole(Guid roleId)
-        {
-            return base.Find(x => x.Roles.Any(y => y.Id == roleId)).Select(x => x.Id).AsEnumerable();
-        }
-        #endregion
-
-        #region # 根据角色获取权限Id列表 —— IEnumerable<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
-        /// <summary>
-        /// 根据角色获取权限Id列表
-        /// </summary>
-        /// <param name="roleIds">角色Id集</param>
-        /// <returns>权限Id列表</returns>
-        public IEnumerable<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
-        {
-            Expression<Func<Authority, bool>> condition =
-                x =>
-                    x.Roles.Any(y => roleIds.Contains(y.Id));
-
-            return base.Find(condition).Select(x => x.Id).AsEnumerable();
-        }
-        #endregion
-
-        #region # 分页获取权限集 —— IEnumerable<Authority> FindByPage(string systemNo...
-        /// <summary>
-        /// 分页获取权限集
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount">总记录条数</param>
         /// <param name="pageCount">总页数</param>
-        /// <returns>权限集</returns>
-        public IEnumerable<Authority> FindByPage(string systemNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        /// <returns>权限列表</returns>
+        public ICollection<Authority> FindByPage(string keywords, string systemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
             Expression<Func<Authority, bool>> condition =
                 x =>
-                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo) &&
-                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
+                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
+                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo);
 
-            return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).AsEnumerable();
+            IQueryable<Authority> authorities = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
+
+            return authorities.ToList();
+        }
+        #endregion
+
+        #region # 获取权限列表 —— ICollection<Authority> Find(string keywords, string systemNo...
+        /// <summary>
+        /// 获取权限列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="menuId">菜单Id</param>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>权限列表</returns>
+        public ICollection<Authority> Find(string keywords, string systemNo, Guid? menuId, Guid? roleId)
+        {
+            IQueryable<Authority> authorities = base.Find(x => string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
+
+            if (!string.IsNullOrWhiteSpace(systemNo))
+            {
+                authorities = authorities.Where(x => x.SystemNo == systemNo);
+            }
+            if (menuId.HasValue)
+            {
+                authorities = authorities.Where(x => x.MenuLeaves.Any(y => y.Id == menuId));
+            }
+            if (roleId.HasValue)
+            {
+                authorities = authorities.Where(x => x.Roles.Any(y => y.Id == roleId));
+            }
+
+            return authorities.ToList();
+        }
+        #endregion
+
+        #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRole(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 根据角色获取权限列表
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>权限列表</returns>
+        public ICollection<Authority> FindByRole(IEnumerable<Guid> roleIds)
+        {
+            Guid[] roleIds_ = roleIds?.Distinct().ToArray() ?? new Guid[0];
+            if (!roleIds_.Any())
+            {
+                return new List<Authority>();
+            }
+
+            Expression<Func<Authority, bool>> condition =
+                x =>
+                    x.Roles.Any(y => roleIds_.Contains(y.Id));
+
+            IQueryable<Authority> authorities = base.Find(condition);
+
+            return authorities.ToList();
+        }
+        #endregion
+
+        #region # 根据角色获取权限Id列表 —— ICollection<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 根据角色获取权限Id列表
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>权限Id列表</returns>
+        public ICollection<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
+        {
+            Expression<Func<Authority, bool>> condition =
+                x =>
+                    x.Roles.Any(y => roleIds.Contains(y.Id));
+
+            IQueryable<Guid> authorityIds = base.FindIds(condition);
+
+            return authorityIds.ToList();
         }
         #endregion
 
@@ -155,7 +121,7 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 是否存在给定权限 ——  bool ExistsPath(string assemblyName, string @namespace
+        #region # 是否存在给定权限 ——  bool ExistsPath(string assemblyName, string @namespace...
         /// <summary>
         /// 是否存在给定权限
         /// </summary>

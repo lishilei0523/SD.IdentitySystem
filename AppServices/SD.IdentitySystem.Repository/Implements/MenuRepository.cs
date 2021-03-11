@@ -75,39 +75,6 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 根据上级菜单Id判断菜单是否存在 —— bool Exists(Guid? parentId, ApplicationType applicationType...
-        /// <summary>
-        /// 根据上级菜单Id判断菜单是否存在
-        /// </summary>
-        /// <param name="parentId">上级菜单Id</param>
-        /// <param name="applicationType">应用程序类型</param>
-        /// <param name="menuName">菜单名称</param>
-        /// <returns>菜单名称是否存在</returns>
-        public bool Exists(Guid? parentId, ApplicationType applicationType, string menuName)
-        {
-            Expression<Func<Menu, bool>> condition;
-
-            if (parentId == null)
-            {
-                condition =
-                   x =>
-                       x.IsRoot &&
-                       x.ApplicationType == applicationType &&
-                       x.Name == menuName;
-            }
-            else
-            {
-                condition =
-                    x =>
-                        x.ParentNode.Id == parentId &&
-                        x.ApplicationType == applicationType &&
-                        x.Name == menuName;
-            }
-
-            return base.Exists(condition);
-        }
-        #endregion
-
         #region # 根据权限获取菜单列表 —— ICollection<Menu> FindByAuthority(IEnumerable<Guid>...
         /// <summary>
         /// 根据权限获取菜单列表
@@ -123,6 +90,39 @@ namespace SD.IdentitySystem.Repository.Implements
                     (applicationType == null || x.ApplicationType == applicationType);
 
             return base.Find(condition).ToList();
+        }
+        #endregion
+
+        #region # 是否存在菜单 —— bool Exists(Guid? parentId, ApplicationType applicationType...
+        /// <summary>
+        /// 是否存在菜单
+        /// </summary>
+        /// <param name="parentId">上级菜单Id</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <param name="menuName">菜单名称</param>
+        /// <returns>是否存在</returns>
+        public bool Exists(Guid? parentId, ApplicationType applicationType, string menuName)
+        {
+            Expression<Func<Menu, bool>> condition;
+
+            if (parentId == null)
+            {
+                condition =
+                    x =>
+                        x.IsRoot &&
+                        x.ApplicationType == applicationType &&
+                        x.Name == menuName;
+            }
+            else
+            {
+                condition =
+                    x =>
+                        x.ParentNode.Id == parentId &&
+                        x.ApplicationType == applicationType &&
+                        x.Name == menuName;
+            }
+
+            return base.Exists(condition);
         }
         #endregion
     }

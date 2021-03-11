@@ -1,4 +1,5 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
+using SD.Toolkits.EntityFramework.Extensions;
 using System.Data.Entity.ModelConfiguration;
 
 namespace SD.IdentitySystem.Repository.EntityConfigurations
@@ -15,6 +16,9 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //设置编号长度
             this.Property(system => system.Number).HasMaxLength(16);
+
+            //设置索引
+            this.HasIndex("IX_Number", IndexType.Unique, table => table.Property(system => system.Number));
         }
     }
 }

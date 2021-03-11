@@ -124,7 +124,7 @@ function resetPassord(loginId) {
 
 //重置私钥
 function resetPrivateKey(loginId) {
-    $.easyuiExt.showWindow("重置私钥", "/User/ResetPrivateKey/" + loginId, 430, 230);
+    $.easyuiExt.showWindow("重置私钥", "/User/ResetPrivateKey/" + loginId, 430, 200);
 }
 
 //分配角色

@@ -1,7 +1,8 @@
-﻿using System.Collections.Generic;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.Infrastructure.Repository.EntityFramework;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace SD.IdentitySystem.Repository.Implements
 {
@@ -17,12 +18,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>信息系统字典</returns>
         public IDictionary<string, InfoSystem> FindDictionary()
         {
-            IDictionary<string, InfoSystem> dictionary = new Dictionary<string, InfoSystem>();
-
-            foreach (InfoSystem system in this.FindAll())
-            {
-                dictionary.Add(system.Number, system);
-            }
+            IDictionary<string, InfoSystem> dictionary = this.FindAll().ToDictionary(x => x.Number, x => x);
 
             return dictionary;
         }

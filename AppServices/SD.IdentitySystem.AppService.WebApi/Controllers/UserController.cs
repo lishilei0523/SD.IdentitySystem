@@ -1,19 +1,37 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.Infrastructure.AppServiceBase;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
+using SD.Toolkits.WebApi.Extensions;
 using System;
 using System.Collections.Generic;
-using System.ServiceModel;
+using System.Web.Http;
 
-namespace SD.IdentitySystem.IAppService.Interfaces
+namespace SD.IdentitySystem.AppService.WebApi.Controllers
 {
     /// <summary>
-    /// 用户服务契约接口
+    /// 用户WebApi接口
     /// </summary>
-    [ServiceContract(Namespace = "http://SD.IdentitySystem.IAppService.Interfaces")]
-    public interface IUserContract : IApplicationService
+    public class UserController : ApiController
     {
+        #region # 字段及依赖注入构造器
+
+        /// <summary>
+        /// 用户服务契约接口
+        /// </summary>
+        private readonly IUserContract _userContract;
+
+        /// <summary>
+        /// 依赖注入构造器
+        /// </summary>
+        public UserController(IUserContract userContract)
+        {
+            this._userContract = userContract;
+        }
+
+        #endregion
+
+
         //命令部分
 
         #region # 创建用户 —— void CreateUser(string loginId, string realName...
@@ -23,8 +41,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="loginId">登录名</param>
         /// <param name="realName">真实姓名</param>
         /// <param name="password">密码</param>
-        [OperationContract]
-        void CreateUser(string loginId, string realName, string password);
+        [HttpPost]
+        [WrapPostParameters]
+        public void CreateUser(string loginId, string realName, string password)
+        {
+            this._userContract.CreateUser(loginId, realName, password);
+        }
         #endregion
 
         #region # 修改密码 —— void UpdatePassword(string loginId, string oldPassword...
@@ -34,8 +56,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="loginId">登录名</param>
         /// <param name="oldPassword">旧密码</param>
         /// <param name="newPassword">新密码</param>
-        [OperationContract]
-        void UpdatePassword(string loginId, string oldPassword, string newPassword);
+        [HttpPost]
+        [WrapPostParameters]
+        public void UpdatePassword(string loginId, string oldPassword, string newPassword)
+        {
+            this._userContract.UpdatePassword(loginId, oldPassword, newPassword);
+        }
         #endregion
 
         #region # 重置密码 —— void ResetPassword(string loginId, string password)
@@ -44,8 +70,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="password">密码</param>
-        [OperationContract]
-        void ResetPassword(string loginId, string password);
+        [HttpPost]
+        [WrapPostParameters]
+        public void ResetPassword(string loginId, string password)
+        {
+            this._userContract.ResetPassword(loginId, password);
+        }
         #endregion
 
         #region # 设置私钥 —— void SetPrivateKey(string loginId, string privateKey)
@@ -54,8 +84,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="privateKey">私钥</param>
-        [OperationContract]
-        void SetPrivateKey(string loginId, string privateKey);
+        [HttpPost]
+        [WrapPostParameters]
+        public void SetPrivateKey(string loginId, string privateKey)
+        {
+            this._userContract.SetPrivateKey(loginId, privateKey);
+        }
         #endregion
 
         #region # 启用用户 —— void EnableUser(string loginId)
@@ -63,8 +97,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// 启用用户
         /// </summary>
         /// <param name="loginId">登录名</param>
-        [OperationContract]
-        void EnableUser(string loginId);
+        [HttpPost]
+        [WrapPostParameters]
+        public void EnableUser(string loginId)
+        {
+            this._userContract.EnableUser(loginId);
+        }
         #endregion
 
         #region # 停用用户 —— void DisableUser(string loginId)
@@ -72,8 +110,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// 停用用户
         /// </summary>
         /// <param name="loginId">登录名</param>
-        [OperationContract]
-        void DisableUser(string loginId);
+        [HttpPost]
+        [WrapPostParameters]
+        public void DisableUser(string loginId)
+        {
+            this._userContract.DisableUser(loginId);
+        }
         #endregion
 
         #region # 删除用户 —— void RemoveUser(string loginId)
@@ -81,8 +123,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// 删除用户
         /// </summary>
         /// <param name="loginId">登录名</param>
-        [OperationContract]
-        void RemoveUser(string loginId);
+        [HttpPost]
+        [WrapPostParameters]
+        public void RemoveUser(string loginId)
+        {
+            this._userContract.RemoveUser(loginId);
+        }
         #endregion
 
         #region # 关联角色到用户 —— void RelateRolesToUser(string loginId...
@@ -91,8 +137,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="roleIds">角色Id集</param>
-        [OperationContract]
-        void RelateRolesToUser(string loginId, IEnumerable<Guid> roleIds);
+        [HttpPost]
+        [WrapPostParameters]
+        public void RelateRolesToUser(string loginId, IEnumerable<Guid> roleIds)
+        {
+            this._userContract.RelateRolesToUser(loginId, roleIds);
+        }
         #endregion
 
         #region # 追加角色到用户 —— void AppendRolesToUser(string loginId...
@@ -101,8 +151,12 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <param name="roleIds">角色Id集</param>
-        [OperationContract]
-        void AppendRolesToUser(string loginId, IEnumerable<Guid> roleIds);
+        [HttpPost]
+        [WrapPostParameters]
+        public void AppendRolesToUser(string loginId, IEnumerable<Guid> roleIds)
+        {
+            this._userContract.AppendRolesToUser(loginId, roleIds);
+        }
         #endregion
 
 
@@ -114,8 +168,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <returns>用户</returns>
-        [OperationContract]
-        UserInfo GetUser(string loginId);
+        [HttpGet]
+        public UserInfo GetUser(string loginId)
+        {
+            return this._userContract.GetUser(loginId);
+        }
         #endregion
 
         #region # 获取用户列表 —— IEnumerable<UserInfo> GetUsers(string keywords)
@@ -124,8 +181,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <returns>用户列表</returns>
-        [OperationContract]
-        IEnumerable<UserInfo> GetUsers(string keywords);
+        [HttpGet]
+        public IEnumerable<UserInfo> GetUsers(string keywords)
+        {
+            return this._userContract.GetUsers(keywords);
+        }
         #endregion
 
         #region # 获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
@@ -134,8 +194,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginIds">登录名集</param>
         /// <returns>用户字典</returns>
-        [OperationContract]
-        IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds);
+        [HttpGet]
+        public IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds)
+        {
+            return this._userContract.GetUsersByLoginIds(loginIds);
+        }
         #endregion
 
         #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsersByPage(string keywords...
@@ -148,8 +211,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
-        [OperationContract]
-        PageModel<UserInfo> GetUsersByPage(string keywords, string systemNo, Guid? roleId, int pageIndex, int pageSize);
+        [HttpGet]
+        public PageModel<UserInfo> GetUsersByPage(string keywords, string systemNo, Guid? roleId, int pageIndex, int pageSize)
+        {
+            return this._userContract.GetUsersByPage(keywords, systemNo, roleId, pageIndex, pageSize);
+        }
         #endregion
 
         #region # 获取用户信息系统列表 —— IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId)
@@ -158,8 +224,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <returns>信息系统列表</returns>
-        [OperationContract]
-        IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId);
+        [HttpGet]
+        public IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId)
+        {
+            return this._userContract.GetUserInfoSystems(loginId);
+        }
         #endregion
 
         #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo...
@@ -170,8 +239,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>用户菜单树</returns>
-        [OperationContract]
-        IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo, ApplicationType? applicationType);
+        [HttpGet]
+        public IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo, ApplicationType? applicationType)
+        {
+            return this._userContract.GetUserMenus(loginId, systemNo, applicationType);
+        }
         #endregion
 
         #region # 获取用户角色列表 —— IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
@@ -181,8 +253,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
-        [OperationContract]
-        IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo);
+        [HttpGet]
+        public IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
+        {
+            return this._userContract.GetUserRoles(loginId, systemNo);
+        }
         #endregion
 
         #region # 获取用户权限列表 —— IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId...
@@ -192,8 +267,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限列表</returns>
-        [OperationContract]
-        IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string systemNo);
+        [HttpGet]
+        public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string systemNo)
+        {
+            return this._userContract.GetUserAuthorities(loginId, systemNo);
+        }
         #endregion
 
         #region # 分页获取登录记录列表 —— PageModel<LoginRecordInfo> GetLoginRecordsByPage(string keywords...
@@ -206,8 +284,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>登录记录列表</returns>
-        [OperationContract]
-        PageModel<LoginRecordInfo> GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize);
+        [HttpGet]
+        public PageModel<LoginRecordInfo> GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
+        {
+            return this._userContract.GetLoginRecordsByPage(keywords, startTime, endTime, pageIndex, pageSize);
+        }
         #endregion
 
         #region # 是否存在用户 —— bool ExistsUser(string loginId)
@@ -216,8 +297,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <returns>是否存在</returns>
-        [OperationContract]
-        bool ExistsUser(string loginId);
+        [HttpGet]
+        public bool ExistsUser(string loginId)
+        {
+            return this._userContract.ExistsUser(loginId);
+        }
         #endregion
 
         #region # 是否存在私钥 —— bool ExistsPrivateKey(string loginId, string privateKey)
@@ -227,8 +311,11 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="loginId">登录名</param>
         /// <param name="privateKey">私钥</param>
         /// <returns>是否存在</returns>
-        [OperationContract]
-        bool ExistsPrivateKey(string loginId, string privateKey);
+        [HttpGet]
+        public bool ExistsPrivateKey(string loginId, string privateKey)
+        {
+            return this._userContract.ExistsPrivateKey(loginId, privateKey);
+        }
         #endregion
     }
 }

@@ -86,6 +86,52 @@ namespace SD.IdentitySystem.AppService.Implements
 
         //Implements
 
+        #region # 登录 —— LoginInfo Logon(string privateKey)
+        /// <summary>
+        /// 登录
+        /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>登录信息</returns>
+        [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
+        public LoginInfo Logon(string privateKey)
+        {
+            #region # 验证参数
+
+            if (string.IsNullOrWhiteSpace(privateKey))
+            {
+                throw new ArgumentNullException(nameof(privateKey), "私钥不可为空！");
+            }
+
+            #endregion
+
+            lock (_Sync)
+            {
+                //验证许可证
+                this.CheckLicense();
+
+                //验证登录
+                User currentUser = this._repMediator.UserRep.SingleByPrivateKey(privateKey);
+
+                #region # 验证
+
+                if (currentUser == null)
+                {
+                    throw new InvalidOperationException("私钥不存在！");
+                }
+                if (!currentUser.Enabled)
+                {
+                    throw new InvalidOperationException("用户已停用！");
+                }
+
+                #endregion
+
+                LoginInfo loginInfo = this.BuildLoginInfo(currentUser);
+
+                return loginInfo;
+            }
+        }
+        #endregion
+
         #region # 登录 —— LoginInfo Login(string loginId, string password)
         /// <summary>
         /// 登录
@@ -111,17 +157,17 @@ namespace SD.IdentitySystem.AppService.Implements
 
             lock (_Sync)
             {
-                /****************验证机器****************/
-                this.AuthenticateMachine();
+                //验证许可证
+                this.CheckLicense();
 
-                /****************登录验证****************/
+                //验证登录
                 User currentUser = this._repMediator.UserRep.SingleOrDefault(loginId);
 
                 #region # 验证
 
                 if (currentUser == null)
                 {
-                    throw new InvalidOperationException($"用户名\"{loginId}\"不存在！");
+                    throw new InvalidOperationException("用户不存在！");
                 }
                 if (!currentUser.Enabled)
                 {
@@ -141,60 +187,14 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 私钥登录 —— LoginInfo LoginByPrivateKey(string privateKey)
-        /// <summary>
-        /// 私钥登录
-        /// </summary>
-        /// <param name="privateKey">私钥</param>
-        /// <returns>登录信息</returns>
-        [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
-        public LoginInfo LoginByPrivateKey(string privateKey)
-        {
-            #region # 验证参数
-
-            if (string.IsNullOrWhiteSpace(privateKey))
-            {
-                throw new ArgumentNullException(nameof(privateKey), "私钥不可为空！");
-            }
-
-            #endregion
-
-            lock (_Sync)
-            {
-                /****************验证机器****************/
-                this.AuthenticateMachine();
-
-                /****************登录验证****************/
-                User currentUser = this._repMediator.UserRep.SingleByPrivateKey(privateKey);
-
-                #region # 验证
-
-                if (currentUser == null)
-                {
-                    throw new InvalidOperationException("私钥不存在！");
-                }
-                if (!currentUser.Enabled)
-                {
-                    throw new InvalidOperationException("用户已停用！");
-                }
-
-                #endregion
-
-                LoginInfo loginInfo = this.BuildLoginInfo(currentUser);
-
-                return loginInfo;
-            }
-        }
-        #endregion
-
 
         //Private
 
-        #region # 验证服务器机器 —— void AuthenticateMachine()
+        #region # 验证许可证 —— void CheckLicense()
         /// <summary>
-        /// 验证服务器机器
+        /// 验证许可证
         /// </summary>
-        private void AuthenticateMachine()
+        private void CheckLicense()
         {
             bool authenticateMachine = true;
 #if DEBUG
@@ -256,13 +256,12 @@ namespace SD.IdentitySystem.AppService.Implements
 
             /*权限部分*/
             IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
-            loginInfo.LoginAuthorityInfos = authorities.GroupBy(x => x.SystemNo)
-                .ToDictionary(x => x.Key, x => x.Select(y => y.ToLoginAuthorityInfo()).ToArray());
+            loginInfo.LoginAuthorityInfos = authorities.GroupBy(x => x.SystemNo).ToDictionary(x => x.Key, x => x.Select(y => y.ToLoginAuthorityInfo()).ToArray());
 
             #endregion
 
             //以公钥为键，登录信息为值，存入分布式缓存
-            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(AuthenticationContract._Timeout));
+            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
 
             //获取客户端IP
             string ip = "localhost";
@@ -275,27 +274,12 @@ namespace SD.IdentitySystem.AppService.Implements
             }
 
             //生成登录记录
-            this.GenerateLoginRecord(publicKey, ip, user.Number, user.Name);
-
-            return loginInfo;
-        }
-        #endregion
-
-        #region # 生成登录记录 —— void GenerateLoginRecord(Guid publicKey, string ip....
-        /// <summary>
-        /// 生成登录记录
-        /// </summary>
-        /// <param name="publicKey">公钥</param>
-        /// <param name="ip">IP地址</param>
-        /// <param name="loginId">登录名</param>
-        /// <param name="realName">真实姓名</param>
-        private void GenerateLoginRecord(Guid publicKey, string ip, string loginId, string realName)
-        {
-            //生成记录
-            LoginRecord loginRecord = new LoginRecord(publicKey, loginId, realName, ip);
+            LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
 
             this._unitOfWork.RegisterAdd(loginRecord);
             this._unitOfWork.Commit();
+
+            return loginInfo;
         }
         #endregion
     }

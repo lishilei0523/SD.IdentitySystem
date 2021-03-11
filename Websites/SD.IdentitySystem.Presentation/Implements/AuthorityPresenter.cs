@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.FormatModel.EasyUI;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
@@ -7,7 +8,6 @@ using SD.Infrastructure.DTOBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SD.FormatModel.EasyUI;
 
 namespace SD.IdentitySystem.Presentation.Implements
 {
@@ -56,8 +56,8 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>权限列表</returns>
         public IEnumerable<AuthorityView> GetAuthoritiesBySystem(string systemNo)
         {
-            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(systemNo, null, 1, int.MaxValue);
-            IEnumerable<AuthorityView> authorities = pageModel.Datas.Select(x => x.ToViewModel());
+            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, systemNo, null, null);
+            IEnumerable<AuthorityView> authorities = authorityInfos.Select(x => x.ToViewModel());
 
             return authorities;
         }
@@ -71,7 +71,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>权限列表</returns>
         public IEnumerable<AuthorityView> GetAuthoritiesByMenu(Guid menuId)
         {
-            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthoritiesByMenu(menuId);
+            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, null, menuId, null);
             IEnumerable<AuthorityView> authorityViews = authorityInfos.Select(x => x.ToViewModel());
 
             return authorityViews;
@@ -86,7 +86,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>权限列表</returns>
         public IEnumerable<AuthorityView> GetAuthoritiesByRole(Guid roleId)
         {
-            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthoritiesByRole(roleId);
+            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, null, null, roleId);
             IEnumerable<AuthorityView> authorityViews = authorityInfos.Select(x => x.ToViewModel());
 
             return authorityViews;
@@ -167,18 +167,18 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo...
+        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string keywords...
         /// <summary>
         /// 分页获取权限列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
-        public PageModel<AuthorityView> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize)
+        public PageModel<AuthorityView> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
         {
-            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(systemNo, keywords, pageIndex, pageSize);
+            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(keywords, systemNo, pageIndex, pageSize);
             IEnumerable<AuthorityView> authorityViews = pageModel.Datas.Select(x => x.ToViewModel());
 
             return new PageModel<AuthorityView>(authorityViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);

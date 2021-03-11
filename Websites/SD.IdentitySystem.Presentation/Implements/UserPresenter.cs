@@ -47,18 +47,18 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 分页获取用户列表 —— PageModel<UserView> GetUsersByPage(string systemNo...
+        #region # 分页获取用户列表 —— PageModel<UserView> GetUsersByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
-        public PageModel<UserView> GetUsersByPage(string systemNo, string keywords, int pageIndex, int pageSize)
+        public PageModel<UserView> GetUsersByPage(string keywords, string systemNo, int pageIndex, int pageSize)
         {
-            PageModel<UserInfo> pageModel = this._userContract.GetUsersByPage(systemNo, keywords, pageIndex, pageSize);
+            PageModel<UserInfo> pageModel = this._userContract.GetUsersByPage(keywords, systemNo, null, pageIndex, pageSize);
             IEnumerable<UserView> userViews = pageModel.Datas.Select(x => x.ToViewModel());
 
             return new PageModel<UserView>(userViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);

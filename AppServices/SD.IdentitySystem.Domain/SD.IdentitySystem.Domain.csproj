@@ -119,9 +119,7 @@
     <Compile Include="Entities\User.cs" />
     <Compile Include="EventSources\AuthorizationContext\AuthorityCreatedEvent.cs" />
     <Compile Include="EventSources\AuthorizationContext\InfoSystemCreatedEvent.cs" />
-    <Compile Include="IDomainServices\IInfoSystemService.cs" />
     <Compile Include="IDomainServices\IRoleService.cs" />
-    <Compile Include="IDomainServices\IUserService.cs" />
     <Compile Include="IRepositories\Interfaces\IAuthorityRepository.cs" />
     <Compile Include="IRepositories\Interfaces\IInfoSystemRepository.cs" />
     <Compile Include="IRepositories\Interfaces\ILoginRecordRepository.cs" />

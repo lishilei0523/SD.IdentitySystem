@@ -101,8 +101,6 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 方法
 
-        //Public
-
         #region 修改密码 —— void UpdatePassword(string oldPassword, string newPassword)
         /// <summary>
         /// 修改密码
@@ -136,14 +134,14 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 设置密码 —— void UpdatePassword(string password)
+        #region 设置密码 —— void SetPassword(string password)
         /// <summary>
         /// 设置密码
         /// </summary>
         /// <param name="password">密码</param>
         public void SetPassword(string password)
         {
-            #region # 验证参数
+            #region # 验证
 
             if (string.IsNullOrWhiteSpace(password))
             {
@@ -153,7 +151,7 @@ namespace SD.IdentitySystem.Domain.Entities
             {
                 throw new ArgumentOutOfRangeException(nameof(password), "密码长度不可小于6或大于20！");
             }
-            if (password == this.Password)
+            if (password.ToMD5() == this.Password)
             {
                 return;
             }
@@ -204,22 +202,18 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 分配角色 —— void SetRoles(IEnumerable<Role> roles)
+        #region 分配角色 —— void RelateRoles(IEnumerable<Role> roles)
         /// <summary>
         /// 分配角色
         /// </summary>
         /// <param name="roles">角色集</param>
-        public void SetRoles(IEnumerable<Role> roles)
+        public void RelateRoles(IEnumerable<Role> roles)
         {
             roles = roles?.ToArray() ?? new Role[0];
 
-            if (!roles.Any())
+            this.ClearRoleRelations();
+            if (roles.Any())
             {
-                this.ClearRelation();
-            }
-            else
-            {
-                this.ClearRelation();
                 this.AppendRoles(roles);
             }
         }
@@ -232,11 +226,12 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="roles">角色集</param>
         public void AppendRoles(IEnumerable<Role> roles)
         {
-            #region # 验证参数
+            #region # 验证
 
-            if (roles == null)
+            roles = roles?.ToArray() ?? new Role[0];
+            if (!roles.Any())
             {
-                throw new ArgumentNullException(nameof(roles), @"角色集不可为null！");
+                throw new ArgumentNullException(nameof(roles), @"要追加的角色不可为空！");
             }
 
             #endregion
@@ -249,11 +244,11 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 清空用户关系 —— void ClearRelation()
+        #region 清空角色关系 —— void ClearRoleRelations()
         /// <summary>
-        /// 清空用户关系
+        /// 清空角色关系
         /// </summary>
-        public void ClearRelation()
+        public void ClearRoleRelations()
         {
             foreach (Role role in this.Roles.ToArray())
             {
@@ -273,9 +268,6 @@ namespace SD.IdentitySystem.Domain.Entities
             return this.Roles.Select(x => x.SystemNo).Distinct();
         }
         #endregion
-
-
-        //Private
 
         #region 初始化关键字 —— void InitKeywords()
         /// <summary>

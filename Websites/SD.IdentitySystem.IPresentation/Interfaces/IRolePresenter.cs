@@ -56,16 +56,16 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         IEnumerable<Node> GetUserSystemRoleTree(string loginId);
         #endregion
 
-        #region # 分页获取角色列表 —— PageModel<RoleView> GetRolesByPage(string systemNo...
+        #region # 分页获取角色列表 —— PageModel<RoleView> GetRolesByPage(string keywords...
         /// <summary>
         /// 分页获取角色列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
-        PageModel<RoleView> GetRolesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
+        PageModel<RoleView> GetRolesByPage(string keywords, string systemNo, int pageIndex, int pageSize);
         #endregion
     }
 }

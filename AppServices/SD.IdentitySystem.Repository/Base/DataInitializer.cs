@@ -154,7 +154,7 @@ namespace SD.IdentitySystem.Repository.Base
 
                 if (specAuthorities.Any())
                 {
-                    adminRole.SetAuthorities(specAuthorities);
+                    adminRole.RelateAuthorities(specAuthorities);
                 }
 
                 #endregion

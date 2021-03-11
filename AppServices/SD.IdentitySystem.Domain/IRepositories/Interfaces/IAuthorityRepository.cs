@@ -10,90 +10,48 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// </summary>
     public interface IAuthorityRepository : IAggRootRepository<Authority>
     {
-        #region # 根据信息系统获取权限列表 —— IEnumerable<Authority> FindBySystem(...
+        #region # 分页获取权限列表 —— ICollection<Authority> FindByPage(string keywords...
         /// <summary>
-        /// 根据信息系统获取权限列表
+        /// 分页获取权限列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限列表</returns>
-        IEnumerable<Authority> FindBySystem(string systemNo);
-        #endregion
-
-        #region # 根据信息系统获取权限Id集 —— IEnumerable<Guid> FindAuthorityIds(string systemNo)
-        /// <summary>
-        /// 根据信息系统获取权限Id集
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限Id集</returns>
-        IEnumerable<Guid> FindAuthorityIds(string systemNo);
-        #endregion
-
-        #region # 根据菜单获取权限列表 —— IEnumerable<Authority> FindByMenu(Guid menuId)
-        /// <summary>
-        /// 根据菜单获取权限列表
-        /// </summary>
-        /// <param name="menuId">菜单Id</param>
-        /// <returns>权限列表</returns>
-        IEnumerable<Authority> FindByMenu(Guid menuId);
-        #endregion
-
-        #region # 根据角色获取权限列表 —— IEnumerable<Authority> FindByRole(...
-        /// <summary>
-        /// 根据角色获取权限列表
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        /// <returns>权限列表</returns>
-        IEnumerable<Authority> FindByRole(Guid roleId);
-        #endregion
-
-        #region # 根据角色获取权限列表 —— IEnumerable<Authority> FindByRole(IEnumerable<Guid> roleIds)
-        /// <summary>
-        /// 根据角色获取权限列表
-        /// </summary>
-        /// <param name="roleIds">角色Id集</param>
-        /// <returns>权限列表</returns>
-        IEnumerable<Authority> FindByRole(IEnumerable<Guid> roleIds);
-        #endregion
-
-        #region # 根据角色获取权限路径列表 —— ICollection<string> FindPathsByRole(IEnumerable<Guid> roleIds)
-        /// <summary>
-        /// 根据角色获取权限路径列表
-        /// </summary>
-        /// <param name="roleIds">角色Id集</param>
-        /// <returns>权限路径列表</returns>
-        ICollection<string> FindPathsByRole(IEnumerable<Guid> roleIds);
-        #endregion
-
-        #region # 根据角色获取权限Id列表 —— IEnumerable<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
-        /// <summary>
-        /// 根据角色获取权限Id列表
-        /// </summary>
-        /// <param name="roleIds">角色Id集</param>
-        /// <returns>权限Id列表</returns>
-        IEnumerable<Guid> FindIdsByRole(IEnumerable<Guid> roleIds);
-        #endregion
-
-        #region # 根据角色获取权限Id列表 —— IEnumerable<Authority> FindIdsByRole(...
-        /// <summary>
-        /// 根据角色获取权限Id列表
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        /// <returns>权限Id列表</returns>
-        IEnumerable<Guid> FindIdsByRole(Guid roleId);
-        #endregion
-
-        #region # 分页获取权限集 —— IEnumerable<Authority> FindByPage(string systemNo...
-        /// <summary>
-        /// 分页获取权限集
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount">总记录条数</param>
         /// <param name="pageCount">总页数</param>
-        /// <returns>权限集</returns>
-        IEnumerable<Authority> FindByPage(string systemNo, string keywords, int pageIndex, int pageSize, out int rowCount, out int pageCount);
+        /// <returns>权限列表</returns>
+        ICollection<Authority> FindByPage(string keywords, string systemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount);
+        #endregion
+
+        #region # 获取权限列表 —— ICollection<Authority> Find(string keywords, string systemNo...
+        /// <summary>
+        /// 获取权限列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="menuId">菜单Id</param>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>权限列表</returns>
+        ICollection<Authority> Find(string keywords, string systemNo, Guid? menuId, Guid? roleId);
+        #endregion
+
+        #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRole(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 根据角色获取权限列表
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>权限列表</returns>
+        ICollection<Authority> FindByRole(IEnumerable<Guid> roleIds);
+        #endregion
+
+        #region # 根据角色获取权限Id列表 —— ICollection<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
+        /// <summary>
+        /// 根据角色获取权限Id列表
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>权限Id列表</returns>
+        ICollection<Guid> FindIdsByRole(IEnumerable<Guid> roleIds);
         #endregion
 
         #region # 是否存在给定权限 —— bool ExistsPath(string authorityPath)
@@ -105,7 +63,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         bool ExistsPath(string authorityPath);
         #endregion
 
-        #region # 是否存在给定权限 ——  bool ExistsPath(string assemblyName, string @namespace
+        #region # 是否存在给定权限 ——  bool ExistsPath(string assemblyName, string @namespace...
         /// <summary>
         /// 是否存在给定权限
         /// </summary>

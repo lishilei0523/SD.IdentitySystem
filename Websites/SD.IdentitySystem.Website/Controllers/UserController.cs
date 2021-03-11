@@ -302,7 +302,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("重置私钥")]
         public void ResetPrivateKey(string loginId, string privateKey)
         {
-            this._userContract.SetUserPrivateKey(loginId, privateKey);
+            this._userContract.SetPrivateKey(loginId, privateKey);
         }
         #endregion
 
@@ -342,7 +342,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("分配角色")]
         public void SetRoles(string loginId, IEnumerable<Guid> roleIds)
         {
-            this._userContract.SetRoles(loginId, roleIds);
+            this._userContract.RelateRolesToUser(loginId, roleIds);
         }
         #endregion
 
@@ -363,19 +363,19 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
-        #region # 分页获取用户列表 —— JsonResult GetUsersByPage(string systemNo, string keywords...
+        #region # 分页获取用户列表 —— JsonResult GetUsersByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>用户列表</returns>
         [RequireAuthorization("分页获取用户列表")]
-        public JsonResult GetUsersByPage(string systemNo, string keywords, int page, int rows)
+        public JsonResult GetUsersByPage(string keywords, string systemNo, int page, int rows)
         {
-            PageModel<UserView> pageModel = this._userPresenter.GetUsersByPage(systemNo, keywords, page, rows);
+            PageModel<UserView> pageModel = this._userPresenter.GetUsersByPage(keywords, systemNo, page, rows);
             Grid<UserView> grid = new Grid<UserView>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

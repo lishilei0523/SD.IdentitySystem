@@ -197,19 +197,19 @@ namespace SD.IdentitySystem.Website.Controllers
         }
         #endregion
 
-        #region # 分页获取角色列表 —— JsonResult GetRolesByPage(string systemNo, string keywords...
+        #region # 分页获取角色列表 —— JsonResult GetRolesByPage(string keywords...
         /// <summary>
         /// 分页获取角色列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>角色列表</returns>
         [RequireAuthorization("分页获取角色列表")]
-        public JsonResult GetRolesByPage(string systemNo, string keywords, int page, int rows)
+        public JsonResult GetRolesByPage(string keywords, string systemNo, int page, int rows)
         {
-            PageModel<RoleView> pageModel = this._rolePresenter.GetRolesByPage(systemNo, keywords, page, rows);
+            PageModel<RoleView> pageModel = this._rolePresenter.GetRolesByPage(keywords, systemNo, page, rows);
             Grid<RoleView> grid = new Grid<RoleView>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

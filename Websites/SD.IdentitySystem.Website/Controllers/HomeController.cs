@@ -12,8 +12,6 @@ namespace SD.IdentitySystem.Website.Controllers
     [AuthorizationFilter]
     public class HomeController : Controller
     {
-        //视图部分
-
         #region # 加载主页视图 —— ViewResult Index()
         /// <summary>
         /// 加载主页视图

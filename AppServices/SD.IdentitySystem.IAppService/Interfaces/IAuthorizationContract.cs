@@ -21,12 +21,23 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 创建信息系统
         /// </summary>
-        /// <param name="systemNo">组织编号</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="systemName">信息系统名称</param>
         /// <param name="adminLoginId">系统管理员登录名</param>
         /// <param name="applicationType">应用程序类型</param>
         [OperationContract]
         void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType);
+        #endregion
+
+        #region # 修改信息系统 —— void UpdateInfoSystem(Guid infoSystemId, string systemNo...
+        /// <summary>
+        /// 修改信息系统
+        /// </summary>
+        /// <param name="infoSystemId">信息系统Id</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="systemName">信息系统名称</param>
+        [OperationContract]
+        void UpdateInfoSystem(Guid infoSystemId, string systemNo, string systemName);
         #endregion
 
         #region # 初始化信息系统 —— void InitInfoSystem(string systemNo, string host...
@@ -50,15 +61,30 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void InitInfoSystems(IEnumerable<InfoSystemParam> initParams);
         #endregion
 
-        #region # 批量创建权限 —— IEnumerable<Guid> CreateAuthorities(string systemNo...
+        #region # 创建权限 —— void CreateAuthority(string systemNo...
+        /// <summary>
+        /// 创建权限
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="authorityName">权限名称</param>
+        /// <param name="englishName">英文名称</param>
+        /// <param name="description">描述</param>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        [OperationContract]
+        void CreateAuthority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName);
+        #endregion
+
+        #region # 批量创建权限 —— void CreateAuthorities(string systemNo...
         /// <summary>
         /// 批量创建权限
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="authorityParams">权限参数模型集</param>
-        /// <returns>权限Id集</returns>
         [OperationContract]
-        IEnumerable<Guid> CreateAuthorities(string systemNo, IEnumerable<AuthorityParam> authorityParams);
+        void CreateAuthorities(string systemNo, IEnumerable<AuthorityParam> authorityParams);
         #endregion
 
         #region # 修改权限 —— void UpdateAuthority(Guid authorityId...
@@ -80,7 +106,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void RemoveAuthority(Guid authorityId);
         #endregion
 
-        #region # 创建菜单 —— Guid CreateMenu(string systemNo, ApplicationType applicationType...
+        #region # 创建菜单 —— void CreateMenu(string systemNo, ApplicationType applicationType...
         /// <summary>
         /// 创建菜单
         /// </summary>
@@ -91,10 +117,9 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="url">链接地址</param>
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
-        /// <param name="parentId">上级菜单Id</param>
-        /// <returns>菜单Id</returns>
+        /// <param name="parentNodeId">上级节点Id</param>
         [OperationContract]
-        Guid CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentId);
+        void CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId);
         #endregion
 
         #region # 修改菜单 —— void UpdateMenu(Guid menuId, string menuName...
@@ -120,17 +145,17 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void RemoveMenu(Guid menuId);
         #endregion
 
-        #region # 关联权限 —— void RelateAuthorities(Guid menuId...
+        #region # 关联权限到菜单 —— void RelateAuthoritiesToMenu(Guid menuId...
         /// <summary>
-        /// 关联权限
+        /// 关联权限到菜单
         /// </summary>
         /// <param name="menuId">菜单Id</param>
         /// <param name="authorityIds">权限Id集</param>
         [OperationContract]
-        void RelateAuthorities(Guid menuId, IEnumerable<Guid> authorityIds);
+        void RelateAuthoritiesToMenu(Guid menuId, IEnumerable<Guid> authorityIds);
         #endregion
 
-        #region # 创建角色 —— Guid CreateRole(string systemNo, string roleName...
+        #region # 创建角色 —— void CreateRole(string systemNo, string roleName...
         /// <summary>
         /// 创建角色
         /// </summary>
@@ -138,9 +163,8 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="roleName">角色名称</param>
         /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
-        /// <returns>角色Id</returns>
         [OperationContract]
-        Guid CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds);
+        void CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds);
         #endregion
 
         #region # 修改角色 —— void UpdateRole(Guid roleId, string roleName...
@@ -155,24 +179,24 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds);
         #endregion
 
-        #region # 为角色分配权限 —— void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
+        #region # 关联权限到角色 —— void RelateAuthoritiesToRole(Guid roleId, IEnumerable<Guid> authorityIds)
         /// <summary>
-        /// 为角色分配权限
+        /// 关联权限到角色
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <param name="authorityIds">权限Id集</param>
         [OperationContract]
-        void SetAuthorities(Guid roleId, IEnumerable<Guid> authorityIds);
+        void RelateAuthoritiesToRole(Guid roleId, IEnumerable<Guid> authorityIds);
         #endregion
 
-        #region # 为角色追加权限 —— void AppendAuthorities(Guid roleId, IEnumerable<Guid> authorityIds)
+        #region # 追加权限到角色 —— void AppendAuthoritiesToRole(Guid roleId, IEnumerable<Guid> authorityIds)
         /// <summary>
-        /// 为角色追加权限
+        /// 追加权限到角色
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <param name="authorityIds">权限Id集</param>
         [OperationContract]
-        void AppendAuthorities(Guid roleId, IEnumerable<Guid> authorityIds);
+        void AppendAuthoritiesToRole(Guid roleId, IEnumerable<Guid> authorityIds);
         #endregion
 
         #region # 删除角色 —— void RemoveRole(Guid roleId)
@@ -228,80 +252,30 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         AuthorityInfo GetAuthority(Guid authorityId);
         #endregion
 
-        #region # 获取权限列表 —— IEnumerable<AuthorityInfo> GetAuthorities(string systemNo)
+        #region # 获取权限列表 —— IEnumerable<AuthorityInfo> GetAuthorities(string keywords...
         /// <summary>
         /// 获取权限列表
         /// </summary>
+        /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限列表</returns>
-        [OperationContract]
-        IEnumerable<AuthorityInfo> GetAuthorities(string systemNo);
-        #endregion
-
-        #region # 获取权限Id列表 —— IEnumerable<Guid> GetAuthorityIds(string systemNo)
-        /// <summary>
-        /// 获取权限Id列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限Id列表</returns>
-        [OperationContract]
-        IEnumerable<Guid> GetAuthorityIds(string systemNo);
-        #endregion
-
-        #region # 根据菜单获取权限列表 —— IEnumerable<AuthorityInfo> GetAuthoritiesByMenu(...
-        /// <summary>
-        /// 根据菜单获取权限列表
-        /// </summary>
         /// <param name="menuId">菜单Id</param>
-        /// <returns>权限列表</returns>
-        [OperationContract]
-        IEnumerable<AuthorityInfo> GetAuthoritiesByMenu(Guid menuId);
-        #endregion
-
-        #region # 根据角色获取权限列表 —— IEnumerable<AuthorityInfo> GetAuthoritiesByRole(...
-        /// <summary>
-        /// 根据角色获取权限列表
-        /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <returns>权限列表</returns>
         [OperationContract]
-        IEnumerable<AuthorityInfo> GetAuthoritiesByRole(Guid roleId);
+        IEnumerable<AuthorityInfo> GetAuthorities(string keywords, string systemNo, Guid? menuId, Guid? roleId);
         #endregion
 
-        #region # 根据角色获取权限Id列表 —— IEnumerable<Guid> GetAuthorityIdsByRole(...
-        /// <summary>
-        /// 根据角色获取权限Id列表
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        /// <returns>权限Id列表</returns>
-        [OperationContract]
-        IEnumerable<Guid> GetAuthorityIdsByRole(Guid roleId);
-        #endregion
-
-        #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo...
+        #region # 分页获取权限列表 —— PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords...
         /// <summary>
         /// 分页获取权限列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
         [OperationContract]
-        PageModel<AuthorityInfo> GetAuthoritiesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
-        #endregion
-
-        #region # 是否存在权限 —— bool ExistsAuthority(string assemblyName, string @namespace...
-        /// <summary>
-        /// 是否存在权限
-        /// </summary>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
-        /// <returns>是否存在</returns>
-        [OperationContract]
-        bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName);
+        PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize);
         #endregion
 
         #region # 获取菜单 —— MenuInfo GetMenu(Guid menuId)
@@ -349,27 +323,42 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         RoleInfo GetRole(Guid roleId);
         #endregion
 
-        #region # 获取角色列表 —— IEnumerable<RoleInfo> GetRoles(string systemNo)
+        #region # 获取角色列表 —— IEnumerable<RoleInfo> GetRoles(string keywords...
         /// <summary>
         /// 获取角色列表
         /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="loginId">登录名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
         [OperationContract]
-        IEnumerable<RoleInfo> GetRoles(string systemNo);
+        IEnumerable<RoleInfo> GetRoles(string keywords, string loginId, string systemNo);
         #endregion
 
-        #region # 分页获取角色列表 —— PageModel<RoleInfo> GetRolesByPage(string systemNo...
+        #region # 分页获取角色列表 —— PageModel<RoleInfo> GetRolesByPage(string keywords...
         /// <summary>
         /// 分页获取角色列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
         /// <param name="keywords">关键字</param>
+        /// <param name="systemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
         [OperationContract]
-        PageModel<RoleInfo> GetRolesByPage(string systemNo, string keywords, int pageIndex, int pageSize);
+        PageModel<RoleInfo> GetRolesByPage(string keywords, string systemNo, int pageIndex, int pageSize);
+        #endregion
+
+        #region # 是否存在权限 —— bool ExistsAuthority(string assemblyName, string @namespace...
+        /// <summary>
+        /// 是否存在权限
+        /// </summary>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        /// <returns>是否存在</returns>
+        [OperationContract]
+        bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName);
         #endregion
 
         #region # 是否存在角色 —— bool ExistsRole(string systemNo, Guid? roleId, string roleName)
