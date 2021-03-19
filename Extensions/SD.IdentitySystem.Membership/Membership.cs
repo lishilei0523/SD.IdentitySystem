@@ -18,18 +18,15 @@ namespace SD.IdentitySystem
         /// <summary>
         /// 当前登录信息
         /// </summary>
-        /// <returns></returns>
         public static LoginInfo LoginInfo
         {
             get
             {
                 //服务端获取
-                if (OperationContext.Current != null &&
-                    OperationContext.Current.EndpointDispatcher.ContractName != "IAuthenticationContract")
+                if (OperationContext.Current != null)
                 {
                     //获取消息头
                     MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
-
                     if (!headers.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
                     {
                         return null;

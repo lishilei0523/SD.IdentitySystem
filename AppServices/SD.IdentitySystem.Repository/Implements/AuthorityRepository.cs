@@ -75,11 +75,15 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>权限列表</returns>
         public ICollection<Authority> FindByRole(IEnumerable<Guid> roleIds)
         {
+            #region # 验证
+
             Guid[] roleIds_ = roleIds?.Distinct().ToArray() ?? new Guid[0];
             if (!roleIds_.Any())
             {
                 return new List<Authority>();
             }
+
+            #endregion
 
             Expression<Func<Authority, bool>> condition =
                 x =>
@@ -99,9 +103,19 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>权限Id列表</returns>
         public ICollection<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
         {
+            #region # 验证
+
+            Guid[] roleIds_ = roleIds?.Distinct().ToArray() ?? new Guid[0];
+            if (!roleIds_.Any())
+            {
+                return new List<Guid>();
+            }
+
+            #endregion
+
             Expression<Func<Authority, bool>> condition =
                 x =>
-                    x.Roles.Any(y => roleIds.Contains(y.Id));
+                    x.Roles.Any(y => roleIds_.Contains(y.Id));
 
             IQueryable<Guid> authorityIds = base.FindIds(condition);
 

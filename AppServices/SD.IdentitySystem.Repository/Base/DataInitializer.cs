@@ -103,7 +103,7 @@ namespace SD.IdentitySystem.Repository.Base
         /// </summary>
         private void InitAdmin()
         {
-            if (!this._repMediator.UserRep.Exists(CommonConstants.AdminLoginId))
+            if (!this._repMediator.UserRep.ExistsNo(CommonConstants.AdminLoginId))
             {
                 User admin = new User(CommonConstants.AdminLoginId, "超级管理员", CommonConstants.InitialPassword);
 

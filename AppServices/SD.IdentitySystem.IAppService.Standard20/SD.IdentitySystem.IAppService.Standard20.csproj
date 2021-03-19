@@ -53,7 +53,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="2.2.0" />
+    <PackageReference Include="SD.Infrastructure" Version="2.2.2" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
   </ItemGroup>
 </Project>

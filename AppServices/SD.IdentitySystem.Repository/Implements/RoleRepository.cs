@@ -51,14 +51,10 @@ namespace SD.IdentitySystem.Repository.Implements
             Expression<Func<Role, bool>> condition =
                 x =>
                     (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
+                    (string.IsNullOrEmpty(loginId) || x.Users.Any(y => y.Number == loginId)) &&
                     (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo);
 
             IQueryable<Role> roles = this.Find(condition);
-
-            if (!string.IsNullOrWhiteSpace(loginId))
-            {
-                roles = roles.Where(x => x.Users.Any(y => y.Number == loginId));
-            }
 
             return roles.ToList();
         }
@@ -72,18 +68,23 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>系统管理员角色</returns>
         public Role GetManagerRole(string systemNo)
         {
-            IQueryable<Role> specRoles = base.Find(x => x.SystemNo == systemNo);
+            Expression<Func<Role, bool>> condition =
+                x =>
+                    x.SystemNo == systemNo &&
+                    x.Number == CommonConstants.ManagerRoleNo;
 
-            #region # 验证业务
+            Role managerRole = base.SingleOrDefault(condition);
 
-            if (specRoles.All(x => x.Number != CommonConstants.ManagerRoleNo))
+            #region # 验证
+
+            if (managerRole == null)
             {
-                throw new ApplicationException(string.Format("未为编号为\"{0}\"的信息系统初始化系统管理员角色！", systemNo));
+                throw new ApplicationException($"未为编号为\"{systemNo}\"的信息系统初始化系统管理员角色！");
             }
 
             #endregion
 
-            return specRoles.Single(x => x.Number == CommonConstants.ManagerRoleNo);
+            return managerRole;
         }
         #endregion
 
@@ -115,11 +116,11 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             IQueryable<Role> specRoles = base.Find(x => x.SystemNo == systemNo);
 
-            #region # 验证业务
+            #region # 验证
 
             if (specRoles.All(x => x.Number != CommonConstants.ManagerRoleNo))
             {
-                throw new ApplicationException(string.Format("未为编号为\"{0}\"的信息系统初始化系统管理员角色！", systemNo));
+                throw new ApplicationException($"未为编号为\"{systemNo}\"的信息系统初始化系统管理员角色！");
             }
 
             #endregion

@@ -393,7 +393,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>是否存在</returns>
         public bool ExistsUser(string loginId)
         {
-            return this._repMediator.UserRep.Exists(loginId);
+            return this._repMediator.UserRep.ExistsNo(loginId);
         }
         #endregion
 

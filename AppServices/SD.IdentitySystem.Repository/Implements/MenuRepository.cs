@@ -24,8 +24,8 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
-        /// <param name="rowCount"></param>
-        /// <param name="pageCount"></param>
+        /// <param name="rowCount">总记录数</param>
+        /// <param name="pageCount">总页数</param>
         /// <returns>菜单列表</returns>
         public ICollection<Menu> FindByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {

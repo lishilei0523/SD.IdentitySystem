@@ -70,7 +70,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
         {
             //验证
-            Assert.IsFalse(this._repMediator.UserRep.Exists(adminLoginId), $"登录名：\"{adminLoginId}\"已存在，请重试！");
+            Assert.IsFalse(this._repMediator.UserRep.ExistsNo(adminLoginId), $"登录名：\"{adminLoginId}\"已存在，请重试！");
 
             InfoSystem infoSystem = new InfoSystem(systemNo, systemName, adminLoginId, applicationType);
 
@@ -159,7 +159,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public void CreateAuthority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
         {
             //验证
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
+            Assert.IsTrue(this._repMediator.InfoSystemRep.ExistsNo(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
 
             Authority authority = new Authority(systemNo, authorityName, englishName, description, assemblyName, @namespace, className, methodName);
 
@@ -180,7 +180,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public void CreateAuthorities(string systemNo, IEnumerable<AuthorityParam> authorityParams)
         {
             //验证
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
+            Assert.IsTrue(this._repMediator.InfoSystemRep.ExistsNo(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
 
             IList<Authority> authorities = new List<Authority>();
             foreach (AuthorityParam param in authorityParams)
@@ -245,7 +245,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public void CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId)
         {
             //验证参数
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
+            Assert.IsTrue(this._repMediator.InfoSystemRep.ExistsNo(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
             Assert.IsFalse(this._repMediator.MenuRep.Exists(parentNodeId, applicationType, menuName), "给定菜单级别下，相同应用程序类型的菜单名称已存在！");
 
             Menu parentNode = parentNodeId.HasValue
@@ -351,7 +351,7 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             //验证
             authorityIds = authorityIds?.Distinct().ToArray() ?? new Guid[0];
-            Assert.IsTrue(this._repMediator.InfoSystemRep.Exists(systemNo));
+            Assert.IsTrue(this._repMediator.InfoSystemRep.ExistsNo(systemNo));
 
             //创建角色
             Role role = new Role(roleName, systemNo, description);

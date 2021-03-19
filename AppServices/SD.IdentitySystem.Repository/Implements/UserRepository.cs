@@ -30,10 +30,11 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             Expression<Func<User, bool>> condition =
                 x =>
-                    (x.Number != CommonConstants.AdminLoginId) &&
+
+                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
                     (string.IsNullOrEmpty(systemNo) || x.Roles.Any(y => y.SystemNo == systemNo)) &&
                     (roleId == null || x.Roles.Any(y => y.Id == roleId)) &&
-                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
+                    (x.Number != CommonConstants.AdminLoginId);
 
             IQueryable<User> users = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
 
