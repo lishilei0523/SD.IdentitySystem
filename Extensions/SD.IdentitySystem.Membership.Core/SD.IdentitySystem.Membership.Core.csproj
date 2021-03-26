@@ -1,22 +1,20 @@
-﻿<Project Sdk="Microsoft.NET.Sdk">
+<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
+    <Description>用户工具 - Membership</Description>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>ASP.NET Core WebApi身份认证工具</Description>
     <Copyright>Copyright © SD 2021</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.1\SD.IdentitySystem.WebApi.Core.Authentication.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.1\SD.IdentitySystem.Membership.Core.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.1\SD.IdentitySystem.WebApi.Core.Authentication.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.1\SD.IdentitySystem.Membership.Core.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.CacheManager" Version="2.0.2" />
     <PackageReference Include="SD.Infrastructure" Version="2.2.3" />
-    <PackageReference Include="SD.Toolkits.WebApi.Core" Version="1.0.1" />
   </ItemGroup>
 </Project>
