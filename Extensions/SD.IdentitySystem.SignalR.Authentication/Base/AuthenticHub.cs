@@ -6,7 +6,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SD.IdentitySystem.SignalR.Server.Base
+namespace SD.IdentitySystem.SignalR.Authentication.Base
 {
     /// <summary>
     /// 认证消息Hub基类

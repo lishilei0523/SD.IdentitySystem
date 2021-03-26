@@ -7,7 +7,7 @@ using System.Net;
 using System.Security.Principal;
 using System.Threading.Tasks;
 
-namespace SD.IdentitySystem.SignalR.Server.Middlewares
+namespace SD.IdentitySystem.SignalR.Authentication.Middlewares
 {
     /// <summary>
     /// 身份认证中间件

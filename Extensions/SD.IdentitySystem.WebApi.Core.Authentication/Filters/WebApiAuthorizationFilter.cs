@@ -35,20 +35,20 @@ namespace SD.IdentitySystem.WebApi.Core.Authentication.Filters
         /// </summary>
         static WebApiAuthorizationFilter()
         {
-            WebApiAuthorizationFilter._Sync = new object();
+            _Sync = new object();
 
             if (!string.IsNullOrWhiteSpace(GlobalSetting.AuthenticationTimeout))
             {
-                if (!int.TryParse(GlobalSetting.AuthenticationTimeout, out WebApiAuthorizationFilter._Timeout))
+                if (!int.TryParse(GlobalSetting.AuthenticationTimeout, out _Timeout))
                 {
                     //默认20分钟
-                    WebApiAuthorizationFilter._Timeout = 20;
+                    _Timeout = 20;
                 }
             }
             else
             {
                 //默认20分钟
-                WebApiAuthorizationFilter._Timeout = 20;
+                _Timeout = 20;
             }
         }
 
@@ -79,7 +79,7 @@ namespace SD.IdentitySystem.WebApi.Core.Authentication.Filters
                     Guid publicKey = new Guid(header.ToString());
 
                     //认证
-                    lock (WebApiAuthorizationFilter._Sync)
+                    lock (_Sync)
                     {
                         //以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
                         LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
@@ -95,7 +95,7 @@ namespace SD.IdentitySystem.WebApi.Core.Authentication.Filters
                         else
                         {
                             //通过后，重新设置缓存过期时间
-                            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(WebApiAuthorizationFilter._Timeout));
+                            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
                         }
                     }
                 }
