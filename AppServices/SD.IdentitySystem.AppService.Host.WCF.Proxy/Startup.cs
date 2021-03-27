@@ -2,6 +2,7 @@
 using Owin;
 using SD.IdentitySystem.AppService.Host.Proxy;
 using SD.IdentitySystem.WCFAuthentication.Owin;
+using SD.IdentitySystem.WebApi.Authentication.Filters;
 using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;
 using SD.Toolkits.WebApi.Extensions;
@@ -36,6 +37,9 @@ namespace SD.IdentitySystem.AppService.Host.Proxy
 
             //POST请求多参数绑定
             httpConfiguration.RegisterWrapParameterBindingRules();
+
+            //授权过滤器
+            httpConfiguration.Filters.Add(new WebApiAuthorizationFilter());
 
             //允许跨域
             httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));

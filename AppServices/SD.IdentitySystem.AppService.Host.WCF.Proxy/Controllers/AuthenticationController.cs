@@ -38,6 +38,8 @@ namespace SD.IdentitySystem.AppService.Host.Proxy.Controllers
         /// <returns>登录信息</returns>
         [HttpPost]
         [WrapPostParameters]
+        [AllowAnonymous]
+
         public LoginInfo Logon(string privateKey)
         {
             LoginInfo loginInfo = this._authenticationContract.Logon(privateKey);
@@ -55,6 +57,7 @@ namespace SD.IdentitySystem.AppService.Host.Proxy.Controllers
         /// <returns>登录信息</returns>
         [HttpPost]
         [WrapPostParameters]
+        [AllowAnonymous]
         public LoginInfo Login(string loginId, string password)
         {
             LoginInfo loginInfo = this._authenticationContract.Login(loginId, password);
