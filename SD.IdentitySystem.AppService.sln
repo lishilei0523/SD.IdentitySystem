@@ -37,15 +37,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppServic
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService.Host.WCF.Proxy", "AppServices\SD.IdentitySystem.AppService.Host.WCF.Proxy\SD.IdentitySystem.AppService.Host.WCF.Proxy.csproj", "{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Domain.NETStandard20", "AppServices\SD.IdentitySystem.Domain.NETStandard20\SD.IdentitySystem.Domain.NETStandard20.csproj", "{E40A7430-C819-45CC-B352-890ED8A029A4}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Domain.Standard20", "AppServices\SD.IdentitySystem.Domain.Standard20\SD.IdentitySystem.Domain.Standard20.csproj", "{E40A7430-C819-45CC-B352-890ED8A029A4}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.DomainService.NETStandard21", "AppServices\SD.IdentitySystem.DomainService.NETStandard21\SD.IdentitySystem.DomainService.NETStandard21.csproj", "{C383E7BF-DD5D-4E77-9D66-CFB2034E2D1C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.DomainService.Standard21", "AppServices\SD.IdentitySystem.DomainService.Standard21\SD.IdentitySystem.DomainService.Standard21.csproj", "{C383E7BF-DD5D-4E77-9D66-CFB2034E2D1C}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.DomainEventHandler.NETStandard21", "AppServices\SD.IdentitySystem.DomainEventHandler.NETStandard21\SD.IdentitySystem.DomainEventHandler.NETStandard21.csproj", "{6DF5F0FE-6F24-495F-9CFB-8A7C9E19EF3B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.DomainEventHandler.Standard21", "AppServices\SD.IdentitySystem.DomainEventHandler.Standard21\SD.IdentitySystem.DomainEventHandler.Standard21.csproj", "{6DF5F0FE-6F24-495F-9CFB-8A7C9E19EF3B}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository.NETStandard21", "AppServices\SD.IdentitySystem.Repository.NETStandard21\SD.IdentitySystem.Repository.NETStandard21.csproj", "{EAE15988-AF76-470A-B3A5-2A8FFADE9285}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository.Standard21", "AppServices\SD.IdentitySystem.Repository.Standard21\SD.IdentitySystem.Repository.Standard21.csproj", "{EAE15988-AF76-470A-B3A5-2A8FFADE9285}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.NETStandard21", "AppServices\SD.IdentitySystem.AppService.NETStandard21\SD.IdentitySystem.AppService.NETStandard21.csproj", "{352A3C90-A167-4415-8C86-2BF88C2A9AE1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Standard21", "AppServices\SD.IdentitySystem.AppService.Standard21\SD.IdentitySystem.AppService.Standard21.csproj", "{352A3C90-A167-4415-8C86-2BF88C2A9AE1}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WebApiCore", "AppServices\SD.IdentitySystem.AppService.Host.WebApiCore\SD.IdentitySystem.AppService.Host.WebApiCore.csproj", "{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}"
 EndProject
