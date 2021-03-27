@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using SD.IdentitySystem.WebApi.Core.Authentication.Filters;
+using SD.IdentitySystem.WebApiCore.Authentication.Filters;
 using SD.Infrastructure.AspNetCore.Server.Middlewares;
 using SD.Toolkits.Owin.Core.Middlewares;
 using System;
