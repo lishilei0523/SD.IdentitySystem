@@ -85,6 +85,12 @@
     <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Common.3.0.2\lib\net45\SD.Common.dll</HintPath>
     </Reference>
+    <Reference Include="SD.IdentitySystem.Membership, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.Membership.3.0.0\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.IdentitySystem.Membership.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.Membership.WebApi.1.0.0\lib\net461\SD.IdentitySystem.Membership.WebApi.dll</HintPath>
+    </Reference>
     <Reference Include="SD.IdentitySystem.WebApi.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.WebApi.Authentication.1.0.0\lib\net461\SD.IdentitySystem.WebApi.Authentication.dll</HintPath>
     </Reference>
