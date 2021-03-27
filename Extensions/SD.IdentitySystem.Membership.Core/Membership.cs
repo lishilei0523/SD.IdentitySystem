@@ -1,4 +1,10 @@
-﻿using SD.Infrastructure.MemberShip;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
+using SD.CacheManager;
+using SD.Infrastructure.Constants;
+using SD.Infrastructure.MemberShip;
+using SD.Toolkits.Owin.Core.Extensions;
+using System;
 
 // ReSharper disable once CheckNamespace
 namespace SD.IdentitySystem
@@ -15,14 +21,14 @@ namespace SD.IdentitySystem
         {
             get
             {
-                //if (!context.HttpContext.Request.Headers.TryGetValue(SessionKey.CurrentPublicKey, out StringValues header))
-                //{
-                //    ObjectResult response = new ObjectResult("身份认证消息头不存在，请检查程序！")
-                //    {
-                //        StatusCode = (int)HttpStatusCode.Unauthorized
-                //    };
-                //    context.Result = response;
-                //}
+                HttpContext httpContext = OwinContextReader.Current;
+                if (httpContext != null && httpContext.Request.Headers.TryGetValue(SessionKey.CurrentPublicKey, out StringValues header))
+                {
+                    Guid publicKey = new Guid(header.ToString());
+                    LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
+
+                    return loginInfo;
+                }
 
                 return null;
             }
