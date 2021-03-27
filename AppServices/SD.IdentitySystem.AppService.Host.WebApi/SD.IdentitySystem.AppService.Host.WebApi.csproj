@@ -83,10 +83,7 @@
       <HintPath>..\..\packages\SD.CacheManager.Redis.2.0.4\lib\net461\SD.CacheManager.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.3.0.1\lib\net45\SD.Common.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.IdentitySystem.WCFAuthentication.Owin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.Owin.1.0.0\lib\net461\SD.IdentitySystem.WCFAuthentication.Owin.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.3.0.2\lib\net45\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.WebApi.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.WebApi.Authentication.1.0.0\lib\net461\SD.IdentitySystem.WebApi.Authentication.dll</HintPath>

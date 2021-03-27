@@ -7,6 +7,9 @@ using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;
 using SD.Toolkits.WebApi.Extensions;
 using Swashbuckle.Application;
+using System;
+using System.IO;
+using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
@@ -24,7 +27,9 @@ namespace SD.IdentitySystem.AppService.Host
         {
             httpConfiguration.EnableSwagger(config =>
             {
-                config.IncludeXmlComments("SD.IdentitySystem.AppService.Host.xml");
+                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                config.IncludeXmlComments(xmlPath);
                 config.SingleApiVersion("v1.0", "身份认证系统 WebApi 接口文档");
             }).EnableSwaggerUi();
 
@@ -44,6 +49,7 @@ namespace SD.IdentitySystem.AppService.Host
             //允许跨域
             httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
+            //中间件配置
             appBuilder.Use<CacheOwinContextMiddleware>();
             appBuilder.Use<PublicKeyExchangeMiddleware>();
         }
