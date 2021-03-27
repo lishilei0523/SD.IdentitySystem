@@ -1,0 +1,7 @@
+﻿<configuration>
+  <injectionRegisterConfiguration>
+    <asInterfaceTypes>
+      <type name="SD.IdentitySystem.Membership.WCF.MembershipProvider" assembly="SD.IdentitySystem.Membership.WCF" />
+    </asInterfaceTypes>
+  </injectionRegisterConfiguration>
+</configuration>

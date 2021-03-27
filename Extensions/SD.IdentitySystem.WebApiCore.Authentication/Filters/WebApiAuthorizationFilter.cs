@@ -11,7 +11,7 @@ using SD.Toolkits.WebApi;
 using System;
 using System.Net;
 
-namespace SD.IdentitySystem.WebApi.Core.Authentication.Filters
+namespace SD.IdentitySystem.WebApiCore.Authentication.Filters
 {
     /// <summary>
     /// WebApi授权过滤器

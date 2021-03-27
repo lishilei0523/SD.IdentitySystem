@@ -26,11 +26,11 @@ namespace SD.IdentitySystem.Authorization.Toolkits
         /// <returns>方法路径</returns>
         public static string GetMethodPath(this MethodBase method)
         {
-            #region # 验证参数
+            #region # 验证
 
             if (method == null)
             {
-                throw new ArgumentNullException("method", @"方法信息不可为空！");
+                throw new ArgumentNullException(nameof(method), @"方法信息不可为空！");
             }
 
             #endregion

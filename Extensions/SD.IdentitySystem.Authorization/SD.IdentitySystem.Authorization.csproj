@@ -75,9 +75,9 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj">
-      <Project>{b8c46017-c7c3-47fb-854b-11967165c080}</Project>
-      <Name>SD.IdentitySystem.Membership</Name>
+    <ProjectReference Include="..\SD.IdentitySystem.Membership.NET461\SD.IdentitySystem.Membership.NET461.csproj">
+      <Project>{0ffe16b2-0b64-4a0e-9ace-a4629deda80d}</Project>
+      <Name>SD.IdentitySystem.Membership.NET461</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
