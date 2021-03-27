@@ -3,7 +3,7 @@ using SD.Toolkits.WebApi;
 using SD.Toolkits.WebApi.Configurations;
 using System;
 
-namespace SD.IdentitySystem.AppService.WebApi
+namespace SD.IdentitySystem.AppService.Host.Proxy
 {
     /// <summary>
     /// 服务启动器

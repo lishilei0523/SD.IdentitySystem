@@ -1,6 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using SD.IdentitySystem.AppService.WebApi;
+using SD.IdentitySystem.AppService.Host.Proxy;
 using SD.IdentitySystem.WCFAuthentication.Owin;
 using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;
@@ -10,7 +10,7 @@ using System.Web.Http;
 using System.Web.Http.Cors;
 
 [assembly: OwinStartup(typeof(Startup))]
-namespace SD.IdentitySystem.AppService.WebApi
+namespace SD.IdentitySystem.AppService.Host.Proxy
 {
     public class Startup : StartupBase
     {
@@ -23,7 +23,7 @@ namespace SD.IdentitySystem.AppService.WebApi
         {
             httpConfiguration.EnableSwagger(config =>
             {
-                config.IncludeXmlComments("SD.IdentitySystem.AppService.WebApi.xml");
+                config.IncludeXmlComments("SD.IdentitySystem.AppService.Host.Proxy.xml");
                 config.SingleApiVersion("v1.0", "身份认证系统 WebApi 接口文档");
             }).EnableSwaggerUi();
 

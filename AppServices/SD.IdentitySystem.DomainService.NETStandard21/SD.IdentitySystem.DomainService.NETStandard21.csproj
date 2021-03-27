@@ -1,0 +1,28 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <AssemblyName>SD.IdentitySystem.DomainService</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.DomainService</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--Implements-->
+    <Compile Include="..\SD.IdentitySystem.DomainService\Implements\RoleService.cs">
+      <Link>Implements\RoleService.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MrAdvice" Version="2.8.11" />
+    <PackageReference Include="SD.AOP.Core" Version="2.0.6" />
+    <PackageReference Include="SD.Common" Version="3.0.2" />
+    <PackageReference Include="SD.Infrastructure" Version="2.2.3" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.1" />
+    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.0" />
+    <PackageReference Include="SD.Toolkits.SerialNumber" Version="2.0.4" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.Domain.NETStandard20\SD.IdentitySystem.Domain.NETStandard20.csproj" />
+  </ItemGroup>
+</Project>

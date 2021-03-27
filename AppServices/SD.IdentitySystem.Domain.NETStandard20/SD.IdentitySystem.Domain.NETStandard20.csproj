@@ -1,0 +1,83 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <AssemblyName>SD.IdentitySystem.Domain</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.Domain</RootNamespace>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <!--ClassDiagram-->
+    <None Include="..\SD.IdentitySystem.Domain\ClassDiagram\Main.cd">
+      <Link>ClassDiagram\Main.cd</Link>
+    </None>
+    <!--Entities-->
+    <Compile Include="..\SD.IdentitySystem.Domain\Entities\Authority.cs">
+      <Link>Entities\Authority.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\Entities\InfoSystem.cs">
+      <Link>Entities\InfoSystem.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\Entities\LoginRecord.cs">
+      <Link>Entities\LoginRecord.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\Entities\Menu.cs">
+      <Link>Entities\Menu.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\Entities\Role.cs">
+      <Link>Entities\Role.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\Entities\User.cs">
+      <Link>Entities\User.cs</Link>
+    </Compile>
+    <!--EventSources-->
+    <Compile Include="..\SD.IdentitySystem.Domain\EventSources\AuthorizationContext\AuthorityCreatedEvent.cs">
+      <Link>EventSources\AuthorizationContext\AuthorityCreatedEvent.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\EventSources\AuthorizationContext\InfoSystemCreatedEvent.cs">
+      <Link>EventSources\AuthorizationContext\InfoSystemCreatedEvent.cs</Link>
+    </Compile>
+    <!--IDomainServices-->
+    <Compile Include="..\SD.IdentitySystem.Domain\IDomainServices\IRoleService.cs">
+      <Link>IDomainServices\IRoleService.cs</Link>
+    </Compile>
+    <!--IRepositories-->
+    <Compile Include="..\SD.IdentitySystem.Domain\IRepositories\Interfaces\IAuthorityRepository.cs">
+      <Link>IRepositories\Interfaces\IAuthorityRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\IRepositories\Interfaces\IInfoSystemRepository.cs">
+      <Link>IRepositories\Interfaces\IInfoSystemRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\IRepositories\Interfaces\ILoginRecordRepository.cs">
+      <Link>IRepositories\Interfaces\ILoginRecordRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\IRepositories\Interfaces\IMenuRepository.cs">
+      <Link>IRepositories\Interfaces\IMenuRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\IRepositories\Interfaces\IRoleRepository.cs">
+      <Link>IRepositories\Interfaces\IRoleRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\IRepositories\Interfaces\IUserRepository.cs">
+      <Link>IRepositories\Interfaces\IUserRepository.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\IRepositories\IUnitOfWorkIdentity.cs">
+      <Link>IRepositories\IUnitOfWorkIdentity.cs</Link>
+    </Compile>
+    <!--Mediators-->
+    <Compile Include="..\SD.IdentitySystem.Domain\Mediators\DomainServiceMediator.cs">
+      <Link>Mediators\DomainServiceMediator.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.Domain\Mediators\RepositoryMediator.cs">
+      <Link>Mediators\RepositoryMediator.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MrAdvice" Version="2.8.11" />
+    <PackageReference Include="SD.AOP.Core" Version="2.0.6" />
+    <PackageReference Include="SD.Common" Version="3.0.2" />
+    <PackageReference Include="SD.Infrastructure" Version="2.2.3" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.1" />
+    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.0" />
+    <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.2" />
+  </ItemGroup>
+</Project>

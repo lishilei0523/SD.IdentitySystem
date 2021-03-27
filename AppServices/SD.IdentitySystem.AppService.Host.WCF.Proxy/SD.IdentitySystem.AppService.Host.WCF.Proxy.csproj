@@ -6,8 +6,8 @@
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
     <ProjectGuid>{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>SD.IdentitySystem.AppService.WebApi</RootNamespace>
-    <AssemblyName>SD.IdentitySystem.AppService.WebApi</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.AppService.Host.Proxy</RootNamespace>
+    <AssemblyName>SD.IdentitySystem.AppService.Host.Proxy</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SD.IdentitySystem.AppService.WebApi.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\SD.IdentitySystem.AppService.Host.Proxy.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SD.IdentitySystem.AppService.WebApi.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\SD.IdentitySystem.AppService.Host.Proxy.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">

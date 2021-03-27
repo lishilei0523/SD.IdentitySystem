@@ -3,7 +3,7 @@ using SD.Infrastructure.MemberShip;
 using SD.Toolkits.WebApi.Extensions;
 using System.Web.Http;
 
-namespace SD.IdentitySystem.AppService.WebApi.Controllers
+namespace SD.IdentitySystem.AppService.Host.Proxy.Controllers
 {
     /// <summary>
     /// 身份认证WebApi接口

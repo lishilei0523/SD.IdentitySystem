@@ -1,10 +1,10 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <ClassDiagram MajorVersion="1" MinorVersion="1">
   <Class Name="SD.IdentitySystem.Domain.Entities.Menu">
-    <Position X="2.75" Y="0.5" Width="1.5" />
+    <Position X="4.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAEAAAAAAECAAAAEAAAAEAAAAAYBAAAACQAAAAEQBAA=</HashCode>
-      <FileName>Entities\Menu.cs</FileName>
+      <HashCode>AAEAAAAAAECAAAIEAAAQEAAAAQQBAAAACQAIAAEQBAA=</HashCode>
+      <FileName>D:\Projects\SlamDunk Co.,Ltd\SD.IdentitySystem\AppServices\SD.IdentitySystem.Domain\Entities\Menu.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Authorities" />
@@ -12,10 +12,10 @@
     <Lollipop Position="0.2" />
   </Class>
   <Class Name="SD.IdentitySystem.Domain.Entities.Authority">
-    <Position X="6.75" Y="0.5" Width="1.5" />
+    <Position X="8.25" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAACAAECgAAAAAAAAAAECAgQAoEAAAAACAAAAJAA=</HashCode>
-      <FileName>Entities\Authority.cs</FileName>
+      <HashCode>AAAAAACAAECgAAAAAAAAAAACAgQAoEAAAAACAAAAJQA=</HashCode>
+      <FileName>D:\Projects\SlamDunk Co.,Ltd\SD.IdentitySystem\AppServices\SD.IdentitySystem.Domain\Entities\Authority.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="MenuLeaves" />
@@ -23,42 +23,42 @@
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="SD.IdentitySystem.Domain.Entities.Role">
-    <Position X="10.5" Y="0.5" Width="1.5" />
+    <Position X="12" Y="0.5" Width="1.5" />
     <AssociationLine Name="Users" Type="SD.IdentitySystem.Domain.Entities.User" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="10.844" Y="3.322" />
-        <Point X="10.844" Y="5.312" />
-        <Point X="4.25" Y="5.312" />
+        <Point X="12.344" Y="3.322" />
+        <Point X="12.344" Y="6.062" />
+        <Point X="5.75" Y="6.062" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAEAACAAAEAgAAAAFAAAAAAAAAQAAAAAAAAAAAQABAA=</HashCode>
-      <FileName>Entities\Role.cs</FileName>
+      <HashCode>AAEAACAAAEAgAAAABAAAAAAAAAQBAAAAAAAAAAQABAA=</HashCode>
+      <FileName>D:\Projects\SlamDunk Co.,Ltd\SD.IdentitySystem\AppServices\SD.IdentitySystem.Domain\Entities\Role.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
-      <Property Name="Authorities" />
       <Property Name="Users" />
+      <Property Name="Authorities" />
     </ShowAsCollectionAssociation>
   </Class>
   <Class Name="SD.IdentitySystem.Domain.Entities.InfoSystem">
-    <Position X="0.5" Y="0.5" Width="1.5" />
+    <Position X="2" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAACAAAAAAAAAAAAAAAAAAAACAAACAAAAAEKAAAAAAA=</HashCode>
-      <FileName>Entities\InfoSystem.cs</FileName>
+      <HashCode>AAACAAAAAEAAAAAAAAAAAAAACAAACAAAAAEKAAAABAA=</HashCode>
+      <FileName>D:\Projects\SlamDunk Co.,Ltd\SD.IdentitySystem\AppServices\SD.IdentitySystem.Domain\Entities\InfoSystem.cs</FileName>
     </TypeIdentifier>
   </Class>
   <Class Name="SD.IdentitySystem.Domain.Entities.User">
-    <Position X="2.75" Y="4.75" Width="1.5" />
+    <Position X="4.25" Y="5.5" Width="1.5" />
     <AssociationLine Name="Roles" Type="SD.IdentitySystem.Domain.Entities.Role" FixedFromPoint="true" FixedToPoint="true">
       <Path>
-        <Point X="4.25" Y="6.543" />
-        <Point X="11.625" Y="6.543" />
-        <Point X="11.625" Y="3.322" />
+        <Point X="5.75" Y="7.293" />
+        <Point X="13.125" Y="7.293" />
+        <Point X="13.125" Y="3.322" />
       </Path>
     </AssociationLine>
     <TypeIdentifier>
-      <HashCode>AAAAAABQAAAAAIAAAAAACAAACgAAAAACAAEgAgIABAA=</HashCode>
-      <FileName>Entities\User.cs</FileName>
+      <HashCode>AAAAAAAQARAAAIAAAAAACAAAAgAAAgACAAAgghIABAA=</HashCode>
+      <FileName>D:\Projects\SlamDunk Co.,Ltd\SD.IdentitySystem\AppServices\SD.IdentitySystem.Domain\Entities\User.cs</FileName>
     </TypeIdentifier>
     <ShowAsCollectionAssociation>
       <Property Name="Roles" />

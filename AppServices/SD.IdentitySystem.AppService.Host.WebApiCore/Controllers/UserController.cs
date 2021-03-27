@@ -1,18 +1,20 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using Microsoft.AspNetCore.Mvc;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.WebApi.Extensions;
+using SD.Toolkits.WebApi.Core.Extensions;
 using System;
 using System.Collections.Generic;
-using System.Web.Http;
 
-namespace SD.IdentitySystem.AppService.WebApi.Controllers
+namespace SD.IdentitySystem.AppService.Host.Controllers
 {
     /// <summary>
     /// 用户WebApi接口
     /// </summary>
-    public class UserController : ApiController
+    [ApiController]
+    [Route("[controller]/[action]")]
+    public class UserController : ControllerBase
     {
         #region # 字段及依赖注入构造器
 

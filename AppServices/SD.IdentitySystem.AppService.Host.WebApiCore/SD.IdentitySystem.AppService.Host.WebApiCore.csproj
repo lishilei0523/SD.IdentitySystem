@@ -1,0 +1,49 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+  <PropertyGroup>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <AssemblyName>SD.IdentitySystem.AppService.Host</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netcoreapp3.1\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netcoreapp3.1\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="MrAdvice" Version="2.8.11" />
+    <PackageReference Include="SD.AOP.Core" Version="2.0.6" />
+    <PackageReference Include="SD.CacheManager.Redis" Version="2.0.4" />
+    <PackageReference Include="SD.Common" Version="3.0.2" />
+    <PackageReference Include="SD.IdentitySystem.WebApi.Core.Authentication" Version="1.0.0" />
+    <PackageReference Include="SD.Infrastructure" Version="2.2.3" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.7" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.7" />
+    <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.0.0-Preview" />
+    <PackageReference Include="SD.Infrastructure.EventStoreProvider.Redis" Version="2.0.3" />
+    <PackageReference Include="SD.Infrastructure.Global" Version="2.0.0" />
+    <PackageReference Include="SD.IOC.Core" Version="2.0.5" />
+    <PackageReference Include="SD.IOC.Extension.NetCore" Version="1.0.1" />
+    <PackageReference Include="SD.Toolkits.Owin.Core" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.WebApi.Core" Version="1.0.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.AppService.NETStandard21\SD.IdentitySystem.AppService.NETStandard21.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.Domain.NETStandard20\SD.IdentitySystem.Domain.NETStandard20.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.DomainEventHandler.NETStandard21\SD.IdentitySystem.DomainEventHandler.NETStandard21.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.DomainService.NETStandard21\SD.IdentitySystem.DomainService.NETStandard21.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.IAppService.Standard20\SD.IdentitySystem.IAppService.Standard20.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.Repository.NETStandard21\SD.IdentitySystem.Repository.NETStandard21.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Update="App.config">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+</Project>

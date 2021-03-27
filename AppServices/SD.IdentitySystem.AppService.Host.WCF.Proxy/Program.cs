@@ -1,7 +1,7 @@
 ﻿using System.Configuration;
 using Topshelf;
 
-namespace SD.IdentitySystem.AppService.WebApi
+namespace SD.IdentitySystem.AppService.Host.Proxy
 {
     class Program
     {

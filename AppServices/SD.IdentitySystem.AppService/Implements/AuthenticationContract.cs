@@ -14,8 +14,15 @@ using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if NETFX
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+#endif
+#if NETCORE
+using CoreWCF;
+using SD.Toolkits.Owin.Core.Extensions;
+#endif
+
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -265,6 +272,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             //获取客户端IP
             string ip = "localhost";
+#if NETFX
             MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
             if (messageProperties.ContainsKey(RemoteEndpointMessageProperty.Name))
             {
@@ -272,7 +280,13 @@ namespace SD.IdentitySystem.AppService.Implements
                 RemoteEndpointMessageProperty remoteEndpointMessageProperty = (RemoteEndpointMessageProperty)messageProperty;
                 ip = remoteEndpointMessageProperty.Address;
             }
-
+#endif
+#if NETCORE
+            if (OwinContextReader.Current != null)
+            {
+                ip = OwinContextReader.Current.Connection.RemoteIpAddress.ToString();
+            }
+#endif
             //生成登录记录
             LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
 

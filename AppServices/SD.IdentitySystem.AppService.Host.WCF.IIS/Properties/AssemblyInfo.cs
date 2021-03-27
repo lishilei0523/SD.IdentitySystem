@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过下列特性集
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("SD.IdentitySystem.AppService.WebHost")]
+[assembly: AssemblyTitle("SD.IdentitySystem.AppService.Host")]
 [assembly: AssemblyDescription("")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SD.IdentitySystem.AppService.WebHost")]
-[assembly: AssemblyCopyright("Copyright © SD 2020")]
+[assembly: AssemblyProduct("SD.IdentitySystem.AppService.Host")]
+[assembly: AssemblyCopyright("Copyright © SD 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
