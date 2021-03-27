@@ -20,7 +20,7 @@ namespace SD.IdentitySystem.UniqueCode
         {
             if (string.IsNullOrEmpty(this.Txt_MachineCode.Text))
             {
-                string machineCode = LicenseManager.Tookits.UniqueCode.Compute();
+                string machineCode = LicenseManager.Toolkits.UniqueCode.Compute();
                 this.Txt_MachineCode.Text = machineCode;
             }
         }

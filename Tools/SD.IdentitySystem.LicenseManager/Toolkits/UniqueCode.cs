@@ -2,7 +2,7 @@
 using System;
 using System.Net.NetworkInformation;
 
-namespace SD.IdentitySystem.LicenseManager.Tookits
+namespace SD.IdentitySystem.LicenseManager.Toolkits
 {
     /// <summary>
     /// 唯一码

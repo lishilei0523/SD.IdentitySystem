@@ -5,7 +5,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Security.Cryptography;
 using System.Text;
 
-namespace SD.IdentitySystem.LicenseManager.Tookits
+namespace SD.IdentitySystem.LicenseManager.Toolkits
 {
     /// <summary>
     /// 扩展方法

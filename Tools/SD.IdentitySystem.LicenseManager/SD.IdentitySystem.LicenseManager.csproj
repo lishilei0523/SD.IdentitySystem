@@ -39,9 +39,9 @@
     <Compile Include="Constants\Constants.cs" />
     <Compile Include="Models\License.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Tookits\Extension.cs" />
-    <Compile Include="Tookits\LicenseReader.cs" />
-    <Compile Include="Tookits\UniqueCode.cs" />
+    <Compile Include="Toolkits\Extension.cs" />
+    <Compile Include="Toolkits\LicenseReader.cs" />
+    <Compile Include="Toolkits\UniqueCode.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

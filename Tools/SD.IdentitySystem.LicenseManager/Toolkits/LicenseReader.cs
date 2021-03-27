@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Linq;
 
-namespace SD.IdentitySystem.LicenseManager.Tookits
+namespace SD.IdentitySystem.LicenseManager.Toolkits
 {
     /// <summary>
     /// 许可证读取器
