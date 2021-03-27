@@ -4,10 +4,10 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}</ProjectGuid>
+    <ProjectGuid>{0A55552C-9755-4DC6-9810-39E1AB8B6E66}</ProjectGuid>
     <OutputType>Exe</OutputType>
     <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
-    <AssemblyName>SD.IdentitySystem.AppService.Host.Proxy</AssemblyName>
+    <AssemblyName>SD.IdentitySystem.AppService.Host</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
@@ -22,7 +22,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SD.IdentitySystem.AppService.Host.Proxy.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -32,7 +32,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SD.IdentitySystem.AppService.Host.Proxy.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
@@ -177,10 +177,31 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj">
+      <Project>{e85a09eb-4f34-4b0a-a033-7f9d764edbb8}</Project>
+      <Name>SD.IdentitySystem.AppService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj">
+      <Project>{de59ec3b-2e0c-41e4-b0f2-f4530e650e1d}</Project>
+      <Name>SD.IdentitySystem.DomainEventHandler</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.IdentitySystem.DomainService\SD.IdentitySystem.DomainService.csproj">
+      <Project>{21ab46c4-2c9b-4d96-ab4f-437ac2f662e6}</Project>
+      <Name>SD.IdentitySystem.DomainService</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj">
+      <Project>{20443d88-d509-43c6-942c-0ce1923bc91e}</Project>
+      <Name>SD.IdentitySystem.Domain</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj">
       <Project>{52bf9a76-1b01-4c29-8067-e6f1c88896fd}</Project>
       <Name>SD.IdentitySystem.IAppService</Name>
     </ProjectReference>
+    <ProjectReference Include="..\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj">
+      <Project>{33f75ac9-f2cc-4117-a04d-e701ef897924}</Project>
+      <Name>SD.IdentitySystem.Repository</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
