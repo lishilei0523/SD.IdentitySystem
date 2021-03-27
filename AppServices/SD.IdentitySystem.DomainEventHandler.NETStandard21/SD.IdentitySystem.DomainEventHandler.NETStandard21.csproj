@@ -9,6 +9,9 @@
     <Compile Include="..\SD.IdentitySystem.DomainEventHandler\AuthorizationContext\AuthorityCreatedEventHandler.cs">
       <Link>AuthorizationContext\AuthorityCreatedEventHandler.cs</Link>
     </Compile>
+    <Compile Include="..\SD.IdentitySystem.DomainEventHandler\AuthorizationContext\InfoSystemCreatedEventHandler.cs">
+      <Link>AuthorizationContext\InfoSystemCreatedEventHandler.cs</Link>
+    </Compile>
   </ItemGroup>
 
   <ItemGroup>
