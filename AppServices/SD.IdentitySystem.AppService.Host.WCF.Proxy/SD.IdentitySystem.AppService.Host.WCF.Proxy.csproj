@@ -164,12 +164,22 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controllers\AuthenticationController.cs" />
-    <Compile Include="Controllers\AuthorizationController.cs" />
-    <Compile Include="Controllers\UserController.cs" />
-    <Compile Include="Program.cs" />
+    <Compile Include="..\SD.IdentitySystem.AppService.Host.WebApi\Controllers\AuthenticationController.cs">
+      <Link>Controllers\AuthenticationController.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.AppService.Host.WebApi\Controllers\AuthorizationController.cs">
+      <Link>Controllers\AuthorizationController.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.AppService.Host.WebApi\Controllers\UserController.cs">
+      <Link>Controllers\UserController.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.AppService.Host.WebApi\Program.cs">
+      <Link>Program.cs</Link>
+    </Compile>
+    <Compile Include="..\SD.IdentitySystem.AppService.Host.WebApi\ServiceLauncher.cs">
+      <Link>ServiceLauncher.cs</Link>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="ServiceLauncher.cs" />
     <Compile Include="Startup.cs" />
   </ItemGroup>
   <ItemGroup>

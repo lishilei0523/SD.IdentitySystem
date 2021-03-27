@@ -3,6 +3,7 @@ using Owin;
 using SD.IdentitySystem.AppService.Host;
 using SD.IdentitySystem.WCFAuthentication.Owin;
 using SD.IdentitySystem.WebApi.Authentication.Filters;
+using SD.Infrastructure.WebApi.SelfHost.Server.Middlewares;
 using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;
 using SD.Toolkits.WebApi.Extensions;
@@ -44,6 +45,7 @@ namespace SD.IdentitySystem.AppService.Host
             //允许跨域
             httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));
 
+            appBuilder.Use<GlobalMiddleware>();
             appBuilder.Use<CacheOwinContextMiddleware>();
             appBuilder.Use<PublicKeyExchangeMiddleware>();
         }

@@ -273,12 +273,15 @@ namespace SD.IdentitySystem.AppService.Implements
             //获取客户端IP
             string ip = "localhost";
 #if NETFX
-            MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
-            if (messageProperties.ContainsKey(RemoteEndpointMessageProperty.Name))
+            if (OperationContext.Current != null)
             {
-                object messageProperty = messageProperties[RemoteEndpointMessageProperty.Name];
-                RemoteEndpointMessageProperty remoteEndpointMessageProperty = (RemoteEndpointMessageProperty)messageProperty;
-                ip = remoteEndpointMessageProperty.Address;
+                MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
+                if (messageProperties.ContainsKey(RemoteEndpointMessageProperty.Name))
+                {
+                    object messageProperty = messageProperties[RemoteEndpointMessageProperty.Name];
+                    RemoteEndpointMessageProperty remoteEndpointMessageProperty = (RemoteEndpointMessageProperty)messageProperty;
+                    ip = remoteEndpointMessageProperty.Address;
+                }
             }
 #endif
 #if NETCORE
