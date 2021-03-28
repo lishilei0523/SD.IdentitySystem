@@ -61,8 +61,8 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Base\AuthenticHub.cs" />
-    <Compile Include="Middlewares\AuthenticMiddleware.cs" />
+    <Compile Include="Base\AuthenticationHub.cs" />
+    <Compile Include="Middlewares\AuthenticationMiddleware.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

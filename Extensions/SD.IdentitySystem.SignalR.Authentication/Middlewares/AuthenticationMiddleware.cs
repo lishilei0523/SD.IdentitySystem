@@ -12,12 +12,12 @@ namespace SD.IdentitySystem.SignalR.Authentication.Middlewares
     /// <summary>
     /// 身份认证中间件
     /// </summary>
-    public class AuthenticMiddleware : OwinMiddleware
+    public class AuthenticationMiddleware : OwinMiddleware
     {
         /// <summary>
         /// 默认构造器
         /// </summary>
-        public AuthenticMiddleware(OwinMiddleware next)
+        public AuthenticationMiddleware(OwinMiddleware next)
             : base(next)
         {
 

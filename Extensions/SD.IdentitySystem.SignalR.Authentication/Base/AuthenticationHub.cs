@@ -11,7 +11,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Base
     /// <summary>
     /// 认证消息Hub基类
     /// </summary>
-    public abstract class AuthenticHub<T> : MessageHub<T> where T : IMessage
+    public abstract class AuthenticationHub<T> : MessageHub<T> where T : IMessage
     {
         #region # 静态字段及构造器
 
@@ -28,7 +28,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Base
         /// <summary>
         /// 静态构造器
         /// </summary>
-        static AuthenticHub()
+        static AuthenticationHub()
         {
             _Sync = new object();
             _UserConnections = new ConcurrentDictionary<string, string>();
