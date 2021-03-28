@@ -17,6 +17,6 @@
   <ItemGroup>
     <PackageReference Include="SD.CacheManager" Version="2.0.2" />
     <PackageReference Include="SD.Infrastructure" Version="2.2.3" />
-    <PackageReference Include="SD.Toolkits.WebApi.Core" Version="1.0.1" />
+    <PackageReference Include="SD.Toolkits.WebApiCore" Version="1.0.0" />
   </ItemGroup>
 </Project>

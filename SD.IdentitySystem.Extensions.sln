@@ -41,6 +41,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Membershi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WebApiCore.Authentication", "Extensions\SD.IdentitySystem.WebApiCore.Authentication\SD.IdentitySystem.WebApiCore.Authentication.csproj", "{4D49B425-F166-4454-8B49-CF132E7452AA}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Authorization.Standard20", "Extensions\SD.IdentitySystem.Authorization.Standard20\SD.IdentitySystem.Authorization.Standard20.csproj", "{5F736CE3-DE5F-434D-8866-A3CC995881A0}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -103,6 +105,10 @@ Global
 		{4D49B425-F166-4454-8B49-CF132E7452AA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4D49B425-F166-4454-8B49-CF132E7452AA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4D49B425-F166-4454-8B49-CF132E7452AA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5F736CE3-DE5F-434D-8866-A3CC995881A0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5F736CE3-DE5F-434D-8866-A3CC995881A0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5F736CE3-DE5F-434D-8866-A3CC995881A0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5F736CE3-DE5F-434D-8866-A3CC995881A0}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -122,6 +128,7 @@ Global
 		{CA85800F-6408-4384-BE09-BBC4045B2B85} = {623424A5-633C-42E2-BD48-8C2F375417E1}
 		{FCCD1040-7DE1-47B7-BB69-D6431A5F0BA3} = {623424A5-633C-42E2-BD48-8C2F375417E1}
 		{4D49B425-F166-4454-8B49-CF132E7452AA} = {39428193-7C0B-4785-90F2-7C45A67B4D90}
+		{5F736CE3-DE5F-434D-8866-A3CC995881A0} = {B1F655D7-0873-4D79-A8AE-942A6A464EA6}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68A6A707-43D9-49D2-A1D9-140E19A613F2}

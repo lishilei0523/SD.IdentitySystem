@@ -14,9 +14,9 @@ using System.Net;
 namespace SD.IdentitySystem.WebApiCore.Authentication.Filters
 {
     /// <summary>
-    /// WebApi授权过滤器
+    /// WebApi身份认证过滤器
     /// </summary>
-    public class WebApiAuthorizationFilter : IAuthorizationFilter
+    public class WebApiAuthenticationFilter : IAuthorizationFilter
     {
         #region # 字段及构造器
 
@@ -33,7 +33,7 @@ namespace SD.IdentitySystem.WebApiCore.Authentication.Filters
         /// <summary>
         /// 静态构造器
         /// </summary>
-        static WebApiAuthorizationFilter()
+        static WebApiAuthenticationFilter()
         {
             _Sync = new object();
 
@@ -57,9 +57,9 @@ namespace SD.IdentitySystem.WebApiCore.Authentication.Filters
 
         //Implements
 
-        #region # 授权事件 —— void OnAuthorization(AuthorizationFilterContext context)
+        #region # 执行授权过滤器事件 —— void OnAuthorization(AuthorizationFilterContext context)
         /// <summary>
-        /// 授权事件
+        /// 执行授权过滤器事件
         /// </summary>
         public void OnAuthorization(AuthorizationFilterContext context)
         {

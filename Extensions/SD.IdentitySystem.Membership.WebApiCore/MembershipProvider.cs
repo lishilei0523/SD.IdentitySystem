@@ -3,7 +3,7 @@ using Microsoft.Extensions.Primitives;
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
-using SD.Toolkits.Owin.Core.Extensions;
+using SD.Toolkits.OwinCore.Extensions;
 using System;
 
 namespace SD.IdentitySystem.Membership.WebApiCore

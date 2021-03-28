@@ -16,9 +16,9 @@ using System.Web.Http.Filters;
 namespace SD.IdentitySystem.WebApi.Authentication.Filters
 {
     /// <summary>
-    /// WebApi授权过滤器
+    /// WebApi身份认证过滤器
     /// </summary>
-    public class WebApiAuthorizationFilter : IAuthorizationFilter
+    public class WebApiAuthenticationFilter : IAuthorizationFilter
     {
         #region # 字段及构造器
 
@@ -35,7 +35,7 @@ namespace SD.IdentitySystem.WebApi.Authentication.Filters
         /// <summary>
         /// 静态构造器
         /// </summary>
-        static WebApiAuthorizationFilter()
+        static WebApiAuthenticationFilter()
         {
             _Sync = new object();
 
@@ -69,9 +69,9 @@ namespace SD.IdentitySystem.WebApi.Authentication.Filters
         }
         #endregion
 
-        #region # 授权事件 —— async Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(...
+        #region # 执行授权过滤器事件 —— async Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(...
         /// <summary>
-        /// 授权事件
+        /// 执行授权过滤器事件
         /// </summary>
         public async Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext context, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
@@ -106,7 +106,7 @@ namespace SD.IdentitySystem.WebApi.Authentication.Filters
                     }
 
                     //通过后，重新设置缓存过期时间
-                    CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(WebApiAuthorizationFilter._Timeout));
+                    CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
 
                     return continuation().Result;
                 }
