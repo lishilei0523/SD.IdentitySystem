@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using SD.IdentitySystem.WebApiCore.Authentication.Filters;
 using SD.Infrastructure.AspNetCore.Server.Middlewares;
-using SD.Toolkits.Owin.Core.Middlewares;
+using SD.Toolkits.OwinCore.Middlewares;
 using System;
 using System.IO;
 using System.Reflection;
@@ -44,7 +44,7 @@ namespace SD.IdentitySystem.AppService.Host
             //添加身份认证过滤器
             services.AddControllers(options =>
             {
-                options.Filters.Add<WebApiAuthorizationFilter>();
+                options.Filters.Add<WebApiAuthenticationFilter>();
             });
         }
 

@@ -2,7 +2,7 @@
 using Microsoft.AspNetCore.Mvc;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.MemberShip;
-using SD.Toolkits.WebApi.Core.Extensions;
+using SD.Toolkits.WebApiCore.Extensions;
 
 namespace SD.IdentitySystem.AppService.Host.Controllers
 {

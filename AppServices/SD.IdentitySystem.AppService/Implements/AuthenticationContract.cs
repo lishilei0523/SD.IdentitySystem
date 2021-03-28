@@ -20,7 +20,7 @@ using System.ServiceModel.Channels;
 #endif
 #if NETCORE
 using CoreWCF;
-using SD.Toolkits.Owin.Core.Extensions;
+using SD.Toolkits.OwinCore.Extensions;
 #endif
 
 

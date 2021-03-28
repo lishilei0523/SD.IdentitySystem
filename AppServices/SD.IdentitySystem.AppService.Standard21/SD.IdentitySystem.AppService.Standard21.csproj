@@ -35,7 +35,7 @@
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.0" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.0.0" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.0.0" />
-    <PackageReference Include="SD.Toolkits.Owin.Core" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.2" />
   </ItemGroup>
 

@@ -44,7 +44,7 @@ namespace SD.IdentitySystem.AppService.Host
             httpConfiguration.RegisterWrapParameterBindingRules();
 
             //授权过滤器
-            httpConfiguration.Filters.Add(new WebApiAuthorizationFilter());
+            httpConfiguration.Filters.Add(new WebApiAuthenticationFilter());
 
             //允许跨域
             httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));
