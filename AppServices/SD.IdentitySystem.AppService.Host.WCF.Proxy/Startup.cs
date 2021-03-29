@@ -25,6 +25,11 @@ namespace SD.IdentitySystem.AppService.Host
         /// <param name="httpConfiguration">Http配置</param>
         protected override void Configuration(IAppBuilder appBuilder, HttpConfiguration httpConfiguration)
         {
+            //配置中间件
+            appBuilder.Use<CacheOwinContextMiddleware>();
+            appBuilder.Use<PublicKeyExchangeMiddleware>();
+
+            //配置Swagger
             httpConfiguration.EnableSwagger(config =>
             {
                 string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
@@ -33,6 +38,7 @@ namespace SD.IdentitySystem.AppService.Host
                 config.SingleApiVersion("v1.0", "身份认证系统 WebApi 接口文档");
             }).EnableSwaggerUi();
 
+            //配置路由
             httpConfiguration.MapHttpAttributeRoutes();
             httpConfiguration.Routes.MapHttpRoute(
                 "DefaultApi",
@@ -43,15 +49,11 @@ namespace SD.IdentitySystem.AppService.Host
             //POST请求多参数绑定
             httpConfiguration.RegisterWrapParameterBindingRules();
 
-            //授权过滤器
+            //身份认证过滤器
             httpConfiguration.Filters.Add(new WebApiAuthenticationFilter());
 
             //允许跨域
             httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));
-
-            //中间件配置
-            appBuilder.Use<CacheOwinContextMiddleware>();
-            appBuilder.Use<PublicKeyExchangeMiddleware>();
         }
     }
 }
