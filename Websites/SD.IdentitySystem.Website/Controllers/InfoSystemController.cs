@@ -5,7 +5,6 @@ using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.MVC.Filters;
 using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website.Controllers
@@ -13,8 +12,6 @@ namespace SD.IdentitySystem.Website.Controllers
     /// <summary>
     /// 信息系统控制器
     /// </summary>
-    [ExceptionFilter]
-    [AuthorizationFilter]
     public class InfoSystemController : Controller
     {
         #region # 字段及构造器

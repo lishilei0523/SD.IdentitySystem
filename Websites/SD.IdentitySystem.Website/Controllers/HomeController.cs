@@ -1,6 +1,4 @@
 ﻿using SD.Infrastructure.Attributes;
-using SD.Infrastructure.MVC;
-using SD.Infrastructure.MVC.Filters;
 using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website.Controllers
@@ -8,8 +6,6 @@ namespace SD.IdentitySystem.Website.Controllers
     /// <summary>
     /// 主页控制器
     /// </summary>
-    [ExceptionFilter]
-    [AuthorizationFilter]
     public class HomeController : Controller
     {
         #region # 加载主页视图 —— ViewResult Index()
@@ -20,8 +16,9 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("主页视图")]
         public ViewResult Index()
         {
-            base.ViewBag.LoginId = OperationContext.LoginInfo == null ? null : OperationContext.LoginInfo.LoginId;
-            base.ViewBag.RealName = OperationContext.LoginInfo == null ? null : OperationContext.LoginInfo.RealName;
+            //TODO 实现
+            //base.ViewBag.LoginId = Membership.LoginInfo == null ? null : OperationContext.LoginInfo.LoginId;
+            //base.ViewBag.RealName = OperationContext.LoginInfo == null ? null : OperationContext.LoginInfo.RealName;
 
             return this.View();
         }

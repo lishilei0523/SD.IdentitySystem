@@ -5,7 +5,6 @@ using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,8 +15,6 @@ namespace SD.IdentitySystem.Website.Controllers
     /// <summary>
     /// 菜单控制器
     /// </summary>
-    [ExceptionFilter]
-    [AuthorizationFilter]
     public class MenuController : Controller
     {
         #region # 字段及构造器

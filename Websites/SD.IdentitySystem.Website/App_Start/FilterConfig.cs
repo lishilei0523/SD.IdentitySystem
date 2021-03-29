@@ -1,4 +1,5 @@
-﻿using SD.Infrastructure.MVC.Filters;
+﻿using SD.IdentitySystem.MVC.Authentication.Filters;
+using SD.Toolkits.MVC.Filters;
 using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website
@@ -7,8 +8,8 @@ namespace SD.IdentitySystem.Website
     {
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
-            filters.Add(new ExceptionFilterAttribute());
-            filters.Add(new AuthorizationFilterAttribute());
+            filters.Add(new MvcExceptionFilter());
+            filters.Add(new MvcAuthenticationFilter());
         }
     }
 }

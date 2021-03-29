@@ -81,6 +81,15 @@
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.IAppService.3.0.1\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
+    <Reference Include="SD.IdentitySystem.Membership, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.Membership.3.0.0\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.IdentitySystem.Membership.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.Membership.MVC.1.0.0\lib\net461\SD.IdentitySystem.Membership.MVC.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.IdentitySystem.MVC.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.IdentitySystem.MVC.Authentication.1.0.0\lib\net461\SD.IdentitySystem.MVC.Authentication.dll</HintPath>
+    </Reference>
     <Reference Include="SD.IdentitySystem.WCFAuthentication.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.WCFAuthentication.MVC.2.0.5\lib\net46\SD.IdentitySystem.WCFAuthentication.MVC.dll</HintPath>
     </Reference>
@@ -90,8 +99,8 @@
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.1\lib\net461\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.MVC.1.0.6\lib\net45\SD.Infrastructure.MVC.dll</HintPath>
+    <Reference Include="SD.Infrastructure.MVC, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.MVC.2.0.0\lib\net461\SD.Infrastructure.MVC.dll</HintPath>
     </Reference>
     <Reference Include="SD.IOC.Core, Version=2.0.4.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.5\lib\net461\SD.IOC.Core.dll</HintPath>
@@ -105,8 +114,14 @@
     <Reference Include="SD.Toolkits.AsyncHttpContext, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.AsyncHttpContext.1.0.1\lib\net46\SD.Toolkits.AsyncHttpContext.dll</HintPath>
     </Reference>
+    <Reference Include="SD.Toolkits.Image, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.Image.1.0.1\lib\net461\SD.Toolkits.Image.dll</HintPath>
+    </Reference>
     <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Json.1.0.0\lib\net45\SD.Toolkits.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.Toolkits.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.MVC.1.0.0\lib\net461\SD.Toolkits.MVC.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis.StrongName, Version=1.2.6.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.StrongName.1.2.6\lib\net45\StackExchange.Redis.StrongName.dll</HintPath>

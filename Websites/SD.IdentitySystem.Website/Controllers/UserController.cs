@@ -5,7 +5,6 @@ using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.MVC;
-using SD.Infrastructure.MVC.Filters;
 using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
@@ -15,8 +14,6 @@ namespace SD.IdentitySystem.Website.Controllers
     /// <summary>
     /// 用户控制器
     /// </summary>
-    [ExceptionFilter]
-    [AuthorizationFilter]
     public class UserController : Controller
     {
         #region # 字段及构造器
@@ -167,10 +164,11 @@ namespace SD.IdentitySystem.Website.Controllers
         {
             #region # 校验验证码
 
-            if (OperationContext.ValidCode != null && OperationContext.ValidCode != validCode)
+            string currentValidCode = MvcExtension.GetValidCode();
+            if (currentValidCode != validCode)
             {
                 //清空验证码
-                OperationContext.ClearValidCode();
+                MvcExtension.ClearValidCode();
 
                 throw new InvalidOperationException("验证码错误！");
             }
@@ -178,10 +176,10 @@ namespace SD.IdentitySystem.Website.Controllers
             #endregion
 
             //清空验证码
-            OperationContext.ClearValidCode();
+            MvcExtension.ClearValidCode();
 
             //验证登录
-            OperationContext.LoginInfo = this._authenticationContract.Login(loginId, password);
+            this._authenticationContract.Login(loginId, password);
         }
         #endregion
 
@@ -192,7 +190,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [HttpPost]
         public void Logout()
         {
-            OperationContext.Logout();
+            MvcExtension.Logout();
         }
         #endregion
 
@@ -237,7 +235,7 @@ namespace SD.IdentitySystem.Website.Controllers
 
             if (password != confirmPassword)
             {
-                throw new ArgumentOutOfRangeException("password", "两次密码输入不一致！");
+                throw new ArgumentOutOfRangeException(nameof(password), "两次密码输入不一致！");
             }
 
             #endregion
@@ -357,9 +355,9 @@ namespace SD.IdentitySystem.Website.Controllers
         [AllowAnonymous]
         public FileContentResult GetValidCode()
         {
-            FileContentResult fileResult = OperationContext.GetValidCode();
+            FileContentResult validCodeImage = MvcExtension.GetValidCodeImage();
 
-            return fileResult;
+            return validCodeImage;
         }
         #endregion
 
