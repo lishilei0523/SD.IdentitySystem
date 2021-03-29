@@ -23,7 +23,7 @@
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.1" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
-    <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.0.0-Preview" />
+    <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.0.0" />
     <PackageReference Include="SD.Infrastructure.EventStoreProvider.Redis" Version="2.0.3" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.0.0" />
     <PackageReference Include="SD.IOC.Core" Version="2.0.5" />
