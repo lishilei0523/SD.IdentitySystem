@@ -81,12 +81,6 @@
     <Reference Include="SD.IdentitySystem.IAppService, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.IAppService.3.0.1\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
-    <Reference Include="SD.IdentitySystem.Membership, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.Membership.3.0.0\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.IdentitySystem.Membership.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.Membership.MVC.1.0.0\lib\net461\SD.IdentitySystem.Membership.MVC.dll</HintPath>
-    </Reference>
     <Reference Include="SD.IdentitySystem.MVC.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.MVC.Authentication.1.0.0\lib\net461\SD.IdentitySystem.MVC.Authentication.dll</HintPath>
     </Reference>
@@ -177,8 +171,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="App_Start\FilterConfig.cs" />
-    <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\AuthorityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoSystemController.cs" />

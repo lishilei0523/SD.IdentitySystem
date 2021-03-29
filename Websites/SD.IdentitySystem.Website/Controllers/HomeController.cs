@@ -1,4 +1,6 @@
 ﻿using SD.Infrastructure.Attributes;
+using SD.Infrastructure.Constants;
+using SD.Infrastructure.MemberShip;
 using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Website.Controllers
@@ -16,9 +18,10 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("主页视图")]
         public ViewResult Index()
         {
-            //TODO 实现
-            //base.ViewBag.LoginId = Membership.LoginInfo == null ? null : OperationContext.LoginInfo.LoginId;
-            //base.ViewBag.RealName = OperationContext.LoginInfo == null ? null : OperationContext.LoginInfo.RealName;
+            LoginInfo loginInfo = HttpContext.Session[SessionKey.CurrentUser] as LoginInfo;
+
+            base.ViewBag.LoginId = loginInfo?.LoginId;
+            base.ViewBag.RealName = loginInfo?.RealName;
 
             return this.View();
         }
