@@ -204,7 +204,7 @@ namespace SD.IdentitySystem.AppService.Implements
         private void CheckLicense()
         {
             bool authenticateMachine = true;
-#if DEBUG
+#if DEBUG || NETCORE
             authenticateMachine = false;
 #endif
             if (authenticateMachine)
