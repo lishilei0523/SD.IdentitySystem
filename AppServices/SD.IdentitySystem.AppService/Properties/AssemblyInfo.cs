@@ -37,4 +37,4 @@ using System.Runtime.InteropServices;
 
 
 //AOP标记
-[assembly: AppServiceExceptionAspect]
+[assembly: WCFServiceExceptionAspect]
