@@ -61,8 +61,8 @@
     <Compile Include="..\SD.IdentitySystem.Membership\Interfaces\IMembershipProvider.cs">
       <Link>Interfaces\IMembershipProvider.cs</Link>
     </Compile>
-    <Compile Include="..\SD.IdentitySystem.Membership\Mediators\Membership.cs">
-      <Link>Mediators\Membership.cs</Link>
+    <Compile Include="..\SD.IdentitySystem.Membership\Mediators\MembershipMediator.cs">
+      <Link>Mediators\MembershipMediator.cs</Link>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

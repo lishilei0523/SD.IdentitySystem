@@ -1,6 +1,7 @@
 ﻿using ArxOne.MrAdvice.Advice;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.CustomExceptions;
+using SD.Infrastructure.MemberShip;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +17,7 @@ namespace SD.IdentitySystem.Authorization.Aspects
     [AttributeUsage(AttributeTargets.All, AllowMultiple = true)]
     public sealed class RequireAuthorizationAspect : Attribute, IMethodAdvice
     {
-        //Public
+        //Implements
 
         #region # 拦截方法 —— void Advise(MethodAdviceContext context)
         /// <summary>
@@ -27,20 +28,20 @@ namespace SD.IdentitySystem.Authorization.Aspects
         {
             if (context.TargetMethod.IsDefined(typeof(RequireAuthorizationAttribute)))
             {
-                //获取正在执行的方法路径
-                string methodPath = this.GetMethodPath(context.TargetMethod);
-
-                //验证登录信息是否为null
-                if (Membership.LoginInfo == null)
+                LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
+                if (loginInfo == null)
                 {
-                    throw new ApplicationException("当前登录信息为空，请重新登录！");
+                    throw new NoPermissionException("当前登录信息为空，请重新登录！");
                 }
 
+                //获取正在执行的方法路径
+                string authorityPath = this.GetMethodPath(context.TargetMethod);
+
                 //从登录信息中取出权限集
-                IEnumerable<string> currentAuthorityPaths = Membership.LoginInfo.LoginAuthorityInfos.Values.SelectMany(x => x).Select(x => x.AuthorityPath);
+                IEnumerable<string> ownedAuthorityPaths = loginInfo.LoginAuthorityInfos.Values.SelectMany(x => x).Select(x => x.AuthorityPath);
 
                 //验证权限
-                if (!currentAuthorityPaths.Contains(methodPath))
+                if (!ownedAuthorityPaths.Contains(authorityPath))
                 {
                     throw new NoPermissionException("您没有权限，请联系系统管理员！");
                 }
