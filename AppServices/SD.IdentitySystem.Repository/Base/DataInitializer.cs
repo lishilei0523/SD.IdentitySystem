@@ -90,7 +90,7 @@ namespace SD.IdentitySystem.Repository.Base
             }
 
             //注册获取用户信息事件
-            EFUnitOfWorkProvider.GetLoginInfo += () => Membership.LoginInfo;
+            EFUnitOfWorkProvider.GetLoginInfo += MembershipMediator.GetLoginInfo;
         }
         #endregion
 

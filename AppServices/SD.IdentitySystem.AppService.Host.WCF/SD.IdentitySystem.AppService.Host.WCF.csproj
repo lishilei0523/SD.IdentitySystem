@@ -72,7 +72,7 @@
       <HintPath>..\..\packages\SD.Common.3.0.2\lib\net45\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.Membership, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.Membership.3.0.0\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.Membership.3.0.1\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.Membership.WCF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.Membership.WCF.1.0.0\lib\net461\SD.IdentitySystem.Membership.WCF.dll</HintPath>
