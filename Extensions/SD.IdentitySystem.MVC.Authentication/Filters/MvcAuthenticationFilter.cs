@@ -1,5 +1,5 @@
 ﻿using SD.Infrastructure.Constants;
-using SD.Toolkits.MVC;
+using SD.Toolkits.AspNet;
 using System;
 using System.Text;
 using System.Web;
@@ -20,7 +20,7 @@ namespace SD.IdentitySystem.MVC.Authentication.Filters
         /// </summary>
         public void OnAuthorization(AuthorizationContext context)
         {
-            bool needAuthorize = MvcSection.Setting.Authorized;
+            bool needAuthorize = AspNetSection.Setting.Authorized;
             bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
             bool existsSession = HttpContext.Current.Session[SessionKey.CurrentUser] != null;
             if (needAuthorize && !allowAnonymous && !existsSession)
@@ -35,7 +35,7 @@ namespace SD.IdentitySystem.MVC.Authentication.Filters
                 StringBuilder scriptBuilder = new StringBuilder();
                 scriptBuilder.Append("<script type=\"text/javascript\">");
                 scriptBuilder.Append("window.top.location.href=");
-                scriptBuilder.Append($"\"{MvcSection.Setting.LoginPage.Url}\"");
+                scriptBuilder.Append($"\"{AspNetSection.Setting.LoginPage.Url}\"");
                 scriptBuilder.Append("</script>");
 
                 //跳转至登录页

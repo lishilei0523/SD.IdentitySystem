@@ -2,7 +2,7 @@
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
-using SD.Infrastructure.SignalR;
+using SD.Toolkits.AspNet;
 using System.Net;
 using System.Security.Principal;
 using System.Threading.Tasks;
@@ -28,7 +28,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Middlewares
         /// </summary>
         public override Task Invoke(IOwinContext context)
         {
-            if (SignalSection.Setting.Authorized)
+            if (AspNetSection.Setting.Authorized)
             {
                 //读Header
                 string publicKey = context.Request.Headers.Get(SessionKey.CurrentPublicKey);

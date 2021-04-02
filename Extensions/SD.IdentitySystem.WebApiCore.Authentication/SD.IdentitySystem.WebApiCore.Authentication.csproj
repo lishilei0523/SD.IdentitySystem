@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
-    <PackageReference Include="SD.Toolkits.AspNetCore" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.AspNetCore" Version="1.0.1" />
     <PackageReference Include="SD.CacheManager" Version="2.0.2" />
     <PackageReference Include="SD.Infrastructure" Version="2.2.3" />
   </ItemGroup>

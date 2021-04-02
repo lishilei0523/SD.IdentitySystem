@@ -1,6 +1,6 @@
 ﻿using SD.Infrastructure.MessageBase;
-using SD.Infrastructure.SignalR;
 using SD.Infrastructure.SignalR.Server.Base;
+using SD.Toolkits.AspNet;
 using System.Collections.Concurrent;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +13,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Base
     /// </summary>
     public abstract class AuthenticationHub<T> : MessageHub<T> where T : IMessage
     {
-        #region # 静态字段及构造器
+        #region # 字段及构造器
 
         /// <summary>
         /// 同步锁
@@ -65,7 +65,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Base
         /// </summary>
         public override Task OnConnected()
         {
-            if (SignalSection.Setting.Authorized)
+            if (AspNetSection.Setting.Authorized)
             {
                 lock (_Sync)
                 {
@@ -95,7 +95,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Base
         /// </summary>
         public override Task OnReconnected()
         {
-            if (SignalSection.Setting.Authorized)
+            if (AspNetSection.Setting.Authorized)
             {
                 lock (_Sync)
                 {
