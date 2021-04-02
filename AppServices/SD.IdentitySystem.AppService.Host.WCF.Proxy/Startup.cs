@@ -47,7 +47,7 @@ namespace SD.IdentitySystem.AppService.Host
             );
 
             //POST请求多参数绑定
-            httpConfiguration.RegisterWrapParameterBindingRules();
+            httpConfiguration.RegisterWrapParameterBindingRule();
 
             //身份认证过滤器
             httpConfiguration.Filters.Add(new WebApiAuthenticationFilter());

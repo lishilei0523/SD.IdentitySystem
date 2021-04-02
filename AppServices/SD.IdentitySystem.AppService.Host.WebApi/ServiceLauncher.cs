@@ -1,6 +1,6 @@
 ﻿using Microsoft.Owin.Hosting;
-using SD.Toolkits.WebApi;
-using SD.Toolkits.WebApi.Configurations;
+using SD.Toolkits.AspNet;
+using SD.Toolkits.AspNet.Configurations;
 using System;
 
 namespace SD.IdentitySystem.AppService.Host
@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.AppService.Host
         public void Start()
         {
             StartOptions startOptions = new StartOptions();
-            foreach (HostElement host in WebApiSection.Setting.HostElement)
+            foreach (HostElement host in AspNetSection.Setting.HostElement)
             {
                 startOptions.Urls.Add(host.Url);
             }

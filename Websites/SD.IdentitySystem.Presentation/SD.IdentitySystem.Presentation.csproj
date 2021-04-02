@@ -62,7 +62,7 @@
       <HintPath>..\..\packages\SD.Infrastructure.2.2.3\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.1\lib\net461\SD.Infrastructure.AOP.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.2\lib\net461\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Json.1.0.0\lib\net45\SD.Toolkits.Json.dll</HintPath>

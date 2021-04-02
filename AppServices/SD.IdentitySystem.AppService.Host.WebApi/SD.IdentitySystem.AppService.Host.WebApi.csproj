@@ -92,7 +92,7 @@
       <HintPath>..\..\packages\SD.IdentitySystem.Membership.WebApi.1.0.0\lib\net461\SD.IdentitySystem.Membership.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.WebApi.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WebApi.Authentication.1.0.1\lib\net461\SD.IdentitySystem.WebApi.Authentication.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.WebApi.Authentication.1.0.2\lib\net461\SD.IdentitySystem.WebApi.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.2.2.3\lib\net46\SD.Infrastructure.dll</HintPath>
@@ -124,6 +124,9 @@
     <Reference Include="SD.IOC.Integration.WebApi.SelfHost, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Integration.WebApi.SelfHost.2.0.1\lib\net461\SD.IOC.Integration.WebApi.SelfHost.dll</HintPath>
     </Reference>
+    <Reference Include="SD.Toolkits.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.0\lib\net461\SD.Toolkits.AspNet.dll</HintPath>
+    </Reference>
     <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Json.1.0.0\lib\net45\SD.Toolkits.Json.dll</HintPath>
     </Reference>
@@ -134,7 +137,7 @@
       <HintPath>..\..\packages\SD.Toolkits.Redis.2.0.3\lib\net461\SD.Toolkits.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.0.1\lib\net461\SD.Toolkits.WebApi.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.0.2\lib\net461\SD.Toolkits.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.2.1.58\lib\net461\StackExchange.Redis.dll</HintPath>
