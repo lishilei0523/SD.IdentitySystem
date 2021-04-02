@@ -7,7 +7,7 @@ using Microsoft.Extensions.Primitives;
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
-using SD.Toolkits.WebApi;
+using SD.Toolkits.AspNetCore;
 using System;
 using System.Net;
 
@@ -63,7 +63,7 @@ namespace SD.IdentitySystem.WebApiCore.Authentication.Filters
         /// </summary>
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            if (WebApiSection.Setting.Authorized && !this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor))
+            if (AspNetCoreSection.Setting.Authorized && !this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor))
             {
                 if (!context.HttpContext.Request.Headers.TryGetValue(SessionKey.CurrentPublicKey, out StringValues header))
                 {

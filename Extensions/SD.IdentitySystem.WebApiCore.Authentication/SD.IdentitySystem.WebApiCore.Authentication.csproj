@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>ASP.NET Core WebApi身份认证工具</Description>
@@ -8,15 +8,16 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\netstandard2.1\SD.IdentitySystem.WebApiCore.Authentication.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\netstandard2.0\SD.IdentitySystem.WebApiCore.Authentication.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\netstandard2.1\SD.IdentitySystem.WebApiCore.Authentication.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\netstandard2.0\SD.IdentitySystem.WebApiCore.Authentication.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.Core" Version="2.2.5" />
+    <PackageReference Include="SD.Toolkits.AspNetCore" Version="1.0.0" />
     <PackageReference Include="SD.CacheManager" Version="2.0.2" />
     <PackageReference Include="SD.Infrastructure" Version="2.2.3" />
-    <PackageReference Include="SD.Toolkits.WebApiCore" Version="1.0.0" />
   </ItemGroup>
 </Project>
