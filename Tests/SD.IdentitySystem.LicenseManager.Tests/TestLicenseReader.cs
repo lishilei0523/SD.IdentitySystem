@@ -1,6 +1,6 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
 using SD.IdentitySystem.LicenseManager.Models;
-using SD.IdentitySystem.LicenseManager.Tookits;
+using SD.IdentitySystem.LicenseManager.Toolkits;
 using SD.Infrastructure.Constants;
 
 // ReSharper disable once CheckNamespace
