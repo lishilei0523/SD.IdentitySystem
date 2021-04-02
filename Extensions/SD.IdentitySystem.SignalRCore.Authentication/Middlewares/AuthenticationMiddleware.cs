@@ -68,7 +68,7 @@ namespace SD.IdentitySystem.SignalRCore.Authentication.Middlewares
                 }
             }
 
-            await this._next.Invoke(context);
+            //await this._next.Invoke(context);
         }
     }
 }

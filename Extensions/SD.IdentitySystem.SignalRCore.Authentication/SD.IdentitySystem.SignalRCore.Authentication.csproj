@@ -17,6 +17,6 @@
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
     <PackageReference Include="SD.Toolkits.AspNetCore" Version="1.0.1" />
     <PackageReference Include="SD.CacheManager" Version="2.0.2" />
-    <PackageReference Include="SD.Infrastructure.SignalRCore.Server" Version="1.0.0-Preview" />
+    <PackageReference Include="SD.Infrastructure.SignalRCore.Server" Version="1.0.0" />
   </ItemGroup>
 </Project>
