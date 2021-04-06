@@ -4,6 +4,7 @@ using Microsoft.OpenApi.Models;
 using SD.IdentitySystem.WebApiCore.Authentication.Filters;
 using SD.Infrastructure.AspNetCore.Server.Middlewares;
 using SD.Toolkits.OwinCore.Middlewares;
+using SD.Toolkits.WebApiCore.Filters;
 using System;
 using System.IO;
 using System.Reflection;
@@ -41,10 +42,11 @@ namespace SD.IdentitySystem.AppService.Host
                 config.IncludeXmlComments(xmlPath);
             });
 
-            //添加身份认证过滤器
+            //添加过滤器
             services.AddControllers(options =>
             {
                 options.Filters.Add<WebApiAuthenticationFilter>();
+                options.Filters.Add<WebApiExceptionFilter>();
             });
         }
 

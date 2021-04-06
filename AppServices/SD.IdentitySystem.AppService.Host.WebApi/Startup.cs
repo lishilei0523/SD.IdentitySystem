@@ -6,6 +6,7 @@ using SD.Infrastructure.WebApi.SelfHost.Server.Middlewares;
 using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;
 using SD.Toolkits.WebApi.Extensions;
+using SD.Toolkits.WebApi.Filters;
 using Swashbuckle.Application;
 using System;
 using System.IO;
@@ -49,11 +50,12 @@ namespace SD.IdentitySystem.AppService.Host
             //POST请求多参数绑定
             httpConfiguration.RegisterWrapParameterBindingRule();
 
-            //身份认证过滤器
-            httpConfiguration.Filters.Add(new WebApiAuthenticationFilter());
-
             //允许跨域
             httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+
+            //添加过滤器
+            httpConfiguration.Filters.Add(new WebApiAuthenticationFilter());
+            httpConfiguration.Filters.Add(new WebApiExceptionFilter());
         }
     }
 }
