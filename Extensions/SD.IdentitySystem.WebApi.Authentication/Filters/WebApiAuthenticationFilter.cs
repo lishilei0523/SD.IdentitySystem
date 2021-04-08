@@ -82,7 +82,7 @@ namespace SD.IdentitySystem.WebApi.Authentication.Filters
                 {
                     var message = new { Message = "身份认证消息头不存在，请检查程序！" };
                     ObjectContent objectContent = new ObjectContent(message.GetType(), message, new JsonMediaTypeFormatter());
-                    HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.InternalServerError)
+                    HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.Unauthorized)
                     {
                         Content = objectContent
                     };
