@@ -9,7 +9,7 @@ namespace SD.IdentitySystem.AppService.Host
 {
     public class Program
     {
-        public static void Main(string[] args)
+        public static void Main()
         {
             IHostBuilder hostBuilder = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder();
 

@@ -11,6 +11,9 @@ using System.Reflection;
 
 namespace SD.IdentitySystem.AppService.Host
 {
+    /// <summary>
+    /// 应用程序启动器
+    /// </summary>
     public class Startup
     {
         /// <summary>
@@ -18,28 +21,30 @@ namespace SD.IdentitySystem.AppService.Host
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
-            //配置跨域
-            services.AddCors(options => options.AddPolicy("CorsPolicy",
-                builder =>
+            //添加跨域策略
+            services.AddCors(options => options.AddPolicy(typeof(Startup).FullName,
+                policyBuilder =>
                 {
-                    builder.AllowAnyMethod()
-                        .AllowAnyHeader()
-                        .SetIsOriginAllowed(_ => true)
-                        .AllowCredentials();
+                    policyBuilder.AllowAnyMethod();
+                    policyBuilder.AllowAnyHeader();
+                    policyBuilder.AllowCredentials();
+                    policyBuilder.SetIsOriginAllowed(_ => true);
                 }));
 
             //添加Swagger
-            services.AddSwaggerGen(config =>
+            services.AddSwaggerGen(options =>
             {
-                config.SwaggerDoc("v1.0", new OpenApiInfo
+                OpenApiInfo apiInfo = new OpenApiInfo
                 {
                     Version = "v1.0",
                     Title = "身份认证系统 WebApi 接口文档"
-                });
+                };
 
-                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                config.IncludeXmlComments(xmlPath);
+                string xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                string xmlFilePath = Path.Combine(AppContext.BaseDirectory, xmlFileName);
+
+                options.SwaggerDoc("v1.0", apiInfo);
+                options.IncludeXmlComments(xmlFilePath);
             });
 
             //添加过滤器
@@ -55,27 +60,20 @@ namespace SD.IdentitySystem.AppService.Host
         /// </summary>
         public void Configure(IApplicationBuilder appBuilder)
         {
-            //配置全局中间件
+            //配置中间件
             appBuilder.UseMiddleware<GlobalMiddleware>();
-
-            //配置缓存OwinContext中间件
             appBuilder.UseMiddleware<CacheOwinContextMiddleware>();
 
             //配置跨域
-            appBuilder.UseCors("CorsPolicy");
+            appBuilder.UseCors(typeof(Startup).FullName);
 
-            //配置Swagger中间件
+            //配置Swagger
             appBuilder.UseSwagger();
-            appBuilder.UseSwaggerUI(config =>
-            {
-                config.SwaggerEndpoint("/swagger/v1.0/swagger.json", "身份认证系统 WebApi 接口文档 v1.0");
-            });
+            appBuilder.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1.0/swagger.json", "身份认证系统 WebApi 接口文档 v1.0"));
 
+            //配置路由
             appBuilder.UseRouting();
-            appBuilder.UseEndpoints(endpoints =>
-            {
-                endpoints.MapControllers();
-            });
+            appBuilder.UseEndpoints(routeBuilder => routeBuilder.MapControllers());
         }
     }
 }
