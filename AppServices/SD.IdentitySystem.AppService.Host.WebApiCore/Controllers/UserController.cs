@@ -197,7 +197,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// <param name="loginIds">登录名集</param>
         /// <returns>用户字典</returns>
         [HttpGet]
-        public IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds)
+        public IDictionary<string, UserInfo> GetUsersByLoginIds([FromQuery] IEnumerable<string> loginIds)
         {
             return this._userContract.GetUsersByLoginIds(loginIds);
         }
