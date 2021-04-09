@@ -17,7 +17,7 @@
     <PackageReference Include="SD.AOP.Core" Version="2.0.6" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.0.4" />
     <PackageReference Include="SD.Common" Version="3.0.2" />
-    <PackageReference Include="SD.IdentitySystem.Membership.WebApiCore" Version="1.0.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="1.0.0" />
     <PackageReference Include="SD.IdentitySystem.WebApiCore.Authentication" Version="1.0.2" />
     <PackageReference Include="SD.Infrastructure" Version="2.2.3" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.2" />

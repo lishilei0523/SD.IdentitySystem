@@ -84,6 +84,9 @@
     <Reference Include="SD.IOC.Integration.WebApi.SelfHost, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Integration.WebApi.SelfHost.2.0.1\lib\net461\SD.IOC.Integration.WebApi.SelfHost.dll</HintPath>
     </Reference>
+    <Reference Include="SD.Toolkits.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.0\lib\net461\SD.Toolkits.AspNet.dll</HintPath>
+    </Reference>
     <Reference Include="SD.Toolkits.Owin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Owin.1.0.0\lib\net461\SD.Toolkits.Owin.dll</HintPath>
     </Reference>
@@ -91,7 +94,7 @@
       <HintPath>..\..\packages\SD.Toolkits.Redis.2.0.3\lib\net461\SD.Toolkits.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.0.1\lib\net461\SD.Toolkits.WebApi.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.0.5\lib\net461\SD.Toolkits.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.2.1.58\lib\net461\StackExchange.Redis.dll</HintPath>
@@ -172,7 +175,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCFAuthentication.Owin\SD.IdentitySystem.WCFAuthentication.Owin.csproj">
+    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication.Owin\SD.IdentitySystem.WCF.Authentication.Owin.csproj">
       <Project>{012d79b3-e908-4f00-acc4-420371ff300e}</Project>
       <Name>SD.IdentitySystem.WCFAuthentication.Owin</Name>
     </ProjectReference>

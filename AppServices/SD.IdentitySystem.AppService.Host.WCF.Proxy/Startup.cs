@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using Owin;
 using SD.IdentitySystem.AppService.Host;
-using SD.IdentitySystem.WCFAuthentication.Owin;
+using SD.IdentitySystem.WCF.Authentication.Owin;
 using SD.IdentitySystem.WebApi.Authentication.Filters;
 using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;

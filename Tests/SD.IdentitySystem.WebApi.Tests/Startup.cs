@@ -1,6 +1,6 @@
 ﻿using Microsoft.Owin;
 using Owin;
-using SD.IdentitySystem.WCFAuthentication.Owin;
+using SD.IdentitySystem.WCF.Authentication.Owin;
 using SD.IdentitySystem.WebApi.Tests;
 using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;
@@ -27,7 +27,7 @@ namespace SD.IdentitySystem.WebApi.Tests
             );
 
             //POST请求多参数绑定
-            httpConfiguration.RegisterWrapParameterBindingRules();
+            httpConfiguration.RegisterWrapParameterBindingRule();
 
             //允许跨域
             httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));

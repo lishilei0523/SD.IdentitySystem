@@ -152,7 +152,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\extensions\SD.IdentitySystem.WCFAuthentication.Windows\SD.IdentitySystem.WCFAuthentication.Windows.csproj">
+    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication.Windows\SD.IdentitySystem.WCF.Authentication.Windows.csproj">
       <Project>{fe93ac6f-b38f-412f-a2b1-2fbe2800c647}</Project>
       <Name>SD.IdentitySystem.WCFAuthentication.Windows</Name>
     </ProjectReference>
