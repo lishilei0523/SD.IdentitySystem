@@ -168,7 +168,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication\SD.IdentitySystem.WCF.Authentication.csproj">
       <Project>{55e99fff-1bcc-423f-b945-931a4f2bf2d3}</Project>
-      <Name>SD.IdentitySystem.WCFAuthentication.WCF</Name>
+      <Name>SD.IdentitySystem.WCF.Authentication</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.IdentitySystem.StubWCF.Server\SD.IdentitySystem.StubWCF.Server.csproj">
       <Project>{757eccc8-d24a-44a4-bc0b-184003b9daab}</Project>

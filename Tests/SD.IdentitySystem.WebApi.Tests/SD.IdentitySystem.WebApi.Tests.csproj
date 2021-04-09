@@ -177,7 +177,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication.Owin\SD.IdentitySystem.WCF.Authentication.Owin.csproj">
       <Project>{012d79b3-e908-4f00-acc4-420371ff300e}</Project>
-      <Name>SD.IdentitySystem.WCFAuthentication.Owin</Name>
+      <Name>SD.IdentitySystem.WCF.Authentication.Owin</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.IdentitySystem.StubWCF.Server\SD.IdentitySystem.StubWCF.Server.csproj">
       <Project>{757eccc8-d24a-44a4-bc0b-184003b9daab}</Project>

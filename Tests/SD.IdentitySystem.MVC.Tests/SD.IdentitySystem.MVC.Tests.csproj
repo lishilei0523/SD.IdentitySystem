@@ -174,7 +174,7 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication.AspNet\SD.IdentitySystem.WCF.Authentication.AspNet.csproj">
       <Project>{fa4ca095-26a0-4e6f-b297-d98115a577d7}</Project>
-      <Name>SD.IdentitySystem.WCFAuthentication.MVC</Name>
+      <Name>SD.IdentitySystem.WCF.Authentication.AspNet</Name>
     </ProjectReference>
     <ProjectReference Include="..\SD.IdentitySystem.StubWCF.Server\SD.IdentitySystem.StubWCF.Server.csproj">
       <Project>{757eccc8-d24a-44a4-bc0b-184003b9daab}</Project>
