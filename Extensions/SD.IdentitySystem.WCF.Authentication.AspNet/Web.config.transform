@@ -1,0 +1,10 @@
+﻿<configuration>
+  <system.serviceModel>
+    <extensions>
+      <behaviorExtensions>
+        <!--WCF/ASP.NET客户端身份认证扩展配置-->
+        <add name="mvcClientAuthentication" type="SD.IdentitySystem.WCF.Authentication.AspNet.AuthenticationBehaviorElement, SD.IdentitySystem.WCF.Authentication.AspNet"/>
+      </behaviorExtensions>
+    </extensions>
+  </system.serviceModel>
+</configuration>

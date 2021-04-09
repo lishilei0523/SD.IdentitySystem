@@ -1,0 +1,7 @@
+﻿<configuration>
+  <injectionRegisterConfiguration>
+    <asInterfaceTypes>
+      <type name="SD.IdentitySystem.Membership.AspNetCore.MembershipProvider" assembly="SD.IdentitySystem.Membership.AspNetCore" />
+    </asInterfaceTypes>
+  </injectionRegisterConfiguration>
+</configuration>

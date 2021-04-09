@@ -1,7 +1,0 @@
-﻿<configuration>
-  <injectionRegisterConfiguration>
-    <asInterfaceTypes>
-      <type name="SD.IdentitySystem.Membership.WebApiCore.MembershipProvider" assembly="SD.IdentitySystem.Membership.WebApiCore" />
-    </asInterfaceTypes>
-  </injectionRegisterConfiguration>
-</configuration>

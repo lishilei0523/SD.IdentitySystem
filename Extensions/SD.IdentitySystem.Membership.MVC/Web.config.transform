@@ -1,7 +1,0 @@
-﻿<configuration>
-  <injectionRegisterConfiguration>
-    <asInterfaceTypes>
-      <type name="SD.IdentitySystem.Membership.MVC.MembershipProvider" assembly="SD.IdentitySystem.Membership.MVC" />
-    </asInterfaceTypes>
-  </injectionRegisterConfiguration>
-</configuration>

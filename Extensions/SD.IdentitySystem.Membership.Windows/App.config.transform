@@ -1,0 +1,7 @@
+﻿<configuration>
+  <injectionRegisterConfiguration>
+    <asInterfaceTypes>
+      <type name="SD.IdentitySystem.Membership.Windows.MembershipProvider" assembly="SD.IdentitySystem.Membership.Windows" />
+    </asInterfaceTypes>
+  </injectionRegisterConfiguration>
+</configuration>

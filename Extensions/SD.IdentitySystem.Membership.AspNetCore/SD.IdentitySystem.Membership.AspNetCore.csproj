@@ -1,0 +1,29 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.1</TargetFramework>
+    <Description>用户工具 - Membership - ASP.NET Core提供者</Description>
+    <Authors>Lee</Authors>
+    <Company>SD</Company>
+    <Copyright>Copyright © SD 2021</Copyright>
+    <AssemblyName>SD.IdentitySystem.Membership.AspNetCore</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.Membership.AspNetCore</RootNamespace>
+    <PackageId>SD.IdentitySystem.Membership.AspNetCore</PackageId>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\netstandard2.1\SD.IdentitySystem.Membership.AspNetCore.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\netstandard2.1\SD.IdentitySystem.Membership.AspNetCore.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.CacheManager" Version="2.0.2" />
+    <PackageReference Include="SD.Infrastructure" Version="2.2.3" />
+    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj" />
+  </ItemGroup>
+</Project>

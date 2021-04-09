@@ -1,0 +1,7 @@
+﻿<configuration>
+  <injectionRegisterConfiguration>
+    <asInterfaceTypes>
+      <type name="SD.IdentitySystem.Membership.Owin.MembershipProvider" assembly="SD.IdentitySystem.Membership.Owin" />
+    </asInterfaceTypes>
+  </injectionRegisterConfiguration>
+</configuration>
