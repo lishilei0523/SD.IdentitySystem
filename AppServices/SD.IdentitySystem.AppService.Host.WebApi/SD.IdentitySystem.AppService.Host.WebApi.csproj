@@ -103,8 +103,8 @@
     <Reference Include="SD.Infrastructure.EventBase, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.EventBase.2.0.0\lib\netstandard2.0\SD.Infrastructure.EventBase.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure.EventStoreProvider.Redis, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.EventStoreProvider.Redis.2.0.3\lib\netstandard2.0\SD.Infrastructure.EventStoreProvider.Redis.dll</HintPath>
+    <Reference Include="SD.Infrastructure.EventStore.Redis, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.EventStore.Redis.1.0.0\lib\netstandard2.0\SD.Infrastructure.EventStore.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.Global, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.0\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
