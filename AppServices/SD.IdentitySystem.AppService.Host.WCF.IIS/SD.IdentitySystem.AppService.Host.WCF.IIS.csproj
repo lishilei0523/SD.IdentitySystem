@@ -101,7 +101,7 @@
       <HintPath>..\..\packages\SD.Infrastructure.EventStore.Redis.1.0.0\lib\netstandard2.0\SD.Infrastructure.EventStore.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.Global, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.0\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.1\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.WCF.Server, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.WCF.Server.2.0.1\lib\net461\SD.Infrastructure.WCF.Server.dll</HintPath>

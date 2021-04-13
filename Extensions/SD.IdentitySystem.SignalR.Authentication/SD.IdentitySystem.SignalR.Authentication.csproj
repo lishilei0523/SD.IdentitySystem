@@ -58,7 +58,7 @@
       <HintPath>..\..\packages\SD.Infrastructure.SignalR.Server.1.0.3\lib\net461\SD.Infrastructure.SignalR.Server.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.0\lib\net461\SD.Toolkits.AspNet.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.1\lib\net45\SD.Toolkits.AspNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
