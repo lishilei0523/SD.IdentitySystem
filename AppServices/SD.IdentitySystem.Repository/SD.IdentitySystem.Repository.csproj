@@ -87,7 +87,7 @@
       <HintPath>..\..\packages\SD.CacheManager.2.0.2\lib\net461\SD.CacheManager.dll</HintPath>
     </Reference>
     <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.3.0.2\lib\net45\SD.Common.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.Membership, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.Membership.3.0.1\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
@@ -108,7 +108,7 @@
       <HintPath>..\..\packages\SD.Toolkits.EntityFramework.1.1.0\lib\net45\SD.Toolkits.EntityFramework.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.0\lib\net45\SD.Toolkits.Json.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.1\lib\net45\SD.Toolkits.Json.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Recursion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Recursion.2.0.2\lib\net461\SD.Toolkits.Recursion.dll</HintPath>

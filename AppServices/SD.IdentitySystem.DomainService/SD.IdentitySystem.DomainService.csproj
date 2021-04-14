@@ -67,7 +67,7 @@
       <HintPath>..\..\packages\SD.AOP.Core.2.0.6\lib\net461\SD.AOP.Core.dll</HintPath>
     </Reference>
     <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.3.0.2\lib\net45\SD.Common.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.2.2.3\lib\net46\SD.Infrastructure.dll</HintPath>
@@ -76,7 +76,7 @@
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.2\lib\net461\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.0\lib\net45\SD.Toolkits.Json.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.1\lib\net45\SD.Toolkits.Json.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Recursion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Recursion.2.0.2\lib\net461\SD.Toolkits.Recursion.dll</HintPath>

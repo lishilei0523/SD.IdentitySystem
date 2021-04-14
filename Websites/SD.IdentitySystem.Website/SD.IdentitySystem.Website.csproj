@@ -72,7 +72,7 @@
       <HintPath>..\..\packages\SD.AOP.Core.2.0.6\lib\net461\SD.AOP.Core.dll</HintPath>
     </Reference>
     <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.3.0.2\lib\net45\SD.Common.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.FormatModel.EasyUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.FormatModel.EasyUI.1.0.0\lib\net45\SD.FormatModel.EasyUI.dll</HintPath>
@@ -106,7 +106,7 @@
       <HintPath>..\..\packages\SD.IOC.Integration.MVC.2.0.0\lib\net461\SD.IOC.Integration.MVC.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.0\lib\net461\SD.Toolkits.AspNet.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.1\lib\net45\SD.Toolkits.AspNet.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.AsyncHttpContext, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.AsyncHttpContext.1.0.1\lib\net46\SD.Toolkits.AsyncHttpContext.dll</HintPath>
@@ -115,10 +115,10 @@
       <HintPath>..\..\packages\SD.Toolkits.Image.1.0.1\lib\net461\SD.Toolkits.Image.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.0\lib\net45\SD.Toolkits.Json.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.1\lib\net45\SD.Toolkits.Json.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.MVC.1.0.1\lib\net461\SD.Toolkits.MVC.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.MVC.1.0.2\lib\net45\SD.Toolkits.MVC.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis.StrongName, Version=1.2.6.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.StrongName.1.2.6\lib\net45\StackExchange.Redis.StrongName.dll</HintPath>

@@ -77,7 +77,7 @@
       <HintPath>..\..\packages\SD.CacheManager.Redis.2.0.4\lib\net461\SD.CacheManager.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.3.0.2\lib\net45\SD.Common.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.Membership, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.Membership.3.0.1\lib\net461\SD.IdentitySystem.Membership.dll</HintPath>
@@ -116,7 +116,7 @@
       <HintPath>..\..\packages\SD.IOC.Integration.WCF.2.0.0\lib\net461\SD.IOC.Integration.WCF.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.0\lib\net45\SD.Toolkits.Json.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.1\lib\net45\SD.Toolkits.Json.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Redis, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Redis.2.0.3\lib\net461\SD.Toolkits.Redis.dll</HintPath>

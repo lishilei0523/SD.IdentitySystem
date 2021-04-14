@@ -58,7 +58,7 @@
       <HintPath>..\..\packages\SD.CacheManager.2.0.2\lib\net461\SD.CacheManager.dll</HintPath>
     </Reference>
     <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.3.0.2\lib\net45\SD.Common.dll</HintPath>
+      <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.LicenseManager, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.LicenseManager.1.0.3\lib\net35\SD.IdentitySystem.LicenseManager.dll</HintPath>
@@ -82,7 +82,7 @@
       <HintPath>..\..\packages\SD.IOC.Core.2.0.5\lib\net461\SD.IOC.Core.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.0\lib\net45\SD.Toolkits.Json.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.1\lib\net45\SD.Toolkits.Json.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Mapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Mapper.1.0.0\lib\net461\SD.Toolkits.Mapper.dll</HintPath>
