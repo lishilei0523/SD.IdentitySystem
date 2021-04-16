@@ -149,7 +149,7 @@ namespace SD.IdentitySystem.AppService.Implements
         [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
         public LoginInfo Login(string loginId, string password)
         {
-            #region # 验证参数
+            #region # 验证
 
             if (string.IsNullOrWhiteSpace(loginId))
             {

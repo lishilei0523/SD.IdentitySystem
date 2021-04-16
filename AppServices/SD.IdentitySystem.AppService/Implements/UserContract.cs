@@ -253,7 +253,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户列表</returns>
         public IEnumerable<UserInfo> GetUsers(string keywords)
         {
-            IEnumerable<User> users = this._repMediator.UserRep.Find(keywords);
+            ICollection<User> users = this._repMediator.UserRep.Find(keywords);
             IEnumerable<UserInfo> userInfos = users.Select(x => x.ToDTO());
 
             return userInfos;
@@ -304,7 +304,7 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             User currentUser = this._repMediator.UserRep.Single(loginId);
 
-            IEnumerable<string> systemNos = currentUser.GetInfoSystemNos();
+            ICollection<string> systemNos = currentUser.GetInfoSystemNos();
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
 
             return systems.Values.Select(x => x.ToDTO());
@@ -321,8 +321,8 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户菜单树</returns>
         public IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo, ApplicationType? applicationType)
         {
-            IEnumerable<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, systemNo);
-            IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
+            ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, systemNo);
+            ICollection<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
 
             IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, applicationType);
             menus = menus.TailRecurseParentNodes();
@@ -343,7 +343,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>角色列表</returns>
         public IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
         {
-            IEnumerable<Role> roles = this._repMediator.RoleRep.Find(null, loginId, systemNo);
+            ICollection<Role> roles = this._repMediator.RoleRep.Find(null, loginId, systemNo);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -361,8 +361,8 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>权限列表</returns>
         public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string systemNo)
         {
-            IEnumerable<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, systemNo);
-            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
+            ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, systemNo);
+            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -383,7 +383,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户登录记录列表</returns>
         public PageModel<LoginRecordInfo> GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
         {
-            IEnumerable<LoginRecord> records = this._repMediator.LoginRecordRep.FindByPage(keywords, startTime, endTime, pageIndex, pageSize, out int rowCount, out int pageCount);
+            ICollection<LoginRecord> records = this._repMediator.LoginRecordRep.FindByPage(keywords, startTime, endTime, pageIndex, pageSize, out int rowCount, out int pageCount);
             IEnumerable<LoginRecordInfo> recordInfos = records.Select(x => x.ToDTO());
 
             return new PageModel<LoginRecordInfo>(recordInfos, pageIndex, pageSize, pageCount, rowCount);

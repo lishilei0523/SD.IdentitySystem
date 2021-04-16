@@ -482,8 +482,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>信息系统列表</returns>
         public IEnumerable<InfoSystemInfo> GetInfoSystems()
         {
-            IEnumerable<InfoSystem> systems = this._repMediator.InfoSystemRep.FindAll();
-
+            ICollection<InfoSystem> systems = this._repMediator.InfoSystemRep.FindAll();
             IEnumerable<InfoSystemInfo> systemInfos = systems.Select(x => x.ToDTO());
 
             return systemInfos;
@@ -500,7 +499,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>信息系统列表</returns>
         public PageModel<InfoSystemInfo> GetInfoSystemsByPage(string keywords, int pageIndex, int pageSize)
         {
-            IEnumerable<InfoSystem> specSystems = this._repMediator.InfoSystemRep.FindByPage(keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
+            ICollection<InfoSystem> specSystems = this._repMediator.InfoSystemRep.FindByPage(keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
             IEnumerable<InfoSystemInfo> specSystemInfos = specSystems.Select(x => x.ToDTO());
 
             return new PageModel<InfoSystemInfo>(specSystemInfos, pageIndex, pageSize, pageCount, rowCount);
@@ -535,7 +534,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>权限列表</returns>
         public IEnumerable<AuthorityInfo> GetAuthorities(string keywords, string systemNo, Guid? menuId, Guid? roleId)
         {
-            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.Find(keywords, systemNo, menuId, roleId);
+            ICollection<Authority> authorities = this._repMediator.AuthorityRep.Find(keywords, systemNo, menuId, roleId);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -555,7 +554,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>权限列表</returns>
         public PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
         {
-            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(keywords, systemNo, pageIndex, pageSize, out int rowCount, out int pageCount);
+            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(keywords, systemNo, pageIndex, pageSize, out int rowCount, out int pageCount);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());

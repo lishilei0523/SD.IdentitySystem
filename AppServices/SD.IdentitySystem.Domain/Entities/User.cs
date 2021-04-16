@@ -258,14 +258,14 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 获取信息系统编号列表 —— IEnumerable<string> GetInfoSystemNos()
+        #region 获取信息系统编号列表 —— ICollection<string> GetInfoSystemNos()
         /// <summary>
         /// 获取信息系统编号列表
         /// </summary>
         /// <returns>信息系统编号列表</returns>
-        public IEnumerable<string> GetInfoSystemNos()
+        public ICollection<string> GetInfoSystemNos()
         {
-            return this.Roles.Select(x => x.SystemNo).Distinct();
+            return this.Roles.Select(x => x.SystemNo).Distinct().ToList();
         }
         #endregion
 

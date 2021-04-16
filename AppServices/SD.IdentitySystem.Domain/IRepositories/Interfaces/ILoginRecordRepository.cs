@@ -10,7 +10,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// </summary>
     public interface ILoginRecordRepository : IAggRootRepository<LoginRecord>
     {
-        #region # 分页获取用户登录记录列表 —— IEnumerable<LoginRecord> FindByPage(string keywords...
+        #region # 分页获取用户登录记录列表 —— ICollection<LoginRecord> FindByPage(string keywords...
         /// <summary>
         /// 分页获取用户登录记录列表
         /// </summary>
@@ -22,7 +22,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <param name="rowCount">总记录条数</param>
         /// <param name="pageCount">总页数</param>
         /// <returns>用户登录记录列表</returns>
-        IEnumerable<LoginRecord> FindByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize, out int rowCount, out int pageCount);
+        ICollection<LoginRecord> FindByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize, out int rowCount, out int pageCount);
         #endregion
     }
 }
