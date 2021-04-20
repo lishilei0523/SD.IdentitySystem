@@ -69,7 +69,7 @@
       <HintPath>..\..\packages\SD.CacheManager.2.0.2\lib\net461\SD.CacheManager.dll</HintPath>
     </Reference>
     <Reference Include="SD.CacheManager.Redis, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.CacheManager.Redis.2.0.4\lib\net461\SD.CacheManager.Redis.dll</HintPath>
+      <HintPath>..\..\packages\SD.CacheManager.Redis.2.0.5\lib\net461\SD.CacheManager.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.WCF.Authentication.Owin, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.WCF.Authentication.Owin.1.0.0\lib\net461\SD.IdentitySystem.WCF.Authentication.Owin.dll</HintPath>
@@ -99,7 +99,7 @@
       <HintPath>..\..\packages\SD.Toolkits.Owin.1.0.0\lib\net461\SD.Toolkits.Owin.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.Redis, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.Redis.2.0.3\lib\net461\SD.Toolkits.Redis.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.Redis.2.0.4\lib\net461\SD.Toolkits.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.WebApi.1.0.9\lib\net45\SD.Toolkits.WebApi.dll</HintPath>
