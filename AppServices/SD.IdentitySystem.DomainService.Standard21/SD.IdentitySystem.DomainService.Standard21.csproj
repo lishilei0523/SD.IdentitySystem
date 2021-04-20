@@ -18,7 +18,7 @@
     <PackageReference Include="SD.Common" Version="3.0.3" />
     <PackageReference Include="SD.Infrastructure" Version="2.2.4" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.2" />
-    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.0" />
+    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.1" />
     <PackageReference Include="SD.Toolkits.SerialNumber" Version="2.0.4" />
   </ItemGroup>
 

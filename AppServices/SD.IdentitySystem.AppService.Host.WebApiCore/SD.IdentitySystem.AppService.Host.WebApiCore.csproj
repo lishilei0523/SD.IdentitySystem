@@ -3,6 +3,7 @@
     <TargetFramework>netcoreapp3.1</TargetFramework>
     <AssemblyName>SD.IdentitySystem.AppService.Host</AssemblyName>
     <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -11,6 +12,12 @@
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
     <DocumentationFile>bin\Release\netcoreapp3.1\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
   </PropertyGroup>
+  <ItemGroup>
+    <None Remove="favicon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.8.11" />
@@ -25,12 +32,12 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
     <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.0.0" />
     <PackageReference Include="SD.Infrastructure.EventStore.Redis" Version="1.0.0" />
-    <PackageReference Include="SD.Infrastructure.Global" Version="2.0.1" />
+    <PackageReference Include="SD.Infrastructure.Global" Version="2.0.2" />
     <PackageReference Include="SD.IOC.Core" Version="2.0.5" />
     <PackageReference Include="SD.IOC.Extension.NetCore" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.AspNetCore" Version="1.0.2" />
-    <PackageReference Include="SD.Toolkits.WebApiCore" Version="1.0.7" />
+    <PackageReference Include="SD.Toolkits.WebApiCore" Version="1.0.8" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
   </ItemGroup>
 

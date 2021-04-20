@@ -36,6 +36,9 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
@@ -101,13 +104,13 @@
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.2\lib\net461\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.EventBase, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.EventBase.2.0.0\lib\netstandard2.0\SD.Infrastructure.EventBase.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.EventBase.2.0.1\lib\netstandard2.0\SD.Infrastructure.EventBase.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.EventStore.Redis, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.EventStore.Redis.1.0.0\lib\netstandard2.0\SD.Infrastructure.EventStore.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.Global, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.1\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.2\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.WebApi.SelfHost.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.WebApi.SelfHost.Server.1.0.1\lib\net461\SD.Infrastructure.WebApi.SelfHost.Server.dll</HintPath>
@@ -137,7 +140,7 @@
       <HintPath>..\..\packages\SD.Toolkits.Redis.2.0.3\lib\net461\SD.Toolkits.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.0.8\lib\net45\SD.Toolkits.WebApi.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.0.9\lib\net45\SD.Toolkits.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.2.1.58\lib\net461\StackExchange.Redis.dll</HintPath>
@@ -246,7 +249,9 @@
       <Name>SD.IdentitySystem.Repository</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\MrAdvice.2.8.11\build\MrAdvice.targets" Condition="Exists('..\..\packages\MrAdvice.2.8.11\build\MrAdvice.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

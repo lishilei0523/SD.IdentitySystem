@@ -95,13 +95,13 @@
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.2\lib\net461\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.EventBase, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.EventBase.2.0.0\lib\netstandard2.0\SD.Infrastructure.EventBase.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.EventBase.2.0.1\lib\netstandard2.0\SD.Infrastructure.EventBase.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.EventStore.Redis, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.EventStore.Redis.1.0.0\lib\netstandard2.0\SD.Infrastructure.EventStore.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.Global, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.1\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.2\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.WCF.Server, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.WCF.Server.2.0.1\lib\net461\SD.Infrastructure.WCF.Server.dll</HintPath>
@@ -173,6 +173,7 @@
     <Reference Include="System.EnterpriseServices" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="favicon.ico" />
     <Content Include="Hosts\AuthenticationContract.svc" />
     <Content Include="Hosts\AuthorizationContract.svc" />
     <Content Include="Hosts\UserContract.svc" />

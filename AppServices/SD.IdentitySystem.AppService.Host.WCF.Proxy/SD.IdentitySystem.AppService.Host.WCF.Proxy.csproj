@@ -34,6 +34,9 @@
     <WarningLevel>4</WarningLevel>
     <DocumentationFile>bin\Release\SD.IdentitySystem.AppService.Host.Proxy.xml</DocumentationFile>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
@@ -99,7 +102,7 @@
       <HintPath>..\..\packages\SD.Toolkits.Redis.2.0.3\lib\net461\SD.Toolkits.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.0.8\lib\net45\SD.Toolkits.WebApi.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.0.9\lib\net45\SD.Toolkits.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.2.1.58\lib\net461\StackExchange.Redis.dll</HintPath>
@@ -194,6 +197,9 @@
       <Project>{52bf9a76-1b01-4c29-8067-e6f1c88896fd}</Project>
       <Name>SD.IdentitySystem.IAppService</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="favicon.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

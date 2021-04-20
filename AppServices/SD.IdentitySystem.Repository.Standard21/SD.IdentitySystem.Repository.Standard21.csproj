@@ -64,7 +64,7 @@
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
     <PackageReference Include="SD.Infrastructure" Version="2.2.4" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.2" />
-    <PackageReference Include="SD.Infrastructure.Repository.EntityFramework" Version="2.0.7" />
+    <PackageReference Include="SD.Infrastructure.Repository.EntityFramework" Version="2.0.8" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.2" />
   </ItemGroup>
 
