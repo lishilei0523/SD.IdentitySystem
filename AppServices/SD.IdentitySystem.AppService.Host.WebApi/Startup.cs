@@ -47,8 +47,10 @@ namespace SD.IdentitySystem.AppService.Host
                 new { id = RouteParameter.Optional }
             );
 
-            //POST请求多参数绑定
+            //注册参数绑定
+            httpConfiguration.RegisterComplexGetParameterBindingRule();
             httpConfiguration.RegisterWrapParameterBindingRule();
+            httpConfiguration.RegisterFileParameterBindingRule();
 
             //允许跨域
             httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));

@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.MemberShip;
-using SD.Toolkits.WebApi.Extensions;
+using SD.Toolkits.WebApi.Attributes;
 using System.Web.Http;
 
 namespace SD.IdentitySystem.AppService.Host.Controllers

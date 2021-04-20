@@ -2,7 +2,7 @@
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.WebApi.Extensions;
+using SD.Toolkits.WebApi.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Web.Http;
@@ -195,7 +195,8 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// <param name="loginIds">登录名集</param>
         /// <returns>用户字典</returns>
         [HttpGet]
-        public IDictionary<string, UserInfo> GetUsersByLoginIds([FromUri] IEnumerable<string> loginIds)
+        [ComplexGetParameters]
+        public IDictionary<string, UserInfo> GetUsersByLoginIds([FromJson] IEnumerable<string> loginIds)
         {
             return this._userContract.GetUsersByLoginIds(loginIds);
         }

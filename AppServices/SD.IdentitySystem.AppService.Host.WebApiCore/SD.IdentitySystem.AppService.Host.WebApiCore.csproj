@@ -37,7 +37,7 @@
     <PackageReference Include="SD.IOC.Extension.NetCore" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.AspNetCore" Version="1.0.2" />
-    <PackageReference Include="SD.Toolkits.WebApiCore" Version="1.0.8" />
+    <PackageReference Include="SD.Toolkits.WebApiCore" Version="1.0.9" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.1.1" />
   </ItemGroup>
 

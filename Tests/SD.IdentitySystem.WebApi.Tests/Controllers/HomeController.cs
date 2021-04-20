@@ -4,7 +4,7 @@ using SD.IdentitySystem.WebApi.Tests.Models;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.IOC.Core.Mediators;
-using SD.Toolkits.WebApi.Extensions;
+using SD.Toolkits.WebApi.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;
