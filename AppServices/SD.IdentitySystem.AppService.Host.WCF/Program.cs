@@ -22,9 +22,9 @@ namespace SD.IdentitySystem.AppService.Host
                 });
                 config.RunAsLocalSystem();
 
-                config.SetServiceName(Program._ServiceName);
-                config.SetDisplayName(Program._ServiceDisplayName);
-                config.SetDescription(Program._ServiceDescription);
+                config.SetServiceName(_ServiceName);
+                config.SetDisplayName(_ServiceDisplayName);
+                config.SetDescription(_ServiceDescription);
             });
         }
     }
