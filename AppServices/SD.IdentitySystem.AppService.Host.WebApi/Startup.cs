@@ -48,7 +48,6 @@ namespace SD.IdentitySystem.AppService.Host
             );
 
             //注册参数绑定
-            httpConfiguration.RegisterComplexGetParameterBindingRule();
             httpConfiguration.RegisterWrapParameterBindingRule();
             httpConfiguration.RegisterFileParameterBindingRule();
 
