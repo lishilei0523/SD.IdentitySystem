@@ -54,14 +54,13 @@ namespace SD.IdentitySystem.InitializationTool
         private void MainWindow_Load(object sender, EventArgs e)
         {
             //加载信息系统列表
-            IEnumerable<InfoSystemInfo> systems = this._authorizationContract.GetInfoSystems().OrderBy(x => x.Number).ToArray();
-
-            foreach (InfoSystemInfo system in systems)
+            IEnumerable<InfoSystemInfo> infoSystems = this._authorizationContract.GetInfoSystems().OrderBy(x => x.Number);
+            foreach (InfoSystemInfo infoSystem in infoSystems)
             {
-                this.Cbx_SystemKind.Items.Add(system);
+                this.Cbx_SystemKind.Items.Add(infoSystem);
             }
 
-            this.Cbx_SystemKind.DisplayMember = "Name";
+            this.Cbx_SystemKind.DisplayMember = nameof(InfoSystemInfo.Name);
         }
 
         /// <summary>
@@ -69,10 +68,9 @@ namespace SD.IdentitySystem.InitializationTool
         /// </summary>
         private void Btn_OpenFile_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog { Filter = @"dll files (*.dll)|*.dll" };
-
-            dialog.ShowDialog();
-            this.Txt_FilePath.Text = dialog.FileName;
+            OpenFileDialog openFileDialog = new OpenFileDialog { Filter = @"dll files (*.dll)|*.dll" };
+            openFileDialog.ShowDialog();
+            this.Txt_FilePath.Text = openFileDialog.FileName;
         }
 
         /// <summary>
@@ -80,6 +78,8 @@ namespace SD.IdentitySystem.InitializationTool
         /// </summary>
         private async void Btn_Init_Click(object sender, EventArgs e)
         {
+            #region # 验证
+
             if (string.IsNullOrWhiteSpace(this.Txt_FilePath.Text))
             {
                 MessageBox.Show(@"文件路径不可为空！", @"Warning");
@@ -87,15 +87,16 @@ namespace SD.IdentitySystem.InitializationTool
             }
             if (this.Cbx_SystemKind.SelectedItem == null)
             {
-                MessageBox.Show(@"信息系统不可不选！", @"Warning");
+                MessageBox.Show(@"信息系统不可为空！", @"Warning");
                 return;
             }
 
+            #endregion
+
             string assemblyPath = this.Txt_FilePath.Text;
-            string systemKindNo = ((InfoSystemInfo)this.Cbx_SystemKind.SelectedItem).Number;
+            string infoSystemNo = ((InfoSystemInfo)this.Cbx_SystemKind.SelectedItem).Number;
 
-
-            await Task.Run(() => this.InitAuthorities(assemblyPath, systemKindNo));
+            await this.InitAuthorities(assemblyPath, infoSystemNo);
             MessageBox.Show(@"OK", @"OK");
         }
 
@@ -103,8 +104,8 @@ namespace SD.IdentitySystem.InitializationTool
         /// 初始化权限集
         /// </summary>
         /// <param name="assemblyPath">程序集路径</param>
-        /// <param name="systemKindNo">信息系统类别编号</param>
-        private void InitAuthorities(string assemblyPath, string systemKindNo)
+        /// <param name="infoSystemNo">信息系统编号</param>
+        private async Task InitAuthorities(string assemblyPath, string infoSystemNo)
         {
             //加载程序集、加载权限
             Assembly assembly = Assembly.LoadFrom(assemblyPath);
@@ -115,29 +116,28 @@ namespace SD.IdentitySystem.InitializationTool
 
             //构造权限参数模型集
             IList<AuthorityParam> authorityParams = new List<AuthorityParam>();
-
             foreach (MethodInfo methodInfo in methodInfos)
             {
                 RequireAuthorizationAttribute attribute = methodInfo.GetCustomAttribute<RequireAuthorizationAttribute>();
-
                 AuthorityParam authorityParam = new AuthorityParam
                 {
                     AssemblyName = assembly.GetName().Name,
-                    Namespace = methodInfo.DeclaringType.Namespace,
-                    ClassName = methodInfo.DeclaringType.Name,
+                    Namespace = methodInfo.DeclaringType?.Namespace,
+                    ClassName = methodInfo.DeclaringType?.Name,
                     MethodName = methodInfo.Name,
                     AuthorityName = attribute.AuthorityName,
                     EnglishName = attribute.EnglishName,
                     Description = attribute.Description
                 };
 
-                if (!this._authorizationContract.ExistsAuthority(authorityParam.AssemblyName, authorityParam.Namespace, authorityParam.ClassName, authorityParam.MethodName))
+                bool authorityExisted = await Task.Run(() => this._authorizationContract.ExistsAuthority(authorityParam.AssemblyName, authorityParam.Namespace, authorityParam.ClassName, authorityParam.MethodName));
+                if (!authorityExisted)
                 {
                     authorityParams.Add(authorityParam);
                 }
             }
 
-            this._authorizationContract.CreateAuthorities(systemKindNo, authorityParams);
+            await Task.Run(() => this._authorizationContract.CreateAuthorities(infoSystemNo, authorityParams));
         }
     }
 }
