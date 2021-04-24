@@ -1,6 +1,6 @@
-﻿using SD.FormatModel.EasyUI;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.Toolkits.EasyUI;
 using SD.Toolkits.Mapper;
 
 namespace SD.IdentitySystem.Presentation.Maps
