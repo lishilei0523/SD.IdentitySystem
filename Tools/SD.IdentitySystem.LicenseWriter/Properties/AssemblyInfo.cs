@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SD.IdentitySystem.LicenseWriter")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("SD.IdentitySystem 许可证生成工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.LicenseWriter")]
-[assembly: AssemblyCopyright("Copyright © SD 2018")]
+[assembly: AssemblyCopyright("Copyright © SD 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

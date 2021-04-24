@@ -2,9 +2,10 @@
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>SD.IdentitySystem.LicenseManager</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.LicenseManager</RootNamespace>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>许可证管理工具</Description>
+    <Description>SD.IdentitySystem 许可证管理工具</Description>
     <Copyright>Copyright © SD 2021</Copyright>
   </PropertyGroup>
 

@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的常规信息通过以下
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("SD.IdentitySystem.MachineCodeTool")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SD.IdentitySystem.UniqueCode")]
+[assembly: AssemblyDescription("SD.IdentitySystem 唯一码生成工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
-[assembly: AssemblyProduct("SD.IdentitySystem.MachineCodeTool")]
+[assembly: AssemblyProduct("SD.IdentitySystem.UniqueCode")]
 [assembly: AssemblyCopyright("Copyright © SD 2018")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]

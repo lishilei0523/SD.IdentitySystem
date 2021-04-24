@@ -6,7 +6,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SD.IdentitySystem.LicenseManager")]
-[assembly: AssemblyDescription("许可证管理工具")]
+[assembly: AssemblyDescription("SD.IdentitySystem 许可证管理工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.LicenseManager")]

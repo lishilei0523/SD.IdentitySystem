@@ -5,11 +5,11 @@ using System.Runtime.InteropServices;
 // 特性集控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SD.IdentitySystem.InitializationTool")]
-[assembly: AssemblyDescription("身份认证系统初始化工具")]
+[assembly: AssemblyDescription("SD.IdentitySystem 初始化工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.InitializationTool")]
-[assembly: AssemblyCopyright("Copyright © SD 2016")]
+[assembly: AssemblyCopyright("Copyright © SD 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
