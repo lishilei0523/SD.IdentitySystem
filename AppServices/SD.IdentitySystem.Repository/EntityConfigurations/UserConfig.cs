@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
-using SD.Infrastructure.Constants;
+using SD.Infrastructure;
 using SD.Toolkits.EntityFramework.Extensions;
 using System.Data.Entity.ModelConfiguration;
 
@@ -15,7 +15,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public UserConfig()
         {
-            this.HasMany(user => user.Roles).WithMany(role => role.Users).Map(map => map.ToTable($"{GlobalSetting.TablePrefix}User_Role"));
+            this.HasMany(user => user.Roles).WithMany(role => role.Users).Map(map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}User_Role"));
 
             //设置编号长度
             this.Property(user => user.Number).HasMaxLength(20);

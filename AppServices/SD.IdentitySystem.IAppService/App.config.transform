@@ -1,9 +1,9 @@
 ﻿<configuration>
-  <injectionRegisterConfiguration>
+  <sd.ioc>
     <wcfInterfaces>
       <assembly name="SD.IdentitySystem.IAppService" />
     </wcfInterfaces>
-  </injectionRegisterConfiguration>
+  </sd.ioc>
   <system.serviceModel>
     <client>
       <!--身份认证服务契约配置-->

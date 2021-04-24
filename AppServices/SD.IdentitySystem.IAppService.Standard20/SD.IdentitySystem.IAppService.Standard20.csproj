@@ -1,13 +1,14 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Version>2.0.4</Version>
+    <AssemblyName>SD.IdentitySystem.IAppService</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.IAppService</RootNamespace>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <AssemblyVersion>2.0.0.0</AssemblyVersion>
-    <Description>身份认证系统服务接口</Description>
-    <Copyright>Copyright © SD 2018</Copyright>
-    <AssemblyName>SD.IdentitySystem.IAppService</AssemblyName>
+    <Description>SD.IdentitySystem 身份认证系统服务接口</Description>
+    <Copyright>Copyright © SD 2021</Copyright>
+    <Version>3.0.0</Version>
+    <AssemblyVersion>3.0.0.0</AssemblyVersion>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
     <DocumentationFile>bin\Debug\netstandard2.0\SD.IdentitySystem.IAppService.xml</DocumentationFile>
@@ -53,7 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="2.2.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
   </ItemGroup>
 </Project>

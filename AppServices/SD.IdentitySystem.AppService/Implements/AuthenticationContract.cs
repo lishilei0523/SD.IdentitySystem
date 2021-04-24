@@ -7,13 +7,13 @@ using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.LicenseManager.Models;
 using SD.IdentitySystem.LicenseManager.Toolkits;
-using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.MemberShip;
 using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using SD.Infrastructure;
 #if NETFX
 using System.ServiceModel;
 using System.ServiceModel.Channels;
@@ -37,35 +37,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 同步锁
         /// </summary>
-        private static readonly object _Sync;
-
-        /// <summary>
-        /// 身份过期时间
-        /// </summary>
-        private static readonly int _Timeout;
-
-        /// <summary>
-        /// 静态构造器
-        /// </summary>
-        static AuthenticationContract()
-        {
-            _Sync = new object();
-
-            if (!string.IsNullOrWhiteSpace(GlobalSetting.AuthenticationTimeout))
-            {
-                if (!int.TryParse(GlobalSetting.AuthenticationTimeout, out _Timeout))
-                {
-                    //默认20分钟
-                    _Timeout = 20;
-                }
-            }
-            else
-            {
-                //默认20分钟
-                _Timeout = 20;
-            }
-        }
-
+        private static readonly object _Sync = new object();
 
         /// <summary>
         /// 仓储中介者
@@ -268,7 +240,10 @@ namespace SD.IdentitySystem.AppService.Implements
             #endregion
 
             //以公钥为键，登录信息为值，存入分布式缓存
-            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
+            int timeout = FrameworkSection.Setting.AuthenticationTimeout.Value.HasValue
+                ? FrameworkSection.Setting.AuthenticationTimeout.Value.Value
+                : 20;
+            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(timeout));
 
             //获取客户端IP
             string ip = "localhost";

@@ -1,14 +1,10 @@
-﻿using System.Configuration;
+﻿using SD.Infrastructure;
 using Topshelf;
 
 namespace SD.IdentitySystem.AppService.Host
 {
     class Program
     {
-        private static readonly string _ServiceName = ConfigurationManager.AppSettings["ServiceName"];
-        private static readonly string _ServiceDisplayName = ConfigurationManager.AppSettings["ServiceDisplayName"];
-        private static readonly string _ServiceDescription = ConfigurationManager.AppSettings["ServiceDescription"];
-
         static void Main()
         {
             HostFactory.Run(config =>
@@ -21,9 +17,9 @@ namespace SD.IdentitySystem.AppService.Host
                 });
                 config.RunAsLocalSystem();
 
-                config.SetServiceName(_ServiceName);
-                config.SetDisplayName(_ServiceDisplayName);
-                config.SetDescription(_ServiceDescription);
+                config.SetServiceName(FrameworkSection.Setting.ServiceName.Value);
+                config.SetDisplayName(FrameworkSection.Setting.ServiceDisplayName.Value);
+                config.SetDescription(FrameworkSection.Setting.ServiceDescription.Value);
             });
         }
     }

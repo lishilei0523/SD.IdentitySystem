@@ -20,6 +20,7 @@ namespace SD.IdentitySystem.AppService.Host
             StartOptions startOptions = new StartOptions();
             foreach (HostElement host in AspNetSection.Setting.HostElement)
             {
+                Console.WriteLine($"Listening: {host.Url}");
                 startOptions.Urls.Add(host.Url);
             }
 
