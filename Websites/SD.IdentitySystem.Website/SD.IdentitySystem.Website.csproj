@@ -104,9 +104,6 @@
     <Reference Include="SD.Toolkits.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.1\lib\net45\SD.Toolkits.AspNet.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Toolkits.AsyncHttpContext, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.AsyncHttpContext.1.0.1\lib\net46\SD.Toolkits.AsyncHttpContext.dll</HintPath>
-    </Reference>
     <Reference Include="SD.Toolkits.EasyUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.EasyUI.1.0.0\lib\net40\SD.Toolkits.EasyUI.dll</HintPath>
     </Reference>
