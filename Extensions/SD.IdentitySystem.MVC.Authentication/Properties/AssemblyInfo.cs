@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SD.IdentitySystem.MVC.Authentication")]
-[assembly: AssemblyDescription("ASP.NET MVC身份认证工具")]
+[assembly: AssemblyDescription("SD.IdentitySystem ASP.NET MVC身份认证工具")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.MVC.Authentication")]

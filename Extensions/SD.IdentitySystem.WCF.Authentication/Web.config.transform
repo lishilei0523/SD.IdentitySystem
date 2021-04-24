@@ -1,13 +1,9 @@
 ﻿<configuration>
-  <appSettings>
-    <!--身份过期时间，单位：分钟-->
-    <add key="AuthenticationTimeout" value="20" />
-  </appSettings>
   <system.serviceModel>
     <extensions>
       <behaviorExtensions>
         <!--WCF客户端/服务端身份认证扩展配置-->
-        <add name="wcfAuthentication" type="SD.IdentitySystem.WCF.Authentication.AuthenticationBehaviorElement, SD.IdentitySystem.WCF.Authentication"/>
+        <add name="wcfAuthentication" type="SD.IdentitySystem.WCF.Authentication.AuthenticationBehaviorElement, SD.IdentitySystem.WCF.Authentication" />
       </behaviorExtensions>
     </extensions>
   </system.serviceModel>

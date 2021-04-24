@@ -60,8 +60,8 @@
     <Reference Include="MrAdvice, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c0e7e6eab6f293d8, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MrAdvice.2.8.11\lib\net40-client\MrAdvice.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.2.2.4\lib\net46\SD.Infrastructure.dll</HintPath>
+    <Reference Include="SD.Infrastructure, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.3.0.0\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

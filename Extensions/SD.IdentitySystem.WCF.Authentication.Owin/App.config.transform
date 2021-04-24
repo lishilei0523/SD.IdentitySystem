@@ -3,7 +3,7 @@
     <extensions>
       <behaviorExtensions>
         <!--WCF/OWIN客户端身份认证扩展配置-->
-        <add name="owinAuthentication" type="SD.IdentitySystem.WCF.Authentication.Owin.AuthenticationBehaviorElement, SD.IdentitySystem.WCF.Authentication.Owin"/>
+        <add name="owinAuthentication" type="SD.IdentitySystem.WCF.Authentication.Owin.AuthenticationBehaviorElement, SD.IdentitySystem.WCF.Authentication.Owin" />
       </behaviorExtensions>
     </extensions>
   </system.serviceModel>

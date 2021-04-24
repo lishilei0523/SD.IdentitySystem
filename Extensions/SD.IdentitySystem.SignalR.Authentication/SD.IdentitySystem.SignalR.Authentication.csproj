@@ -49,13 +49,13 @@
       <HintPath>..\..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
     </Reference>
     <Reference Include="SD.CacheManager, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.CacheManager.2.0.2\lib\net461\SD.CacheManager.dll</HintPath>
+      <HintPath>..\..\packages\SD.CacheManager.2.0.3\lib\net40\SD.CacheManager.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.2.2.4\lib\net46\SD.Infrastructure.dll</HintPath>
+    <Reference Include="SD.Infrastructure, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.3.0.0\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.SignalR.Server, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.SignalR.Server.1.0.3\lib\net461\SD.Infrastructure.SignalR.Server.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.SignalR.Server.1.0.4\lib\net461\SD.Infrastructure.SignalR.Server.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.1\lib\net45\SD.Toolkits.AspNet.dll</HintPath>

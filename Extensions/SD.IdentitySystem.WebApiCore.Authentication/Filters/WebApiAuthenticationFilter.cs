@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
 using SD.CacheManager;
+using SD.Infrastructure;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Toolkits.AspNetCore;
@@ -18,39 +19,12 @@ namespace SD.IdentitySystem.WebApiCore.Authentication.Filters
     /// </summary>
     public class WebApiAuthenticationFilter : IAuthorizationFilter
     {
-        #region # 字段及构造器
+        #region # 字段
 
         /// <summary>
         /// 同步锁
         /// </summary>
-        private static readonly object _Sync;
-
-        /// <summary>
-        /// 身份过期时间
-        /// </summary>
-        private static readonly int _Timeout;
-
-        /// <summary>
-        /// 静态构造器
-        /// </summary>
-        static WebApiAuthenticationFilter()
-        {
-            _Sync = new object();
-
-            if (!string.IsNullOrWhiteSpace(GlobalSetting.AuthenticationTimeout))
-            {
-                if (!int.TryParse(GlobalSetting.AuthenticationTimeout, out _Timeout))
-                {
-                    //默认20分钟
-                    _Timeout = 20;
-                }
-            }
-            else
-            {
-                //默认20分钟
-                _Timeout = 20;
-            }
-        }
+        private static readonly object _Sync = new object();
 
         #endregion
 
@@ -95,7 +69,10 @@ namespace SD.IdentitySystem.WebApiCore.Authentication.Filters
                         else
                         {
                             //通过后，重新设置缓存过期时间
-                            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(_Timeout));
+                            int timeout = FrameworkSection.Setting.AuthenticationTimeout.Value.HasValue
+                                ? FrameworkSection.Setting.AuthenticationTimeout.Value.Value
+                                : 20;
+                            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(timeout));
                         }
                     }
                 }

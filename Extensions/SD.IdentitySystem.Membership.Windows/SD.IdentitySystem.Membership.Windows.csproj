@@ -34,8 +34,8 @@
     <DocumentationFile>bin\Release\SD.IdentitySystem.Membership.Windows.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
-    <Reference Include="SD.Infrastructure, Version=2.0.3.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.2.2.4\lib\net46\SD.Infrastructure.dll</HintPath>
+    <Reference Include="SD.Infrastructure, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.3.0.0\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />

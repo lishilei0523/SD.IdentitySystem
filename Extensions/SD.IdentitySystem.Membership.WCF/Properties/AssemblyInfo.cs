@@ -5,7 +5,7 @@ using System.Runtime.InteropServices;
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
 [assembly: AssemblyTitle("SD.IdentitySystem.Membership.WCF")]
-[assembly: AssemblyDescription("用户工具 - Membership - WCF提供者")]
+[assembly: AssemblyDescription("SD.IdentitySystem 用户工具 - WCF提供者")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.Membership.WCF")]

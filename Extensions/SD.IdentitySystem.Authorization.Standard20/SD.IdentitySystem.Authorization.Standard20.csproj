@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <AssemblyName>SD.IdentitySystem.Authorization</AssemblyName>
     <RootNamespace>SD.IdentitySystem.Authorization</RootNamespace>
-    <Description>授权工具</Description>
+    <Description>SD.IdentitySystem 授权工具</Description>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Copyright>Copyright © SD 2021</Copyright>
@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.8.11" />
-    <PackageReference Include="SD.Infrastructure" Version="2.2.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.0" />
   </ItemGroup>
 
   <ItemGroup>

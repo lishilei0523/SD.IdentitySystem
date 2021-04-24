@@ -1,6 +1,6 @@
 ﻿using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
-using SD.Toolkits.AsyncHttpContext;
+using SD.Toolkits.WebHost.Extensions;
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
