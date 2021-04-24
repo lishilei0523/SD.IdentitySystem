@@ -1,7 +1,7 @@
 ﻿<configuration>
-  <injectionRegisterConfiguration>
+  <sd.ioc>
     <asInterfaceTypes>
       <type name="SD.IdentitySystem.Membership.AspNetCore.MembershipProvider" assembly="SD.IdentitySystem.Membership.AspNetCore" />
     </asInterfaceTypes>
-  </injectionRegisterConfiguration>
+  </sd.ioc>
 </configuration>
