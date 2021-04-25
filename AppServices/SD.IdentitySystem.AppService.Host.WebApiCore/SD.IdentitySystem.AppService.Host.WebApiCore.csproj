@@ -21,7 +21,7 @@
 
   <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.8.11" />
-    <PackageReference Include="SD.AOP.Core" Version="2.0.8" />
+    <PackageReference Include="SD.AOP.Core" Version="2.0.9" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.0.6" />
     <PackageReference Include="SD.Common" Version="3.0.3" />
     <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="1.0.0" />
