@@ -1,6 +1,5 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using SD.Infrastructure.AspNetCore.Server.Middlewares;
 using SD.Toolkits.OwinCore.Middlewares;
 
 namespace SD.IdentitySystem.AspNetCore.Tests
@@ -24,7 +23,6 @@ namespace SD.IdentitySystem.AspNetCore.Tests
         public void Configure(IApplicationBuilder appBuilder)
         {
             //配置中间件
-            appBuilder.UseMiddleware<GlobalMiddleware>();
             appBuilder.UseMiddleware<CacheOwinContextMiddleware>();
 
             //配置路由
