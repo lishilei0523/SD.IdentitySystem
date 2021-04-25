@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netstandard2.1</TargetFramework>
+    <TargetFramework>netstandard2.0</TargetFramework>
     <Description>SD.IdentitySystem WCF身份认证工具 - ASP.NET Core客户端</Description>
     <Authors>Lee</Authors>
     <Company>SD</Company>
@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
-    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.1" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.0" />
   </ItemGroup>
 </Project>

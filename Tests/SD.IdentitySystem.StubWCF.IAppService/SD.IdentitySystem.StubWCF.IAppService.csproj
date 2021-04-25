@@ -1,0 +1,16 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Compile Include="..\SD.IdentitySystem.StubWCF.Server\Interfaces\IServerContract.cs">
+      <Link>Interfaces\IServerContract.cs</Link>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Infrastructure" Version="3.0.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
+  </ItemGroup>
+</Project>
