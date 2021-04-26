@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <Description>SD.IdentitySystem WCF身份认证工具 - ASP.NET Core客户端</Description>
     <Authors>Lee</Authors>
     <Company>SD</Company>
+    <Description>SD.IdentitySystem WCF身份认证工具 - ASP.NET Core客户端</Description>
     <Copyright>Copyright © SD 2021</Copyright>
   </PropertyGroup>
 
