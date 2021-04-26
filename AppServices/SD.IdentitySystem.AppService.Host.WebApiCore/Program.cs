@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.AppService.Host
             hostBuilder.ConfigureWebHostDefaults(webBuilder =>
             {
                 ICollection<string> urls = new HashSet<string>();
-                foreach (HostElement hostElement in AspNetCoreSection.Setting.HostElement)
+                foreach (HostElement hostElement in AspNetCoreSection.Setting.HostElements)
                 {
                     urls.Add(hostElement.Url);
                 }

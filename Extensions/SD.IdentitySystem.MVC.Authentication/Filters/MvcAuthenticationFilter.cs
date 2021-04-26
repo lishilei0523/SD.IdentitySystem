@@ -35,7 +35,7 @@ namespace SD.IdentitySystem.MVC.Authentication.Filters
                 StringBuilder scriptBuilder = new StringBuilder();
                 scriptBuilder.Append("<script type=\"text/javascript\">");
                 scriptBuilder.Append("window.top.location.href=");
-                scriptBuilder.Append($"\"{AspNetSection.Setting.LoginPage.Url}\"");
+                scriptBuilder.Append($"\"{AspNetSection.Setting.LoginPage.Value}\"");
                 scriptBuilder.Append("</script>");
 
                 //跳转至登录页

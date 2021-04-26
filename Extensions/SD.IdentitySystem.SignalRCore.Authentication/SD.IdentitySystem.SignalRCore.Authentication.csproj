@@ -15,7 +15,7 @@
   </PropertyGroup>
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Http.Abstractions" Version="2.2.0" />
-    <PackageReference Include="SD.Toolkits.AspNetCore" Version="1.0.2" />
+    <PackageReference Include="SD.Toolkits.AspNetCore" Version="1.0.3" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.0" />
     <PackageReference Include="SD.Infrastructure.SignalRCore.Server" Version="1.0.1" />
