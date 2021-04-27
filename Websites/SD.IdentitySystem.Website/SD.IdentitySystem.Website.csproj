@@ -102,7 +102,7 @@
       <HintPath>..\..\packages\SD.IOC.Integration.MVC.2.0.1\lib\net461\SD.IOC.Integration.MVC.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.2\lib\net45\SD.Toolkits.AspNet.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.3\lib\net45\SD.Toolkits.AspNet.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.EasyUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.EasyUI.1.0.0\lib\net40\SD.Toolkits.EasyUI.dll</HintPath>
@@ -114,7 +114,7 @@
       <HintPath>..\..\packages\SD.Toolkits.Json.1.0.1\lib\net45\SD.Toolkits.Json.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.MVC, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.MVC.1.0.3\lib\net45\SD.Toolkits.MVC.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.MVC.1.0.4\lib\net45\SD.Toolkits.MVC.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.WebHost, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.WebHost.1.0.0\lib\net46\SD.Toolkits.WebHost.dll</HintPath>

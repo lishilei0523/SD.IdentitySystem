@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using SD.Toolkits.AspNetCore;
-using SD.Toolkits.AspNetCore.Configurations;
+using SD.Toolkits.AspNet;
+using SD.Toolkits.AspNet.Configurations;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.AspNetCore.Tests
             hostBuilder.ConfigureWebHostDefaults(webBuilder =>
             {
                 ICollection<string> urls = new HashSet<string>();
-                foreach (HostElement hostElement in AspNetCoreSection.Setting.HostElements)
+                foreach (HostElement hostElement in AspNetSection.Setting.HostElements)
                 {
                     urls.Add(hostElement.Url);
                 }

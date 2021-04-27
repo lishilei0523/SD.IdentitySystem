@@ -2,7 +2,7 @@
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
-using SD.Toolkits.AspNetCore;
+using SD.Toolkits.AspNet;
 using System.Net;
 using System.Security.Principal;
 using System.Threading.Tasks;
@@ -32,7 +32,7 @@ namespace SD.IdentitySystem.SignalRCore.Authentication.Middlewares
         /// </summary>
         public async Task Invoke(HttpContext context)
         {
-            if (AspNetCoreSection.Setting.Authorized)
+            if (AspNetSection.Setting.Authorized)
             {
                 //读Header
                 string publicKey = context.Request.Headers[SessionKey.CurrentPublicKey];

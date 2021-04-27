@@ -21,6 +21,7 @@ namespace SD.IdentitySystem.WebApi.Tests
             foreach (HostElement host in AspNetSection.Setting.HostElements)
             {
                 startOptions.Urls.Add(host.Url);
+                Console.WriteLine($"Listening: {host.Url}");
             }
 
             //开启服务

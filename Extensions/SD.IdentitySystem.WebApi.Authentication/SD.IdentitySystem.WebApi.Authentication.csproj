@@ -43,7 +43,7 @@
       <HintPath>..\..\packages\SD.Infrastructure.3.0.0\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.AspNet, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.2\lib\net45\SD.Toolkits.AspNet.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.AspNet.1.0.3\lib\net45\SD.Toolkits.AspNet.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
