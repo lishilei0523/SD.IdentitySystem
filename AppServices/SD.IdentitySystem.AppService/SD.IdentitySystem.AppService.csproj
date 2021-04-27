@@ -75,9 +75,6 @@
     <Reference Include="SD.Infrastructure.EventBase, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.EventBase.2.0.2\lib\netstandard2.0\SD.Infrastructure.EventBase.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure.Global, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.Global.2.0.3\lib\netstandard2.0\SD.Infrastructure.Global.dll</HintPath>
-    </Reference>
     <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.6\lib\net461\SD.IOC.Core.dll</HintPath>
     </Reference>
@@ -91,7 +88,6 @@
       <HintPath>..\..\packages\SD.Toolkits.Recursion.2.0.3\lib\net40\SD.Toolkits.Recursion.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
     <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
       <HintPath>..\..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
