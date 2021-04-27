@@ -1,6 +1,4 @@
-﻿using Microsoft.Owin;
-using Owin;
-using SD.IdentitySystem.AppService.Host;
+﻿using Owin;
 using SD.IdentitySystem.WebApi.Authentication.Filters;
 using SD.Infrastructure.WebApi.SelfHost.Server.Middlewares;
 using SD.IOC.Integration.WebApi.SelfHost;
@@ -14,9 +12,11 @@ using System.Reflection;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-[assembly: OwinStartup(typeof(Startup))]
 namespace SD.IdentitySystem.AppService.Host
 {
+    /// <summary>
+    /// OWIN启动器
+    /// </summary>
     public class Startup : StartupBase
     {
         /// <summary>

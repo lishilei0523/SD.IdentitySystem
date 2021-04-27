@@ -1,4 +1,6 @@
-﻿using System.Reflection;
+﻿using Microsoft.Owin;
+using SD.IdentitySystem.AppService.Host;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // 有关程序集的一般信息由以下
@@ -33,3 +35,6 @@ using System.Runtime.InteropServices;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
+
+//OWIN启动器
+[assembly: OwinStartup(typeof(Startup))]

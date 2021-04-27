@@ -10,6 +10,9 @@ namespace SD.IdentitySystem.AppService.Host
     /// </summary>
     public class ServiceLauncher
     {
+        /// <summary>
+        /// Web应用程序
+        /// </summary>
         private IDisposable _webApp;
 
         /// <summary>
