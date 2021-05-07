@@ -47,7 +47,11 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs exceptionEventArgs)
         {
-            //TODO 处理异常
+            MessageBox.Show(exceptionEventArgs.Exception.Message, "Error");
+
+            //TODO 记录日志
+
+            exceptionEventArgs.Handled = true;
         }
         #endregion
 

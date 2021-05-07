@@ -8,7 +8,7 @@ namespace SD.IdentitySystem.Client.ViewModels
     /// <summary>
     /// 首页视图模型
     /// </summary>
-    public class HomeViewModel : Screen
+    public class HomeViewModel : Conductor<IScreen>.Collection.OneActive
     {
         #region # 字段及构造器
 
