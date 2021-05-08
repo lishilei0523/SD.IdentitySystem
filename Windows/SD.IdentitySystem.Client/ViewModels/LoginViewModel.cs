@@ -39,11 +39,12 @@ namespace SD.IdentitySystem.Client.ViewModels
 
             //默认值
             base.DisplayName = string.Empty;
-
+#if DEBUG
             //自动登录
             this.LoginId = CommonConstants.AdminLoginId;
             this.Password = CommonConstants.InitialPassword;
             this.Login();
+#endif
         }
 
         #endregion

@@ -7,6 +7,7 @@ using SD.Infrastructure.WPF.Aspects;
 using SD.IOC.Core.Mediators;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Windows;
 using System.Windows.Threading;
@@ -163,6 +164,38 @@ namespace SD.IdentitySystem.Client.ViewModels
             {
                 this.BingVisibility = Visibility.Visible;
             }
+        }
+        #endregion
+
+        #region 注销登录 —— void Logout()
+        /// <summary>
+        /// 注销登录
+        /// </summary>
+        public void Logout()
+        {
+            MessageBoxResult result = MessageBox.Show("您确定要注销吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                //清空Session
+                AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, null);
+
+                //跳转到登录窗体
+                LoginViewModel loginViewModel = ResolveMediator.Resolve<LoginViewModel>();
+                this._windowManager.ShowWindow(loginViewModel);
+
+                //关闭当前窗口
+                this.TryClose();
+            }
+        }
+        #endregion
+
+        #region 访问我的码云 —— void LaunchGitee()
+        /// <summary>
+        /// 访问我的码云
+        /// </summary>
+        public void LaunchGitee()
+        {
+            Process.Start("https://gitee.com/lishilei0523");
         }
         #endregion
 
