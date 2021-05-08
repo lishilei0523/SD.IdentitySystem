@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
@@ -60,7 +60,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("权限管理首页视图")]
         public ViewResult Index()
         {
-            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
             base.ViewBag.InfoSystems = systems;
 
             return base.View();
@@ -76,7 +76,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("创建权限视图")]
         public ViewResult Add()
         {
-            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
             base.ViewBag.InfoSystems = systems;
 
             return base.View();
@@ -93,7 +93,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("修改权限视图")]
         public ViewResult Update(Guid id)
         {
-            AuthorityView currentAuthority = this._authorityPresenter.GetAuthority(id);
+            Authority currentAuthority = this._authorityPresenter.GetAuthority(id);
 
             return base.View(currentAuthority);
         }
@@ -263,8 +263,8 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("分页获取权限列表")]
         public JsonResult GetAuthoritiesByPage(string keywords, string systemNo, int page, int rows)
         {
-            PageModel<AuthorityView> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, systemNo, page, rows);
-            Grid<AuthorityView> grid = new Grid<AuthorityView>(pageModel.RowCount, pageModel.Datas);
+            PageModel<Authority> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, systemNo, page, rows);
+            Grid<Authority> grid = new Grid<Authority>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }

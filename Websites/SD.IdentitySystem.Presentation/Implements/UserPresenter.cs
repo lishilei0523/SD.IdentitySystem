@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.DTOBase;
 using System;
@@ -33,21 +33,21 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 获取用户 —— UserView GetUser(string loginId)
+        #region # 获取用户 —— User GetUser(string loginId)
         /// <summary>
         /// 获取用户
         /// </summary>
         /// <param name="loginId">登录名</param>
         /// <returns>用户</returns>
-        public UserView GetUser(string loginId)
+        public User GetUser(string loginId)
         {
             UserInfo userInfo = this._userContract.GetUser(loginId);
 
-            return userInfo.ToViewModel();
+            return userInfo.ToModel();
         }
         #endregion
 
-        #region # 分页获取用户列表 —— PageModel<UserView> GetUsersByPage(string keywords...
+        #region # 分页获取用户列表 —— PageModel<User> GetUsersByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表
         /// </summary>
@@ -56,16 +56,16 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
-        public PageModel<UserView> GetUsersByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        public PageModel<User> GetUsersByPage(string keywords, string systemNo, int pageIndex, int pageSize)
         {
             PageModel<UserInfo> pageModel = this._userContract.GetUsersByPage(keywords, systemNo, null, pageIndex, pageSize);
-            IEnumerable<UserView> userViews = pageModel.Datas.Select(x => x.ToViewModel());
+            IEnumerable<User> users = pageModel.Datas.Select(x => x.ToModel());
 
-            return new PageModel<UserView>(userViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+            return new PageModel<User>(users, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
         }
         #endregion
 
-        #region # 分页获取登录记录列表 —— PageModel<LoginRecordView> GetLoginRecordsByPage(string keywords...
+        #region # 分页获取登录记录列表 —— PageModel<LoginRecord> GetLoginRecordsByPage(string keywords...
         /// <summary>
         /// 分页获取登录记录列表
         /// </summary>
@@ -75,12 +75,12 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>登录记录列表</returns>
-        public PageModel<LoginRecordView> GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
+        public PageModel<LoginRecord> GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize)
         {
             PageModel<LoginRecordInfo> pageModel = this._userContract.GetLoginRecordsByPage(keywords, startTime, endTime, pageIndex, pageSize);
-            IEnumerable<LoginRecordView> recordViews = pageModel.Datas.Select(x => x.ToViewModel());
+            IEnumerable<LoginRecord> records = pageModel.Datas.Select(x => x.ToModel());
 
-            return new PageModel<LoginRecordView>(recordViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+            return new PageModel<LoginRecord>(records, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
         }
         #endregion
     }

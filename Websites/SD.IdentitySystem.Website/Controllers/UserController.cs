@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
@@ -82,7 +82,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("用户管理首页视图")]
         public ViewResult Index()
         {
-            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
             base.ViewBag.InfoSystems = systems;
 
             return this.View();
@@ -376,8 +376,8 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("分页获取用户列表")]
         public JsonResult GetUsersByPage(string keywords, string systemNo, int page, int rows)
         {
-            PageModel<UserView> pageModel = this._userPresenter.GetUsersByPage(keywords, systemNo, page, rows);
-            Grid<UserView> grid = new Grid<UserView>(pageModel.RowCount, pageModel.Datas);
+            PageModel<User> pageModel = this._userPresenter.GetUsersByPage(keywords, systemNo, page, rows);
+            Grid<User> grid = new Grid<User>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }

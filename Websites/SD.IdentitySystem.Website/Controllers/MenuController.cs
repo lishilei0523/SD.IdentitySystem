@@ -1,7 +1,7 @@
 ﻿using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.EasyUI;
@@ -61,7 +61,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("菜单管理首页视图")]
         public ViewResult Index()
         {
-            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
             IDictionary<int, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumDictionary();
 
             base.ViewBag.InfoSystems = systems;
@@ -80,7 +80,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("创建菜单视图")]
         public ViewResult Add()
         {
-            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
             IDictionary<int, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumDictionary();
 
             base.ViewBag.InfoSystems = systems;
@@ -100,8 +100,8 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("修改菜单视图")]
         public ViewResult Update(Guid id)
         {
-            MenuView currentMenu = this._menuPresenter.GetMenu(id);
-            MenuView parentMenu = currentMenu.ParentMenuId == null ? null : this._menuPresenter.GetMenu(currentMenu.ParentMenuId.Value);
+            Menu currentMenu = this._menuPresenter.GetMenu(id);
+            Menu parentMenu = currentMenu.ParentMenuId == null ? null : this._menuPresenter.GetMenu(currentMenu.ParentMenuId.Value);
 
             base.ViewBag.ParentName = parentMenu == null ? string.Empty : parentMenu.Name;
 
@@ -119,7 +119,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("关联权限视图")]
         public ViewResult RelateAuthority(Guid id)
         {
-            MenuView currentMenu = this._menuPresenter.GetMenu(id);
+            Menu currentMenu = this._menuPresenter.GetMenu(id);
 
             return base.View(currentMenu);
         }
@@ -262,8 +262,8 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("获取菜单树形表格")]
         public JsonResult GetMenuTreeGrid(string systemNo, ApplicationType? applicationType)
         {
-            IEnumerable<MenuView> menus = this._menuPresenter.GetMenuTreeGrid(systemNo, applicationType).ToArray();
-            Grid<MenuView> grid = new Grid<MenuView>(menus.Count(), menus);
+            IEnumerable<Menu> menus = this._menuPresenter.GetMenuTreeGrid(systemNo, applicationType).ToArray();
+            Grid<Menu> grid = new Grid<Menu>(menus.Count(), menus);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }

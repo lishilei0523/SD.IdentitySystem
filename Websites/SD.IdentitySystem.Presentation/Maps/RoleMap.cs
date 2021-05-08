@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Toolkits.EasyUI;
 using SD.Toolkits.Mapper;
 
@@ -10,29 +10,29 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class RoleMap
     {
-        #region # 角色视图模型映射 —— static RoleView ToViewModel(this RoleInfo...
+        #region # 角色视图模型映射 —— static Role ToModel(this RoleInfo...
         /// <summary>
         /// 角色视图模型映射
         /// </summary>
         /// <param name="roleInfo">角色数据传输对象</param>
         /// <returns>角色视图模型</returns>
-        public static RoleView ToViewModel(this RoleInfo roleInfo)
+        public static Role ToModel(this RoleInfo roleInfo)
         {
-            RoleView roleView = roleInfo.Map<RoleInfo, RoleView>();
+            Role role = roleInfo.Map<RoleInfo, Role>();
 
-            roleView.SystemName = roleInfo.InfoSystemInfo.Name;
+            role.SystemName = roleInfo.InfoSystemInfo.Name;
 
-            return roleView;
+            return role;
         }
         #endregion
 
-        #region # 角色EasyUI树节点映射 —— static Node ToNode(this RoleView role)
+        #region # 角色EasyUI树节点映射 —— static Node ToNode(this Role role)
         /// <summary>
         /// 角色EasyUI树节点映射
         /// </summary>
         /// <param name="role">角色视图模型</param>
         /// <returns>EasyUI树节点</returns>
-        public static Node ToNode(this RoleView role)
+        public static Node ToNode(this Role role)
         {
             var attributes = new
             {

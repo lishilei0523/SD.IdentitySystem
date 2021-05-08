@@ -1,4 +1,4 @@
-﻿using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+﻿using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.PresentationBase;
@@ -13,23 +13,23 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IMenuPresenter : IPresenter
     {
-        #region # 获取菜单 —— MenuView GetMenu(Guid menuId)
+        #region # 获取菜单 —— Menu GetMenu(Guid menuId)
         /// <summary>
         /// 获取菜单
         /// </summary>
         /// <param name="menuId">菜单Id</param>
         /// <returns>菜单</returns>
-        MenuView GetMenu(Guid menuId);
+        Menu GetMenu(Guid menuId);
         #endregion
 
-        #region # 获取菜单列表 —— IEnumerable<MenuView> GetMenus(string systemNo...
+        #region # 获取菜单列表 —— IEnumerable<Menu> GetMenus(string systemNo...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        IEnumerable<MenuView> GetMenus(string systemNo, ApplicationType? applicationType);
+        IEnumerable<Menu> GetMenus(string systemNo, ApplicationType? applicationType);
         #endregion
 
         #region # 获取菜单树 —— IEnumerable<Node> GetMenuTree(string systemNo...
@@ -53,17 +53,17 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         IEnumerable<Node> GetUserMenuTree(string loginId, string systemNo, ApplicationType? applicationType);
         #endregion
 
-        #region # 获取菜单TreeGrid —— IEnumerable<MenuView> GetMenuTreeGrid(string systemNo...
+        #region # 获取菜单TreeGrid —— IEnumerable<Menu> GetMenuTreeGrid(string systemNo...
         /// <summary>
         /// 获取菜单TreeGrid
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单TreeGrid</returns>
-        IEnumerable<MenuView> GetMenuTreeGrid(string systemNo, ApplicationType? applicationType);
+        IEnumerable<Menu> GetMenuTreeGrid(string systemNo, ApplicationType? applicationType);
         #endregion
 
-        #region # 分页获取菜单列表 —— PageModel<MenuView> GetMenusByPage(string keywords...
+        #region # 分页获取菜单列表 —— PageModel<Menu> GetMenusByPage(string keywords...
         /// <summary>
         /// 分页获取菜单列表
         /// </summary>
@@ -73,7 +73,7 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>菜单列表</returns>
-        PageModel<MenuView> GetMenusByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize);
+        PageModel<Menu> GetMenusByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize);
         #endregion
     }
 }

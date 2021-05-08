@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
@@ -78,7 +78,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("初始化信息系统视图")]
         public ViewResult Init(string id)
         {
-            InfoSystemView currentSystem = this._systemPresenter.GetInfoSystem(id);
+            InfoSystem currentSystem = this._systemPresenter.GetInfoSystem(id);
 
             return base.View(currentSystem);
         }
@@ -130,8 +130,8 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("分页获取信息系统列表")]
         public JsonResult GetInfoSystemsByPage(string keywords, int page, int rows)
         {
-            PageModel<InfoSystemView> pageModel = this._systemPresenter.GetInfoSystemsByPage(keywords, page, rows);
-            Grid<InfoSystemView> grid = new Grid<InfoSystemView>(pageModel.RowCount, pageModel.Datas);
+            PageModel<InfoSystem> pageModel = this._systemPresenter.GetInfoSystemsByPage(keywords, page, rows);
+            Grid<InfoSystem> grid = new Grid<InfoSystem>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }

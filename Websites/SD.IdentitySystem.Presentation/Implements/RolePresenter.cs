@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
@@ -41,48 +41,48 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 获取角色 —— RoleView GetRole(Guid roleId)
+        #region # 获取角色 —— Role GetRole(Guid roleId)
         /// <summary>
         /// 获取角色
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <returns>角色</returns>
-        public RoleView GetRole(Guid roleId)
+        public Role GetRole(Guid roleId)
         {
             RoleInfo roleInfo = this._authorizationContract.GetRole(roleId);
 
-            return roleInfo.ToViewModel();
+            return roleInfo.ToModel();
         }
         #endregion
 
-        #region # 获取角色列表 —— IEnumerable<RoleView> GetRoles(string systemNo)
+        #region # 获取角色列表 —— IEnumerable<Role> GetRoles(string systemNo)
         /// <summary>
         /// 获取角色列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
-        public IEnumerable<RoleView> GetRoles(string systemNo)
+        public IEnumerable<Role> GetRoles(string systemNo)
         {
             IEnumerable<RoleInfo> roleInfos = this._authorizationContract.GetRoles(null, null, systemNo);
 
-            IEnumerable<RoleView> roleViews = roleInfos.Select(x => x.ToViewModel());
+            IEnumerable<Role> roles = roleInfos.Select(x => x.ToModel());
 
-            return roleViews;
+            return roles;
         }
         #endregion
 
-        #region # 获取用户角色列表 —— IEnumerable<RoleView> GetUserRoles(string loginId)
+        #region # 获取用户角色列表 —— IEnumerable<Role> GetUserRoles(string loginId)
         /// <summary>
         /// 获取用户角色列表
         /// </summary>
         /// <param name="loginId">用户登录名</param>
         /// <returns>角色列表</returns>
-        public IEnumerable<RoleView> GetUserRoles(string loginId)
+        public IEnumerable<Role> GetUserRoles(string loginId)
         {
             IEnumerable<RoleInfo> roleInfos = this._userContract.GetUserRoles(loginId, null);
-            IEnumerable<RoleView> roleViews = roleInfos.Select(x => x.ToViewModel());
+            IEnumerable<Role> roles = roleInfos.Select(x => x.ToModel());
 
-            return roleViews;
+            return roles;
         }
         #endregion
 
@@ -99,9 +99,9 @@ namespace SD.IdentitySystem.Presentation.Implements
 
             foreach (InfoSystemInfo system in systems)
             {
-                IEnumerable<RoleView> roles = this.GetRoles(system.Number);
+                IEnumerable<Role> roles = this.GetRoles(system.Number);
 
-                Node node = system.ToViewModel().ToNode(roles);
+                Node node = system.ToModel().ToNode(roles);
                 tree.Add(node);
             }
 
@@ -118,7 +118,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         public IEnumerable<Node> GetUserSystemRoleTree(string loginId)
         {
             //获取当前用户及其角色集
-            IEnumerable<RoleView> userRoles = this.GetUserRoles(loginId).ToArray();
+            IEnumerable<Role> userRoles = this.GetUserRoles(loginId).ToArray();
 
             //获取信息系统/角色树
             IEnumerable<Node> roleTree = this.GetSystemRoleTree().ToArray();
@@ -141,7 +141,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 分页获取角色列表 —— PageModel<RoleView> GetRolesByPage(string keywords...
+        #region # 分页获取角色列表 —— PageModel<Role> GetRolesByPage(string keywords...
         /// <summary>
         /// 分页获取角色列表
         /// </summary>
@@ -150,13 +150,13 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
-        public PageModel<RoleView> GetRolesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        public PageModel<Role> GetRolesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
         {
             PageModel<RoleInfo> pageModel = this._authorizationContract.GetRolesByPage(keywords, systemNo, pageIndex, pageSize);
 
-            IEnumerable<RoleView> roleViews = pageModel.Datas.Select(x => x.ToViewModel());
+            IEnumerable<Role> roles = pageModel.Datas.Select(x => x.ToModel());
 
-            return new PageModel<RoleView>(roleViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+            return new PageModel<Role>(roles, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
         }
         #endregion
     }

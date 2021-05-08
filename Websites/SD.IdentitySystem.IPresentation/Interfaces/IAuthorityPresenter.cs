@@ -1,4 +1,4 @@
-﻿using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+﻿using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.PresentationBase;
 using SD.Toolkits.EasyUI;
@@ -12,40 +12,40 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IAuthorityPresenter : IPresenter
     {
-        #region # 获取权限 —— AuthorityView GetAuthority(Guid authorityId)
+        #region # 获取权限 —— Authority GetAuthority(Guid authorityId)
         /// <summary>
         /// 获取权限
         /// </summary>
         /// <param name="authorityId">权限Id</param>
         /// <returns>权限视图模型</returns>
-        AuthorityView GetAuthority(Guid authorityId);
+        Authority GetAuthority(Guid authorityId);
         #endregion
 
-        #region # 根据信息系统获取权限列表 —— IEnumerable<AuthorityView> GetAuthoritiesBySystem(...
+        #region # 根据信息系统获取权限列表 —— IEnumerable<Authority> GetAuthoritiesBySystem(...
         /// <summary>
         /// 根据信息系统获取权限列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限列表</returns>
-        IEnumerable<AuthorityView> GetAuthoritiesBySystem(string systemNo);
+        IEnumerable<Authority> GetAuthoritiesBySystem(string systemNo);
         #endregion
 
-        #region # 根据菜单获取权限列表 —— IEnumerable<AuthorityView> GetAuthoritiesByMenu(...
+        #region # 根据菜单获取权限列表 —— IEnumerable<Authority> GetAuthoritiesByMenu(...
         /// <summary>
         /// 根据菜单获取权限列表
         /// </summary>
         /// <param name="menuId">菜单Id</param>
         /// <returns>权限列表</returns>
-        IEnumerable<AuthorityView> GetAuthoritiesByMenu(Guid menuId);
+        IEnumerable<Authority> GetAuthoritiesByMenu(Guid menuId);
         #endregion
 
-        #region # 根据角色获取权限列表 —— IEnumerable<AuthorityView> GetAuthoritiesByRole(...
+        #region # 根据角色获取权限列表 —— IEnumerable<Authority> GetAuthoritiesByRole(...
         /// <summary>
         /// 根据角色获取权限列表
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <returns>权限列表</returns>
-        IEnumerable<AuthorityView> GetAuthoritiesByRole(Guid roleId);
+        IEnumerable<Authority> GetAuthoritiesByRole(Guid roleId);
         #endregion
 
         #region # 获取信息系统的权限树 —— Node GetAuthorityTree(string systemNo)
@@ -75,7 +75,7 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         Node GetAuthorityTreeByMenu(Guid menuId);
         #endregion
 
-        #region # 分页获取权限列表 —— PageModel<AuthorityView> GetAuthoritiesByPage(string keywords...
+        #region # 分页获取权限列表 —— PageModel<Authority> GetAuthoritiesByPage(string keywords...
         /// <summary>
         /// 分页获取权限列表
         /// </summary>
@@ -84,7 +84,7 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
-        PageModel<AuthorityView> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize);
+        PageModel<Authority> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize);
         #endregion
     }
 }

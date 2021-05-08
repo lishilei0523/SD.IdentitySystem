@@ -1,22 +1,22 @@
-﻿using SD.Infrastructure.PresentationBase;
-using SD.Toolkits.EasyUI;
-using System;
+﻿using System;
 using System.Collections.Generic;
+using SD.Infrastructure.PresentationBase;
+using SD.Toolkits.EasyUI;
 
-namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
+namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
     /// 菜单视图模型
     /// </summary>
-    public class MenuView : ViewModel, ITreeGrid<MenuView>
+    public class Menu : ViewModel, ITreeGrid<Menu>
     {
         #region 构造器
         /// <summary>
         /// 构造器
         /// </summary>
-        public MenuView()
+        public Menu()
         {
-            this.children = new HashSet<MenuView>();
+            this.children = new HashSet<Menu>();
         }
         #endregion
 
@@ -101,11 +101,11 @@ namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
         public string type { get; set; }
         #endregion
 
-        #region 导航属性 - 子级菜单集 —— ICollection<MenuView> children
+        #region 导航属性 - 子级菜单集 —— ICollection<Menu> children
         /// <summary>
         /// 导航属性 - 子级菜单集
         /// </summary>
-        public ICollection<MenuView> children { get; set; }
+        public ICollection<Menu> children { get; set; }
         #endregion
     }
 }

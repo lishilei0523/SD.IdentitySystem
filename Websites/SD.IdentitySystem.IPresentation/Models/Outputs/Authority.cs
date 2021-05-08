@@ -1,11 +1,11 @@
 ﻿using SD.Infrastructure.PresentationBase;
 
-namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
+namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
     /// 权限视图模型
     /// </summary>
-    public class AuthorityView : ViewModel
+    public class Authority : ViewModel
     {
         #region 程序集名称 —— string AssemblyName
         /// <summary>

@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.DTOBase;
 using System.Collections.Generic;
@@ -32,36 +32,36 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 获取信息系统 —— InfoSystemView GetInfoSystem(string systemNo)
+        #region # 获取信息系统 —— InfoSystem GetInfoSystem(string systemNo)
         /// <summary>
         /// 获取信息系统
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>信息系统</returns>
-        public InfoSystemView GetInfoSystem(string systemNo)
+        public InfoSystem GetInfoSystem(string systemNo)
         {
             InfoSystemInfo systemInfo = this._authorizationContract.GetInfoSystem(systemNo);
 
-            return systemInfo.ToViewModel();
+            return systemInfo.ToModel();
         }
         #endregion
 
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemView> GetInfoSystems()
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystem> GetInfoSystems()
         /// <summary>
         /// 获取信息系统列表
         /// </summary>
         /// <returns>信息系统列表</returns>
-        public IEnumerable<InfoSystemView> GetInfoSystems()
+        public IEnumerable<InfoSystem> GetInfoSystems()
         {
             IEnumerable<InfoSystemInfo> systemInfos = this._authorizationContract.GetInfoSystems();
 
-            IEnumerable<InfoSystemView> systemViews = systemInfos.Select(x => x.ToViewModel());
+            IEnumerable<InfoSystem> infoSystems = systemInfos.Select(x => x.ToModel());
 
-            return systemViews;
+            return infoSystems;
         }
         #endregion
 
-        #region # 分页获取信息系统列表 —— PageModel<InfoSystemView> GetInfoSystemsByPage(string keywords...
+        #region # 分页获取信息系统列表 —— PageModel<InfoSystem> GetInfoSystemsByPage(string keywords...
         /// <summary>
         /// 分页获取信息系统列表
         /// </summary>
@@ -69,13 +69,13 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>信息系统列表</returns>
-        public PageModel<InfoSystemView> GetInfoSystemsByPage(string keywords, int pageIndex, int pageSize)
+        public PageModel<InfoSystem> GetInfoSystemsByPage(string keywords, int pageIndex, int pageSize)
         {
             PageModel<InfoSystemInfo> pageModel = this._authorizationContract.GetInfoSystemsByPage(keywords, pageIndex, pageSize);
 
-            IEnumerable<InfoSystemView> systemViews = pageModel.Datas.Select(x => x.ToViewModel());
+            IEnumerable<InfoSystem> infoSystems = pageModel.Datas.Select(x => x.ToModel());
 
-            return new PageModel<InfoSystemView>(systemViews, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+            return new PageModel<InfoSystem>(infoSystems, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
 
         }
         #endregion

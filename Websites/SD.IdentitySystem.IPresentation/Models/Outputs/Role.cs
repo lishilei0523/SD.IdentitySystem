@@ -1,11 +1,11 @@
 ﻿using SD.Infrastructure.PresentationBase;
 
-namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
+namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
     /// 角色视图模型
     /// </summary>
-    public class RoleView : ViewModel
+    public class Role : ViewModel
     {
         #region 角色描述 —— string Description
         /// <summary>

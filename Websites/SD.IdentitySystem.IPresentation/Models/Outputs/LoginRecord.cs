@@ -1,11 +1,11 @@
 ﻿using SD.Infrastructure.PresentationBase;
 
-namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
+namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
     /// 用户登录记录视图模型
     /// </summary>
-    public class LoginRecordView : ViewModel
+    public class LoginRecord : ViewModel
     {
         #region 登录名 —— string LoginId
         /// <summary>

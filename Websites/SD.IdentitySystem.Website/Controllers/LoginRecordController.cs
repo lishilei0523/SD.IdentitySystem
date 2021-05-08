@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
@@ -63,8 +63,8 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("分页获取登录记录列表")]
         public JsonResult GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
-            PageModel<LoginRecordView> pageModel = this._userPresenter.GetLoginRecordsByPage(keywords, startTime, endTime, page, rows);
-            Grid<LoginRecordView> grid = new Grid<LoginRecordView>(pageModel.RowCount, pageModel.Datas);
+            PageModel<LoginRecord> pageModel = this._userPresenter.GetLoginRecordsByPage(keywords, startTime, endTime, page, rows);
+            Grid<LoginRecord> grid = new Grid<LoginRecord>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }

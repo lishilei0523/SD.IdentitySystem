@@ -1,11 +1,11 @@
 ﻿using SD.Infrastructure.PresentationBase;
 
-namespace SD.IdentitySystem.IPresentation.ViewModels.Outputs
+namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
     /// 用户视图模型
     /// </summary>
-    public class UserView : ViewModel
+    public class User : ViewModel
     {
         #region 私钥 —— string PrivateKey
         /// <summary>

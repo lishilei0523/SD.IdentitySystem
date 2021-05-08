@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
@@ -66,7 +66,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("角色管理首页视图")]
         public ViewResult Index()
         {
-            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
             base.ViewBag.InfoSystems = systems;
 
             return base.View();
@@ -82,7 +82,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("创建角色视图")]
         public ViewResult Add()
         {
-            IEnumerable<InfoSystemView> systems = this._systemPresenter.GetInfoSystems();
+            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
             base.ViewBag.InfoSystems = systems;
 
             return base.View();
@@ -99,7 +99,7 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("修改角色视图")]
         public ViewResult Update(Guid id)
         {
-            RoleView currentRole = this._rolePresenter.GetRole(id);
+            Role currentRole = this._rolePresenter.GetRole(id);
 
             return base.View(currentRole);
         }
@@ -206,8 +206,8 @@ namespace SD.IdentitySystem.Website.Controllers
         [RequireAuthorization("分页获取角色列表")]
         public JsonResult GetRolesByPage(string keywords, string systemNo, int page, int rows)
         {
-            PageModel<RoleView> pageModel = this._rolePresenter.GetRolesByPage(keywords, systemNo, page, rows);
-            Grid<RoleView> grid = new Grid<RoleView>(pageModel.RowCount, pageModel.Datas);
+            PageModel<Role> pageModel = this._rolePresenter.GetRolesByPage(keywords, systemNo, page, rows);
+            Grid<Role> grid = new Grid<Role>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
         }

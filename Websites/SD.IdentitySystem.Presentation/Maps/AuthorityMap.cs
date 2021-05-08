@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IPresentation.ViewModels.Outputs;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Toolkits.EasyUI;
 using SD.Toolkits.Mapper;
 
@@ -10,36 +10,36 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class AuthorityMap
     {
-        #region # 权限视图模型映射 —— static AuthorityView ToViewModel(this AuthorityInfo...
+        #region # 权限视图模型映射 —— static Authority ToModel(this AuthorityInfo...
         /// <summary>
         /// 权限视图模型映射
         /// </summary>
         /// <param name="authorityInfo">权限数据传输对象</param>
         /// <returns>权限视图模型</returns>
-        public static AuthorityView ToViewModel(this AuthorityInfo authorityInfo)
+        public static Authority ToModel(this AuthorityInfo authorityInfo)
         {
-            AuthorityView authorityView = authorityInfo.Map<AuthorityInfo, AuthorityView>();
+            Authority authority = authorityInfo.Map<AuthorityInfo, Authority>();
 
-            authorityView.SystemName = authorityInfo.InfoSystemInfo.Name;
+            authority.SystemName = authorityInfo.InfoSystemInfo.Name;
 
-            return authorityView;
+            return authority;
         }
         #endregion
 
-        #region # 权限EasyUI树节点映射 —— static Node ToNode(this AuthorityView authorityView)
+        #region # 权限EasyUI树节点映射 —— static Node ToNode(this Authority authority)
         /// <summary>
         /// 权限EasyUI树节点映射
         /// </summary>
-        /// <param name="authorityView">权限视图模型</param>
+        /// <param name="authority">权限视图模型</param>
         /// <returns>EasyUI树节点</returns>
-        public static Node ToNode(this AuthorityView authorityView)
+        public static Node ToNode(this Authority authority)
         {
             var attributes = new
             {
                 type = "authority"
             };
 
-            return new Node(authorityView.Id, authorityView.Name, "open", false, attributes);
+            return new Node(authority.Id, authority.Name, "open", false, attributes);
         }
         #endregion
     }
