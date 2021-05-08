@@ -55,7 +55,7 @@
                 <Grid Grid.Column="1">
                     <WrapPanel Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom">
                         <TextBlock Text="欢迎您：" FontSize="13" />
-                        <TextBlock Text="{Binding RealName}" FontSize="13" />
+                        <TextBlock Text="{Binding LoginInfo.RealName}" FontSize="13" />
                     </WrapPanel>
                     <WrapPanel Margin="0,10,55,0" HorizontalAlignment="Right" VerticalAlignment="Top">
                         <Button Background="Transparent" BorderBrush="Transparent" Padding="3">
@@ -182,7 +182,7 @@
             <Grid>
                 <WrapPanel Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBlock Text="当前登录用户：" FontSize="12" />
-                    <TextBlock Text="{Binding LoginId}" FontSize="12" />
+                    <TextBlock Text="{Binding LoginInfo.LoginId}" FontSize="12" />
                 </WrapPanel>
                 <WrapPanel Margin="0,0,40,0" HorizontalAlignment="Right" VerticalAlignment="Center">
                     <TextBlock Text="开发及技术支持 —— " FontSize="12" xml:space="preserve" />

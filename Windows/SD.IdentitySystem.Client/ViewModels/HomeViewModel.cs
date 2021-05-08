@@ -2,7 +2,6 @@
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Aspects;
 using System;
-using System.Windows;
 using System.Windows.Threading;
 
 namespace SD.IdentitySystem.Client.ViewModels
@@ -42,30 +41,16 @@ namespace SD.IdentitySystem.Client.ViewModels
         public string CurrentTime { get; set; }
         #endregion
 
-        #region 只读属性 - 当前登录名 —— string LoginId
+        #region 只读属性 - 登录信息 —— string LoginId
         /// <summary>
-        /// 只读属性 - 当前登录名
+        /// 只读属性 - 登录信息
         /// </summary>
-        public string LoginId
+        public LoginInfo LoginInfo
         {
             get
             {
                 LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
-                return loginInfo.LoginId;
-            }
-        }
-        #endregion
-
-        #region 只读属性 - 当前登录真实姓名 —— string RealName
-        /// <summary>
-        /// 只读属性 - 当前登录真实姓名
-        /// </summary>
-        public string RealName
-        {
-            get
-            {
-                LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
-                return loginInfo.RealName;
+                return loginInfo;
             }
         }
         #endregion
