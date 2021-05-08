@@ -1,14 +1,13 @@
-﻿using System;
-using System.Windows.Controls;
+﻿using System.Windows.Controls;
 
 namespace SD.IdentitySystem.Client.Views
 {
     /// <summary>
-    /// 首页视图
+    /// 登录记录视图
     /// </summary>
-    public partial class HomeView
+    public partial class LoginRecordView : UserControl
     {
-        public HomeView()
+        public LoginRecordView()
         {
             this.InitializeComponent();
         }

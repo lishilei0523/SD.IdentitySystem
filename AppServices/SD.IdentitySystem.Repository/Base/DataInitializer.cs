@@ -193,27 +193,64 @@ namespace SD.IdentitySystem.Repository.Base
 
         #region # 初始化菜单 —— void InitMenus()
         /// <summary>
-        /// 初始化菜单/// </summary>
+        /// 初始化菜单
+        /// </summary>
         private void InitMenus()
         {
             if (this._repMediator.MenuRep.Count() == 0)
             {
-                Menu root = new Menu("00", ApplicationType.Web, "身份认证系统", 1, null, null, null, null);
-                Menu systemManagement = new Menu("00", ApplicationType.Web, "信息系统管理", 2, "/InfoSystem/Index", null, null, root);
-                Menu loginRecordManagement = new Menu("00", ApplicationType.Web, "登录记录", 3, "/LoginRecord/Index", null, null, root);
-                Menu userManagement = new Menu("00", ApplicationType.Web, "用户管理", 4, "/User/Index", null, null, root);
-                Menu roleManagement = new Menu("00", ApplicationType.Web, "角色管理", 5, "/Role/Index", null, null, root);
-                Menu menuManagement = new Menu("00", ApplicationType.Web, "菜单管理", 6, "/Menu/Index", null, null, root);
-                Menu authorityManagement = new Menu("00", ApplicationType.Web, "权限管理", 7, "/Authority/Index", null, null, root);
-
-                this._menus.Add(root);
-                this._menus.Add(systemManagement);
-                this._menus.Add(loginRecordManagement);
-                this._menus.Add(userManagement);
-                this._menus.Add(roleManagement);
-                this._menus.Add(menuManagement);
-                this._menus.Add(authorityManagement);
+                const string systemNo = "00";
+                this.InitMvcMenus(systemNo);
+                this.InitWpfMenus(systemNo);
             }
+        }
+        #endregion
+
+        #region # 初始化MVC菜单 —— void InitMvcMenus(string systemNo)
+        /// <summary>
+        /// 初始化MVC菜单
+        /// </summary>
+        private void InitMvcMenus(string systemNo)
+        {
+            Menu root = new Menu(systemNo, ApplicationType.Web, "身份认证系统", 1, null, null, null, null);
+            Menu systemManagement = new Menu(systemNo, ApplicationType.Web, "信息系统管理", 2, "/InfoSystem/Index", null, null, root);
+            Menu loginRecordManagement = new Menu(systemNo, ApplicationType.Web, "登录记录", 3, "/LoginRecord/Index", null, null, root);
+            Menu userManagement = new Menu(systemNo, ApplicationType.Web, "用户管理", 4, "/User/Index", null, null, root);
+            Menu roleManagement = new Menu(systemNo, ApplicationType.Web, "角色管理", 5, "/Role/Index", null, null, root);
+            Menu menuManagement = new Menu(systemNo, ApplicationType.Web, "菜单管理", 6, "/Menu/Index", null, null, root);
+            Menu authorityManagement = new Menu(systemNo, ApplicationType.Web, "权限管理", 7, "/Authority/Index", null, null, root);
+
+            this._menus.Add(root);
+            this._menus.Add(systemManagement);
+            this._menus.Add(loginRecordManagement);
+            this._menus.Add(userManagement);
+            this._menus.Add(roleManagement);
+            this._menus.Add(menuManagement);
+            this._menus.Add(authorityManagement);
+        }
+        #endregion
+
+        #region # 初始化WPF菜单 —— void InitWpfMenus(string systemNo)
+        /// <summary>
+        /// 初始化WPF菜单
+        /// </summary>
+        private void InitWpfMenus(string systemNo)
+        {
+            Menu root = new Menu(systemNo, ApplicationType.Windows, "身份认证系统", 1, null, null, "Menu", null);
+            Menu systemManagement = new Menu(systemNo, ApplicationType.Windows, "信息系统管理", 2, "SD.IdentitySystem.Client.ViewModels.InfoSystemViewModel", null, "LabelOutline", root);
+            Menu loginRecordManagement = new Menu(systemNo, ApplicationType.Windows, "登录记录", 3, "SD.IdentitySystem.Client.ViewModels.LoginRecordViewModel", null, "LabelOutline", root);
+            Menu userManagement = new Menu(systemNo, ApplicationType.Windows, "用户管理", 4, "SD.IdentitySystem.Client.ViewModels.UserViewModel", null, "LabelOutline", root);
+            Menu roleManagement = new Menu(systemNo, ApplicationType.Windows, "角色管理", 5, "SD.IdentitySystem.Client.ViewModels.RoleViewModel", null, "LabelOutline", root);
+            Menu menuManagement = new Menu(systemNo, ApplicationType.Windows, "菜单管理", 6, "SD.IdentitySystem.Client.ViewModels.MenuViewModel", null, "LabelOutline", root);
+            Menu authorityManagement = new Menu(systemNo, ApplicationType.Windows, "权限管理", 7, "SD.IdentitySystem.Client.ViewModels.AuthorityViewModel", null, "LabelOutline", root);
+
+            this._menus.Add(root);
+            this._menus.Add(systemManagement);
+            this._menus.Add(loginRecordManagement);
+            this._menus.Add(userManagement);
+            this._menus.Add(roleManagement);
+            this._menus.Add(menuManagement);
+            this._menus.Add(authorityManagement);
         }
         #endregion
     }

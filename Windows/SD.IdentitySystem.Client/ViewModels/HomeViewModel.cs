@@ -1,7 +1,14 @@
 ﻿using Caliburn.Micro;
+using SD.IdentitySystem.IPresentation.Interfaces;
+using SD.IdentitySystem.IPresentation.Models.Outputs;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Aspects;
+using SD.IOC.Core.Mediators;
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Windows;
 using System.Windows.Threading;
 
 namespace SD.IdentitySystem.Client.ViewModels
@@ -14,6 +21,11 @@ namespace SD.IdentitySystem.Client.ViewModels
         #region # 字段及构造器
 
         /// <summary>
+        /// 菜单呈现器接口
+        /// </summary>
+        private readonly IMenuPresenter _menuPresenter;
+
+        /// <summary>
         /// 窗体管理器
         /// </summary>
         private readonly IWindowManager _windowManager;
@@ -21,12 +33,19 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public HomeViewModel(IWindowManager windowManager)
+        public HomeViewModel(IMenuPresenter menuPresenter, IWindowManager windowManager)
         {
+            this._menuPresenter = menuPresenter;
             this._windowManager = windowManager;
 
             //初始化计时器
             this.InitTimer();
+
+            //初始化菜单
+            this.InitMenus();
+
+            //默认值
+            this.BingVisibility = Visibility.Visible;
         }
 
         #endregion
@@ -39,6 +58,29 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         [DependencyProperty]
         public string CurrentTime { get; set; }
+        #endregion
+
+        #region 菜单列表 —— BindableCollection<Menu> Menus
+        /// <summary>
+        /// 菜单列表
+        /// </summary>
+        public BindableCollection<Menu> Menus { get; private set; }
+        #endregion
+
+        #region 活动文档 —— IScreen ActiveDocument
+        /// <summary>
+        /// 活动文档
+        /// </summary>
+        [DependencyProperty]
+        public IScreen ActiveDocument { get; set; }
+        #endregion
+
+        #region 必应可见性 —— Visibility BingVisibility
+        /// <summary>
+        /// 必应可见性
+        /// </summary>
+        [DependencyProperty]
+        public Visibility BingVisibility { get; set; }
         #endregion
 
         #region 只读属性 - 登录信息 —— string LoginId
@@ -58,6 +100,71 @@ namespace SD.IdentitySystem.Client.ViewModels
         #endregion
 
         #region # 方法
+
+        #region 初始化菜单 —— void InitMenus()
+        /// <summary>
+        /// 初始化菜单
+        /// </summary>
+        public void InitMenus()
+        {
+            IEnumerable<Menu> menus = this._menuPresenter.GetMenuTreeGrid("00", ApplicationType.Windows);
+            this.Menus = new BindableCollection<Menu>(menus);
+        }
+        #endregion
+
+        #region 导航至菜单 —— void Navigate(Menu menu)
+        /// <summary>
+        /// 导航至菜单
+        /// </summary>
+        /// <param name="menu">菜单</param>
+        public void Navigate(Menu menu)
+        {
+            if (menu.IsLeaf && !string.IsNullOrWhiteSpace(menu.Url))
+            {
+                Type type = Type.GetType(menu.Url);
+                IScreen document = (IScreen)ResolveMediator.Resolve(type);
+                document.DisplayName = menu.Name;
+
+                this.ActivateItem(document);
+                this.ActiveDocument = document;
+            }
+        }
+        #endregion
+
+        #region 激活文档 —— override void ActivateItem(IScreen item)
+        /// <summary>
+        /// 激活文档
+        /// </summary>
+        /// <param name="document">文档</param>
+        public override void ActivateItem(IScreen document)
+        {
+            if (base.Items.Any(x => x.DisplayName == document.DisplayName))
+            {
+                IScreen screen = base.Items.Single(x => x.DisplayName == document.DisplayName);
+                this.ActiveDocument = screen;
+            }
+            else
+            {
+                base.ActivateItem(document);
+            }
+
+            this.BingVisibility = Visibility.Hidden;
+        }
+        #endregion
+
+        #region 关闭文档 —— override void DeactivateItem(IScreen item...
+        /// <summary>
+        /// 关闭文档
+        /// </summary>
+        public override void DeactivateItem(IScreen item, bool close)
+        {
+            base.DeactivateItem(item, close);
+            if (!base.Items.Any())
+            {
+                this.BingVisibility = Visibility.Visible;
+            }
+        }
+        #endregion
 
         #region 初始化计时器 —— void InitTimer()
         /// <summary>

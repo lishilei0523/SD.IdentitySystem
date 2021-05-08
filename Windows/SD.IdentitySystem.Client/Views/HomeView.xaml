@@ -5,6 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:SD.IdentitySystem.Client.Views"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="统一身份认证系统" Width="1440" Height="900" WindowStartupLocation="CenterScreen" FontSize="14">
     <!--Resources-->
@@ -83,97 +84,40 @@
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
             <!--Menu-->
-            <TreeView>
-                <TreeViewItem>
-                    <TreeViewItem.HeaderTemplate>
-                        <DataTemplate>
-                            <WrapPanel>
-                                <iconPacks:PackIconMaterialDesign Kind="Menu" VerticalAlignment="Center" />
-                                <TextBlock Text="身份认证系统" Margin="3,0,0,0" />
-                            </WrapPanel>
-                        </DataTemplate>
-                    </TreeViewItem.HeaderTemplate>
-                    <TreeViewItem>
-                        <TreeViewItem.HeaderTemplate>
-                            <DataTemplate>
-                                <WrapPanel>
-                                    <iconPacks:PackIconMaterialDesign Kind="LabelOutline" VerticalAlignment="Center" />
-                                    <TextBlock Text="信息系统管理" Margin="3,0,0,0" />
-                                </WrapPanel>
-                            </DataTemplate>
-                        </TreeViewItem.HeaderTemplate>
-                    </TreeViewItem>
-                    <TreeViewItem>
-                        <TreeViewItem.HeaderTemplate>
-                            <DataTemplate>
-                                <WrapPanel>
-                                    <iconPacks:PackIconMaterialDesign Kind="LabelOutline" VerticalAlignment="Center" />
-                                    <TextBlock Text="登录记录" Margin="3,0,0,0" />
-                                </WrapPanel>
-                            </DataTemplate>
-                        </TreeViewItem.HeaderTemplate>
-                    </TreeViewItem>
-                    <TreeViewItem>
-                        <TreeViewItem.HeaderTemplate>
-                            <DataTemplate>
-                                <WrapPanel>
-                                    <iconPacks:PackIconMaterialDesign Kind="LabelOutline" VerticalAlignment="Center" />
-                                    <TextBlock Text="用户管理" Margin="3,0,0,0" />
-                                </WrapPanel>
-                            </DataTemplate>
-                        </TreeViewItem.HeaderTemplate>
-                    </TreeViewItem>
-                    <TreeViewItem>
-                        <TreeViewItem.HeaderTemplate>
-                            <DataTemplate>
-                                <WrapPanel>
-                                    <iconPacks:PackIconMaterialDesign Kind="LabelOutline" VerticalAlignment="Center" />
-                                    <TextBlock Text="角色管理" Margin="3,0,0,0" />
-                                </WrapPanel>
-                            </DataTemplate>
-                        </TreeViewItem.HeaderTemplate>
-                    </TreeViewItem>
-                    <TreeViewItem>
-                        <TreeViewItem.HeaderTemplate>
-                            <DataTemplate>
-                                <WrapPanel>
-                                    <iconPacks:PackIconMaterialDesign Kind="LabelOutline" VerticalAlignment="Center" />
-                                    <TextBlock Text="菜单管理" Margin="3,0,0,0" />
-                                </WrapPanel>
-                            </DataTemplate>
-                        </TreeViewItem.HeaderTemplate>
-                    </TreeViewItem>
-                    <TreeViewItem>
-                        <TreeViewItem.HeaderTemplate>
-                            <DataTemplate>
-                                <WrapPanel>
-                                    <iconPacks:PackIconMaterialDesign Kind="LabelOutline" VerticalAlignment="Center" />
-                                    <TextBlock Text="权限管理" Margin="3,0,0,0" />
-                                </WrapPanel>
-                            </DataTemplate>
-                        </TreeViewItem.HeaderTemplate>
-                    </TreeViewItem>
-                </TreeViewItem>
+            <TreeView ItemsSource="{Binding Menus}">
+                <TreeView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding children}">
+                        <WrapPanel>
+                            <iconPacks:PackIconMaterialDesign Kind="{Binding Icon}" VerticalAlignment="Center" />
+                            <TextBlock Text="{Binding Name}" Margin="3,0,0,0"
+                                       cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]"/>
+                        </WrapPanel>
+                    </HierarchicalDataTemplate>
+                </TreeView.ItemTemplate>
             </TreeView>
             <!--Documents-->
-            <TabControl Grid.Column="1">
-                <TabItem Header="首页">
-                    <WebBrowser Source="https://cn.bing.com"></WebBrowser>
-                </TabItem>
-                <TabItem Header="Tab1">
-                    <TabItem.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="关闭"/>
-                        </ContextMenu>
-                    </TabItem.ContextMenu>
-                </TabItem>
-                <TabItem Header="Tab2">
-                    <TabItem.ContextMenu>
-                        <ContextMenu>
-                            <MenuItem Header="关闭"/>
-                        </ContextMenu>
-                    </TabItem.ContextMenu>
-                </TabItem>
+            <Grid Grid.Column="1" Visibility="{Binding BingVisibility}">
+                <WebBrowser  Source="http://cn.bing.com" />
+            </Grid>
+            <TabControl Grid.Column="1" ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveDocument}">
+                <TabControl.ItemTemplate>
+                    <DataTemplate>
+                        <WrapPanel>
+                            <TextBlock Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" />
+                            <Button Background="Transparent" BorderBrush="Transparent" 
+                                    Width="18" Height="18" Margin="5,0,0,0" 
+                                    HorizontalAlignment="Center" VerticalAlignment="Center"
+                                    cal:Message.Attach="DeactivateItem($dataContext, 'true')">
+                                <TextBlock Text="×" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                            </Button>
+                        </WrapPanel>
+                    </DataTemplate>
+                </TabControl.ItemTemplate>
+                <TabControl.ContentTemplate>
+                    <DataTemplate>
+                        <ContentControl cal:View.Model="{Binding UpdateSourceTrigger=PropertyChanged}" />
+                    </DataTemplate>
+                </TabControl.ContentTemplate>
             </TabControl>
             <GridSplitter Grid.Column="0" Width="1" Background="#CCCCCC" />
         </Grid>

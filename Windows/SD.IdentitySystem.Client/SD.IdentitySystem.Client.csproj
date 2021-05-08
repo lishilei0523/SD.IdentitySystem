@@ -67,6 +67,15 @@
     <Reference Include="MrAdvice, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c0e7e6eab6f293d8, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MrAdvice.2.8.11\lib\net40-client\MrAdvice.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.AOP.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.AOP.Core.2.0.8\lib\net461\SD.AOP.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
+    </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.IAppService.3.0.2\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
@@ -82,11 +91,17 @@
     <Reference Include="SD.Infrastructure, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.3.0.0\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
+    <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.3\lib\net461\SD.Infrastructure.AOP.dll</HintPath>
+    </Reference>
     <Reference Include="SD.IOC.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Core.2.0.6\lib\net461\SD.IOC.Core.dll</HintPath>
     </Reference>
     <Reference Include="SD.IOC.Extension.NetFx, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IOC.Extension.NetFx.1.0.2\lib\net461\SD.IOC.Extension.NetFx.dll</HintPath>
+    </Reference>
+    <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.1\lib\net45\SD.Toolkits.Json.dll</HintPath>
     </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
@@ -112,10 +127,25 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\AuthorityViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\InfoSystemViewModel.cs" />
+    <Compile Include="ViewModels\LoginRecordViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
+    <Compile Include="ViewModels\MenuViewModel.cs" />
+    <Compile Include="ViewModels\RoleViewModel.cs" />
+    <Compile Include="ViewModels\UserViewModel.cs" />
+    <Compile Include="Views\AuthorityView.xaml.cs">
+      <DependentUpon>AuthorityView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InfoSystemView.xaml.cs">
+      <DependentUpon>InfoSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\LoginRecordView.xaml.cs">
+      <DependentUpon>LoginRecordView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -124,13 +154,46 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\MenuView.xaml.cs">
+      <DependentUpon>MenuView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\RoleView.xaml.cs">
+      <DependentUpon>RoleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
+    </Compile>
+    <Page Include="Views\AuthorityView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\HomeView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\InfoSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\LoginRecordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Views\MenuView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\RoleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UserView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
   </ItemGroup>
   <ItemGroup>
@@ -165,6 +228,14 @@
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\..\Websites\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
+      <Project>{e252094f-979a-4655-b864-e600c33ab75d}</Project>
+      <Name>SD.IdentitySystem.IPresentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Websites\SD.IdentitySystem.Presentation\SD.IdentitySystem.Presentation.csproj">
+      <Project>{3f6e50ba-8e37-4730-9c2e-0d9483a026d8}</Project>
+      <Name>SD.IdentitySystem.Presentation</Name>
+    </ProjectReference>
     <ProjectReference Include="..\SD.Infrastructure.WPF\SD.Infrastructure.WPF.csproj">
       <Project>{8593d205-377a-48ed-834e-f1fabbd88c00}</Project>
       <Name>SD.Infrastructure.WPF</Name>
