@@ -37,7 +37,7 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void OnStartup(object sender, StartupEventArgs e)
         {
-            base.DisplayRootViewFor<HomeViewModel>();
+            base.DisplayRootViewFor<LoginViewModel>();
         }
         #endregion
 

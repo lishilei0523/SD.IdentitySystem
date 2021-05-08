@@ -92,6 +92,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
+    <Folder Include="Maps\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

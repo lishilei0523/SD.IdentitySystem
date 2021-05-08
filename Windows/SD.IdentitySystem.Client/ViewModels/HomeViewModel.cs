@@ -1,7 +1,9 @@
 ﻿using Caliburn.Micro;
+using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Aspects;
-using System.Diagnostics;
+using System;
 using System.Windows;
+using System.Windows.Threading;
 
 namespace SD.IdentitySystem.Client.ViewModels
 {
@@ -12,67 +14,81 @@ namespace SD.IdentitySystem.Client.ViewModels
     {
         #region # 字段及构造器
 
-        //TODO 依赖注入构造器
+        /// <summary>
+        /// 窗体管理器
+        /// </summary>
+        private readonly IWindowManager _windowManager;
+
+        /// <summary>
+        /// 依赖注入构造器
+        /// </summary>
+        public HomeViewModel(IWindowManager windowManager)
+        {
+            this._windowManager = windowManager;
+
+            //初始化计时器
+            this.InitTimer();
+        }
 
         #endregion
 
         #region # 属性
 
-        #region 编号 —— string Number
+        #region 当前时间 —— string CurrentTime
         /// <summary>
-        /// 编号
+        /// 当前时间
         /// </summary>
         [DependencyProperty]
-        public string Number { get; set; }
+        public string CurrentTime { get; set; }
         #endregion
 
-        #region 名称 —— string Name
+        #region 只读属性 - 当前登录名 —— string LoginId
         /// <summary>
-        /// 名称
+        /// 只读属性 - 当前登录名
         /// </summary>
-        [DependencyProperty]
-        public string Name { get; set; }
+        public string LoginId
+        {
+            get
+            {
+                LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
+                return loginInfo.LoginId;
+            }
+        }
         #endregion
 
-        #region 描述 —— string Description
+        #region 只读属性 - 当前登录真实姓名 —— string RealName
         /// <summary>
-        /// 描述
+        /// 只读属性 - 当前登录真实姓名
         /// </summary>
-        [DependencyProperty]
-        public string Description { get; set; }
+        public string RealName
+        {
+            get
+            {
+                LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
+                return loginInfo.RealName;
+            }
+        }
         #endregion
 
         #endregion
 
         #region # 方法
 
-        #region 赋值 —— void Fill()
+        #region 初始化计时器 —— void InitTimer()
         /// <summary>
-        /// 赋值
+        /// 初始化计时器
         /// </summary>
-        public void Fill()
+        public void InitTimer()
         {
-            this.Number = "编号";
-            this.Name = "名称";
-            this.Description = "描述";
-        }
-        #endregion 
+            const string timeFormat = " yyyy年MM月dd日 HH时mm分ss秒 dddd";
+            DispatcherTimer showTime = new DispatcherTimer();
+            showTime.Tick += (sender, e) => this.CurrentTime = DateTime.Now.ToString(timeFormat);
+            showTime.Interval = new TimeSpan(0, 0, 1);
+            showTime.Start();
 
-        #region 提交 —— void Submit()
-        /// <summary>
-        /// 提交
-        /// </summary>
-        public void Submit()
-        {
-            Trace.WriteLine(this.Number);
-            Trace.WriteLine(this.Name);
-            Trace.WriteLine(this.Description);
-
-            MessageBox.Show(this.Number);
-            MessageBox.Show(this.Name);
-            MessageBox.Show(this.Description);
+            this.CurrentTime = DateTime.Now.ToString(timeFormat);
         }
-        #endregion 
+        #endregion
 
         #endregion
     }
