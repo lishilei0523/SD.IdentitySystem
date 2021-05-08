@@ -60,11 +60,11 @@ namespace SD.IdentitySystem.Client.ViewModels
         public string CurrentTime { get; set; }
         #endregion
 
-        #region 菜单列表 —— BindableCollection<Menu> Menus
+        #region 菜单列表 —— IEnumerable<Menu> Menus
         /// <summary>
         /// 菜单列表
         /// </summary>
-        public BindableCollection<Menu> Menus { get; private set; }
+        public IEnumerable<Menu> Menus { get; private set; }
         #endregion
 
         #region 活动文档 —— IScreen ActiveDocument
@@ -108,7 +108,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         public void InitMenus()
         {
             IEnumerable<Menu> menus = this._menuPresenter.GetMenuTreeGrid("00", ApplicationType.Windows);
-            this.Menus = new BindableCollection<Menu>(menus);
+            this.Menus = menus;
         }
         #endregion
 
