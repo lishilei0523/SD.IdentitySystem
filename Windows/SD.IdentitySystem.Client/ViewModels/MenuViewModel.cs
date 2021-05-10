@@ -5,7 +5,6 @@ using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Extensions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.Client.ViewModels
@@ -15,31 +14,51 @@ namespace SD.IdentitySystem.Client.ViewModels
     /// </summary>
     public class MenuViewModel : Screen
     {
+        #region # 字段及构造器
+
+        /// <summary>
+        /// 菜单呈现器
+        /// </summary>
         private readonly IMenuPresenter _menuPresenter;
 
-        /// <summary>Creates an instance of the screen.</summary>
+        /// <summary>
+        /// 依赖注入构造器
+        /// </summary>
         public MenuViewModel(IMenuPresenter menuPresenter)
         {
             this._menuPresenter = menuPresenter;
         }
 
+        #endregion
+
+        #region # 属性
+
+        #region 菜单列表 —— ObservableCollection<Menu> Menus
+        /// <summary>
+        /// 菜单列表
+        /// </summary>
         [DependencyProperty]
         public ObservableCollection<Menu> Menus { get; set; }
+        #endregion
 
+        #endregion
 
+        #region # 方法
 
-        public async Task GetMenuTreeGrid()
+        #region 加载菜单列表 —— async Task LoadMenus()
+        /// <summary>
+        /// 加载菜单列表
+        /// </summary>
+        public async Task LoadMenus()
         {
             LoadingIndicator.Suspend();
-
-            IEnumerable<Menu> menus = await Task.Run(() =>
-            {
-                Thread.Sleep(3000);
-                return this._menuPresenter.GetMenuTreeGrid(null, null);
-            });
+            IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeGrid(null, null));
             LoadingIndicator.Dispose();
 
             this.Menus = new ObservableCollection<Menu>(menus);
         }
+        #endregion 
+
+        #endregion
     }
 }

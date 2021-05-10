@@ -10,7 +10,7 @@
 			 xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
 			 xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
 			 mc:Ignorable="d" d:DesignHeight="740" d:DesignWidth="1220"
-			 cal:Message.Attach="[Event Loaded] = [Action GetMenuTreeGrid()]">
+			 cal:Message.Attach="[Event Loaded] = [Action LoadMenus()]">
     <UserControl.Resources>
         <converters:NodeLevelIndentConverter x:Key="NodeLevelIndentConverter" />
         <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
