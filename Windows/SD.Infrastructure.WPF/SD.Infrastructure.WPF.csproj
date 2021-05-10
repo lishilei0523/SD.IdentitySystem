@@ -60,6 +60,9 @@
     <Compile Include="Controls\Paginator.xaml.cs">
       <DependentUpon>Paginator.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Controls\TreeListView.cs" />
+    <Compile Include="Controls\TreeListViewItem.cs" />
+    <Compile Include="Converters\NodeLevelIndentConverter.cs" />
     <Compile Include="Extensions\PasswordExtension.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

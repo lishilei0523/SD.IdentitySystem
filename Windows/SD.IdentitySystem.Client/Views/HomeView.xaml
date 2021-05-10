@@ -25,7 +25,7 @@
         </Style>
         <!--TabControl样式-->
         <Style TargetType="{x:Type TabControl}">
-            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="BorderThickness" Value="1" />
         </Style>
         <!--TabItem样式-->
         <Style TargetType="{x:Type TabItem}">
