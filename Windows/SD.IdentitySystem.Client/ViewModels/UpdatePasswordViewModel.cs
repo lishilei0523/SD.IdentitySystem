@@ -60,11 +60,11 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 方法
 
-        #region 提交 —— async Task Submit()
+        #region 提交 —— async void Submit()
         /// <summary>
         /// 提交
         /// </summary>
-        public async Task Submit()
+        public async void Submit()
         {
             #region # 验证
 

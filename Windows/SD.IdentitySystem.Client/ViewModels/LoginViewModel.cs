@@ -43,9 +43,9 @@ namespace SD.IdentitySystem.Client.ViewModels
             base.DisplayName = string.Empty;
 #if DEBUG
             //自动登录
-            //this.LoginId = CommonConstants.AdminLoginId;
-            //this.Password = CommonConstants.InitialPassword;
-            //this.Login();
+            this.LoginId = CommonConstants.AdminLoginId;
+            this.Password = CommonConstants.InitialPassword;
+            this.Login();
 #endif
         }
 
@@ -86,11 +86,11 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 方法
 
-        #region 登录 —— async Task Login()
+        #region 登录 —— async void Login()
         /// <summary>
         /// 登录
         /// </summary>
-        public async Task Login()
+        public async void Login()
         {
             #region # 验证
 

@@ -45,11 +45,11 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 方法
 
-        #region 加载菜单列表 —— async Task LoadMenus()
+        #region 加载菜单列表 —— async void LoadMenus()
         /// <summary>
         /// 加载菜单列表
         /// </summary>
-        public async Task LoadMenus()
+        public async void LoadMenus()
         {
             LoadingIndicator.Suspend();
             IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeGrid(null, null));

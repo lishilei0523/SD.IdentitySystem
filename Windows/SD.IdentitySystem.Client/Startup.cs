@@ -1,6 +1,7 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Extensions.DependencyInjection;
 using SD.IdentitySystem.Client.ViewModels;
+using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using SD.IOC.Extension.NetFx;
 using System;
@@ -47,22 +48,11 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs exceptionEventArgs)
         {
-            MessageBox.Show(exceptionEventArgs.Exception.Message, "Error");
+            exceptionEventArgs.Handled = true;
+            LoadingIndicator.Dispose();
+            MessageBox.Show(exceptionEventArgs.Exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
             //TODO 记录日志
-
-            exceptionEventArgs.Handled = true;
-        }
-        #endregion
-
-        #region 应用程序异常事件 —— void OnAsyncUnhandledException(object sender...
-        /// <summary>
-        /// 应用程序异常事件
-        /// </summary>
-        private void OnAsyncUnhandledException(object sender, UnhandledExceptionEventArgs eventArgs)
-        {
-            Exception exception = (Exception)eventArgs.ExceptionObject;
-            MessageBox.Show(exception.Message, "Error");
         }
         #endregion
 
@@ -93,9 +83,6 @@ namespace SD.IdentitySystem.Client
                 serviceCollection.RegisterConfigs();
                 ResolveMediator.Build();
             }
-
-            //非UI线程异常
-            AppDomain.CurrentDomain.UnhandledException += this.OnAsyncUnhandledException;
         }
         #endregion
 
