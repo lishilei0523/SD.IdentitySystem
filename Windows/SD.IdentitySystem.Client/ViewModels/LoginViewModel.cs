@@ -6,6 +6,8 @@ using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
+using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace SD.IdentitySystem.Client.ViewModels
@@ -41,9 +43,9 @@ namespace SD.IdentitySystem.Client.ViewModels
             base.DisplayName = string.Empty;
 #if DEBUG
             //自动登录
-            this.LoginId = CommonConstants.AdminLoginId;
-            this.Password = CommonConstants.InitialPassword;
-            this.Login();
+            //this.LoginId = CommonConstants.AdminLoginId;
+            //this.Password = CommonConstants.InitialPassword;
+            //this.Login();
 #endif
         }
 
@@ -84,13 +86,30 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 方法
 
-        #region 登录 —— void Login()
+        #region 登录 —— async Task Login()
         /// <summary>
         /// 登录
         /// </summary>
-        public void Login()
+        public async Task Login()
         {
-            LoginInfo loginInfo = this._authenticationContract.Login(this.LoginId, this.Password);
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(this.LoginId))
+            {
+                MessageBox.Show("用户名不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+            if (string.IsNullOrWhiteSpace(this.Password))
+            {
+                MessageBox.Show("密码不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
+
+            #endregion
+
+            LoadingIndicator.Suspend();
+            LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Login(this.LoginId, this.Password));
+            LoadingIndicator.Dispose();
 
             //存入Session
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);

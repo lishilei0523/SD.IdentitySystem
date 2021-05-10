@@ -55,6 +55,17 @@ namespace SD.IdentitySystem.Client
         }
         #endregion
 
+        #region 应用程序异常事件 —— void OnAsyncUnhandledException(object sender...
+        /// <summary>
+        /// 应用程序异常事件
+        /// </summary>
+        private void OnAsyncUnhandledException(object sender, UnhandledExceptionEventArgs eventArgs)
+        {
+            Exception exception = (Exception)eventArgs.ExceptionObject;
+            MessageBox.Show(exception.Message, "Error");
+        }
+        #endregion
+
         #region 应用程序退出事件 —— override void OnExit(object sender...
         /// <summary>
         /// 应用程序退出事件
@@ -82,6 +93,9 @@ namespace SD.IdentitySystem.Client
                 serviceCollection.RegisterConfigs();
                 ResolveMediator.Build();
             }
+
+            //非UI线程异常
+            AppDomain.CurrentDomain.UnhandledException += this.OnAsyncUnhandledException;
         }
         #endregion
 
@@ -110,7 +124,7 @@ namespace SD.IdentitySystem.Client
             IEnumerable<object> instances = ResolveMediator.ResolveAll(service);
             return instances;
         }
-        #endregion 
+        #endregion
 
         #endregion
     }

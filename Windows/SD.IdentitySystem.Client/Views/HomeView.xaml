@@ -17,9 +17,9 @@
         </Style>
         <!--TreeViewItem样式-->
         <Style TargetType="{x:Type TreeViewItem}">
-            <Setter Property="IsExpanded" Value="True"/>
-            <Setter Property="FontFamily" Value="微软雅黑"/>
-            <Setter Property="FontSize" Value="18"/>
+            <Setter Property="IsExpanded" Value="True" />
+            <Setter Property="FontFamily" Value="微软雅黑" />
+            <Setter Property="FontSize" Value="18" />
             <Setter Property="Padding" Value="1" />
             <Setter Property="BorderThickness" Value="0" />
         </Style>
@@ -36,21 +36,21 @@
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <!--Header-->
-            <RowDefinition Height="70"/>
+            <RowDefinition Height="70" />
             <!--Body-->
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="*" />
             <!--Footer-->
-            <RowDefinition Height="25"/>
+            <RowDefinition Height="25" />
         </Grid.RowDefinitions>
         <!--Header-->
         <Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,0,0,1">
             <Grid>
                 <Grid.Background>
-                    <ImageBrush ImageSource="../Content/Images/banner.gif" Stretch="Fill"/>
+                    <ImageBrush ImageSource="../Content/Images/banner.gif" Stretch="Fill" />
                 </Grid.Background>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="380"/>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="380" />
                 </Grid.ColumnDefinitions>
                 <TextBlock Grid.Column="0" Text="统一身份认证后台管理" FontSize="26" Foreground="#1B4567" Margin="20,0,0,0" VerticalAlignment="Center" />
                 <Grid Grid.Column="1">
@@ -63,13 +63,14 @@
                                 cal:Message.Attach="Logout()">
                             <WrapPanel>
                                 <iconPacks:PackIconMaterialDesign Kind="ExitToApp" />
-                                <TextBlock Text="注销用户" />
+                                <TextBlock Text="注销用户" Margin="3,0,0,0" />
                             </WrapPanel>
                         </Button>
-                        <Button Background="Transparent" BorderBrush="Transparent" Padding="3" Margin="5,0,0,0">
+                        <Button Background="Transparent" BorderBrush="Transparent" Padding="3" Margin="5,0,0,0" 
+                                cal:Message.Attach="UpdatePassword()">
                             <WrapPanel>
                                 <iconPacks:PackIconMaterialDesign Kind="Lock" />
-                                <TextBlock Text="修改密码" />
+                                <TextBlock Text="修改密码" Margin="3,0,0,0" />
                             </WrapPanel>
                         </Button>
                     </WrapPanel>
@@ -82,7 +83,7 @@
                 <!--Menu-->
                 <ColumnDefinition Width="200" />
                 <!--Documents-->
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <!--Menu-->
             <TreeView ItemsSource="{Binding Menus}">
@@ -91,15 +92,12 @@
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="{Binding Icon}" VerticalAlignment="Center" />
                             <TextBlock Text="{Binding Name}" Margin="3,0,0,0"
-                                       cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]"/>
+                                       cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]" />
                         </WrapPanel>
                     </HierarchicalDataTemplate>
                 </TreeView.ItemTemplate>
             </TreeView>
             <!--Documents-->
-            <Grid Grid.Column="1" Visibility="{Binding BingVisibility}">
-                <WebBrowser  Source="http://cn.bing.com" />
-            </Grid>
             <TabControl Grid.Column="1" ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveDocument}">
                 <TabControl.ItemTemplate>
                     <DataTemplate>
@@ -120,6 +118,9 @@
                     </DataTemplate>
                 </TabControl.ContentTemplate>
             </TabControl>
+            <Grid Grid.Column="1" Visibility="{Binding BingVisibility}">
+                <WebBrowser Source="http://cn.bing.com" />
+            </Grid>
             <GridSplitter Grid.Column="0" Width="1" Background="#CCCCCC" />
         </Grid>
         <!--Footer-->

@@ -3,54 +3,51 @@
                       xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                       xmlns:cal="http://www.caliburnproject.org"
                       xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
+                      xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
+                      xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
                       WindowStartupLocation="CenterScreen"
-                      BorderThickness="0"
+                      Title="SD.Framework"
                       Height="350" Width="500"
                       WindowStyle="ThreeDBorderWindow"
                       ResizeMode="NoResize">
 
-    <Grid Background="{DynamicResource CheckBoxBackgroundBrush}">
-        <Grid.RowDefinitions>
-            <RowDefinition Height="70"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="80"/>
-        </Grid.RowDefinitions>
-        <!--标题-->
-        <TextBlock Grid.Row="0" Text="统一身份认证系统" VerticalAlignment="Center" HorizontalAlignment="Center" FontSize="35" Foreground="#1B4567" />
-        <Border BorderThickness="0,1,0,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Row="1" />
-        <!--表单-->
-        <Grid Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Center">
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Width" Value="85" />
+            <Setter Property="Height" Value="28" />
+            <Setter Property="Margin" Value="10,0,0,0" />
+        </Style>
+    </Window.Resources>
+
+    <busyIndicator:BusyMask IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
+        <Grid Background="{DynamicResource CheckBoxBackgroundBrush}">
             <Grid.RowDefinitions>
-                <RowDefinition Height="65"/>
-                <RowDefinition Height="65"/>
+                <RowDefinition Height="70" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="60" />
             </Grid.RowDefinitions>
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition/>
-                <ColumnDefinition Width="80"/>
-            </Grid.ColumnDefinitions>
-            <!--用户名-->
-            <TextBlock Grid.Row="0" Grid.Column="0" 
-                       Text="用户名：" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center" />
-            <TextBox Text="{Binding LoginId}" Height="40" Width="300" 
-                     FontSize="14" VerticalContentAlignment="Center" Grid.Row="0" Grid.Column="1" 
-                     VerticalAlignment="Center" HorizontalAlignment="Left">
-            </TextBox>
-            <!--密码-->
-            <TextBlock Grid.Row="1" Grid.Column="0" 
-                       Text="密码：" FontSize="14"
-                       HorizontalAlignment="Right" VerticalAlignment="Center" />
-            <PasswordBox Grid.Row="1" Grid.Column="1" VerticalContentAlignment="Center" Width="300" Height="40" FontSize="14"
-                         extensions:PasswordExtension.Password="{Binding Password, Mode=TwoWay}">
-                <PasswordBox.InputBindings>
-                    <KeyBinding Key="Enter" Command="{Binding LoginCommand}"/>
-                </PasswordBox.InputBindings>
-            </PasswordBox>
+            <!--标题-->
+            <TextBlock Grid.Row="0" Text="统一身份认证系统" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="35" Foreground="#1B4567" Margin="0,5,0,0" />
+            <Border BorderThickness="0,1,0,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Row="1" />
+            <!--表单-->
+            <StackPanel Grid.Row="1" Grid.IsSharedSizeScope="True" Margin="40,30">
+                <kino:FormItem Label="用户名：" FontSize="14" Padding="5">
+                    <TextBox Text="{Binding LoginId}" VerticalContentAlignment="Center" Height="40" />
+                </kino:FormItem>
+                <kino:FormItem Label="密码：" FontSize="14" Padding="5">
+                    <PasswordBox VerticalContentAlignment="Center" Height="40" 
+                             extensions:PasswordExtension.Password="{Binding Password, Mode=TwoWay}">
+                        <PasswordBox.InputBindings>
+                            <KeyBinding Key="Enter" Command="{Binding LoginCommand}" />
+                        </PasswordBox.InputBindings>
+                    </PasswordBox>
+                </kino:FormItem>
+            </StackPanel>
+            <!--登录-->
+            <WrapPanel Grid.Row="2" HorizontalAlignment="Right" VerticalAlignment="Bottom" Margin="0,0,15,15">
+                <Button Content="登录" BorderBrush="#0078D7" BorderThickness="2" cal:Message.Attach="Login()" />
+            </WrapPanel>
         </Grid>
-        <!--登录-->
-        <Grid Grid.Row="2">
-            <Button Content="登录" Width="300" Height="40" FontSize="16" VerticalAlignment="Top" cal:Message.Attach="Login()"/>
-        </Grid>
-    </Grid>
+    </busyIndicator:BusyMask>
 </Window>

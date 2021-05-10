@@ -149,7 +149,7 @@ namespace SD.IdentitySystem.Client.ViewModels
                 base.ActivateItem(document);
             }
 
-            this.BingVisibility = Visibility.Hidden;
+            this.BingVisibility = Visibility.Collapsed;
         }
         #endregion
 
@@ -186,6 +186,17 @@ namespace SD.IdentitySystem.Client.ViewModels
                 //关闭当前窗口
                 this.TryClose();
             }
+        }
+        #endregion
+
+        #region 修改密码 —— void UpdatePassword()
+        /// <summary>
+        /// 修改密码
+        /// </summary>
+        public void UpdatePassword()
+        {
+            UpdatePasswordViewModel viewModel = ResolveMediator.Resolve<UpdatePasswordViewModel>();
+            this._windowManager.ShowDialog(viewModel);
         }
         #endregion
 
