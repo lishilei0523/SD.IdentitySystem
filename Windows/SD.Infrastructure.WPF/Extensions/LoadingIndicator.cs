@@ -26,8 +26,8 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         public static bool IsBusy
         {
-            get { return LoadingIndicator._IsBusy; }
-            set { LoadingIndicator._IsBusy = value; LoadingIndicator.IsBusyChanged?.Invoke(null, new PropertyChangedEventArgs(nameof(LoadingIndicator.IsBusy))); }
+            get { return _IsBusy; }
+            set { _IsBusy = value; IsBusyChanged?.Invoke(null, new PropertyChangedEventArgs(nameof(IsBusy))); }
         }
 
         #endregion
@@ -39,7 +39,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         public static void Suspend()
         {
-            LoadingIndicator.IsBusy = true;
+            IsBusy = true;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         public static void Dispose()
         {
-            LoadingIndicator.IsBusy = false;
+            IsBusy = false;
         }
 
         #endregion
