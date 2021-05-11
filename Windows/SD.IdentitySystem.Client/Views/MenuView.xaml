@@ -247,7 +247,8 @@
                             <TextBlock Text="新增" Margin="2,0,0,0" />
                         </WrapPanel>
                     </Button>
-                    <Button Background="Transparent" BorderBrush="Transparent" Width="70" Padding="4">
+                    <Button Background="Transparent" BorderBrush="Transparent" Width="70" Padding="4"
+                            cal:Message.Attach="Removes()">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Remove" />
                             <TextBlock Text="删除" Margin="2,0,0,0" />

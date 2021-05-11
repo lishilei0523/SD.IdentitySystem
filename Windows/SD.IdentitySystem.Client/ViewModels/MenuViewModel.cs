@@ -1,12 +1,17 @@
 ﻿using Caliburn.Micro;
+using SD.Common;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Extensions;
+using SD.Toolkits.Recursion.Tree;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
+using System.Linq;
 using System.Threading.Tasks;
+using System.Windows;
 
 namespace SD.IdentitySystem.Client.ViewModels
 {
@@ -18,16 +23,22 @@ namespace SD.IdentitySystem.Client.ViewModels
         #region # 字段及构造器
 
         /// <summary>
-        /// 菜单呈现器
+        /// 菜单呈现器接口
         /// </summary>
         private readonly IMenuPresenter _menuPresenter;
 
         /// <summary>
+        /// 权限服务契约接口
+        /// </summary>
+        private readonly IAuthorizationContract _authorizationContract;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public MenuViewModel(IMenuPresenter menuPresenter)
+        public MenuViewModel(IMenuPresenter menuPresenter, IAuthorizationContract authorizationContract)
         {
             this._menuPresenter = menuPresenter;
+            this._authorizationContract = authorizationContract;
         }
 
         #endregion
@@ -46,11 +57,11 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 方法
 
-        #region 加载菜单列表 —— async void LoadMenus()
+        #region 加载菜单列表 —— async Task LoadMenus()
         /// <summary>
         /// 加载菜单列表
         /// </summary>
-        public async void LoadMenus()
+        public async Task LoadMenus()
         {
             LoadingIndicator.Suspend();
             IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(null, null));
@@ -82,14 +93,65 @@ namespace SD.IdentitySystem.Client.ViewModels
         }
         #endregion
 
-        #region 删除菜单 —— void Remove(Menu menu)
+        #region 删除菜单 —— async void Remove(Menu menu)
         /// <summary>
         /// 删除菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void Remove(Menu menu)
+        public async void Remove(Menu menu)
         {
-            Trace.WriteLine(menu);
+            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                LoadingIndicator.Suspend();
+                await Task.Run(() => this._authorizationContract.RemoveMenu(menu.Id));
+                await this.LoadMenus();
+                LoadingIndicator.Dispose();
+
+                MessageBox.Show("删除成功！", "OK", MessageBoxButton.OK);
+            }
+        }
+        #endregion
+
+        #region 批量删除菜单 —— async void Removes()
+        /// <summary>
+        /// 批量删除菜单
+        /// </summary>
+        public async void Removes()
+        {
+            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                IList<Menu> checkedMenus = new List<Menu>();
+                foreach (Menu menu in this.Menus)
+                {
+                    if (menu.IsChecked == true)
+                    {
+                        checkedMenus.Add(menu);
+                    }
+
+                    foreach (Menu subNode in menu.GetDeepSubNodes())
+                    {
+                        if (subNode.IsChecked == true)
+                        {
+                            checkedMenus.Add(subNode);
+                        }
+                    }
+                }
+
+                if (!checkedMenus.Any())
+                {
+                    MessageBox.Show("请选中要删除的菜单！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                    return;
+                }
+
+                LoadingIndicator.Suspend();
+                await Task.Run(() => checkedMenus.ForEach(menu => this._authorizationContract.RemoveMenu(menu.Id)));
+                await this.LoadMenus();
+                LoadingIndicator.Dispose();
+
+                MessageBox.Show("删除成功！", "OK", MessageBoxButton.OK);
+            }
         }
         #endregion
 

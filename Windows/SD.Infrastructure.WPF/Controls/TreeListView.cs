@@ -1,3 +1,4 @@
+using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -11,6 +12,12 @@ namespace SD.Infrastructure.WPF.Controls
         public TreeListView()
         {
             this.Loaded += (sender, _) => ((TreeListView)sender).Tag = null;
+        }
+
+        protected override void OnItemsChanged(NotifyCollectionChangedEventArgs e)
+        {
+            this.Tag = null;
+            base.OnItemsChanged(e);
         }
 
         protected override DependencyObject GetContainerForItemOverride()

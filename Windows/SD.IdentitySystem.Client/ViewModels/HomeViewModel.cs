@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -97,13 +98,13 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 方法
 
-        #region 初始化菜单 —— void InitMenus()
+        #region 初始化菜单 —— async void InitMenus()
         /// <summary>
         /// 初始化菜单
         /// </summary>
-        public void InitMenus()
+        public async void InitMenus()
         {
-            IEnumerable<Menu> menus = this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows);
+            IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows));
             this.Menus = menus;
         }
         #endregion

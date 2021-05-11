@@ -66,6 +66,9 @@
     <Reference Include="SD.Toolkits.Mapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Mapper.1.0.0\lib\net461\SD.Toolkits.Mapper.dll</HintPath>
     </Reference>
+    <Reference Include="SD.Toolkits.Recursion, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Toolkits.Recursion.2.0.3\lib\net40\SD.Toolkits.Recursion.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
