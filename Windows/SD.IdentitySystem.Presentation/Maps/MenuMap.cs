@@ -107,9 +107,9 @@ namespace SD.IdentitySystem.Presentation.Maps
 
         //Private
 
-        #region # 填充子节点 —— static void FillSubNodes(this Menu menu...
+        #region # 填充下级节点 —— static void FillSubNodes(this Menu menu...
         /// <summary>
-        /// 填充子节点
+        /// 填充下级节点
         /// </summary>
         /// <param name="menu">菜单模型</param>
         /// <param name="allMenus">菜单模型集</param>
@@ -120,7 +120,6 @@ namespace SD.IdentitySystem.Presentation.Maps
                 if (subMenu.ParentMenuId.HasValue && subMenu.ParentMenuId.Value == menu.Id)
                 {
                     menu.SubNodes.Add(subMenu);
-                    menu.type = menu.IsLeaf ? "pack" : "folder";
                     subMenu.ParentMenuId = null;
 
                     FillSubNodes(subMenu, allMenus);

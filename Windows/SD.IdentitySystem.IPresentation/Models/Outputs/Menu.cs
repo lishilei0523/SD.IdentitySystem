@@ -98,13 +98,6 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
         public string ApplicationType { get; set; }
         #endregion
 
-        #region 类型 —— string type
-        /// <summary>
-        /// 类型
-        /// </summary>
-        public string type { get; set; }
-        #endregion
-
         #region 导航属性 - 上级菜单 —— ICollection<Menu> ParentNode
         /// <summary>
         /// 导航属性 - 上级菜单
@@ -112,9 +105,9 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
         public Menu ParentNode { get; set; }
         #endregion
 
-        #region 导航属性 - 子级菜单集 —— ICollection<Menu> SubNodes
+        #region 导航属性 - 下级菜单集 —— ICollection<Menu> SubNodes
         /// <summary>
-        /// 导航属性 - 子级菜单集
+        /// 导航属性 - 下级菜单集
         /// </summary>
         public ICollection<Menu> SubNodes { get; set; }
         #endregion
