@@ -71,6 +71,7 @@
     <Compile Include="Extensions\LoadingIndicator.cs" />
     <Compile Include="Extensions\PasswordExtension.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
+    <Compile Include="Models\Model.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

@@ -47,7 +47,7 @@
         <Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,0,0,1">
             <Grid>
                 <Grid.Background>
-                    <ImageBrush ImageSource="../Content/Images/banner.gif" Stretch="Fill" />
+                    <ImageBrush ImageSource="/Resources/Images/banner.gif" Stretch="Fill" />
                 </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />

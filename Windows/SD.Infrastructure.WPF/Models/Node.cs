@@ -73,15 +73,15 @@ namespace SD.Infrastructure.WPF.Models
         public string Name { get; set; }
         #endregion
 
-        #region 是否选中 —— bool? IsChecked
+        #region 是否勾选 —— bool? IsChecked
 
         /// <summary>
-        /// 是否选中依赖属性
+        /// 是否勾选依赖属性
         /// </summary>
         private static readonly DependencyProperty _IsChecked;
 
         /// <summary>
-        /// 是否选中
+        /// 是否勾选
         /// </summary>
         public bool? IsChecked
         {
