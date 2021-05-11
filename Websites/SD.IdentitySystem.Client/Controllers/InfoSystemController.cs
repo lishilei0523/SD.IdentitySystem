@@ -7,7 +7,7 @@ using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System.Web.Mvc;
 
-namespace SD.IdentitySystem.Website.Controllers
+namespace SD.IdentitySystem.Client.Controllers
 {
     /// <summary>
     /// 信息系统控制器

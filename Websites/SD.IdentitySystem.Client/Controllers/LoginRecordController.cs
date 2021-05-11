@@ -6,7 +6,7 @@ using SD.Toolkits.EasyUI;
 using System;
 using System.Web.Mvc;
 
-namespace SD.IdentitySystem.Website.Controllers
+namespace SD.IdentitySystem.Client.Controllers
 {
     /// <summary>
     /// 用户登录记录控制器

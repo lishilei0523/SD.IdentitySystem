@@ -3,7 +3,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using System.Web.Mvc;
 
-namespace SD.IdentitySystem.Website.Controllers
+namespace SD.IdentitySystem.Client.Controllers
 {
     /// <summary>
     /// 主页控制器

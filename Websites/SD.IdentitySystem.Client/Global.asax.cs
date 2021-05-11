@@ -3,7 +3,7 @@ using SD.Toolkits.MVC.Filters;
 using System.Web.Mvc;
 using System.Web.Routing;
 
-namespace SD.IdentitySystem.Website
+namespace SD.IdentitySystem.Client
 {
     /// <summary>
     /// 全局应用程序类

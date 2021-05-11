@@ -8,7 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace SD.IdentitySystem.Website.Controllers
+namespace SD.IdentitySystem.Client.Controllers
 {
     /// <summary>
     /// 角色控制器

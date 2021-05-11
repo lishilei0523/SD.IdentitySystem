@@ -9,7 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Web.Mvc;
 
-namespace SD.IdentitySystem.Website.Controllers
+namespace SD.IdentitySystem.Client.Controllers
 {
     /// <summary>
     /// 权限控制器
