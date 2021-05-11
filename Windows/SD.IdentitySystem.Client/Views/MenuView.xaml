@@ -11,222 +11,229 @@
 			 xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
 			 mc:Ignorable="d" d:DesignHeight="740" d:DesignWidth="1220"
 			 cal:Message.Attach="[Event Loaded] = [Action LoadMenus()]">
-	<UserControl.Resources>
-		<converters:NodeLevelIndentConverter x:Key="NodeLevelIndentConverter" />
-		<converters:TreeListViewRowIndexConverter x:Key="TreeListViewRowIndexConverter" />
-		<Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
-			<Setter Property="Focusable" Value="False" />
-			<Setter Property="Width" Value="19" />
-			<Setter Property="Height" Value="13" />
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type ToggleButton}">
-						<Border Width="19" Height="13" Background="Transparent">
-							<Border Width="9" Height="9" BorderThickness="1" BorderBrush="#FF7898B5" CornerRadius="1" SnapsToDevicePixels="true">
-								<Border.Background>
-									<LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
-										<LinearGradientBrush.GradientStops>
-											<GradientStop Color="White" Offset=".2" />
-											<GradientStop Color="#FFC0B7A6" Offset="1" />
-										</LinearGradientBrush.GradientStops>
-									</LinearGradientBrush>
-								</Border.Background>
-								<Path x:Name="ExpandPath" Margin="1,1,1,1" Fill="Black" Data="M 0 2 L 0 3 L 2 3 L 2 5 L 3 5 L 3 3 
+    <UserControl.Resources>
+        <converters:NodeLevelIndentConverter x:Key="NodeLevelIndentConverter" />
+        <converters:TreeListViewRowIndexConverter x:Key="TreeListViewRowIndexConverter" />
+        <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="Width" Value="19" />
+            <Setter Property="Height" Value="13" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type ToggleButton}">
+                        <Border Width="19" Height="13" Background="Transparent">
+                            <Border Width="9" Height="9" BorderThickness="1" BorderBrush="#FF7898B5" CornerRadius="1" SnapsToDevicePixels="true">
+                                <Border.Background>
+                                    <LinearGradientBrush StartPoint="0,0" EndPoint="1,1">
+                                        <LinearGradientBrush.GradientStops>
+                                            <GradientStop Color="White" Offset=".2" />
+                                            <GradientStop Color="#FFC0B7A6" Offset="1" />
+                                        </LinearGradientBrush.GradientStops>
+                                    </LinearGradientBrush>
+                                </Border.Background>
+                                <Path x:Name="ExpandPath" Margin="1,1,1,1" Fill="Black" Data="M 0 2 L 0 3 L 2 3 L 2 5 L 3 5 L 3 3 
 L 5 3 L 5 2 L 3 2 L 3 0 L 2 0 L 2 2 Z" />
-							</Border>
-						</Border>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsChecked" Value="True">
-								<Setter Property="Data" TargetName="ExpandPath" Value="M 0 2 L 0 3 L 5 3 L 5 2 Z" />
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<DataTemplate x:Key="CriterionCellTemplate">
-			<WrapPanel>
-				<ToggleButton x:Name="Expander" 
+                            </Border>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsChecked" Value="True">
+                                <Setter Property="Data" TargetName="ExpandPath" Value="M 0 2 L 0 3 L 5 3 L 5 2 Z" />
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <DataTemplate x:Key="CriterionCellTemplate">
+            <WrapPanel>
+                <ToggleButton x:Name="Expander" 
 							  Style="{StaticResource ExpandCollapseToggleStyle}" 
 							  Margin="{Binding Level, Converter={StaticResource NodeLevelIndentConverter},                              RelativeSource={RelativeSource AncestorType= {x:Type controls:TreeListViewItem}}}"
 							  IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource                                                  AncestorType={x:Type controls:TreeListViewItem}}}" ClickMode="Press" />
-				<TextBlock Text="{Binding Name}" />
-			</WrapPanel>
-			<DataTemplate.Triggers>
-				<DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="False">
-					<Setter TargetName="Expander" Property="Visibility" Value="Hidden" />
-				</DataTrigger>
-			</DataTemplate.Triggers>
-		</DataTemplate>
-		<GridViewColumnCollection x:Key="gvcc">
-			<GridViewColumn Width="45">
-				<GridViewColumn.CellTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type controls:TreeListViewItem}},Converter={StaticResource TreeListViewRowIndexConverter}}"
+                <TextBlock Text="{Binding Name}" />
+            </WrapPanel>
+            <DataTemplate.Triggers>
+                <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="False">
+                    <Setter TargetName="Expander" Property="Visibility" Value="Hidden" />
+                </DataTrigger>
+            </DataTemplate.Triggers>
+        </DataTemplate>
+        <GridViewColumnCollection x:Key="ColumnDefinition">
+            <GridViewColumn Width="45">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor,AncestorType={x:Type controls:TreeListViewItem}},Converter={StaticResource TreeListViewRowIndexConverter}}"
 									   HorizontalAlignment="Center"
 									   VerticalAlignment="Center" />
-					</DataTemplate>
-				</GridViewColumn.CellTemplate>
-			</GridViewColumn>
-			<GridViewColumn Header="菜单名称" Width="250" CellTemplate="{StaticResource CriterionCellTemplate}" />
-			<GridViewColumn Header="链接地址" Width="400" DisplayMemberBinding="{Binding Url}" />
-			<GridViewColumn Header="路径" Width="300" DisplayMemberBinding="{Binding Path}" />
-			<GridViewColumn Header="所属系统" Width="170" DisplayMemberBinding="{Binding SystemName}" />
-			<GridViewColumn Header="应用程序类型" Width="170" DisplayMemberBinding="{Binding ApplicationType}" />
-			<GridViewColumn Header="创建时间" Width="200">
-				<GridViewColumn.CellTemplate>
-					<DataTemplate>
-						<TextBlock Text="{Binding AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="菜单名称" Width="250" CellTemplate="{StaticResource CriterionCellTemplate}" />
+            <GridViewColumn Header="链接地址" Width="400" DisplayMemberBinding="{Binding Url}" />
+            <GridViewColumn Header="路径" Width="300" DisplayMemberBinding="{Binding Path}" />
+            <GridViewColumn Header="所属系统" Width="170" DisplayMemberBinding="{Binding SystemName}" />
+            <GridViewColumn Header="应用程序类型" Width="170" DisplayMemberBinding="{Binding ApplicationType}" />
+            <GridViewColumn Header="创建时间" Width="200">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
 								   HorizontalAlignment="Center"
 								   VerticalAlignment="Center"/>
-					</DataTemplate>
-				</GridViewColumn.CellTemplate>
-			</GridViewColumn>
-			<GridViewColumn Header="关联权限" Width="70">
-				<GridViewColumn.CellTemplate>
-					<DataTemplate>
-						<TextBlock x:Name="RelateAuthorities" Text="关联权限" 
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="关联权限" Width="70">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="RelateAuthorities" Text="关联权限" 
 								   Style="{StaticResource Hyperlink}"
 								   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]"/>
-						<DataTemplate.Triggers>
-							<DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
-								<Setter TargetName="RelateAuthorities" Property="Visibility" Value="Collapsed" />
-							</DataTrigger>
-						</DataTemplate.Triggers>
-					</DataTemplate>
-				</GridViewColumn.CellTemplate>
-			</GridViewColumn>
-			<GridViewColumn Header="编辑" Width="40">
-				<GridViewColumn.CellTemplate>
-					<DataTemplate>
-						<TextBlock x:Name="Update" Text="编辑" 
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
+                                <Setter TargetName="RelateAuthorities" Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="编辑" Width="40">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="Update" Text="编辑" 
 								   Style="{StaticResource Hyperlink}"
 								   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Update($dataContext)]"/>
-						<DataTemplate.Triggers>
-							<DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
-								<Setter TargetName="Update" Property="Visibility" Value="Collapsed" />
-							</DataTrigger>
-						</DataTemplate.Triggers>
-					</DataTemplate>
-				</GridViewColumn.CellTemplate>
-			</GridViewColumn>
-			<GridViewColumn Header="删除" Width="40">
-				<GridViewColumn.CellTemplate>
-					<DataTemplate>
-						<TextBlock x:Name="Remove" Text="删除" 
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
+                                <Setter TargetName="Update" Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="删除" Width="40">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="Remove" Text="删除" 
 								   Style="{StaticResource Hyperlink}"
 								   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Remove($dataContext)]"/>
-						<DataTemplate.Triggers>
-							<DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
-								<Setter TargetName="Remove" Property="Visibility" Value="Collapsed" />
-							</DataTrigger>
-						</DataTemplate.Triggers>
-					</DataTemplate>
-				</GridViewColumn.CellTemplate>
-			</GridViewColumn>
-		</GridViewColumnCollection>
-		<Style TargetType="{x:Type controls:TreeListView}">
-			<Setter Property="BorderThickness" Value="0" />
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type controls:TreeListView}">
-						<Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-							<ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
-								<DockPanel>
-									<GridViewHeaderRowPresenter Columns="{StaticResource gvcc}" Height="25" DockPanel.Dock="Top" />
-									<ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-										<ItemsPresenter/>
-									</ScrollViewer>
-								</DockPanel>
-							</ScrollViewer>
-						</Border>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-		<Style TargetType="{x:Type controls:TreeListViewItem}">
-			<Setter Property="IsExpanded" Value="True" />
-			<Setter Property="FontFamily" Value="微软雅黑" />
-			<Setter Property="FontSize" Value="14" />
-			<Setter Property="Padding" Value="2" />
-			<Setter Property="BorderThickness" Value="0" />
-			<Setter Property="Template">
-				<Setter.Value>
-					<ControlTemplate TargetType="{x:Type controls:TreeListViewItem}">
-						<StackPanel>
-							<Border Name="Bd" 
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
+                                <Setter TargetName="Remove" Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+        </GridViewColumnCollection>
+        <Style TargetType="{x:Type controls:TreeListView}">
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type controls:TreeListView}">
+                        <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                                <DockPanel>
+                                    <GridViewHeaderRowPresenter Columns="{StaticResource ColumnDefinition}" Height="25" DockPanel.Dock="Top" />
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
+                                </DockPanel>
+                            </ScrollViewer>
+                        </Border>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+        <Style TargetType="{x:Type controls:TreeListViewItem}">
+            <Setter Property="IsExpanded" Value="True" />
+            <Setter Property="FontFamily" Value="微软雅黑" />
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="Padding" Value="2" />
+            <Setter Property="BorderThickness" Value="0" />
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type controls:TreeListViewItem}">
+                        <StackPanel>
+                            <Border Name="Bd" 
 									Background="{TemplateBinding Background}" 
 									BorderBrush="{TemplateBinding BorderBrush}"
 									BorderThickness="{TemplateBinding BorderThickness}"
 									Padding="{TemplateBinding Padding}">
-								<GridViewRowPresenter x:Name="PART_Header" 
+                                <GridViewRowPresenter x:Name="PART_Header" 
 													  Content="{TemplateBinding Header}" 
-													  Columns="{StaticResource gvcc}" />
-							</Border>
-							<ItemsPresenter x:Name="ItemsHost" />
-						</StackPanel>
-						<ControlTemplate.Triggers>
-							<Trigger Property="IsExpanded" Value="false">
-								<Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed" />
-							</Trigger>
-							<MultiTrigger>
-								<MultiTrigger.Conditions>
-									<Condition Property="HasHeader" Value="false" />
-									<Condition Property="Width" Value="Auto" />
-								</MultiTrigger.Conditions>
-								<Setter TargetName="PART_Header" Property="MinWidth" Value="75" />
-							</MultiTrigger>
-							<MultiTrigger>
-								<MultiTrigger.Conditions>
-									<Condition Property="HasHeader" Value="false" />
-									<Condition Property="Height" Value="Auto" />
-								</MultiTrigger.Conditions>
-								<Setter TargetName="PART_Header" Property="MinHeight" Value="19" />
-							</MultiTrigger>
-							<Trigger Property="IsSelected" Value="true">
-								<Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.HighlightBrushKey}}" />
-								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />
-							</Trigger>
-							<MultiTrigger>
-								<MultiTrigger.Conditions>
-									<Condition Property="IsSelected" Value="true" />
-									<Condition Property="IsSelectionActive" Value="false" />
-								</MultiTrigger.Conditions>
-								<Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-							</MultiTrigger>
-							<Trigger Property="IsEnabled" Value="false">
-								<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
-							</Trigger>
-						</ControlTemplate.Triggers>
-					</ControlTemplate>
-				</Setter.Value>
-			</Setter>
-		</Style>
-	</UserControl.Resources>
+													  Columns="{StaticResource ColumnDefinition}" />
+                            </Border>
+                            <ItemsPresenter x:Name="ItemsHost" />
+                        </StackPanel>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsExpanded" Value="false">
+                                <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed" />
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="false">
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasHeader" Value="false" />
+                                    <Condition Property="Width" Value="Auto" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="PART_Header" Property="MinWidth" Value="75" />
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="HasHeader" Value="false" />
+                                    <Condition Property="Height" Value="Auto" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="PART_Header" Property="MinHeight" Value="19" />
+                            </MultiTrigger>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter TargetName="Bd" Property="Background" Value="#FFE48D" />
+                                <!--<Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.HighlightTextBrushKey}}" />-->
+                            </Trigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsSelected" Value="true" />
+                                    <Condition Property="IsSelectionActive" Value="false" />
+                                </MultiTrigger.Conditions>
+                                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
+                                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
+                            </MultiTrigger>
+                            <MultiTrigger>
+                                <MultiTrigger.Conditions>
+                                    <Condition Property="IsMouseOver" Value="true"/>
+                                    <Condition Property="IsSelected" Value="false"/>
+                                    <Condition Property="HasItems" Value="false"/>
+                                </MultiTrigger.Conditions>
+                                <Setter Property="Background" TargetName="Bd" Value="#EAF2FF"/>
+                            </MultiTrigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </UserControl.Resources>
 
-	<Grid>
-		<Grid.RowDefinitions>
-			<RowDefinition Height="70" />
-			<RowDefinition Height="*" />
-			<RowDefinition Height="30" />
-		</Grid.RowDefinitions>
-		<!--功能区-->
-		<Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,1,0,1">
-			<Grid Background="#F4F4F4"></Grid>
-		</Border>
-		<!--内容区-->
-		<busyIndicator:BusyMask Grid.Row="1"  IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
-			<controls:TreeListView ItemsSource="{Binding Menus}">
-				<controls:TreeListView.ItemTemplate>
-					<HierarchicalDataTemplate ItemsSource="{Binding children}" />
-				</controls:TreeListView.ItemTemplate>
-			</controls:TreeListView>
-		</busyIndicator:BusyMask>
-		<!--内容控制区-->
-		<Border Grid.Row="2" BorderBrush="#CCCCCC" BorderThickness="0,1,0,1">
-			<Grid Background="#F4F4F4"></Grid>
-		</Border>
-	</Grid>
-
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="70" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <!--功能区-->
+        <Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,1,0,1">
+            <Grid Background="#F4F4F4"></Grid>
+        </Border>
+        <!--内容区-->
+        <busyIndicator:BusyMask Grid.Row="1"  IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
+            <controls:TreeListView ItemsSource="{Binding Menus}">
+                <controls:TreeListView.ItemTemplate>
+                    <HierarchicalDataTemplate ItemsSource="{Binding children}" />
+                </controls:TreeListView.ItemTemplate>
+            </controls:TreeListView>
+        </busyIndicator:BusyMask>
+        <!--内容控制区-->
+        <Border Grid.Row="2" BorderBrush="#CCCCCC" BorderThickness="0,1,0,1">
+            <Grid Background="#F4F4F4"></Grid>
+        </Border>
+    </Grid>
 </UserControl>
