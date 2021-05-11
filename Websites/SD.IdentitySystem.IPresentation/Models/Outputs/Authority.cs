@@ -3,9 +3,9 @@
 namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
-    /// 权限视图模型
+    /// 权限模型
     /// </summary>
-    public class Authority : ViewModel
+    public class Authority : ModelBase
     {
         #region 程序集名称 —— string AssemblyName
         /// <summary>

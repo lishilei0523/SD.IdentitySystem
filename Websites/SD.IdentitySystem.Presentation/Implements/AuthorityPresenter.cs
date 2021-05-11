@@ -39,7 +39,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// 获取权限
         /// </summary>
         /// <param name="authorityId">权限Id</param>
-        /// <returns>权限视图模型</returns>
+        /// <returns>权限模型</returns>
         public Authority GetAuthority(Guid authorityId)
         {
             AuthorityInfo authorityInfo = this._authorizationContract.GetAuthority(authorityId);

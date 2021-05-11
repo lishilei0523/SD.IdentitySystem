@@ -12,12 +12,12 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class InfoSytemMap
     {
-        #region # 信息系统视图模型映射 —— static InfoSystem ToModel(this InfoSystemInfo...
+        #region # 信息系统模型映射 —— static InfoSystem ToModel(this InfoSystemInfo...
         /// <summary>
-        /// 信息系统视图模型映射
+        /// 信息系统模型映射
         /// </summary>
         /// <param name="systemInfo">信息系统数据传输对象</param>
-        /// <returns>信息系统视图模型</returns>
+        /// <returns>信息系统模型</returns>
         public static InfoSystem ToModel(this InfoSystemInfo systemInfo)
         {
             InfoSystem infoSystem = systemInfo.Map<InfoSystemInfo, InfoSystem>();
@@ -32,7 +32,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 信息系统/权限EasyUI树节点映射
         /// </summary>
-        /// <param name="infoSystem">信息系统视图模型</param>
+        /// <param name="infoSystem">信息系统模型</param>
         /// <param name="authorities">权限列表</param>
         /// <returns>EasyUI树节点</returns>
         public static Node ToNode(this InfoSystem infoSystem, IEnumerable<Authority> authorities)
@@ -60,7 +60,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 信息系统/角色EasyUI树节点映射
         /// </summary>
-        /// <param name="infoSystem">信息系统视图模型</param>
+        /// <param name="infoSystem">信息系统模型</param>
         /// <param name="roles">角色列表</param>
         /// <returns>EasyUI树节点</returns>
         public static Node ToNode(this InfoSystem infoSystem, IEnumerable<Role> roles)

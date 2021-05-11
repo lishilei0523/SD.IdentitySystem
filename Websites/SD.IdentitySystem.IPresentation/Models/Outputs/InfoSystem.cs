@@ -4,9 +4,9 @@ using SD.Infrastructure.PresentationBase;
 namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
-    /// 信息系统视图模型
+    /// 信息系统模型
     /// </summary>
-    public class InfoSystem : ViewModel
+    public class InfoSystem : ModelBase
     {
         #region 管理员登录名 —— string AdminLoginId
         /// <summary>

@@ -6,9 +6,9 @@ using SD.Toolkits.EasyUI;
 namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
-    /// 菜单视图模型
+    /// 菜单模型
     /// </summary>
-    public class Menu : ViewModel, ITreeGrid<Menu>
+    public class Menu : ModelBase, ITreeGrid<Menu>
     {
         #region 构造器
         /// <summary>

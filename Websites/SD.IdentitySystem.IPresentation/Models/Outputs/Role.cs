@@ -3,9 +3,9 @@
 namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
-    /// 角色视图模型
+    /// 角色模型
     /// </summary>
-    public class Role : ViewModel
+    public class Role : ModelBase
     {
         #region 角色描述 —— string Description
         /// <summary>
