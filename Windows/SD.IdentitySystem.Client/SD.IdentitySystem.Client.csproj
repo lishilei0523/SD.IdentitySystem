@@ -266,11 +266,11 @@
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Websites\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
+    <ProjectReference Include="..\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
       <Project>{e252094f-979a-4655-b864-e600c33ab75d}</Project>
       <Name>SD.IdentitySystem.IPresentation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Websites\SD.IdentitySystem.Presentation\SD.IdentitySystem.Presentation.csproj">
+    <ProjectReference Include="..\SD.IdentitySystem.Presentation\SD.IdentitySystem.Presentation.csproj">
       <Project>{3f6e50ba-8e37-4730-9c2e-0d9483a026d8}</Project>
       <Name>SD.IdentitySystem.Presentation</Name>
     </ProjectReference>
