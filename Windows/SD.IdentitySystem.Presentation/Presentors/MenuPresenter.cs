@@ -1,8 +1,7 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
+using SD.IdentitySystem.Presentation.Models;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Models;
@@ -10,12 +9,12 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SD.IdentitySystem.Presentation.Implements
+namespace SD.IdentitySystem.Presentation.Presentors
 {
     /// <summary>
-    /// 菜单呈现器实现
+    /// 菜单呈现器
     /// </summary>
-    public class MenuPresenter : IMenuPresenter
+    public class MenuPresenter
     {
         #region # 字段及构造器
 

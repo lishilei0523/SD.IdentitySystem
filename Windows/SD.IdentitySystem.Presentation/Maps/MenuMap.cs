@@ -1,6 +1,5 @@
-﻿using SD.Common;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IPresentation.Models.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.Presentation.Models;
 using SD.Infrastructure.WPF.Models;
 using SD.Toolkits.Mapper;
 using System;
@@ -19,13 +18,12 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单映射
         /// </summary>
-        /// <param name="menuInfo">菜单数据传输对象</param>
+        /// <param name="menuInfo">菜单</param>
         /// <returns>菜单</returns>
         public static Menu ToModel(this MenuInfo menuInfo)
         {
             Menu menu = menuInfo.Map<MenuInfo, Menu>();
             menu.SystemName = menuInfo.InfoSystemInfo.Name;
-            menu.ApplicationType = menuInfo.ApplicationType.GetEnumMember();
 
             return menu;
         }

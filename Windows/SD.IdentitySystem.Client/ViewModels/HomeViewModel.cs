@@ -1,6 +1,6 @@
 ﻿using Caliburn.Micro;
-using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.Models.Outputs;
+using SD.IdentitySystem.Presentation.Models;
+using SD.IdentitySystem.Presentation.Presentors;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Aspects;
@@ -23,9 +23,9 @@ namespace SD.IdentitySystem.Client.ViewModels
         #region # 字段及构造器
 
         /// <summary>
-        /// 菜单呈现器接口
+        /// 菜单呈现器
         /// </summary>
-        private readonly IMenuPresenter _menuPresenter;
+        private readonly MenuPresenter _menuPresenter;
 
         /// <summary>
         /// 窗体管理器
@@ -35,7 +35,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public HomeViewModel(IMenuPresenter menuPresenter, IWindowManager windowManager)
+        public HomeViewModel(MenuPresenter menuPresenter, IWindowManager windowManager)
         {
             this._menuPresenter = menuPresenter;
             this._windowManager = windowManager;

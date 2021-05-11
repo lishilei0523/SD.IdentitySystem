@@ -14,6 +14,7 @@
 			 cal:Message.Attach="[Event Loaded] = [Action LoadMenus()]">
     <UserControl.Resources>
         <!--值转换器-->
+        <converters:EnumMemberConverter x:Key="EnumMemberConverter" />
         <converters:NodeLevelIndentConverter x:Key="NodeLevelIndentConverter" />
         <converters:TreeListViewRowIndexConverter x:Key="TreeListViewRowIndexConverter" />
         <!--折叠按钮样式-->
@@ -84,7 +85,7 @@
             <GridViewColumn Header="链接地址" Width="300" DisplayMemberBinding="{Binding Url}" />
             <GridViewColumn Header="路径" Width="200" DisplayMemberBinding="{Binding Path}" />
             <GridViewColumn Header="所属系统" Width="170" DisplayMemberBinding="{Binding SystemName}" />
-            <GridViewColumn Header="应用程序类型" Width="170" DisplayMemberBinding="{Binding ApplicationType}" />
+            <GridViewColumn Header="应用程序类型" Width="170" DisplayMemberBinding="{Binding ApplicationType, Converter={StaticResource EnumMemberConverter}}" />
             <GridViewColumn Header="创建时间" Width="200">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>

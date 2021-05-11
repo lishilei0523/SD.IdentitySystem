@@ -1,8 +1,8 @@
 ﻿using Caliburn.Micro;
 using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.Models.Outputs;
+using SD.IdentitySystem.Presentation.Models;
+using SD.IdentitySystem.Presentation.Presentors;
 using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Toolkits.Recursion.Tree;
@@ -23,9 +23,9 @@ namespace SD.IdentitySystem.Client.ViewModels
         #region # 字段及构造器
 
         /// <summary>
-        /// 菜单呈现器接口
+        /// 菜单呈现器
         /// </summary>
-        private readonly IMenuPresenter _menuPresenter;
+        private readonly MenuPresenter _menuPresenter;
 
         /// <summary>
         /// 权限服务契约接口
@@ -35,7 +35,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public MenuViewModel(IMenuPresenter menuPresenter, IAuthorizationContract authorizationContract)
+        public MenuViewModel(MenuPresenter menuPresenter, IAuthorizationContract authorizationContract)
         {
             this._menuPresenter = menuPresenter;
             this._authorizationContract = authorizationContract;

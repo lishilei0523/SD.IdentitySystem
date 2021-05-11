@@ -47,6 +47,9 @@
     </Reference>
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Windows.Interactivity, Version=4.5.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
@@ -63,6 +66,7 @@
     <Compile Include="Controls\TreeListView.cs" />
     <Compile Include="Controls\TreeListViewItem.cs" />
     <Compile Include="Converters\NodeLevelIndentConverter.cs" />
+    <Compile Include="Converters\EnumMemberConverter.cs" />
     <Compile Include="Converters\TreeListViewRowIndexConverter.cs" />
     <Compile Include="Extensions\LoadingIndicator.cs" />
     <Compile Include="Extensions\PasswordExtension.cs" />
