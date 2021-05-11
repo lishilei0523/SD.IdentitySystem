@@ -33,11 +33,11 @@
             <!--表单-->
             <StackPanel Grid.Row="1" Grid.IsSharedSizeScope="True" Margin="40,30">
                 <kino:FormItem Label="用户名：" FontSize="14" Padding="5">
-                    <TextBox Text="{Binding LoginId}" VerticalContentAlignment="Center" Height="40" />
+                    <TextBox Height="40" VerticalContentAlignment="Center" Text="{Binding LoginId}" />
                 </kino:FormItem>
                 <kino:FormItem Label="密码：" FontSize="14" Padding="5">
-                    <PasswordBox VerticalContentAlignment="Center" Height="40" 
-                             extensions:PasswordExtension.Password="{Binding Password, Mode=TwoWay}">
+                    <PasswordBox Height="40" VerticalContentAlignment="Center" 
+                                 extensions:PasswordExtension.Password="{Binding Password, Mode=TwoWay}">
                         <PasswordBox.InputBindings>
                             <KeyBinding Key="Enter" Command="{Binding LoginCommand}" />
                         </PasswordBox.InputBindings>
