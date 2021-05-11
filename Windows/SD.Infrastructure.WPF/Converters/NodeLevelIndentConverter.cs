@@ -6,7 +6,7 @@ using System.Windows.Data;
 namespace SD.Infrastructure.WPF.Converters
 {
     /// <summary>
-    /// 转换树级别缩进尺寸
+    /// 树级别缩进尺寸转换器
     /// </summary>
     public class NodeLevelIndentConverter : IValueConverter
     {
@@ -16,7 +16,7 @@ namespace SD.Infrastructure.WPF.Converters
         private const double IndentUnitSize = 14.0;
 
         /// <summary>
-        /// 转换
+        /// 转换树级别缩进尺寸
         /// </summary>
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {

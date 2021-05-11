@@ -63,6 +63,7 @@
     <Compile Include="Controls\TreeListView.cs" />
     <Compile Include="Controls\TreeListViewItem.cs" />
     <Compile Include="Converters\NodeLevelIndentConverter.cs" />
+    <Compile Include="Converters\TreeListViewRowIndexConverter.cs" />
     <Compile Include="Extensions\LoadingIndicator.cs" />
     <Compile Include="Extensions\PasswordExtension.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
