@@ -4,7 +4,7 @@ using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.WPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -127,12 +127,12 @@ namespace SD.IdentitySystem.Presentation.Implements
             foreach (Node system in roleTree)
             {
                 //遍历角色
-                foreach (Node role in system.children)
+                foreach (Node role in system.SubNodes)
                 {
                     //如果用户有该角色，则选中
-                    if (userRoles.Any(x => x.Id == role.id))
+                    if (userRoles.Any(x => x.Id == role.Id))
                     {
-                        role.@checked = true;
+                        role.IsChecked = true;
                     }
                 }
             }

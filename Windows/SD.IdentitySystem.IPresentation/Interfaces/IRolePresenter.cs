@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.PresentationBase;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.WPF.Models;
 using System;
 using System.Collections.Generic;
 

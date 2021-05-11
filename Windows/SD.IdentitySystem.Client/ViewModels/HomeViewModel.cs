@@ -39,14 +39,8 @@ namespace SD.IdentitySystem.Client.ViewModels
             this._menuPresenter = menuPresenter;
             this._windowManager = windowManager;
 
-            //初始化计时器
+            //初始化定时器
             this.InitTimer();
-
-            //初始化菜单
-            this.InitMenus();
-
-            //默认值
-            this.BingVisibility = Visibility.Visible;
         }
 
         #endregion
@@ -65,6 +59,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// <summary>
         /// 菜单列表
         /// </summary>
+        [DependencyProperty]
         public IEnumerable<Menu> Menus { get; private set; }
         #endregion
 
@@ -108,7 +103,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public void InitMenus()
         {
-            IEnumerable<Menu> menus = this._menuPresenter.GetMenuTreeGrid("00", ApplicationType.Windows);
+            IEnumerable<Menu> menus = this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows);
             this.Menus = menus;
         }
         #endregion

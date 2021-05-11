@@ -60,9 +60,6 @@
     <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.3\lib\net461\SD.Infrastructure.AOP.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Toolkits.EasyUI, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.EasyUI.1.0.0\lib\net40\SD.Toolkits.EasyUI.dll</HintPath>
-    </Reference>
     <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Json.1.0.1\lib\net45\SD.Toolkits.Json.dll</HintPath>
     </Reference>
@@ -91,6 +88,10 @@
     <ProjectReference Include="..\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
       <Project>{e252094f-979a-4655-b864-e600c33ab75d}</Project>
       <Name>SD.IdentitySystem.IPresentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.Infrastructure.WPF\SD.Infrastructure.WPF.csproj">
+      <Project>{8593d205-377a-48ed-834e-f1fabbd88c00}</Project>
+      <Name>SD.Infrastructure.WPF</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

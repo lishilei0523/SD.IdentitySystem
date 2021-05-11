@@ -1,10 +1,11 @@
 ﻿using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.WPF.Models;
 using SD.Toolkits.Mapper;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 
 namespace SD.IdentitySystem.Presentation.Maps
@@ -14,12 +15,12 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class MenuMap
     {
-        #region # 菜单模型映射 —— static Menu ToModel(this MenuInfo...
+        #region # 菜单映射 —— static Menu ToModel(this MenuInfo...
         /// <summary>
-        /// 菜单模型映射
+        /// 菜单映射
         /// </summary>
         /// <param name="menuInfo">菜单数据传输对象</param>
-        /// <returns>菜单模型</returns>
+        /// <returns>菜单</returns>
         public static Menu ToModel(this MenuInfo menuInfo)
         {
             Menu menu = menuInfo.Map<MenuInfo, Menu>();
@@ -30,31 +31,25 @@ namespace SD.IdentitySystem.Presentation.Maps
         }
         #endregion
 
-        #region # 菜单EasyUI树节点映射 —— static Node ToNode(this Menu menu)
+        #region # 菜单树节点映射 —— static Node ToNode(this Menu menu)
         /// <summary>
-        /// 菜单EasyUI树节点映射
+        /// 菜单树节点映射
         /// </summary>
-        /// <param name="menu">菜单模型</param>
-        /// <returns>EasyUI树节点</returns>
+        /// <param name="menu">菜单</param>
+        /// <returns>树节点</returns>
         public static Node ToNode(this Menu menu)
         {
-            var attributes = new
-            {
-                href = menu.Url,
-                isLeaf = menu.IsLeaf
-            };
-
-            return new Node(menu.Id, menu.Name, "open", false, attributes);
+            return new Node(menu.Id, menu.Name, false, null);
         }
         #endregion
 
-        #region # 菜单EasyUI树集合映射 —— static ICollection<Node> ToTree(this IEnumerable<Menu...
+        #region # 菜单树映射 —— static ICollection<Node> ToTree(this IEnumerable<Menu...
         /// <summary>
-        /// 菜单EasyUI树集合映射
+        /// 菜单树映射
         /// </summary>
-        /// <param name="menus">菜单模型集</param>
+        /// <param name="menus">菜单集</param>
         /// <param name="parentId">父级菜单Id</param>
-        /// <returns>EasyUI树集合</returns>
+        /// <returns>菜单树</returns>
         public static ICollection<Node> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
         {
             //验证
@@ -70,22 +65,20 @@ namespace SD.IdentitySystem.Presentation.Maps
                 foreach (Menu menu in menus.Where(x => x.IsRoot))
                 {
                     Node node = menu.ToNode();
-
                     tree.Add(node);
 
-                    node.children = menus.ToTree(node.id);
+                    node.SubNodes = new ObservableCollection<Node>(menus.ToTree(node.Id));
                 }
             }
             else
             {
                 //从给定Id向下遍历
-                foreach (Menu menu in menus.Where(x => x.ParentMenuId != null && x.ParentMenuId == parentId.Value))
+                foreach (Menu menu in menus.Where(x => x.ParentMenuId.HasValue && x.ParentMenuId.Value == parentId.Value))
                 {
                     Node node = menu.ToNode();
-
                     tree.Add(node);
 
-                    node.children = menus.ToTree(node.id);
+                    node.SubNodes = new ObservableCollection<Node>(menus.ToTree(node.Id));
                 }
             }
 
@@ -93,18 +86,18 @@ namespace SD.IdentitySystem.Presentation.Maps
         }
         #endregion
 
-        #region # 菜单EasyUI TreeGrid映射 —— static IEnumerable<Menu> ToTreeGrid(this...
+        #region # 菜单树列表映射 —— static IEnumerable<Menu> ToTreeList(this...
         /// <summary>
-        /// 菜单EasyUI TreeGrid映射
+        /// 菜单树列表映射
         /// </summary>
-        /// <param name="menus">菜单模型集</param>
-        /// <returns>TreeGrid</returns>
-        public static IEnumerable<Menu> ToTreeGrid(this IEnumerable<Menu> menus)
+        /// <param name="menus">菜单列表</param>
+        /// <returns>菜单树列表</returns>
+        public static IEnumerable<Menu> ToTreeList(this IEnumerable<Menu> menus)
         {
             Menu[] allMenus = menus?.ToArray() ?? new Menu[0];
             foreach (Menu menu in allMenus)
             {
-                menu.FillChildren(allMenus);
+                menu.FillSubNodes(allMenus);
             }
 
             return allMenus.Where(x => x.IsRoot);
@@ -114,23 +107,23 @@ namespace SD.IdentitySystem.Presentation.Maps
 
         //Private
 
-        #region # 填充子节点 —— static void FillChildren(this Menu menu...
+        #region # 填充子节点 —— static void FillSubNodes(this Menu menu...
         /// <summary>
         /// 填充子节点
         /// </summary>
         /// <param name="menu">菜单模型</param>
         /// <param name="allMenus">菜单模型集</param>
-        private static void FillChildren(this Menu menu, Menu[] allMenus)
+        private static void FillSubNodes(this Menu menu, Menu[] allMenus)
         {
             foreach (Menu subMenu in allMenus)
             {
                 if (subMenu.ParentMenuId.HasValue && subMenu.ParentMenuId.Value == menu.Id)
                 {
-                    menu.children.Add(subMenu);
+                    menu.SubNodes.Add(subMenu);
                     menu.type = menu.IsLeaf ? "pack" : "folder";
                     subMenu.ParentMenuId = null;
 
-                    FillChildren(subMenu, allMenus);
+                    FillSubNodes(subMenu, allMenus);
                 }
             }
         }

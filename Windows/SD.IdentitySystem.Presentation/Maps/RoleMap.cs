@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.WPF.Models;
 using SD.Toolkits.Mapper;
 
 namespace SD.IdentitySystem.Presentation.Maps
@@ -26,20 +26,15 @@ namespace SD.IdentitySystem.Presentation.Maps
         }
         #endregion
 
-        #region # 角色EasyUI树节点映射 —— static Node ToNode(this Role role)
+        #region # 角色树节点映射 —— static Node ToNode(this Role role)
         /// <summary>
-        /// 角色EasyUI树节点映射
+        /// 角色树节点映射
         /// </summary>
         /// <param name="role">角色模型</param>
-        /// <returns>EasyUI树节点</returns>
+        /// <returns>树节点</returns>
         public static Node ToNode(this Role role)
         {
-            var attributes = new
-            {
-                type = "role"
-            };
-
-            return new Node(role.Id, role.Name, "open", false, attributes);
+            return new Node(role.Id, role.Name, false, null);
         }
         #endregion
     }

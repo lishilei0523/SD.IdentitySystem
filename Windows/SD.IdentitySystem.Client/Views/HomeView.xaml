@@ -7,7 +7,8 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
-        Title="统一身份认证系统" Width="1440" Height="900" WindowStartupLocation="CenterScreen" FontSize="14">
+        Title="统一身份认证系统" Width="1440" Height="900" WindowStartupLocation="CenterScreen" FontSize="14"
+        cal:Message.Attach="[Event Loaded] = [Action InitMenus()]">
     <!--Resources-->
     <Window.Resources>
         <!--TreeView样式-->
@@ -88,7 +89,7 @@
             <!--Menu-->
             <TreeView ItemsSource="{Binding Menus}">
                 <TreeView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding children}">
+                    <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="{Binding Icon}" VerticalAlignment="Center" />
                             <TextBlock Text="{Binding Name}" Margin="3,0,0,0"

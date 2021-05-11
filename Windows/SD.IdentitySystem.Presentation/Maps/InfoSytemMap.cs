@@ -1,7 +1,7 @@
 ﻿using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.WPF.Models;
 using SD.Toolkits.Mapper;
 using System.Collections.Generic;
 
@@ -28,27 +28,21 @@ namespace SD.IdentitySystem.Presentation.Maps
         }
         #endregion
 
-        #region # 信息系统/权限EasyUI树节点映射 —— static Node ToNode(this InfoSystem infoSystem...
+        #region # 信息系统/权限树节点映射 —— static Node ToNode(this InfoSystem infoSystem...
         /// <summary>
-        /// 信息系统/权限EasyUI树节点映射
+        /// 信息系统/权限树节点映射
         /// </summary>
         /// <param name="infoSystem">信息系统模型</param>
         /// <param name="authorities">权限列表</param>
-        /// <returns>EasyUI树节点</returns>
+        /// <returns>树节点</returns>
         public static Node ToNode(this InfoSystem infoSystem, IEnumerable<Authority> authorities)
         {
-            var attributes = new
-            {
-                type = "infoSystem"
-            };
-
-            Node systemNode = new Node(infoSystem.Id, infoSystem.Name, "open", false, attributes);
-
+            Node systemNode = new Node(infoSystem.Id, infoSystem.Name, false, null);
             foreach (Authority authority in authorities)
             {
                 if (authority.SystemNo == infoSystem.Number)
                 {
-                    systemNode.children.Add(authority.ToNode());
+                    systemNode.SubNodes.Add(authority.ToNode());
                 }
             }
 
@@ -56,27 +50,21 @@ namespace SD.IdentitySystem.Presentation.Maps
         }
         #endregion
 
-        #region # 信息系统/角色EasyUI树节点映射 —— static Node ToNode(this InfoSystem infoSystem...
+        #region # 信息系统/角色树节点映射 —— static Node ToNode(this InfoSystem infoSystem...
         /// <summary>
-        /// 信息系统/角色EasyUI树节点映射
+        /// 信息系统/角色树节点映射
         /// </summary>
         /// <param name="infoSystem">信息系统模型</param>
         /// <param name="roles">角色列表</param>
-        /// <returns>EasyUI树节点</returns>
+        /// <returns>树节点</returns>
         public static Node ToNode(this InfoSystem infoSystem, IEnumerable<Role> roles)
         {
-            var attributes = new
-            {
-                type = "infoSystem"
-            };
-
-            Node systemNode = new Node(infoSystem.Id, infoSystem.Name, "open", false, attributes);
-
+            Node systemNode = new Node(infoSystem.Id, infoSystem.Name, false, null);
             foreach (Role role in roles)
             {
                 if (role.SystemNo == infoSystem.Number)
                 {
-                    systemNode.children.Add(role.ToNode());
+                    systemNode.SubNodes.Add(role.ToNode());
                 }
             }
 

@@ -13,8 +13,10 @@
 			 mc:Ignorable="d" d:DesignHeight="740" d:DesignWidth="1220"
 			 cal:Message.Attach="[Event Loaded] = [Action LoadMenus()]">
     <UserControl.Resources>
+        <!--值转换器-->
         <converters:NodeLevelIndentConverter x:Key="NodeLevelIndentConverter" />
         <converters:TreeListViewRowIndexConverter x:Key="TreeListViewRowIndexConverter" />
+        <!--折叠按钮样式-->
         <Style x:Key="ExpandCollapseToggleStyle" TargetType="{x:Type ToggleButton}">
             <Setter Property="Focusable" Value="False" />
             <Setter Property="Width" Value="19" />
@@ -42,6 +44,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--首列数据模板-->
         <DataTemplate x:Key="CriterionCellTemplate">
             <WrapPanel>
                 <ToggleButton x:Name="Expander" 
@@ -49,28 +52,31 @@
 							  Margin="{Binding Level, Converter={StaticResource NodeLevelIndentConverter},                              RelativeSource={RelativeSource AncestorType= {x:Type controls:TreeListViewItem}}}"
 							  IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource                                                  AncestorType={x:Type controls:TreeListViewItem}}}" ClickMode="Press" />
                 <TextBlock>
-                    <WrapPanel>
-                        <Image x:Name="CriterionIcon" Width="14" Height="14" 
-                               HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               Source="{StaticResource IconFolder}" />
-                        <TextBlock Text="{Binding Name}" Margin="2,0,0,0" />
-                    </WrapPanel>
-                </TextBlock>
+					<WrapPanel>
+						<Image x:Name="CriterionIcon" Width="14" Height="14" 
+							   HorizontalAlignment="Center" VerticalAlignment="Center" 
+							   Source="{StaticResource IconFolder}" />
+                        <CheckBox x:Name="CriterionCbx" VerticalAlignment="Center" Visibility="Collapsed" IsChecked="{Binding IsChecked}" />
+						<TextBlock Text="{Binding Name}" Margin="2,0,0,0" />
+					</WrapPanel>
+				</TextBlock>
             </WrapPanel>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="False">
                     <Setter TargetName="Expander" Property="Visibility" Value="Hidden" />
                     <Setter TargetName="CriterionIcon" Property="Source" Value="{StaticResource IconFile}" />
+                    <Setter TargetName="CriterionCbx" Property="Visibility" Value="Visible" />
                 </DataTrigger>
             </DataTemplate.Triggers>
         </DataTemplate>
+        <!--列定义-->
         <GridViewColumnCollection x:Key="ColumnDefinition">
             <GridViewColumn Width="45">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:TreeListViewItem}}, Converter={StaticResource TreeListViewRowIndexConverter}}"
-                                   HorizontalAlignment="Center"
-                                   VerticalAlignment="Center" />
+								   HorizontalAlignment="Center"
+								   VerticalAlignment="Center" />
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
@@ -131,6 +137,7 @@
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
         </GridViewColumnCollection>
+        <!--TreeListView样式-->
         <Style TargetType="{x:Type controls:TreeListView}">
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Template">
@@ -150,6 +157,7 @@
                 </Setter.Value>
             </Setter>
         </Style>
+        <!--TreeListViewItem样式-->
         <Style TargetType="{x:Type controls:TreeListViewItem}">
             <Setter Property="IsExpanded" Value="True" />
             <Setter Property="FontFamily" Value="微软雅黑" />
@@ -166,7 +174,7 @@
 									BorderThickness="{TemplateBinding BorderThickness}"
 									Padding="{TemplateBinding Padding}">
                                 <GridViewRowPresenter x:Name="PART_Header"
-                                                      Content="{TemplateBinding Header}" 
+													  Content="{TemplateBinding Header}" 
 													  Columns="{StaticResource ColumnDefinition}" />
                             </Border>
                             <ItemsPresenter x:Name="ItemsHost" />
@@ -265,7 +273,7 @@
         <busyIndicator:BusyMask Grid.Row="1"  IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
             <controls:TreeListView ItemsSource="{Binding Menus}">
                 <controls:TreeListView.ItemTemplate>
-                    <HierarchicalDataTemplate ItemsSource="{Binding children}" />
+                    <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}" />
                 </controls:TreeListView.ItemTemplate>
             </controls:TreeListView>
         </busyIndicator:BusyMask>

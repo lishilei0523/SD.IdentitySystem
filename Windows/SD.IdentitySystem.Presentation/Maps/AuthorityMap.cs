@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.WPF.Models;
 using SD.Toolkits.Mapper;
 
 namespace SD.IdentitySystem.Presentation.Maps
@@ -26,20 +26,15 @@ namespace SD.IdentitySystem.Presentation.Maps
         }
         #endregion
 
-        #region # 权限EasyUI树节点映射 —— static Node ToNode(this Authority authority)
+        #region # 权限树节点映射 —— static Node ToNode(this Authority authority)
         /// <summary>
-        /// 权限EasyUI树节点映射
+        /// 权限树节点映射
         /// </summary>
         /// <param name="authority">权限模型</param>
-        /// <returns>EasyUI树节点</returns>
+        /// <returns>树节点</returns>
         public static Node ToNode(this Authority authority)
         {
-            var attributes = new
-            {
-                type = "authority"
-            };
-
-            return new Node(authority.Id, authority.Name, "open", false, attributes);
+            return new Node(authority.Id, authority.Name, false, null);
         }
         #endregion
     }

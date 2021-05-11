@@ -1,5 +1,5 @@
 ﻿using SD.Infrastructure.PresentationBase;
-using SD.Toolkits.EasyUI;
+using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
 
@@ -8,7 +8,7 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
     /// <summary>
     /// 菜单模型
     /// </summary>
-    public class Menu : Model, ITreeGrid<Menu>
+    public class Menu : Model, ITree<Menu>
     {
         #region 构造器
         /// <summary>
@@ -16,7 +16,11 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
         /// </summary>
         public Menu()
         {
-            this.children = new HashSet<Menu>();
+            //初始化导航属性
+            this.SubNodes = new HashSet<Menu>();
+
+            //默认值
+            this.IsChecked = false;
         }
         #endregion
 
@@ -63,9 +67,9 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
         public int Sort { get; set; }
         #endregion
 
-        #region 父级菜单Id —— Guid? ParentMenuId
+        #region 上级菜单Id —— Guid? ParentMenuId
         /// <summary>
-        /// 父级菜单Id
+        /// 上级菜单Id
         /// </summary>
         public Guid? ParentMenuId { get; set; }
         #endregion
@@ -101,11 +105,18 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
         public string type { get; set; }
         #endregion
 
-        #region 导航属性 - 子级菜单集 —— ICollection<Menu> children
+        #region 导航属性 - 上级菜单 —— ICollection<Menu> ParentNode
+        /// <summary>
+        /// 导航属性 - 上级菜单
+        /// </summary>
+        public Menu ParentNode { get; set; }
+        #endregion
+
+        #region 导航属性 - 子级菜单集 —— ICollection<Menu> SubNodes
         /// <summary>
         /// 导航属性 - 子级菜单集
         /// </summary>
-        public ICollection<Menu> children { get; set; }
+        public ICollection<Menu> SubNodes { get; set; }
         #endregion
     }
 }

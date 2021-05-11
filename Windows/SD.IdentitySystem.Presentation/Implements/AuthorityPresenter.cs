@@ -4,7 +4,7 @@ using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.WPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -125,12 +125,12 @@ namespace SD.IdentitySystem.Presentation.Implements
             Node authroityTree = this.GetAuthorityTree(currentRole.SystemNo);
 
             //遍历子节点集（权限集）
-            foreach (Node node in authroityTree.children)
+            foreach (Node node in authroityTree.SubNodes)
             {
                 //如果角色中含有该权限，则选中
-                if (roleAuthorities.Any(x => x.Id == node.id))
+                if (roleAuthorities.Any(x => x.Id == node.Id))
                 {
-                    node.@checked = true;
+                    node.IsChecked = true;
                 }
             }
 
@@ -154,12 +154,12 @@ namespace SD.IdentitySystem.Presentation.Implements
             Node authroityTree = this.GetAuthorityTree(currentMenu.SystemNo);
 
             //遍历子节点集（权限集）
-            foreach (Node node in authroityTree.children)
+            foreach (Node node in authroityTree.SubNodes)
             {
                 //如果菜单中含有该权限，则选中
-                if (menuAuthorities.Any(x => x.Id == node.id))
+                if (menuAuthorities.Any(x => x.Id == node.Id))
                 {
-                    node.@checked = true;
+                    node.IsChecked = true;
                 }
             }
 

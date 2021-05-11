@@ -53,7 +53,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         public async void LoadMenus()
         {
             LoadingIndicator.Suspend();
-            IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeGrid(null, null));
+            IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(null, null));
             LoadingIndicator.Dispose();
 
             this.Menus = new ObservableCollection<Menu>(menus);

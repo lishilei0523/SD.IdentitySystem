@@ -5,7 +5,7 @@ using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.WPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -108,18 +108,18 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 获取菜单TreeGrid —— IEnumerable<Menu> GetMenuTreeGrid(string systemNo...
+        #region # 获取菜单树列表 —— IEnumerable<Menu> GetMenuTreeList(string systemNo...
         /// <summary>
-        /// 获取菜单TreeGrid
+        /// 获取菜单树列表
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单TreeGrid</returns>
-        public IEnumerable<Menu> GetMenuTreeGrid(string systemNo, ApplicationType? applicationType)
+        public IEnumerable<Menu> GetMenuTreeList(string systemNo, ApplicationType? applicationType)
         {
             IEnumerable<Menu> menus = this.GetMenus(systemNo, applicationType);
 
-            return menus.ToTreeGrid();
+            return menus.ToTreeList();
         }
         #endregion
 
