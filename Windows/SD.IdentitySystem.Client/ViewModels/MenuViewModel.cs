@@ -5,6 +5,7 @@ using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Extensions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.Client.ViewModels
@@ -57,7 +58,40 @@ namespace SD.IdentitySystem.Client.ViewModels
 
             this.Menus = new ObservableCollection<Menu>(menus);
         }
-        #endregion 
+        #endregion
+
+        #region 关联权限 —— void RelateAuthorities(Menu menu)
+        /// <summary>
+        /// 关联权限
+        /// </summary>
+        /// <param name="menu">菜单</param>
+        public void RelateAuthorities(Menu menu)
+        {
+            Trace.WriteLine(menu);
+        }
+        #endregion
+
+        #region 修改菜单 —— void Update(Menu menu)
+        /// <summary>
+        /// 修改菜单
+        /// </summary>
+        /// <param name="menu">菜单</param>
+        public void Update(Menu menu)
+        {
+            Trace.WriteLine(menu);
+        }
+        #endregion
+
+        #region 删除菜单 —— void Remove(Menu menu)
+        /// <summary>
+        /// 删除菜单
+        /// </summary>
+        /// <param name="menu">菜单</param>
+        public void Remove(Menu menu)
+        {
+            Trace.WriteLine(menu);
+        }
+        #endregion
 
         #endregion
     }

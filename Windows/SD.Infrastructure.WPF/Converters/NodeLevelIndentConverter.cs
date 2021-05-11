@@ -13,7 +13,7 @@ namespace SD.Infrastructure.WPF.Converters
         /// <summary>
         /// 缩进单位尺寸
         /// </summary>
-        private const double IndentUnitSize = 15.0;
+        private const double IndentUnitSize = 14.0;
 
         /// <summary>
         /// 转换
@@ -21,7 +21,7 @@ namespace SD.Infrastructure.WPF.Converters
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {
             int level/*树节点级别*/ = System.Convert.ToInt32(value);
-            double indentSize/*缩进尺寸*/ = level * NodeLevelIndentConverter.IndentUnitSize;
+            double indentSize/*缩进尺寸*/ = level * IndentUnitSize;
             Thickness margin = new Thickness(indentSize, 0, 0, 0);
 
             return margin;

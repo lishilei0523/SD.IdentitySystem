@@ -43,7 +43,7 @@ L 5 3 L 5 2 L 3 2 L 3 0 L 2 0 L 2 2 Z" />
                 </Setter.Value>
             </Setter>
         </Style>
-        <DataTemplate x:Key="CellTemplate_Name">
+        <DataTemplate x:Key="CriterionCellTemplate">
             <WrapPanel>
                 <ToggleButton x:Name="Expander" 
 							  Style="{StaticResource ExpandCollapseToggleStyle}" 
@@ -58,12 +58,62 @@ L 5 3 L 5 2 L 3 2 L 3 0 L 2 0 L 2 2 Z" />
             </DataTemplate.Triggers>
         </DataTemplate>
         <GridViewColumnCollection x:Key="gvcc">
-            <GridViewColumn Header="菜单名称" Width="250" CellTemplate="{StaticResource CellTemplate_Name}" />
-            <GridViewColumn Header="链接地址" Width="200" DisplayMemberBinding="{Binding Url}" />
-            <GridViewColumn Header="路径" Width="200" DisplayMemberBinding="{Binding Path}" />
-            <GridViewColumn Header="所属系统" Width="120" DisplayMemberBinding="{Binding SystemName}" />
-            <GridViewColumn Header="应用程序类型" Width="150" DisplayMemberBinding="{Binding ApplicationType}" />
-            <GridViewColumn Header="创建时间" Width="160" DisplayMemberBinding="{Binding AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}',ConverterCulture=zh-CN}" />
+            <GridViewColumn Header="菜单名称" Width="250" CellTemplate="{StaticResource CriterionCellTemplate}" />
+            <GridViewColumn Header="链接地址" Width="400" DisplayMemberBinding="{Binding Url}" />
+            <GridViewColumn Header="路径" Width="300" DisplayMemberBinding="{Binding Path}" />
+            <GridViewColumn Header="所属系统" Width="170" DisplayMemberBinding="{Binding SystemName}" />
+            <GridViewColumn Header="应用程序类型" Width="170" DisplayMemberBinding="{Binding ApplicationType}" />
+            <GridViewColumn Header="创建时间" Width="200">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="关联权限" Width="70">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="RelateAuthorities" Text="关联权限" 
+                                   Style="{StaticResource Hyperlink}"
+                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]"/>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
+                                <Setter TargetName="RelateAuthorities" Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="编辑" Width="40">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="Update" Text="编辑" 
+                                   Style="{StaticResource Hyperlink}"
+                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Update($dataContext)]"/>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
+                                <Setter TargetName="Update" Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="删除" Width="40">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <TextBlock x:Name="Remove" Text="删除" 
+                                   Style="{StaticResource Hyperlink}"
+                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Remove($dataContext)]"/>
+                        <DataTemplate.Triggers>
+                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
+                                <Setter TargetName="Remove" Property="Visibility" Value="Collapsed" />
+                            </DataTrigger>
+                        </DataTemplate.Triggers>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
         </GridViewColumnCollection>
         <Style TargetType="{x:Type controls:TreeListView}">
             <Setter Property="BorderThickness" Value="0" />
@@ -73,7 +123,7 @@ L 5 3 L 5 2 L 3 2 L 3 0 L 2 0 L 2 2 Z" />
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                                 <DockPanel>
-                                    <GridViewHeaderRowPresenter Columns="{StaticResource gvcc}" DockPanel.Dock="Top" />
+                                    <GridViewHeaderRowPresenter Columns="{StaticResource gvcc}" Height="25" DockPanel.Dock="Top" />
                                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                                         <ItemsPresenter/>
                                     </ScrollViewer>
@@ -88,7 +138,7 @@ L 5 3 L 5 2 L 3 2 L 3 0 L 2 0 L 2 2 Z" />
             <Setter Property="IsExpanded" Value="True" />
             <Setter Property="FontFamily" Value="微软雅黑" />
             <Setter Property="FontSize" Value="14" />
-            <Setter Property="Padding" Value="1" />
+            <Setter Property="Padding" Value="2" />
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Template">
                 <Setter.Value>

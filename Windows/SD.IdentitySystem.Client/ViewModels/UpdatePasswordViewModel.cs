@@ -102,16 +102,6 @@ namespace SD.IdentitySystem.Client.ViewModels
         }
         #endregion
 
-        #region 取消 —— void Cancel()
-        /// <summary>
-        /// 取消
-        /// </summary>
-        public void Cancel()
-        {
-            this.TryClose();
-        }
-        #endregion
-
         #endregion
     }
 }
