@@ -9,6 +9,7 @@
 			 xmlns:cal="http://www.caliburnproject.org"
 			 xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
 			 xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
+			 xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
 			 mc:Ignorable="d" d:DesignHeight="740" d:DesignWidth="1220"
 			 cal:Message.Attach="[Event Loaded] = [Action LoadMenus()]">
     <UserControl.Resources>
@@ -164,8 +165,8 @@
 									BorderBrush="{TemplateBinding BorderBrush}"
 									BorderThickness="{TemplateBinding BorderThickness}"
 									Padding="{TemplateBinding Padding}">
-                                <GridViewRowPresenter x:Name="PART_Header" 
-													  Content="{TemplateBinding Header}" 
+                                <GridViewRowPresenter x:Name="PART_Header"
+                                                      Content="{TemplateBinding Header}" 
 													  Columns="{StaticResource ColumnDefinition}" />
                             </Border>
                             <ItemsPresenter x:Name="ItemsHost" />
@@ -219,13 +220,46 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70" />
+            <RowDefinition Height="90" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <!--功能区-->
         <Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,1,0,1">
-            <Grid Background="#F4F4F4"></Grid>
+            <Grid Background="#F4F4F4">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <!--操作按钮区-->
+                <WrapPanel Grid.Row="0" VerticalAlignment="Center">
+                    <Button Background="Transparent" BorderBrush="Transparent" Width="70" Padding="4">
+                        <WrapPanel>
+                            <iconPacks:PackIconMaterialDesign Kind="Add" />
+                            <TextBlock Text="新增" Margin="2,0,0,0" />
+                        </WrapPanel>
+                    </Button>
+                    <Button Background="Transparent" BorderBrush="Transparent" Width="70" Padding="4">
+                        <WrapPanel>
+                            <iconPacks:PackIconMaterialDesign Kind="Remove" />
+                            <TextBlock Text="删除" Margin="2,0,0,0" />
+                        </WrapPanel>
+                    </Button>
+                </WrapPanel>
+                <!--查询按钮区-->
+                <WrapPanel Grid.Row="1"  VerticalAlignment="Center" Margin="10,0,0,0">
+                    <TextBlock Text="信息系统：" />
+                    <ComboBox Width="210" Margin="10,0,0,0" />
+                    <TextBlock Text="应用程序类型：" Margin="10,0,0,0" />
+                    <ComboBox Width="210" Margin="10,0,0,0" />
+                    <Button BorderBrush="#0078D7" BorderThickness="2">
+                        <WrapPanel>
+                            <iconPacks:PackIconMaterialDesign Kind="Search" />
+                            <TextBlock Text="搜索" Margin="3,0,0,0" />
+                        </WrapPanel>
+                    </Button>
+                </WrapPanel>
+            </Grid>
         </Border>
         <!--内容区-->
         <busyIndicator:BusyMask Grid.Row="1"  IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">

@@ -42,6 +42,9 @@
                             </Trigger>
                         </Style.Triggers>
                     </Style>
+                    <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="VerticalAlignment" Value="Center" />
+                    </Style>
                     <Style TargetType="{x:Type TextBox}">
                         <Setter Property="Height" Value="30" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
