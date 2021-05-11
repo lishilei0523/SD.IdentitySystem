@@ -57,7 +57,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aspects\DependencyPropertyAspect.cs" />
-    <Compile Include="Base\ModelBase.cs" />
     <Compile Include="Controls\Paginator.xaml.cs">
       <DependentUpon>Paginator.xaml</DependentUpon>
     </Compile>

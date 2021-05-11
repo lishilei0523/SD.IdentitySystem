@@ -14,12 +14,12 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class MenuMap
     {
-        #region # 菜单视图模型映射 —— static Menu ToModel(this MenuInfo...
+        #region # 菜单模型映射 —— static Menu ToModel(this MenuInfo...
         /// <summary>
-        /// 菜单视图模型映射
+        /// 菜单模型映射
         /// </summary>
         /// <param name="menuInfo">菜单数据传输对象</param>
-        /// <returns>菜单视图模型</returns>
+        /// <returns>菜单模型</returns>
         public static Menu ToModel(this MenuInfo menuInfo)
         {
             Menu menu = menuInfo.Map<MenuInfo, Menu>();
@@ -34,7 +34,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单EasyUI树节点映射
         /// </summary>
-        /// <param name="menu">菜单视图模型</param>
+        /// <param name="menu">菜单模型</param>
         /// <returns>EasyUI树节点</returns>
         public static Node ToNode(this Menu menu)
         {
@@ -52,7 +52,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单EasyUI树集合映射
         /// </summary>
-        /// <param name="menus">菜单视图模型集</param>
+        /// <param name="menus">菜单模型集</param>
         /// <param name="parentId">父级菜单Id</param>
         /// <returns>EasyUI树集合</returns>
         public static ICollection<Node> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
@@ -97,7 +97,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单EasyUI TreeGrid映射
         /// </summary>
-        /// <param name="menus">菜单视图模型集</param>
+        /// <param name="menus">菜单模型集</param>
         /// <returns>TreeGrid</returns>
         public static IEnumerable<Menu> ToTreeGrid(this IEnumerable<Menu> menus)
         {
@@ -118,8 +118,8 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 填充子节点
         /// </summary>
-        /// <param name="menu">菜单视图模型</param>
-        /// <param name="allMenus">菜单视图模型集</param>
+        /// <param name="menu">菜单模型</param>
+        /// <param name="allMenus">菜单模型集</param>
         private static void FillChildren(this Menu menu, Menu[] allMenus)
         {
             foreach (Menu subMenu in allMenus)

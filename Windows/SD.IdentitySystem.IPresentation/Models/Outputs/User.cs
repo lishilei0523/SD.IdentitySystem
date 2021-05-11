@@ -3,9 +3,9 @@
 namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
-    /// 用户视图模型
+    /// 用户模型
     /// </summary>
-    public class User : ViewModel
+    public class User : Model
     {
         #region 私钥 —— string PrivateKey
         /// <summary>

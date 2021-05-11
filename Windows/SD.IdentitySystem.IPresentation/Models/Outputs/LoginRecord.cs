@@ -3,9 +3,9 @@
 namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
-    /// 用户登录记录视图模型
+    /// 用户登录记录模型
     /// </summary>
-    public class LoginRecord : ViewModel
+    public class LoginRecord : Model
     {
         #region 登录名 —— string LoginId
         /// <summary>

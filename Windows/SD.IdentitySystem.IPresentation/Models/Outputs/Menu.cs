@@ -1,14 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using SD.Infrastructure.PresentationBase;
+﻿using SD.Infrastructure.PresentationBase;
 using SD.Toolkits.EasyUI;
+using System;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
     /// <summary>
-    /// 菜单视图模型
+    /// 菜单模型
     /// </summary>
-    public class Menu : ViewModel, ITreeGrid<Menu>
+    public class Menu : Model, ITreeGrid<Menu>
     {
         #region 构造器
         /// <summary>

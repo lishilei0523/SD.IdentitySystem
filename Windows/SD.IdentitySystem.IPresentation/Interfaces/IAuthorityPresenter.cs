@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// 获取权限
         /// </summary>
         /// <param name="authorityId">权限Id</param>
-        /// <returns>权限视图模型</returns>
+        /// <returns>权限</returns>
         Authority GetAuthority(Guid authorityId);
         #endregion
 
