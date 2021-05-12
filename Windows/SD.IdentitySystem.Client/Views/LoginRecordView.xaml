@@ -18,7 +18,7 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <!--功能区-->
-        <Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,1,0,1">
+        <Border Grid.Row="0" Style="{StaticResource FunctionPanelBorder}">
             <Grid Background="#F4F4F4">
                 <!--查询按钮区-->
                 <WrapPanel VerticalAlignment="Center" Margin="10,0,0,0">
@@ -39,97 +39,34 @@
         </Border>
         <!--内容区-->
         <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
-            <DataGrid ItemsSource="{Binding LoginRecords}">
+            <DataGrid ItemsSource="{Binding LoginRecords}" 
+                      Style="{StaticResource DataGridDefault}"
+                      ColumnHeaderStyle="{StaticResource DataGridColumnHeaderDefault}"
+                      RowStyle="{StaticResource DataGridRowDefault}">
                 <!--列定义-->
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="35">
-                        <DataGridTemplateColumn.HeaderTemplate>
-                            <DataTemplate>
-                                <CheckBox cal:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.HeaderTemplate>
-                        <DataGridTemplateColumn.CellTemplate>
-                            <DataTemplate>
-                                <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-                            </DataTemplate>
-                        </DataGridTemplateColumn.CellTemplate>
-                    </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="用户名" Width="130" Binding="{Binding Model.LoginId}" />
-                    <DataGridTextColumn Header="真实姓名" Width="130" Binding="{Binding Model.RealName}" />
-                    <DataGridTextColumn Header="IP地址" Width="200" Binding="{Binding Model.IP}" />
+                    <DataGridTemplateColumn Width="35" 
+                                            CellTemplate="{StaticResource CheckBoxCellTemplate}"
+                                            HeaderTemplate="{StaticResource CheckBoxCellHeaderTemplate}" />
+                    <DataGridTextColumn Header="用户名" Width="130" Binding="{Binding Model.LoginId}" 
+                                        CellStyle="{StaticResource DataGridCellDefault}" />
+                    <DataGridTextColumn Header="真实姓名" Width="130" Binding="{Binding Model.RealName}" 
+                                        CellStyle="{StaticResource DataGridCellDefault}" />
+                    <DataGridTextColumn Header="IP地址" Width="200" Binding="{Binding Model.IP}"
+                                        CellStyle="{StaticResource DataGridCellDefault}" />
                     <DataGridTemplateColumn Header="登录时间" Width="200">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model.AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
-                                           HorizontalAlignment="Center"
-                                           VerticalAlignment="Center"/>
+                                           Style="{StaticResource DateTimeText}"/>
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
                 </DataGrid.Columns>
-                <!--表格样式-->
-                <DataGrid.Style>
-                    <Style TargetType="{x:Type DataGrid}">
-                        <Setter Property="extensions:DataGridExtension.DisplayRowNumber" Value="True" />
-                        <Setter Property="AutoGenerateColumns" Value="False" />
-                        <Setter Property="IsReadOnly" Value="True" />
-                        <Setter Property="CanUserSortColumns" Value="False" />
-                        <Setter Property="SelectionUnit" Value="FullRow" />
-                        <Setter Property="CanUserAddRows" Value="False" />
-                        <Setter Property="BorderThickness" Value="0" />
-                        <Setter Property="GridLinesVisibility" Value="All" />
-                        <Setter Property="Background" Value="#F4F4F4" />
-                        <Setter Property="AlternatingRowBackground" Value="WhiteSmoke" />
-                        <Setter Property="HorizontalGridLinesBrush" Value="LightGray" />
-                        <Setter Property="VerticalGridLinesBrush" Value="LightGray" />
-                    </Style>
-                </DataGrid.Style>
-                <!--列头样式-->
-                <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="{x:Type DataGridColumnHeader}">
-                        <Setter Property="HorizontalContentAlignment" Value="Center" />
-                    </Style>
-                </DataGrid.ColumnHeaderStyle>
-                <!--行样式-->
-                <DataGrid.RowStyle>
-                    <Style TargetType="{x:Type DataGridRow}">
-                        <Style.Triggers>
-                            <Trigger Property="IsSelected" Value="true">
-                                <Setter Property="Background" Value="#FFE48D" />
-                            </Trigger>
-                            <MultiDataTrigger>
-                                <MultiDataTrigger.Conditions>
-                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
-                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="false" />
-                                </MultiDataTrigger.Conditions>
-                                <Setter Property="Background" Value="#EAF2FF" />
-                            </MultiDataTrigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.RowStyle>
-                <!--单元格样式-->
-                <DataGrid.CellStyle>
-                    <Style TargetType="{x:Type DataGridCell}">
-                        <Setter Property="BorderBrush" Value="Blue"></Setter>
-                        <Setter Property="Height" Value="28" />
-                        <Setter Property="Template">
-                            <Setter.Value>
-                                <ControlTemplate TargetType="DataGridCell">
-                                    <ContentPresenter VerticalAlignment="Center" />
-                                </ControlTemplate>
-                            </Setter.Value>
-                        </Setter>
-                        <Style.Triggers >
-                            <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Foreground" Value="Black"/>
-                            </Trigger>
-                        </Style.Triggers>
-                    </Style>
-                </DataGrid.CellStyle>
             </DataGrid>
         </busyIndicator:BusyMask>
         <!--内容控制区-->
-        <Border Grid.Row="2" BorderBrush="#CCCCCC" BorderThickness="0,1,0,1">
+        <Border Grid.Row="2" Style="{StaticResource FunctionPanelBorder}">
             <Grid Background="#F4F4F4">
                 <controls:Paginator Margin="10,0"
                                     PageIndex="{Binding PageIndex, Mode=TwoWay}"

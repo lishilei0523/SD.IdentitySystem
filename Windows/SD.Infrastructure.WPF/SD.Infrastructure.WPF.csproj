@@ -65,7 +65,8 @@
     </Compile>
     <Compile Include="Controls\TreeListView.cs" />
     <Compile Include="Controls\TreeListViewItem.cs" />
-    <Compile Include="Converters\NodeLevelIndentConverter.cs" />
+    <Compile Include="Converters\TreeListViewBackgroundConverter.cs" />
+    <Compile Include="Converters\TreeListViewIndentConverter.cs" />
     <Compile Include="Converters\EnumMemberConverter.cs" />
     <Compile Include="Converters\TreeListViewRowIndexConverter.cs" />
     <Compile Include="Extensions\DataGridExtension.cs" />
