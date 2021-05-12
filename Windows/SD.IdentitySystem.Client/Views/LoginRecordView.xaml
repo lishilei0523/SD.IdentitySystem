@@ -54,10 +54,10 @@
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="用户名" Width="130" Binding="{Binding Model.LoginId}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="真实姓名" Width="130" Binding="{Binding Model.RealName}" IsReadOnly="True" />
-                    <DataGridTextColumn Header="IP地址" Width="200" Binding="{Binding Model.IP}" IsReadOnly="True" />
-                    <DataGridTemplateColumn Header="登录时间" Width="200" IsReadOnly="True">
+                    <DataGridTextColumn Header="用户名" Width="130" Binding="{Binding Model.LoginId}" />
+                    <DataGridTextColumn Header="真实姓名" Width="130" Binding="{Binding Model.RealName}" />
+                    <DataGridTextColumn Header="IP地址" Width="200" Binding="{Binding Model.IP}" />
+                    <DataGridTemplateColumn Header="登录时间" Width="200">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model.AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
@@ -72,6 +72,7 @@
                     <Style TargetType="{x:Type DataGrid}">
                         <Setter Property="extensions:DataGridExtension.DisplayRowNumber" Value="True" />
                         <Setter Property="AutoGenerateColumns" Value="False" />
+                        <Setter Property="IsReadOnly" Value="True" />
                         <Setter Property="CanUserSortColumns" Value="False" />
                         <Setter Property="SelectionUnit" Value="FullRow" />
                         <Setter Property="CanUserAddRows" Value="False" />
