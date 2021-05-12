@@ -28,7 +28,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// <summary>
         /// 是否显示行号依赖属性
         /// </summary>
-        private static readonly DependencyProperty _DisplayRowNumber;
+        private static DependencyProperty _DisplayRowNumber;
 
         /// <summary>
         /// 是否显示行号
@@ -36,6 +36,7 @@ namespace SD.Infrastructure.WPF.Extensions
         public static DependencyProperty DisplayRowNumber
         {
             get { return _DisplayRowNumber; }
+            set { _DisplayRowNumber = value; }
         }
 
         #endregion
