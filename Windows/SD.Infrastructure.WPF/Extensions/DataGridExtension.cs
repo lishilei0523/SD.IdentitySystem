@@ -16,7 +16,7 @@ namespace SD.Infrastructure.WPF.Extensions
         static DataGridExtension()
         {
             //注册依赖属性
-            _DisplayRowNumber = DependencyProperty.RegisterAttached(nameof(DisplayRowNumber), typeof(bool), typeof(DataGridExtension), new PropertyMetadata(false, OnDisplayRowNumberChanged));
+            DisplayRowNumberProperty = DependencyProperty.RegisterAttached(nameof(DisplayRowNumber), typeof(bool), typeof(DataGridExtension), new PropertyMetadata(false, OnDisplayRowNumberChanged));
         }
 
         #endregion
@@ -28,15 +28,15 @@ namespace SD.Infrastructure.WPF.Extensions
         /// <summary>
         /// 是否显示行号依赖属性
         /// </summary>
-        private static DependencyProperty _DisplayRowNumber;
+        public static DependencyProperty DisplayRowNumberProperty;
 
         /// <summary>
         /// 是否显示行号
         /// </summary>
         public static DependencyProperty DisplayRowNumber
         {
-            get { return _DisplayRowNumber; }
-            set { _DisplayRowNumber = value; }
+            get { return DisplayRowNumberProperty; }
+            set { DisplayRowNumberProperty = value; }
         }
 
         #endregion
@@ -51,7 +51,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         public static bool GetDisplayRowNumber(DependencyObject dependencyObject)
         {
-            return (bool)dependencyObject.GetValue(_DisplayRowNumber);
+            return (bool)dependencyObject.GetValue(DisplayRowNumberProperty);
         }
         #endregion
 
@@ -62,7 +62,7 @@ namespace SD.Infrastructure.WPF.Extensions
         [AttachedPropertyBrowsableForType(typeof(DataGrid))]
         public static void SetDisplayRowNumber(DependencyObject dependencyObject, bool value)
         {
-            dependencyObject.SetValue(_DisplayRowNumber, value);
+            dependencyObject.SetValue(DisplayRowNumberProperty, value);
         }
         #endregion
 
