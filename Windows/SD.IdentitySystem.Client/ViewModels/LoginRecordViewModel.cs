@@ -3,11 +3,14 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.Client.ViewModels
 {
@@ -16,18 +19,28 @@ namespace SD.IdentitySystem.Client.ViewModels
     /// </summary>
     public class LoginRecordViewModel : Screen, IPaginatable
     {
+        #region # 字段及构造器
+
+        /// <summary>
+        /// 用户服务契约接口
+        /// </summary>
         private readonly IUserContract _userContract;
 
+        /// <summary>
+        /// 依赖注入构造器
+        /// </summary>
         public LoginRecordViewModel(IUserContract userContract)
         {
             this._userContract = userContract;
 
             //默认值
             this.PageIndex = 1;
-            this.PageSize = 30;
+            this.PageSize = 20;
         }
 
+        #endregion
 
+        #region # 属性
 
         #region 页码 —— int PageIndex
         /// <summary>
@@ -61,20 +74,51 @@ namespace SD.IdentitySystem.Client.ViewModels
         public int PageCount { get; set; }
         #endregion
 
-
-
+        #region 登录记录列表 —— ObservableCollection<Wrap<LoginRecordInfo>> LoginRecords
+        /// <summary>
+        /// 登录记录列表
+        /// </summary>
         [DependencyProperty]
         public ObservableCollection<Wrap<LoginRecordInfo>> LoginRecords { get; set; }
+        #endregion
 
+        #endregion
 
-        public void LoadLoginRecords()
+        #region # 方法
+
+        #region 加载登录记录列表 —— async Task LoadLoginRecords()
+        /// <summary>
+        /// 加载登录记录列表
+        /// </summary>
+        public async Task LoadLoginRecords()
         {
-            PageModel<LoginRecordInfo> pageModel = this._userContract.GetLoginRecordsByPage(null, null, null, this.PageIndex, this.PageSize);
+            LoadingIndicator.Suspend();
+            PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(null, null, null, this.PageIndex, this.PageSize));
+            LoadingIndicator.Dispose();
+
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<LoginRecordInfo>> wrapModels = pageModel.Datas.Select(x => new Wrap<LoginRecordInfo> { Model = x });
             this.LoginRecords = new ObservableCollection<Wrap<LoginRecordInfo>>(wrapModels);
         }
+        #endregion
+
+        #region 全选 —— void CheckAll()
+        /// <summary>
+        /// 全选
+        /// </summary>
+        public void CheckAll()
+        {
+            var ss = this.LoginRecords.Where(x => x.IsChecked == true);
+            Trace.WriteLine(ss.Count());
+            foreach (Wrap<LoginRecordInfo> wrap in this.LoginRecords)
+            {
+                wrap.IsChecked = true;
+            }
+        }
+        #endregion
+
+        #endregion
     }
 }

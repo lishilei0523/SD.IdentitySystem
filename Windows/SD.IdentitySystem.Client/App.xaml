@@ -62,6 +62,10 @@
                     <Style TargetType="{x:Type kino:FormItem}">
                         <Setter Property="Padding" Value="3" />
                     </Style>
+                    <Style TargetType="{x:Type DatePicker}">
+                        <Setter Property="Height" Value="30" />
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                    </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>

@@ -3,13 +3,11 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:local="clr-namespace:SD.IdentitySystem.Client.Views"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
              xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
              xmlns:controls="clr-namespace:SD.Infrastructure.WPF.Controls;assembly=SD.Infrastructure.WPF"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:converters="clr-namespace:SD.Infrastructure.WPF.Converters;assembly=SD.Infrastructure.WPF"
              mc:Ignorable="d" 
              cal:Message.Attach="[Event Loaded] = [Action LoadLoginRecords()]">
 
@@ -27,10 +25,10 @@
                     <TextBlock Text="关键字：" />
                     <TextBox Width="210" />
                     <TextBlock Text="开始时间：" Margin="10,0,0,0" />
-                    <DatePicker Width="210" Height="30" VerticalContentAlignment="Center"  />
+                    <DatePicker Width="210" />
                     <TextBlock Text="结束时间：" Margin="10,0,0,0" />
-                    <DatePicker Width="210" Height="30" VerticalContentAlignment="Center" />
-                    <Button BorderBrush="#0078D7" BorderThickness="2">
+                    <DatePicker Width="210" />
+                    <Button BorderBrush="#0078D7" BorderThickness="2" cal:Message.Attach="LoadLoginRecords()">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />
                             <TextBlock Text="搜索" Margin="3,0,0,0" />
@@ -47,19 +45,19 @@
                     <DataGridTemplateColumn Width="35">
                         <DataGridTemplateColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox />
+                                <CheckBox cal:Message.Attach="CheckAll()" />
                             </DataTemplate>
                         </DataGridTemplateColumn.HeaderTemplate>
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
-                                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsChecked}" />
+                                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
-                    <DataGridTextColumn Header="用户名" Width="130" Binding="{Binding Model.LoginId}"  />
-                    <DataGridTextColumn Header="真实姓名" Width="130" Binding="{Binding Model.RealName}" />
-                    <DataGridTextColumn Header="IP地址" Width="200" Binding="{Binding Model.IP}" />
-                    <DataGridTemplateColumn Header="登录时间" Width="200">
+                    <DataGridTextColumn Header="用户名" Width="130" Binding="{Binding Model.LoginId}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="真实姓名" Width="130" Binding="{Binding Model.RealName}" IsReadOnly="True" />
+                    <DataGridTextColumn Header="IP地址" Width="200" Binding="{Binding Model.IP}" IsReadOnly="True" />
+                    <DataGridTemplateColumn Header="登录时间" Width="200" IsReadOnly="True">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model.AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
@@ -77,7 +75,6 @@
                         <Setter Property="CanUserSortColumns" Value="False" />
                         <Setter Property="SelectionUnit" Value="FullRow" />
                         <Setter Property="CanUserAddRows" Value="False" />
-                        <Setter Property="IsReadOnly" Value="True" />
                         <Setter Property="BorderThickness" Value="0" />
                         <Setter Property="GridLinesVisibility" Value="All" />
                         <Setter Property="Background" Value="#F4F4F4" />
@@ -88,9 +85,8 @@
                 </DataGrid.Style>
                 <!--列头样式-->
                 <DataGrid.ColumnHeaderStyle>
-                    <Style TargetType="DataGridColumnHeader">
-                        <Setter Property="HorizontalContentAlignment" Value="Center">
-                        </Setter>
+                    <Style TargetType="{x:Type DataGridColumnHeader}">
+                        <Setter Property="HorizontalContentAlignment" Value="Center" />
                     </Style>
                 </DataGrid.ColumnHeaderStyle>
                 <!--行样式-->
