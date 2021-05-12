@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
@@ -109,10 +110,17 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public void CheckAll()
         {
-            foreach (Wrap<LoginRecordInfo> wrap in this.LoginRecords)
-            {
-                wrap.IsChecked = true;
-            }
+            this.LoginRecords.ForEach(x => x.IsChecked = true);
+        }
+        #endregion
+
+        #region 取消全选 —— void UncheckAll()
+        /// <summary>
+        /// 取消全选
+        /// </summary>
+        public void UncheckAll()
+        {
+            this.LoginRecords.ForEach(x => x.IsChecked = false);
         }
         #endregion
 

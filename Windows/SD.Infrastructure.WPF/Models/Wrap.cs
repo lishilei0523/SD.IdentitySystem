@@ -1,11 +1,12 @@
-﻿using SD.Infrastructure.WPF.Aspects;
+﻿using Caliburn.Micro;
+using SD.Infrastructure.WPF.Aspects;
 
 namespace SD.Infrastructure.WPF.Models
 {
     /// <summary>
     /// 包裹模型
     /// </summary>
-    public class Wrap<T>
+    public class Wrap<T> : PropertyChangedBase
     {
         #region # 构造器
 

@@ -45,7 +45,7 @@
                     <DataGridTemplateColumn Width="35">
                         <DataGridTemplateColumn.HeaderTemplate>
                             <DataTemplate>
-                                <CheckBox cal:Message.Attach="[Event Checked] = [Action CheckAll()]" />
+                                <CheckBox cal:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
                             </DataTemplate>
                         </DataGridTemplateColumn.HeaderTemplate>
                         <DataGridTemplateColumn.CellTemplate>
