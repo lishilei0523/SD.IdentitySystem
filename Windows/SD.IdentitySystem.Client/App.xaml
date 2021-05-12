@@ -188,7 +188,7 @@
                         <Setter Property="Template">
                             <Setter.Value>
                                 <ControlTemplate TargetType="DataGridCell">
-                                    <ContentPresenter Margin="10,0,0,0" VerticalAlignment="Center" />
+                                    <ContentPresenter VerticalAlignment="Center" />
                                 </ControlTemplate>
                             </Setter.Value>
                         </Setter>
@@ -197,6 +197,17 @@
                                 <Setter Property="Foreground" Value="Black"/>
                             </Trigger>
                         </Style.Triggers>
+                    </Style>
+                    <!--DataGrid单元格缩进样式-->
+                    <Style x:Key="DataGridCellMargin" TargetType="{x:Type DataGridCell}"
+                           BasedOn="{StaticResource DataGridCellDefault}" >
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DataGridCell">
+                                    <ContentPresenter Margin="10,0,0,0" VerticalAlignment="Center" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
                     </Style>
                 </ResourceDictionary>
             </ResourceDictionary.MergedDictionaries>

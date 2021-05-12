@@ -42,18 +42,19 @@
             <DataGrid ItemsSource="{Binding LoginRecords}" 
                       Style="{StaticResource DataGridDefault}"
                       ColumnHeaderStyle="{StaticResource DataGridColumnHeaderDefault}"
-                      RowStyle="{StaticResource DataGridRowDefault}">
+                      RowStyle="{StaticResource DataGridRowDefault}"
+                      CellStyle="{StaticResource DataGridCellDefault}">
                 <!--列定义-->
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="35" 
                                             CellTemplate="{StaticResource CheckBoxCellTemplate}"
                                             HeaderTemplate="{StaticResource CheckBoxCellHeaderTemplate}" />
                     <DataGridTextColumn Header="用户名" Width="130" Binding="{Binding Model.LoginId}" 
-                                        CellStyle="{StaticResource DataGridCellDefault}" />
+                                        CellStyle="{StaticResource DataGridCellMargin}" />
                     <DataGridTextColumn Header="真实姓名" Width="130" Binding="{Binding Model.RealName}" 
-                                        CellStyle="{StaticResource DataGridCellDefault}" />
+                                        CellStyle="{StaticResource DataGridCellMargin}" />
                     <DataGridTextColumn Header="IP地址" Width="200" Binding="{Binding Model.IP}"
-                                        CellStyle="{StaticResource DataGridCellDefault}" />
+                                        CellStyle="{StaticResource DataGridCellMargin}" />
                     <DataGridTemplateColumn Header="登录时间" Width="200">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
