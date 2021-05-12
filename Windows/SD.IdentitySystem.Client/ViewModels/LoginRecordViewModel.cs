@@ -8,7 +8,6 @@ using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -110,8 +109,6 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public void CheckAll()
         {
-            var ss = this.LoginRecords.Where(x => x.IsChecked == true);
-            Trace.WriteLine(ss.Count());
             foreach (Wrap<LoginRecordInfo> wrap in this.LoginRecords)
             {
                 wrap.IsChecked = true;
