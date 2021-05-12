@@ -47,12 +47,13 @@
         </Style>
         <!--首列数据模板-->
         <DataTemplate x:Key="CriterionCellTemplate">
-            <WrapPanel>
-                <ToggleButton x:Name="Expander" 
+            <Border BorderBrush="LightGray" BorderThickness="1,0,0,1" Margin="-8,-2,-5,-2">
+                <WrapPanel>
+                    <ToggleButton x:Name="Expander" 
 							  Style="{StaticResource ExpandCollapseToggleStyle}" 
 							  Margin="{Binding Level, Converter={StaticResource NodeLevelIndentConverter},                              RelativeSource={RelativeSource AncestorType= {x:Type controls:TreeListViewItem}}}"
 							  IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource                                                  AncestorType={x:Type controls:TreeListViewItem}}}" ClickMode="Press" />
-                <TextBlock>
+                    <TextBlock>
 					<WrapPanel>
 						<Image x:Name="CriterionIcon" Width="14" Height="14" 
 							   HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -61,7 +62,8 @@
 						<TextBlock Text="{Binding Name}" Margin="2,0,0,0" />
 					</WrapPanel>
 				</TextBlock>
-            </WrapPanel>
+                </WrapPanel>
+            </Border>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="False">
                     <Setter TargetName="Expander" Property="Visibility" Value="Hidden" />
@@ -75,32 +77,70 @@
             <GridViewColumn Width="45">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:TreeListViewItem}}, Converter={StaticResource TreeListViewRowIndexConverter}}"
-								   HorizontalAlignment="Center"
-								   VerticalAlignment="Center" />
+                        <Border BorderBrush="LightGray" BorderThickness="0,0,0,1" Margin="-8,-2,-5,-2">
+                            <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:TreeListViewItem}}, Converter={StaticResource TreeListViewRowIndexConverter}}"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center" />
+                        </Border>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
             <GridViewColumn Header="菜单名称" Width="200" CellTemplate="{StaticResource CriterionCellTemplate}" />
-            <GridViewColumn Header="链接地址" Width="300" DisplayMemberBinding="{Binding Url}" />
-            <GridViewColumn Header="路径" Width="200" DisplayMemberBinding="{Binding Path}" />
-            <GridViewColumn Header="所属系统" Width="170" DisplayMemberBinding="{Binding SystemName}" />
-            <GridViewColumn Header="应用程序类型" Width="170" DisplayMemberBinding="{Binding ApplicationType, Converter={StaticResource EnumMemberConverter}}" />
+            <GridViewColumn Header="链接地址" Width="300">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="LightGray" BorderThickness="1,0,0,1" Margin="-8,-2,-5,-2">
+                            <TextBlock Text="{Binding Url}" VerticalAlignment="Center" />
+                        </Border>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="路径" Width="200">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="LightGray" BorderThickness="1,0,0,1" Margin="-8,-2,-5,-2">
+                            <TextBlock Text="{Binding Path}" VerticalAlignment="Center" />
+                        </Border>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="所属系统" Width="170">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="LightGray" BorderThickness="1,0,0,1" Margin="-8,-2,-5,-2">
+                            <TextBlock Text="{Binding SystemName}" VerticalAlignment="Center" />
+                        </Border>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
+            <GridViewColumn Header="应用程序类型" Width="170">
+                <GridViewColumn.CellTemplate>
+                    <DataTemplate>
+                        <Border BorderBrush="LightGray" BorderThickness="1,0,0,1" Margin="-8,-2,-5,-2">
+                            <TextBlock Text="{Binding ApplicationType, Converter={StaticResource EnumMemberConverter}}" VerticalAlignment="Center" />
+                        </Border>
+                    </DataTemplate>
+                </GridViewColumn.CellTemplate>
+            </GridViewColumn>
             <GridViewColumn Header="创建时间" Width="200">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock Text="{Binding AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
-								   HorizontalAlignment="Center"
-								   VerticalAlignment="Center"/>
+                        <Border BorderBrush="LightGray" BorderThickness="1,0,0,1" Margin="-8,-2,-5,-2">
+                            <TextBlock Text="{Binding AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
+                                   HorizontalAlignment="Center"
+                                   VerticalAlignment="Center"/>
+                        </Border>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
             <GridViewColumn Header="关联权限" Width="70">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="RelateAuthorities" Text="关联权限" 
-								   Style="{StaticResource Hyperlink}"
-								   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]"/>
+                        <Border BorderBrush="LightGray" BorderThickness="1,0,0,1" Margin="-8,-2,-5,-2">
+                            <TextBlock x:Name="RelateAuthorities" Text="关联权限" 
+                                   Style="{StaticResource Hyperlink}"
+                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]" />
+                        </Border>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
                                 <Setter TargetName="RelateAuthorities" Property="Visibility" Value="Collapsed" />
@@ -112,9 +152,11 @@
             <GridViewColumn Header="编辑" Width="40">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="Update" Text="编辑" 
-								   Style="{StaticResource Hyperlink}"
-								   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Update($dataContext)]"/>
+                        <Border BorderBrush="LightGray" BorderThickness="1,0,0,1" Margin="-8,-2,-5,-2">
+                            <TextBlock x:Name="Update" Text="编辑" 
+                                   Style="{StaticResource Hyperlink}"
+                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Update($dataContext)]" />
+                        </Border>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
                                 <Setter TargetName="Update" Property="Visibility" Value="Collapsed" />
@@ -126,9 +168,11 @@
             <GridViewColumn Header="删除" Width="40">
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
-                        <TextBlock x:Name="Remove" Text="删除" 
-								   Style="{StaticResource Hyperlink}"
-								   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Remove($dataContext)]"/>
+                        <Border BorderBrush="LightGray" BorderThickness="1,0,1,1" Margin="-8,-2,-5,-2">
+                            <TextBlock x:Name="Remove" Text="删除"  
+                                   Style="{StaticResource Hyperlink}"
+                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Remove($dataContext)]" />
+                        </Border>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
                                 <Setter TargetName="Remove" Property="Visibility" Value="Collapsed" />
