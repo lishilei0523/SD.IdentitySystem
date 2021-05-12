@@ -22,18 +22,18 @@
         <DataTemplate x:Key="CriterionCellTemplate">
             <Border Style="{StaticResource TreeListViewBorder}">
                 <TextBlock Style="{StaticResource GridInsideText}">
-                    <WrapPanel>
-                        <ToggleButton x:Name="CriterionExpander" 
-                                      Style="{StaticResource TreeListViewToggleButton}" 
-                                      Margin="{Binding Level, Converter={StaticResource TreeListViewIndentConverter},                              RelativeSource={RelativeSource AncestorType= {x:Type controls:TreeListViewItem}}}"
-                                      IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource                                                  AncestorType={x:Type controls:TreeListViewItem}}}" ClickMode="Press" />
-                        <Image x:Name="CriterionIcon" Width="14" Height="14" 
-                               HorizontalAlignment="Center" VerticalAlignment="Center" 
-                               Source="{StaticResource IconFolder}" />
-                        <CheckBox x:Name="CriterionCbx" Visibility="Collapsed" IsChecked="{Binding IsChecked}" />
-                        <TextBlock Text="{Binding Name}" Margin="2,0,0,0" />
-                    </WrapPanel>
-                </TextBlock>
+					<WrapPanel>
+						<ToggleButton x:Name="CriterionExpander" 
+									  Style="{StaticResource TreeListViewToggleButton}" 
+									  Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}, Converter={StaticResource TreeListViewIndentConverter}}"
+									  IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource                                                  AncestorType={x:Type controls:TreeListViewItem}}}" ClickMode="Press" />
+						<Image x:Name="CriterionIcon" Width="14" Height="14" 
+							   HorizontalAlignment="Center" VerticalAlignment="Center" 
+							   Source="{StaticResource IconFolder}" />
+						<CheckBox x:Name="CriterionCbx" Visibility="Collapsed" IsChecked="{Binding IsChecked}" />
+						<TextBlock Text="{Binding Name}" Margin="2,0,0,0" />
+					</WrapPanel>
+				</TextBlock>
             </Border>
             <DataTemplate.Triggers>
                 <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="False">
@@ -80,7 +80,7 @@
                     <DataTemplate>
                         <Border BorderBrush="LightGray" BorderThickness="1,0,0,0" Margin="-8,-2,-5,-2">
                             <TextBlock Text="{Binding ApplicationType, Converter={StaticResource EnumMemberConverter}}"  
-                                       Style="{StaticResource GridInsideText}" />
+									   Style="{StaticResource GridInsideText}" />
                         </Border>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
@@ -90,7 +90,7 @@
                     <DataTemplate>
                         <Border Style="{StaticResource TreeListViewBorder}">
                             <TextBlock Text="{Binding AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
-                                       Style="{StaticResource DateTimeText}" />
+									   Style="{StaticResource DateTimeText}" />
                         </Border>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
@@ -100,8 +100,8 @@
                     <DataTemplate>
                         <Border Style="{StaticResource TreeListViewBorder}">
                             <TextBlock x:Name="RelateAuthorities" Text="关联权限" 
-                                   Style="{StaticResource HyperlinkText}"
-                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]" />
+								   Style="{StaticResource HyperlinkText}"
+								   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]" />
                         </Border>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
@@ -116,8 +116,8 @@
                     <DataTemplate>
                         <Border Style="{StaticResource TreeListViewBorder}">
                             <TextBlock x:Name="Update" Text="编辑" 
-                                   Style="{StaticResource HyperlinkText}"
-                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Update($dataContext)]" />
+								   Style="{StaticResource HyperlinkText}"
+								   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Update($dataContext)]" />
                         </Border>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
@@ -132,8 +132,8 @@
                     <DataTemplate>
                         <Border Style="{StaticResource TreeListViewBorderEnd}">
                             <TextBlock x:Name="Remove" Text="删除"  
-                                   Style="{StaticResource HyperlinkText}"
-                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Remove($dataContext)]" />
+								   Style="{StaticResource HyperlinkText}"
+								   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Remove($dataContext)]" />
                         </Border>
                         <DataTemplate.Triggers>
                             <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
@@ -151,11 +151,13 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type controls:TreeListView}">
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                                 <DockPanel>
                                     <GridViewHeaderRowPresenter DockPanel.Dock="Top" Height="27" 
-                                                                Columns="{StaticResource ColumnDefinition}" />
-                                    <ItemsPresenter/>
+																Columns="{StaticResource ColumnDefinition}" />
+                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
+                                        <ItemsPresenter/>
+                                    </ScrollViewer>
                                 </DockPanel>
                             </ScrollViewer>
                         </Border>
@@ -260,7 +262,7 @@
                         </WrapPanel>
                     </Button>
                     <Button Background="Transparent" BorderBrush="Transparent" Width="70" Padding="4"
-                            cal:Message.Attach="Removes()">
+							cal:Message.Attach="Removes()">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Remove" />
                             <TextBlock Text="删除" Margin="2,0,0,0" />
