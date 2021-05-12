@@ -151,13 +151,11 @@
                 <Setter.Value>
                     <ControlTemplate TargetType="{x:Type controls:TreeListView}">
                         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
-                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
+                            <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Auto">
                                 <DockPanel>
                                     <GridViewHeaderRowPresenter DockPanel.Dock="Top" Height="27" 
                                                                 Columns="{StaticResource ColumnDefinition}" />
-                                    <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                                        <ItemsPresenter/>
-                                    </ScrollViewer>
+                                    <ItemsPresenter/>
                                 </DockPanel>
                             </ScrollViewer>
                         </Border>
