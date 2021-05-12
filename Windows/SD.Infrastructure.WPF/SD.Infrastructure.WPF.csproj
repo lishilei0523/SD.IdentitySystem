@@ -68,10 +68,12 @@
     <Compile Include="Converters\NodeLevelIndentConverter.cs" />
     <Compile Include="Converters\EnumMemberConverter.cs" />
     <Compile Include="Converters\TreeListViewRowIndexConverter.cs" />
+    <Compile Include="Extensions\DataGridExtension.cs" />
     <Compile Include="Extensions\LoadingIndicator.cs" />
     <Compile Include="Extensions\PasswordExtension.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
-    <Compile Include="Models\Model.cs" />
+    <Compile Include="Interfaces\IPaginatable.cs" />
+    <Compile Include="Models\Wrap.cs" />
     <Compile Include="Models\Node.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

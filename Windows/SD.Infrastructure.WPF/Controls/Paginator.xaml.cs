@@ -40,7 +40,7 @@ namespace SD.Infrastructure.WPF.Controls
             _PageIndex = DependencyProperty.Register(nameof(PageIndex), typeof(int), typeof(Paginator), new PropertyMetadata(MinPageIndex, OnPageIndexChanged));
             _PageSize = DependencyProperty.Register(nameof(PageSize), typeof(int), typeof(Paginator), new PropertyMetadata(DefaultPageSize, OnPageSizeChanged));
             _RowCount = DependencyProperty.Register(nameof(RowCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, OnRowCountChanged));
-            _PageCount = DependencyProperty.Register(nameof(PageCount), typeof(int), typeof(Paginator), new PropertyMetadata(0));
+            _PageCount = DependencyProperty.Register(nameof(PageCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, OnPageCountChanged));
             _StartRowIndex = DependencyProperty.Register(nameof(StartRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(1, OnStartRowIndexChanged));
             _EndRowIndex = DependencyProperty.Register(nameof(EndRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(0));
 
@@ -247,6 +247,20 @@ namespace SD.Infrastructure.WPF.Controls
             paginator.EndRowIndex = paginator.StartRowIndex + paginator.PageSize > paginator.RowCount
                 ? paginator.RowCount
                 : paginator.StartRowIndex - 1 + paginator.PageSize;
+        }
+        #endregion
+
+        #region 总页数改变回调方法 —— static void OnPageCountChanged(...
+        /// <summary>
+        /// 总页数改变回调方法
+        /// </summary>
+        private static void OnPageCountChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
+        {
+            Paginator paginator = (Paginator)dependencyObject;
+            if (paginator.PageIndex > paginator.PageCount)
+            {
+                paginator.PageIndex = paginator.PageCount;
+            }
         }
         #endregion
 

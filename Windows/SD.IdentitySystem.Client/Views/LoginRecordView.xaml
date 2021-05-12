@@ -4,9 +4,143 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:SD.IdentitySystem.Client.Views"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
+             xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
+             xmlns:controls="clr-namespace:SD.Infrastructure.WPF.Controls;assembly=SD.Infrastructure.WPF"
+             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:converters="clr-namespace:SD.Infrastructure.WPF.Converters;assembly=SD.Infrastructure.WPF"
              mc:Ignorable="d" 
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid Background="AliceBlue">
+             cal:Message.Attach="[Event Loaded] = [Action LoadLoginRecords()]">
 
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <!--功能区-->
+        <Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,1,0,1">
+            <Grid Background="#F4F4F4">
+                <!--查询按钮区-->
+                <WrapPanel VerticalAlignment="Center" Margin="10,0,0,0">
+                    <TextBlock Text="关键字：" />
+                    <TextBox Width="210" />
+                    <TextBlock Text="开始时间：" Margin="10,0,0,0" />
+                    <DatePicker Width="210" Height="30" VerticalContentAlignment="Center"  />
+                    <TextBlock Text="结束时间：" Margin="10,0,0,0" />
+                    <DatePicker Width="210" Height="30" VerticalContentAlignment="Center" />
+                    <Button BorderBrush="#0078D7" BorderThickness="2">
+                        <WrapPanel>
+                            <iconPacks:PackIconMaterialDesign Kind="Search" />
+                            <TextBlock Text="搜索" Margin="3,0,0,0" />
+                        </WrapPanel>
+                    </Button>
+                </WrapPanel>
+            </Grid>
+        </Border>
+        <!--内容区-->
+        <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
+            <DataGrid ItemsSource="{Binding LoginRecords}">
+                <!--列定义-->
+                <DataGrid.Columns>
+                    <DataGridTemplateColumn Width="35">
+                        <DataGridTemplateColumn.HeaderTemplate>
+                            <DataTemplate>
+                                <CheckBox />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.HeaderTemplate>
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <CheckBox HorizontalAlignment="Center" VerticalAlignment="Center" IsChecked="{Binding IsChecked}" />
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                    <DataGridTextColumn Header="用户名" Width="130" Binding="{Binding Model.LoginId}"  />
+                    <DataGridTextColumn Header="真实姓名" Width="130" Binding="{Binding Model.RealName}" />
+                    <DataGridTextColumn Header="IP地址" Width="200" Binding="{Binding Model.IP}" />
+                    <DataGridTemplateColumn Header="登录时间" Width="200">
+                        <DataGridTemplateColumn.CellTemplate>
+                            <DataTemplate>
+                                <TextBlock Text="{Binding Model.AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center"/>
+                            </DataTemplate>
+                        </DataGridTemplateColumn.CellTemplate>
+                    </DataGridTemplateColumn>
+                </DataGrid.Columns>
+                <!--表格样式-->
+                <DataGrid.Style>
+                    <Style TargetType="{x:Type DataGrid}">
+                        <Setter Property="extensions:DataGridExtension.DisplayRowNumber" Value="True" />
+                        <Setter Property="AutoGenerateColumns" Value="False" />
+                        <Setter Property="CanUserSortColumns" Value="False" />
+                        <Setter Property="SelectionUnit" Value="FullRow" />
+                        <Setter Property="CanUserAddRows" Value="False" />
+                        <Setter Property="IsReadOnly" Value="True" />
+                        <Setter Property="BorderThickness" Value="0" />
+                        <Setter Property="GridLinesVisibility" Value="All" />
+                        <Setter Property="Background" Value="#F4F4F4" />
+                        <Setter Property="AlternatingRowBackground" Value="WhiteSmoke" />
+                        <Setter Property="HorizontalGridLinesBrush" Value="LightGray" />
+                        <Setter Property="VerticalGridLinesBrush" Value="LightGray" />
+                    </Style>
+                </DataGrid.Style>
+                <!--列头样式-->
+                <DataGrid.ColumnHeaderStyle>
+                    <Style TargetType="DataGridColumnHeader">
+                        <Setter Property="HorizontalContentAlignment" Value="Center">
+                        </Setter>
+                    </Style>
+                </DataGrid.ColumnHeaderStyle>
+                <!--行样式-->
+                <DataGrid.RowStyle>
+                    <Style TargetType="{x:Type DataGridRow}">
+                        <Style.Triggers>
+                            <Trigger Property="IsSelected" Value="true">
+                                <Setter Property="Background" Value="#FFE48D" />
+                            </Trigger>
+                            <MultiDataTrigger>
+                                <MultiDataTrigger.Conditions>
+                                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
+                                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="false" />
+                                </MultiDataTrigger.Conditions>
+                                <Setter Property="Background" Value="#EAF2FF" />
+                            </MultiDataTrigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.RowStyle>
+                <!--单元格样式-->
+                <DataGrid.CellStyle>
+                    <Style TargetType="{x:Type DataGridCell}">
+                        <Setter Property="BorderBrush" Value="Blue"></Setter>
+                        <Setter Property="Height" Value="28" />
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="DataGridCell">
+                                    <ContentPresenter VerticalAlignment="Center" />
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <Style.Triggers >
+                            <Trigger Property="IsSelected" Value="True">
+                                <Setter Property="Foreground" Value="Black"/>
+                            </Trigger>
+                        </Style.Triggers>
+                    </Style>
+                </DataGrid.CellStyle>
+            </DataGrid>
+        </busyIndicator:BusyMask>
+        <!--内容控制区-->
+        <Border Grid.Row="2" BorderBrush="#CCCCCC" BorderThickness="0,1,0,1">
+            <Grid Background="#F4F4F4">
+                <controls:Paginator Margin="10,0"
+                                    PageIndex="{Binding PageIndex, Mode=TwoWay}"
+                                    PageSize="{Binding PageSize, Mode=TwoWay}"
+                                    RowCount="{Binding RowCount, Mode=TwoWay}"
+                                    PageCount="{Binding PageCount, Mode=TwoWay}"
+                                    cal:Message.Attach="[Event Refresh] = [Action LoadLoginRecords()]" />
+            </Grid>
+        </Border>
     </Grid>
 </UserControl>
