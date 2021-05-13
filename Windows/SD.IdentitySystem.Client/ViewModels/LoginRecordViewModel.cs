@@ -7,8 +7,10 @@ using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -74,6 +76,12 @@ namespace SD.IdentitySystem.Client.ViewModels
         public int PageCount { get; set; }
         #endregion
 
+        [DependencyProperty]
+        public DateTime? StartTime { get; set; }
+
+        [DependencyProperty]
+        public DateTime? EndTime { get; set; }
+
         #region 登录记录列表 —— ObservableCollection<Wrap<LoginRecordInfo>> LoginRecords
         /// <summary>
         /// 登录记录列表
@@ -92,6 +100,8 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public async Task LoadLoginRecords()
         {
+            Trace.WriteLine(this.StartTime);
+
             LoadingIndicator.Suspend();
             PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(null, null, null, this.PageIndex, this.PageSize));
             LoadingIndicator.Dispose();

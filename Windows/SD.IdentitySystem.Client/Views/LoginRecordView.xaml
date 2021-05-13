@@ -25,7 +25,7 @@
                     <TextBlock Text="关键字：" />
                     <TextBox Width="210" />
                     <TextBlock Text="开始时间：" Margin="10,0,0,0" />
-                    <DatePicker Width="210" />
+                    <DatePicker Width="210" Text="{Binding StartTime, Mode=TwoWay}" />
                     <TextBlock Text="结束时间：" Margin="10,0,0,0" />
                     <DatePicker Width="210" />
                     <Button BorderBrush="#0078D7" BorderThickness="2" cal:Message.Attach="LoadLoginRecords()">
