@@ -236,7 +236,7 @@ namespace SD.IdentitySystem.Repository.Base
         /// </summary>
         private void InitWpfMenus(string systemNo)
         {
-            Menu root = new Menu(systemNo, ApplicationType.Windows, "身份认证系统", 1, null, null, "Menu", null);
+            Menu root = new Menu(systemNo, ApplicationType.Windows, "身份认证系统", 1, null, null, "Home", null);
             Menu systemManagement = new Menu(systemNo, ApplicationType.Windows, "信息系统管理", 2, "SD.IdentitySystem.Client.ViewModels.InfoSystemViewModel", null, "LabelOutline", root);
             Menu loginRecordManagement = new Menu(systemNo, ApplicationType.Windows, "登录记录", 3, "SD.IdentitySystem.Client.ViewModels.LoginRecordViewModel", null, "LabelOutline", root);
             Menu userManagement = new Menu(systemNo, ApplicationType.Windows, "用户管理", 4, "SD.IdentitySystem.Client.ViewModels.UserViewModel", null, "LabelOutline", root);
