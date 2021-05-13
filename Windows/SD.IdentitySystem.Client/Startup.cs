@@ -1,11 +1,15 @@
 ﻿using Caliburn.Micro;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json;
+using Newtonsoft.Json.Linq;
+using SD.Common;
 using SD.IdentitySystem.Client.ViewModels;
 using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using SD.IOC.Extension.NetFx;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -46,13 +50,30 @@ namespace SD.IdentitySystem.Client
         /// <summary>
         /// 应用程序异常事件
         /// </summary>
-        protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs exceptionEventArgs)
+        protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs eventArgs)
         {
-            exceptionEventArgs.Handled = true;
+            Exception exception = eventArgs.Exception;
+            eventArgs.Handled = true;
             LoadingIndicator.Dispose();
-            MessageBox.Show(exceptionEventArgs.Exception.Message, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
 
-            //TODO 记录日志
+            //提示消息
+            string errorMessage = string.Empty;
+            errorMessage = GetErrorMessage(exception.Message, ref errorMessage);
+            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            //记录日志
+            string exceptionLogPath = $"{AppDomain.CurrentDomain.BaseDirectory}\\ExceptionLogs\\{{0:yyyy-MM-dd}}.txt";
+            Task.Run(() =>
+            {
+                FileExtension.WriteFile(string.Format(exceptionLogPath, DateTime.Today),
+                    "===================================WPF运行异常, 详细信息如下==================================="
+                    + Environment.NewLine + "［异常时间］" + DateTime.Now
+                    + Environment.NewLine + "［异常消息］" + exception.Message
+                    + Environment.NewLine + "［异常明细］" + exception
+                    + Environment.NewLine + "［内部异常］" + exception.InnerException
+                    + Environment.NewLine + "［堆栈信息］" + exception.StackTrace
+                    + Environment.NewLine + Environment.NewLine);
+            });
         }
         #endregion
 
@@ -110,6 +131,40 @@ namespace SD.IdentitySystem.Client
         {
             IEnumerable<object> instances = ResolveMediator.ResolveAll(service);
             return instances;
+        }
+        #endregion
+
+        #region 获取错误消息 —— static string GetErrorMessage(string exceptionMessage...
+        /// <summary>
+        /// 获取错误消息
+        /// </summary>
+        /// <param name="exceptionMessage">异常消息</param>
+        /// <param name="errorMessage">错误消息</param>
+        /// <returns>错误消息</returns>
+        private static string GetErrorMessage(string exceptionMessage, ref string errorMessage)
+        {
+            try
+            {
+                const string errorMessageKey = "ErrorMessage";
+                JObject jObject = (JObject)JsonConvert.DeserializeObject(exceptionMessage);
+                if (jObject != null && jObject.ContainsKey(errorMessageKey))
+                {
+                    errorMessage = jObject.GetValue(errorMessageKey)?.ToString();
+                }
+                else
+                {
+                    errorMessage = exceptionMessage;
+                }
+
+                GetErrorMessage(errorMessage, ref errorMessage);
+
+                return errorMessage;
+            }
+            catch
+            {
+
+                return exceptionMessage;
+            }
         }
         #endregion
 

@@ -98,7 +98,6 @@ namespace SD.IdentitySystem.Client.ViewModels
             LoadingIndicator.Dispose();
 
             this.TryClose();
-            MessageBox.Show("修改成功！", "OK", MessageBoxButton.OK);
         }
         #endregion
 

@@ -107,8 +107,6 @@ namespace SD.IdentitySystem.Client.ViewModels
                 await Task.Run(() => this._authorizationContract.RemoveMenu(menu.Id));
                 await this.LoadMenus();
                 LoadingIndicator.Dispose();
-
-                MessageBox.Show("删除成功！", "OK", MessageBoxButton.OK);
             }
         }
         #endregion
@@ -149,8 +147,6 @@ namespace SD.IdentitySystem.Client.ViewModels
                 await Task.Run(() => checkedMenus.ForEach(menu => this._authorizationContract.RemoveMenu(menu.Id)));
                 await this.LoadMenus();
                 LoadingIndicator.Dispose();
-
-                MessageBox.Show("删除成功！", "OK", MessageBoxButton.OK);
             }
         }
         #endregion
