@@ -154,7 +154,11 @@
                             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                                 <DockPanel>
                                     <GridViewHeaderRowPresenter DockPanel.Dock="Top" Height="27" 
-                                                                Columns="{StaticResource ColumnDefinition}" />
+                                                                Columns="{StaticResource ColumnDefinition}">
+                                        <GridViewHeaderRowPresenter.ColumnHeaderContainerStyle>
+                                            <Style />
+                                        </GridViewHeaderRowPresenter.ColumnHeaderContainerStyle>
+                                    </GridViewHeaderRowPresenter>
                                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
                                         <ItemsPresenter/>
                                     </ScrollViewer>
@@ -187,7 +191,7 @@
                                     BorderBrush="{TemplateBinding BorderBrush}"
                                     BorderThickness="{TemplateBinding BorderThickness}"
                                     Padding="{TemplateBinding Padding}">
-                                <GridViewRowPresenter x:Name="PART_Header"
+                                <GridViewRowPresenter x:Name="PART_Header" 
                                                       Content="{TemplateBinding Header}" 
                                                       Columns="{StaticResource ColumnDefinition}" />
                             </Border>
