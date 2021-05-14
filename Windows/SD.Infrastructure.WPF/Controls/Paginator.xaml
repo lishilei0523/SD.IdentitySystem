@@ -7,16 +7,22 @@
              Name="Control">
 
     <UserControl.Resources>
-        <Style TargetType="{x:Type Button}">
-            <Setter Property="Width" Value="30" />
-            <Setter Property="Height" Value="22" />
-        </Style>
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="{x:Type TextBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+            <Setter Property="Padding" Value="2,0,0,0"></Setter>
         </Style>
         <Style TargetType="{x:Type ComboBox}">
             <Setter Property="VerticalAlignment" Value="Center" />
             <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
+        <Style TargetType="{x:Type ComboBoxItem}" />
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="Width" Value="30" />
+            <Setter Property="Height" Value="22" />
         </Style>
     </UserControl.Resources>
 
@@ -52,9 +58,8 @@
             <!--第几页，共几页-->
             <TextBlock Margin="0,0,5,0">第</TextBlock>
             <TextBox Text="{Binding ElementName=Control, Path=PageIndex}" 
-                     Width="30" Height="20"
+                     Width="30" Height="22"
                      HorizontalContentAlignment="Left" 
-                     VerticalAlignment="Center" 
                      InputMethod.IsInputMethodEnabled="False" 
                      PreviewTextInput="TxtPageIndexTextInput" 
                      LostFocus="TxtPageIndexLostFocus" 

@@ -9,6 +9,7 @@
              xmlns:controls="clr-namespace:SD.Infrastructure.WPF.Controls;assembly=SD.Infrastructure.WPF"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
              mc:Ignorable="d" 
              cal:Message.Attach="[Event Loaded] = [Action LoadLoginRecords()]">
 

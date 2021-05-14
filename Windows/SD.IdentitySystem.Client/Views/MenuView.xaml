@@ -246,7 +246,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="90" />
+            <RowDefinition Height="70" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
@@ -259,13 +259,13 @@
                 </Grid.RowDefinitions>
                 <!--操作按钮区-->
                 <WrapPanel Grid.Row="0" VerticalAlignment="Center">
-                    <Button Background="Transparent" BorderBrush="Transparent" Width="70" Padding="4">
+                    <Button Style="{StaticResource GridButton}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Add" />
                             <TextBlock Text="新增" Margin="2,0,0,0" />
                         </WrapPanel>
                     </Button>
-                    <Button Background="Transparent" BorderBrush="Transparent" Width="70" Padding="4"
+                    <Button Style="{StaticResource GridButton}"
                             cal:Message.Attach="Removes()">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Remove" />
@@ -276,9 +276,9 @@
                 <!--查询按钮区-->
                 <WrapPanel Grid.Row="1"  VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock Text="信息系统：" />
-                    <ComboBox Width="210" Margin="10,0,0,0" />
+                    <ComboBox Width="210" />
                     <TextBlock Text="应用程序类型：" Margin="10,0,0,0" />
-                    <ComboBox Width="210" Margin="10,0,0,0" />
+                    <ComboBox Width="210" />
                     <Button BorderBrush="#0078D7" BorderThickness="2">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />

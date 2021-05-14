@@ -5,13 +5,15 @@
              xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
              xmlns:converters="clr-namespace:SD.Infrastructure.WPF.Converters;assembly=SD.Infrastructure.WPF"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF">
+             xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
+             xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary>
                     <local:Startup x:Key="Startup" />
                 </ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Controls.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Steel.xaml" />
@@ -93,12 +95,30 @@
                     <Style TargetType="{x:Type CheckBox}">
                         <Setter Property="VerticalAlignment" Value="Center" />
                     </Style>
+                    <!--ComboBox默认样式-->
+                    <Style BasedOn="{StaticResource MahApps.Styles.ComboBox.Virtualized}" TargetType="{x:Type ComboBox}">
+                        <Setter Property="VerticalContentAlignment" Value="Center" />
+                    </Style>
                     <!--Button默认样式-->
-                    <Style TargetType="{x:Type Button}">
+                    <Style BasedOn="{StaticResource ButtonRevealStyle}" TargetType="{x:Type Button}">
                         <Setter Property="FontSize" Value="14" />
+                        <Setter Property="FontWeight" Value="Normal" />
                         <Setter Property="Width" Value="85" />
                         <Setter Property="Height" Value="28" />
                         <Setter Property="Margin" Value="10,0,0,0" />
+                        <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0.4" />
+                        <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="1" />
+                    </Style>
+                    <!--Button表格样式-->
+                    <Style BasedOn="{StaticResource ButtonRoundRevealStyle}" x:Key="GridButton" TargetType="{x:Type Button}">
+                        <Setter Property="Background" Value="Transparent" />
+                        <Setter Property="BorderBrush" Value="Transparent" />
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="FontWeight" Value="Normal" />
+                        <Setter Property="Width" Value="70" />
+                        <Setter Property="Height" Value="28" />
+                        <Setter Property="Margin" Value="3,0,0,0" />
+                        <Setter Property="Padding" Value="4" />
                     </Style>
                     <!--表单元素默认样式-->
                     <Style TargetType="{x:Type kino:FormItem}">
