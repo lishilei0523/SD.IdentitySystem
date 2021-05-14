@@ -185,15 +185,13 @@
                         <TextBlock Text="{Binding LoginInfo.RealName}" FontSize="13" />
                     </WrapPanel>
                     <WrapPanel Margin="0,10,55,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                        <Button Background="Transparent" BorderBrush="Transparent" Padding="3" 
-                                cal:Message.Attach="Logout()">
+                        <Button cal:Message.Attach="Logout()" Style="{StaticResource BackgroundButton}">
                             <WrapPanel>
                                 <iconPacks:PackIconMaterialDesign Kind="ExitToApp" />
                                 <TextBlock Text="注销用户" Margin="3,0,0,0" />
                             </WrapPanel>
                         </Button>
-                        <Button Background="Transparent" BorderBrush="Transparent" Padding="3" Margin="5,0,0,0" 
-                                cal:Message.Attach="UpdatePassword()">
+                        <Button cal:Message.Attach="UpdatePassword()" Style="{StaticResource BackgroundButton}">
                             <WrapPanel>
                                 <iconPacks:PackIconMaterialDesign Kind="Lock" />
                                 <TextBlock Text="修改密码" Margin="3,0,0,0" />
@@ -238,10 +236,18 @@
                             <DataTemplate>
                                 <WrapPanel>
                                     <TextBlock Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" />
-                                    <Button Background="Transparent" BorderBrush="Transparent" 
-                                            Width="18" Height="18" Margin="5,0,0,0" 
-                                            HorizontalAlignment="Center" VerticalAlignment="Center"
-                                            cal:Message.Attach="DeactivateItem($dataContext, 'true')">
+                                    <Button cal:Message.Attach="DeactivateItem($dataContext, 'true')">
+                                        <Button.Style>
+                                            <Style BasedOn="{StaticResource ButtonRevealStyle}" TargetType="{x:Type Button}">
+                                                <Setter Property="Background" Value="Transparent" />
+                                                <Setter Property="BorderBrush" Value="Transparent" />
+                                                <Setter Property="Width" Value="18" />
+                                                <Setter Property="Height" Value="18" />
+                                                <Setter Property="Margin" Value="5,0,0,0" />
+                                                <Setter Property="HorizontalAlignment" Value="Center" />
+                                                <Setter Property="VerticalAlignment" Value="Center" />
+                                            </Style>
+                                        </Button.Style>
                                         <TextBlock Text="×" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
                                     </Button>
                                 </WrapPanel>

@@ -8,8 +8,8 @@
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
              xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-             mc:Ignorable="d" d:DesignHeight="740" d:DesignWidth="1220"
-             cal:Message.Attach="[Event Loaded] = [Action LoadMenus()]">
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             mc:Ignorable="d" d:DesignHeight="740" d:DesignWidth="1220">
 
     <UserControl.Resources>
         <!--行号列数据模板-->
@@ -276,10 +276,19 @@
                 <!--查询按钮区-->
                 <WrapPanel Grid.Row="1"  VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock Text="信息系统：" />
-                    <ComboBox Width="210" />
+                    <ComboBox ItemsSource="{Binding InfoSystems}" 
+                              DisplayMemberPath="Name"
+                              SelectedValue="{Binding SelectedInfoSystem}"
+                              mah:TextBoxHelper.Watermark="全部" 
+                              Style="{StaticResource DefaultComboBox}" />
                     <TextBlock Text="应用程序类型：" Margin="10,0,0,0" />
-                    <ComboBox Width="210" />
-                    <Button Style="{StaticResource FocusButton}">
+                    <ComboBox ItemsSource="{Binding ApplicationTypes}" 
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              SelectedValue="{Binding SelectedApplicationType}"
+                              mah:TextBoxHelper.Watermark="全部" 
+                              Style="{StaticResource DefaultComboBox}" />
+                    <Button cal:Message.Attach="LoadMenus()" Style="{StaticResource FocusButton}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />
                             <TextBlock Text="搜索" Margin="3,0,0,0" />

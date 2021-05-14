@@ -9,9 +9,7 @@
              xmlns:controls="clr-namespace:SD.Infrastructure.WPF.Controls;assembly=SD.Infrastructure.WPF"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-             mc:Ignorable="d" 
-             cal:Message.Attach="[Event Loaded] = [Action LoadLoginRecords()]">
+             mc:Ignorable="d">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -30,29 +28,9 @@
                              mah:TextBoxHelper.ClearTextButton="True"
                              Text="{Binding Keywords}" />
                     <TextBlock Text="开始时间：" Margin="10,0,0,0" />
-                    <mah:DateTimePicker Width="210" Height="30" 
-                                        FirstDayOfWeek="Sunday"
-                                        Orientation="Horizontal" 
-                                        PickerVisibility="All" 
-                                        HandVisibility="All"
-                                        SelectedDateFormat="Short"
-                                        SelectedTimeFormat="Long" 
-                                        Culture="zh-cn"
-                                        SelectedDateTime="{Binding StartTime, Mode=TwoWay}"
-                                        mah:TextBoxHelper.ClearTextButton="True"
-                                        mah:TextBoxHelper.Watermark="选择时间" />
+                    <mah:DateTimePicker SelectedDateTime="{Binding StartTime, Mode=TwoWay}" />
                     <TextBlock Text="结束时间：" Margin="10,0,0,0" />
-                    <mah:DateTimePicker Width="210" Height="30" 
-                                        FirstDayOfWeek="Sunday"
-                                        Orientation="Horizontal" 
-                                        PickerVisibility="All" 
-                                        HandVisibility="All"
-                                        SelectedDateFormat="Short"
-                                        SelectedTimeFormat="Long" 
-                                        Culture="zh-cn"
-                                        SelectedDateTime="{Binding EndTime, Mode=TwoWay}"
-                                        mah:TextBoxHelper.ClearTextButton="True"
-                                        mah:TextBoxHelper.Watermark="选择时间" />
+                    <mah:DateTimePicker SelectedDateTime="{Binding EndTime, Mode=TwoWay}" />
                     <Button cal:Message.Attach="LoadLoginRecords()" Style="{StaticResource FocusButton}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />

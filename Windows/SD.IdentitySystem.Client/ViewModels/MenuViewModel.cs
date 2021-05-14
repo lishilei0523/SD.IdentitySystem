@@ -1,8 +1,10 @@
 ﻿using Caliburn.Micro;
 using SD.Common;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presentors;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Toolkits.Recursion.Tree;
@@ -45,6 +47,22 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 属性
 
+        #region 已选信息系统 —— InfoSystemInfo SelectedInfoSystem
+        /// <summary>
+        /// 已选信息系统
+        /// </summary>
+        [DependencyProperty]
+        public InfoSystemInfo SelectedInfoSystem { get; set; }
+        #endregion
+
+        #region 已选应用程序类型 —— ApplicationType? SelectedApplicationType
+        /// <summary>
+        /// 已选应用程序类型
+        /// </summary>
+        [DependencyProperty]
+        public ApplicationType? SelectedApplicationType { get; set; }
+        #endregion
+
         #region 菜单列表 —— ObservableCollection<Menu> Menus
         /// <summary>
         /// 菜单列表
@@ -53,9 +71,38 @@ namespace SD.IdentitySystem.Client.ViewModels
         public ObservableCollection<Menu> Menus { get; set; }
         #endregion
 
+        #region 信息系统列表 —— ObservableCollection<InfoSystemInfo> InfoSystems
+        /// <summary>
+        /// 信息系统列表
+        /// </summary>
+        [DependencyProperty]
+        public ObservableCollection<InfoSystemInfo> InfoSystems { get; set; }
+        #endregion
+
+        #region 应用程序类型字典 —— IDictionary<string, string> ApplicationTypes
+        /// <summary>
+        /// 应用程序类型字典
+        /// </summary>
+        [DependencyProperty]
+        public IDictionary<string, string> ApplicationTypes { get; set; }
+        #endregion
+
         #endregion
 
         #region # 方法
+
+        #region 初始化 —— override async void OnInitialize()
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        protected override async void OnInitialize()
+        {
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
+            this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
+            this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
+            await this.LoadMenus();
+        }
+        #endregion
 
         #region 加载菜单列表 —— async Task LoadMenus()
         /// <summary>
@@ -63,8 +110,11 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public async Task LoadMenus()
         {
+            string infoSystemNo = this.SelectedInfoSystem?.Number;
+            ApplicationType? applicationType = this.SelectedApplicationType;
+
             LoadingIndicator.Suspend();
-            IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(null, null));
+            IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
             LoadingIndicator.Dispose();
 
             this.Menus = new ObservableCollection<Menu>(menus);
@@ -117,32 +167,31 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public async void Removes()
         {
+            IList<Menu> checkedMenus = new List<Menu>();
+            foreach (Menu menu in this.Menus)
+            {
+                if (menu.IsChecked == true)
+                {
+                    checkedMenus.Add(menu);
+                }
+
+                foreach (Menu subNode in menu.GetDeepSubNodes())
+                {
+                    if (subNode.IsChecked == true)
+                    {
+                        checkedMenus.Add(subNode);
+                    }
+                }
+            }
+            if (!checkedMenus.Any())
+            {
+                MessageBox.Show("请选中要删除的菜单！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                IList<Menu> checkedMenus = new List<Menu>();
-                foreach (Menu menu in this.Menus)
-                {
-                    if (menu.IsChecked == true)
-                    {
-                        checkedMenus.Add(menu);
-                    }
-
-                    foreach (Menu subNode in menu.GetDeepSubNodes())
-                    {
-                        if (subNode.IsChecked == true)
-                        {
-                            checkedMenus.Add(subNode);
-                        }
-                    }
-                }
-
-                if (!checkedMenus.Any())
-                {
-                    MessageBox.Show("请选中要删除的菜单！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
-                    return;
-                }
-
                 LoadingIndicator.Suspend();
                 await Task.Run(() => checkedMenus.ForEach(menu => this._authorizationContract.RemoveMenu(menu.Id)));
                 await this.LoadMenus();

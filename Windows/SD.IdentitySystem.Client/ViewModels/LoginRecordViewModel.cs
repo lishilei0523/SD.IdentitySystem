@@ -111,6 +111,16 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 方法
 
+        #region 初始化 —— override async void OnInitialize()
+        /// <summary>
+        /// 初始化
+        /// </summary>
+        protected override async void OnInitialize()
+        {
+            await this.LoadLoginRecords();
+        }
+        #endregion
+
         #region 加载登录记录列表 —— async Task LoadLoginRecords()
         /// <summary>
         /// 加载登录记录列表
