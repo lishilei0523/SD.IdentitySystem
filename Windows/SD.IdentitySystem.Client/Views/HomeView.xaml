@@ -8,9 +8,12 @@
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         mc:Ignorable="d"
-        Title="统一身份认证系统" Width="1440" Height="900" WindowStartupLocation="CenterScreen" FontSize="14"
-        fluentWpf:AcrylicWindow.Enabled="True"
-        cal:Message.Attach="[Event Loaded] = [Action InitMenus()]">
+        Title="Powered by SD.Framework" 
+        Width="1440" Height="900" 
+        FontSize="14"
+        WindowStyle="ThreeDBorderWindow"
+        WindowStartupLocation="CenterScreen"
+        fluentWpf:AcrylicWindow.Enabled="True">
     <!--Resources-->
     <Window.Resources>
         <!--HamburgerMenu控件模板-->
@@ -262,7 +265,7 @@
                         </TabControl.ContentTemplate>
                     </TabControl>
                     <Grid Visibility="{Binding BingVisibility}">
-                        <WebBrowser Source="http://cn.bing.com" />
+                        <WebBrowser Source="https://cn.bing.com" />
                     </Grid>
                 </Grid>
             </mah:HamburgerMenu.Content>

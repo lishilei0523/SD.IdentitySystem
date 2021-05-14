@@ -98,11 +98,21 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 方法
 
-        #region 初始化菜单 —— async void InitMenus()
+        #region 初始化 —— override async void OnInitialize()
         /// <summary>
-        /// 初始化菜单
+        /// 初始化
         /// </summary>
-        public async void InitMenus()
+        protected override async void OnInitialize()
+        {
+            await this.LoadMenus();
+        }
+        #endregion
+
+        #region 加载菜单 —— async Task LoadMenus()
+        /// <summary>
+        /// 加载菜单
+        /// </summary>
+        public async Task LoadMenus()
         {
             IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows));
             this.Menus = menus;
