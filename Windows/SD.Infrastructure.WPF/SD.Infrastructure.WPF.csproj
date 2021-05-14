@@ -73,6 +73,7 @@
     <Compile Include="Extensions\LoadingIndicator.cs" />
     <Compile Include="Extensions\PasswordExtension.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
+    <Compile Include="Extensions\WrapExtension.cs" />
     <Compile Include="Interfaces\IPaginatable.cs" />
     <Compile Include="Models\Wrap.cs" />
     <Compile Include="Models\Node.cs" />

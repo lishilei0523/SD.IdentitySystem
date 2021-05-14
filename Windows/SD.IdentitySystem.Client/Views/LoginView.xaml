@@ -37,7 +37,7 @@
             </StackPanel>
             <!--登录-->
             <WrapPanel Grid.Row="2" Style="{StaticResource FunctionPanel}">
-                <Button Content="登录" Width="85" BorderBrush="#0078D7" BorderThickness="2" cal:Message.Attach="Login()" />
+                <Button Content="登录" cal:Message.Attach="Login()" Style="{StaticResource FocusButton}" />
                 <Button Content="取消" cal:Message.Attach="TryClose('null')" />
             </WrapPanel>
         </Grid>

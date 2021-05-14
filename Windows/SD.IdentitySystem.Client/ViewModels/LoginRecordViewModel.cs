@@ -124,7 +124,7 @@ namespace SD.IdentitySystem.Client.ViewModels
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
-            IEnumerable<Wrap<LoginRecordInfo>> wrapModels = pageModel.Datas.Select(x => new Wrap<LoginRecordInfo> { Model = x });
+            IEnumerable<Wrap<LoginRecordInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.LoginRecords = new ObservableCollection<Wrap<LoginRecordInfo>>(wrapModels);
         }
         #endregion

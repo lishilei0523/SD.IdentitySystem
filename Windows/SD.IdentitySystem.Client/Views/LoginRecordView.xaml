@@ -53,7 +53,7 @@
                                         SelectedDateTime="{Binding EndTime, Mode=TwoWay}"
                                         mah:TextBoxHelper.ClearTextButton="True"
                                         mah:TextBoxHelper.Watermark="选择时间" />
-                    <Button BorderBrush="#0078D7" BorderThickness="2" cal:Message.Attach="LoadLoginRecords()">
+                    <Button cal:Message.Attach="LoadLoginRecords()" Style="{StaticResource FocusButton}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />
                             <TextBlock Text="搜索" Margin="3,0,0,0" />
