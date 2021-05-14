@@ -10,7 +10,6 @@ using SD.Infrastructure.WPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 
@@ -44,6 +43,30 @@ namespace SD.IdentitySystem.Client.ViewModels
 
         #region # 属性
 
+        #region 关键字 —— string Keywords
+        /// <summary>
+        /// 关键字
+        /// </summary>
+        [DependencyProperty]
+        public string Keywords { get; set; }
+        #endregion
+
+        #region 开始时间 —— DateTime? StartTime
+        /// <summary>
+        /// 开始时间
+        /// </summary>
+        [DependencyProperty]
+        public DateTime? StartTime { get; set; }
+        #endregion
+
+        #region 结束时间 —— DateTime? EndTime
+        /// <summary>
+        /// 结束时间
+        /// </summary>
+        [DependencyProperty]
+        public DateTime? EndTime { get; set; }
+        #endregion
+
         #region 页码 —— int PageIndex
         /// <summary>
         /// 页码
@@ -76,12 +99,6 @@ namespace SD.IdentitySystem.Client.ViewModels
         public int PageCount { get; set; }
         #endregion
 
-        [DependencyProperty]
-        public DateTime? StartTime { get; set; }
-
-        [DependencyProperty]
-        public DateTime? EndTime { get; set; }
-
         #region 登录记录列表 —— ObservableCollection<Wrap<LoginRecordInfo>> LoginRecords
         /// <summary>
         /// 登录记录列表
@@ -100,10 +117,8 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public async Task LoadLoginRecords()
         {
-            Trace.WriteLine(this.StartTime);
-
             LoadingIndicator.Suspend();
-            PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(null, null, null, this.PageIndex, this.PageSize));
+            PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
             LoadingIndicator.Dispose();
 
             this.RowCount = pageModel.RowCount;

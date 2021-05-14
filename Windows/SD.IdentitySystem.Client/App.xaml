@@ -47,6 +47,7 @@
                     </Style>
                     <!--TextBlock默认样式-->
                     <Style TargetType="{x:Type TextBlock}">
+                        <Setter Property="FontWeight" Value="Normal" />
                         <Setter Property="VerticalAlignment" Value="Center" />
                     </Style>
                     <!--TextBlock超链接样式-->
@@ -74,7 +75,7 @@
                         <Setter Property="VerticalAlignment" Value="Center" />
                     </Style>
                     <!--TextBox默认样式-->
-                    <Style TargetType="{x:Type TextBox}">
+                    <Style BasedOn="{StaticResource MahApps.Styles.TextBox}" TargetType="{x:Type TextBox}">
                         <Setter Property="Height" Value="30" />
                         <Setter Property="VerticalContentAlignment" Value="Center" />
                     </Style>

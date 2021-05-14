@@ -14,6 +14,10 @@
         <Style TargetType="{x:Type TextBlock}">
             <Setter Property="VerticalAlignment" Value="Center" />
         </Style>
+        <Style TargetType="{x:Type ComboBox}">
+            <Setter Property="VerticalAlignment" Value="Center" />
+            <Setter Property="VerticalContentAlignment" Value="Center" />
+        </Style>
     </UserControl.Resources>
 
     <Grid>
@@ -30,7 +34,7 @@
 
         <!--页容量-->
         <Grid Grid.Column="0" Margin="{Binding ElementName=Control, Path=Padding}" HorizontalAlignment="Left">
-            <ComboBox Width="45" Height="22"
+            <ComboBox Width="44" Height="22"
                       Text="{Binding ElementName=Control, Path=PageSize}" 
                       ItemsSource="{Binding ElementName=Control, Path=PageSizes}" 
                       SelectedIndex="2" />

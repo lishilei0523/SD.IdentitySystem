@@ -8,6 +8,7 @@
              xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
              xmlns:controls="clr-namespace:SD.Infrastructure.WPF.Controls;assembly=SD.Infrastructure.WPF"
              xmlns:cal="http://www.caliburnproject.org"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              mc:Ignorable="d" 
              cal:Message.Attach="[Event Loaded] = [Action LoadLoginRecords()]">
 
@@ -23,11 +24,34 @@
                 <!--查询按钮区-->
                 <WrapPanel VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock Text="关键字：" />
-                    <TextBox Width="210" />
+                    <TextBox Width="210" 
+                             mah:TextBoxHelper.Watermark="登录名/真实姓名"
+                             mah:TextBoxHelper.ClearTextButton="True"
+                             Text="{Binding Keywords}" />
                     <TextBlock Text="开始时间：" Margin="10,0,0,0" />
-                    <DatePicker Width="210" Text="{Binding StartTime, Mode=TwoWay}" />
+                    <mah:DateTimePicker Width="210" Height="30" 
+                                        FirstDayOfWeek="Sunday"
+                                        Orientation="Horizontal" 
+                                        PickerVisibility="All" 
+                                        HandVisibility="All"
+                                        SelectedDateFormat="Short"
+                                        SelectedTimeFormat="Long" 
+                                        Culture="zh-cn"
+                                        SelectedDateTime="{Binding StartTime, Mode=TwoWay}"
+                                        mah:TextBoxHelper.ClearTextButton="True"
+                                        mah:TextBoxHelper.Watermark="选择时间" />
                     <TextBlock Text="结束时间：" Margin="10,0,0,0" />
-                    <DatePicker Width="210" />
+                    <mah:DateTimePicker Width="210" Height="30" 
+                                        FirstDayOfWeek="Sunday"
+                                        Orientation="Horizontal" 
+                                        PickerVisibility="All" 
+                                        HandVisibility="All"
+                                        SelectedDateFormat="Short"
+                                        SelectedTimeFormat="Long" 
+                                        Culture="zh-cn"
+                                        SelectedDateTime="{Binding EndTime, Mode=TwoWay}"
+                                        mah:TextBoxHelper.ClearTextButton="True"
+                                        mah:TextBoxHelper.Watermark="选择时间" />
                     <Button BorderBrush="#0078D7" BorderThickness="2" cal:Message.Attach="LoadLoginRecords()">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />

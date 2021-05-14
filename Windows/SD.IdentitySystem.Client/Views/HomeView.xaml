@@ -134,12 +134,12 @@
             <Setter Property="Template" Value="{StaticResource HamburgerMenuContentTemplate}"/>
         </Style>
         <!--TreeView样式-->
-        <Style TargetType="{x:Type TreeView}">
+        <Style BasedOn="{StaticResource MahApps.Styles.TreeView.Virtualized}" TargetType="{x:Type TreeView}">
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Margin" Value="0,5,0,0" />
         </Style>
         <!--TreeViewItem样式-->
-        <Style TargetType="{x:Type TreeViewItem}">
+        <Style BasedOn="{StaticResource MahApps.Styles.TreeViewItem}" TargetType="{x:Type TreeViewItem}">
             <Setter Property="IsExpanded" Value="True" />
             <Setter Property="FontFamily" Value="微软雅黑" />
             <Setter Property="FontSize" Value="16" />
