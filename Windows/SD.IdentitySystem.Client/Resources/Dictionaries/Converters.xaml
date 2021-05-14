@@ -1,0 +1,10 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:converters="clr-namespace:SD.Infrastructure.WPF.Converters;assembly=SD.Infrastructure.WPF">
+
+    <!--值转换器-->
+    <converters:EnumMemberConverter x:Key="EnumMemberConverter" />
+    <converters:TreeListViewIndentConverter x:Key="TreeListViewIndentConverter" />
+    <converters:TreeListViewRowIndexConverter x:Key="TreeListViewRowIndexConverter" />
+    <converters:TreeListViewBackgroundConverter x:Key="TreeListViewBackgroundConverter" />
+</ResourceDictionary>

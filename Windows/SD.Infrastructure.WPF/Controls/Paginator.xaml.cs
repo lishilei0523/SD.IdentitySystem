@@ -195,7 +195,7 @@ namespace SD.Infrastructure.WPF.Controls
             {
                 pageIndex = MinPageIndex;
             }
-            if (pageIndex > paginator.PageCount)
+            if (paginator.PageCount != 0 && pageIndex > paginator.PageCount)
             {
                 pageIndex = paginator.PageCount;
             }

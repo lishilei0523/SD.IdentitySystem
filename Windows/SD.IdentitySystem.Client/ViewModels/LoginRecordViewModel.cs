@@ -121,24 +121,6 @@ namespace SD.IdentitySystem.Client.ViewModels
         }
         #endregion
 
-        #region 加载登录记录列表 —— async Task LoadLoginRecords()
-        /// <summary>
-        /// 加载登录记录列表
-        /// </summary>
-        public async Task LoadLoginRecords()
-        {
-            LoadingIndicator.Suspend();
-            PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
-            LoadingIndicator.Dispose();
-
-            this.RowCount = pageModel.RowCount;
-            this.PageCount = pageModel.PageCount;
-
-            IEnumerable<Wrap<LoginRecordInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
-            this.LoginRecords = new ObservableCollection<Wrap<LoginRecordInfo>>(wrapModels);
-        }
-        #endregion
-
         #region 全选 —— void CheckAll()
         /// <summary>
         /// 全选
@@ -156,6 +138,24 @@ namespace SD.IdentitySystem.Client.ViewModels
         public void UncheckAll()
         {
             this.LoginRecords.ForEach(x => x.IsChecked = false);
+        }
+        #endregion
+
+        #region 加载登录记录列表 —— async Task LoadLoginRecords()
+        /// <summary>
+        /// 加载登录记录列表
+        /// </summary>
+        public async Task LoadLoginRecords()
+        {
+            LoadingIndicator.Suspend();
+            PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
+            LoadingIndicator.Dispose();
+
+            this.RowCount = pageModel.RowCount;
+            this.PageCount = pageModel.PageCount;
+
+            IEnumerable<Wrap<LoginRecordInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
+            this.LoginRecords = new ObservableCollection<Wrap<LoginRecordInfo>>(wrapModels);
         }
         #endregion
 

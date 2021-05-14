@@ -161,6 +161,7 @@
     </ApplicationDefinition>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AuthorityViewModel.cs" />
+    <Compile Include="ViewModels\CreateInfoSystemViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\InfoSystemViewModel.cs" />
     <Compile Include="ViewModels\LoginRecordViewModel.cs" />
@@ -171,6 +172,9 @@
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\AuthorityView.xaml.cs">
       <DependentUpon>AuthorityView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\CreateInfoSystemView.xaml.cs">
+      <DependentUpon>CreateInfoSystemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
@@ -200,7 +204,35 @@
     <Compile Include="Views\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
+    <Page Include="Resources\Dictionaries\ControlStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Converters.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\DataGridTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\FormStyles.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\Images.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Resources\Dictionaries\TreeListViewTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\AuthorityView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\CreateInfoSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -300,9 +332,7 @@
       <Install>false</Install>
     </BootstrapperPackage>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\Dictionaries\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\..\packages\MrAdvice.2.8.11\build\MrAdvice.targets" Condition="Exists('..\..\packages\MrAdvice.2.8.11\build\MrAdvice.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">

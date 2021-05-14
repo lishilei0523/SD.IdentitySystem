@@ -1,0 +1,75 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:cal="http://www.caliburnproject.org"
+                    xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF">
+
+    <!--复选框单元格模板-->
+    <DataTemplate x:Key="CheckBoxCellTemplate">
+        <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+    <!--复选框单元格头模板-->
+    <DataTemplate x:Key="CheckBoxCellHeaderTemplate">
+        <CheckBox cal:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
+    </DataTemplate>
+    <!--DataGrid默认样式-->
+    <Style x:Key="DataGridDefault" TargetType="{x:Type DataGrid}">
+        <Setter Property="extensions:DataGridExtension.DisplayRowNumber" Value="True" />
+        <Setter Property="AutoGenerateColumns" Value="False" />
+        <Setter Property="IsReadOnly" Value="True" />
+        <Setter Property="CanUserSortColumns" Value="False" />
+        <Setter Property="SelectionUnit" Value="FullRow" />
+        <Setter Property="CanUserAddRows" Value="False" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="GridLinesVisibility" Value="All" />
+        <Setter Property="Background" Value="#F4F4F4" />
+        <Setter Property="AlternatingRowBackground" Value="WhiteSmoke" />
+        <Setter Property="HorizontalGridLinesBrush" Value="LightGray" />
+        <Setter Property="VerticalGridLinesBrush" Value="LightGray" />
+    </Style>
+    <!--DataGrid列头默认样式-->
+    <Style x:Key="DataGridColumnHeaderDefault" TargetType="{x:Type DataGridColumnHeader}">
+        <Setter Property="HorizontalContentAlignment" Value="Center" />
+    </Style>
+    <!--DataGrid行默认样式-->
+    <Style x:Key="DataGridRowDefault" TargetType="{x:Type DataGridRow}">
+        <Style.Triggers>
+            <Trigger Property="IsSelected" Value="true">
+                <Setter Property="Background" Value="#FFE48D" />
+            </Trigger>
+            <MultiDataTrigger>
+                <MultiDataTrigger.Conditions>
+                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
+                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="false" />
+                </MultiDataTrigger.Conditions>
+                <Setter Property="Background" Value="#EAF2FF" />
+            </MultiDataTrigger>
+        </Style.Triggers>
+    </Style>
+    <!--DataGrid单元格默认样式-->
+    <Style x:Key="DataGridCellDefault" TargetType="{x:Type DataGridCell}">
+        <Setter Property="Height" Value="28" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <ContentPresenter VerticalAlignment="Center" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers >
+            <Trigger Property="IsSelected" Value="True">
+                <Setter Property="Foreground" Value="Black" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--DataGrid单元格缩进样式-->
+    <Style x:Key="DataGridCellMargin" TargetType="{x:Type DataGridCell}"
+                           BasedOn="{StaticResource DataGridCellDefault}" >
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="DataGridCell">
+                    <ContentPresenter Margin="10,0,0,0" VerticalAlignment="Center" />
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+</ResourceDictionary>

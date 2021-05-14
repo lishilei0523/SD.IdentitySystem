@@ -9,7 +9,8 @@
              xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             mc:Ignorable="d" d:DesignHeight="740" d:DesignWidth="1220">
+             mc:Ignorable="d" 
+             d:DesignHeight="740" d:DesignWidth="1220">
 
     <UserControl.Resources>
         <!--GridView行号列数据模板-->

@@ -10,7 +10,7 @@
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         mc:Ignorable="d"
         Title="Powered by SD.Framework" 
-        Width="500" Height="350" ResizeMode="NoResize"
+        Width="465" Height="350" ResizeMode="NoResize"
         WindowStyle="ThreeDBorderWindow"
         WindowStartupLocation="CenterScreen"
         fluentWpf:AcrylicWindow.Enabled="True">
@@ -18,16 +18,24 @@
     <busyIndicator:BusyMask IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
         <Grid Background="{DynamicResource CheckBoxBackgroundBrush}">
             <Grid.RowDefinitions>
+                <!--标题区-->
                 <RowDefinition Height="70" />
+                <!--表单区-->
+                <RowDefinition Height="180" />
+                <!--占位区-->
                 <RowDefinition Height="*" />
-                <RowDefinition Height="60" />
+                <!--控制区-->
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
-            <!--标题-->
+            <!--标题区-->
             <TextBlock Grid.Row="0" Text="统一身份认证系统" VerticalAlignment="Top" HorizontalAlignment="Center" FontSize="35" Foreground="#1B4567" Margin="0,5,0,0" />
-            <Border BorderThickness="0,1,0,0" VerticalAlignment="Top" BorderBrush="Black" Grid.Row="1" />
-            <!--表单-->
+            <Border Grid.Row="1" 
+                    BorderThickness="0,1,0,0" 
+                    VerticalAlignment="Top" 
+                    BorderBrush="{StaticResource SystemListMediumColorBrush}" />
+            <!--表单区-->
             <StackPanel Grid.Row="1" Grid.IsSharedSizeScope="True" Margin="40,30">
-                <kino:FormItem Label="用户名：" FontSize="14" Padding="5">
+                <kino:FormItem Label="账号：" FontSize="14" Padding="5">
                     <TextBox Height="40" VerticalContentAlignment="Center" Text="{Binding LoginId}"
                              Style="{StaticResource TextBoxRevealStyle}" />
                 </kino:FormItem>
@@ -41,11 +49,15 @@
                     </PasswordBox>
                 </kino:FormItem>
             </StackPanel>
-            <!--登录-->
-            <WrapPanel Grid.Row="2" Style="{StaticResource FunctionPanel}">
-                <Button Content="登录" cal:Message.Attach="Login()" Style="{StaticResource FocusButton}" />
-                <Button Content="取消" cal:Message.Attach="TryClose('null')" Style="{StaticResource DefaultButton}" />
-            </WrapPanel>
+            <!--占位区-->
+            <Grid Grid.Row="2" />
+            <!--控制区-->
+            <Grid Grid.Row="3" Style="{StaticResource FormSubmitGrid}">
+                <WrapPanel Style="{StaticResource FormSubmitWrapPanel}">
+                    <Button Content="登录" cal:Message.Attach="Login()" Style="{StaticResource FocusButton}" />
+                    <Button Content="取消" cal:Message.Attach="TryClose('null')" Style="{StaticResource DefaultButton}" />
+                </WrapPanel>
+            </Grid>
         </Grid>
     </busyIndicator:BusyMask>
 </Window>
