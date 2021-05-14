@@ -38,15 +38,8 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="Microsoft.CSharp" />
     <Reference Include="MrAdvice, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c0e7e6eab6f293d8, processorArchitecture=MSIL">
       <HintPath>..\..\packages\MrAdvice.2.8.11\lib\net40-client\MrAdvice.dll</HintPath>
-    </Reference>
-    <Reference Include="Newtonsoft.Json, Version=12.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\Newtonsoft.Json.12.0.3\lib\net45\Newtonsoft.Json.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.AOP.Core, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.AOP.Core.2.0.9\lib\net461\SD.AOP.Core.dll</HintPath>
     </Reference>
     <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
@@ -57,12 +50,6 @@
     <Reference Include="SD.Infrastructure, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.3.0.1\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Infrastructure.AOP, Version=2.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.AOP.2.0.3\lib\net461\SD.Infrastructure.AOP.dll</HintPath>
-    </Reference>
-    <Reference Include="SD.Toolkits.Json, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.Json.1.0.1\lib\net45\SD.Toolkits.Json.dll</HintPath>
-    </Reference>
     <Reference Include="SD.Toolkits.Mapper, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Toolkits.Mapper.1.0.0\lib\net461\SD.Toolkits.Mapper.dll</HintPath>
     </Reference>
@@ -70,9 +57,7 @@
       <HintPath>..\..\packages\SD.Toolkits.Recursion.2.0.3\lib\net40\SD.Toolkits.Recursion.dll</HintPath>
     </Reference>
     <Reference Include="System" />
-    <Reference Include="System.Configuration" />
     <Reference Include="System.Core" />
-    <Reference Include="System.Data" />
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Presentors\AuthorityPresenter.cs" />
