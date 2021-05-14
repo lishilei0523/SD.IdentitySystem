@@ -27,7 +27,7 @@
             <StackPanel Grid.Row="1" Grid.IsSharedSizeScope="True" Margin="40,30">
                 <kino:FormItem Label="用户名：" FontSize="14" Padding="5">
                     <TextBox Height="40" VerticalContentAlignment="Center" Text="{Binding LoginId}"
-                             Style="{StaticResource TextBoxRevealStyle}"/>
+                             Style="{StaticResource TextBoxRevealStyle}" />
                 </kino:FormItem>
                 <kino:FormItem Label="密码：" FontSize="14" Padding="5">
                     <PasswordBox Height="40" VerticalContentAlignment="Center" 

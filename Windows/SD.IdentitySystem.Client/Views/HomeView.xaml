@@ -106,33 +106,35 @@
         </ControlTemplate>
         <!--HamburgerMenu样式-->
         <Style x:Key="HamburgerMenuStyle" TargetType="{x:Type mah:HamburgerMenu}">
-            <Setter Property="CanResizeOpenPane" Value="False"/>
-            <Setter Property="FocusVisualStyle" Value="{x:Null}"/>
-            <Setter Property="Focusable" Value="False"/>
-            <Setter Property="HamburgerButtonName" Value="HamburgerButton"/>
-            <Setter Property="HamburgerButtonStyle" Value="{DynamicResource MahApps.Styles.Button.Hamburger}"/>
+            <Setter Property="CanResizeOpenPane" Value="False" />
+            <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+            <Setter Property="Focusable" Value="False" />
+            <Setter Property="HamburgerButtonName" Value="HamburgerButton" />
+            <Setter Property="HamburgerButtonStyle" Value="{DynamicResource MahApps.Styles.Button.Hamburger}" />
             <Setter Property="HamburgerButtonTemplate">
                 <Setter.Value>
                     <DataTemplate>
-                        <ContentControl Content="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" Height="22" Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}" Width="22"/>
+                        <ContentControl Width="22" Height="22" 
+                                        Content="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" 
+                                        Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}" />
                     </DataTemplate>
                 </Setter.Value>
             </Setter>
-            <Setter Property="HeaderItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuHeader}"/>
-            <Setter Property="HorizontalContentAlignment" Value="Stretch"/>
-            <Setter Property="ItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}"/>
-            <Setter Property="KeyboardNavigation.ControlTabNavigation" Value="Local"/>
-            <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Local"/>
-            <Setter Property="KeyboardNavigation.TabNavigation" Value="Local"/>
-            <Setter Property="MaximumOpenPaneLength" Value="500"/>
-            <Setter Property="MinimumOpenPaneLength" Value="100"/>
-            <Setter Property="OptionsItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}"/>
-            <Setter Property="PaneBackground" Value="{DynamicResource MahApps.HamburgerMenu.Pane.Background}"/>
-            <Setter Property="PaneForeground" Value="{DynamicResource MahApps.HamburgerMenu.Pane.Foreground}"/>
-            <Setter Property="ResizeThumbStyle" Value="{DynamicResource MahApps.Styles.MetroThumb.SplitView.Resize}"/>
-            <Setter Property="SeparatorItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuSeparator}"/>
-            <Setter Property="VerticalContentAlignment" Value="Stretch"/>
-            <Setter Property="Template" Value="{StaticResource HamburgerMenuContentTemplate}"/>
+            <Setter Property="HeaderItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuHeader}" />
+            <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+            <Setter Property="ItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}" />
+            <Setter Property="KeyboardNavigation.ControlTabNavigation" Value="Local" />
+            <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Local" />
+            <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
+            <Setter Property="MaximumOpenPaneLength" Value="500" />
+            <Setter Property="MinimumOpenPaneLength" Value="100" />
+            <Setter Property="OptionsItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}" />
+            <Setter Property="PaneBackground" Value="{DynamicResource MahApps.HamburgerMenu.Pane.Background}" />
+            <Setter Property="PaneForeground" Value="{DynamicResource MahApps.HamburgerMenu.Pane.Foreground}" />
+            <Setter Property="ResizeThumbStyle" Value="{DynamicResource MahApps.Styles.MetroThumb.SplitView.Resize}" />
+            <Setter Property="SeparatorItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuSeparator}" />
+            <Setter Property="VerticalContentAlignment" Value="Stretch" />
+            <Setter Property="Template" Value="{StaticResource HamburgerMenuContentTemplate}" />
         </Style>
         <!--TreeView样式-->
         <Style BasedOn="{StaticResource MahApps.Styles.TreeView.Virtualized}" TargetType="{x:Type TreeView}">

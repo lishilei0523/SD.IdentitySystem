@@ -62,7 +62,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model.AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
-                                           Style="{StaticResource DateTimeText}"/>
+                                           Style="{StaticResource DateTimeText}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>

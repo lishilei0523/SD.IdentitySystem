@@ -166,7 +166,7 @@
                                     <Border Width="14" Height="14" Background="Transparent">
                                         <Path x:Name="ExpandPath" RenderTransformOrigin="0.5,0.5" Stretch="Uniform" Data="{StaticResource Arrow}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TreeViewItem}}">
                                             <Path.RenderTransform>
-                                                <RotateTransform Angle="-90"/>
+                                                <RotateTransform Angle="-90" />
                                             </Path.RenderTransform>
                                         </Path>
                                     </Border>
@@ -174,7 +174,7 @@
                                         <Trigger Property="IsChecked" Value="True">
                                             <Setter Property="RenderTransform" TargetName="ExpandPath">
                                                 <Setter.Value>
-                                                    <RotateTransform Angle="0"/>
+                                                    <RotateTransform Angle="0" />
                                                 </Setter.Value>
                                             </Setter>
                                         </Trigger>
@@ -249,7 +249,7 @@
                         </Setter>
                         <Style.Triggers >
                             <Trigger Property="IsSelected" Value="True">
-                                <Setter Property="Foreground" Value="Black"/>
+                                <Setter Property="Foreground" Value="Black" />
                             </Trigger>
                         </Style.Triggers>
                     </Style>
