@@ -6,8 +6,10 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         mc:Ignorable="d"
         Title="统一身份认证系统" Width="1440" Height="900" WindowStartupLocation="CenterScreen" FontSize="14"
+        fluentWpf:AcrylicWindow.Enabled="True"
         cal:Message.Attach="[Event Loaded] = [Action InitMenus()]">
     <!--Resources-->
     <Window.Resources>
@@ -183,7 +185,7 @@
                         <TextBlock Text="{Binding LoginInfo.RealName}" FontSize="13" />
                     </WrapPanel>
                     <WrapPanel Margin="0,10,55,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                        <Button Background="Transparent" BorderBrush="Transparent" Padding="3"
+                        <Button Background="Transparent" BorderBrush="Transparent" Padding="3" 
                                 cal:Message.Attach="Logout()">
                             <WrapPanel>
                                 <iconPacks:PackIconMaterialDesign Kind="ExitToApp" />

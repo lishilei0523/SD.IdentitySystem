@@ -5,11 +5,13 @@
                       xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
                       xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
                       xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
+                      xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
                       WindowStartupLocation="CenterScreen"
                       Title="SD.Framework"
                       Height="350" Width="500"
                       WindowStyle="ThreeDBorderWindow"
-                      ResizeMode="NoResize">
+                      ResizeMode="NoResize"
+                      fluentWpf:AcrylicWindow.Enabled="True">
 
     <busyIndicator:BusyMask IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
         <Grid Background="{DynamicResource CheckBoxBackgroundBrush}">
@@ -24,11 +26,13 @@
             <!--表单-->
             <StackPanel Grid.Row="1" Grid.IsSharedSizeScope="True" Margin="40,30">
                 <kino:FormItem Label="用户名：" FontSize="14" Padding="5">
-                    <TextBox Height="40" VerticalContentAlignment="Center" Text="{Binding LoginId}" />
+                    <TextBox Height="40" VerticalContentAlignment="Center" Text="{Binding LoginId}"
+                             Style="{StaticResource TextBoxRevealStyle}"/>
                 </kino:FormItem>
                 <kino:FormItem Label="密码：" FontSize="14" Padding="5">
                     <PasswordBox Height="40" VerticalContentAlignment="Center" 
-                                 extensions:PasswordExtension.Password="{Binding Password, Mode=TwoWay}">
+                                 extensions:PasswordExtension.Password="{Binding Password, Mode=TwoWay}"
+                                 Style="{StaticResource PasswordBoxRevealStyle}">
                         <PasswordBox.InputBindings>
                             <KeyBinding Key="Enter" Command="{Binding LoginCommand}" />
                         </PasswordBox.InputBindings>
@@ -38,7 +42,7 @@
             <!--登录-->
             <WrapPanel Grid.Row="2" Style="{StaticResource FunctionPanel}">
                 <Button Content="登录" cal:Message.Attach="Login()" Style="{StaticResource FocusButton}" />
-                <Button Content="取消" cal:Message.Attach="TryClose('null')" />
+                <Button Content="取消" cal:Message.Attach="TryClose('null')" Style="{StaticResource DefaultButton}" />
             </WrapPanel>
         </Grid>
     </busyIndicator:BusyMask>

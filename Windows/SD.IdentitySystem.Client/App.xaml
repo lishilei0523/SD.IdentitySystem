@@ -106,8 +106,18 @@
                         <Setter Property="Width" Value="85" />
                         <Setter Property="Height" Value="28" />
                         <Setter Property="Margin" Value="10,0,0,0" />
-                        <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0.4" />
-                        <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="1" />
+                        <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0" />
+                        <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="0.5" />
+                    </Style>
+                    <!--Button默认样式-->
+                    <Style x:Key="DefaultButton" BasedOn="{StaticResource ButtonRevealStyle}" TargetType="{x:Type Button}">
+                        <Setter Property="FontSize" Value="14" />
+                        <Setter Property="FontWeight" Value="Normal" />
+                        <Setter Property="Width" Value="85" />
+                        <Setter Property="Height" Value="28" />
+                        <Setter Property="Margin" Value="10,0,0,0" />
+                        <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0" />
+                        <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="0.5" />
                     </Style>
                     <!--Button焦点样式-->
                     <Style BasedOn="{StaticResource ButtonRevealStyle}" x:Key="FocusButton" TargetType="{x:Type Button}">
