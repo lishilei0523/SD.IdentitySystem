@@ -6,15 +6,13 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-        xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         mc:Ignorable="d"
         Title="Powered by SD.Framework" 
         Width="1440" Height="900" 
         FontSize="14"
         WindowStyle="ThreeDBorderWindow"
-        WindowStartupLocation="CenterScreen"
-        fluentWpf:AcrylicWindow.Enabled="True">
-    <!--Resources-->
+        WindowStartupLocation="CenterScreen">
+
     <Window.Resources>
         <!--HamburgerMenu控件模板-->
         <ControlTemplate x:Key="HamburgerMenuContentTemplate" TargetType="{x:Type mah:HamburgerMenu}">
@@ -41,9 +39,9 @@
                             </Grid.RowDefinitions>
                             <Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,0,0,1">
                                 <DockPanel x:Name="PaneHeader"
-                                           Background="WhiteSmoke"
-                                           Margin="{TemplateBinding PaneHeaderMargin}"
-                                           LastChildFill="True">
+                                               Background="WhiteSmoke"
+                                               Margin="{TemplateBinding PaneHeaderMargin}"
+                                               LastChildFill="True">
                                     <Button x:Name="HamburgerButton"
                                             Width="{TemplateBinding HamburgerWidth}"
                                             Height="{TemplateBinding HamburgerHeight}"
@@ -163,7 +161,7 @@
             <Setter Property="Padding" Value="10,3" />
         </Style>
     </Window.Resources>
-    <!--Content-->
+
     <Grid ShowGridLines="False">
         <Grid.RowDefinitions>
             <!--Header-->
@@ -223,10 +221,10 @@
                 <TreeView ItemsSource="{Binding Menus}">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}">
-                            <WrapPanel>
-                                <iconPacks:PackIconMaterialDesign Kind="{Binding Icon}" VerticalAlignment="Center" />
-                                <TextBlock Text="{Binding Name}" Margin="3,0,0,0"
-                                           cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]" />
+                            <WrapPanel cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]"
+                                       Background="Transparent">
+                                <iconPacks:PackIconMaterialDesign Kind="{Binding Icon}" />
+                                <TextBlock Text="{Binding Name}" Margin="3,0,0,0" />
                             </WrapPanel>
                         </HierarchicalDataTemplate>
                     </TreeView.ItemTemplate>
@@ -253,7 +251,7 @@
                                                 <Setter Property="VerticalAlignment" Value="Center" />
                                             </Style>
                                         </Button.Style>
-                                        <TextBlock Text="×" FontSize="16" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                                        <TextBlock Text="×" FontSize="16" HorizontalAlignment="Center" />
                                     </Button>
                                 </WrapPanel>
                             </DataTemplate>

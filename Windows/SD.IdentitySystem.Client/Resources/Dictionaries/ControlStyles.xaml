@@ -1,7 +1,8 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-                    xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF">
+                    xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
     <!--TextBlock默认样式-->
     <Style TargetType="{x:Type TextBlock}">
@@ -42,21 +43,6 @@
     <Style TargetType="{x:Type PasswordBox}">
         <Setter Property="Width" Value="210" />
         <Setter Property="Height" Value="28" />
-        <Setter Property="VerticalContentAlignment" Value="Center" />
-    </Style>
-    <!--Metro.DateTimePicker默认样式-->
-    <Style TargetType="{x:Type mah:DateTimePicker}">
-        <Setter Property="Width" Value="210" />
-        <Setter Property="Height" Value="28" />
-        <Setter Property="FirstDayOfWeek" Value="Sunday" />
-        <Setter Property="Orientation" Value="Horizontal" />
-        <Setter Property="PickerVisibility" Value="All" />
-        <Setter Property="HandVisibility" Value="All" />
-        <Setter Property="SelectedDateFormat" Value="Short" />
-        <Setter Property="SelectedTimeFormat" Value="Long" />
-        <Setter Property="Culture" Value="zh-cn" />
-        <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
-        <Setter Property="mah:TextBoxHelper.Watermark" Value="选择时间" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     <!--CheckBox默认样式-->
@@ -105,5 +91,25 @@
         <Setter Property="Height" Value="28" />
         <Setter Property="Margin" Value="3,0,0,0" />
         <Setter Property="Padding" Value="4" />
+    </Style>
+    <!--Metro.Icon默认样式-->
+    <Style TargetType="{x:Type iconPacks:PackIconMaterialDesign}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <!--Metro.DateTimePicker默认样式-->
+    <Style TargetType="{x:Type mah:DateTimePicker}">
+        <Setter Property="Width" Value="210" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="FirstDayOfWeek" Value="Sunday" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="PickerVisibility" Value="All" />
+        <Setter Property="HandVisibility" Value="All" />
+        <Setter Property="SelectedDateFormat" Value="Short" />
+        <Setter Property="SelectedTimeFormat" Value="Long" />
+        <Setter Property="Culture" Value="zh-cn" />
+        <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
+        <Setter Property="mah:TextBoxHelper.Watermark" Value="选择时间" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
 </ResourceDictionary>
