@@ -237,12 +237,12 @@ namespace SD.IdentitySystem.Repository.Base
         private void InitWpfMenus(string systemNo)
         {
             Menu root = new Menu(systemNo, ApplicationType.Windows, "身份认证系统", 1, null, null, "Home", null);
-            Menu systemManagement = new Menu(systemNo, ApplicationType.Windows, "信息系统管理", 2, "SD.IdentitySystem.Client.ViewModels.InfoSystemViewModel", null, "LabelOutline", root);
-            Menu loginRecordManagement = new Menu(systemNo, ApplicationType.Windows, "登录记录", 3, "SD.IdentitySystem.Client.ViewModels.LoginRecordViewModel", null, "LabelOutline", root);
-            Menu userManagement = new Menu(systemNo, ApplicationType.Windows, "用户管理", 4, "SD.IdentitySystem.Client.ViewModels.UserViewModel", null, "LabelOutline", root);
-            Menu roleManagement = new Menu(systemNo, ApplicationType.Windows, "角色管理", 5, "SD.IdentitySystem.Client.ViewModels.RoleViewModel", null, "LabelOutline", root);
-            Menu menuManagement = new Menu(systemNo, ApplicationType.Windows, "菜单管理", 6, "SD.IdentitySystem.Client.ViewModels.MenuViewModel", null, "LabelOutline", root);
-            Menu authorityManagement = new Menu(systemNo, ApplicationType.Windows, "权限管理", 7, "SD.IdentitySystem.Client.ViewModels.AuthorityViewModel", null, "LabelOutline", root);
+            Menu systemManagement = new Menu(systemNo, ApplicationType.Windows, "信息系统管理", 2, "SD.IdentitySystem.Client.ViewModels.InfoSystem.IndexViewModel", null, "LabelOutline", root);
+            Menu loginRecordManagement = new Menu(systemNo, ApplicationType.Windows, "登录记录", 3, "SD.IdentitySystem.Client.ViewModels.LoginRecord.IndexViewModel", null, "LabelOutline", root);
+            Menu userManagement = new Menu(systemNo, ApplicationType.Windows, "用户管理", 4, "SD.IdentitySystem.Client.ViewModels.User.IndexViewModel", null, "LabelOutline", root);
+            Menu roleManagement = new Menu(systemNo, ApplicationType.Windows, "角色管理", 5, "SD.IdentitySystem.Client.ViewModels.Role.IndexViewModel", null, "LabelOutline", root);
+            Menu menuManagement = new Menu(systemNo, ApplicationType.Windows, "菜单管理", 6, "SD.IdentitySystem.Client.ViewModels.Menu.IndexViewModel", null, "LabelOutline", root);
+            Menu authorityManagement = new Menu(systemNo, ApplicationType.Windows, "权限管理", 7, "SD.IdentitySystem.Client.ViewModels.Authority.IndexViewModel", null, "LabelOutline", root);
 
             this._menus.Add(root);
             this._menus.Add(systemManagement);
