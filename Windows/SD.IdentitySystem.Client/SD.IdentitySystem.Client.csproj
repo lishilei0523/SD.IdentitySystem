@@ -161,30 +161,30 @@
     </ApplicationDefinition>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\AuthorityViewModel.cs" />
-    <Compile Include="ViewModels\CreateInfoSystemViewModel.cs" />
+    <Compile Include="ViewModels\InfoSystem\CreateInfoSystemViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
-    <Compile Include="ViewModels\InfoSystemViewModel.cs" />
-    <Compile Include="ViewModels\InitInfoSystemViewModel.cs" />
+    <Compile Include="ViewModels\InfoSystem\InfoSystemViewModel.cs" />
+    <Compile Include="ViewModels\InfoSystem\InitInfoSystemViewModel.cs" />
     <Compile Include="ViewModels\LoginRecordViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
-    <Compile Include="ViewModels\UpdateInfoSystemViewModel.cs" />
+    <Compile Include="ViewModels\InfoSystem\UpdateInfoSystemViewModel.cs" />
     <Compile Include="ViewModels\UpdatePasswordViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\AuthorityView.xaml.cs">
       <DependentUpon>AuthorityView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\CreateInfoSystemView.xaml.cs">
+    <Compile Include="Views\InfoSystem\CreateInfoSystemView.xaml.cs">
       <DependentUpon>CreateInfoSystemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\HomeView.xaml.cs">
       <DependentUpon>HomeView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InfoSystemView.xaml.cs">
+    <Compile Include="Views\InfoSystem\InfoSystemView.xaml.cs">
       <DependentUpon>InfoSystemView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\InitInfoSystemView.xaml.cs">
+    <Compile Include="Views\InfoSystem\InitInfoSystemView.xaml.cs">
       <DependentUpon>InitInfoSystemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginRecordView.xaml.cs">
@@ -203,7 +203,7 @@
     <Compile Include="Views\RoleView.xaml.cs">
       <DependentUpon>RoleView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UpdateInfoSystemView.xaml.cs">
+    <Compile Include="Views\InfoSystem\UpdateInfoSystemView.xaml.cs">
       <DependentUpon>UpdateInfoSystemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdatePasswordView.xaml.cs">
@@ -240,7 +240,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\CreateInfoSystemView.xaml">
+    <Page Include="Views\InfoSystem\CreateInfoSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -248,11 +248,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\InfoSystemView.xaml">
+    <Page Include="Views\InfoSystem\InfoSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\InitInfoSystemView.xaml">
+    <Page Include="Views\InfoSystem\InitInfoSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -272,7 +272,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UpdateInfoSystemView.xaml">
+    <Page Include="Views\InfoSystem\UpdateInfoSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
