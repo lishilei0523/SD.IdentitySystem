@@ -7,7 +7,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="Powered by SD.Framework" 
+        Title="Powered by SD.Framework"
         Width="1440" Height="900" 
         FontSize="14"
         WindowStyle="ThreeDBorderWindow"
@@ -270,7 +270,7 @@
         </mah:HamburgerMenu>
         <!--Footer-->
         <Border Grid.Row="2" BorderBrush="#CCCCCC" BorderThickness="0,1,0,0">
-            <Grid>
+            <Grid Background="WhiteSmoke">
                 <WrapPanel Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
                     <TextBlock Text="当前登录用户：" FontSize="12" />
                     <TextBlock Text="{Binding LoginInfo.LoginId}" FontSize="12" />

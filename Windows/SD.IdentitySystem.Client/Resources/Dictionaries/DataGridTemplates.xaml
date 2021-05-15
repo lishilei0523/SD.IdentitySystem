@@ -21,7 +21,7 @@
         <Setter Property="CanUserAddRows" Value="False" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="GridLinesVisibility" Value="All" />
-        <Setter Property="Background" Value="#F4F4F4" />
+        <Setter Property="Background" Value="WhiteSmoke" />
         <Setter Property="AlternatingRowBackground" Value="WhiteSmoke" />
         <Setter Property="HorizontalGridLinesBrush" Value="LightGray" />
         <Setter Property="VerticalGridLinesBrush" Value="LightGray" />
