@@ -1,13 +1,13 @@
-﻿using System.Windows;
+﻿using System.Windows.Controls;
 
 namespace SD.IdentitySystem.Client.Views.InfoSystem
 {
     /// <summary>
-    /// 初始化信息系统视图
+    /// 信息系统视图
     /// </summary>
-    public partial class InitInfoSystemView : Window
+    public partial class IndexView : UserControl
     {
-        public InitInfoSystemView()
+        public IndexView()
         {
             this.InitializeComponent();
         }

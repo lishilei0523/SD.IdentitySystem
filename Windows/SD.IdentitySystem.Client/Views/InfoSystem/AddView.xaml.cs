@@ -1,13 +1,13 @@
-﻿using System.Windows.Controls;
+﻿using System.Windows;
 
 namespace SD.IdentitySystem.Client.Views.InfoSystem
 {
     /// <summary>
-    /// 信息系统视图
+    /// 创建信息系统视图
     /// </summary>
-    public partial class InfoSystemView : UserControl
+    public partial class AddView : Window
     {
-        public InfoSystemView()
+        public AddView()
         {
             this.InitializeComponent();
         }

@@ -1,4 +1,4 @@
-﻿<Window x:Class="SD.IdentitySystem.Client.Views.InfoSystem.UpdateInfoSystemView"
+﻿<Window x:Class="SD.IdentitySystem.Client.Views.InfoSystem.InitView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -10,7 +10,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="初始化信息系统" 
-        Width="450" Height="300" ResizeMode="NoResize" 
+        Width="450" Height="330" ResizeMode="NoResize" 
         FontSize="14"
         WindowStyle="ThreeDBorderWindow"
         WindowStartupLocation="CenterOwner"
@@ -21,7 +21,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <!--表单区-->
-                <RowDefinition Height="200" />
+                <RowDefinition Height="230" />
                 <!--占位区-->
                 <RowDefinition Height="*" />
                 <!--控制区-->
@@ -29,11 +29,14 @@
             </Grid.RowDefinitions>
             <!--表单区-->
             <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="40,30">
-                <kino:FormItem Label="信息系统编号：">
-                    <TextBox Text="{Binding InfoSystemNo}" Style="{StaticResource TextBoxRevealStyle}" />
+                <kino:FormItem Label="主机名：">
+                    <TextBox Text="{Binding Host}" Style="{StaticResource TextBoxRevealStyle}" />
                 </kino:FormItem>
-                <kino:FormItem Label="信息系统名称：">
-                    <TextBox Text="{Binding InfoSystemName}" Style="{StaticResource TextBoxRevealStyle}" />
+                <kino:FormItem Label="端口：">
+                    <TextBox Text="{Binding Port}" Style="{StaticResource TextBoxRevealStyle}" />
+                </kino:FormItem>
+                <kino:FormItem Label="首页：">
+                    <TextBox Text="{Binding Index}" Style="{StaticResource TextBoxRevealStyle}" />
                 </kino:FormItem>
             </StackPanel>
             <!--占位区-->

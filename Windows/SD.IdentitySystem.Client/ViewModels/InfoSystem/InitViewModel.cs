@@ -11,7 +11,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
     /// <summary>
     /// 初始化信息系统视图模型
     /// </summary>
-    public class InitInfoSystemViewModel : Screen
+    public class InitViewModel : Screen
     {
         #region # 字段及构造器
 
@@ -23,7 +23,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public InitInfoSystemViewModel(IAuthorizationContract authorizationContract)
+        public InitViewModel(IAuthorizationContract authorizationContract)
         {
             this._authorizationContract = authorizationContract;
         }

@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
     /// <summary>
     /// 信息系统视图模型
     /// </summary>
-    public class InfoSystemViewModel : Screen, IPaginatable
+    public class IndexViewModel : Screen, IPaginatable
     {
         #region # 字段及构造器
 
@@ -35,7 +35,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public InfoSystemViewModel(IAuthorizationContract authorizationContract, IWindowManager windowManager)
+        public IndexViewModel(IAuthorizationContract authorizationContract, IWindowManager windowManager)
         {
             this._authorizationContract = authorizationContract;
             this._windowManager = windowManager;
@@ -155,7 +155,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// </summary>
         public async void CreateInfoSystem()
         {
-            CreateInfoSystemViewModel viewModel = ResolveMediator.Resolve<CreateInfoSystemViewModel>();
+            AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
@@ -171,7 +171,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// <param name="infoSystem">信息系统</param>
         public async void UpdateInfoSystem(Wrap<InfoSystemInfo> infoSystem)
         {
-            UpdateInfoSystemViewModel viewModel = ResolveMediator.Resolve<UpdateInfoSystemViewModel>();
+            UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
             viewModel.Load(infoSystem.Model.Number);
 
             bool? result = this._windowManager.ShowDialog(viewModel);
@@ -189,7 +189,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// <param name="infoSystem">信息系统</param>
         public async void InitInfoSystem(Wrap<InfoSystemInfo> infoSystem)
         {
-            InitInfoSystemViewModel viewModel = ResolveMediator.Resolve<InitInfoSystemViewModel>();
+            InitViewModel viewModel = ResolveMediator.Resolve<InitViewModel>();
             viewModel.Load(infoSystem.Model.Number);
 
             bool? result = this._windowManager.ShowDialog(viewModel);
