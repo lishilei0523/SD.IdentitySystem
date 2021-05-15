@@ -13,12 +13,12 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace SD.IdentitySystem.Client.ViewModels
+namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
 {
     /// <summary>
     /// 登录记录视图模型
     /// </summary>
-    public class LoginRecordViewModel : Screen, IPaginatable
+    public class IndexViewModel : Screen, IPaginatable
     {
         #region # 字段及构造器
 
@@ -30,7 +30,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public LoginRecordViewModel(IUserContract userContract)
+        public IndexViewModel(IUserContract userContract)
         {
             this._userContract = userContract;
 

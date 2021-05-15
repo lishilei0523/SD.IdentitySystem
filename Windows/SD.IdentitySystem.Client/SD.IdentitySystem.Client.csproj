@@ -165,7 +165,7 @@
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\IndexViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\InitViewModel.cs" />
-    <Compile Include="ViewModels\LoginRecordViewModel.cs" />
+    <Compile Include="ViewModels\LoginRecord\IndexViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
@@ -187,8 +187,8 @@
     <Compile Include="Views\InfoSystem\InitView.xaml.cs">
       <DependentUpon>InitView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginRecordView.xaml.cs">
-      <DependentUpon>LoginRecordView.xaml</DependentUpon>
+    <Compile Include="Views\LoginRecord\IndexView.xaml.cs">
+      <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
@@ -256,7 +256,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LoginRecordView.xaml">
+    <Page Include="Views\LoginRecord\IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
