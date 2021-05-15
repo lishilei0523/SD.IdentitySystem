@@ -1,5 +1,5 @@
 ﻿using Caliburn.Micro;
-using SD.IdentitySystem.Presentation.Models;
+using SD.IdentitySystem.Client.ViewModels.User;
 using SD.IdentitySystem.Presentation.Presentors;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
@@ -12,13 +12,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using Models = SD.IdentitySystem.Presentation.Models;
 
-namespace SD.IdentitySystem.Client.ViewModels
+namespace SD.IdentitySystem.Client.ViewModels.Home
 {
     /// <summary>
     /// 首页视图模型
     /// </summary>
-    public class HomeViewModel : Conductor<IScreen>.Collection.OneActive
+    public class IndexViewModel : Conductor<IScreen>.Collection.OneActive
     {
         #region # 字段及构造器
 
@@ -35,7 +36,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public HomeViewModel(MenuPresenter menuPresenter, IWindowManager windowManager)
+        public IndexViewModel(MenuPresenter menuPresenter, IWindowManager windowManager)
         {
             this._menuPresenter = menuPresenter;
             this._windowManager = windowManager;
@@ -61,7 +62,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// 菜单列表
         /// </summary>
         [DependencyProperty]
-        public IEnumerable<Menu> Menus { get; private set; }
+        public IEnumerable<Models.Menu> Menus { get; private set; }
         #endregion
 
         #region 活动文档 —— IScreen ActiveDocument
@@ -114,7 +115,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public async Task LoadMenus()
         {
-            IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows));
+            IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows));
             this.Menus = menus;
         }
         #endregion
@@ -124,7 +125,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// 导航至菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void Navigate(Menu menu)
+        public void Navigate(Models.Menu menu)
         {
             if (menu.IsLeaf && !string.IsNullOrWhiteSpace(menu.Url))
             {

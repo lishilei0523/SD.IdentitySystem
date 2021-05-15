@@ -1,4 +1,4 @@
-﻿namespace SD.IdentitySystem.Client.Views
+﻿namespace SD.IdentitySystem.Client.Views.Home
 {
     /// <summary>
     /// 登录视图

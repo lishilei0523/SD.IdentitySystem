@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace SD.IdentitySystem.Client.Views
+namespace SD.IdentitySystem.Client.Views.User
 {
     /// <summary>
     /// 修改密码视图

@@ -2,7 +2,6 @@
 using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presentors;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Aspects;
@@ -14,13 +13,14 @@ using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using Models = SD.IdentitySystem.Presentation.Models;
 
-namespace SD.IdentitySystem.Client.ViewModels
+namespace SD.IdentitySystem.Client.ViewModels.Menu
 {
     /// <summary>
-    /// 菜单视图模型
+    /// 菜单首页视图模型
     /// </summary>
-    public class MenuViewModel : Screen
+    public class IndexViewModel : Screen
     {
         #region # 字段及构造器
 
@@ -37,7 +37,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public MenuViewModel(MenuPresenter menuPresenter, IAuthorizationContract authorizationContract)
+        public IndexViewModel(MenuPresenter menuPresenter, IAuthorizationContract authorizationContract)
         {
             this._menuPresenter = menuPresenter;
             this._authorizationContract = authorizationContract;
@@ -68,7 +68,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// 菜单列表
         /// </summary>
         [DependencyProperty]
-        public ObservableCollection<Menu> Menus { get; set; }
+        public ObservableCollection<Models.Menu> Menus { get; set; }
         #endregion
 
         #region 信息系统列表 —— ObservableCollection<InfoSystemInfo> InfoSystems
@@ -114,10 +114,10 @@ namespace SD.IdentitySystem.Client.ViewModels
             ApplicationType? applicationType = this.SelectedApplicationType;
 
             LoadingIndicator.Suspend();
-            IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
+            IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
             LoadingIndicator.Dispose();
 
-            this.Menus = new ObservableCollection<Menu>(menus);
+            this.Menus = new ObservableCollection<Models.Menu>(menus);
         }
         #endregion
 
@@ -126,7 +126,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// 关联权限
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void RelateAuthorities(Menu menu)
+        public void RelateAuthorities(Models.Menu menu)
         {
             Trace.WriteLine(menu);
         }
@@ -137,7 +137,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// 修改菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void Update(Menu menu)
+        public void Update(Models.Menu menu)
         {
             Trace.WriteLine(menu);
         }
@@ -148,7 +148,7 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// 删除菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public async void Remove(Menu menu)
+        public async void Remove(Models.Menu menu)
         {
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
@@ -167,15 +167,15 @@ namespace SD.IdentitySystem.Client.ViewModels
         /// </summary>
         public async void Removes()
         {
-            IList<Menu> checkedMenus = new List<Menu>();
-            foreach (Menu menu in this.Menus)
+            IList<Models.Menu> checkedMenus = new List<Models.Menu>();
+            foreach (Models.Menu menu in this.Menus)
             {
                 if (menu.IsChecked == true)
                 {
                     checkedMenus.Add(menu);
                 }
 
-                foreach (Menu subNode in menu.GetDeepSubNodes())
+                foreach (Models.Menu subNode in menu.GetDeepSubNodes())
                 {
                     if (subNode.IsChecked == true)
                     {

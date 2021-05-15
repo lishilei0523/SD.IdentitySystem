@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 {
     /// <summary>
-    /// 信息系统视图模型
+    /// 信息系统首页视图模型
     /// </summary>
     public class IndexViewModel : Screen, IPaginatable
     {

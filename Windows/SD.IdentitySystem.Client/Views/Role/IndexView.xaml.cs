@@ -1,9 +1,9 @@
 ﻿using System.Windows.Controls;
 
-namespace SD.IdentitySystem.Client.Views.LoginRecord
+namespace SD.IdentitySystem.Client.Views.Role
 {
     /// <summary>
-    /// 登录记录首页视图
+    /// 角色首页视图
     /// </summary>
     public partial class IndexView : UserControl
     {

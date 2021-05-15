@@ -10,7 +10,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
 
-namespace SD.IdentitySystem.Client.ViewModels
+namespace SD.IdentitySystem.Client.ViewModels.Home
 {
     /// <summary>
     /// 登录视图模型
@@ -119,7 +119,7 @@ namespace SD.IdentitySystem.Client.ViewModels
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
 
             //跳转到主窗体
-            HomeViewModel homeViewModel = ResolveMediator.Resolve<HomeViewModel>();
+            IndexViewModel homeViewModel = ResolveMediator.Resolve<IndexViewModel>();
             this._windowManager.ShowWindow(homeViewModel);
 
             //关闭当前窗口

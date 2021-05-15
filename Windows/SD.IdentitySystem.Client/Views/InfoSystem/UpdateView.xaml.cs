@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.Client.Views.InfoSystem
 {
     /// <summary>
-    /// 修改信息系统视图模型
+    /// 信息系统修改视图
     /// </summary>
     public partial class UpdateView : Window
     {

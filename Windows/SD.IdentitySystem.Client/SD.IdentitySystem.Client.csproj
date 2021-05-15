@@ -160,26 +160,26 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Startup.cs" />
-    <Compile Include="ViewModels\AuthorityViewModel.cs" />
+    <Compile Include="ViewModels\Authority\IndexViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\AddViewModel.cs" />
-    <Compile Include="ViewModels\HomeViewModel.cs" />
+    <Compile Include="ViewModels\Home\IndexViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\IndexViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\InitViewModel.cs" />
     <Compile Include="ViewModels\LoginRecord\IndexViewModel.cs" />
-    <Compile Include="ViewModels\LoginViewModel.cs" />
-    <Compile Include="ViewModels\MenuViewModel.cs" />
-    <Compile Include="ViewModels\RoleViewModel.cs" />
+    <Compile Include="ViewModels\Home\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Menu\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Role\IndexViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\UpdateViewModel.cs" />
-    <Compile Include="ViewModels\UpdatePasswordViewModel.cs" />
-    <Compile Include="ViewModels\UserViewModel.cs" />
-    <Compile Include="Views\AuthorityView.xaml.cs">
-      <DependentUpon>AuthorityView.xaml</DependentUpon>
+    <Compile Include="ViewModels\User\UpdatePasswordViewModel.cs" />
+    <Compile Include="ViewModels\User\IndexViewModel.cs" />
+    <Compile Include="Views\Authority\IndexView.xaml.cs">
+      <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InfoSystem\AddView.xaml.cs">
       <DependentUpon>AddView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\HomeView.xaml.cs">
-      <DependentUpon>HomeView.xaml</DependentUpon>
+    <Compile Include="Views\Home\IndexView.xaml.cs">
+      <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InfoSystem\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
@@ -190,27 +190,27 @@
     <Compile Include="Views\LoginRecord\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\LoginView.xaml.cs">
+    <Compile Include="Views\Home\LoginView.xaml.cs">
       <DependentUpon>LoginView.xaml</DependentUpon>
     </Compile>
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="Views\MenuView.xaml.cs">
-      <DependentUpon>MenuView.xaml</DependentUpon>
+    <Compile Include="Views\Menu\IndexView.xaml.cs">
+      <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\RoleView.xaml.cs">
-      <DependentUpon>RoleView.xaml</DependentUpon>
+    <Compile Include="Views\Role\IndexView.xaml.cs">
+      <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InfoSystem\UpdateView.xaml.cs">
       <DependentUpon>UpdateView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UpdatePasswordView.xaml.cs">
+    <Compile Include="Views\User\UpdatePasswordView.xaml.cs">
       <DependentUpon>UpdatePasswordView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Views\UserView.xaml.cs">
-      <DependentUpon>UserView.xaml</DependentUpon>
+    <Compile Include="Views\User\IndexView.xaml.cs">
+      <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
     <Page Include="Resources\Dictionaries\ControlStyles.xaml">
       <SubType>Designer</SubType>
@@ -236,7 +236,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\AuthorityView.xaml">
+    <Page Include="Views\Authority\IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -244,7 +244,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\HomeView.xaml">
+    <Page Include="Views\Home\IndexView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -260,15 +260,15 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\LoginView.xaml">
+    <Page Include="Views\Home\LoginView.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Views\MenuView.xaml">
+    <Page Include="Views\Menu\IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\RoleView.xaml">
+    <Page Include="Views\Role\IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -276,11 +276,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UpdatePasswordView.xaml">
+    <Page Include="Views\User\UpdatePasswordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\UserView.xaml">
+    <Page Include="Views\User\IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

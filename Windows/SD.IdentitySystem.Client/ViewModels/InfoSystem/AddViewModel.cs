@@ -11,7 +11,7 @@ using System.Windows;
 namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 {
     /// <summary>
-    /// 创建信息系统视图模型
+    /// 信息系统创建视图模型
     /// </summary>
     public class AddViewModel : Screen
     {

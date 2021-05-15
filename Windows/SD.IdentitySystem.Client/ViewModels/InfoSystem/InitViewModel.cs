@@ -9,7 +9,7 @@ using System.Windows;
 namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 {
     /// <summary>
-    /// 初始化信息系统视图模型
+    /// 信息系统初始化视图模型
     /// </summary>
     public class InitViewModel : Screen
     {

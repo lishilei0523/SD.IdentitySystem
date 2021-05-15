@@ -10,7 +10,7 @@ using System.Windows;
 namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 {
     /// <summary>
-    /// 修改信息系统视图模型
+    /// 信息系统修改视图模型
     /// </summary>
     public class UpdateViewModel : Screen
     {

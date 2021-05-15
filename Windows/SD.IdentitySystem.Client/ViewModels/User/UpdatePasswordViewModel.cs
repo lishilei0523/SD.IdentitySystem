@@ -6,7 +6,7 @@ using SD.Infrastructure.WPF.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SD.IdentitySystem.Client.ViewModels
+namespace SD.IdentitySystem.Client.ViewModels.User
 {
     /// <summary>
     /// 修改密码视图模型

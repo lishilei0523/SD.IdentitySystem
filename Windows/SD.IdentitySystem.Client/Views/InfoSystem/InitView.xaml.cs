@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.Client.Views.InfoSystem
 {
     /// <summary>
-    /// 初始化信息系统视图
+    /// 信息系统初始化视图
     /// </summary>
     public partial class InitView : Window
     {

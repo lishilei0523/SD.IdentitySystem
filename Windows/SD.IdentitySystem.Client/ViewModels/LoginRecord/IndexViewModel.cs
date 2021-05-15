@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
 {
     /// <summary>
-    /// 登录记录视图模型
+    /// 登录记录首页视图模型
     /// </summary>
     public class IndexViewModel : Screen, IPaginatable
     {
