@@ -1,9 +1,7 @@
-﻿using SD.CacheManager;
-using SD.Common;
+﻿using SD.Common;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
-using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
@@ -91,9 +89,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterAdd(infoSystem);
             this._unitOfWork.UnitedCommit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
         }
         #endregion
 
@@ -120,9 +115,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterSave(currentSystem);
             this._unitOfWork.Commit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
         }
         #endregion
 
@@ -141,9 +133,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterSave(currentSystem);
             this._unitOfWork.Commit();
-
-            //清除缓存
-            CacheMediator.Remove(typeof(IInfoSystemRepository).FullName);
         }
         #endregion
 
@@ -155,15 +144,16 @@ namespace SD.IdentitySystem.AppService.Implements
         public void InitInfoSystems(IEnumerable<InfoSystemParam> initParams)
         {
             initParams = initParams?.ToArray() ?? new InfoSystemParam[0];
+            IDictionary<string, InfoSystemParam> paramDictionary = initParams.ToDictionary(x => x.SystemNo, x => x);
 
-            foreach (InfoSystemParam param in initParams)
+            ICollection<InfoSystem> infoSystems = this._unitOfWork.ResolveRange<InfoSystem>(paramDictionary.Keys);
+            foreach (InfoSystem infoSystem in infoSystems)
             {
-                InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(param.SystemNo);
-                currentSystem.Init(param.Host, param.Port, param.Index);
-
-                this._unitOfWork.RegisterSave(currentSystem);
+                InfoSystemParam param = paramDictionary[infoSystem.Number];
+                infoSystem.Init(param.Host, param.Port, param.Index);
             }
 
+            this._unitOfWork.RegisterSaveRange(infoSystems);
             this._unitOfWork.Commit();
         }
         #endregion
