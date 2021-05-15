@@ -164,10 +164,12 @@
     <Compile Include="ViewModels\CreateInfoSystemViewModel.cs" />
     <Compile Include="ViewModels\HomeViewModel.cs" />
     <Compile Include="ViewModels\InfoSystemViewModel.cs" />
+    <Compile Include="ViewModels\InitInfoSystemViewModel.cs" />
     <Compile Include="ViewModels\LoginRecordViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MenuViewModel.cs" />
     <Compile Include="ViewModels\RoleViewModel.cs" />
+    <Compile Include="ViewModels\UpdateInfoSystemViewModel.cs" />
     <Compile Include="ViewModels\UpdatePasswordViewModel.cs" />
     <Compile Include="ViewModels\UserViewModel.cs" />
     <Compile Include="Views\AuthorityView.xaml.cs">
@@ -181,6 +183,9 @@
     </Compile>
     <Compile Include="Views\InfoSystemView.xaml.cs">
       <DependentUpon>InfoSystemView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\InitInfoSystemView.xaml.cs">
+      <DependentUpon>InitInfoSystemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\LoginRecordView.xaml.cs">
       <DependentUpon>LoginRecordView.xaml</DependentUpon>
@@ -197,6 +202,9 @@
     </Compile>
     <Compile Include="Views\RoleView.xaml.cs">
       <DependentUpon>RoleView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\UpdateInfoSystemView.xaml.cs">
+      <DependentUpon>UpdateInfoSystemView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\UpdatePasswordView.xaml.cs">
       <DependentUpon>UpdatePasswordView.xaml</DependentUpon>
@@ -244,6 +252,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\InitInfoSystemView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\LoginRecordView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -257,6 +269,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\RoleView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\UpdateInfoSystemView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

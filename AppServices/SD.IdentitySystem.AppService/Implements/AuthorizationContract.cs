@@ -74,8 +74,18 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="applicationType">应用程序类型</param>
         public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
         {
-            //验证
-            Assert.IsFalse(this._repMediator.UserRep.ExistsNo(adminLoginId), $"登录名：\"{adminLoginId}\"已存在，请重试！");
+            #region # 验证
+
+            if (this._repMediator.InfoSystemRep.ExistsNo(systemNo))
+            {
+                throw new ArgumentOutOfRangeException(nameof(systemNo), $"信息系统编号\"{systemNo}\"已存在！");
+            }
+            if (this._repMediator.UserRep.ExistsNo(adminLoginId))
+            {
+                throw new ArgumentOutOfRangeException(nameof(adminLoginId), $"登录名：\"{adminLoginId}\"已存在！");
+            }
+
+            #endregion
 
             InfoSystem infoSystem = new InfoSystem(systemNo, systemName, adminLoginId, applicationType);
 
@@ -96,7 +106,16 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="systemName">信息系统名称</param>
         public void UpdateInfoSystem(Guid infoSystemId, string systemNo, string systemName)
         {
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
+            #region # 验证
+
+            if (this._repMediator.InfoSystemRep.ExistsNo(infoSystemId, systemNo))
+            {
+                throw new ArgumentOutOfRangeException(nameof(systemNo), $"信息系统编号\"{systemNo}\"已存在！");
+            }
+
+            #endregion
+
+            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(infoSystemId);
             currentSystem.UpdateInfo(systemNo, systemName);
 
             this._unitOfWork.RegisterSave(currentSystem);

@@ -149,25 +149,54 @@ namespace SD.IdentitySystem.Client.ViewModels
         }
         #endregion
 
-        #region 创建信息系统 —— void CreateInfoSystem()
+        #region 创建信息系统 —— async void CreateInfoSystem()
         /// <summary>
         /// 创建信息系统
         /// </summary>
-        public void CreateInfoSystem()
+        public async void CreateInfoSystem()
         {
             CreateInfoSystemViewModel viewModel = ResolveMediator.Resolve<CreateInfoSystemViewModel>();
-            this._windowManager.ShowDialog(viewModel);
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.LoadInfoSystems();
+            }
         }
         #endregion
 
-        #region 初始化信息系统 —— void Init(InfoSystemInfo infoSystem)
+        #region 修改信息系统 —— async void UpdateInfoSystem(...
+        /// <summary>
+        /// 修改信息系统
+        /// </summary>
+        /// <param name="infoSystem">信息系统</param>
+        public async void UpdateInfoSystem(Wrap<InfoSystemInfo> infoSystem)
+        {
+            UpdateInfoSystemViewModel viewModel = ResolveMediator.Resolve<UpdateInfoSystemViewModel>();
+            viewModel.Load(infoSystem.Model.Number);
+
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.LoadInfoSystems();
+            }
+        }
+        #endregion
+
+        #region 初始化信息系统 —— async void InitInfoSystem(...
         /// <summary>
         /// 初始化信息系统
         /// </summary>
         /// <param name="infoSystem">信息系统</param>
-        public void Init(InfoSystemInfo infoSystem)
+        public async void InitInfoSystem(Wrap<InfoSystemInfo> infoSystem)
         {
-            //TODO 弹窗表单实现
+            InitInfoSystemViewModel viewModel = ResolveMediator.Resolve<InitInfoSystemViewModel>();
+            viewModel.Load(infoSystem.Model.Number);
+
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.LoadInfoSystems();
+            }
         }
         #endregion
 
