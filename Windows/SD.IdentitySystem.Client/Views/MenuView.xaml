@@ -2,13 +2,13 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-             xmlns:controls="clr-namespace:SD.Infrastructure.WPF.Controls;assembly=SD.Infrastructure.WPF"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
              xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:customControls="clr-namespace:SD.Infrastructure.WPF.CustomControls;assembly=SD.Infrastructure.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="740" d:DesignWidth="1220">
 
@@ -16,7 +16,7 @@
         <!--GridView行号列数据模板-->
         <DataTemplate x:Key="RowNumberCellTemplate">
             <Grid Height="24">
-                <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type controls:TreeListViewItem}}, Converter={StaticResource TreeListViewRowIndexConverter}}" />
+                <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type customControls:TreeListViewItem}}, Converter={StaticResource TreeListViewRowIndexConverter}}" />
             </Grid>
         </DataTemplate>
         <!--GridView基准列数据模板-->
@@ -26,8 +26,8 @@
                     <WrapPanel>
                         <ToggleButton x:Name="CriterionExpander" 
                                       Style="{StaticResource TreeListViewToggleButton}" 
-                                      Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}, Converter={StaticResource TreeListViewIndentConverter}}"
-                                      IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" ClickMode="Press" />
+                                      Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}, Converter={StaticResource TreeListViewIndentConverter}}"
+                                      IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" ClickMode="Press" />
                         <Image x:Name="CriterionIcon" Width="14" Height="14" 
                                HorizontalAlignment="Center" VerticalAlignment="Center" 
                                Source="{StaticResource IconFolder}" />
@@ -37,7 +37,7 @@
                 </TextBlock>
             </Border>
             <DataTemplate.Triggers>
-                <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="False">
+                <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" Value="False">
                     <Setter TargetName="CriterionExpander" Property="Visibility" Value="Hidden" />
                     <Setter TargetName="CriterionIcon" Property="Source" Value="{StaticResource IconFile}" />
                     <Setter TargetName="CriterionCbx" Property="Visibility" Value="Visible" />
@@ -105,7 +105,7 @@
                                        cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]" />
                         </Border>
                         <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
+                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" Value="True">
                                 <Setter TargetName="RelateAuthorities" Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </DataTemplate.Triggers>
@@ -121,7 +121,7 @@
                                        cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Update($dataContext)]" />
                         </Border>
                         <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
+                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" Value="True">
                                 <Setter TargetName="Update" Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </DataTemplate.Triggers>
@@ -137,7 +137,7 @@
                                        cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Remove($dataContext)]" />
                         </Border>
                         <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type controls:TreeListViewItem}}}" Value="True">
+                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" Value="True">
                                 <Setter TargetName="Remove" Property="Visibility" Value="Collapsed" />
                             </DataTrigger>
                         </DataTemplate.Triggers>
@@ -146,7 +146,7 @@
             </GridViewColumn>
         </GridViewColumnCollection>
         <!--TreeListView控件模板-->
-        <ControlTemplate x:Key="TreeListViewControlTemplate" TargetType="{x:Type controls:TreeListView}">
+        <ControlTemplate x:Key="TreeListViewControlTemplate" TargetType="{x:Type customControls:TreeListView}">
             <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
                 <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                     <DockPanel>
@@ -164,7 +164,7 @@
             </Border>
         </ControlTemplate>
         <!--TreeListViewItem控件模板-->
-        <ControlTemplate x:Key="TreeListViewItemControlTemplate" TargetType="{x:Type controls:TreeListViewItem}">
+        <ControlTemplate x:Key="TreeListViewItemControlTemplate" TargetType="{x:Type customControls:TreeListViewItem}">
             <StackPanel>
                 <Border Name="Bd" 
                                     Background="{TemplateBinding Background}" 
@@ -220,12 +220,12 @@
             </ControlTemplate.Triggers>
         </ControlTemplate>
         <!--TreeListView样式-->
-        <Style TargetType="{x:Type controls:TreeListView}">
+        <Style TargetType="{x:Type customControls:TreeListView}">
             <Setter Property="BorderThickness" Value="0" />
             <Setter Property="Template" Value="{StaticResource TreeListViewControlTemplate}" />
         </Style>
         <!--TreeListViewItem样式-->
-        <Style TargetType="{x:Type controls:TreeListViewItem}">
+        <Style TargetType="{x:Type customControls:TreeListViewItem}">
             <Setter Property="IsExpanded" Value="True" />
             <Setter Property="FontFamily" Value="微软雅黑" />
             <Setter Property="FontSize" Value="14" />
@@ -297,11 +297,11 @@
         <!--内容区-->
         <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
             <Grid Background="#F4F4F4">
-                <controls:TreeListView ItemsSource="{Binding Menus}">
-                    <controls:TreeListView.ItemTemplate>
+                <customControls:TreeListView ItemsSource="{Binding Menus}">
+                    <customControls:TreeListView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}" />
-                    </controls:TreeListView.ItemTemplate>
-                </controls:TreeListView>
+                    </customControls:TreeListView.ItemTemplate>
+                </customControls:TreeListView>
             </Grid>
         </busyIndicator:BusyMask>
         <!--内容控制区-->

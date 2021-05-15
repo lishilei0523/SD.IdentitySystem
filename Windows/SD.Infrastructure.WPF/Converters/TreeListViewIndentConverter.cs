@@ -1,4 +1,4 @@
-using SD.Infrastructure.WPF.Controls;
+ï»¿using SD.Infrastructure.WPF.CustomControls;
 using System;
 using System.Globalization;
 using System.Windows;
@@ -7,23 +7,23 @@ using System.Windows.Data;
 namespace SD.Infrastructure.WPF.Converters
 {
     /// <summary>
-    /// TreeListViewËõ½ø³ß´ç×ª»»Æ÷
+    /// TreeListViewç¼©è¿›å°ºå¯¸è½¬æ¢å™¨
     /// </summary>
     public class TreeListViewIndentConverter : IValueConverter
     {
         /// <summary>
-        /// Ëõ½øµ¥Î»³ß´ç
+        /// ç¼©è¿›å•ä½å°ºå¯¸
         /// </summary>
         private const double IndentUnitSize = 14.0;
 
         /// <summary>
-        /// ×ª»»TreeListViewËõ½ø³ß´ç
+        /// è½¬æ¢TreeListViewç¼©è¿›å°ºå¯¸
         /// </summary>
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {
             TreeListViewItem treeListViewItem = (TreeListViewItem)value;
-            int level/*Ê÷½Úµã¼¶±ğ*/ = treeListViewItem.Level;
-            double indentSize/*Ëõ½ø³ß´ç*/ = level * IndentUnitSize;
+            int level/*æ ‘èŠ‚ç‚¹çº§åˆ«*/ = treeListViewItem.Level;
+            double indentSize/*ç¼©è¿›å°ºå¯¸*/ = level * IndentUnitSize;
             Thickness margin = new Thickness(indentSize, 0, 0, 0);
 
             return margin;

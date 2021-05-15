@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:cal="http://www.caliburnproject.org"
-                    xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF">
+                    xmlns:attachers="clr-namespace:SD.Infrastructure.WPF.Attachers;assembly=SD.Infrastructure.WPF">
 
     <!--复选框单元格模板-->
     <DataTemplate x:Key="CheckBoxCellTemplate">
@@ -13,7 +13,7 @@
     </DataTemplate>
     <!--DataGrid默认样式-->
     <Style x:Key="DataGridDefault" TargetType="{x:Type DataGrid}">
-        <Setter Property="extensions:DataGridExtension.DisplayRowNumber" Value="True" />
+        <Setter Property="attachers:DataGridAttacher.DisplayRowNumber" Value="True" />
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="IsReadOnly" Value="True" />
         <Setter Property="CanUserSortColumns" Value="False" />

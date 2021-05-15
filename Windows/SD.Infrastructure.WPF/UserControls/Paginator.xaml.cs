@@ -4,7 +4,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
 
-namespace SD.Infrastructure.WPF.Controls
+namespace SD.Infrastructure.WPF.UserControls
 {
     /// <summary>
     /// 分页控件
@@ -34,18 +34,18 @@ namespace SD.Infrastructure.WPF.Controls
         static Paginator()
         {
             //初始化页容量集合
-            _PageSizes = new[] { 5, 10, DefaultPageSize, 20, 30, 50 };
+            Paginator._PageSizes = new[] { 5, 10, Paginator.DefaultPageSize, 20, 30, 50 };
 
             //注册依赖属性
-            _PageIndex = DependencyProperty.Register(nameof(PageIndex), typeof(int), typeof(Paginator), new PropertyMetadata(MinPageIndex, OnPageIndexChanged));
-            _PageSize = DependencyProperty.Register(nameof(PageSize), typeof(int), typeof(Paginator), new PropertyMetadata(DefaultPageSize, OnPageSizeChanged));
-            _RowCount = DependencyProperty.Register(nameof(RowCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, OnRowCountChanged));
-            _PageCount = DependencyProperty.Register(nameof(PageCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, OnPageCountChanged));
-            _StartRowIndex = DependencyProperty.Register(nameof(StartRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(1, OnStartRowIndexChanged));
-            _EndRowIndex = DependencyProperty.Register(nameof(EndRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(0));
+            Paginator._PageIndex = DependencyProperty.Register(nameof(Paginator.PageIndex), typeof(int), typeof(Paginator), new PropertyMetadata(Paginator.MinPageIndex, Paginator.OnPageIndexChanged));
+            Paginator._PageSize = DependencyProperty.Register(nameof(Paginator.PageSize), typeof(int), typeof(Paginator), new PropertyMetadata(Paginator.DefaultPageSize, Paginator.OnPageSizeChanged));
+            Paginator._RowCount = DependencyProperty.Register(nameof(Paginator.RowCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, Paginator.OnRowCountChanged));
+            Paginator._PageCount = DependencyProperty.Register(nameof(Paginator.PageCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, Paginator.OnPageCountChanged));
+            Paginator._StartRowIndex = DependencyProperty.Register(nameof(Paginator.StartRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(1, Paginator.OnStartRowIndexChanged));
+            Paginator._EndRowIndex = DependencyProperty.Register(nameof(Paginator.EndRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(0));
 
             //注册路由事件
-            _RefreshEvent = EventManager.RegisterRoutedEvent(nameof(Refresh), RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(Paginator));
+            Paginator._RefreshEvent = EventManager.RegisterRoutedEvent(nameof(Paginator.Refresh), RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(Paginator));
         }
 
         /// <summary>
@@ -72,8 +72,8 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         public int PageIndex
         {
-            get { return Convert.ToInt32(base.GetValue(_PageIndex)); }
-            set { base.SetValue(_PageIndex, value); }
+            get { return Convert.ToInt32(base.GetValue(Paginator._PageIndex)); }
+            set { base.SetValue(Paginator._PageIndex, value); }
         }
 
         #endregion
@@ -90,8 +90,8 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         public int PageSize
         {
-            get { return Convert.ToInt32(base.GetValue(_PageSize)); }
-            set { base.SetValue(_PageSize, value); }
+            get { return Convert.ToInt32(base.GetValue(Paginator._PageSize)); }
+            set { base.SetValue(Paginator._PageSize, value); }
         }
 
         #endregion
@@ -108,8 +108,8 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         public int RowCount
         {
-            get { return Convert.ToInt32(base.GetValue(_RowCount)); }
-            set { base.SetValue(_RowCount, value); }
+            get { return Convert.ToInt32(base.GetValue(Paginator._RowCount)); }
+            set { base.SetValue(Paginator._RowCount, value); }
         }
 
         #endregion
@@ -126,8 +126,8 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         public int PageCount
         {
-            get { return Convert.ToInt32(base.GetValue(_PageCount)); }
-            set { base.SetValue(_PageCount, value); }
+            get { return Convert.ToInt32(base.GetValue(Paginator._PageCount)); }
+            set { base.SetValue(Paginator._PageCount, value); }
         }
 
         #endregion
@@ -144,8 +144,8 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         public int StartRowIndex
         {
-            get { return Convert.ToInt32(base.GetValue(_StartRowIndex)); }
-            set { base.SetValue(_StartRowIndex, value); }
+            get { return Convert.ToInt32(base.GetValue(Paginator._StartRowIndex)); }
+            set { base.SetValue(Paginator._StartRowIndex, value); }
         }
 
         #endregion
@@ -162,8 +162,8 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         public int EndRowIndex
         {
-            get { return Convert.ToInt32(base.GetValue(_EndRowIndex)); }
-            set { base.SetValue(_EndRowIndex, value); }
+            get { return Convert.ToInt32(base.GetValue(Paginator._EndRowIndex)); }
+            set { base.SetValue(Paginator._EndRowIndex, value); }
         }
 
         #endregion
@@ -174,7 +174,7 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         public int[] PageSizes
         {
-            get { return _PageSizes; }
+            get { return Paginator._PageSizes; }
         }
         #endregion
 
@@ -191,9 +191,9 @@ namespace SD.Infrastructure.WPF.Controls
             Paginator paginator = (Paginator)dependencyObject;
 
             int pageIndex = Convert.ToInt32(eventArgs.NewValue);
-            if (pageIndex <= MinPageIndex)
+            if (pageIndex <= Paginator.MinPageIndex)
             {
-                pageIndex = MinPageIndex;
+                pageIndex = Paginator.MinPageIndex;
             }
             if (paginator.PageCount != 0 && pageIndex > paginator.PageCount)
             {
@@ -207,7 +207,7 @@ namespace SD.Infrastructure.WPF.Controls
                 : paginator.StartRowIndex - 1 + paginator.PageSize;
 
             //挂起路由事件
-            paginator.RaiseEvent(new RoutedEventArgs(_RefreshEvent, paginator));
+            paginator.RaiseEvent(new RoutedEventArgs(Paginator._RefreshEvent, paginator));
         }
         #endregion
 
@@ -220,9 +220,9 @@ namespace SD.Infrastructure.WPF.Controls
             Paginator paginator = (Paginator)dependencyObject;
 
             int pageSize = Convert.ToInt32(eventArgs.NewValue);
-            if (!_PageSizes.Contains(pageSize))
+            if (!Paginator._PageSizes.Contains(pageSize))
             {
-                pageSize = DefaultPageSize;
+                pageSize = Paginator.DefaultPageSize;
             }
 
             paginator.PageSize = pageSize;
@@ -233,7 +233,7 @@ namespace SD.Infrastructure.WPF.Controls
                 : paginator.StartRowIndex - 1 + paginator.PageSize;
 
             //挂起路由事件
-            paginator.RaiseEvent(new RoutedEventArgs(_RefreshEvent, paginator));
+            paginator.RaiseEvent(new RoutedEventArgs(Paginator._RefreshEvent, paginator));
         }
         #endregion
 
@@ -293,8 +293,8 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         public event RoutedEventHandler Refresh
         {
-            add { base.AddHandler(_RefreshEvent, value); }
-            remove { base.RemoveHandler(_RefreshEvent, value); }
+            add { base.AddHandler(Paginator._RefreshEvent, value); }
+            remove { base.RemoveHandler(Paginator._RefreshEvent, value); }
         }
 
         #endregion
@@ -344,12 +344,12 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         private void BtnFirstPageClick(object sender, RoutedEventArgs e)
         {
-            if (this.PageIndex == MinPageIndex)
+            if (this.PageIndex == Paginator.MinPageIndex)
             {
                 return;
             }
 
-            this.PageIndex = MinPageIndex;
+            this.PageIndex = Paginator.MinPageIndex;
         }
         #endregion
 
@@ -359,9 +359,9 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         private void BtnPrevPageClick(object sender, RoutedEventArgs e)
         {
-            if (this.PageIndex <= MinPageIndex)
+            if (this.PageIndex <= Paginator.MinPageIndex)
             {
-                this.PageIndex = MinPageIndex;
+                this.PageIndex = Paginator.MinPageIndex;
                 return;
             }
 
@@ -406,7 +406,7 @@ namespace SD.Infrastructure.WPF.Controls
         /// </summary>
         private void BtnRefreshClick(object sender, RoutedEventArgs e)
         {
-            base.RaiseEvent(new RoutedEventArgs(_RefreshEvent, this));
+            base.RaiseEvent(new RoutedEventArgs(Paginator._RefreshEvent, this));
         }
         #endregion
 

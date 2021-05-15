@@ -60,18 +60,19 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aspects\DependencyPropertyAspect.cs" />
-    <Compile Include="Controls\Paginator.xaml.cs">
+    <Compile Include="Interfaces\ILoadable.cs" />
+    <Compile Include="UserControls\Paginator.xaml.cs">
       <DependentUpon>Paginator.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\TreeListView.cs" />
-    <Compile Include="Controls\TreeListViewItem.cs" />
+    <Compile Include="CustomControls\TreeListView.cs" />
+    <Compile Include="CustomControls\TreeListViewItem.cs" />
     <Compile Include="Converters\TreeListViewBackgroundConverter.cs" />
     <Compile Include="Converters\TreeListViewIndentConverter.cs" />
     <Compile Include="Converters\EnumMemberConverter.cs" />
     <Compile Include="Converters\TreeListViewRowIndexConverter.cs" />
-    <Compile Include="Extensions\DataGridExtension.cs" />
+    <Compile Include="Attachers\DataGridAttacher.cs" />
     <Compile Include="Extensions\LoadingIndicator.cs" />
-    <Compile Include="Extensions\PasswordExtension.cs" />
+    <Compile Include="Attachers\PasswordBoxAttacher.cs" />
     <Compile Include="Extensions\RelayCommand.cs" />
     <Compile Include="Extensions\WrapExtension.cs" />
     <Compile Include="Interfaces\IPaginatable.cs" />
@@ -80,7 +81,7 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Page Include="Controls\Paginator.xaml">
+    <Page Include="UserControls\Paginator.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>

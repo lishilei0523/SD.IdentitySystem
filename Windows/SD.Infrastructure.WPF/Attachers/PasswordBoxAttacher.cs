@@ -1,24 +1,24 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace SD.Infrastructure.WPF.Extensions
+namespace SD.Infrastructure.WPF.Attachers
 {
     /// <summary>
-    /// 密码扩展
+    /// PasswordBox附加器
     /// </summary>
-    public static class PasswordExtension
+    public static class PasswordBoxAttacher
     {
         #region # 构造器
 
         /// <summary>
         /// 静态构造器
         /// </summary>
-        static PasswordExtension()
+        static PasswordBoxAttacher()
         {
             //注册依赖属性
-            _Password = DependencyProperty.RegisterAttached(nameof(Password), typeof(string), typeof(PasswordExtension), new FrameworkPropertyMetadata(string.Empty, OnPasswordChanged));
-            _IsAttached = DependencyProperty.RegisterAttached(nameof(IsAttached), typeof(bool), typeof(PasswordExtension), new PropertyMetadata(false, PasswordExtension.OnAttachedChanged));
-            _IsUpdating = DependencyProperty.RegisterAttached(nameof(IsUpdating), typeof(bool), typeof(PasswordExtension));
+            PasswordProperty = DependencyProperty.RegisterAttached(nameof(Password), typeof(string), typeof(PasswordBoxAttacher), new FrameworkPropertyMetadata(string.Empty, OnPasswordChanged));
+            IsAttachedProperty = DependencyProperty.RegisterAttached(nameof(IsAttached), typeof(bool), typeof(PasswordBoxAttacher), new PropertyMetadata(false, OnAttachedChanged));
+            IsUpdatingProperty = DependencyProperty.RegisterAttached(nameof(IsUpdating), typeof(bool), typeof(PasswordBoxAttacher));
         }
 
         #endregion
@@ -30,14 +30,15 @@ namespace SD.Infrastructure.WPF.Extensions
         /// <summary>
         /// 密码依赖属性
         /// </summary>
-        private static readonly DependencyProperty _Password;
+        public static DependencyProperty PasswordProperty;
 
         /// <summary>
         /// 密码
         /// </summary>
         public static DependencyProperty Password
         {
-            get { return _Password; }
+            get { return PasswordProperty; }
+            set { PasswordProperty = value; }
         }
 
         #endregion
@@ -47,14 +48,15 @@ namespace SD.Infrastructure.WPF.Extensions
         /// <summary>
         /// 是否已附加依赖属性
         /// </summary>
-        private static readonly DependencyProperty _IsAttached;
+        public static DependencyProperty IsAttachedProperty;
 
         /// <summary>
         /// 是否已附加
         /// </summary>
         public static DependencyProperty IsAttached
         {
-            get { return _IsAttached; }
+            get { return IsAttachedProperty; }
+            set { IsAttachedProperty = value; }
         }
 
         #endregion
@@ -64,14 +66,15 @@ namespace SD.Infrastructure.WPF.Extensions
         /// <summary>
         /// 是否正在更新依赖属性
         /// </summary>
-        private static readonly DependencyProperty _IsUpdating;
+        public static DependencyProperty IsUpdatingProperty;
 
         /// <summary>
         /// 是否正在更新
         /// </summary>
         public static DependencyProperty IsUpdating
         {
-            get { return _IsUpdating; }
+            get { return IsUpdatingProperty; }
+            set { IsUpdatingProperty = value; }
         }
 
         #endregion
@@ -86,7 +89,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         public static string GetPassword(DependencyObject dependencyObject)
         {
-            return (string)dependencyObject.GetValue(_Password);
+            return (string)dependencyObject.GetValue(PasswordProperty);
         }
         #endregion
 
@@ -96,7 +99,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         public static void SetPassword(DependencyObject dependencyObject, string value)
         {
-            dependencyObject.SetValue(_Password, value);
+            dependencyObject.SetValue(PasswordProperty, value);
         }
         #endregion
 
@@ -106,7 +109,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         public static bool GetIsAttached(DependencyObject dependencyObject)
         {
-            return (bool)dependencyObject.GetValue(_IsAttached);
+            return (bool)dependencyObject.GetValue(IsAttachedProperty);
         }
         #endregion
 
@@ -116,7 +119,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         public static void SetIsAttached(DependencyObject dependencyObject, bool value)
         {
-            dependencyObject.SetValue(_IsAttached, value);
+            dependencyObject.SetValue(IsAttachedProperty, value);
         }
         #endregion
 
@@ -126,7 +129,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         private static bool GetIsUpdating(DependencyObject dependencyObject)
         {
-            return (bool)dependencyObject.GetValue(_IsUpdating);
+            return (bool)dependencyObject.GetValue(IsUpdatingProperty);
         }
         #endregion
 
@@ -136,7 +139,7 @@ namespace SD.Infrastructure.WPF.Extensions
         /// </summary>
         private static void SetIsUpdating(DependencyObject dependencyObject, bool value)
         {
-            dependencyObject.SetValue(_IsUpdating, value);
+            dependencyObject.SetValue(IsUpdatingProperty, value);
         }
         #endregion
 

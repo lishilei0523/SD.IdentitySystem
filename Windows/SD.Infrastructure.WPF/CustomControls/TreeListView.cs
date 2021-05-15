@@ -2,7 +2,7 @@ using System.Collections.Specialized;
 using System.Windows;
 using System.Windows.Controls;
 
-namespace SD.Infrastructure.WPF.Controls
+namespace SD.Infrastructure.WPF.CustomControls
 {
     /// <summary>
     /// TreeListView

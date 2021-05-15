@@ -1,4 +1,4 @@
-﻿using SD.Infrastructure.WPF.Controls;
+﻿using SD.Infrastructure.WPF.CustomControls;
 using System;
 using System.Globalization;
 using System.Windows.Controls;

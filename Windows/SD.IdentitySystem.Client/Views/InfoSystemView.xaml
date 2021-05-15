@@ -4,11 +4,11 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
              xmlns:cal="http://www.caliburnproject.org"
-             xmlns:controls="clr-namespace:SD.Infrastructure.WPF.Controls;assembly=SD.Infrastructure.WPF"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
              xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
+             xmlns:userControls="clr-namespace:SD.Infrastructure.WPF.UserControls;assembly=SD.Infrastructure.WPF"
              mc:Ignorable="d" 
              d:DesignHeight="740" d:DesignWidth="1220">
 
@@ -100,7 +100,7 @@
         <!--内容控制区-->
         <Border Grid.Row="2" Style="{StaticResource FunctionPanelBorder}">
             <Grid Background="#F4F4F4">
-                <controls:Paginator Margin="10,0"
+                <userControls:Paginator Margin="10,0"
                                     PageIndex="{Binding PageIndex, Mode=TwoWay}"
                                     PageSize="{Binding PageSize, Mode=TwoWay}"
                                     RowCount="{Binding RowCount, Mode=TwoWay}"

@@ -1,22 +1,22 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
 
-namespace SD.Infrastructure.WPF.Extensions
+namespace SD.Infrastructure.WPF.Attachers
 {
     /// <summary>
-    /// DataGrid扩展
+    /// DataGrid附加器
     /// </summary>
-    public static class DataGridExtension
+    public static class DataGridAttacher
     {
         #region # 构造器
 
         /// <summary>
         /// 静态构造器
         /// </summary>
-        static DataGridExtension()
+        static DataGridAttacher()
         {
             //注册依赖属性
-            DisplayRowNumberProperty = DependencyProperty.RegisterAttached(nameof(DisplayRowNumber), typeof(bool), typeof(DataGridExtension), new PropertyMetadata(false, OnDisplayRowNumberChanged));
+            DisplayRowNumberProperty = DependencyProperty.RegisterAttached(nameof(DisplayRowNumber), typeof(bool), typeof(DataGridAttacher), new PropertyMetadata(false, OnDisplayRowNumberChanged));
         }
 
         #endregion
