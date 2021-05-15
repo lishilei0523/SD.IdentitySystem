@@ -154,10 +154,13 @@
         </Style>
         <!--TabControl样式-->
         <Style TargetType="{x:Type TabControl}">
-            <Setter Property="BorderThickness" Value="1" />
+            <Setter Property="Background" Value="WhiteSmoke" />
+            <Setter Property="BorderBrush" Value="#CCCCCC" />
+            <Setter Property="BorderThickness" Value="1,1,1,0" />
         </Style>
         <!--TabItem样式-->
         <Style TargetType="{x:Type TabItem}">
+            <Setter Property="Background" Value="WhiteSmoke" />
             <Setter Property="Padding" Value="10,3" />
         </Style>
     </Window.Resources>

@@ -19,7 +19,7 @@
         </Grid.RowDefinitions>
         <!--功能区-->
         <Border Grid.Row="0" Style="{StaticResource FunctionPanelBorder}">
-            <Grid Background="#F4F4F4">
+            <Grid Background="WhiteSmoke">
                 <!--查询按钮区-->
                 <WrapPanel VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock Text="关键字：" />
@@ -71,7 +71,7 @@
         </busyIndicator:BusyMask>
         <!--内容控制区-->
         <Border Grid.Row="2" Style="{StaticResource FunctionPanelBorder}">
-            <Grid Background="#F4F4F4">
+            <Grid Background="WhiteSmoke">
                 <userControls:Paginator Margin="10,0"
                                     PageIndex="{Binding PageIndex, Mode=TwoWay}"
                                     PageSize="{Binding PageSize, Mode=TwoWay}"
