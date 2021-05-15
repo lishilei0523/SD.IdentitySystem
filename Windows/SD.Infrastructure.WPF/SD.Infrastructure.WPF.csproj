@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aspects\DependencyPropertyAspect.cs" />
+    <Compile Include="Converters\EnabledConverter.cs" />
     <Compile Include="Interfaces\ILoadable.cs" />
     <Compile Include="UserControls\Paginator.xaml.cs">
       <DependentUpon>Paginator.xaml</DependentUpon>

@@ -121,34 +121,33 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         }
         #endregion
 
-        #region 关联权限 —— void RelateAuthorities(Menu menu)
+        #region 创建菜单 —— void CreateMenu()
         /// <summary>
-        /// 关联权限
+        /// 创建菜单
         /// </summary>
-        /// <param name="menu">菜单</param>
-        public void RelateAuthorities(Models.Menu menu)
+        public void CreateMenu()
         {
-            Trace.WriteLine(menu);
+
         }
         #endregion
 
-        #region 修改菜单 —— void Update(Menu menu)
+        #region 修改菜单 —— void UpdateMenu(Menu menu)
         /// <summary>
         /// 修改菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void Update(Models.Menu menu)
+        public void UpdateMenu(Models.Menu menu)
         {
             Trace.WriteLine(menu);
         }
         #endregion
 
-        #region 删除菜单 —— async void Remove(Menu menu)
+        #region 删除菜单 —— async void RemoveMenu(Menu menu)
         /// <summary>
         /// 删除菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public async void Remove(Models.Menu menu)
+        public async void RemoveMenu(Models.Menu menu)
         {
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
@@ -165,7 +164,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// <summary>
         /// 批量删除菜单
         /// </summary>
-        public async void Removes()
+        public async void RemoveMenus()
         {
             IList<Models.Menu> checkedMenus = new List<Models.Menu>();
             foreach (Models.Menu menu in this.Menus)
@@ -197,6 +196,17 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
                 await this.LoadMenus();
                 LoadingIndicator.Dispose();
             }
+        }
+        #endregion
+
+        #region 关联权限 —— void RelateAuthorities(Menu menu)
+        /// <summary>
+        /// 关联权限
+        /// </summary>
+        /// <param name="menu">菜单</param>
+        public void RelateAuthorities(Models.Menu menu)
+        {
+            Trace.WriteLine(menu);
         }
         #endregion
 

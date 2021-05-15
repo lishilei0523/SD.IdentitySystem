@@ -114,7 +114,7 @@
                     <DataTemplate>
                         <Border Style="{StaticResource TreeListViewBorder}">
                             <TextBlock x:Name="Update" Text="编辑" 
-                                       cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Update($dataContext)]"
+                                       cal:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateMenu($dataContext)]"
                                        Style="{StaticResource HyperlinkText}" />
                         </Border>
                         <DataTemplate.Triggers>
@@ -130,7 +130,7 @@
                     <DataTemplate>
                         <Border Style="{StaticResource TreeListViewBorderEnd}">
                             <TextBlock x:Name="Remove" Text="删除"  
-                                       cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Remove($dataContext)]"
+                                       cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RemoveMenu($dataContext)]"
                                        Style="{StaticResource HyperlinkText}" />
                         </Border>
                         <DataTemplate.Triggers>
@@ -247,14 +247,15 @@
                 </Grid.RowDefinitions>
                 <!--操作按钮区-->
                 <WrapPanel Grid.Row="0" VerticalAlignment="Center">
-                    <Button Style="{StaticResource GridButton}">
+                    <Button cal:Message.Attach="CreateMenu()"
+                            Style="{StaticResource GridButton}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Add" />
                             <TextBlock Text="新增" Margin="2,0,0,0" />
                         </WrapPanel>
                     </Button>
-                    <Button Style="{StaticResource GridButton}"
-                            cal:Message.Attach="Removes()">
+                    <Button cal:Message.Attach="RemoveMenus()"
+                            Style="{StaticResource GridButton}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Remove" />
                             <TextBlock Text="删除" Margin="2,0,0,0" />

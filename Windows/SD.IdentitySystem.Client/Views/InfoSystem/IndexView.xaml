@@ -9,8 +9,7 @@
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
              xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
              xmlns:userControls="clr-namespace:SD.Infrastructure.WPF.UserControls;assembly=SD.Infrastructure.WPF"
-             mc:Ignorable="d" 
-             d:DesignHeight="740" d:DesignWidth="1220">
+             mc:Ignorable="d">
 
     <Grid>
         <Grid.RowDefinitions>
@@ -89,8 +88,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="编辑" 
-                                           Style="{StaticResource HyperlinkText}"
-                                           cal:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateInfoSystem($dataContext)]" />
+                                           cal:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateInfoSystem($dataContext)]"
+                                           Style="{StaticResource HyperlinkText}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -98,8 +97,8 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="初始化" 
-                                           Style="{StaticResource HyperlinkText}"
-                                           cal:Message.Attach="[Event MouseLeftButtonDown] = [Action InitInfoSystem($dataContext)]" />
+                                           cal:Message.Attach="[Event MouseLeftButtonDown] = [Action InitInfoSystem($dataContext)]"
+                                           Style="{StaticResource HyperlinkText}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
