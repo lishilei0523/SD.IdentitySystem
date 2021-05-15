@@ -1,6 +1,6 @@
 ﻿using System.Windows;
 
-namespace SD.IdentitySystem.Client.Views
+namespace SD.IdentitySystem.Client.Views.InfoSystem
 {
     /// <summary>
     /// 创建信息系统视图
