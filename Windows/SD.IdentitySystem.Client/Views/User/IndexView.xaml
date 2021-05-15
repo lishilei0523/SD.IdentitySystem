@@ -46,6 +46,12 @@
                              mah:TextBoxHelper.Watermark="用户名/真实姓名"
                              mah:TextBoxHelper.ClearTextButton="True"
                              Text="{Binding Keywords}" />
+                    <TextBlock Text="信息系统："  Margin="10,0,0,0" />
+                    <ComboBox ItemsSource="{Binding InfoSystems}" 
+                              DisplayMemberPath="Name"
+                              SelectedValue="{Binding SelectedInfoSystem}"
+                              mah:TextBoxHelper.Watermark="全部" 
+                              Style="{StaticResource DefaultComboBox}" />
                     <Button cal:Message.Attach="LoadUsers()" Style="{StaticResource FocusButton}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />
