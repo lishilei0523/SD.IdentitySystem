@@ -7,6 +7,7 @@ using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
+using SD.IOC.Core.Mediators;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -33,12 +34,18 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
+        /// 窗口管理器
+        /// </summary>
+        private readonly IWindowManager _windowManager;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(IUserContract userContract, IAuthorizationContract authorizationContract)
+        public IndexViewModel(IUserContract userContract, IAuthorizationContract authorizationContract, IWindowManager windowManager)
         {
             this._userContract = userContract;
             this._authorizationContract = authorizationContract;
+            this._windowManager = windowManager;
 
             //默认值
             this.PageIndex = 1;
@@ -168,14 +175,18 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         }
         #endregion
 
-        #region 创建用户 —— void CreateUser()
+        #region 创建用户 —— async void CreateUser()
         /// <summary>
         /// 创建用户
         /// </summary>
-        public void CreateUser()
+        public async void CreateUser()
         {
-            //TODO 实现 创建用户
-            MessageBox.Show("创建用户");
+            AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.LoadUsers();
+            }
         }
         #endregion
 
@@ -261,25 +272,31 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         }
         #endregion
 
-        #region 重置密码 —— void ResetPassword(Wrap<UserInfo> user)
+        #region 重置密码 —— async void ResetPassword(Wrap<UserInfo> user)
         /// <summary>
         /// 重置密码
         /// </summary>
-        public void ResetPassword(Wrap<UserInfo> user)
+        public async void ResetPassword(Wrap<UserInfo> user)
         {
-            //TODO 实现 重置密码
-            MessageBox.Show("重置密码");
+            ResetPasswordViewModel viewModel = ResolveMediator.Resolve<ResetPasswordViewModel>();
+            viewModel.Load(user.Model.Number);
+            this._windowManager.ShowDialog(viewModel);
         }
         #endregion
 
-        #region 重置私钥 —— void ResetPrivateKey(Wrap<UserInfo> user)
+        #region 重置私钥 —— async void ResetPrivateKey(Wrap<UserInfo> user)
         /// <summary>
         /// 重置私钥
         /// </summary>
-        public void ResetPrivateKey(Wrap<UserInfo> user)
+        public async void ResetPrivateKey(Wrap<UserInfo> user)
         {
-            //TODO 实现 重置私钥
-            MessageBox.Show("重置私钥");
+            ResetPrivateKeyViewModel viewModel = ResolveMediator.Resolve<ResetPrivateKeyViewModel>();
+            viewModel.Load(user.Model.Number);
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.LoadUsers();
+            }
         }
         #endregion
 

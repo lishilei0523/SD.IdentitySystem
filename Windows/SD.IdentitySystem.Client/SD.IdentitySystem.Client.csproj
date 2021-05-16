@@ -170,6 +170,9 @@
     <Compile Include="ViewModels\Menu\IndexViewModel.cs" />
     <Compile Include="ViewModels\Role\IndexViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\UpdateViewModel.cs" />
+    <Compile Include="ViewModels\User\AddViewModel.cs" />
+    <Compile Include="ViewModels\User\ResetPrivateKeyViewModel.cs" />
+    <Compile Include="ViewModels\User\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\User\UpdatePasswordViewModel.cs" />
     <Compile Include="ViewModels\User\IndexViewModel.cs" />
     <Compile Include="Views\Authority\IndexView.xaml.cs">
@@ -205,6 +208,15 @@
     </Compile>
     <Compile Include="Views\InfoSystem\UpdateView.xaml.cs">
       <DependentUpon>UpdateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\AddView.xaml.cs">
+      <DependentUpon>AddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\ResetPasswordView.xaml.cs">
+      <DependentUpon>ResetPasswordView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\ResetPrivateKeyView.xaml.cs">
+      <DependentUpon>ResetPrivateKeyView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\User\UpdatePasswordView.xaml.cs">
       <DependentUpon>UpdatePasswordView.xaml</DependentUpon>
@@ -273,6 +285,18 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InfoSystem\UpdateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\AddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\ResetPasswordView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\ResetPrivateKeyView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
