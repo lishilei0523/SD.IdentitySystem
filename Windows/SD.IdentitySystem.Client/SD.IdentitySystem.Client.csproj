@@ -160,6 +160,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Authority\AddViewModel.cs" />
     <Compile Include="ViewModels\Authority\IndexViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\AddViewModel.cs" />
     <Compile Include="ViewModels\Home\IndexViewModel.cs" />
@@ -175,6 +176,9 @@
     <Compile Include="ViewModels\User\ResetPasswordViewModel.cs" />
     <Compile Include="ViewModels\User\UpdatePasswordViewModel.cs" />
     <Compile Include="ViewModels\User\IndexViewModel.cs" />
+    <Compile Include="Views\Authority\AddView.xaml.cs">
+      <DependentUpon>AddView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Authority\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
@@ -245,6 +249,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Resources\Dictionaries\TreeListViewTemplates.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Authority\AddView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

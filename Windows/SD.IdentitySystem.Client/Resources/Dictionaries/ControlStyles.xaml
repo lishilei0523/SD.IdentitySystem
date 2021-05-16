@@ -57,6 +57,29 @@
         <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
         <Setter Property="mah:TextBoxHelper.UseFloatingWatermark" Value="False" />
     </Style>
+    <!--ComboBox表单样式-->
+    <Style x:Key="FormComboBox" BasedOn="{StaticResource MahApps.Styles.ComboBox.Virtualized}" TargetType="{x:Type ComboBox}">
+        <Setter Property="Height" Value="32" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="微软雅黑" />
+        <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Foreground" Value="{StaticResource SystemBaseHighColorBrush}" />
+        <Setter Property="Background" Value="{StaticResource SystemAltMediumLowColorBrush}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="mah:ControlsHelper.FocusBorderBrush" Value="{StaticResource TextBox.Focus.Border}" />
+        <Setter Property="mah:ControlsHelper.MouseOverBorderBrush" Value="{StaticResource TextBox.MouseOver.Border}" />
+        <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
+        <Setter Property="mah:TextBoxHelper.UseFloatingWatermark" Value="False" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#BBFFFFFF" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#EEFFFFFF" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
     <!--Button默认样式-->
     <Style x:Key="DefaultButton" BasedOn="{StaticResource ButtonRevealStyle}" TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="14" />

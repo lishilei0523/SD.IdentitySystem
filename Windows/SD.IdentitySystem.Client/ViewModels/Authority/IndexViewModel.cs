@@ -7,6 +7,7 @@ using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
+using SD.IOC.Core.Mediators;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -28,11 +29,17 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
+        /// 窗口管理器
+        /// </summary>
+        private readonly IWindowManager _windowManager;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(IAuthorizationContract authorizationContract)
+        public IndexViewModel(IAuthorizationContract authorizationContract, IWindowManager windowManager)
         {
             this._authorizationContract = authorizationContract;
+            this._windowManager = windowManager;
 
             //默认值
             this.PageIndex = 1;
@@ -162,14 +169,18 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         }
         #endregion
 
-        #region 创建权限 —— void CreateAuthority()
+        #region 创建权限 —— async void CreateAuthority()
         /// <summary>
         /// 创建权限
         /// </summary>
-        public void CreateAuthority()
+        public async void CreateAuthority()
         {
-            //TODO 实现 创建权限
-            MessageBox.Show("创建权限");
+            AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.LoadAuthorities();
+            }
         }
         #endregion
 
