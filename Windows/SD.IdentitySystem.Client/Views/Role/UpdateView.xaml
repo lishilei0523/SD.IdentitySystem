@@ -51,7 +51,7 @@
                 </StackPanel>
             </GroupBox>
             <!--权限信息-->
-            <GroupBox Header="权限信息" Grid.Row="0" Grid.Column="1">
+            <GroupBox Header="权限列表" Grid.Row="0" Grid.Column="1">
                 <!--权限列表-->
                 <ListBox ItemsSource="{Binding AuthorityItems}">
                     <ListBox.ItemTemplate>
