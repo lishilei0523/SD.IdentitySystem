@@ -185,15 +185,23 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         }
         #endregion
 
-        #region 修改角色 —— void UpdateRole(Wrap<RoleInfo> role)
+        #region 修改角色 —— async void UpdateRole(Wrap<RoleInfo> role)
         /// <summary>
         /// 修改角色
         /// </summary>
         /// <param name="role">角色</param>
-        public void UpdateRole(Wrap<RoleInfo> role)
+        public async void UpdateRole(Wrap<RoleInfo> role)
         {
-            //TODO 实现 修改角色
-            MessageBox.Show("修改角色");
+            this.Busy();
+            UpdateViewModel viewModel = await Task.Run(ResolveMediator.Resolve<UpdateViewModel>);
+            await viewModel.Load(role.Model.Id);
+            this.Idle();
+
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.LoadRoles();
+            }
         }
         #endregion
 

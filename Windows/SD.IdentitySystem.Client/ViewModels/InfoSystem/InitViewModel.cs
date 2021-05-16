@@ -68,19 +68,22 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
         #region # 方法
 
-        #region 加载 —— async void Load(string infoSystemNo)
+        #region 加载 —— async Task Load(string infoSystemNo)
         /// <summary>
         /// 加载
         /// </summary>
         /// <param name="infoSystemNo">信息系统编号</param>
-        public async void Load(string infoSystemNo)
+        public async Task Load(string infoSystemNo)
         {
-            InfoSystemInfo infoSystem = await Task.Run(() => this._authorizationContract.GetInfoSystem(infoSystemNo));
+            this.Busy();
 
+            InfoSystemInfo infoSystem = await Task.Run(() => this._authorizationContract.GetInfoSystem(infoSystemNo));
             this.InfoSystemNo = infoSystem.Number;
             this.Host = infoSystem.Host;
             this.Port = infoSystem.Port;
             this.Index = infoSystem.Index;
+
+            this.Idle();
         }
         #endregion
 

@@ -109,14 +109,15 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
         #region # 方法
 
-        #region 加载 —— async void Load(Guid authorityId)
+        #region 加载 —— async Task Load(Guid authorityId)
         /// <summary>
         /// 加载
         /// </summary>
-        public async void Load(Guid authorityId)
+        public async Task Load(Guid authorityId)
         {
-            AuthorityInfo authority = await Task.Run(() => this._authorizationContract.GetAuthority(authorityId));
+            this.Busy();
 
+            AuthorityInfo authority = await Task.Run(() => this._authorizationContract.GetAuthority(authorityId));
             this.InfoSystemName = authority.InfoSystemInfo.Name;
             this.AuthorityId = authority.Id;
             this.AuthorityName = authority.Name;
@@ -126,6 +127,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             this.MethodName = authority.MethodName;
             this.EnglishName = authority.EnglishName;
             this.Description = authority.Description;
+
+            this.Idle();
         }
         #endregion
 

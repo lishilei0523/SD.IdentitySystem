@@ -174,7 +174,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         public async void UpdateInfoSystem(Wrap<InfoSystemInfo> infoSystem)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            viewModel.Load(infoSystem.Model.Number);
+            await viewModel.Load(infoSystem.Model.Number);
 
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
@@ -192,7 +192,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         public async void InitInfoSystem(Wrap<InfoSystemInfo> infoSystem)
         {
             InitViewModel viewModel = ResolveMediator.Resolve<InitViewModel>();
-            viewModel.Load(infoSystem.Model.Number);
+            await viewModel.Load(infoSystem.Model.Number);
 
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)

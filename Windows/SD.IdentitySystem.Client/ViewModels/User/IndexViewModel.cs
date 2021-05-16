@@ -273,11 +273,11 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         }
         #endregion
 
-        #region 重置密码 —— async void ResetPassword(Wrap<UserInfo> user)
+        #region 重置密码 —— void ResetPassword(Wrap<UserInfo> user)
         /// <summary>
         /// 重置密码
         /// </summary>
-        public async void ResetPassword(Wrap<UserInfo> user)
+        public void ResetPassword(Wrap<UserInfo> user)
         {
             ResetPasswordViewModel viewModel = ResolveMediator.Resolve<ResetPasswordViewModel>();
             viewModel.Load(user.Model.Number);
@@ -292,7 +292,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         public async void ResetPrivateKey(Wrap<UserInfo> user)
         {
             ResetPrivateKeyViewModel viewModel = ResolveMediator.Resolve<ResetPrivateKeyViewModel>();
-            viewModel.Load(user.Model.Number);
+            await viewModel.Load(user.Model.Number);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {

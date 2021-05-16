@@ -15,9 +15,9 @@ using System.Windows;
 namespace SD.IdentitySystem.Client.ViewModels.Role
 {
     /// <summary>
-    /// 角色创建视图模型
+    /// 角色修改视图模型
     /// </summary>
-    public class AddViewModel : ScreenBase
+    public class UpdateViewModel : ScreenBase
     {
         #region # 字段及构造器
 
@@ -34,7 +34,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public AddViewModel(AuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract)
+        public UpdateViewModel(AuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract)
         {
             this._authorityPresenter = authorityPresenter;
             this._authorizationContract = authorizationContract;
@@ -43,6 +43,22 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         #endregion
 
         #region # 属性
+
+        #region 信息系统名称 —— InfoSystemInfo SelectedInfoSystem
+        /// <summary>
+        /// 信息系统名称
+        /// </summary>
+        [DependencyProperty]
+        public string InfoSystemName { get; set; }
+        #endregion
+
+        #region 角色Id —— Guid RoleId
+        /// <summary>
+        /// 角色Id
+        /// </summary>
+        [DependencyProperty]
+        public Guid RoleId { get; set; }
+        #endregion
 
         #region 角色名称 —— string RoleName
         /// <summary>
@@ -60,22 +76,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         public string Description { get; set; }
         #endregion
 
-        #region 已选信息系统 —— InfoSystemInfo SelectedInfoSystem
-        /// <summary>
-        /// 已选信息系统
-        /// </summary>
-        [DependencyProperty]
-        public InfoSystemInfo SelectedInfoSystem { get; set; }
-        #endregion
-
-        #region 信息系统列表 —— ObservableCollection<InfoSystemInfo> InfoSystems
-        /// <summary>
-        /// 信息系统列表
-        /// </summary>
-        [DependencyProperty]
-        public ObservableCollection<InfoSystemInfo> InfoSystems { get; set; }
-        #endregion
-
         #region 权限数据项列表 —— ObservableCollection<Item> AuthorityItems
         /// <summary>
         /// 权限数据项列表
@@ -88,36 +88,21 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
         #region # 方法
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 加载 —— async Task Load(Guid roleId)
         /// <summary>
-        /// 初始化
+        /// 加载
         /// </summary>
-        protected override async void OnInitialize()
+        public async Task Load(Guid roleId)
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
-            this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
-        }
-        #endregion
-
-        #region 加载权限列表 —— async void LoadAuthorities()
-        /// <summary>
-        /// 加载权限列表
-        /// </summary>
-        public async void LoadAuthorities()
-        {
-            #region # 验证
-
-            if (this.SelectedInfoSystem == null)
-            {
-                this.AuthorityItems = new ObservableCollection<Item>();
-                return;
-            }
-
-            #endregion
-
             this.Busy();
 
-            ICollection<Item> authorityItems = await Task.Run(() => this._authorityPresenter.GetSystemAuthorityItems(this.SelectedInfoSystem.Number));
+            RoleInfo role = await Task.Run(() => this._authorizationContract.GetRole(roleId));
+            ICollection<Item> authorityItems = this._authorityPresenter.GetRoleAuthorityItems(roleId);
+
+            this.InfoSystemName = role.InfoSystemInfo.Name;
+            this.RoleId = role.Id;
+            this.RoleName = role.Name;
+            this.Description = role.Description;
             this.AuthorityItems = new ObservableCollection<Item>(authorityItems);
 
             this.Idle();
@@ -132,11 +117,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         {
             #region # 验证
 
-            if (this.SelectedInfoSystem == null)
-            {
-                MessageBox.Show("信息系统不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
             if (string.IsNullOrWhiteSpace(this.RoleName))
             {
                 MessageBox.Show("角色名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -148,7 +128,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             this.Busy();
 
             IEnumerable<Guid> authorityIds = this.AuthorityItems.Where(x => x.IsChecked == true).Select(x => x.Id);
-            await Task.Run(() => this._authorizationContract.CreateRole(this.SelectedInfoSystem.Number, this.RoleName, this.Description, authorityIds));
+            await Task.Run(() => this._authorizationContract.UpdateRole(this.RoleId, this.RoleName, this.Description, authorityIds));
 
             base.TryClose(true);
             this.Idle();

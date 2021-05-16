@@ -193,7 +193,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public async void UpdateAuthority(Wrap<AuthorityInfo> authority)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            viewModel.Load(authority.Model.Id);
+            await viewModel.Load(authority.Model.Id);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {

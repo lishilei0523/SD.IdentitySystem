@@ -170,6 +170,7 @@
     <Compile Include="ViewModels\LoginRecord\IndexViewModel.cs" />
     <Compile Include="ViewModels\Home\LoginViewModel.cs" />
     <Compile Include="ViewModels\Menu\IndexViewModel.cs" />
+    <Compile Include="ViewModels\Role\UpdateViewModel.cs" />
     <Compile Include="ViewModels\Role\AddViewModel.cs" />
     <Compile Include="ViewModels\Role\IndexViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\UpdateViewModel.cs" />
@@ -219,6 +220,9 @@
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InfoSystem\UpdateView.xaml.cs">
+      <DependentUpon>UpdateView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Role\UpdateView.xaml.cs">
       <DependentUpon>UpdateView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\User\AddView.xaml.cs">
@@ -309,6 +313,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\InfoSystem\UpdateView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Role\UpdateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
