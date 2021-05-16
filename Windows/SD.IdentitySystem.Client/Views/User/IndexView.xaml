@@ -122,10 +122,10 @@
                             <DataTemplate>
                                 <WrapPanel HorizontalAlignment="Center">
                                     <TextBlock x:Name="Enable" Text="启用" 
-                                               cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Enable($dataContext)]"
+                                               cal:Message.Attach="[Event MouseLeftButtonDown] = [Action EnableUser($dataContext)]"
                                                Style="{StaticResource HyperlinkText}" />
                                     <TextBlock x:Name="Disable" Text="停用" 
-                                               cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Disable($dataContext)]"
+                                               cal:Message.Attach="[Event MouseLeftButtonDown] = [Action DisableUser($dataContext)]"
                                                Style="{StaticResource HyperlinkText}" />
                                 </WrapPanel>
                                 <DataTemplate.Triggers>

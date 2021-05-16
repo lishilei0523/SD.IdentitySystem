@@ -174,50 +174,90 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public void CreateUser()
         {
+            //TODO 实现
             MessageBox.Show("创建用户");
         }
         #endregion
 
-        #region 启用用户 —— void Enable(Wrap<UserInfo> user)
+        #region 启用用户 —— async void EnableUser(Wrap<UserInfo> user)
         /// <summary>
         /// 启用用户
         /// </summary>
         /// <param name="user">用户</param>
-        public void Enable(Wrap<UserInfo> user)
+        public async void EnableUser(Wrap<UserInfo> user)
         {
-            MessageBox.Show("启用用户");
+            LoadingIndicator.Suspend();
+
+            await Task.Run(() => this._userContract.EnableUser(user.Model.Number));
+            await this.LoadUsers();
+
+            LoadingIndicator.Dispose();
         }
         #endregion
 
-        #region 停用用户 —— void Disable(Wrap<UserInfo> user)
+        #region 停用用户 —— async void DisableUser(Wrap<UserInfo> user)
         /// <summary>
         /// 停用用户
         /// </summary>
         /// <param name="user">用户</param>
-        public void Disable(Wrap<UserInfo> user)
+        public async void DisableUser(Wrap<UserInfo> user)
         {
-            MessageBox.Show("停用用户");
+            LoadingIndicator.Suspend();
+
+            await Task.Run(() => this._userContract.DisableUser(user.Model.Number));
+            await this.LoadUsers();
+
+            LoadingIndicator.Dispose();
         }
         #endregion
 
-        #region 删除用户 —— void RemoveUser(Wrap<UserInfo> user)
+        #region 删除用户 —— async void RemoveUser(Wrap<UserInfo> user)
         /// <summary>
         /// 删除用户
         /// </summary>
         /// <param name="user">用户</param>
-        public void RemoveUser(Wrap<UserInfo> user)
+        public async void RemoveUser(Wrap<UserInfo> user)
         {
-            MessageBox.Show("删除用户");
+            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                LoadingIndicator.Suspend();
+
+                await Task.Run(() => this._userContract.RemoveUser(user.Model.Number));
+                await this.LoadUsers();
+
+                LoadingIndicator.Dispose();
+            }
         }
         #endregion
 
-        #region 批量删除用户 —— void RemoveUsers()
+        #region 批量删除用户 —— async void RemoveUsers()
         /// <summary>
         /// 批量删除用户
         /// </summary>
-        public void RemoveUsers()
+        public async void RemoveUsers()
         {
-            MessageBox.Show("批量删除用户");
+            #region # 加载勾选
+
+            UserInfo[] checkedUsers = this.Users.Where(x => x.IsChecked == true).Select(x => x.Model).ToArray();
+            if (!checkedUsers.Any())
+            {
+                MessageBox.Show("请勾选要删除的用户！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                return;
+            }
+
+            #endregion
+
+            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                LoadingIndicator.Suspend();
+
+                await Task.Run(() => checkedUsers.ForEach(user => this._userContract.RemoveUser(user.Number)));
+                await this.LoadUsers();
+
+                LoadingIndicator.Dispose();
+            }
         }
         #endregion
 
@@ -227,6 +267,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public void ResetPassword(Wrap<UserInfo> user)
         {
+            //TODO 实现
             MessageBox.Show("重置密码");
         }
         #endregion
@@ -237,6 +278,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public void ResetPrivateKey(Wrap<UserInfo> user)
         {
+            //TODO 实现
             MessageBox.Show("重置私钥");
         }
         #endregion
@@ -247,6 +289,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public void RelateRoles(Wrap<UserInfo> user)
         {
+            //TODO 实现
             MessageBox.Show("分配角色");
         }
         #endregion

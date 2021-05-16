@@ -188,7 +188,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             }
             if (!checkedMenus.Any())
             {
-                MessageBox.Show("请选中要删除的菜单！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("请勾选要删除的菜单！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 

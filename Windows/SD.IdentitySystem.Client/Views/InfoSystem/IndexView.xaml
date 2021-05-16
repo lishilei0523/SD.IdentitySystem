@@ -109,11 +109,11 @@
         <Border Grid.Row="2" Style="{StaticResource FunctionPanelBorder}">
             <Grid Background="WhiteSmoke">
                 <userControls:Paginator Margin="10,0"
-                                    PageIndex="{Binding PageIndex, Mode=TwoWay}"
-                                    PageSize="{Binding PageSize, Mode=TwoWay}"
-                                    RowCount="{Binding RowCount, Mode=TwoWay}"
-                                    PageCount="{Binding PageCount, Mode=TwoWay}"
-                                    cal:Message.Attach="[Event Refresh] = [Action LoadInfoSystems()]" />
+                                        PageIndex="{Binding PageIndex, Mode=TwoWay}"
+                                        PageSize="{Binding PageSize, Mode=TwoWay}"
+                                        RowCount="{Binding RowCount, Mode=TwoWay}"
+                                        PageCount="{Binding PageCount, Mode=TwoWay}"
+                                        cal:Message.Attach="[Event Refresh] = [Action LoadInfoSystems()]" />
             </Grid>
         </Border>
     </Grid>
