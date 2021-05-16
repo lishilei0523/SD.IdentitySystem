@@ -60,6 +60,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aspects\DependencyPropertyAspect.cs" />
+    <Compile Include="Aspects\ExceptionAspcet.cs" />
     <Compile Include="Base\OneActiveConductorBase.cs" />
     <Compile Include="Converters\EnabledConverter.cs" />
     <Compile Include="Interfaces\IBusy.cs" />
