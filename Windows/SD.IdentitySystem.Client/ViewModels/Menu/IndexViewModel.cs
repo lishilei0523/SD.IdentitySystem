@@ -1,4 +1,5 @@
-﻿using SD.Common;
+﻿using Caliburn.Micro;
+using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Presentors;
@@ -6,6 +7,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
+using SD.IOC.Core.Mediators;
 using SD.Toolkits.Recursion.Tree;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -34,12 +36,18 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
+        /// 窗口管理器
+        /// </summary>
+        private readonly IWindowManager _windowManager;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(MenuPresenter menuPresenter, IAuthorizationContract authorizationContract)
+        public IndexViewModel(MenuPresenter menuPresenter, IAuthorizationContract authorizationContract, IWindowManager windowManager)
         {
             this._menuPresenter = menuPresenter;
             this._authorizationContract = authorizationContract;
+            this._windowManager = windowManager;
         }
 
         #endregion
@@ -208,15 +216,19 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         }
         #endregion
 
-        #region 关联权限 —— void RelateAuthorities(Menu menu)
+        #region 关联权限 —— async void RelateAuthorities(Menu menu)
         /// <summary>
         /// 关联权限
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void RelateAuthorities(Models.Menu menu)
+        public async void RelateAuthorities(Models.Menu menu)
         {
-            //TODO 实现 关联权限
-            MessageBox.Show("关联权限");
+            this.Busy();
+            RelateAuthorityViewModel viewModel = await Task.Run(ResolveMediator.Resolve<RelateAuthorityViewModel>);
+            await viewModel.Load(menu.Id);
+            this.Idle();
+
+            this._windowManager.ShowDialog(viewModel);
         }
         #endregion
 
