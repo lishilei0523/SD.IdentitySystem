@@ -57,6 +57,9 @@
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <WrapPanel>
+                                <Image Width="14" Height="14" 
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                       Source="{StaticResource IconFile}" />
                                 <CheckBox IsChecked="{Binding IsChecked}" />
                                 <TextBlock Text="{Binding Name}" Margin="2,0,0,0" />
                             </WrapPanel>
