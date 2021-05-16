@@ -148,14 +148,15 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         public async Task LoadLoginRecords()
         {
             LoadingIndicator.Suspend();
-            PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
-            LoadingIndicator.Dispose();
 
+            PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<LoginRecordInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.LoginRecords = new ObservableCollection<Wrap<LoginRecordInfo>>(wrapModels);
+
+            LoadingIndicator.Dispose();
         }
         #endregion
 

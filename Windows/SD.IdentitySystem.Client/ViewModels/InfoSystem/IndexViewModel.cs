@@ -138,14 +138,15 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         public async Task LoadInfoSystems()
         {
             LoadingIndicator.Suspend();
-            PageModel<InfoSystemInfo> pageModel = await Task.Run(() => this._authorizationContract.GetInfoSystemsByPage(this.Keywords, this.PageIndex, this.PageSize));
-            LoadingIndicator.Dispose();
 
+            PageModel<InfoSystemInfo> pageModel = await Task.Run(() => this._authorizationContract.GetInfoSystemsByPage(this.Keywords, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<InfoSystemInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.InfoSystems = new ObservableCollection<Wrap<InfoSystemInfo>>(wrapModels);
+
+            LoadingIndicator.Dispose();
         }
         #endregion
 

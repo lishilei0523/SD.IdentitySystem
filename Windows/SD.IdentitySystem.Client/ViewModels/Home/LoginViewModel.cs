@@ -112,18 +112,15 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             #endregion
 
             LoadingIndicator.Suspend();
-            LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Login(this.LoginId, this.Password));
-            LoadingIndicator.Dispose();
 
-            //存入Session
+            LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Login(this.LoginId, this.Password));
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
 
-            //跳转到主窗体
             IndexViewModel homeViewModel = ResolveMediator.Resolve<IndexViewModel>();
             this._windowManager.ShowWindow(homeViewModel);
 
-            //关闭当前窗口
-            this.TryClose();
+            base.TryClose();
+            LoadingIndicator.Dispose();
         }
         #endregion
 

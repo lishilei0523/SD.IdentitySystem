@@ -110,14 +110,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         public async Task LoadMenus()
         {
+            LoadingIndicator.Suspend();
+
             string infoSystemNo = this.SelectedInfoSystem?.Number;
             ApplicationType? applicationType = this.SelectedApplicationType;
-
-            LoadingIndicator.Suspend();
             IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
-            LoadingIndicator.Dispose();
-
             this.Menus = new ObservableCollection<Models.Menu>(menus);
+
+            LoadingIndicator.Dispose();
         }
         #endregion
 
@@ -153,8 +153,10 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             if (result == MessageBoxResult.Yes)
             {
                 LoadingIndicator.Suspend();
+
                 await Task.Run(() => this._authorizationContract.RemoveMenu(menu.Id));
                 await this.LoadMenus();
+
                 LoadingIndicator.Dispose();
             }
         }
@@ -166,6 +168,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         public async void RemoveMenus()
         {
+            #region # 加载勾选
+
             IList<Models.Menu> checkedMenus = new List<Models.Menu>();
             foreach (Models.Menu menu in this.Menus)
             {
@@ -188,12 +192,16 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
                 return;
             }
 
+            #endregion
+
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 LoadingIndicator.Suspend();
+
                 await Task.Run(() => checkedMenus.ForEach(menu => this._authorizationContract.RemoveMenu(menu.Id)));
                 await this.LoadMenus();
+
                 LoadingIndicator.Dispose();
             }
         }

@@ -191,7 +191,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
                 this._windowManager.ShowWindow(loginViewModel);
 
                 //关闭当前窗口
-                this.TryClose();
+                base.TryClose();
             }
         }
         #endregion

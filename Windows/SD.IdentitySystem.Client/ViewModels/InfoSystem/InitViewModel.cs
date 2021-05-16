@@ -111,10 +111,11 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
             #endregion
 
             LoadingIndicator.Suspend();
+
             await Task.Run(() => this._authorizationContract.InitInfoSystem(this.InfoSystemNo, this.Host, this.Port.Value, this.Index));
-            LoadingIndicator.Dispose();
 
             base.TryClose(true);
+            LoadingIndicator.Dispose();
         }
         #endregion
 

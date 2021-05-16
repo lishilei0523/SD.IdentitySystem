@@ -155,17 +155,16 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public async Task LoadUsers()
         {
-            string infoSystemNo = this.SelectedInfoSystem?.Number;
-
             LoadingIndicator.Suspend();
-            PageModel<UserInfo> pageModel = await Task.Run(() => this._userContract.GetUsersByPage(this.Keywords, infoSystemNo, null, this.PageIndex, this.PageSize));
-            LoadingIndicator.Dispose();
 
+            PageModel<UserInfo> pageModel = await Task.Run(() => this._userContract.GetUsersByPage(this.Keywords, this.SelectedInfoSystem?.Number, null, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<UserInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.Users = new ObservableCollection<Wrap<UserInfo>>(wrapModels);
+
+            LoadingIndicator.Dispose();
         }
         #endregion
 

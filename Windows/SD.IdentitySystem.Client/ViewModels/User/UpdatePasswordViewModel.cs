@@ -91,13 +91,13 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             #endregion
 
-            LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
-
             LoadingIndicator.Suspend();
-            await Task.Run(() => this._userContract.UpdatePassword(loginInfo.LoginId, this.OldPassword, this.NewPassword));
-            LoadingIndicator.Dispose();
 
-            this.TryClose();
+            LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
+            await Task.Run(() => this._userContract.UpdatePassword(loginInfo.LoginId, this.OldPassword, this.NewPassword));
+
+            base.TryClose(true);
+            LoadingIndicator.Dispose();
         }
         #endregion
 

@@ -98,10 +98,11 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
             #endregion
 
             LoadingIndicator.Suspend();
+
             await Task.Run(() => this._authorizationContract.UpdateInfoSystem(this.InfoSystemId, this.InfoSystemNo, this.InfoSystemName));
-            LoadingIndicator.Dispose();
 
             base.TryClose(true);
+            LoadingIndicator.Dispose();
         }
         #endregion
 

@@ -120,10 +120,11 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
             #endregion
 
             LoadingIndicator.Suspend();
+
             await Task.Run(() => this._authorizationContract.CreateInfoSystem(this.InfoSystemNo, this.InfoSystemName, this.AdminLoginId, this.ApplicationType.Value));
-            LoadingIndicator.Dispose();
 
             base.TryClose(true);
+            LoadingIndicator.Dispose();
         }
         #endregion
 
