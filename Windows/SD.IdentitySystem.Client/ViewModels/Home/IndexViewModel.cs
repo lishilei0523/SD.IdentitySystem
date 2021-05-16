@@ -221,11 +221,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         /// <summary>
         /// 初始化计时器
         /// </summary>
-        public void InitTimer()
+        private void InitTimer()
         {
             const string timeFormat = " yyyy年MM月dd日 HH时mm分ss秒 dddd";
             DispatcherTimer showTime = new DispatcherTimer();
-            showTime.Tick += (sender, e) => this.CurrentTime = DateTime.Now.ToString(timeFormat);
+            showTime.Tick += (sender, eventArgs) => this.CurrentTime = DateTime.Now.ToString(timeFormat);
             showTime.Interval = new TimeSpan(0, 0, 1);
             showTime.Start();
 

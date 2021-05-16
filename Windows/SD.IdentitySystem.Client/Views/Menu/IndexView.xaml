@@ -113,15 +113,10 @@
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
                         <Border Style="{StaticResource TreeListViewBorder}">
-                            <TextBlock x:Name="Update" Text="编辑" 
+                            <TextBlock Text="编辑" 
                                        cal:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateMenu($dataContext)]"
                                        Style="{StaticResource HyperlinkText}" />
                         </Border>
-                        <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" Value="True">
-                                <Setter TargetName="Update" Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </DataTemplate.Triggers>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>
@@ -129,16 +124,10 @@
                 <GridViewColumn.CellTemplate>
                     <DataTemplate>
                         <Border Style="{StaticResource TreeListViewBorderEnd}">
-                            <TextBlock x:Name="Remove" Text="删除"  
+                            <TextBlock Text="删除"  
                                        cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RemoveMenu($dataContext)]"
                                        Style="{StaticResource HyperlinkText}" />
                         </Border>
-                        <DataTemplate.Triggers>
-                            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" 
-                                         Value="True">
-                                <Setter TargetName="Remove" Property="Visibility" Value="Collapsed" />
-                            </DataTrigger>
-                        </DataTemplate.Triggers>
                     </DataTemplate>
                 </GridViewColumn.CellTemplate>
             </GridViewColumn>

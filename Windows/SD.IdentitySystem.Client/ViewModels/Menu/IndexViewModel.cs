@@ -9,7 +9,6 @@ using SD.Infrastructure.WPF.Extensions;
 using SD.Toolkits.Recursion.Tree;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
@@ -127,7 +126,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         public void CreateMenu()
         {
-
+            //TODO 实现 创建菜单
+            MessageBox.Show("创建菜单");
         }
         #endregion
 
@@ -138,7 +138,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// <param name="menu">菜单</param>
         public void UpdateMenu(Models.Menu menu)
         {
-            Trace.WriteLine(menu);
+            //TODO 实现 修改菜单
+            MessageBox.Show("修改菜单");
         }
         #endregion
 
@@ -214,7 +215,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// <param name="menu">菜单</param>
         public void RelateAuthorities(Models.Menu menu)
         {
-            Trace.WriteLine(menu);
+            //TODO 实现 关联权限
+            MessageBox.Show("关联权限");
         }
         #endregion
 

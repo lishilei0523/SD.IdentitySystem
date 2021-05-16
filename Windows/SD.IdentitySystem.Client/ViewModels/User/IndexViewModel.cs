@@ -174,7 +174,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public void CreateUser()
         {
-            //TODO 实现
+            //TODO 实现 创建用户
             MessageBox.Show("创建用户");
         }
         #endregion
@@ -267,7 +267,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public void ResetPassword(Wrap<UserInfo> user)
         {
-            //TODO 实现
+            //TODO 实现 重置密码
             MessageBox.Show("重置密码");
         }
         #endregion
@@ -278,7 +278,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public void ResetPrivateKey(Wrap<UserInfo> user)
         {
-            //TODO 实现
+            //TODO 实现 重置私钥
             MessageBox.Show("重置私钥");
         }
         #endregion
@@ -289,7 +289,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public void RelateRoles(Wrap<UserInfo> user)
         {
-            //TODO 实现
+            //TODO 实现 分配角色
             MessageBox.Show("分配角色");
         }
         #endregion

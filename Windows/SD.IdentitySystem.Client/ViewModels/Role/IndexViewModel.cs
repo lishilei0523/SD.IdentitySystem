@@ -168,7 +168,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// </summary>
         public void CreateRole()
         {
-            //TODO 实现
+            //TODO 实现 创建角色
             MessageBox.Show("创建角色");
         }
         #endregion
@@ -180,7 +180,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// <param name="role">角色</param>
         public void UpdateRole(Wrap<RoleInfo> role)
         {
-            //TODO 实现
+            //TODO 实现 修改角色
             MessageBox.Show("修改角色");
         }
         #endregion

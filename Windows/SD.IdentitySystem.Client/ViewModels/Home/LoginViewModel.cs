@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
     /// </summary>
     public class LoginViewModel : Screen
     {
-        #region # 依赖注入构造器
+        #region # 字段及构造器
 
         /// <summary>
         /// 身份认证服务接口

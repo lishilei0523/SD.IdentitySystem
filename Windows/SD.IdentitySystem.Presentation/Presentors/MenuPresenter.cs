@@ -50,8 +50,9 @@ namespace SD.IdentitySystem.Presentation.Presentors
         public Menu GetMenu(Guid menuId)
         {
             MenuInfo menuInfo = this._authorizationContract.GetMenu(menuId);
+            Menu menu = menuInfo.ToModel();
 
-            return menuInfo.ToModel();
+            return menu;
         }
         #endregion
 
@@ -81,7 +82,6 @@ namespace SD.IdentitySystem.Presentation.Presentors
         public IEnumerable<Node> GetMenuTree(string systemNo, ApplicationType? applicationType)
         {
             IEnumerable<Menu> menus = this.GetMenus(systemNo, applicationType);
-
             ICollection<Node> menuTree = menus.ToTree(null);
 
             return menuTree;
@@ -100,7 +100,6 @@ namespace SD.IdentitySystem.Presentation.Presentors
         {
             IEnumerable<MenuInfo> menuInfos = this._userContract.GetUserMenus(loginId, systemNo, applicationType);
             IEnumerable<Menu> menus = menuInfos.Select(x => x.ToModel());
-
             ICollection<Node> menuTree = menus.ToTree(null);
 
             return menuTree;
@@ -117,8 +116,9 @@ namespace SD.IdentitySystem.Presentation.Presentors
         public IEnumerable<Menu> GetMenuTreeList(string systemNo, ApplicationType? applicationType)
         {
             IEnumerable<Menu> menus = this.GetMenus(systemNo, applicationType);
+            IEnumerable<Menu> menuTreeList = menus.ToTreeList();
 
-            return menus.ToTreeList();
+            return menuTreeList;
         }
         #endregion
 
@@ -135,7 +135,6 @@ namespace SD.IdentitySystem.Presentation.Presentors
         public PageModel<Menu> GetMenusByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
             PageModel<MenuInfo> pageModel = this._authorizationContract.GetMenusByPage(keywords, systemNo, applicationType, pageIndex, pageSize);
-
             IEnumerable<Menu> menus = pageModel.Datas.Select(x => x.ToModel());
 
             return new PageModel<Menu>(menus, pageIndex, pageSize, pageModel.PageCount, pageModel.RowCount);

@@ -168,7 +168,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         public void CreateAuthority()
         {
-            //TODO 实现
+            //TODO 实现 创建权限
             MessageBox.Show("创建权限");
         }
         #endregion
@@ -180,7 +180,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// <param name="authority">权限</param>
         public void UpdateAuthority(Wrap<AuthorityInfo> authority)
         {
-            //TODO 实现
+            //TODO 实现 修改权限
             MessageBox.Show("修改权限");
         }
         #endregion
