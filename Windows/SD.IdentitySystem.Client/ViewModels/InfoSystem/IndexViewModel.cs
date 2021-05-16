@@ -4,6 +4,7 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
@@ -18,7 +19,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
     /// <summary>
     /// 信息系统首页视图模型
     /// </summary>
-    public class IndexViewModel : Screen, IPaginatable
+    public class IndexViewModel : ScreenBase, IPaginatable
     {
         #region # 字段及构造器
 
@@ -137,7 +138,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// </summary>
         public async Task LoadInfoSystems()
         {
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             PageModel<InfoSystemInfo> pageModel = await Task.Run(() => this._authorizationContract.GetInfoSystemsByPage(this.Keywords, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
@@ -146,7 +147,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
             IEnumerable<Wrap<InfoSystemInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.InfoSystems = new ObservableCollection<Wrap<InfoSystemInfo>>(wrapModels);
 
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 

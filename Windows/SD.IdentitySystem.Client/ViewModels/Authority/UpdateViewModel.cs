@@ -1,8 +1,8 @@
-﻿using Caliburn.Micro;
-using SD.IdentitySystem.IAppService.DTOs.Inputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System;
 using System.Threading.Tasks;
@@ -13,7 +13,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
     /// <summary>
     /// 权限修改视图模型
     /// </summary>
-    public class UpdateViewModel : Screen
+    public class UpdateViewModel : ScreenBase
     {
         #region # 字段及构造器
 
@@ -165,7 +165,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
             #endregion
 
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             AuthorityParam thisParam = new AuthorityParam
             {
@@ -180,7 +180,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             await Task.Run(() => this._authorizationContract.UpdateAuthority(this.AuthorityId, thisParam));
 
             base.TryClose(true);
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 

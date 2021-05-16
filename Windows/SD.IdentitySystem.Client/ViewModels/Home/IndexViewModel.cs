@@ -4,6 +4,8 @@ using SD.IdentitySystem.Presentation.Presentors;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
+using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
 using System.Collections.Generic;
@@ -19,7 +21,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
     /// <summary>
     /// 首页视图模型
     /// </summary>
-    public class IndexViewModel : Conductor<IScreen>.Collection.OneActive
+    public class IndexViewModel : OneActiveConductorBase
     {
         #region # 字段及构造器
 
@@ -115,8 +117,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         /// </summary>
         public async Task LoadMenus()
         {
+            this.Busy();
+
             IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows));
             this.Menus = menus;
+
+            this.Idle();
         }
         #endregion
 

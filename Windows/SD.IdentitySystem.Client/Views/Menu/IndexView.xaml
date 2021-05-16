@@ -276,7 +276,7 @@
             </Grid>
         </Border>
         <!--内容区-->
-        <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
+        <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
             <Grid Background="WhiteSmoke">
                 <customControls:TreeListView ItemsSource="{Binding Menus}">
                     <customControls:TreeListView.ItemTemplate>

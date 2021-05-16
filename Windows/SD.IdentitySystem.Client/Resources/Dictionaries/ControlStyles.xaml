@@ -149,4 +149,23 @@
         <Setter Property="IsHitTestVisible" Value="False" />
         <Setter Property="Opacity" Value="0.6" />
     </Style>
+    <!--Metro.GroupBox默认样式-->
+    <Style BasedOn="{StaticResource MahApps.Styles.GroupBox}" TargetType="{x:Type GroupBox}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderBrush" Value="{StaticResource SystemBaseLowColorBrush}" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderBackground" Value="{StaticResource SystemListLowColorBrush}" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderFontSize" Value="14" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderForeground" Value="Black" />
+    </Style>
+    <!--Metro.ListBox默认样式-->
+    <Style BasedOn="{StaticResource MahApps.Styles.ListBox.Virtualized}" TargetType="{x:Type ListBox}">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <!--Metro.ListBoxItem默认样式-->
+    <Style BasedOn="{StaticResource MahApps.Styles.ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
 </ResourceDictionary>

@@ -9,6 +9,16 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class AuthorityMap
     {
+        #region # 权限数据项映射 —— static Item ToItem(this AuthorityInfo authority)
+        /// <summary>
+        /// 权限数据项映射
+        /// </summary>
+        public static Item ToItem(this AuthorityInfo authority)
+        {
+            return new Item(authority.Id, authority.Name, false, false);
+        }
+        #endregion
+
         #region # 权限树节点映射 —— static Node ToNode(this AuthorityInfo authority)
         /// <summary>
         /// 权限树节点映射

@@ -1,32 +1,42 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.Presentation.Presentors;
 using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
+using SD.Infrastructure.WPF.Models;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SD.IdentitySystem.Client.ViewModels.Authority
+namespace SD.IdentitySystem.Client.ViewModels.Role
 {
     /// <summary>
-    /// 权限创建视图模型
+    /// 角色创建视图模型
     /// </summary>
     public class AddViewModel : ScreenBase
     {
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口
+        /// 权限呈现器
+        /// </summary>
+        private readonly AuthorityPresenter _authorityPresenter;
+
+        /// <summary>
+        /// 角色服务契约接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public AddViewModel(IAuthorizationContract authorizationContract)
+        public AddViewModel(AuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract)
         {
+            this._authorityPresenter = authorityPresenter;
             this._authorizationContract = authorizationContract;
         }
 
@@ -34,52 +44,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
         #region # 属性
 
-        #region 权限名称 —— string AuthorityName
+        #region 角色名称 —— string RoleName
         /// <summary>
-        /// 权限名称
+        /// 角色名称
         /// </summary>
         [DependencyProperty]
-        public string AuthorityName { get; set; }
-        #endregion
-
-        #region 程序集名称 —— string AssemblyName
-        /// <summary>
-        /// 程序集名称
-        /// </summary>
-        [DependencyProperty]
-        public string AssemblyName { get; set; }
-        #endregion
-
-        #region 命名空间 —— string Namespace
-        /// <summary>
-        /// 命名空间
-        /// </summary>
-        [DependencyProperty]
-        public string Namespace { get; set; }
-        #endregion
-
-        #region 类名 —— string ClassName
-        /// <summary>
-        /// 类名
-        /// </summary>
-        [DependencyProperty]
-        public string ClassName { get; set; }
-        #endregion
-
-        #region 方法名 —— string MethodName
-        /// <summary>
-        /// 方法名
-        /// </summary>
-        [DependencyProperty]
-        public string MethodName { get; set; }
-        #endregion
-
-        #region 英文名 —— string EnglishName
-        /// <summary>
-        /// 英文名
-        /// </summary>
-        [DependencyProperty]
-        public string EnglishName { get; set; }
+        public string RoleName { get; set; }
         #endregion
 
         #region 描述 —— string Description
@@ -106,6 +76,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public ObservableCollection<InfoSystemInfo> InfoSystems { get; set; }
         #endregion
 
+        #region 权限数据项列表 —— ObservableCollection<Item> AuthorityItems
+        /// <summary>
+        /// 权限数据项列表
+        /// </summary>
+        [DependencyProperty]
+        public ObservableCollection<Item> AuthorityItems { get; set; }
+        #endregion
+
         #endregion
 
         #region # 方法
@@ -118,6 +96,32 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         {
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
+        }
+
+        #endregion
+
+        #region 加载权限列表 —— async void LoadAuthorities()
+        /// <summary>
+        /// 加载权限列表
+        /// </summary>
+        public async void LoadAuthorities()
+        {
+            #region # 验证
+
+            if (this.SelectedInfoSystem == null)
+            {
+                this.AuthorityItems = new ObservableCollection<Item>();
+                return;
+            }
+
+            #endregion
+
+            this.Busy();
+
+            ICollection<Item> authorityItems = await Task.Run(() => this._authorityPresenter.GetSystemAuthorityItems(this.SelectedInfoSystem.Number));
+            this.AuthorityItems = new ObservableCollection<Item>(authorityItems);
+
+            this.Idle();
         }
         #endregion
 
@@ -134,29 +138,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 MessageBox.Show("信息系统不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(this.AuthorityName))
+            if (string.IsNullOrWhiteSpace(this.RoleName))
             {
-                MessageBox.Show("权限名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.AssemblyName))
-            {
-                MessageBox.Show("程序集名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.Namespace))
-            {
-                MessageBox.Show("命名空间不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.ClassName))
-            {
-                MessageBox.Show("类名不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.MethodName))
-            {
-                MessageBox.Show("方法名不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("角色名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -164,7 +148,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
             this.Busy();
 
-            await Task.Run(() => this._authorizationContract.CreateAuthority(this.SelectedInfoSystem.Number, this.AuthorityName, this.EnglishName, this.Description, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName));
+            IEnumerable<Guid> authorityIds = this.AuthorityItems.Where(x => x.IsChecked == true).Select(x => x.Id);
+            await Task.Run(() => this._authorizationContract.CreateRole(this.SelectedInfoSystem.Number, this.RoleName, this.Description, authorityIds));
 
             base.TryClose(true);
             this.Idle();

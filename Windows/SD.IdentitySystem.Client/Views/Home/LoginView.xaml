@@ -16,7 +16,7 @@
         WindowStartupLocation="CenterScreen"
         fluentWpf:AcrylicWindow.Enabled="True">
 
-    <busyIndicator:BusyMask IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
+    <busyIndicator:BusyMask IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
         <Grid Background="{DynamicResource CheckBoxBackgroundBrush}">
             <Grid.RowDefinitions>
                 <!--标题区-->

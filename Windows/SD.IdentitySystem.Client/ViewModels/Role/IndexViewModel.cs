@@ -4,9 +4,11 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
+using SD.IOC.Core.Mediators;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -18,7 +20,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
     /// <summary>
     /// 角色首页视图模型
     /// </summary>
-    public class IndexViewModel : Screen, IPaginatable
+    public class IndexViewModel : ScreenBase, IPaginatable
     {
         #region # 字段及构造器
 
@@ -28,11 +30,17 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
+        /// 窗口管理器
+        /// </summary>
+        private readonly IWindowManager _windowManager;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(IAuthorizationContract authorizationContract)
+        public IndexViewModel(IAuthorizationContract authorizationContract, IWindowManager windowManager)
         {
             this._authorizationContract = authorizationContract;
+            this._windowManager = windowManager;
 
             //默认值
             this.PageIndex = 1;
@@ -149,7 +157,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// </summary>
         public async Task LoadRoles()
         {
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             PageModel<RoleInfo> pageModel = await Task.Run(() => this._authorizationContract.GetRolesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
@@ -158,18 +166,22 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             IEnumerable<Wrap<RoleInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.Roles = new ObservableCollection<Wrap<RoleInfo>>(wrapModels);
 
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 
-        #region 创建角色 —— void CreateRole()
+        #region 创建角色 —— async void CreateRole()
         /// <summary>
         /// 创建角色
         /// </summary>
-        public void CreateRole()
+        public async void CreateRole()
         {
-            //TODO 实现 创建角色
-            MessageBox.Show("创建角色");
+            AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.LoadRoles();
+            }
         }
         #endregion
 
@@ -195,12 +207,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                LoadingIndicator.Suspend();
+                this.Busy();
 
                 await Task.Run(() => this._authorizationContract.RemoveRole(role.Model.Id));
                 await this.LoadRoles();
 
-                LoadingIndicator.Dispose();
+                this.Idle();
             }
         }
         #endregion
@@ -225,12 +237,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                LoadingIndicator.Suspend();
+                this.Busy();
 
                 await Task.Run(() => checkedRoles.ForEach(role => this._authorizationContract.RemoveRole(role.Id)));
                 await this.LoadRoles();
 
-                LoadingIndicator.Dispose();
+                this.Idle();
             }
         }
         #endregion

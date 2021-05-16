@@ -1,9 +1,9 @@
-﻿using Caliburn.Micro;
-using SD.Common;
+﻿using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
     /// <summary>
     /// 登录记录首页视图模型
     /// </summary>
-    public class IndexViewModel : Screen, IPaginatable
+    public class IndexViewModel : ScreenBase, IPaginatable
     {
         #region # 字段及构造器
 
@@ -147,7 +147,7 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         /// </summary>
         public async Task LoadLoginRecords()
         {
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
@@ -156,7 +156,7 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
             IEnumerable<Wrap<LoginRecordInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.LoginRecords = new ObservableCollection<Wrap<LoginRecordInfo>>(wrapModels);
 
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 

@@ -4,6 +4,7 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
@@ -19,7 +20,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
     /// <summary>
     /// 用户首页视图模型
     /// </summary>
-    public class IndexViewModel : Screen, IPaginatable
+    public class IndexViewModel : ScreenBase, IPaginatable
     {
         #region # 字段及构造器
 
@@ -162,7 +163,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public async Task LoadUsers()
         {
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             PageModel<UserInfo> pageModel = await Task.Run(() => this._userContract.GetUsersByPage(this.Keywords, this.SelectedInfoSystem?.Number, null, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
@@ -171,7 +172,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             IEnumerable<Wrap<UserInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.Users = new ObservableCollection<Wrap<UserInfo>>(wrapModels);
 
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 
@@ -197,12 +198,12 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// <param name="user">用户</param>
         public async void EnableUser(Wrap<UserInfo> user)
         {
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             await Task.Run(() => this._userContract.EnableUser(user.Model.Number));
             await this.LoadUsers();
 
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 
@@ -213,12 +214,12 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// <param name="user">用户</param>
         public async void DisableUser(Wrap<UserInfo> user)
         {
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             await Task.Run(() => this._userContract.DisableUser(user.Model.Number));
             await this.LoadUsers();
 
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 
@@ -232,12 +233,12 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                LoadingIndicator.Suspend();
+                this.Busy();
 
                 await Task.Run(() => this._userContract.RemoveUser(user.Model.Number));
                 await this.LoadUsers();
 
-                LoadingIndicator.Dispose();
+                this.Idle();
             }
         }
         #endregion
@@ -262,12 +263,12 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                LoadingIndicator.Suspend();
+                this.Busy();
 
                 await Task.Run(() => checkedUsers.ForEach(user => this._userContract.RemoveUser(user.Number)));
                 await this.LoadUsers();
 
-                LoadingIndicator.Dispose();
+                this.Idle();
             }
         }
         #endregion

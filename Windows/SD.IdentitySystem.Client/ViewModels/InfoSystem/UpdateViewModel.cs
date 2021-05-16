@@ -1,7 +1,7 @@
-﻿using Caliburn.Micro;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System;
 using System.Threading.Tasks;
@@ -12,7 +12,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
     /// <summary>
     /// 信息系统修改视图模型
     /// </summary>
-    public class UpdateViewModel : Screen
+    public class UpdateViewModel : ScreenBase
     {
         #region # 字段及构造器
 
@@ -97,12 +97,12 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             #endregion
 
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             await Task.Run(() => this._authorizationContract.UpdateInfoSystem(this.InfoSystemId, this.InfoSystemNo, this.InfoSystemName));
 
             base.TryClose(true);
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 

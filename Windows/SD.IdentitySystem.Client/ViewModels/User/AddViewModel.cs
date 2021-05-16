@@ -1,6 +1,6 @@
-﻿using Caliburn.Micro;
-using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,7 +10,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
     /// <summary>
     /// 用户创建视图模型
     /// </summary>
-    public class AddViewModel : Screen
+    public class AddViewModel : ScreenBase
     {
         #region # 字段及构造器
 
@@ -103,12 +103,12 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             #endregion
 
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             await Task.Run(() => this._userContract.CreateUser(this.LoginId, this.RealName, this.Password));
 
             base.TryClose(true);
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 

@@ -1,7 +1,7 @@
-﻿using Caliburn.Micro;
-using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,7 +11,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
     /// <summary>
     /// 修改密码视图模型
     /// </summary>
-    public class UpdatePasswordViewModel : Screen
+    public class UpdatePasswordViewModel : ScreenBase
     {
         #region # 字段及构造器
 
@@ -91,13 +91,13 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             #endregion
 
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
             await Task.Run(() => this._userContract.UpdatePassword(loginInfo.LoginId, this.OldPassword, this.NewPassword));
 
             base.TryClose(true);
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 

@@ -1,6 +1,6 @@
-﻿using Caliburn.Micro;
-using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -10,7 +10,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
     /// <summary>
     /// 重置密码视图模型
     /// </summary>
-    public class ResetPasswordViewModel : Screen
+    public class ResetPasswordViewModel : ScreenBase
     {
         #region # 字段及构造器
 
@@ -55,6 +55,14 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         public string ConfirmedPassword { get; set; }
         #endregion
 
+        #region 是否繁忙 —— bool IsBusy
+        /// <summary>
+        /// 是否繁忙
+        /// </summary>
+        [DependencyProperty]
+        public bool IsBusy { get; set; }
+        #endregion
+
         #endregion
 
         #region # 方法
@@ -96,12 +104,12 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             #endregion
 
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             await Task.Run(() => this._userContract.ResetPassword(this.LoginId, this.NewPassword));
 
             base.TryClose(true);
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 

@@ -3,6 +3,7 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
@@ -15,7 +16,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
     /// <summary>
     /// 登录视图模型
     /// </summary>
-    public class LoginViewModel : Screen
+    public class LoginViewModel : ScreenBase
     {
         #region # 字段及构造器
 
@@ -111,7 +112,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
             #endregion
 
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Login(this.LoginId, this.Password));
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
@@ -120,7 +121,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             this._windowManager.ShowWindow(homeViewModel);
 
             base.TryClose();
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 

@@ -1,10 +1,10 @@
-﻿using Caliburn.Micro;
-using SD.Common;
+﻿using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Presentors;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Toolkits.Recursion.Tree;
 using System.Collections.Generic;
@@ -19,7 +19,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
     /// <summary>
     /// 菜单首页视图模型
     /// </summary>
-    public class IndexViewModel : Screen
+    public class IndexViewModel : ScreenBase
     {
         #region # 字段及构造器
 
@@ -109,14 +109,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         public async Task LoadMenus()
         {
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             string infoSystemNo = this.SelectedInfoSystem?.Number;
             ApplicationType? applicationType = this.SelectedApplicationType;
             IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
             this.Menus = new ObservableCollection<Models.Menu>(menus);
 
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 
@@ -153,12 +153,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                LoadingIndicator.Suspend();
+                this.Busy();
 
                 await Task.Run(() => this._authorizationContract.RemoveMenu(menu.Id));
                 await this.LoadMenus();
 
-                LoadingIndicator.Dispose();
+                this.Idle();
             }
         }
         #endregion
@@ -198,12 +198,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                LoadingIndicator.Suspend();
+                this.Busy();
 
                 await Task.Run(() => checkedMenus.ForEach(menu => this._authorizationContract.RemoveMenu(menu.Id)));
                 await this.LoadMenus();
 
-                LoadingIndicator.Dispose();
+                this.Idle();
             }
         }
         #endregion

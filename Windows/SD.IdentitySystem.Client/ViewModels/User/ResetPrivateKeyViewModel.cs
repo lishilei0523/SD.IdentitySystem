@@ -1,7 +1,7 @@
-﻿using Caliburn.Micro;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -11,7 +11,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
     /// <summary>
     /// 重置私钥视图模型
     /// </summary>
-    public class ResetPrivateKeyViewModel : Screen
+    public class ResetPrivateKeyViewModel : ScreenBase
     {
         #region # 字段及构造器
 
@@ -82,12 +82,12 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             #endregion
 
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             await Task.Run(() => this._userContract.SetPrivateKey(this.LoginId, this.PrivateKey));
 
             base.TryClose(true);
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 

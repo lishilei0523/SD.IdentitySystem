@@ -4,6 +4,7 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
@@ -19,7 +20,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
     /// <summary>
     /// 权限首页视图模型
     /// </summary>
-    public class IndexViewModel : Screen, IPaginatable
+    public class IndexViewModel : ScreenBase, IPaginatable
     {
         #region # 字段及构造器
 
@@ -156,7 +157,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         public async Task LoadAuthorities()
         {
-            LoadingIndicator.Suspend();
+            this.Busy();
 
             PageModel<AuthorityInfo> pageModel = await Task.Run(() => this._authorizationContract.GetAuthoritiesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
@@ -165,7 +166,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             IEnumerable<Wrap<AuthorityInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.Authorities = new ObservableCollection<Wrap<AuthorityInfo>>(wrapModels);
 
-            LoadingIndicator.Dispose();
+            this.Idle();
         }
         #endregion
 
@@ -211,12 +212,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                LoadingIndicator.Suspend();
+                this.Busy();
 
                 await Task.Run(() => this._authorizationContract.RemoveAuthority(authority.Model.Id));
                 await this.LoadAuthorities();
 
-                LoadingIndicator.Dispose();
+                this.Idle();
             }
         }
         #endregion
@@ -241,12 +242,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
-                LoadingIndicator.Suspend();
+                this.Busy();
 
                 await Task.Run(() => checkedAuthorities.ForEach(authority => this._authorizationContract.RemoveAuthority(authority.Id)));
                 await this.LoadAuthorities();
 
-                LoadingIndicator.Dispose();
+                this.Idle();
             }
         }
         #endregion

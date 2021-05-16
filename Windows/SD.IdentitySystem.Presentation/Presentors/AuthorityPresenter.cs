@@ -31,77 +31,68 @@ namespace SD.IdentitySystem.Presentation.Presentors
 
         #endregion
 
-        #region # 获取信息系统的权限树 —— Node GetAuthorityTree(string systemNo)
+        #region # 获取角色相关权限数据项列表 —— ICollection<Item> GetRoleAuthorityItems(Guid roleId)
         /// <summary>
-        /// 获取信息系统的权限树
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限树</returns>
-        public Node GetAuthorityTree(string systemNo)
-        {
-            IEnumerable<AuthorityInfo> authorities = this._authorizationContract.GetAuthorities(null, systemNo, null, null);
-            InfoSystemInfo infoSystem = this._authorizationContract.GetInfoSystem(systemNo);
-            Node node = infoSystem.ToNode(authorities);
-
-            return node;
-        }
-        #endregion
-
-        #region # 获取角色的权限树 —— Node GetAuthorityTreeByRole(Guid roleId)
-        /// <summary>
-        /// 获取角色的权限树
+        /// 获取角色相关权限数据项列表
         /// </summary>
         /// <param name="roleId">角色Id</param>
-        /// <returns>权限树</returns>
-        public Node GetAuthorityTreeByRole(Guid roleId)
+        /// <returns>权限数据项列表</returns>
+        public ICollection<Item> GetRoleAuthorityItems(Guid roleId)
         {
-            //获取当前角色及其权限集
-            RoleInfo currentRole = this._authorizationContract.GetRole(roleId);
-            IEnumerable<AuthorityInfo> roleAuthorities = this._authorizationContract.GetAuthorities(null, null, null, roleId).ToArray();
+            RoleInfo role = this._authorizationContract.GetRole(roleId);
+            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, role.SystemNo, null, null).ToArray();
+            AuthorityInfo[] roleSystemAuthorities = this._authorizationContract.GetAuthorities(null, null, null, role.Id).ToArray();
 
-            //获取角色所在信息系统的权限树
-            Node authroityTree = this.GetAuthorityTree(currentRole.SystemNo);
-
-            //遍历子节点集（权限集）
-            foreach (Node node in authroityTree.SubNodes)
+            ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
+            foreach (Item authorityItem in authorityItems)
             {
-                //如果角色中含有该权限，则选中
-                if (roleAuthorities.Any(x => x.Id == node.Id))
+                if (roleSystemAuthorities.Any(x => x.Id == authorityItem.Id))
                 {
-                    node.IsChecked = true;
+                    authorityItem.IsChecked = true;
                 }
             }
 
-            return authroityTree;
+            return authorityItems;
         }
         #endregion
 
-        #region # 获取菜单的权限树 —— Node GetAuthorityTreeByMenu(Guid menuId)
+        #region # 获取菜单相关权限数据项列表 —— ICollection<Item> GetMenuAuthorityItems(Guid menuId)
         /// <summary>
-        /// 获取菜单的权限树
+        /// 获取菜单相关权限数据项列表
         /// </summary>
         /// <param name="menuId">菜单Id</param>
-        /// <returns>权限树</returns>
-        public Node GetAuthorityTreeByMenu(Guid menuId)
+        /// <returns>权限数据项列表</returns>
+        public ICollection<Item> GetMenuAuthorityItems(Guid menuId)
         {
-            //获取当前菜单及其权限集
-            MenuInfo currentMenu = this._authorizationContract.GetMenu(menuId);
-            IEnumerable<AuthorityInfo> menuAuthorities = this._authorizationContract.GetAuthorities(null, null, menuId, null).ToArray();
+            MenuInfo menu = this._authorizationContract.GetMenu(menuId);
+            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, menu.SystemNo, null, null).ToArray();
+            AuthorityInfo[] menuSystemAuthorities = this._authorizationContract.GetAuthorities(null, null, menu.Id, null).ToArray();
 
-            //获取菜单所在信息系统的权限树
-            Node authroityTree = this.GetAuthorityTree(currentMenu.SystemNo);
-
-            //遍历子节点集（权限集）
-            foreach (Node node in authroityTree.SubNodes)
+            ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
+            foreach (Item authorityItem in authorityItems)
             {
-                //如果菜单中含有该权限，则选中
-                if (menuAuthorities.Any(x => x.Id == node.Id))
+                if (menuSystemAuthorities.Any(x => x.Id == authorityItem.Id))
                 {
-                    node.IsChecked = true;
+                    authorityItem.IsChecked = true;
                 }
             }
 
-            return authroityTree;
+            return authorityItems;
+        }
+        #endregion
+
+        #region # 获取信息系统相关权限数据项列表 —— ICollection<Item> GetSystemAuthorityItems(string systemNo)
+        /// <summary>
+        /// 获取信息系统相关权限数据项列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>权限数据项列表</returns>
+        public ICollection<Item> GetSystemAuthorityItems(string systemNo)
+        {
+            IEnumerable<AuthorityInfo> systemAuthorities = this._authorizationContract.GetAuthorities(null, systemNo, null, null);
+            ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
+
+            return authorityItems;
         }
         #endregion
     }

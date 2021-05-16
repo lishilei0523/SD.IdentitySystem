@@ -50,7 +50,7 @@
             </Grid>
         </Border>
         <!--内容区-->
-        <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding Path=(extensions:LoadingIndicator.IsBusy)}">
+        <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
             <DataGrid ItemsSource="{Binding InfoSystems}" 
                       Style="{StaticResource DataGridDefault}"
                       ColumnHeaderStyle="{StaticResource DataGridColumnHeaderDefault}"
