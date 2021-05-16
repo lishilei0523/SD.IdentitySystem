@@ -160,6 +160,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\Authority\UpdateViewModel.cs" />
     <Compile Include="ViewModels\Authority\AddViewModel.cs" />
     <Compile Include="ViewModels\Authority\IndexViewModel.cs" />
     <Compile Include="ViewModels\InfoSystem\AddViewModel.cs" />
@@ -181,6 +182,9 @@
     </Compile>
     <Compile Include="Views\Authority\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Authority\UpdateView.xaml.cs">
+      <DependentUpon>UpdateView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\InfoSystem\AddView.xaml.cs">
       <DependentUpon>AddView.xaml</DependentUpon>
@@ -257,6 +261,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Authority\IndexView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Authority\UpdateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

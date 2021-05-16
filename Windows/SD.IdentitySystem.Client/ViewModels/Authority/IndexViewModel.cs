@@ -184,15 +184,20 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         }
         #endregion
 
-        #region 修改权限 —— void UpdateAuthority(Wrap<AuthorityInfo> authority)
+        #region 修改权限 —— async void UpdateAuthority(Wrap<AuthorityInfo> authority)
         /// <summary>
         /// 修改权限
         /// </summary>
         /// <param name="authority">权限</param>
-        public void UpdateAuthority(Wrap<AuthorityInfo> authority)
+        public async void UpdateAuthority(Wrap<AuthorityInfo> authority)
         {
-            //TODO 实现 修改权限
-            MessageBox.Show("修改权限");
+            UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
+            viewModel.Load(authority.Model.Id);
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.LoadAuthorities();
+            }
         }
         #endregion
 
