@@ -101,21 +101,21 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
         #region # 方法
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 初始化 —— override void OnInitialize()
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async void OnInitialize()
+        protected override void OnInitialize()
         {
-            await this.LoadMenus();
+            this.LoadMenus();
         }
         #endregion
 
-        #region 加载菜单 —— async Task LoadMenus()
+        #region 加载菜单 —— async void LoadMenus()
         /// <summary>
         /// 加载菜单
         /// </summary>
-        public async Task LoadMenus()
+        public async void LoadMenus()
         {
             this.Busy();
 

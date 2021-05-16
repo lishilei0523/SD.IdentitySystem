@@ -8,7 +8,7 @@ using System.Windows;
 namespace SD.IdentitySystem.Client.ViewModels.User
 {
     /// <summary>
-    /// 重置密码视图模型
+    /// 用户重置密码视图模型
     /// </summary>
     public class ResetPasswordViewModel : ScreenBase
     {

@@ -133,7 +133,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         {
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
-            await this.LoadUsers();
+            this.LoadUsers();
         }
         #endregion
 
@@ -157,11 +157,11 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         }
         #endregion
 
-        #region 加载用户列表 —— async Task LoadUsers()
+        #region 加载用户列表 —— async void LoadUsers()
         /// <summary>
         /// 加载用户列表
         /// </summary>
-        public async Task LoadUsers()
+        public async void LoadUsers()
         {
             this.Busy();
 
@@ -186,7 +186,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                await this.LoadUsers();
+                this.LoadUsers();
             }
         }
         #endregion
@@ -201,7 +201,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             this.Busy();
 
             await Task.Run(() => this._userContract.EnableUser(user.Model.Number));
-            await this.LoadUsers();
+            this.LoadUsers();
 
             this.Idle();
         }
@@ -217,7 +217,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             this.Busy();
 
             await Task.Run(() => this._userContract.DisableUser(user.Model.Number));
-            await this.LoadUsers();
+            this.LoadUsers();
 
             this.Idle();
         }
@@ -236,7 +236,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
                 this.Busy();
 
                 await Task.Run(() => this._userContract.RemoveUser(user.Model.Number));
-                await this.LoadUsers();
+                this.LoadUsers();
 
                 this.Idle();
             }
@@ -266,7 +266,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
                 this.Busy();
 
                 await Task.Run(() => checkedUsers.ForEach(user => this._userContract.RemoveUser(user.Number)));
-                await this.LoadUsers();
+                this.LoadUsers();
 
                 this.Idle();
             }
@@ -292,11 +292,11 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         public async void ResetPrivateKey(Wrap<UserInfo> user)
         {
             ResetPrivateKeyViewModel viewModel = ResolveMediator.Resolve<ResetPrivateKeyViewModel>();
-            await viewModel.Load(user.Model.Number);
+            viewModel.Load(user.Model.Number);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                await this.LoadUsers();
+                this.LoadUsers();
             }
         }
         #endregion

@@ -62,11 +62,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
         #region # 方法
 
-        #region 加载 —— async Task Load(Guid menuId)
+        #region 加载 —— async void Load(Guid menuId)
         /// <summary>
         /// 加载
         /// </summary>
-        public async Task Load(Guid menuId)
+        public async void Load(Guid menuId)
         {
             this.Busy();
 

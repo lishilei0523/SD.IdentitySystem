@@ -127,7 +127,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         {
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
-            await this.LoadRoles();
+            this.LoadRoles();
         }
         #endregion
 
@@ -151,11 +151,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         }
         #endregion
 
-        #region 加载角色列表 —— async Task LoadRoles()
+        #region 加载角色列表 —— async void LoadRoles()
         /// <summary>
         /// 加载角色列表
         /// </summary>
-        public async Task LoadRoles()
+        public async void LoadRoles()
         {
             this.Busy();
 
@@ -180,7 +180,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                await this.LoadRoles();
+                this.LoadRoles();
             }
         }
         #endregion
@@ -194,13 +194,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         {
             this.Busy();
             UpdateViewModel viewModel = await Task.Run(ResolveMediator.Resolve<UpdateViewModel>);
-            await viewModel.Load(role.Model.Id);
+            await Task.Run(() => viewModel.Load(role.Model.Id));
             this.Idle();
 
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                await this.LoadRoles();
+                this.LoadRoles();
             }
         }
         #endregion
@@ -218,7 +218,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
                 this.Busy();
 
                 await Task.Run(() => this._authorizationContract.RemoveRole(role.Model.Id));
-                await this.LoadRoles();
+                this.LoadRoles();
 
                 this.Idle();
             }
@@ -248,7 +248,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
                 this.Busy();
 
                 await Task.Run(() => checkedRoles.ForEach(role => this._authorizationContract.RemoveRole(role.Id)));
-                await this.LoadRoles();
+                this.LoadRoles();
 
                 this.Idle();
             }

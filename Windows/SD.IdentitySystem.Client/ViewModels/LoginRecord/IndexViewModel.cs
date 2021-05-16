@@ -111,13 +111,13 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
 
         #region # 方法
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 初始化 —— override void OnInitialize()
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async void OnInitialize()
+        protected override void OnInitialize()
         {
-            await this.LoadLoginRecords();
+            this.LoadLoginRecords();
         }
         #endregion
 
@@ -141,11 +141,11 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         }
         #endregion
 
-        #region 加载登录记录列表 —— async Task LoadLoginRecords()
+        #region 加载登录记录列表 —— async void LoadLoginRecords()
         /// <summary>
         /// 加载登录记录列表
         /// </summary>
-        public async Task LoadLoginRecords()
+        public async void LoadLoginRecords()
         {
             this.Busy();
 

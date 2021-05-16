@@ -88,11 +88,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
         #region # 方法
 
-        #region 加载 —— async Task Load(Guid roleId)
+        #region 加载 —— async void Load(Guid roleId)
         /// <summary>
         /// 加载
         /// </summary>
-        public async Task Load(Guid roleId)
+        public async void Load(Guid roleId)
         {
             this.Busy();
 

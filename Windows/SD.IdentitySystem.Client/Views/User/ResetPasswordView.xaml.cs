@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.Client.Views.User
 {
     /// <summary>
-    /// 重置密码视图
+    /// 用户重置密码视图
     /// </summary>
     public partial class ResetPasswordView : Window
     {

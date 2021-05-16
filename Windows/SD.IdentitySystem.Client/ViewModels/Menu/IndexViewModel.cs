@@ -107,15 +107,15 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
-            await this.LoadMenus();
+            this.LoadMenus();
         }
         #endregion
 
-        #region 加载菜单列表 —— async Task LoadMenus()
+        #region 加载菜单列表 —— async void LoadMenus()
         /// <summary>
         /// 加载菜单列表
         /// </summary>
-        public async Task LoadMenus()
+        public async void LoadMenus()
         {
             this.Busy();
 
@@ -164,7 +164,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
                 this.Busy();
 
                 await Task.Run(() => this._authorizationContract.RemoveMenu(menu.Id));
-                await this.LoadMenus();
+                this.LoadMenus();
 
                 this.Idle();
             }
@@ -209,7 +209,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
                 this.Busy();
 
                 await Task.Run(() => checkedMenus.ForEach(menu => this._authorizationContract.RemoveMenu(menu.Id)));
-                await this.LoadMenus();
+                this.LoadMenus();
 
                 this.Idle();
             }
@@ -225,7 +225,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         {
             this.Busy();
             RelateAuthorityViewModel viewModel = await Task.Run(ResolveMediator.Resolve<RelateAuthorityViewModel>);
-            await viewModel.Load(menu.Id);
+            await Task.Run(() => viewModel.Load(menu.Id));
             this.Idle();
 
             this._windowManager.ShowDialog(viewModel);

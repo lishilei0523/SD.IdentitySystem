@@ -127,7 +127,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         {
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
-            await this.LoadAuthorities();
+            this.LoadAuthorities();
         }
         #endregion
 
@@ -151,11 +151,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         }
         #endregion
 
-        #region 加载权限列表 —— async Task LoadAuthorities()
+        #region 加载权限列表 —— async void LoadAuthorities()
         /// <summary>
         /// 加载权限列表
         /// </summary>
-        public async Task LoadAuthorities()
+        public async void LoadAuthorities()
         {
             this.Busy();
 
@@ -180,7 +180,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                await this.LoadAuthorities();
+                this.LoadAuthorities();
             }
         }
         #endregion
@@ -193,11 +193,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public async void UpdateAuthority(Wrap<AuthorityInfo> authority)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            await viewModel.Load(authority.Model.Id);
+            viewModel.Load(authority.Model.Id);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                await this.LoadAuthorities();
+                this.LoadAuthorities();
             }
         }
         #endregion
@@ -215,7 +215,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 this.Busy();
 
                 await Task.Run(() => this._authorizationContract.RemoveAuthority(authority.Model.Id));
-                await this.LoadAuthorities();
+                this.LoadAuthorities();
 
                 this.Idle();
             }
@@ -245,7 +245,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 this.Busy();
 
                 await Task.Run(() => checkedAuthorities.ForEach(authority => this._authorizationContract.RemoveAuthority(authority.Id)));
-                await this.LoadAuthorities();
+                this.LoadAuthorities();
 
                 this.Idle();
             }

@@ -5,7 +5,6 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-             xmlns:extensions="clr-namespace:SD.Infrastructure.WPF.Extensions;assembly=SD.Infrastructure.WPF"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:userControls="clr-namespace:SD.Infrastructure.WPF.UserControls;assembly=SD.Infrastructure.WPF"
@@ -24,7 +23,7 @@
                 <WrapPanel VerticalAlignment="Center" Margin="10,0,0,0">
                     <TextBlock Text="关键字：" />
                     <TextBox Width="210" 
-                             mah:TextBoxHelper.Watermark="登录名/真实姓名"
+                             mah:TextBoxHelper.Watermark="用户名/真实姓名"
                              mah:TextBoxHelper.ClearTextButton="True"
                              Text="{Binding Keywords}" />
                     <TextBlock Text="开始时间：" Margin="10,0,0,0" />

@@ -102,13 +102,13 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
         #region # 方法
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 初始化 —— override void OnInitialize()
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async void OnInitialize()
+        protected override void OnInitialize()
         {
-            await this.LoadInfoSystems();
+            this.LoadInfoSystems();
         }
         #endregion
 
@@ -132,11 +132,11 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         }
         #endregion
 
-        #region 加载信息系统列表 —— async Task LoadInfoSystems()
+        #region 加载信息系统列表 —— async void LoadInfoSystems()
         /// <summary>
         /// 加载信息系统列表
         /// </summary>
-        public async Task LoadInfoSystems()
+        public async void LoadInfoSystems()
         {
             this.Busy();
 
@@ -161,7 +161,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                await this.LoadInfoSystems();
+                this.LoadInfoSystems();
             }
         }
         #endregion
@@ -174,12 +174,12 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         public async void UpdateInfoSystem(Wrap<InfoSystemInfo> infoSystem)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            await viewModel.Load(infoSystem.Model.Number);
+            viewModel.Load(infoSystem.Model.Number);
 
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                await this.LoadInfoSystems();
+                this.LoadInfoSystems();
             }
         }
         #endregion
@@ -192,12 +192,12 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         public async void InitInfoSystem(Wrap<InfoSystemInfo> infoSystem)
         {
             InitViewModel viewModel = ResolveMediator.Resolve<InitViewModel>();
-            await viewModel.Load(infoSystem.Model.Number);
+            viewModel.Load(infoSystem.Model.Number);
 
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                await this.LoadInfoSystems();
+                this.LoadInfoSystems();
             }
         }
         #endregion

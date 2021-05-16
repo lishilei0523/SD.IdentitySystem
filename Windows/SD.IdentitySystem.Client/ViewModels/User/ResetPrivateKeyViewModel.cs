@@ -9,7 +9,7 @@ using System.Windows;
 namespace SD.IdentitySystem.Client.ViewModels.User
 {
     /// <summary>
-    /// 重置私钥视图模型
+    /// 用户重置私钥视图模型
     /// </summary>
     public class ResetPrivateKeyViewModel : ScreenBase
     {
@@ -52,12 +52,12 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
         #region # 方法
 
-        #region 加载 —— async Task Load(string loginId)
+        #region 加载 —— async void Load(string loginId)
         /// <summary>
         /// 加载
         /// </summary>
         /// <param name="loginId">用户名</param>
-        public async Task Load(string loginId)
+        public async void Load(string loginId)
         {
             this.Busy();
 

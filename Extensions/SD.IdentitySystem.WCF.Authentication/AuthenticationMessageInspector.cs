@@ -5,6 +5,7 @@ using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.MemberShip;
 using System;
 using System.Linq;
+using System.Net;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
@@ -54,7 +55,11 @@ namespace SD.IdentitySystem.WCF.Authentication
 
                 if (!headers.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
                 {
-                    throw new NullReferenceException("身份认证消息头不存在，请检查程序！");
+                    string message = "身份认证消息头不存在，请检查程序！";
+                    NoPermissionException innerException = new NoPermissionException(message);
+                    FaultReason faultReason = new FaultReason(message);
+                    FaultCode faultCode = new FaultCode(HttpStatusCode.Unauthorized.ToString());
+                    throw new FaultException<NoPermissionException>(innerException, faultReason, faultCode);
                 }
 
                 #endregion
@@ -70,7 +75,11 @@ namespace SD.IdentitySystem.WCF.Authentication
 
                     if (loginInfo == null)
                     {
-                        throw new NoPermissionException("身份过期，请重新登录！");
+                        string message = "身份过期，请重新登录！";
+                        NoPermissionException innerException = new NoPermissionException(message);
+                        FaultReason faultReason = new FaultReason(message);
+                        FaultCode faultCode = new FaultCode(HttpStatusCode.Unauthorized.ToString());
+                        throw new FaultException<NoPermissionException>(innerException, faultReason, faultCode);
                     }
 
                     //通过后，重新设置缓存过期时间
@@ -111,7 +120,11 @@ namespace SD.IdentitySystem.WCF.Authentication
 
                 if (!incomingHeaders.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
                 {
-                    throw new NullReferenceException("身份认证消息头不存在，请检查程序！");
+                    string message = "身份认证消息头不存在，请检查程序！";
+                    NoPermissionException innerException = new NoPermissionException(message);
+                    FaultReason faultReason = new FaultReason(message);
+                    FaultCode faultCode = new FaultCode(HttpStatusCode.Unauthorized.ToString());
+                    throw new FaultException<NoPermissionException>(innerException, faultReason, faultCode);
                 }
 
                 #endregion

@@ -8,6 +8,8 @@ using SD.IOC.Core.Mediators;
 using SD.IOC.Extension.NetFx;
 using System;
 using System.Collections.Generic;
+using System.Net;
+using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
@@ -58,6 +60,22 @@ namespace SD.IdentitySystem.Client
             string errorMessage = string.Empty;
             errorMessage = GetErrorMessage(exception.Message, ref errorMessage);
             MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
+            #region # 身份认证异常处理
+
+            if (exception is FaultException faultException && faultException.Code.Name == HttpStatusCode.Unauthorized.ToString())
+            {
+                IList<Window> activeWindows = new List<Window>();
+                foreach (Window window in Application.Current.Windows)
+                {
+                    activeWindows.Add(window);
+                }
+
+                base.DisplayRootViewFor<LoginViewModel>();
+                activeWindows.ForEach(window => window.Close());
+            }
+
+            #endregion
 
             //记录日志
             string exceptionLogPath = $"{AppDomain.CurrentDomain.BaseDirectory}\\ExceptionLogs\\{{0:yyyy-MM-dd}}.txt";

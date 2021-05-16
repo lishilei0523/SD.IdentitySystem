@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.Client.Views.User
 {
     /// <summary>
-    /// 修改密码视图
+    /// 用户修改密码视图
     /// </summary>
     public partial class UpdatePasswordView : Window
     {

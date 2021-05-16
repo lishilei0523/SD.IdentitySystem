@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.Client.Views.User
 {
     /// <summary>
-    /// 重置私钥视图
+    /// 用户重置私钥视图
     /// </summary>
     public partial class ResetPrivateKeyView : Window
     {

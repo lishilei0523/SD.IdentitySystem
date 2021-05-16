@@ -109,11 +109,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
         #region # 方法
 
-        #region 加载 —— async Task Load(Guid authorityId)
+        #region 加载 —— async void Load(Guid authorityId)
         /// <summary>
         /// 加载
         /// </summary>
-        public async Task Load(Guid authorityId)
+        public async void Load(Guid authorityId)
         {
             this.Busy();
 
