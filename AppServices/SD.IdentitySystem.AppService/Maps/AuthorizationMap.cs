@@ -47,9 +47,8 @@ namespace SD.IdentitySystem.AppService.Maps
         public static MenuInfo ToDTO(this Menu menu, IDictionary<string, InfoSystemInfo> systemInfos)
         {
             MenuInfo menuInfo = menu.Map<Menu, MenuInfo>();
-
             menuInfo.InfoSystemInfo = systemInfos[menu.SystemNo];
-            menuInfo.ParentMenuId = menu.ParentNode == null ? (Guid?)null : menu.ParentNode.Id;
+            menuInfo.ParentMenuId = menu.ParentNode?.Id;
 
             return menuInfo;
         }
@@ -124,7 +123,6 @@ namespace SD.IdentitySystem.AppService.Maps
         public static AuthorityInfo ToDTO(this Authority authority, IDictionary<string, InfoSystemInfo> systemInfos)
         {
             AuthorityInfo authorityInfo = authority.Map<Authority, AuthorityInfo>();
-
             authorityInfo.InfoSystemInfo = systemInfos[authority.SystemNo];
 
             return authorityInfo;
@@ -151,7 +149,6 @@ namespace SD.IdentitySystem.AppService.Maps
         public static RoleInfo ToDTO(this Role role, IDictionary<string, InfoSystemInfo> systemInfos)
         {
             RoleInfo roleInfo = role.Map<Role, RoleInfo>();
-
             roleInfo.InfoSystemInfo = systemInfos[role.SystemNo];
 
             return roleInfo;

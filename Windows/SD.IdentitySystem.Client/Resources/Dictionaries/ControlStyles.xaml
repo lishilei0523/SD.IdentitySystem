@@ -37,6 +37,8 @@
     <Style BasedOn="{StaticResource MahApps.Styles.TextBox}" TargetType="{x:Type TextBox}">
         <Setter Property="Width" Value="210" />
         <Setter Property="Height" Value="28" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="微软雅黑" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
     </Style>
     <!--PasswordBox默认样式-->
@@ -53,6 +55,8 @@
     <Style x:Key="DefaultComboBox" BasedOn="{StaticResource MahApps.Styles.ComboBox.Virtualized}" TargetType="{x:Type ComboBox}">
         <Setter Property="Width" Value="210" />
         <Setter Property="Height" Value="28" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="微软雅黑" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
         <Setter Property="mah:TextBoxHelper.UseFloatingWatermark" Value="False" />
@@ -84,6 +88,7 @@
     <Style x:Key="DefaultButton" BasedOn="{StaticResource ButtonRevealStyle}" TargetType="{x:Type Button}">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontFamily" Value="微软雅黑" />
         <Setter Property="Width" Value="85" />
         <Setter Property="Height" Value="28" />
         <Setter Property="Margin" Value="10,0,0,0" />
@@ -91,21 +96,21 @@
         <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="0.5" />
     </Style>
     <!--Button焦点样式-->
-    <Style BasedOn="{StaticResource DefaultButton}" x:Key="FocusButton" TargetType="{x:Type Button}">
+    <Style x:Key="FocusButton" BasedOn="{StaticResource DefaultButton}" TargetType="{x:Type Button}">
         <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0.5" />
         <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="1" />
         <Setter Property="BorderBrush" Value="#0078D7" />
         <Setter Property="BorderThickness" Value="2" />
     </Style>
     <!--Button背景样式-->
-    <Style BasedOn="{StaticResource DefaultButton}" x:Key="BackgroundButton" TargetType="{x:Type Button}">
+    <Style x:Key="BackgroundButton" BasedOn="{StaticResource DefaultButton}" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Margin" Value="5,0,0,0" />
         <Setter Property="Padding" Value="3" />
     </Style>
     <!--Button表格样式-->
-    <Style BasedOn="{StaticResource ButtonRoundRevealStyle}" x:Key="GridButton" TargetType="{x:Type Button}">
+    <Style x:Key="GridButton" BasedOn="{StaticResource ButtonRoundRevealStyle}" TargetType="{x:Type Button}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="FontSize" Value="14" />
@@ -134,5 +139,14 @@
         <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
         <Setter Property="mah:TextBoxHelper.Watermark" Value="选择时间" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <!--Metro.Watermark默认样式-->
+    <Style x:Key="MahApps.Styles.TextBlock.Watermark" BasedOn="{StaticResource MahApps.Styles.TextBlock}" 
+           TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontFamily" Value="微软雅黑" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Opacity" Value="0.6" />
     </Style>
 </ResourceDictionary>
