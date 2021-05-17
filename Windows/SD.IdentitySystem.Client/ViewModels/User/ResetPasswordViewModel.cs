@@ -35,7 +35,6 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// <summary>
         /// 用户名
         /// </summary>
-        [DependencyProperty]
         public string LoginId { get; set; }
         #endregion
 
@@ -67,6 +66,8 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
         #region # 方法
 
+        //Initializations
+
         #region 加载 —— void Load(string loginId)
         /// <summary>
         /// 加载
@@ -77,6 +78,9 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             this.LoginId = loginId;
         }
         #endregion
+
+
+        //Actions
 
         #region 提交 —— async void Submit()
         /// <summary>

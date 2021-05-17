@@ -119,6 +119,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override async void OnInitialize()
         /// <summary>
         /// 初始化
@@ -127,29 +129,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         {
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
+
             this.LoadAuthorities();
         }
         #endregion
 
-        #region 全选 —— void CheckAll()
-        /// <summary>
-        /// 全选
-        /// </summary>
-        public void CheckAll()
-        {
-            this.Authorities.ForEach(x => x.IsChecked = true);
-        }
-        #endregion
 
-        #region 取消全选 —— void UncheckAll()
-        /// <summary>
-        /// 取消全选
-        /// </summary>
-        public void UncheckAll()
-        {
-            this.Authorities.ForEach(x => x.IsChecked = false);
-        }
-        #endregion
+        //Actions
 
         #region 加载权限列表 —— async void LoadAuthorities()
         /// <summary>
@@ -159,12 +145,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         {
             this.Busy();
 
-            PageModel<AuthorityInfo> pageModel = await Task.Run(() => this._authorizationContract.GetAuthoritiesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
-            this.RowCount = pageModel.RowCount;
-            this.PageCount = pageModel.PageCount;
-
-            IEnumerable<Wrap<AuthorityInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
-            this.Authorities = new ObservableCollection<Wrap<AuthorityInfo>>(wrapModels);
+            await this.ReloadAuthorities();
 
             this.Idle();
         }
@@ -180,7 +161,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                this.LoadAuthorities();
+                await this.ReloadAuthorities();
             }
         }
         #endregion
@@ -193,11 +174,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public async void UpdateAuthority(Wrap<AuthorityInfo> authority)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            viewModel.Load(authority.Model.Id);
+            await viewModel.Load(authority.Model.Id);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                this.LoadAuthorities();
+                await this.ReloadAuthorities();
             }
         }
         #endregion
@@ -215,7 +196,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 this.Busy();
 
                 await Task.Run(() => this._authorizationContract.RemoveAuthority(authority.Model.Id));
-                this.LoadAuthorities();
+                await this.ReloadAuthorities();
 
                 this.Idle();
             }
@@ -245,10 +226,48 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 this.Busy();
 
                 await Task.Run(() => checkedAuthorities.ForEach(authority => this._authorizationContract.RemoveAuthority(authority.Id)));
-                this.LoadAuthorities();
+                await this.ReloadAuthorities();
 
                 this.Idle();
             }
+        }
+        #endregion
+
+        #region 全选 —— void CheckAll()
+        /// <summary>
+        /// 全选
+        /// </summary>
+        public void CheckAll()
+        {
+            this.Authorities.ForEach(x => x.IsChecked = true);
+        }
+        #endregion
+
+        #region 取消全选 —— void UncheckAll()
+        /// <summary>
+        /// 取消全选
+        /// </summary>
+        public void UncheckAll()
+        {
+            this.Authorities.ForEach(x => x.IsChecked = false);
+        }
+        #endregion
+
+
+        //Private
+
+        #region 加载权限列表 —— async Task ReloadAuthorities()
+        /// <summary>
+        /// 加载权限列表
+        /// </summary>
+        private async Task ReloadAuthorities()
+        {
+            PageModel<AuthorityInfo> pageModel = await Task.Run(() => this._authorizationContract.GetAuthoritiesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
+            this.RowCount = pageModel.RowCount;
+            this.PageCount = pageModel.PageCount;
+
+            IEnumerable<Wrap<AuthorityInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
+            this.Authorities = new ObservableCollection<Wrap<AuthorityInfo>>(wrapModels);
         }
         #endregion
 

@@ -88,6 +88,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override async void OnInitialize()
         /// <summary>
         /// 初始化
@@ -99,26 +101,18 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         }
         #endregion
 
+
+        //Actions
+
         #region 加载权限列表 —— async void LoadAuthorities()
         /// <summary>
         /// 加载权限列表
         /// </summary>
         public async void LoadAuthorities()
         {
-            #region # 验证
-
-            if (this.SelectedInfoSystem == null)
-            {
-                this.AuthorityItems = new ObservableCollection<Item>();
-                return;
-            }
-
-            #endregion
-
             this.Busy();
 
-            ICollection<Item> authorityItems = await Task.Run(() => this._authorityPresenter.GetSystemAuthorityItems(this.SelectedInfoSystem.Number));
-            this.AuthorityItems = new ObservableCollection<Item>(authorityItems);
+            await this.ReloadAuthorities();
 
             this.Idle();
         }
@@ -152,6 +146,27 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
             base.TryClose(true);
             this.Idle();
+        }
+        #endregion
+
+
+        //Privates
+
+        #region 加载权限列表 —— async Task ReloadAuthorities()
+        /// <summary>
+        /// 加载权限列表
+        /// </summary>
+        private async Task ReloadAuthorities()
+        {
+            if (this.SelectedInfoSystem == null)
+            {
+                this.AuthorityItems = new ObservableCollection<Item>();
+            }
+            else
+            {
+                ICollection<Item> authorityItems = await Task.Run(() => this._authorityPresenter.GetSystemAuthorityItems(this.SelectedInfoSystem.Number));
+                this.AuthorityItems = new ObservableCollection<Item>(authorityItems);
+            }
         }
         #endregion
 

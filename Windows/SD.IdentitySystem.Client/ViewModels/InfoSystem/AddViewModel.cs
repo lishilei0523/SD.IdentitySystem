@@ -78,6 +78,8 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override void OnInitialize()
         /// <summary>
         /// 初始化
@@ -87,6 +89,9 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
         }
         #endregion
+
+
+        //Actions
 
         #region 提交 —— async void Submit()
         /// <summary>

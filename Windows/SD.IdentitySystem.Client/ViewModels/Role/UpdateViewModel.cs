@@ -88,26 +88,27 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
         #region # 方法
 
-        #region 加载 —— async void Load(Guid roleId)
+        //Initializations
+
+        #region 加载 —— async Task Load(Guid roleId)
         /// <summary>
         /// 加载
         /// </summary>
-        public async void Load(Guid roleId)
+        public async Task Load(Guid roleId)
         {
-            this.Busy();
-
             RoleInfo role = await Task.Run(() => this._authorizationContract.GetRole(roleId));
-            ICollection<Item> authorityItems = this._authorityPresenter.GetRoleAuthorityItems(roleId);
+            ICollection<Item> authorityItems = await Task.Run(() => this._authorityPresenter.GetRoleAuthorityItems(roleId));
 
             this.InfoSystemName = role.InfoSystemInfo.Name;
             this.RoleId = role.Id;
             this.RoleName = role.Name;
             this.Description = role.Description;
             this.AuthorityItems = new ObservableCollection<Item>(authorityItems);
-
-            this.Idle();
         }
         #endregion
+
+
+        //Privates
 
         #region 提交 —— async void Submit()
         /// <summary>

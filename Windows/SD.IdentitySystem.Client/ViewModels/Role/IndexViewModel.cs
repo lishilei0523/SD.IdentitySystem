@@ -119,6 +119,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override async void OnInitialize()
         /// <summary>
         /// 初始化
@@ -127,29 +129,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         {
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
+
             this.LoadRoles();
         }
         #endregion
 
-        #region 全选 —— void CheckAll()
-        /// <summary>
-        /// 全选
-        /// </summary>
-        public void CheckAll()
-        {
-            this.Roles.ForEach(x => x.IsChecked = true);
-        }
-        #endregion
 
-        #region 取消全选 —— void UncheckAll()
-        /// <summary>
-        /// 取消全选
-        /// </summary>
-        public void UncheckAll()
-        {
-            this.Roles.ForEach(x => x.IsChecked = false);
-        }
-        #endregion
+        //Actions
 
         #region 加载角色列表 —— async void LoadRoles()
         /// <summary>
@@ -159,12 +145,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         {
             this.Busy();
 
-            PageModel<RoleInfo> pageModel = await Task.Run(() => this._authorizationContract.GetRolesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
-            this.RowCount = pageModel.RowCount;
-            this.PageCount = pageModel.PageCount;
-
-            IEnumerable<Wrap<RoleInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
-            this.Roles = new ObservableCollection<Wrap<RoleInfo>>(wrapModels);
+            await this.ReloadRoles();
 
             this.Idle();
         }
@@ -180,7 +161,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                this.LoadRoles();
+                await this.ReloadRoles();
             }
         }
         #endregion
@@ -194,13 +175,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         {
             this.Busy();
             UpdateViewModel viewModel = await Task.Run(ResolveMediator.Resolve<UpdateViewModel>);
-            await Task.Run(() => viewModel.Load(role.Model.Id));
+            await viewModel.Load(role.Model.Id);
             this.Idle();
 
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                this.LoadRoles();
+                await this.ReloadRoles();
             }
         }
         #endregion
@@ -218,7 +199,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
                 this.Busy();
 
                 await Task.Run(() => this._authorizationContract.RemoveRole(role.Model.Id));
-                this.LoadRoles();
+                await this.ReloadRoles();
 
                 this.Idle();
             }
@@ -248,10 +229,48 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
                 this.Busy();
 
                 await Task.Run(() => checkedRoles.ForEach(role => this._authorizationContract.RemoveRole(role.Id)));
-                this.LoadRoles();
+                await this.ReloadRoles();
 
                 this.Idle();
             }
+        }
+        #endregion
+
+        #region 全选 —— void CheckAll()
+        /// <summary>
+        /// 全选
+        /// </summary>
+        public void CheckAll()
+        {
+            this.Roles.ForEach(x => x.IsChecked = true);
+        }
+        #endregion
+
+        #region 取消全选 —— void UncheckAll()
+        /// <summary>
+        /// 取消全选
+        /// </summary>
+        public void UncheckAll()
+        {
+            this.Roles.ForEach(x => x.IsChecked = false);
+        }
+        #endregion
+
+
+        //Privates
+
+        #region 加载角色列表 —— async Task ReloadRoles()
+        /// <summary>
+        /// 加载角色列表
+        /// </summary>
+        private async Task ReloadRoles()
+        {
+            PageModel<RoleInfo> pageModel = await Task.Run(() => this._authorizationContract.GetRolesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
+            this.RowCount = pageModel.RowCount;
+            this.PageCount = pageModel.PageCount;
+
+            IEnumerable<Wrap<RoleInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
+            this.Roles = new ObservableCollection<Wrap<RoleInfo>>(wrapModels);
         }
         #endregion
 

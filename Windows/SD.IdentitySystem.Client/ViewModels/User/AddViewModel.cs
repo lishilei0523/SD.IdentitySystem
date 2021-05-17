@@ -67,6 +67,8 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
         #region # 方法
 
+        //Actions
+
         #region 提交 —— async void Submit()
         /// <summary>
         /// 提交

@@ -111,6 +111,8 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override void OnInitialize()
         /// <summary>
         /// 初始化
@@ -118,6 +120,23 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         protected override void OnInitialize()
         {
             this.LoadLoginRecords();
+        }
+        #endregion
+
+
+        //Actions
+
+        #region 加载登录记录列表 —— async void LoadLoginRecords()
+        /// <summary>
+        /// 加载登录记录列表
+        /// </summary>
+        public async void LoadLoginRecords()
+        {
+            this.Busy();
+
+            await this.ReloadLoginRecords();
+
+            this.Idle();
         }
         #endregion
 
@@ -141,22 +160,21 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         }
         #endregion
 
-        #region 加载登录记录列表 —— async void LoadLoginRecords()
+
+        //Privates
+
+        #region 加载登录记录列表 —— async Task ReloadLoginRecords()
         /// <summary>
         /// 加载登录记录列表
         /// </summary>
-        public async void LoadLoginRecords()
+        private async Task ReloadLoginRecords()
         {
-            this.Busy();
-
             PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<LoginRecordInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.LoginRecords = new ObservableCollection<Wrap<LoginRecordInfo>>(wrapModels);
-
-            this.Idle();
         }
         #endregion
 

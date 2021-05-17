@@ -110,6 +110,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override async void OnInitialize()
         /// <summary>
         /// 初始化
@@ -120,6 +122,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
         }
         #endregion
+
+
+        //Actions
 
         #region 提交 —— async void Submit()
         /// <summary>

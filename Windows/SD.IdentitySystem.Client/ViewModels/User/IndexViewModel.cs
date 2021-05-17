@@ -125,6 +125,8 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override async void OnInitialize()
         /// <summary>
         /// 初始化
@@ -133,29 +135,13 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         {
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
+
             this.LoadUsers();
         }
         #endregion
 
-        #region 全选 —— void CheckAll()
-        /// <summary>
-        /// 全选
-        /// </summary>
-        public void CheckAll()
-        {
-            this.Users.ForEach(x => x.IsChecked = true);
-        }
-        #endregion
 
-        #region 取消全选 —— void UncheckAll()
-        /// <summary>
-        /// 取消全选
-        /// </summary>
-        public void UncheckAll()
-        {
-            this.Users.ForEach(x => x.IsChecked = false);
-        }
-        #endregion
+        //Actions
 
         #region 加载用户列表 —— async void LoadUsers()
         /// <summary>
@@ -165,12 +151,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         {
             this.Busy();
 
-            PageModel<UserInfo> pageModel = await Task.Run(() => this._userContract.GetUsersByPage(this.Keywords, this.SelectedInfoSystem?.Number, null, this.PageIndex, this.PageSize));
-            this.RowCount = pageModel.RowCount;
-            this.PageCount = pageModel.PageCount;
-
-            IEnumerable<Wrap<UserInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
-            this.Users = new ObservableCollection<Wrap<UserInfo>>(wrapModels);
+            await this.ReloadUsers();
 
             this.Idle();
         }
@@ -186,7 +167,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                this.LoadUsers();
+                await this.ReloadUsers();
             }
         }
         #endregion
@@ -201,7 +182,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             this.Busy();
 
             await Task.Run(() => this._userContract.EnableUser(user.Model.Number));
-            this.LoadUsers();
+            await this.ReloadUsers();
 
             this.Idle();
         }
@@ -217,7 +198,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             this.Busy();
 
             await Task.Run(() => this._userContract.DisableUser(user.Model.Number));
-            this.LoadUsers();
+            await this.ReloadUsers();
 
             this.Idle();
         }
@@ -236,7 +217,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
                 this.Busy();
 
                 await Task.Run(() => this._userContract.RemoveUser(user.Model.Number));
-                this.LoadUsers();
+                await this.ReloadUsers();
 
                 this.Idle();
             }
@@ -266,7 +247,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
                 this.Busy();
 
                 await Task.Run(() => checkedUsers.ForEach(user => this._userContract.RemoveUser(user.Number)));
-                this.LoadUsers();
+                await this.ReloadUsers();
 
                 this.Idle();
             }
@@ -292,11 +273,11 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         public async void ResetPrivateKey(Wrap<UserInfo> user)
         {
             ResetPrivateKeyViewModel viewModel = ResolveMediator.Resolve<ResetPrivateKeyViewModel>();
-            viewModel.Load(user.Model.Number);
+            await viewModel.Load(user.Model.Number);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
-                this.LoadUsers();
+                await this.ReloadUsers();
             }
         }
         #endregion
@@ -309,6 +290,44 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         {
             //TODO 实现 分配角色
             MessageBox.Show("分配角色");
+        }
+        #endregion
+
+        #region 全选 —— void CheckAll()
+        /// <summary>
+        /// 全选
+        /// </summary>
+        public void CheckAll()
+        {
+            this.Users.ForEach(x => x.IsChecked = true);
+        }
+        #endregion
+
+        #region 取消全选 —— void UncheckAll()
+        /// <summary>
+        /// 取消全选
+        /// </summary>
+        public void UncheckAll()
+        {
+            this.Users.ForEach(x => x.IsChecked = false);
+        }
+        #endregion
+
+
+        //Privates
+
+        #region 加载用户列表 —— async Task ReloadUsers()
+        /// <summary>
+        /// 加载用户列表
+        /// </summary>
+        public async Task ReloadUsers()
+        {
+            PageModel<UserInfo> pageModel = await Task.Run(() => this._userContract.GetUsersByPage(this.Keywords, this.SelectedInfoSystem?.Number, null, this.PageIndex, this.PageSize));
+            this.RowCount = pageModel.RowCount;
+            this.PageCount = pageModel.PageCount;
+
+            IEnumerable<Wrap<UserInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
+            this.Users = new ObservableCollection<Wrap<UserInfo>>(wrapModels);
         }
         #endregion
 

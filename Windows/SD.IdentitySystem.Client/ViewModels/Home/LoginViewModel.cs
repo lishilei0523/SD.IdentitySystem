@@ -75,6 +75,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override void OnInitialize()
         /// <summary>
         /// 初始化
@@ -83,13 +85,16 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         {
 #if DEBUG
             //自动登录
-            this.LoginId = CommonConstants.AdminLoginId;
-            this.Password = CommonConstants.InitialPassword;
-            this.Login();
+            //this.LoginId = CommonConstants.AdminLoginId;
+            //this.Password = CommonConstants.InitialPassword;
+            //this.Login();
 #endif
         }
 
         #endregion
+
+
+        //Actions
 
         #region 登录 —— async void Login()
         /// <summary>

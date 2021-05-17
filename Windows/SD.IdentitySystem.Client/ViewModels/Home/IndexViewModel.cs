@@ -5,7 +5,6 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Base;
-using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
 using System.Collections.Generic;
@@ -101,30 +100,20 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
         #region # 方法
 
-        #region 初始化 —— override void OnInitialize()
+        //Initializations
+
+        #region 初始化 —— override async void OnInitialize()
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override void OnInitialize()
+        protected override async void OnInitialize()
         {
-            this.LoadMenus();
+            await this.ReloadMenus();
         }
         #endregion
 
-        #region 加载菜单 —— async void LoadMenus()
-        /// <summary>
-        /// 加载菜单
-        /// </summary>
-        public async void LoadMenus()
-        {
-            this.Busy();
 
-            IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows));
-            this.Menus = menus;
-
-            this.Idle();
-        }
-        #endregion
+        //Actions
 
         #region 导航至菜单 —— void Navigate(Menu menu)
         /// <summary>
@@ -220,6 +209,20 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         public void LaunchGitee()
         {
             Process.Start("https://gitee.com/lishilei0523");
+        }
+        #endregion
+
+
+        //Privates
+
+        #region 加载菜单 —— async Task ReloadMenus()
+        /// <summary>
+        /// 加载菜单
+        /// </summary>
+        public async Task ReloadMenus()
+        {
+            IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows));
+            this.Menus = menus;
         }
         #endregion
 

@@ -62,23 +62,24 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
         #region # 方法
 
-        #region 加载 —— async void Load(Guid menuId)
+        //Initializations
+
+        #region 加载 —— async Task Load(Guid menuId)
         /// <summary>
         /// 加载
         /// </summary>
-        public async void Load(Guid menuId)
+        public async Task Load(Guid menuId)
         {
-            this.Busy();
-
             MenuInfo menu = await Task.Run(() => this._authorizationContract.GetMenu(menuId));
             ICollection<Item> authorityItems = this._authorityPresenter.GetMenuAuthorityItems(menuId);
 
             this.MenuId = menu.Id;
             this.AuthorityItems = new ObservableCollection<Item>(authorityItems);
-
-            this.Idle();
         }
         #endregion
+
+
+        //Actions
 
         #region 提交 —— async void Submit()
         /// <summary>

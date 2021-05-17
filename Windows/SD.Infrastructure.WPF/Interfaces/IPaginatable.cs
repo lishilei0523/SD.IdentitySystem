@@ -31,6 +31,6 @@
         /// 总页数
         /// </summary>
         int PageCount { get; set; }
-        #endregion
+        #endregion 
     }
 }

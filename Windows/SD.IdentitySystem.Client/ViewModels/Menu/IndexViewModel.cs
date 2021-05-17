@@ -98,6 +98,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override async void OnInitialize()
         /// <summary>
         /// 初始化
@@ -107,9 +109,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
+
             this.LoadMenus();
         }
         #endregion
+
+
+        //Actions
 
         #region 加载菜单列表 —— async void LoadMenus()
         /// <summary>
@@ -119,10 +125,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         {
             this.Busy();
 
-            string infoSystemNo = this.SelectedInfoSystem?.Number;
-            ApplicationType? applicationType = this.SelectedApplicationType;
-            IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
-            this.Menus = new ObservableCollection<Models.Menu>(menus);
+            await this.ReloadMenus();
 
             this.Idle();
         }
@@ -164,14 +167,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
                 this.Busy();
 
                 await Task.Run(() => this._authorizationContract.RemoveMenu(menu.Id));
-                this.LoadMenus();
+                await this.ReloadMenus();
 
                 this.Idle();
             }
         }
         #endregion
 
-        #region 批量删除菜单 —— async void Removes()
+        #region 批量删除菜单 —— async void RemoveMenus()
         /// <summary>
         /// 批量删除菜单
         /// </summary>
@@ -209,7 +212,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
                 this.Busy();
 
                 await Task.Run(() => checkedMenus.ForEach(menu => this._authorizationContract.RemoveMenu(menu.Id)));
-                this.LoadMenus();
+                await this.ReloadMenus();
 
                 this.Idle();
             }
@@ -229,6 +232,23 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             this.Idle();
 
             this._windowManager.ShowDialog(viewModel);
+        }
+        #endregion
+
+
+        //Privates
+
+        #region 加载菜单列表 —— async Task ReloadMenus()
+        /// <summary>
+        /// 加载菜单列表
+        /// </summary>
+        private async Task ReloadMenus()
+        {
+            string infoSystemNo = this.SelectedInfoSystem?.Number;
+            ApplicationType? applicationType = this.SelectedApplicationType;
+
+            IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
+            this.Menus = new ObservableCollection<Models.Menu>(menus);
         }
         #endregion
 

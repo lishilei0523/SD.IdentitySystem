@@ -102,6 +102,8 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
         #region # 方法
 
+        //Initializations
+
         #region 初始化 —— override void OnInitialize()
         /// <summary>
         /// 初始化
@@ -109,6 +111,74 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         protected override void OnInitialize()
         {
             this.LoadInfoSystems();
+        }
+        #endregion
+
+
+        //Actions
+
+        #region 加载信息系统列表 —— async void LoadInfoSystems()
+        /// <summary>
+        /// 加载信息系统列表
+        /// </summary>
+        public async void LoadInfoSystems()
+        {
+            this.Busy();
+
+            await this.ReloadInfoSystems();
+
+            this.Idle();
+        }
+        #endregion
+
+        #region 创建信息系统 —— async void CreateInfoSystem()
+        /// <summary>
+        /// 创建信息系统
+        /// </summary>
+        public async void CreateInfoSystem()
+        {
+            AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.ReloadInfoSystems();
+            }
+        }
+        #endregion
+
+        #region 修改信息系统 —— async void UpdateInfoSystem(...
+        /// <summary>
+        /// 修改信息系统
+        /// </summary>
+        /// <param name="infoSystem">信息系统</param>
+        public async void UpdateInfoSystem(Wrap<InfoSystemInfo> infoSystem)
+        {
+            UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
+            await viewModel.Load(infoSystem.Model.Number);
+
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.ReloadInfoSystems();
+            }
+        }
+        #endregion
+
+        #region 初始化信息系统 —— async void InitInfoSystem(...
+        /// <summary>
+        /// 初始化信息系统
+        /// </summary>
+        /// <param name="infoSystem">信息系统</param>
+        public async void InitInfoSystem(Wrap<InfoSystemInfo> infoSystem)
+        {
+            InitViewModel viewModel = ResolveMediator.Resolve<InitViewModel>();
+            await viewModel.Load(infoSystem.Model.Number);
+
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.ReloadInfoSystems();
+            }
         }
         #endregion
 
@@ -132,73 +202,21 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         }
         #endregion
 
-        #region 加载信息系统列表 —— async void LoadInfoSystems()
+
+        //Privates
+
+        #region 加载信息系统列表 —— async Task ReloadInfoSystems()
         /// <summary>
         /// 加载信息系统列表
         /// </summary>
-        public async void LoadInfoSystems()
+        private async Task ReloadInfoSystems()
         {
-            this.Busy();
-
             PageModel<InfoSystemInfo> pageModel = await Task.Run(() => this._authorizationContract.GetInfoSystemsByPage(this.Keywords, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<InfoSystemInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.InfoSystems = new ObservableCollection<Wrap<InfoSystemInfo>>(wrapModels);
-
-            this.Idle();
-        }
-        #endregion
-
-        #region 创建信息系统 —— async void CreateInfoSystem()
-        /// <summary>
-        /// 创建信息系统
-        /// </summary>
-        public async void CreateInfoSystem()
-        {
-            AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
-            bool? result = this._windowManager.ShowDialog(viewModel);
-            if (result == true)
-            {
-                this.LoadInfoSystems();
-            }
-        }
-        #endregion
-
-        #region 修改信息系统 —— async void UpdateInfoSystem(...
-        /// <summary>
-        /// 修改信息系统
-        /// </summary>
-        /// <param name="infoSystem">信息系统</param>
-        public async void UpdateInfoSystem(Wrap<InfoSystemInfo> infoSystem)
-        {
-            UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            viewModel.Load(infoSystem.Model.Number);
-
-            bool? result = this._windowManager.ShowDialog(viewModel);
-            if (result == true)
-            {
-                this.LoadInfoSystems();
-            }
-        }
-        #endregion
-
-        #region 初始化信息系统 —— async void InitInfoSystem(...
-        /// <summary>
-        /// 初始化信息系统
-        /// </summary>
-        /// <param name="infoSystem">信息系统</param>
-        public async void InitInfoSystem(Wrap<InfoSystemInfo> infoSystem)
-        {
-            InitViewModel viewModel = ResolveMediator.Resolve<InitViewModel>();
-            viewModel.Load(infoSystem.Model.Number);
-
-            bool? result = this._windowManager.ShowDialog(viewModel);
-            if (result == true)
-            {
-                this.LoadInfoSystems();
-            }
         }
         #endregion
 
