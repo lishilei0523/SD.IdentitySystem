@@ -33,13 +33,13 @@
     <!--DataGrid行默认样式-->
     <Style x:Key="DataGridRowDefault" TargetType="{x:Type DataGridRow}">
         <Style.Triggers>
-            <Trigger Property="IsSelected" Value="true">
+            <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="#FFE48D" />
             </Trigger>
             <MultiDataTrigger>
                 <MultiDataTrigger.Conditions>
-                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="true" />
-                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="false" />
+                    <Condition Binding="{Binding Path=IsMouseOver, RelativeSource={RelativeSource Self}}" Value="True" />
+                    <Condition Binding="{Binding Path=IsSelected, RelativeSource={RelativeSource Self}}" Value="False" />
                 </MultiDataTrigger.Conditions>
                 <Setter Property="Background" Value="#EAF2FF" />
             </MultiDataTrigger>
