@@ -131,26 +131,35 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         }
         #endregion
 
-        #region 创建菜单 —— void CreateMenu()
+        #region 创建菜单 —— async void CreateMenu()
         /// <summary>
         /// 创建菜单
         /// </summary>
-        public void CreateMenu()
+        public async void CreateMenu()
         {
-            //TODO 实现 创建菜单
-            MessageBox.Show("创建菜单");
+            AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.ReloadMenus();
+            }
         }
         #endregion
 
-        #region 修改菜单 —— void UpdateMenu(Menu menu)
+        #region 修改菜单 —— async void UpdateMenu(Menu menu)
         /// <summary>
         /// 修改菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void UpdateMenu(Models.Menu menu)
+        public async void UpdateMenu(Models.Menu menu)
         {
-            //TODO 实现 修改菜单
-            MessageBox.Show("修改菜单");
+            UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
+            await viewModel.Load(menu.Id);
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.ReloadMenus();
+            }
         }
         #endregion
 
@@ -227,7 +236,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         public async void RelateAuthorities(Models.Menu menu)
         {
             this.Busy();
-            RelateAuthorityViewModel viewModel = await Task.Run(ResolveMediator.Resolve<RelateAuthorityViewModel>);
+            RelateAuthorityViewModel viewModel = ResolveMediator.Resolve<RelateAuthorityViewModel>();
             await Task.Run(() => viewModel.Load(menu.Id));
             this.Idle();
 

@@ -170,6 +170,8 @@
     <Compile Include="ViewModels\InfoSystem\InitViewModel.cs" />
     <Compile Include="ViewModels\LoginRecord\IndexViewModel.cs" />
     <Compile Include="ViewModels\Home\LoginViewModel.cs" />
+    <Compile Include="ViewModels\Menu\UpdateViewModel.cs" />
+    <Compile Include="ViewModels\Menu\AddViewModel.cs" />
     <Compile Include="ViewModels\Menu\IndexViewModel.cs" />
     <Compile Include="ViewModels\Menu\RelateAuthorityViewModel.cs" />
     <Compile Include="ViewModels\Role\UpdateViewModel.cs" />
@@ -212,11 +214,17 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\Menu\AddView.xaml.cs">
+      <DependentUpon>AddView.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Menu\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Menu\RelateAuthorityView.xaml.cs">
       <DependentUpon>RelateAuthorityView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\Menu\UpdateView.xaml.cs">
+      <DependentUpon>UpdateView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Role\AddView.xaml.cs">
       <DependentUpon>AddView.xaml</DependentUpon>
@@ -305,11 +313,19 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
+    <Page Include="Views\Menu\AddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Menu\IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\Menu\RelateAuthorityView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Menu\UpdateView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
