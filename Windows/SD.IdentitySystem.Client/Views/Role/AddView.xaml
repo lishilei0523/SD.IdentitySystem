@@ -39,7 +39,7 @@
                                   DisplayMemberPath="Name"
                                   SelectedValue="{Binding SelectedInfoSystem}"
                                   Style="{StaticResource FormComboBox}"
-                                  cal:Message.Attach="[Event SelectionChanged] = [Action LoadAuthorities()]"/>
+                                  cal:Message.Attach="[Event SelectionChanged] = [Action LoadAuthorities()]" />
                     </kino:FormItem>
                     <kino:FormItem Label="角色名称：">
                         <TextBox Text="{Binding RoleName}" Style="{StaticResource TextBoxRevealStyle}" />

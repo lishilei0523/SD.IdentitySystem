@@ -21,7 +21,7 @@
                 <!--表单区-->
                 <RowDefinition />
                 <!--控制区-->
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <!--表单区-->
             <GroupBox Header="权限列表" Grid.Row="0" >

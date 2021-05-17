@@ -24,7 +24,7 @@
                 <!--占位区-->
                 <RowDefinition Height="*" />
                 <!--控制区-->
-                <RowDefinition Height="50"/>
+                <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <!--表单区-->
             <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="40,30">
