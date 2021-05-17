@@ -7,17 +7,17 @@ using System.Windows.Data;
 namespace SD.Infrastructure.WPF.Converters
 {
     /// <summary>
-    /// TreeListView行号转换器
+    /// 树形列表视图行号转换器
     /// </summary>
     public class TreeListViewRowIndexConverter : IValueConverter
     {
         /// <summary>
-        /// TreeListView元素
+        /// 树形列表视图元素
         /// </summary>
         private TreeListView _treeListView;
 
         /// <summary>
-        /// 转换TreeListViewItem行号
+        /// 转换树形列表视图项行号
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
@@ -38,8 +38,9 @@ namespace SD.Infrastructure.WPF.Converters
         }
 
         /// <summary>
-        /// 获取TreeListViewItem的TreeListView
+        /// 获取树形列表视图
         /// </summary>
+        /// <param name="treeListViewItem">树形列表视图项</param>
         private void GetTreeListView(TreeListViewItem treeListViewItem)
         {
             ItemsControl parentItem = ItemsControl.ItemsControlFromItemContainer(treeListViewItem);

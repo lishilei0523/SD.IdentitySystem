@@ -4,11 +4,18 @@ using System.Windows.Controls;
 namespace SD.Infrastructure.WPF.CustomControls
 {
     /// <summary>
-    /// TreeListViewItem
+    /// 树形列表视图项
     /// </summary>
     public class TreeListViewItem : TreeViewItem
     {
+        /// <summary>
+        /// 树节点层级字段
+        /// </summary>
         private int _level = -1;
+
+        /// <summary>
+        /// 树节点层级属性
+        /// </summary>
         public int Level
         {
             get
@@ -22,11 +29,19 @@ namespace SD.Infrastructure.WPF.CustomControls
             }
         }
 
+        /// <summary>
+        /// 获取容器中覆盖元素
+        /// </summary>
         protected override DependencyObject GetContainerForItemOverride()
         {
-            return new TreeListViewItem();
+            TreeListViewItem treeListViewItem = new TreeListViewItem();
+
+            return treeListViewItem;
         }
 
+        /// <summary>
+        /// 是否已覆盖容器默认元素
+        /// </summary>
         protected override bool IsItemItsOwnContainerOverride(object item)
         {
             return item is TreeListViewItem;

@@ -7,7 +7,7 @@ using System.Windows.Data;
 namespace SD.Infrastructure.WPF.Converters
 {
     /// <summary>
-    /// TreeListView缩进尺寸转换器
+    /// 树形列表视图缩进尺寸转换器
     /// </summary>
     public class TreeListViewIndentConverter : IValueConverter
     {
@@ -17,7 +17,7 @@ namespace SD.Infrastructure.WPF.Converters
         private const double IndentUnitSize = 14.0;
 
         /// <summary>
-        /// 转换TreeListView缩进尺寸
+        /// 转换树形列表视图缩进尺寸
         /// </summary>
         public object Convert(object value, Type type, object parameter, CultureInfo culture)
         {

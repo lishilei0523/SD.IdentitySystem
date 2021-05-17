@@ -37,7 +37,6 @@
             <!--总记录数-->
             <ColumnDefinition Width="Auto" />
         </Grid.ColumnDefinitions>
-
         <!--页容量-->
         <Grid Grid.Column="0" Margin="{Binding ElementName=Control, Path=Padding}" HorizontalAlignment="Left">
             <ComboBox Width="44" Height="22"

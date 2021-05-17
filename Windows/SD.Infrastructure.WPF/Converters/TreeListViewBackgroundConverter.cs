@@ -8,12 +8,12 @@ using System.Windows.Media;
 namespace SD.Infrastructure.WPF.Converters
 {
     /// <summary>
-    /// TreeListView交替背景转换器
+    /// 树形列表视图交替背景转换器
     /// </summary>
     public class TreeListViewBackgroundConverter : IValueConverter
     {
         /// <summary>
-        /// 转换TreeListView背景
+        /// 转换树形列表视图背景
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {

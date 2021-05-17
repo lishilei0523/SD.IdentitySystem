@@ -6,12 +6,12 @@ using System.Windows.Data;
 namespace SD.Infrastructure.WPF.Converters
 {
     /// <summary>
-    /// 枚举描述转换器
+    /// 枚举成员转换器
     /// </summary>
     public class EnumMemberConverter : IValueConverter
     {
         /// <summary>
-        /// 转换枚举描述
+        /// 转换枚举成员
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
