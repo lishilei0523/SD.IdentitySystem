@@ -85,9 +85,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         {
 #if DEBUG
             //自动登录
-            //this.LoginId = CommonConstants.AdminLoginId;
-            //this.Password = CommonConstants.InitialPassword;
-            //this.Login();
+            this.LoginId = CommonConstants.AdminLoginId;
+            this.Password = CommonConstants.InitialPassword;
+            this.Login();
 #endif
         }
 

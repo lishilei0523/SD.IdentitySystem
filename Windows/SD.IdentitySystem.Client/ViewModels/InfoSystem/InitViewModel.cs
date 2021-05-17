@@ -36,7 +36,6 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// <summary>
         /// 信息系统编号
         /// </summary>
-        [DependencyProperty]
         public string InfoSystemNo { get; set; }
         #endregion
 

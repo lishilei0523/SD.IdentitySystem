@@ -37,7 +37,6 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// <summary>
         /// 信息系统Id
         /// </summary>
-        [DependencyProperty]
         public Guid InfoSystemId { get; set; }
         #endregion
 

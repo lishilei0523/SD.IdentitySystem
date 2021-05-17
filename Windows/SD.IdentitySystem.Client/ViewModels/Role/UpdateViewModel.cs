@@ -44,11 +44,10 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
         #region # 属性
 
-        #region 信息系统名称 —— InfoSystemInfo SelectedInfoSystem
+        #region 信息系统名称 —— string InfoSystemName
         /// <summary>
         /// 信息系统名称
         /// </summary>
-        [DependencyProperty]
         public string InfoSystemName { get; set; }
         #endregion
 
@@ -56,7 +55,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// <summary>
         /// 角色Id
         /// </summary>
-        [DependencyProperty]
         public Guid RoleId { get; set; }
         #endregion
 

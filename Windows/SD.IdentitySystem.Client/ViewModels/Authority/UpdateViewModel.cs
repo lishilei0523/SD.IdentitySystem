@@ -34,11 +34,10 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
         #region # 属性
 
-        #region 信息系统名称 —— InfoSystemInfo SelectedInfoSystem
+        #region 信息系统名称 —— string InfoSystemName
         /// <summary>
         /// 信息系统名称
         /// </summary>
-        [DependencyProperty]
         public string InfoSystemName { get; set; }
         #endregion
 

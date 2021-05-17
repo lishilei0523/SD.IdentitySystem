@@ -29,7 +29,7 @@
             <!--表单区-->
             <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="40,30">
                 <kino:FormItem Label="信息系统编号：">
-                    <TextBox Text="{Binding InfoSystemNo}" Style="{StaticResource TextBoxRevealStyle}" />
+                    <TextBox Text="{Binding InfoSystemNo}" Style="{StaticResource TextBoxRevealStyle}" IsEnabled="False" />
                 </kino:FormItem>
                 <kino:FormItem Label="信息系统名称：">
                     <TextBox Text="{Binding InfoSystemName}" Style="{StaticResource TextBoxRevealStyle}" />
