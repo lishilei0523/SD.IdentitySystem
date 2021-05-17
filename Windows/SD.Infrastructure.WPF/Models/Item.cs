@@ -75,14 +75,11 @@ namespace SD.Infrastructure.WPF.Models
         public bool? IsChecked { get; set; }
         #endregion
 
-        #region 只读属性 - 图标 —— string Icon
+        #region 图标 —— string Icon
         /// <summary>
-        /// 只读属性 - 图标
+        /// 图标
         /// </summary>
-        public string Icon
-        {
-            get { return Constants.FileIcon; }
-        }
+        public string Icon { get; set; }
         #endregion 
 
         #endregion

@@ -1,9 +1,11 @@
-﻿namespace SD.IdentitySystem.Client
+﻿using System.Windows;
+
+namespace SD.IdentitySystem.Client
 {
     /// <summary>
-    /// 应用程序
+    /// WPF应用程序
     /// </summary>
-    public partial class App
+    public partial class App : Application
     {
 
     }

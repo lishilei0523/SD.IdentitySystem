@@ -60,11 +60,11 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Aspects\DependencyPropertyAspect.cs" />
+    <Compile Include="Aspects\BusyAspcet.cs" />
     <Compile Include="Aspects\ExceptionAspcet.cs" />
     <Compile Include="Base\OneActiveConductorBase.cs" />
     <Compile Include="Converters\EnabledConverter.cs" />
     <Compile Include="Interfaces\IBusy.cs" />
-    <Compile Include="Models\Constants.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Base\ScreenBase.cs" />
     <Compile Include="UserControls\Paginator.xaml.cs">
@@ -77,9 +77,9 @@
     <Compile Include="Converters\EnumMemberConverter.cs" />
     <Compile Include="Converters\TreeListViewRowIndexConverter.cs" />
     <Compile Include="Attachers\DataGridAttacher.cs" />
-    <Compile Include="Extensions\BusyIndicator.cs" />
+    <Compile Include="Extensions\BusyExtension.cs" />
     <Compile Include="Attachers\PasswordBoxAttacher.cs" />
-    <Compile Include="Extensions\RelayCommand.cs" />
+    <Compile Include="Commands\RelayCommand.cs" />
     <Compile Include="Extensions\WrapExtension.cs" />
     <Compile Include="Interfaces\IPaginatable.cs" />
     <Compile Include="Models\Wrap.cs" />

@@ -3,9 +3,9 @@
 namespace SD.Infrastructure.WPF.Extensions
 {
     /// <summary>
-    /// 繁忙指示器
+    /// 繁忙扩展
     /// </summary>
-    public static class BusyIndicator
+    public static class BusyExtension
     {
         /// <summary>
         /// 同步锁
@@ -13,7 +13,7 @@ namespace SD.Infrastructure.WPF.Extensions
         private static readonly object _Sync = new object();
 
         /// <summary>
-        /// 挂起加载指示器
+        /// 挂起繁忙状态
         /// </summary>
         public static void Busy(this IBusy loadable)
         {
@@ -24,7 +24,7 @@ namespace SD.Infrastructure.WPF.Extensions
         }
 
         /// <summary>
-        /// 释放加载指示器
+        /// 释放繁忙状态
         /// </summary>
         public static void Idle(this IBusy loadable)
         {

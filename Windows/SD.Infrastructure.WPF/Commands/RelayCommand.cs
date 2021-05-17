@@ -2,7 +2,7 @@
 using System.Diagnostics;
 using System.Windows.Input;
 
-namespace SD.Infrastructure.WPF.Extensions
+namespace SD.Infrastructure.WPF.Commands
 {
     /// <summary>
     /// 转接命令

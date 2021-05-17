@@ -97,6 +97,13 @@ namespace SD.Infrastructure.WPF.Models
         public string Name { get; set; }
         #endregion
 
+        #region 图标 —— string Icon
+        /// <summary>
+        /// 图标
+        /// </summary>
+        public string Icon { get; set; }
+        #endregion
+
         #region 是否选中 —— bool? IsSelected
 
         /// <summary>
@@ -131,16 +138,6 @@ namespace SD.Infrastructure.WPF.Models
             set { base.SetValue(_IsChecked, (bool?)value); }
         }
 
-        #endregion
-
-        #region 只读属性 - 图标 —— string Icon
-        /// <summary>
-        /// 只读属性 - 图标
-        /// </summary>
-        public string Icon
-        {
-            get { return this.IsLeaf ? Constants.FileIcon : Constants.FolderIcon; }
-        }
         #endregion
 
         #region 只读属性 - 是否有三种状态 —— bool IsThreeState

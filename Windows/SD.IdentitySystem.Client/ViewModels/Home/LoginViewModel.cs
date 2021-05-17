@@ -4,6 +4,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Base;
+using SD.Infrastructure.WPF.Commands;
 using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
