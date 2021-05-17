@@ -59,7 +59,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// <summary>
         /// 上级菜单名称
         /// </summary>
-        [DependencyProperty]
         public string ParentMenuName { get; set; }
         #endregion
 
