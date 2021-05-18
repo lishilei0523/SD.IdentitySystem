@@ -19,7 +19,7 @@
                 <ResourceDictionary Source="/Resources/Dictionaries/Images.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/HamburgerPanel.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/DataGridTemplates.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/TreeListViewTemplates.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/TreeListViewStyles.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/ControlStyles.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/FormStyles.xaml" />
             </ResourceDictionary.MergedDictionaries>
