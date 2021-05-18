@@ -62,8 +62,7 @@
         </Style.Triggers>
     </Style>
     <!--DataGrid单元格缩进样式-->
-    <Style x:Key="DataGridCellMargin" TargetType="{x:Type DataGridCell}"
-                           BasedOn="{StaticResource DataGridCellDefault}" >
+    <Style x:Key="DataGridCellMargin" BasedOn="{StaticResource DataGridCellDefault}" TargetType="{x:Type DataGridCell}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridCell">
