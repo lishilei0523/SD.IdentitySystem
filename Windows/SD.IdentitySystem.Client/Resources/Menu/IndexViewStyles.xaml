@@ -4,7 +4,7 @@
                     xmlns:cal="http://www.caliburnproject.org">
 
     <!--GridView列定义-->
-    <GridViewColumnCollection x:Key="ColumnDefinition">
+    <GridViewColumnCollection x:Key="MenuColumnDefinition">
         <!--行号列-->
         <GridViewColumn Width="35" CellTemplate="{StaticResource TreeListViewRowNumberCellTemplate}" />
         <GridViewColumn Header="名称" Width="250" CellTemplate="{StaticResource TreeListViewRowCriterionCellTemplate}" />
@@ -100,13 +100,15 @@
         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <DockPanel>
-                    <GridViewHeaderRowPresenter DockPanel.Dock="Top" Height="27" Columns="{StaticResource ColumnDefinition}">
+                    <GridViewHeaderRowPresenter DockPanel.Dock="Top" 
+                                                Columns="{StaticResource MenuColumnDefinition}" 
+                                                Height="27" >
                         <GridViewHeaderRowPresenter.ColumnHeaderContainerStyle>
                             <Style />
                         </GridViewHeaderRowPresenter.ColumnHeaderContainerStyle>
                     </GridViewHeaderRowPresenter>
                     <ScrollViewer HorizontalScrollBarVisibility="Disabled" VerticalScrollBarVisibility="Auto">
-                        <ItemsPresenter/>
+                        <ItemsPresenter />
                     </ScrollViewer>
                 </DockPanel>
             </ScrollViewer>
@@ -115,72 +117,47 @@
     <!--TreeListViewItem控件模板-->
     <ControlTemplate x:Key="TreeListViewItemControlTemplate" TargetType="{x:Type customControls:TreeListViewItem}">
         <StackPanel>
-            <Border Name="Bd" 
+            <Border x:Name="PART_Border" 
                     Background="{TemplateBinding Background}" 
                     BorderBrush="{TemplateBinding BorderBrush}" 
                     BorderThickness="{TemplateBinding BorderThickness}" 
                     Padding="{TemplateBinding Padding}">
                 <GridViewRowPresenter x:Name="PART_Header" 
                                       Content="{TemplateBinding Header}" 
-                                      Columns="{StaticResource ColumnDefinition}" />
+                                      Columns="{StaticResource MenuColumnDefinition}" />
             </Border>
             <ItemsPresenter x:Name="ItemsHost" />
         </StackPanel>
         <ControlTemplate.Triggers>
-            <Trigger Property="IsExpanded" Value="False">
-                <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed" />
-            </Trigger>
             <Trigger Property="IsEnabled" Value="False">
                 <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
             </Trigger>
-            <Trigger Property="IsSelected" Value="True">
-                <Setter TargetName="Bd" Property="Background" Value="#FFE48D" />
+            <Trigger Property="IsExpanded" Value="False">
+                <Setter TargetName="ItemsHost" Property="Visibility" Value="Collapsed" />
             </Trigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="HasHeader" Value="False" />
-                    <Condition Property="Width" Value="Auto" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="PART_Header" Property="MinWidth" Value="75" />
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="HasHeader" Value="False" />
-                    <Condition Property="Height" Value="Auto" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="PART_Header" Property="MinHeight" Value="19" />
-            </MultiTrigger>
-            <MultiTrigger>
-                <MultiTrigger.Conditions>
-                    <Condition Property="IsSelected" Value="True" />
-                    <Condition Property="IsSelectionActive" Value="False" />
-                </MultiTrigger.Conditions>
-                <Setter TargetName="Bd" Property="Background" Value="{DynamicResource {x:Static SystemColors.ControlBrushKey}}" />
-                <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.ControlTextBrushKey}}" />
-            </MultiTrigger>
+            <Trigger Property="IsSelected" Value="True">
+                <Setter TargetName="PART_Border" Property="Background" Value="#FFE48D" />
+            </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsMouseOver" Value="True" />
                     <Condition Property="IsSelected" Value="False" />
                     <Condition Property="HasItems" Value="False" />
                 </MultiTrigger.Conditions>
-                <Setter TargetName="Bd" Property="Background" Value="#EAF2FF" />
+                <Setter TargetName="PART_Border" Property="Background" Value="#EAF2FF" />
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <!--TreeListView样式-->
-    <Style TargetType="{x:Type customControls:TreeListView}">
-        <Setter Property="BorderThickness" Value="0" />
+    <Style x:Key="MenuTreeListView" 
+           BasedOn="{StaticResource DefaultTreeListView}" 
+           TargetType="{x:Type customControls:TreeListView}">
         <Setter Property="Template" Value="{StaticResource TreeListViewControlTemplate}" />
     </Style>
     <!--TreeListViewItem样式-->
-    <Style TargetType="{x:Type customControls:TreeListViewItem}">
-        <Setter Property="Background" Value="White" />
-        <Setter Property="BorderBrush" Value="LightGray" />
-        <Setter Property="BorderThickness" Value="0,0,0,1" />
-        <Setter Property="Padding" Value="2" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="IsExpanded" Value="True" />
+    <Style x:Key="MenuTreeListViewItem" 
+           BasedOn="{StaticResource DefaultTreeListViewItem}" 
+           TargetType="{x:Type customControls:TreeListViewItem}">
         <Setter Property="Template" Value="{StaticResource TreeListViewItemControlTemplate}" />
     </Style>
 </ResourceDictionary>
