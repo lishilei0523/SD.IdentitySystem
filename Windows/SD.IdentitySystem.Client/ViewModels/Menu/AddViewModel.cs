@@ -1,7 +1,7 @@
 ﻿using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.Presentation.Maps;
+using SD.IdentitySystem.Presentation.Presentors;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Aspects;
 using SD.Infrastructure.WPF.Base;
@@ -9,10 +9,8 @@ using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
-using Models = SD.IdentitySystem.Presentation.Models;
 
 namespace SD.IdentitySystem.Client.ViewModels.Menu
 {
@@ -24,6 +22,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         #region # 字段及构造器
 
         /// <summary>
+        /// 菜单呈现器
+        /// </summary>
+        private readonly MenuPresenter _menuPresenter;
+
+        /// <summary>
         /// 角色服务契约接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
@@ -31,8 +34,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public AddViewModel(IAuthorizationContract authorizationContract)
+        public AddViewModel(MenuPresenter menuPresenter, IAuthorizationContract authorizationContract)
         {
+            this._menuPresenter = menuPresenter;
             this._authorizationContract = authorizationContract;
         }
 
@@ -253,9 +257,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             #endregion
 
-            IEnumerable<MenuInfo> menuInfos = await Task.Run(() => this._authorizationContract.GetMenus(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value));
-            IEnumerable<Models.Menu> menus = menuInfos.Select(x => x.ToModel());
-            ICollection<Node> menuTree = menus.ToTree(null);
+            ICollection<Node> menuTree = await Task.Run(() => this._menuPresenter.GetMenuTree(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value));
             this.MenuTree = new ObservableCollection<Node>(menuTree);
         }
         #endregion
