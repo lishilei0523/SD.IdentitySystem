@@ -9,7 +9,7 @@ namespace SD.Infrastructure.WPF.Models
     /// </summary>
     public class Item : PropertyChangedBase
     {
-        #region # 字段及构造器
+        #region # 构造器
 
         #region 00.无参构造器
         /// <summary>
