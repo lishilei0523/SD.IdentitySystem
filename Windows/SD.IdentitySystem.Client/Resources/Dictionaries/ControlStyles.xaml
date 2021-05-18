@@ -4,6 +4,30 @@
                     xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks">
 
+    <!--首页Window样式-->
+    <Style x:Key="HomeWindow" BasedOn="{StaticResource MahApps.Styles.MetroWindow.Clean}" TargetType="{x:Type mah:MetroWindow}">
+        <Setter Property="TitleAlignment" Value="Left" />
+        <Setter Property="TitleCharacterCasing" Value="Normal" />
+        <Setter Property="TitleForeground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+        <Setter Property="GlowBrush" Value="#6B6B6B" />
+        <Setter Property="WindowTransitionsEnabled" Value="False" />
+        <Setter Property="WindowTitleBrush" Value="{DynamicResource MahApps.Brushes.Transparent}" />
+        <Setter Property="NonActiveWindowTitleBrush" Value="{DynamicResource MahApps.Brushes.Transparent}" />
+        <Setter Property="IconTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <Image Source="/favicon.ico" Width="30" Height="30" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="TitleTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <TextBlock Text="Powered by SD.Framework" Margin="5,0,0,0" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
     <!--TextBlock默认样式-->
     <Style TargetType="{x:Type TextBlock}">
         <Setter Property="FontWeight" Value="Normal" />
