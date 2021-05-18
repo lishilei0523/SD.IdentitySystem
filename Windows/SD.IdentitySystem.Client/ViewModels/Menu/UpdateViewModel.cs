@@ -144,12 +144,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             if (string.IsNullOrWhiteSpace(this.MenuName))
             {
-                MessageBox.Show("菜单名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("菜单名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (!this.Sort.HasValue)
             {
-                MessageBox.Show("排序不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("排序不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

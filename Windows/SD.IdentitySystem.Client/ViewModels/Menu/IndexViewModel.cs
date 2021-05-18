@@ -170,7 +170,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// <param name="menu">菜单</param>
         public async void RemoveMenu(Models.Menu menu)
         {
-            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 this.Busy();
@@ -209,13 +209,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             }
             if (!checkedMenus.Any())
             {
-                MessageBox.Show("请勾选要删除的菜单！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("请勾选要删除的菜单！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             #endregion
 
-            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 this.Busy();

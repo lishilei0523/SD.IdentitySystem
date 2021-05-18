@@ -118,7 +118,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
             if (string.IsNullOrWhiteSpace(this.RoleName))
             {
-                MessageBox.Show("角色名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("角色名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

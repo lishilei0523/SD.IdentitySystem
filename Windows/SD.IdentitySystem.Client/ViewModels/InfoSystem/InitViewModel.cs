@@ -97,17 +97,17 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             if (string.IsNullOrWhiteSpace(this.Host))
             {
-                MessageBox.Show("主机名/IP地址不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("主机名/IP地址不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (!this.Port.HasValue)
             {
-                MessageBox.Show("端口号不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("端口号不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.Index))
             {
-                MessageBox.Show("首页不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("首页不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

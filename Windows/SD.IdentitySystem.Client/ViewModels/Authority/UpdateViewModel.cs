@@ -143,27 +143,27 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
             if (string.IsNullOrWhiteSpace(this.AuthorityName))
             {
-                MessageBox.Show("权限名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("权限名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.AssemblyName))
             {
-                MessageBox.Show("程序集名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("程序集名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.Namespace))
             {
-                MessageBox.Show("命名空间不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("命名空间不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.ClassName))
             {
-                MessageBox.Show("类名不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("类名不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.MethodName))
             {
-                MessageBox.Show("方法名不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("方法名不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

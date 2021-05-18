@@ -79,7 +79,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             if (string.IsNullOrWhiteSpace(this.PrivateKey))
             {
-                MessageBox.Show("私钥不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("私钥不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

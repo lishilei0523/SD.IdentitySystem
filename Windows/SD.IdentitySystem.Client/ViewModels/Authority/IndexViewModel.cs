@@ -190,7 +190,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// <param name="authority">权限</param>
         public async void RemoveAuthority(Wrap<AuthorityInfo> authority)
         {
-            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 this.Busy();
@@ -214,13 +214,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             AuthorityInfo[] checkedAuthorities = this.Authorities.Where(x => x.IsChecked == true).Select(x => x.Model).ToArray();
             if (!checkedAuthorities.Any())
             {
-                MessageBox.Show("请勾选要删除的权限！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("请勾选要删除的权限！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             #endregion
 
-            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 this.Busy();

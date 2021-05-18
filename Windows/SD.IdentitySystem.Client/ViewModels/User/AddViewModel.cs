@@ -79,27 +79,27 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             if (string.IsNullOrWhiteSpace(this.LoginId))
             {
-                MessageBox.Show("用户名不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("用户名不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.RealName))
             {
-                MessageBox.Show("真实姓名不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("真实姓名不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.Password))
             {
-                MessageBox.Show("密码不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("密码不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.ConfirmedPassword))
             {
-                MessageBox.Show("确认密码不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("确认密码不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (this.Password != this.ConfirmedPassword)
             {
-                MessageBox.Show("两次密码输入不一致！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("两次密码输入不一致！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

@@ -103,22 +103,22 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             if (string.IsNullOrWhiteSpace(this.InfoSystemNo))
             {
-                MessageBox.Show("信息系统编号不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("信息系统编号不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.InfoSystemName))
             {
-                MessageBox.Show("信息系统名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("信息系统名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.AdminLoginId))
             {
-                MessageBox.Show("系统管理员账号不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("系统管理员账号不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (!this.ApplicationType.HasValue)
             {
-                MessageBox.Show("应用程序类型不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("应用程序类型不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

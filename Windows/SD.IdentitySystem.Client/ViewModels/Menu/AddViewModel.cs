@@ -208,22 +208,22 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             if (this.SelectedInfoSystem == null)
             {
-                MessageBox.Show("信息系统不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("信息系统不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (!this.SelectedApplicationType.HasValue)
             {
-                MessageBox.Show("应用程序类型不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("应用程序类型不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.MenuName))
             {
-                MessageBox.Show("菜单名称不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("菜单名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (!this.Sort.HasValue)
             {
-                MessageBox.Show("排序不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("排序不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

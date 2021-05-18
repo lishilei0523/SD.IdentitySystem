@@ -72,22 +72,22 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             if (string.IsNullOrWhiteSpace(this.OldPassword))
             {
-                MessageBox.Show("旧密码不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("旧密码不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.NewPassword))
             {
-                MessageBox.Show("新密码不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("新密码不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.ConfirmedPassword))
             {
-                MessageBox.Show("确认密码不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("确认密码不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (this.NewPassword != this.ConfirmedPassword)
             {
-                MessageBox.Show("两次密码输入不一致", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("两次密码输入不一致！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

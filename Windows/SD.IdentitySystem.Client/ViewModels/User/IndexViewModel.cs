@@ -211,7 +211,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// <param name="user">用户</param>
         public async void RemoveUser(Wrap<UserInfo> user)
         {
-            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 this.Busy();
@@ -235,13 +235,13 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             UserInfo[] checkedUsers = this.Users.Where(x => x.IsChecked == true).Select(x => x.Model).ToArray();
             if (!checkedUsers.Any())
             {
-                MessageBox.Show("请勾选要删除的用户！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("请勾选要删除的用户！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             #endregion
 
-            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 this.Busy();

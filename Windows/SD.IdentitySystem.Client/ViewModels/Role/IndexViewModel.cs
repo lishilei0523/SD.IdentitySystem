@@ -193,7 +193,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// <param name="role">角色</param>
         public async void RemoveRole(Wrap<RoleInfo> role)
         {
-            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 this.Busy();
@@ -217,13 +217,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             RoleInfo[] checkedRoles = this.Roles.Where(x => x.IsChecked == true).Select(x => x.Model).ToArray();
             if (!checkedRoles.Any())
             {
-                MessageBox.Show("请勾选要删除的角色！", "Warning", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("请勾选要删除的角色！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
             #endregion
 
-            MessageBoxResult result = MessageBox.Show("您确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 this.Busy();

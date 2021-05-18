@@ -59,7 +59,7 @@ namespace SD.IdentitySystem.Client
             //提示消息
             string errorMessage = string.Empty;
             errorMessage = GetErrorMessage(exception.Message, ref errorMessage);
-            MessageBox.Show(errorMessage, "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            MessageBox.Show(errorMessage, "错误", MessageBoxButton.OK, MessageBoxImage.Error);
 
             #region # 身份认证异常处理
 

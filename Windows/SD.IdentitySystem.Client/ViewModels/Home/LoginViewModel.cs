@@ -107,12 +107,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
             if (string.IsNullOrWhiteSpace(this.LoginId))
             {
-                MessageBox.Show("用户名不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("用户名不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
             if (string.IsNullOrWhiteSpace(this.Password))
             {
-                MessageBox.Show("密码不可为空！", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+                MessageBox.Show("密码不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 

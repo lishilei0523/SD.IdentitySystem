@@ -175,7 +175,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         /// </summary>
         public void Logout()
         {
-            MessageBoxResult result = MessageBox.Show("您确定要注销吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            MessageBoxResult result = MessageBox.Show("确定要注销吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
             {
                 //清空Session
