@@ -17,6 +17,7 @@
                 <ResourceDictionary Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/Converters.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/Images.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/HamburgerPanel.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/DataGridTemplates.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/TreeListViewTemplates.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/ControlStyles.xaml" />

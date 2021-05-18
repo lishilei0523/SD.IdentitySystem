@@ -152,6 +152,17 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
+    <!--TabControl文档样式-->
+    <Style x:Key="DocTabControl" TargetType="{x:Type TabControl}">
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="BorderBrush" Value="#CCCCCC" />
+        <Setter Property="BorderThickness" Value="1,1,1,0" />
+    </Style>
+    <!--TabItem文档样式-->
+    <Style x:Key="DocTabControlItem" TargetType="{x:Type TabItem}">
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="Padding" Value="10,3" />
+    </Style>
     <!--Metro.Icon默认样式-->
     <Style TargetType="{x:Type iconPacks:PackIconMaterialDesign}">
         <Setter Property="VerticalAlignment" Value="Center" />
@@ -226,11 +237,25 @@
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
     </Style>
+    <!--Metro.TreeView菜单样式-->
+    <Style x:Key="MenuTreeView" BasedOn="{StaticResource MahApps.Styles.TreeView.Virtualized}" TargetType="{x:Type TreeView}">
+        <Setter Property="Margin" Value="0,5,0,0" />
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
     <!--Metro.TreeViewItem默认样式-->
     <Style x:Key="DefaultTreeViewItem" BasedOn="{StaticResource MahApps.Styles.TreeViewItem}" TargetType="{x:Type TreeViewItem}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="FontSize" Value="14" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="IsExpanded" Value="True" />
+    </Style>
+    <!--Metro.TreeViewItem默认样式-->
+    <Style x:Key="MenuTreeViewItem" BasedOn="{StaticResource MahApps.Styles.TreeViewItem}" TargetType="{x:Type TreeViewItem}">
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="16" />
         <Setter Property="Padding" Value="1" />
         <Setter Property="IsExpanded" Value="True" />
     </Style>

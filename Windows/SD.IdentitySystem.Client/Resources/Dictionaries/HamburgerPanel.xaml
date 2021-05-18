@@ -1,0 +1,128 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
+
+    <!--HamburgerPanel控件模板-->
+    <ControlTemplate x:Key="HamburgerPanelContentTemplate" TargetType="{x:Type mah:HamburgerMenu}">
+        <Grid>
+            <mah:SplitView x:Name="MainSplitView"
+                           CanResizeOpenPane="{TemplateBinding CanResizeOpenPane}"
+                           CompactPaneLength="{TemplateBinding CompactPaneLength}"
+                           DisplayMode="{TemplateBinding DisplayMode}"
+                           IsPaneOpen="{Binding IsPaneOpen, Mode=TwoWay, RelativeSource={RelativeSource TemplatedParent}}"
+                           IsTabStop="False"
+                           MaximumOpenPaneLength="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=MaximumOpenPaneLength}"
+                           MinimumOpenPaneLength="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=MinimumOpenPaneLength}"
+                           OpenPaneLength="{Binding RelativeSource={RelativeSource Mode=TemplatedParent}, Path=OpenPaneLength, Mode=TwoWay}"
+                           PaneBackground="{TemplateBinding PaneBackground}"
+                           PaneForeground="{TemplateBinding PaneForeground}"
+                           PanePlacement="{TemplateBinding PanePlacement}"
+                           ResizeThumbStyle="{TemplateBinding ResizeThumbStyle}">
+                <mah:SplitView.Pane>
+                    <Grid x:Name="PaneGrid" Margin="{TemplateBinding PaneMargin}" Background="WhiteSmoke">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="*" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,0,0,1">
+                            <DockPanel x:Name="PaneHeader"
+                                               Background="WhiteSmoke"
+                                               Margin="{TemplateBinding PaneHeaderMargin}"
+                                               LastChildFill="True">
+                                <Button x:Name="HamburgerButton"
+                                            Width="{TemplateBinding HamburgerWidth}"
+                                            Height="{TemplateBinding HamburgerHeight}"
+                                            Padding="{TemplateBinding HamburgerMargin}"
+                                            AutomationProperties.AutomationId="HamburgerButton"
+                                            AutomationProperties.HelpText="{TemplateBinding HamburgerButtonHelpText}"
+                                            AutomationProperties.Name="{TemplateBinding HamburgerButtonName}"
+                                            ContentTemplate="{TemplateBinding HamburgerButtonTemplate}"
+                                            DockPanel.Dock="Left"
+                                            Foreground="{TemplateBinding PaneForeground}"
+                                            IsTabStop="{TemplateBinding IsTabStop}"
+                                            Style="{TemplateBinding HamburgerButtonStyle}"
+                                            TabIndex="0"
+                                            Visibility="{TemplateBinding HamburgerVisibility}" />
+                                <ContentControl x:Name="PaneHeaderContent"
+                                                    ContentTemplate="{TemplateBinding HamburgerMenuHeaderTemplate}"
+                                                    IsTabStop="False" />
+                            </DockPanel>
+                        </Border>
+                        <ContentControl x:Name="TreeViewMenu" Grid.Row="1" Content="{TemplateBinding ItemsSource}" />
+                        <mah:HamburgerMenuListBox x:Name="OptionsListView"
+                                                      Grid.Row="2"
+                                                      Width="{TemplateBinding OpenPaneLength}"
+                                                      Margin="0 20 0 0"
+                                                      VerticalAlignment="Bottom"
+                                                      AutomationProperties.Name="Option items"
+                                                      Foreground="{TemplateBinding PaneForeground}"
+                                                      IsTextSearchEnabled="False"
+                                                      ItemContainerStyleSelector="{StaticResource HamburgerMenuItemOptionsStyleSelector}"
+                                                      ItemTemplate="{TemplateBinding OptionsItemTemplate}"
+                                                      ItemTemplateSelector="{TemplateBinding OptionsItemTemplateSelector}"
+                                                      ItemsSource="{TemplateBinding OptionsItemsSource}"
+                                                      ScrollViewer.VerticalScrollBarVisibility="Disabled"
+                                                      SelectedIndex="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedOptionsIndex, Mode=TwoWay}"
+                                                      SelectedItem="{Binding RelativeSource={RelativeSource TemplatedParent}, Path=SelectedOptionsItem, Mode=TwoWay}"
+                                                      SelectionMode="Single"
+                                                      TabIndex="2" />
+                    </Grid>
+                </mah:SplitView.Pane>
+                <mah:TransitioningContentControl x:Name="ContentPart"
+                                                 Padding="{TemplateBinding Padding}"
+                                                 HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                 VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                                 AutomationProperties.Name="Content"
+                                                 Content="{TemplateBinding Content}"
+                                                 ContentStringFormat="{TemplateBinding ContentStringFormat}"
+                                                 ContentTemplate="{TemplateBinding ContentTemplate}"
+                                                 ContentTemplateSelector="{TemplateBinding ContentTemplateSelector}"
+                                                 RestartTransitionOnContentChange="True"
+                                                 SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}"
+                                                 Transition="{TemplateBinding ContentTransition}" />
+            </mah:SplitView>
+        </Grid>
+        <ControlTemplate.Triggers>
+            <Trigger Property="PanePlacement" Value="Right">
+                <Setter TargetName="HamburgerButton" Property="DockPanel.Dock" Value="Right" />
+            </Trigger>
+            <Trigger Property="IsPaneOpen" Value="False">
+                <Setter TargetName="TreeViewMenu" Property="Visibility" Value="Collapsed" />
+                <Setter TargetName="OptionsListView" Property="Visibility" Value="Collapsed" />
+            </Trigger>
+        </ControlTemplate.Triggers>
+    </ControlTemplate>
+    <!--HamburgerPanel样式-->
+    <Style x:Key="HamburgerPanelStyle" TargetType="{x:Type mah:HamburgerMenu}">
+        <Setter Property="CanResizeOpenPane" Value="False" />
+        <Setter Property="FocusVisualStyle" Value="{x:Null}" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="HamburgerButtonName" Value="HamburgerButton" />
+        <Setter Property="HamburgerButtonStyle" Value="{DynamicResource MahApps.Styles.Button.Hamburger}" />
+        <Setter Property="HamburgerButtonTemplate">
+            <Setter.Value>
+                <DataTemplate>
+                    <ContentControl Width="22" Height="22" 
+                                        Content="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" 
+                                        Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}" />
+                </DataTemplate>
+            </Setter.Value>
+        </Setter>
+        <Setter Property="HeaderItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuHeader}" />
+        <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+        <Setter Property="ItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}" />
+        <Setter Property="KeyboardNavigation.ControlTabNavigation" Value="Local" />
+        <Setter Property="KeyboardNavigation.DirectionalNavigation" Value="Local" />
+        <Setter Property="KeyboardNavigation.TabNavigation" Value="Local" />
+        <Setter Property="MaximumOpenPaneLength" Value="500" />
+        <Setter Property="MinimumOpenPaneLength" Value="100" />
+        <Setter Property="OptionsItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}" />
+        <Setter Property="PaneBackground" Value="{DynamicResource MahApps.HamburgerMenu.Pane.Background}" />
+        <Setter Property="PaneForeground" Value="{DynamicResource MahApps.HamburgerMenu.Pane.Foreground}" />
+        <Setter Property="ResizeThumbStyle" Value="{DynamicResource MahApps.Styles.MetroThumb.SplitView.Resize}" />
+        <Setter Property="SeparatorItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuSeparator}" />
+        <Setter Property="VerticalContentAlignment" Value="Stretch" />
+        <Setter Property="Template" Value="{StaticResource HamburgerPanelContentTemplate}" />
+    </Style>
+</ResourceDictionary>
