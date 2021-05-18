@@ -8,7 +8,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="关联角色" 
+        Title="分配角色" 
         Width="450" Height="580" ResizeMode="NoResize" 
         FontSize="14"
         WindowStyle="ThreeDBorderWindow"
