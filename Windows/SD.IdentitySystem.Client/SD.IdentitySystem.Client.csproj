@@ -174,6 +174,7 @@
     <Compile Include="ViewModels\Menu\AddViewModel.cs" />
     <Compile Include="ViewModels\Menu\IndexViewModel.cs" />
     <Compile Include="ViewModels\Menu\RelateAuthorityViewModel.cs" />
+    <Compile Include="ViewModels\User\RelateRoleViewModel.cs" />
     <Compile Include="ViewModels\Role\UpdateViewModel.cs" />
     <Compile Include="ViewModels\Role\AddViewModel.cs" />
     <Compile Include="ViewModels\Role\IndexViewModel.cs" />
@@ -240,6 +241,9 @@
     </Compile>
     <Compile Include="Views\User\AddView.xaml.cs">
       <DependentUpon>AddView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\User\RelateRoleView.xaml.cs">
+      <DependentUpon>RelateRoleView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\User\ResetPasswordView.xaml.cs">
       <DependentUpon>ResetPasswordView.xaml</DependentUpon>
@@ -346,6 +350,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\User\AddView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\User\RelateRoleView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

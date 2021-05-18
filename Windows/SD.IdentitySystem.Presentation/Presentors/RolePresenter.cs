@@ -37,56 +37,40 @@ namespace SD.IdentitySystem.Presentation.Presentors
 
         #endregion
 
-        #region # 获取信息系统/角色树 —— IEnumerable<Node> GetSystemRoleTree()
+        #region # 获取角色数据项列表 —— ICollection<Item> GetRoleItems()
         /// <summary>
-        /// 获取信息系统/角色树
+        /// 获取角色数据项列表
         /// </summary>
-        /// <returns>信息系统/角色树</returns>
-        public IEnumerable<Node> GetSystemRoleTree()
+        /// <returns>角色数据项列表</returns>
+        public ICollection<Item> GetRoleItems()
         {
-            IEnumerable<InfoSystemInfo> infoSystems = this._authorizationContract.GetInfoSystems();
+            IEnumerable<RoleInfo> roles = this._authorizationContract.GetRoles(null, null, null);
+            IEnumerable<Item> roleItems = roles.Select(x => x.ToItem());
 
-            IList<Node> tree = new List<Node>();
-            foreach (InfoSystemInfo infoSystem in infoSystems)
-            {
-                IEnumerable<RoleInfo> roles = this._authorizationContract.GetRoles(null, null, infoSystem.Number);
-                Node node = infoSystem.ToNode(roles);
-                tree.Add(node);
-            }
-
-            return tree;
+            return roleItems.ToList();
         }
         #endregion
 
-        #region # 获取用户的信息系统/角色树 —— IEnumerable<Node> GetUserSystemRoleTree(string loginId)
+        #region # 获取用户角色数据项列表 —— ICollection<Item> GetUserRoleItems(string loginId)
         /// <summary>
-        /// 获取用户的信息系统/角色树
+        /// 获取用户角色数据项列表
         /// </summary>
-        /// <param name="loginId">用户登录名</param>
-        /// <returns>信息系统/角色树</returns>
-        public IEnumerable<Node> GetUserSystemRoleTree(string loginId)
+        /// <returns>角色数据项列表</returns>
+        public ICollection<Item> GetUserRoleItems(string loginId)
         {
-            //获取当前用户及其角色集
-            IEnumerable<RoleInfo> userRoles = this._authorizationContract.GetRoles(null, loginId, null).ToArray();
+            RoleInfo[] roles = this._authorizationContract.GetRoles(null, null, null).ToArray();
+            RoleInfo[] userRoles = this._userContract.GetUserRoles(loginId, null).ToArray();
 
-            //获取信息系统/角色树
-            IEnumerable<Node> roleTree = this.GetSystemRoleTree().ToArray();
-
-            //遍历信息系统
-            foreach (Node system in roleTree)
+            ICollection<Item> roleItems = roles.Select(x => x.ToItem()).ToList();
+            foreach (Item roleItem in roleItems)
             {
-                //遍历角色
-                foreach (Node role in system.SubNodes)
+                if (userRoles.Any(x => x.Id == roleItem.Id))
                 {
-                    //如果用户有该角色，则选中
-                    if (userRoles.Any(x => x.Id == role.Id))
-                    {
-                        role.IsChecked = true;
-                    }
+                    roleItem.IsChecked = true;
                 }
             }
 
-            return roleTree;
+            return roleItems;
         }
         #endregion
     }

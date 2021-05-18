@@ -9,6 +9,16 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class RoleMap
     {
+        #region # 角色数据项映射 —— static Item ToItem(this RoleInfo role)
+        /// <summary>
+        /// 角色数据项映射
+        /// </summary>
+        public static Item ToItem(this RoleInfo role)
+        {
+            return new Item(role.Id, role.Name, false, false, role.InfoSystemInfo.Name);
+        }
+        #endregion
+
         #region # 角色树节点映射 —— static Node ToNode(this RoleInfo role)
         /// <summary>
         /// 角色树节点映射

@@ -162,9 +162,29 @@
         <Setter Property="Margin" Value="5" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="BorderBrush" Value="{StaticResource SystemBaseLowColorBrush}" />
-        <Setter Property="mah:HeaderedControlHelper.HeaderBackground" Value="{StaticResource SystemListLowColorBrush}" />
         <Setter Property="mah:HeaderedControlHelper.HeaderFontSize" Value="14" />
         <Setter Property="mah:HeaderedControlHelper.HeaderForeground" Value="Black" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderBackground" Value="{StaticResource SystemListLowColorBrush}" />
+    </Style>
+    <!--Metro.Expander分组样式-->
+    <Style x:Key="GroupItemExpander" BasedOn="{StaticResource MahApps.Styles.Expander}" TargetType="{x:Type Expander}">
+        <Setter Property="IsExpanded" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderFontSize" Value="14" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderForeground" Value="Black" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderBackground" Value="{StaticResource SystemListLowColorBrush}" />
+    </Style>
+    <!--Metro.GroupItem默认样式-->
+    <Style x:Key="DefaultGroupItem" TargetType="{x:Type GroupItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Expander Header="{Binding Name}" Style="{StaticResource GroupItemExpander}">
+                        <ItemsPresenter Margin="16,0,0,0" />
+                    </Expander>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
     </Style>
     <!--Metro.ListBox默认样式-->
     <Style BasedOn="{StaticResource MahApps.Styles.ListBox.Virtualized}" TargetType="{x:Type ListBox}">

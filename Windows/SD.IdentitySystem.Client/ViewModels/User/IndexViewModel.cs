@@ -282,14 +282,19 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         }
         #endregion
 
-        #region 分配角色 —— void RelateRoles(Wrap<UserInfo> user)
+        #region 分配角色 —— async void RelateRoles(Wrap<UserInfo> user)
         /// <summary>
         /// 分配角色
         /// </summary>
-        public void RelateRoles(Wrap<UserInfo> user)
+        public async void RelateRoles(Wrap<UserInfo> user)
         {
-            //TODO 实现 分配角色
-            MessageBox.Show("分配角色");
+            RelateRoleViewModel viewModel = ResolveMediator.Resolve<RelateRoleViewModel>();
+            await viewModel.Load(user.Model.Number);
+            bool? result = this._windowManager.ShowDialog(viewModel);
+            if (result == true)
+            {
+                await this.ReloadUsers();
+            }
         }
         #endregion
 

@@ -1,4 +1,4 @@
-﻿<Window x:Class="SD.IdentitySystem.Client.Views.Menu.RelateAuthorityView"
+﻿<Window x:Class="SD.IdentitySystem.Client.Views.User.RelateRoleView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -6,8 +6,9 @@
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         mc:Ignorable="d"
-        Title="关联权限" 
+        Title="关联角色" 
         Width="450" Height="580" ResizeMode="NoResize" 
         FontSize="14"
         WindowStyle="ThreeDBorderWindow"
@@ -24,21 +25,24 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <!--表单区-->
-            <GroupBox Header="权限列表" Grid.Row="0">
-                <ListBox ItemsSource="{Binding AuthorityItems}">
+            <ListBox Grid.Row="0" ItemsSource="{Binding RoleItems}" Margin="0,10">
+                <!--分组样式-->
+                <ListBox.GroupStyle>
+                    <GroupStyle ContainerStyle="{StaticResource DefaultGroupItem}" />
+                </ListBox.GroupStyle>
+                <!--数据模板-->
                 <ListBox.ItemTemplate>
                     <DataTemplate>
                         <WrapPanel>
                             <Image Width="14" Height="14" 
-                                   HorizontalAlignment="Center" VerticalAlignment="Center" 
-                                   Source="{StaticResource IconFile}" />
+                                       HorizontalAlignment="Center" VerticalAlignment="Center" 
+                                       Source="{StaticResource IconFile}" />
                             <CheckBox IsChecked="{Binding IsChecked}" />
                             <TextBlock Text="{Binding Name}" Margin="2,0,0,0" />
                         </WrapPanel>
                     </DataTemplate>
                 </ListBox.ItemTemplate>
             </ListBox>
-                </GroupBox>
             <!--控制区-->
             <Grid Grid.Row="1" Style="{StaticResource FormSubmitGrid}">
                 <WrapPanel Style="{StaticResource FormSubmitWrapPanel}">

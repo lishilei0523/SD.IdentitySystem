@@ -90,9 +90,9 @@ namespace SD.IdentitySystem.Presentation.Presentors
         public ICollection<Item> GetSystemAuthorityItems(string systemNo)
         {
             IEnumerable<AuthorityInfo> systemAuthorities = this._authorizationContract.GetAuthorities(null, systemNo, null, null);
-            ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
+            IEnumerable<Item> authorityItems = systemAuthorities.Select(x => x.ToItem());
 
-            return authorityItems;
+            return authorityItems.ToList();
         }
         #endregion
     }

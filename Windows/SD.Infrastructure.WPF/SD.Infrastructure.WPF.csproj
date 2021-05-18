@@ -64,6 +64,7 @@
     <Compile Include="Aspects\ExceptionAspcet.cs" />
     <Compile Include="Base\OneActiveConductorBase.cs" />
     <Compile Include="Converters\EnabledConverter.cs" />
+    <Compile Include="Extensions\ItemExtension.cs" />
     <Compile Include="Interfaces\IBusy.cs" />
     <Compile Include="Models\Item.cs" />
     <Compile Include="Base\ScreenBase.cs" />

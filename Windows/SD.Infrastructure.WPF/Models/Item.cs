@@ -31,13 +31,15 @@ namespace SD.Infrastructure.WPF.Models
         /// <param name="name">名称</param>
         /// <param name="isSelected">是否选中</param>
         /// <param name="isChecked">是否勾选</param>
-        public Item(Guid id, string name, bool? isSelected, bool? isChecked)
+        /// <param name="groupKey">分组键</param>
+        public Item(Guid id, string name, bool? isSelected, bool? isChecked, string groupKey = null)
             : this()
         {
             this.Id = id;
             this.Name = name;
             this.IsSelected = isSelected;
             this.IsChecked = isChecked;
+            this.GroupKey = groupKey;
         }
         #endregion
 
@@ -80,7 +82,14 @@ namespace SD.Infrastructure.WPF.Models
         /// 图标
         /// </summary>
         public string Icon { get; set; }
-        #endregion 
+        #endregion
+
+        #region 分组键 —— string GroupKey
+        /// <summary>
+        /// 分组键
+        /// </summary>
+        public string GroupKey { get; set; }
+        #endregion
 
         #endregion
     }
