@@ -164,19 +164,6 @@
         <Setter Property="Background" Value="WhiteSmoke" />
         <Setter Property="Padding" Value="10,3" />
     </Style>
-    <!--TreeListView默认样式-->
-    <Style x:Key="DefaultTreeListView" TargetType="{x:Type customControls:TreeListView}">
-        <Setter Property="BorderThickness" Value="0" />
-    </Style>
-    <!--TreeListViewItem默认样式-->
-    <Style x:Key="DefaultTreeListViewItem" TargetType="{x:Type customControls:TreeListViewItem}">
-        <Setter Property="Background" Value="White" />
-        <Setter Property="BorderBrush" Value="LightGray" />
-        <Setter Property="BorderThickness" Value="0,0,0,1" />
-        <Setter Property="Padding" Value="2" />
-        <Setter Property="FontSize" Value="14" />
-        <Setter Property="IsExpanded" Value="True" />
-    </Style>
     <!--Metro.Icon默认样式-->
     <Style TargetType="{x:Type iconPacks:PackIconMaterialDesign}">
         <Setter Property="VerticalAlignment" Value="Center" />

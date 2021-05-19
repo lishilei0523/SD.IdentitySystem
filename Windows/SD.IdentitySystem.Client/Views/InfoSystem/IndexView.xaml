@@ -51,30 +51,30 @@
         <!--内容区-->
         <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
             <DataGrid ItemsSource="{Binding InfoSystems}" 
-                      Style="{StaticResource DataGridDefault}"
-                      ColumnHeaderStyle="{StaticResource DataGridColumnHeaderDefault}"
-                      RowStyle="{StaticResource DataGridRowDefault}"
-                      CellStyle="{StaticResource DataGridCellDefault}">
+                      Style="{StaticResource DataGrid.Styles.Default}"
+                      ColumnHeaderStyle="{StaticResource DataGrid.ColumnHeader.Styles.Default}"
+                      RowStyle="{StaticResource DataGrid.Row.Styles.Default}"
+                      CellStyle="{StaticResource DataGrid.Cell.Styles.Default}">
                 <!--列定义-->
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="35" 
-                                            CellTemplate="{StaticResource CheckBoxCellTemplate}"
-                                            HeaderTemplate="{StaticResource CheckBoxCellHeaderTemplate}" />
+                                            CellTemplate="{StaticResource DataGrid.CellTemplate.CheckBox}"
+                                            HeaderTemplate="{StaticResource DataGrid.CellHeaderTemplate.CheckBox}" />
                     <DataGridTextColumn Header="编号" Width="70" Binding="{Binding Model.Number}" 
-                                        CellStyle="{StaticResource DataGridCellMargin}" />
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="名称" Width="200" Binding="{Binding Model.Name}" 
-                                        CellStyle="{StaticResource DataGridCellMargin}" />
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="应用程序类型" Width="190" 
                                         Binding="{Binding Model.ApplicationType, Converter={StaticResource EnumMemberConverter}}" 
-                                        CellStyle="{StaticResource DataGridCellMargin}" />
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="管理员账号" Width="130" Binding="{Binding Model.AdminLoginId}" 
-                                        CellStyle="{StaticResource DataGridCellMargin}" />
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="主机名" Width="150" Binding="{Binding Model.Host}" 
-                                        CellStyle="{StaticResource DataGridCellMargin}" />
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="端口" Width="70" Binding="{Binding Model.Port}" 
-                                        CellStyle="{StaticResource DataGridCellMargin}" />
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="首页" Width="150" Binding="{Binding Model.Index}" 
-                                        CellStyle="{StaticResource DataGridCellMargin}" />
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTemplateColumn Header="创建时间" Width="170">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

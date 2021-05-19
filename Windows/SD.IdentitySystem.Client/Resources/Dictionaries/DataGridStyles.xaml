@@ -3,16 +3,8 @@
                     xmlns:cal="http://www.caliburnproject.org"
                     xmlns:attachers="clr-namespace:SD.Infrastructure.WPF.Attachers;assembly=SD.Infrastructure.WPF">
 
-    <!--复选框单元格模板-->
-    <DataTemplate x:Key="CheckBoxCellTemplate">
-        <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
-    </DataTemplate>
-    <!--复选框单元格头模板-->
-    <DataTemplate x:Key="CheckBoxCellHeaderTemplate">
-        <CheckBox cal:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
-    </DataTemplate>
     <!--DataGrid默认样式-->
-    <Style x:Key="DataGridDefault" TargetType="{x:Type DataGrid}">
+    <Style x:Key="DataGrid.Styles.Default" TargetType="{x:Type DataGrid}">
         <Setter Property="attachers:DataGridAttacher.DisplayRowNumber" Value="True" />
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="IsReadOnly" Value="True" />
@@ -27,11 +19,11 @@
         <Setter Property="VerticalGridLinesBrush" Value="LightGray" />
     </Style>
     <!--DataGrid列头默认样式-->
-    <Style x:Key="DataGridColumnHeaderDefault" TargetType="{x:Type DataGridColumnHeader}">
+    <Style x:Key="DataGrid.ColumnHeader.Styles.Default" TargetType="{x:Type DataGridColumnHeader}">
         <Setter Property="HorizontalContentAlignment" Value="Center" />
     </Style>
     <!--DataGrid行默认样式-->
-    <Style x:Key="DataGridRowDefault" TargetType="{x:Type DataGridRow}">
+    <Style x:Key="DataGrid.Row.Styles.Default" TargetType="{x:Type DataGridRow}">
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="#FFE48D" />
@@ -46,7 +38,7 @@
         </Style.Triggers>
     </Style>
     <!--DataGrid单元格默认样式-->
-    <Style x:Key="DataGridCellDefault" TargetType="{x:Type DataGridCell}">
+    <Style x:Key="DataGrid.Cell.Styles.Default" TargetType="{x:Type DataGridCell}">
         <Setter Property="Height" Value="28" />
         <Setter Property="Template">
             <Setter.Value>
@@ -61,8 +53,9 @@
             </Trigger>
         </Style.Triggers>
     </Style>
-    <!--DataGrid单元格缩进样式-->
-    <Style x:Key="DataGridCellMargin" BasedOn="{StaticResource DataGridCellDefault}" TargetType="{x:Type DataGridCell}">
+    <!--DataGrid单元格左缩进样式-->
+    <Style x:Key="DataGrid.Cell.Styles.LeftMargin" TargetType="{x:Type DataGridCell}"
+           BasedOn="{StaticResource DataGrid.Cell.Styles.Default}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="DataGridCell">
@@ -71,4 +64,12 @@
             </Setter.Value>
         </Setter>
     </Style>
+    <!--DataGrid复选框单元格模板-->
+    <DataTemplate x:Key="DataGrid.CellTemplate.CheckBox">
+        <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
+    </DataTemplate>
+    <!--DataGrid复选框单元格头模板-->
+    <DataTemplate x:Key="DataGrid.CellHeaderTemplate.CheckBox">
+        <CheckBox cal:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
+    </DataTemplate>
 </ResourceDictionary>

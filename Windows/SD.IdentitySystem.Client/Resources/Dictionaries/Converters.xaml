@@ -5,7 +5,4 @@
     <!--值转换器-->
     <converters:EnabledConverter x:Key="EnabledConverter" />
     <converters:EnumMemberConverter x:Key="EnumMemberConverter" />
-    <converters:TreeListViewIndentConverter x:Key="TreeListViewIndentConverter" />
-    <converters:TreeListViewRowIndexConverter x:Key="TreeListViewRowIndexConverter" />
-    <converters:TreeListViewBackgroundConverter x:Key="TreeListViewBackgroundConverter" />
 </ResourceDictionary>

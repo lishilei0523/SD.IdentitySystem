@@ -18,7 +18,7 @@
                 <ResourceDictionary Source="/Resources/Dictionaries/Converters.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/Images.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/HamburgerPanel.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/DataGridTemplates.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/DataGridStyles.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/TreeListViewStyles.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/ControlStyles.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/FormStyles.xaml" />
