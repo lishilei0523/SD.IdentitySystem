@@ -17,7 +17,9 @@
                 <ResourceDictionary Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/Converters.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/Graphics.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Styles.HamburgerPanel.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/Styles.FluentWpf.Overrides.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/Styles.MahApps.HamburgerPanel.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/Styles.MahApps.Overrides.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/Styles.DataGrid.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/Styles.TreeListView.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/Styles.Controls.xaml" />

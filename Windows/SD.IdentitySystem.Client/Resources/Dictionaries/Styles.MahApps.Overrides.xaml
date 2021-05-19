@@ -1,0 +1,135 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+                    xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
+
+    <!--MahApps.Metro.Icon默认样式-->
+    <Style TargetType="{x:Type iconPacks:PackIconMaterialDesign}">
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <!--MahApps.Metro.ComboBox默认样式-->
+    <Style x:Key="DefaultComboBox" BasedOn="{StaticResource MahApps.Styles.ComboBox.Virtualized}" TargetType="{x:Type ComboBox}">
+        <Setter Property="Width" Value="210" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontFamily" Value="微软雅黑" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
+        <Setter Property="mah:TextBoxHelper.UseFloatingWatermark" Value="False" />
+    </Style>
+    <!--MahApps.Metro.ComboBox表单样式-->
+    <Style x:Key="FormComboBox" BasedOn="{StaticResource MahApps.Styles.ComboBox.Virtualized}" TargetType="{x:Type ComboBox}">
+        <Setter Property="Height" Value="32" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="FontFamily" Value="微软雅黑" />
+        <Setter Property="BorderBrush" Value="{StaticResource TextBox.Static.Border}" />
+        <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="Foreground" Value="{StaticResource SystemBaseHighColorBrush}" />
+        <Setter Property="Background" Value="{StaticResource SystemAltMediumLowColorBrush}" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+        <Setter Property="mah:ControlsHelper.FocusBorderBrush" Value="{StaticResource TextBox.Focus.Border}" />
+        <Setter Property="mah:ControlsHelper.MouseOverBorderBrush" Value="{StaticResource TextBox.MouseOver.Border}" />
+        <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
+        <Setter Property="mah:TextBoxHelper.UseFloatingWatermark" Value="False" />
+        <Style.Triggers>
+            <Trigger Property="IsMouseOver" Value="True">
+                <Setter Property="Background" Value="#BBFFFFFF" />
+            </Trigger>
+            <Trigger Property="IsFocused" Value="True">
+                <Setter Property="Background" Value="#EEFFFFFF" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+    <!--MahApps.Metro.DateTimePicker默认样式-->
+    <Style TargetType="{x:Type mah:DateTimePicker}">
+        <Setter Property="Width" Value="210" />
+        <Setter Property="Height" Value="28" />
+        <Setter Property="FirstDayOfWeek" Value="Sunday" />
+        <Setter Property="Orientation" Value="Horizontal" />
+        <Setter Property="PickerVisibility" Value="All" />
+        <Setter Property="HandVisibility" Value="All" />
+        <Setter Property="SelectedDateFormat" Value="Short" />
+        <Setter Property="SelectedTimeFormat" Value="Long" />
+        <Setter Property="Culture" Value="zh-cn" />
+        <Setter Property="mah:TextBoxHelper.ClearTextButton" Value="True" />
+        <Setter Property="mah:TextBoxHelper.Watermark" Value="选择时间" />
+        <Setter Property="VerticalContentAlignment" Value="Center" />
+    </Style>
+    <!--MahApps.Metro.Watermark默认样式-->
+    <Style x:Key="MahApps.Styles.TextBlock.Watermark" BasedOn="{StaticResource MahApps.Styles.TextBlock}" 
+           TargetType="{x:Type TextBlock}">
+        <Setter Property="FontSize" Value="12" />
+        <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="FontFamily" Value="微软雅黑" />
+        <Setter Property="IsHitTestVisible" Value="False" />
+        <Setter Property="Opacity" Value="0.6" />
+    </Style>
+    <!--MahApps.Metro.GroupBox默认样式-->
+    <Style BasedOn="{StaticResource MahApps.Styles.GroupBox}" TargetType="{x:Type GroupBox}">
+        <Setter Property="Margin" Value="5" />
+        <Setter Property="Padding" Value="0" />
+        <Setter Property="BorderBrush" Value="{StaticResource SystemBaseLowColorBrush}" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderFontSize" Value="14" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderForeground" Value="Black" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderBackground" Value="{StaticResource SystemListLowColorBrush}" />
+    </Style>
+    <!--MahApps.Metro.Expander分组样式-->
+    <Style x:Key="GroupItemExpander" BasedOn="{StaticResource MahApps.Styles.Expander}" TargetType="{x:Type Expander}">
+        <Setter Property="IsExpanded" Value="True" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderFontSize" Value="14" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderForeground" Value="Black" />
+        <Setter Property="mah:HeaderedControlHelper.HeaderBackground" Value="{StaticResource SystemListLowColorBrush}" />
+    </Style>
+    <!--MahApps.Metro.GroupItem默认样式-->
+    <Style x:Key="DefaultGroupItem" TargetType="{x:Type GroupItem}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate>
+                    <Expander Header="{Binding Name}" Style="{StaticResource GroupItemExpander}">
+                        <ItemsPresenter Margin="16,0,0,0" />
+                    </Expander>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+    <!--MahApps.Metro.ListBox默认样式-->
+    <Style BasedOn="{StaticResource MahApps.Styles.ListBox.Virtualized}" TargetType="{x:Type ListBox}">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <!--MahApps.Metro.ListBoxItem默认样式-->
+    <Style BasedOn="{StaticResource MahApps.Styles.ListBoxItem}" TargetType="{x:Type ListBoxItem}">
+        <Setter Property="Background" Value="Transparent" />
+    </Style>
+    <!--MahApps.Metro.TreeView默认样式-->
+    <Style x:Key="DefaultTreeView" BasedOn="{StaticResource MahApps.Styles.TreeView.Virtualized}" TargetType="{x:Type TreeView}">
+        <Setter Property="Margin" Value="0" />
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <!--MahApps.Metro.TreeView菜单样式-->
+    <Style x:Key="MenuTreeView" BasedOn="{StaticResource MahApps.Styles.TreeView.Virtualized}" TargetType="{x:Type TreeView}">
+        <Setter Property="Margin" Value="0,5,0,0" />
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="0" />
+    </Style>
+    <!--MahApps.Metro.TreeViewItem默认样式-->
+    <Style x:Key="DefaultTreeViewItem" BasedOn="{StaticResource MahApps.Styles.TreeViewItem}" TargetType="{x:Type TreeViewItem}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="14" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="IsExpanded" Value="True" />
+    </Style>
+    <!--MahApps.Metro.TreeViewItem默认样式-->
+    <Style x:Key="MenuTreeViewItem" BasedOn="{StaticResource MahApps.Styles.TreeViewItem}" TargetType="{x:Type TreeViewItem}">
+        <Setter Property="Background" Value="WhiteSmoke" />
+        <Setter Property="BorderThickness" Value="0" />
+        <Setter Property="FontSize" Value="16" />
+        <Setter Property="Padding" Value="1" />
+        <Setter Property="IsExpanded" Value="True" />
+    </Style>
+</ResourceDictionary>
