@@ -3,15 +3,15 @@
                     xmlns:customControls="clr-namespace:SD.Infrastructure.WPF.CustomControls;assembly=SD.Infrastructure.WPF"
                     xmlns:cal="http://www.caliburnproject.org">
 
-    <!--GridView列定义-->
-    <GridViewColumnCollection x:Key="MenuColumnDefinition">
+    <!--TreeListView列定义 - 菜单-->
+    <GridViewColumnCollection x:Key="TreeListView.ColumnDefinitions.Menu">
         <!--行号列-->
-        <GridViewColumn Width="35" CellTemplate="{StaticResource TreeListViewRowNumberCellTemplate}" />
-        <GridViewColumn Header="名称" Width="250" CellTemplate="{StaticResource TreeListViewRowCriterionCellTemplate}" />
+        <GridViewColumn Width="35" CellTemplate="{StaticResource TreeListView.CellTemplate.RowIndex}" />
+        <GridViewColumn Header="名称" Width="250" CellTemplate="{StaticResource TreeListView.CellTemplate.Criterion}" />
         <GridViewColumn Header="链接地址" Width="400">
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
-                    <Border Style="{StaticResource TreeListViewBorder}">
+                    <Border Style="{StaticResource TreeListView.Border}">
                         <TextBlock Text="{Binding Url}" Style="{StaticResource GridInsideText}" />
                     </Border>
                 </DataTemplate>
@@ -20,7 +20,7 @@
         <GridViewColumn Header="路径" Width="200">
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
-                    <Border Style="{StaticResource TreeListViewBorder}">
+                    <Border Style="{StaticResource TreeListView.Border}">
                         <TextBlock Text="{Binding Path}" Style="{StaticResource GridInsideText}" />
                     </Border>
                 </DataTemplate>
@@ -29,7 +29,7 @@
         <GridViewColumn Header="所属系统" Width="210">
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
-                    <Border Style="{StaticResource TreeListViewBorder}">
+                    <Border Style="{StaticResource TreeListView.Border}">
                         <TextBlock Text="{Binding SystemName}" Style="{StaticResource GridInsideText}" />
                     </Border>
                 </DataTemplate>
@@ -38,7 +38,7 @@
         <GridViewColumn Header="应用程序类型" Width="150">
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
-                    <Border Style="{StaticResource TreeListViewBorder}">
+                    <Border Style="{StaticResource TreeListView.Border}">
                         <TextBlock Text="{Binding ApplicationType, Converter={StaticResource EnumMemberConverter}}"
                                        Style="{StaticResource GridInsideText}" />
                     </Border>
@@ -48,7 +48,7 @@
         <GridViewColumn Header="创建时间" Width="170">
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
-                    <Border Style="{StaticResource TreeListViewBorder}">
+                    <Border Style="{StaticResource TreeListView.Border}">
                         <TextBlock Text="{Binding AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
                                        Style="{StaticResource DateTimeText}" />
                     </Border>
@@ -58,7 +58,7 @@
         <GridViewColumn Header="关联权限" Width="75">
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
-                    <Border Style="{StaticResource TreeListViewBorder}">
+                    <Border Style="{StaticResource TreeListView.Border}">
                         <TextBlock x:Name="RelateAuthorities" Text="关联权限" 
                                    cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]"
                                    Style="{StaticResource HyperlinkText}" />
@@ -75,7 +75,7 @@
         <GridViewColumn Header="编辑" Width="45">
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
-                    <Border Style="{StaticResource TreeListViewBorder}">
+                    <Border Style="{StaticResource TreeListView.Border}">
                         <TextBlock Text="编辑" 
                                    cal:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateMenu($dataContext)]"
                                    Style="{StaticResource HyperlinkText}" />
@@ -86,7 +86,7 @@
         <GridViewColumn Header="删除" Width="45">
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
-                    <Border Style="{StaticResource TreeListViewBorderEnd}">
+                    <Border Style="{StaticResource TreeListView.Border.End}">
                         <TextBlock Text="删除"  
                                    cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RemoveMenu($dataContext)]"
                                    Style="{StaticResource HyperlinkText}" />
@@ -95,13 +95,13 @@
             </GridViewColumn.CellTemplate>
         </GridViewColumn>
     </GridViewColumnCollection>
-    <!--TreeListView控件模板-->
-    <ControlTemplate x:Key="TreeListViewControlTemplate" TargetType="{x:Type customControls:TreeListView}">
+    <!--TreeListView控件模板 - 菜单-->
+    <ControlTemplate x:Key="TreeListView.ControlTemplate.Menu" TargetType="{x:Type customControls:TreeListView}">
         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <DockPanel>
                     <GridViewHeaderRowPresenter DockPanel.Dock="Top" 
-                                                Columns="{StaticResource MenuColumnDefinition}" 
+                                                Columns="{StaticResource TreeListView.ColumnDefinitions.Menu}" 
                                                 Height="27" >
                         <GridViewHeaderRowPresenter.ColumnHeaderContainerStyle>
                             <Style />
@@ -114,8 +114,8 @@
             </ScrollViewer>
         </Border>
     </ControlTemplate>
-    <!--TreeListViewItem控件模板-->
-    <ControlTemplate x:Key="TreeListViewItemControlTemplate" TargetType="{x:Type customControls:TreeListViewItem}">
+    <!--TreeListViewItem控件模板 - 菜单-->
+    <ControlTemplate x:Key="TreeListViewItem.ControlTemplate.Menu" TargetType="{x:Type customControls:TreeListViewItem}">
         <StackPanel>
             <Border x:Name="PART_Border" 
                     Background="{TemplateBinding Background}" 
@@ -123,8 +123,9 @@
                     BorderThickness="{TemplateBinding BorderThickness}" 
                     Padding="{TemplateBinding Padding}">
                 <GridViewRowPresenter x:Name="PART_Header" 
+                                      Height="23"
                                       Content="{TemplateBinding Header}" 
-                                      Columns="{StaticResource MenuColumnDefinition}" />
+                                      Columns="{StaticResource TreeListView.ColumnDefinitions.Menu}" />
             </Border>
             <ItemsPresenter x:Name="ItemsHost" />
         </StackPanel>
@@ -148,16 +149,16 @@
             </MultiTrigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <!--TreeListView样式-->
-    <Style x:Key="MenuTreeListView" 
+    <!--TreeListView样式 - 菜单-->
+    <Style x:Key="TreeListView.Styles.Menu" 
            BasedOn="{StaticResource DefaultTreeListView}" 
            TargetType="{x:Type customControls:TreeListView}">
-        <Setter Property="Template" Value="{StaticResource TreeListViewControlTemplate}" />
+        <Setter Property="Template" Value="{StaticResource TreeListView.ControlTemplate.Menu}" />
     </Style>
-    <!--TreeListViewItem样式-->
-    <Style x:Key="MenuTreeListViewItem" 
+    <!--TreeListViewItem样式 - 菜单-->
+    <Style x:Key="TreeListViewItem.Styles.Menu" 
            BasedOn="{StaticResource DefaultTreeListViewItem}" 
            TargetType="{x:Type customControls:TreeListViewItem}">
-        <Setter Property="Template" Value="{StaticResource TreeListViewItemControlTemplate}" />
+        <Setter Property="Template" Value="{StaticResource TreeListViewItem.ControlTemplate.Menu}" />
     </Style>
 </ResourceDictionary>
