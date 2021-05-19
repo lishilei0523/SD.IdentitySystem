@@ -16,12 +16,12 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Steel.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml" />
                 <ResourceDictionary Source="/Resources/Dictionaries/Converters.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Images.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/HamburgerPanel.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/DataGridStyles.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/TreeListViewStyles.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/ControlStyles.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/FormStyles.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/Graphics.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/Styles.HamburgerPanel.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/Styles.DataGrid.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/Styles.TreeListView.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/Styles.Controls.xaml" />
+                <ResourceDictionary Source="/Resources/Dictionaries/Styles.Form.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

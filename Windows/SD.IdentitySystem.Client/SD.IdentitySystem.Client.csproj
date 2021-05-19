@@ -257,7 +257,7 @@
     <Compile Include="Views\User\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Resources\Dictionaries\ControlStyles.xaml">
+    <Page Include="Resources\Dictionaries\Styles.Controls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -265,27 +265,27 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\DataGridStyles.xaml">
+    <Page Include="Resources\Dictionaries\Styles.DataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\FormStyles.xaml">
+    <Page Include="Resources\Dictionaries\Styles.Form.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\HamburgerPanel.xaml">
+    <Page Include="Resources\Dictionaries\Styles.HamburgerPanel.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\Images.xaml">
+    <Page Include="Resources\Dictionaries\Graphics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\TreeListViewStyles.xaml">
+    <Page Include="Resources\Dictionaries\Styles.TreeListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Menu\IndexViewStyles.xaml">
+    <Page Include="Resources\Menu\Styles.IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
