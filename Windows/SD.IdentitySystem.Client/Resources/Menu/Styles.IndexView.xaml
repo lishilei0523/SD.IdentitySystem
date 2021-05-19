@@ -12,7 +12,7 @@
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
-                        <TextBlock Text="{Binding Url}" Style="{StaticResource GridInsideText}" />
+                        <TextBlock Text="{Binding Url}" Style="{StaticResource TextBlock.Styles.Inline}" />
                     </Border>
                 </DataTemplate>
             </GridViewColumn.CellTemplate>
@@ -21,7 +21,7 @@
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
-                        <TextBlock Text="{Binding Path}" Style="{StaticResource GridInsideText}" />
+                        <TextBlock Text="{Binding Path}" Style="{StaticResource TextBlock.Styles.Inline}" />
                     </Border>
                 </DataTemplate>
             </GridViewColumn.CellTemplate>
@@ -30,7 +30,7 @@
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
-                        <TextBlock Text="{Binding SystemName}" Style="{StaticResource GridInsideText}" />
+                        <TextBlock Text="{Binding SystemName}" Style="{StaticResource TextBlock.Styles.Inline}" />
                     </Border>
                 </DataTemplate>
             </GridViewColumn.CellTemplate>
@@ -40,7 +40,7 @@
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
                         <TextBlock Text="{Binding ApplicationType, Converter={StaticResource EnumMemberConverter}}"
-                                       Style="{StaticResource GridInsideText}" />
+                                   Style="{StaticResource TextBlock.Styles.Inline}" />
                     </Border>
                 </DataTemplate>
             </GridViewColumn.CellTemplate>
@@ -50,7 +50,7 @@
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
                         <TextBlock Text="{Binding AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
-                                       Style="{StaticResource DateTimeText}" />
+                                   Style="{StaticResource TextBlock.Styles.DateTime}" />
                     </Border>
                 </DataTemplate>
             </GridViewColumn.CellTemplate>
@@ -61,7 +61,7 @@
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
                         <TextBlock x:Name="RelateAuthorities" Text="关联权限" 
                                    cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]"
-                                   Style="{StaticResource HyperlinkText}" />
+                                   Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                     </Border>
                     <DataTemplate.Triggers>
                         <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" 
@@ -78,7 +78,7 @@
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
                         <TextBlock Text="编辑" 
                                    cal:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateMenu($dataContext)]"
-                                   Style="{StaticResource HyperlinkText}" />
+                                   Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                     </Border>
                 </DataTemplate>
             </GridViewColumn.CellTemplate>
@@ -89,7 +89,7 @@
                     <Border Style="{StaticResource TreeListView.Styles.Border.End}">
                         <TextBlock Text="删除"  
                                    cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RemoveMenu($dataContext)]"
-                                   Style="{StaticResource HyperlinkText}" />
+                                   Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                     </Border>
                 </DataTemplate>
             </GridViewColumn.CellTemplate>
@@ -150,15 +150,13 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <!--菜单TreeListView样式-->
-    <Style x:Key="Menu.TreeListView.Styles" 
-           BasedOn="{StaticResource TreeListView.Styles.Default}" 
-           TargetType="{x:Type customControls:TreeListView}">
+    <Style x:Key="Menu.TreeListView.Styles" TargetType="{x:Type customControls:TreeListView}"
+           BasedOn="{StaticResource TreeListView.Styles.Default}">
         <Setter Property="Template" Value="{StaticResource Menu.TreeListView.ControlTemplate}" />
     </Style>
     <!--菜单TreeListViewItem样式-->
-    <Style x:Key="Menu.TreeListViewItem.Styles" 
-           BasedOn="{StaticResource TreeListViewItem.Styles.Default}" 
-           TargetType="{x:Type customControls:TreeListViewItem}">
+    <Style x:Key="Menu.TreeListViewItem.Styles" TargetType="{x:Type customControls:TreeListViewItem}"
+           BasedOn="{StaticResource TreeListViewItem.Styles.Default}">
         <Setter Property="Template" Value="{StaticResource Menu.TreeListViewItem.ControlTemplate}" />
     </Style>
 </ResourceDictionary>

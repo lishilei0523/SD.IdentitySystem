@@ -93,8 +93,8 @@
                 <Grid>
                     <!--Documents-->
                     <TabControl ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveDocument}" 
-                                Style="{StaticResource DocTabControl}" 
-                                ItemContainerStyle="{StaticResource DocTabControlItem}">
+                                Style="{StaticResource TabControl.Styles.Document}" 
+                                ItemContainerStyle="{StaticResource TabControlItem.Styles.Document}">
                         <TabControl.ItemTemplate>
                             <DataTemplate>
                                 <WrapPanel>

@@ -84,7 +84,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="{Binding Model.AddedTime, StringFormat='{}{0:yyyy-MM-dd HH:mm:ss}'}"
-                                           Style="{StaticResource DateTimeText}" />
+                                           Style="{StaticResource TextBlock.Styles.DateTime}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -93,7 +93,7 @@
                             <DataTemplate>
                                 <TextBlock Text="编辑" 
                                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateAuthority($dataContext)]"
-                                           Style="{StaticResource HyperlinkText}" />
+                                           Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
@@ -102,7 +102,7 @@
                             <DataTemplate>
                                 <TextBlock Text="删除" 
                                            cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RemoveAuthority($dataContext)]"
-                                           Style="{StaticResource HyperlinkText}" />
+                                           Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
                     </DataGridTemplateColumn>
