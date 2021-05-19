@@ -34,18 +34,18 @@ namespace SD.Infrastructure.WPF.UserControls
         static Paginator()
         {
             //初始化页容量集合
-            Paginator._PageSizes = new[] { 5, 10, Paginator.DefaultPageSize, 20, 30, 50 };
+            _PageSizes = new[] { 5, 10, DefaultPageSize, 20, 30, 50 };
 
             //注册依赖属性
-            Paginator._PageIndex = DependencyProperty.Register(nameof(Paginator.PageIndex), typeof(int), typeof(Paginator), new PropertyMetadata(Paginator.MinPageIndex, Paginator.OnPageIndexChanged));
-            Paginator._PageSize = DependencyProperty.Register(nameof(Paginator.PageSize), typeof(int), typeof(Paginator), new PropertyMetadata(Paginator.DefaultPageSize, Paginator.OnPageSizeChanged));
-            Paginator._RowCount = DependencyProperty.Register(nameof(Paginator.RowCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, Paginator.OnRowCountChanged));
-            Paginator._PageCount = DependencyProperty.Register(nameof(Paginator.PageCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, Paginator.OnPageCountChanged));
-            Paginator._StartRowIndex = DependencyProperty.Register(nameof(Paginator.StartRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(1, Paginator.OnStartRowIndexChanged));
-            Paginator._EndRowIndex = DependencyProperty.Register(nameof(Paginator.EndRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(0));
+            PageIndexProperty = DependencyProperty.Register(nameof(PageIndex), typeof(int), typeof(Paginator), new PropertyMetadata(MinPageIndex, OnPageIndexChanged));
+            PageSizeProperty = DependencyProperty.Register(nameof(PageSize), typeof(int), typeof(Paginator), new PropertyMetadata(DefaultPageSize, OnPageSizeChanged));
+            RowCountProperty = DependencyProperty.Register(nameof(RowCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, OnRowCountChanged));
+            PageCountProperty = DependencyProperty.Register(nameof(PageCount), typeof(int), typeof(Paginator), new PropertyMetadata(0, OnPageCountChanged));
+            StartRowIndexProperty = DependencyProperty.Register(nameof(StartRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(1, OnStartRowIndexChanged));
+            EndRowIndexProperty = DependencyProperty.Register(nameof(EndRowIndex), typeof(int), typeof(Paginator), new PropertyMetadata(0));
 
             //注册路由事件
-            Paginator._RefreshEvent = EventManager.RegisterRoutedEvent(nameof(Paginator.Refresh), RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(Paginator));
+            _RefreshEvent = EventManager.RegisterRoutedEvent(nameof(Refresh), RoutingStrategy.Direct, typeof(RoutedEventHandler), typeof(Paginator));
         }
 
         /// <summary>
@@ -65,15 +65,15 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 页码依赖属性
         /// </summary>
-        private static readonly DependencyProperty _PageIndex;
+        public static DependencyProperty PageIndexProperty;
 
         /// <summary>
         /// 页码
         /// </summary>
         public int PageIndex
         {
-            get { return Convert.ToInt32(base.GetValue(Paginator._PageIndex)); }
-            set { base.SetValue(Paginator._PageIndex, value); }
+            get { return Convert.ToInt32(base.GetValue(PageIndexProperty)); }
+            set { base.SetValue(PageIndexProperty, value); }
         }
 
         #endregion
@@ -83,15 +83,15 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 页容量依赖属性
         /// </summary>
-        private static readonly DependencyProperty _PageSize;
+        public static DependencyProperty PageSizeProperty;
 
         /// <summary>
         /// 页容量
         /// </summary>
         public int PageSize
         {
-            get { return Convert.ToInt32(base.GetValue(Paginator._PageSize)); }
-            set { base.SetValue(Paginator._PageSize, value); }
+            get { return Convert.ToInt32(base.GetValue(PageSizeProperty)); }
+            set { base.SetValue(PageSizeProperty, value); }
         }
 
         #endregion
@@ -101,15 +101,15 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 总记录数依赖属性
         /// </summary>
-        private static readonly DependencyProperty _RowCount;
+        public static DependencyProperty RowCountProperty;
 
         /// <summary>
         /// 总记录数
         /// </summary>
         public int RowCount
         {
-            get { return Convert.ToInt32(base.GetValue(Paginator._RowCount)); }
-            set { base.SetValue(Paginator._RowCount, value); }
+            get { return Convert.ToInt32(base.GetValue(RowCountProperty)); }
+            set { base.SetValue(RowCountProperty, value); }
         }
 
         #endregion
@@ -119,15 +119,15 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 总页数依赖属性
         /// </summary>
-        private static readonly DependencyProperty _PageCount;
+        public static DependencyProperty PageCountProperty;
 
         /// <summary>
         /// 总页数
         /// </summary>
         public int PageCount
         {
-            get { return Convert.ToInt32(base.GetValue(Paginator._PageCount)); }
-            set { base.SetValue(Paginator._PageCount, value); }
+            get { return Convert.ToInt32(base.GetValue(PageCountProperty)); }
+            set { base.SetValue(PageCountProperty, value); }
         }
 
         #endregion
@@ -137,15 +137,15 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 起始行依赖属性
         /// </summary>
-        private static readonly DependencyProperty _StartRowIndex;
+        public static DependencyProperty StartRowIndexProperty;
 
         /// <summary>
         /// 起始行
         /// </summary>
         public int StartRowIndex
         {
-            get { return Convert.ToInt32(base.GetValue(Paginator._StartRowIndex)); }
-            set { base.SetValue(Paginator._StartRowIndex, value); }
+            get { return Convert.ToInt32(base.GetValue(StartRowIndexProperty)); }
+            set { base.SetValue(StartRowIndexProperty, value); }
         }
 
         #endregion
@@ -155,15 +155,15 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 终止行依赖属性
         /// </summary>
-        private static readonly DependencyProperty _EndRowIndex;
+        public static DependencyProperty EndRowIndexProperty;
 
         /// <summary>
         /// 终止行
         /// </summary>
         public int EndRowIndex
         {
-            get { return Convert.ToInt32(base.GetValue(Paginator._EndRowIndex)); }
-            set { base.SetValue(Paginator._EndRowIndex, value); }
+            get { return Convert.ToInt32(base.GetValue(EndRowIndexProperty)); }
+            set { base.SetValue(EndRowIndexProperty, value); }
         }
 
         #endregion
@@ -174,7 +174,7 @@ namespace SD.Infrastructure.WPF.UserControls
         /// </summary>
         public int[] PageSizes
         {
-            get { return Paginator._PageSizes; }
+            get { return _PageSizes; }
         }
         #endregion
 
@@ -191,9 +191,9 @@ namespace SD.Infrastructure.WPF.UserControls
             Paginator paginator = (Paginator)dependencyObject;
 
             int pageIndex = Convert.ToInt32(eventArgs.NewValue);
-            if (pageIndex <= Paginator.MinPageIndex)
+            if (pageIndex <= MinPageIndex)
             {
-                pageIndex = Paginator.MinPageIndex;
+                pageIndex = MinPageIndex;
             }
             if (paginator.PageCount != 0 && pageIndex > paginator.PageCount)
             {
@@ -207,7 +207,7 @@ namespace SD.Infrastructure.WPF.UserControls
                 : paginator.StartRowIndex - 1 + paginator.PageSize;
 
             //挂起路由事件
-            paginator.RaiseEvent(new RoutedEventArgs(Paginator._RefreshEvent, paginator));
+            paginator.RaiseEvent(new RoutedEventArgs(_RefreshEvent, paginator));
         }
         #endregion
 
@@ -220,9 +220,9 @@ namespace SD.Infrastructure.WPF.UserControls
             Paginator paginator = (Paginator)dependencyObject;
 
             int pageSize = Convert.ToInt32(eventArgs.NewValue);
-            if (!Paginator._PageSizes.Contains(pageSize))
+            if (!_PageSizes.Contains(pageSize))
             {
-                pageSize = Paginator.DefaultPageSize;
+                pageSize = DefaultPageSize;
             }
 
             paginator.PageSize = pageSize;
@@ -233,7 +233,7 @@ namespace SD.Infrastructure.WPF.UserControls
                 : paginator.StartRowIndex - 1 + paginator.PageSize;
 
             //挂起路由事件
-            paginator.RaiseEvent(new RoutedEventArgs(Paginator._RefreshEvent, paginator));
+            paginator.RaiseEvent(new RoutedEventArgs(_RefreshEvent, paginator));
         }
         #endregion
 
@@ -293,8 +293,8 @@ namespace SD.Infrastructure.WPF.UserControls
         /// </summary>
         public event RoutedEventHandler Refresh
         {
-            add { base.AddHandler(Paginator._RefreshEvent, value); }
-            remove { base.RemoveHandler(Paginator._RefreshEvent, value); }
+            add { base.AddHandler(_RefreshEvent, value); }
+            remove { base.RemoveHandler(_RefreshEvent, value); }
         }
 
         #endregion
@@ -307,9 +307,9 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 页码文本框输入事件
         /// </summary>
-        private void TxtPageIndexTextInput(object sender, TextCompositionEventArgs e)
+        private void TxtPageIndexTextInput(object sender, TextCompositionEventArgs eventArgs)
         {
-            e.Handled = !int.TryParse(e.Text, out int _);
+            eventArgs.Handled = !int.TryParse(eventArgs.Text, out int _);
         }
         #endregion
 
@@ -317,7 +317,7 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 页码文本框失去焦点事件
         /// </summary>
-        private void TxtPageIndexLostFocus(object sender, RoutedEventArgs e)
+        private void TxtPageIndexLostFocus(object sender, RoutedEventArgs eventArgs)
         {
             TextBox textBox = (TextBox)sender;
             this.PageIndex = int.Parse(textBox.Text);
@@ -328,9 +328,9 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 页码文本框按回车键事件
         /// </summary>
-        private void TxtPageIndexKeyDown(object sender, KeyEventArgs e)
+        private void TxtPageIndexKeyDown(object sender, KeyEventArgs eventArgs)
         {
-            if (e.KeyStates == Keyboard.GetKeyStates(Key.Return))
+            if (eventArgs.KeyStates == Keyboard.GetKeyStates(Key.Return))
             {
                 TextBox textBox = (TextBox)sender;
                 this.PageIndex = int.Parse(textBox.Text);
@@ -342,14 +342,14 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 第一页按钮点击事件
         /// </summary>
-        private void BtnFirstPageClick(object sender, RoutedEventArgs e)
+        private void BtnFirstPageClick(object sender, RoutedEventArgs eventArgs)
         {
-            if (this.PageIndex == Paginator.MinPageIndex)
+            if (this.PageIndex == MinPageIndex)
             {
                 return;
             }
 
-            this.PageIndex = Paginator.MinPageIndex;
+            this.PageIndex = MinPageIndex;
         }
         #endregion
 
@@ -357,11 +357,11 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 上一页按钮点击事件
         /// </summary>
-        private void BtnPrevPageClick(object sender, RoutedEventArgs e)
+        private void BtnPrevPageClick(object sender, RoutedEventArgs eventArgs)
         {
-            if (this.PageIndex <= Paginator.MinPageIndex)
+            if (this.PageIndex <= MinPageIndex)
             {
-                this.PageIndex = Paginator.MinPageIndex;
+                this.PageIndex = MinPageIndex;
                 return;
             }
 
@@ -373,7 +373,7 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 下一页按钮点击事件
         /// </summary>
-        private void BtnNextPageClick(object sender, RoutedEventArgs e)
+        private void BtnNextPageClick(object sender, RoutedEventArgs eventArgs)
         {
             if (this.PageIndex >= this.PageCount)
             {
@@ -389,7 +389,7 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 最后一页按钮点击事件
         /// </summary>
-        private void BtnLastPageClick(object sender, RoutedEventArgs e)
+        private void BtnLastPageClick(object sender, RoutedEventArgs eventArgs)
         {
             if (this.PageIndex == this.PageCount)
             {
@@ -404,9 +404,9 @@ namespace SD.Infrastructure.WPF.UserControls
         /// <summary>
         /// 刷新按钮点击事件
         /// </summary>
-        private void BtnRefreshClick(object sender, RoutedEventArgs e)
+        private void BtnRefreshClick(object sender, RoutedEventArgs eventArgs)
         {
-            base.RaiseEvent(new RoutedEventArgs(Paginator._RefreshEvent, this));
+            base.RaiseEvent(new RoutedEventArgs(_RefreshEvent, this));
         }
         #endregion
 

@@ -19,8 +19,8 @@ namespace SD.Infrastructure.WPF.Models
         static Node()
         {
             //注册依赖属性
-            _IsSelected = DependencyProperty.Register(nameof(IsSelected), typeof(bool?), typeof(Node), new PropertyMetadata(false));
-            _IsChecked = DependencyProperty.Register(nameof(IsChecked), typeof(bool?), typeof(Node), new PropertyMetadata(false, OnIsCheckedChanged));
+            IsSelectedProperty = DependencyProperty.Register(nameof(IsSelected), typeof(bool?), typeof(Node), new PropertyMetadata(false));
+            IsCheckedProperty = DependencyProperty.Register(nameof(IsChecked), typeof(bool?), typeof(Node), new PropertyMetadata(false, OnIsCheckedChanged));
         }
         #endregion
 
@@ -109,15 +109,15 @@ namespace SD.Infrastructure.WPF.Models
         /// <summary>
         /// 是否选中依赖属性
         /// </summary>
-        private static readonly DependencyProperty _IsSelected;
+        public static DependencyProperty IsSelectedProperty;
 
         /// <summary>
         /// 是否选中
         /// </summary>
         public bool? IsSelected
         {
-            get { return base.GetValue(_IsSelected) == null ? (bool?)null : Convert.ToBoolean(base.GetValue(_IsSelected)); }
-            set { base.SetValue(_IsSelected, (bool?)value); }
+            get { return base.GetValue(IsSelectedProperty) == null ? (bool?)null : Convert.ToBoolean(base.GetValue(IsSelectedProperty)); }
+            set { base.SetValue(IsSelectedProperty, value); }
         }
 
         #endregion
@@ -127,15 +127,15 @@ namespace SD.Infrastructure.WPF.Models
         /// <summary>
         /// 是否勾选依赖属性
         /// </summary>
-        private static readonly DependencyProperty _IsChecked;
+        public static DependencyProperty IsCheckedProperty;
 
         /// <summary>
         /// 是否勾选
         /// </summary>
         public bool? IsChecked
         {
-            get { return base.GetValue(_IsChecked) == null ? (bool?)null : Convert.ToBoolean(base.GetValue(_IsChecked)); }
-            set { base.SetValue(_IsChecked, (bool?)value); }
+            get { return base.GetValue(IsCheckedProperty) == null ? (bool?)null : Convert.ToBoolean(base.GetValue(IsCheckedProperty)); }
+            set { base.SetValue(IsCheckedProperty, value); }
         }
 
         #endregion

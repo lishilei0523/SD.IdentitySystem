@@ -41,7 +41,7 @@ namespace SD.IdentitySystem.Client
         /// <summary>
         /// 应用程序启动事件
         /// </summary>
-        protected override void OnStartup(object sender, StartupEventArgs e)
+        protected override void OnStartup(object sender, StartupEventArgs eventArgs)
         {
             base.DisplayRootViewFor<LoginViewModel>();
         }
@@ -97,7 +97,7 @@ namespace SD.IdentitySystem.Client
         /// <summary>
         /// 应用程序退出事件
         /// </summary>
-        protected override void OnExit(object sender, EventArgs e)
+        protected override void OnExit(object sender, EventArgs eventArgs)
         {
             ResolveMediator.Dispose();
         }
@@ -133,6 +133,7 @@ namespace SD.IdentitySystem.Client
         protected override object GetInstance(Type service, string key)
         {
             object instance = ResolveMediator.Resolve(service);
+
             return instance;
         }
         #endregion
@@ -146,6 +147,7 @@ namespace SD.IdentitySystem.Client
         protected override IEnumerable<object> GetAllInstances(Type service)
         {
             IEnumerable<object> instances = ResolveMediator.ResolveAll(service);
+
             return instances;
         }
         #endregion
@@ -178,7 +180,6 @@ namespace SD.IdentitySystem.Client
             }
             catch
             {
-
                 return exceptionMessage;
             }
         }
