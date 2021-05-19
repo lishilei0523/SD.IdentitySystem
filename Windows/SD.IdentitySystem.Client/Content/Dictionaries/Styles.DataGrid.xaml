@@ -42,7 +42,7 @@
         <Setter Property="Height" Value="28" />
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="DataGridCell">
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
                     <ContentPresenter VerticalAlignment="Center" />
                 </ControlTemplate>
             </Setter.Value>

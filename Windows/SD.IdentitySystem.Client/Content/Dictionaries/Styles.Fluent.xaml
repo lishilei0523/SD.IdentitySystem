@@ -17,10 +17,10 @@
     <!--Fluent.Button焦点样式-->
     <Style x:Key="Button.Styles.Fluent.Focus" TargetType="{x:Type Button}"
            BasedOn="{StaticResource Button.Styles.Fluent.Default}">
-        <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0.5" />
-        <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="1" />
         <Setter Property="BorderBrush" Value="#0078D7" />
         <Setter Property="BorderThickness" Value="2" />
+        <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0.5" />
+        <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="1" />
     </Style>
     <!--Fluent.Button透明默认样式-->
     <Style x:Key="Button.Styles.Fluent.Transparent.Default" TargetType="{x:Type Button}"
