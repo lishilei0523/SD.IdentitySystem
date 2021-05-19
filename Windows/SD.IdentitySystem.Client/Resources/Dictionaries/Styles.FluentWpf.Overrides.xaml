@@ -2,8 +2,9 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF">
 
-    <!--Button默认样式-->
-    <Style x:Key="DefaultButton" BasedOn="{StaticResource ButtonRevealStyle}" TargetType="{x:Type Button}">
+    <!--Fluent.Button默认样式-->
+    <Style x:Key="Button.Styles.Fluent.Default" TargetType="{x:Type Button}"
+           BasedOn="{StaticResource ButtonRevealStyle}">
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Normal" />
         <Setter Property="FontFamily" Value="微软雅黑" />
@@ -13,37 +14,40 @@
         <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0" />
         <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="0.5" />
     </Style>
-    <!--Button焦点样式-->
-    <Style x:Key="FocusButton" BasedOn="{StaticResource DefaultButton}" TargetType="{x:Type Button}">
+    <!--Fluent.Button焦点样式-->
+    <Style x:Key="Button.Styles.Fluent.Focus" TargetType="{x:Type Button}"
+           BasedOn="{StaticResource Button.Styles.Fluent.Default}">
         <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0.5" />
         <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="1" />
         <Setter Property="BorderBrush" Value="#0078D7" />
         <Setter Property="BorderThickness" Value="2" />
     </Style>
-    <!--Button背景样式-->
-    <Style x:Key="BackgroundButton" BasedOn="{StaticResource DefaultButton}" TargetType="{x:Type Button}">
+    <!--Fluent.Button透明默认样式-->
+    <Style x:Key="Button.Styles.Fluent.Transparent.Default" TargetType="{x:Type Button}"
+           BasedOn="{StaticResource Button.Styles.Fluent.Default}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="Margin" Value="5,0,0,0" />
         <Setter Property="Padding" Value="3" />
     </Style>
-    <!--Button表格样式-->
-    <Style x:Key="GridButton" BasedOn="{StaticResource ButtonRoundRevealStyle}" TargetType="{x:Type Button}">
+    <!--Fluent.Button透明圆角样式-->
+    <Style x:Key="Button.Styles.Fluent.Transparent.Round" TargetType="{x:Type Button}"
+           BasedOn="{StaticResource ButtonRoundRevealStyle}">
         <Setter Property="Background" Value="Transparent" />
         <Setter Property="BorderBrush" Value="Transparent" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Normal" />
-        <Setter Property="Width" Value="70" />
         <Setter Property="Height" Value="28" />
         <Setter Property="Margin" Value="3,0,0,0" />
         <Setter Property="Padding" Value="4" />
     </Style>
-    <!--Button面板样式-->
-    <Style x:Key="GroupBoxButton" BasedOn="{StaticResource ButtonRoundRevealStyle}" TargetType="{x:Type Button}">
-        <Setter Property="Width" Value="85" />
+    <!--Fluent.Button透明面板样式-->
+    <Style x:Key="Button.Styles.Fluent.Transparent.Panel" TargetType="{x:Type Button}"
+           BasedOn="{StaticResource ButtonRoundRevealStyle}">
+        <Setter Property="Background" Value="Transparent" />
         <Setter Property="Height" Value="24" />
         <Setter Property="Margin" Value="0,-10,-3,-10" />
-        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="Padding" Value="10,0" />
         <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
 </ResourceDictionary>

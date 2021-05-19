@@ -30,7 +30,7 @@
                     <mah:DateTimePicker SelectedDateTime="{Binding StartTime, Mode=TwoWay}" />
                     <TextBlock Text="结束时间：" Margin="10,0,0,0" />
                     <mah:DateTimePicker SelectedDateTime="{Binding EndTime, Mode=TwoWay}" />
-                    <Button cal:Message.Attach="LoadLoginRecords()" Style="{StaticResource FocusButton}">
+                    <Button cal:Message.Attach="LoadLoginRecords()" Style="{StaticResource Button.Styles.Fluent.Focus}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />
                             <TextBlock Text="搜索" Margin="3,0,0,0" />

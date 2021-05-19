@@ -80,7 +80,7 @@
                             <TextBlock Text="请选择上级菜单" />
                             <Button Content="清空选择" 
                                     cal:Message.Attach="ClearSelectParentMenu()"
-                                    Style="{StaticResource GroupBoxButton}" />
+                                    Style="{StaticResource Button.Styles.Fluent.Transparent.Panel}" />
                         </Grid>
                     </DataTemplate>
                 </GroupBox.HeaderTemplate>
@@ -108,8 +108,8 @@
             <!--控制区-->
             <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Form.Styles.Submit.Grid}">
                 <WrapPanel Style="{StaticResource Form.Styles.Submit.WrapPanel}">
-                    <Button Content="确定" cal:Message.Attach="Submit()" Style="{StaticResource FocusButton}" />
-                    <Button Content="取消" cal:Message.Attach="TryClose('false')" Style="{StaticResource DefaultButton}" />
+                    <Button Content="确定" cal:Message.Attach="Submit()" Style="{StaticResource Button.Styles.Fluent.Focus}" />
+                    <Button Content="取消" cal:Message.Attach="TryClose('false')" Style="{StaticResource Button.Styles.Fluent.Default}" />
                 </WrapPanel>
             </Grid>
         </Grid>

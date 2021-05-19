@@ -54,8 +54,8 @@
             <!--控制区-->
             <Grid Grid.Row="3" Style="{StaticResource Form.Styles.Submit.Grid}">
                 <WrapPanel Style="{StaticResource Form.Styles.Submit.WrapPanel}">
-                    <Button Content="登录" cal:Message.Attach="Login()" Style="{StaticResource FocusButton}" />
-                    <Button Content="取消" cal:Message.Attach="TryClose('null')" Style="{StaticResource DefaultButton}" />
+                    <Button Content="登录" cal:Message.Attach="Login()" Style="{StaticResource Button.Styles.Fluent.Focus}" />
+                    <Button Content="取消" cal:Message.Attach="TryClose('null')" Style="{StaticResource Button.Styles.Fluent.Default}" />
                 </WrapPanel>
             </Grid>
         </Grid>

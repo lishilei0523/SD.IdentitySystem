@@ -44,13 +44,13 @@
                         <TextBlock Text="{Binding LoginInfo.RealName}" FontSize="13" />
                     </WrapPanel>
                     <WrapPanel Margin="0,10,55,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                        <Button cal:Message.Attach="Logout()" Style="{StaticResource BackgroundButton}">
+                        <Button cal:Message.Attach="Logout()" Style="{StaticResource Button.Styles.Fluent.Transparent.Default}">
                             <WrapPanel>
                                 <iconPacks:PackIconMaterialDesign Kind="ExitToApp" />
                                 <TextBlock Text="注销用户" Margin="3,0,0,0" />
                             </WrapPanel>
                         </Button>
-                        <Button cal:Message.Attach="UpdatePassword()" Style="{StaticResource BackgroundButton}">
+                        <Button cal:Message.Attach="UpdatePassword()" Style="{StaticResource Button.Styles.Fluent.Transparent.Default}">
                             <WrapPanel>
                                 <iconPacks:PackIconMaterialDesign Kind="Lock" />
                                 <TextBlock Text="修改密码" Margin="3,0,0,0" />
