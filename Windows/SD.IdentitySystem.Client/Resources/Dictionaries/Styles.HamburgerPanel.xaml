@@ -2,8 +2,14 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
 
-    <!--HamburgerPanel控件模板-->
-    <ControlTemplate x:Key="HamburgerPanelContentTemplate" TargetType="{x:Type mah:HamburgerMenu}">
+    <!--Metro.HamburgerMenu按钮模板-->
+    <DataTemplate x:Key="HamburgerMenu.Panel.ButtonTemplate">
+        <ContentControl Width="22" Height="22" 
+                        Content="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" 
+                        Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}" />
+    </DataTemplate>
+    <!--Metro.HamburgerMenu面板控件模板-->
+    <ControlTemplate x:Key="HamburgerMenu.Panel.ContentTemplate" TargetType="{x:Type mah:HamburgerMenu}">
         <Grid>
             <mah:SplitView x:Name="MainSplitView"
                            CanResizeOpenPane="{TemplateBinding CanResizeOpenPane}"
@@ -93,22 +99,14 @@
             </Trigger>
         </ControlTemplate.Triggers>
     </ControlTemplate>
-    <!--HamburgerPanel样式-->
-    <Style x:Key="HamburgerPanelStyle" TargetType="{x:Type mah:HamburgerMenu}">
+    <!--Metro.HamburgerMenu面板默认样式-->
+    <Style x:Key="HamburgerMenu.Panel.Styles.Default" TargetType="{x:Type mah:HamburgerMenu}">
         <Setter Property="CanResizeOpenPane" Value="False" />
         <Setter Property="FocusVisualStyle" Value="{x:Null}" />
         <Setter Property="Focusable" Value="False" />
         <Setter Property="HamburgerButtonName" Value="HamburgerButton" />
         <Setter Property="HamburgerButtonStyle" Value="{DynamicResource MahApps.Styles.Button.Hamburger}" />
-        <Setter Property="HamburgerButtonTemplate">
-            <Setter.Value>
-                <DataTemplate>
-                    <ContentControl Width="22" Height="22" 
-                                        Content="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" 
-                                        Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}" />
-                </DataTemplate>
-            </Setter.Value>
-        </Setter>
+        <Setter Property="HamburgerButtonTemplate" Value="{StaticResource HamburgerMenu.Panel.ButtonTemplate}" />
         <Setter Property="HeaderItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuHeader}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}" />
@@ -123,6 +121,6 @@
         <Setter Property="ResizeThumbStyle" Value="{DynamicResource MahApps.Styles.MetroThumb.SplitView.Resize}" />
         <Setter Property="SeparatorItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuSeparator}" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="Template" Value="{StaticResource HamburgerPanelContentTemplate}" />
+        <Setter Property="Template" Value="{StaticResource HamburgerMenu.Panel.ContentTemplate}" />
     </Style>
 </ResourceDictionary>

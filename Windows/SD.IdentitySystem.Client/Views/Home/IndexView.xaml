@@ -61,7 +61,7 @@
             </Grid>
         </Border>
         <!--Body-->
-        <mah:HamburgerMenu Grid.Row="1" Style="{DynamicResource HamburgerPanelStyle}" 
+        <mah:HamburgerMenu Grid.Row="1" Style="{DynamicResource HamburgerMenu.Panel.Styles.Default}" 
                            DisplayMode="CompactInline"
                            IsPaneOpen="True"
                            CanResizeOpenPane="True"
