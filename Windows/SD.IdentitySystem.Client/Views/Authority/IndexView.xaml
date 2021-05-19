@@ -17,7 +17,7 @@
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
         <!--功能区-->
-        <Border Grid.Row="0" Style="{StaticResource FunctionPanelBorder}">
+        <Border Grid.Row="0" Style="{StaticResource Panel.Styles.Function.Border}">
             <Grid Background="WhiteSmoke">
                 <Grid.RowDefinitions>
                     <RowDefinition />
@@ -110,7 +110,7 @@
             </DataGrid>
         </busyIndicator:BusyMask>
         <!--内容控制区-->
-        <Border Grid.Row="2" Style="{StaticResource FunctionPanelBorder}">
+        <Border Grid.Row="2" Style="{StaticResource Panel.Styles.Function.Border}">
             <Grid Background="WhiteSmoke">
                 <userControls:Paginator Margin="10,0"
                                         PageIndex="{Binding PageIndex, Mode=TwoWay}"

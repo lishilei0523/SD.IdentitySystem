@@ -2,22 +2,22 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf">
 
+    <!--功能面板边框样式-->
+    <Style x:Key="Panel.Styles.Function.Border" TargetType="{x:Type Border}">
+        <Setter Property="BorderBrush" Value="#CCCCCC" />
+        <Setter Property="BorderThickness" Value="0,1,0,1" />
+    </Style>
     <!--表单元素默认样式-->
     <Style TargetType="{x:Type kino:FormItem}">
         <Setter Property="Padding" Value="3" />
     </Style>
-    <!--功能面板边框样式-->
-    <Style x:Key="FunctionPanelBorder" TargetType="{x:Type Border}">
-        <Setter Property="BorderBrush" Value="#CCCCCC" />
-        <Setter Property="BorderThickness" Value="0,1,0,1" />
-    </Style>
     <!--表单提交Grid样式-->
-    <Style x:Key="FormSubmitGrid" TargetType="{x:Type Grid}">
-        <Setter Property="Background" Value="{StaticResource SystemListLowColorBrush}" />
+    <Style x:Key="Form.Styles.Submit.Grid" TargetType="{x:Type Grid}">
+        <Setter Property="Background" Value="{DynamicResource SystemListLowColorBrush}" />
         <Setter Property="Margin" Value="0,0,0,10" />
     </Style>
     <!--表单提交WrapPanel样式-->
-    <Style x:Key="FormSubmitWrapPanel" TargetType="{x:Type WrapPanel}">
+    <Style x:Key="Form.Styles.Submit.WrapPanel" TargetType="{x:Type WrapPanel}">
         <Setter Property="HorizontalAlignment" Value="Right" />
         <Setter Property="VerticalAlignment" Value="Center" />
         <Setter Property="Margin" Value="0,0,10,0" />
