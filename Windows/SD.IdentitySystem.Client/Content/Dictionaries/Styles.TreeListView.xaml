@@ -31,7 +31,9 @@
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type ToggleButton}">
                     <Border Width="14" Height="14" Background="Transparent">
-                        <Path x:Name="ExpandPath" RenderTransformOrigin="0.5,0.5" Stretch="Uniform" Data="{StaticResource Graphics.Path.Arrow}" Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TreeViewItem}}">
+                        <Path x:Name="ExpanderPath" RenderTransformOrigin="0.5,0.5" Stretch="Uniform" 
+                              Data="{StaticResource Graphics.Path.Arrow}" 
+                              Fill="{Binding Foreground, RelativeSource={RelativeSource AncestorType=TreeViewItem}}">
                             <Path.RenderTransform>
                                 <RotateTransform Angle="-90" />
                             </Path.RenderTransform>
@@ -39,7 +41,7 @@
                     </Border>
                     <ControlTemplate.Triggers>
                         <Trigger Property="IsChecked" Value="True">
-                            <Setter Property="RenderTransform" TargetName="ExpandPath">
+                            <Setter Property="RenderTransform" TargetName="ExpanderPath">
                                 <Setter.Value>
                                     <RotateTransform Angle="0" />
                                 </Setter.Value>
