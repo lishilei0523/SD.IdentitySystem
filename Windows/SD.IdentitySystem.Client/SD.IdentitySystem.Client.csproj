@@ -257,35 +257,31 @@
     <Compile Include="Views\User\IndexView.xaml.cs">
       <DependentUpon>IndexView.xaml</DependentUpon>
     </Compile>
-    <Page Include="Resources\Dictionaries\Styles.Controls.xaml">
+    <Page Include="Content\Dictionaries\Styles.Controls.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\Converters.xaml">
+    <Page Include="Content\Dictionaries\Converters.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\Styles.DataGrid.xaml">
+    <Page Include="Content\Dictionaries\Styles.DataGrid.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\Styles.Form.xaml">
+    <Page Include="Content\Dictionaries\Styles.Form.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\Styles.MahApps.HamburgerPanel.xaml">
+    <Page Include="Content\Dictionaries\Graphics.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\Graphics.xaml">
+    <Page Include="Content\Dictionaries\Styles.TreeListView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Resources\Dictionaries\Styles.TreeListView.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="Resources\Menu\Styles.IndexView.xaml">
+    <Page Include="Resources\Menu\IndexView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -405,11 +401,11 @@
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
-    <Page Include="Resources\Dictionaries\Styles.FluentWpf.Overrides.xaml">
+    <Page Include="Content\Dictionaries\Styles.Fluent.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="Resources\Dictionaries\Styles.MahApps.Overrides.xaml">
+    <Page Include="Content\Dictionaries\Styles.Metro.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
@@ -418,7 +414,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <Resource Include="Resources\Images\banner.gif" />
+    <Resource Include="Content\Images\banner.gif" />
     <Resource Include="favicon.ico" />
   </ItemGroup>
   <ItemGroup>

@@ -32,7 +32,7 @@
                     <ComboBox ItemsSource="{Binding InfoSystems}" 
                               DisplayMemberPath="Name"
                               SelectedValue="{Binding SelectedInfoSystem}"
-                              Style="{StaticResource FormComboBox}" />
+                              Style="{StaticResource ComboBox.Styles.Fluent}" />
                 </kino:FormItem>
                 <kino:FormItem Label="权限名称：">
                     <TextBox Text="{Binding AuthorityName}" Style="{StaticResource TextBoxRevealStyle}" />

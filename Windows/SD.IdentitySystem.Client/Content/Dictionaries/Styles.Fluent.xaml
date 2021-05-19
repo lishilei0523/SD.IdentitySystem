@@ -50,4 +50,15 @@
         <Setter Property="Padding" Value="10,0" />
         <Setter Property="HorizontalAlignment" Value="Right" />
     </Style>
+    <!--Fluent.Button透明关闭样式-->
+    <Style x:Key="Button.Styles.Fluent.Transparent.Close" TargetType="{x:Type Button}" 
+           BasedOn="{StaticResource ButtonRevealStyle}">
+        <Setter Property="Background" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="Width" Value="18" />
+        <Setter Property="Height" Value="18" />
+        <Setter Property="Margin" Value="5,0,0,0" />
+        <Setter Property="HorizontalAlignment" Value="Center" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+    </Style>
 </ResourceDictionary>

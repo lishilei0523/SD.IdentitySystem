@@ -27,7 +27,7 @@
             <Grid>
                 <!--Banner图片-->
                 <Grid.Background>
-                    <ImageBrush ImageSource="/Resources/Images/banner.gif" Stretch="Fill" />
+                    <ImageBrush ImageSource="/Content/Images/banner.gif" Stretch="Fill" />
                 </Grid.Background>
                 <Grid.ColumnDefinitions>
                     <!--系统标题-->
@@ -75,8 +75,8 @@
             <!--Menu-->
             <mah:HamburgerMenu.ItemsSource>
                 <TreeView ItemsSource="{Binding Menus}" 
-                          Style="{StaticResource MenuTreeView}" 
-                          ItemContainerStyle="{StaticResource MenuTreeViewItem}">
+                          Style="{StaticResource TreeView.Styles.Menu}" 
+                          ItemContainerStyle="{StaticResource TreeViewItem.Styles.Menu}">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}">
                             <WrapPanel Background="Transparent"
@@ -99,18 +99,8 @@
                             <DataTemplate>
                                 <WrapPanel>
                                     <TextBlock Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" />
-                                    <Button cal:Message.Attach="DeactivateItem($dataContext, 'true')">
-                                        <Button.Style>
-                                            <Style BasedOn="{StaticResource ButtonRevealStyle}" TargetType="{x:Type Button}">
-                                                <Setter Property="Background" Value="Transparent" />
-                                                <Setter Property="BorderBrush" Value="Transparent" />
-                                                <Setter Property="Width" Value="18" />
-                                                <Setter Property="Height" Value="18" />
-                                                <Setter Property="Margin" Value="5,0,0,0" />
-                                                <Setter Property="HorizontalAlignment" Value="Center" />
-                                                <Setter Property="VerticalAlignment" Value="Center" />
-                                            </Style>
-                                        </Button.Style>
+                                    <Button cal:Message.Attach="DeactivateItem($dataContext, 'true')" 
+                                            Style="{StaticResource Button.Styles.Fluent.Transparent.Close}">
                                         <TextBlock Text="×" FontSize="16" HorizontalAlignment="Center" />
                                     </Button>
                                 </WrapPanel>

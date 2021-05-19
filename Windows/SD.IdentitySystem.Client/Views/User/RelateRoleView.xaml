@@ -27,7 +27,7 @@
             <ListBox Grid.Row="0" ItemsSource="{Binding RoleItems}" Margin="0,10">
                 <!--分组样式-->
                 <ListBox.GroupStyle>
-                    <GroupStyle ContainerStyle="{StaticResource DefaultGroupItem}" />
+                    <GroupStyle ContainerStyle="{StaticResource GroupItem.Styles.Default}" />
                 </ListBox.GroupStyle>
                 <!--数据模板-->
                 <ListBox.ItemTemplate>

@@ -15,15 +15,14 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Fonts.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Steel.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Converters.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Graphics.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Styles.FluentWpf.Overrides.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Styles.MahApps.HamburgerPanel.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Styles.MahApps.Overrides.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Styles.DataGrid.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Styles.TreeListView.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Styles.Controls.xaml" />
-                <ResourceDictionary Source="/Resources/Dictionaries/Styles.Form.xaml" />
+                <ResourceDictionary Source="/Content/Dictionaries/Converters.xaml" />
+                <ResourceDictionary Source="/Content/Dictionaries/Graphics.xaml" />
+                <ResourceDictionary Source="/Content/Dictionaries/Styles.Metro.xaml" />
+                <ResourceDictionary Source="/Content/Dictionaries/Styles.Fluent.xaml" />
+                <ResourceDictionary Source="/Content/Dictionaries/Styles.Controls.xaml" />
+                <ResourceDictionary Source="/Content/Dictionaries/Styles.Form.xaml" />
+                <ResourceDictionary Source="/Content/Dictionaries/Styles.DataGrid.xaml" />
+                <ResourceDictionary Source="/Content/Dictionaries/Styles.TreeListView.xaml" />
             </ResourceDictionary.MergedDictionaries>
         </ResourceDictionary>
     </Application.Resources>

@@ -38,7 +38,7 @@
                         <ComboBox ItemsSource="{Binding InfoSystems}" 
                                   DisplayMemberPath="Name"
                                   SelectedValue="{Binding SelectedInfoSystem}"
-                                  Style="{StaticResource FormComboBox}"
+                                  Style="{StaticResource ComboBox.Styles.Fluent}"
                                   cal:Message.Attach="[Event SelectionChanged] = [Action LoadAuthorities()]" />
                     </kino:FormItem>
                     <kino:FormItem Label="角色名称：">

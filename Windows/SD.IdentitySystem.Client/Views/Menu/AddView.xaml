@@ -39,7 +39,7 @@
                         <ComboBox ItemsSource="{Binding InfoSystems}" 
                                   DisplayMemberPath="Name"
                                   SelectedValue="{Binding SelectedInfoSystem}"
-                                  Style="{StaticResource FormComboBox}"
+                                  Style="{StaticResource ComboBox.Styles.Fluent}"
                                   cal:Message.Attach="[Event SelectionChanged] = [Action LoadMenuTree()]" />
                     </kino:FormItem>
                     <kino:FormItem Label="应用程序类型：">
@@ -47,7 +47,7 @@
                                   DisplayMemberPath="Value"
                                   SelectedValuePath="Key"
                                   SelectedValue="{Binding SelectedApplicationType}"
-                                  Style="{StaticResource FormComboBox}"
+                                  Style="{StaticResource ComboBox.Styles.Fluent}"
                                   cal:Message.Attach="[Event SelectionChanged] = [Action LoadMenuTree()]" />
                     </kino:FormItem>
                     <kino:FormItem Label="上级菜单：">
@@ -86,8 +86,8 @@
                 </GroupBox.HeaderTemplate>
                 <!--菜单树-->
                 <TreeView ItemsSource="{Binding MenuTree}" 
-                          Style="{StaticResource DefaultTreeView}"
-                          ItemContainerStyle="{StaticResource DefaultTreeViewItem}">
+                          Style="{StaticResource TreeView.Styles.Default}"
+                          ItemContainerStyle="{StaticResource TreeViewItem.Styles.Default}">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}">
                             <WrapPanel Background="Transparent" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action SelectParentMenu($datacontext)]">

@@ -58,7 +58,7 @@
            BasedOn="{StaticResource DataGrid.Cell.Styles.Default}">
         <Setter Property="Template">
             <Setter.Value>
-                <ControlTemplate TargetType="DataGridCell">
+                <ControlTemplate TargetType="{x:Type DataGridCell}">
                     <ContentPresenter Margin="10,0,0,0" VerticalAlignment="Center" />
                 </ControlTemplate>
             </Setter.Value>

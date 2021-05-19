@@ -50,7 +50,7 @@
                               DisplayMemberPath="Name"
                               SelectedValue="{Binding SelectedInfoSystem}"
                               mah:TextBoxHelper.Watermark="全部" 
-                              Style="{StaticResource DefaultComboBox}" />
+                              Style="{StaticResource ComboBox.Styles.Default}" />
                     <Button cal:Message.Attach="LoadRoles()" Style="{StaticResource Button.Styles.Fluent.Focus}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />

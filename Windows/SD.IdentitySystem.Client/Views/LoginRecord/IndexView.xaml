@@ -27,9 +27,11 @@
                              mah:TextBoxHelper.ClearTextButton="True"
                              Text="{Binding Keywords}" />
                     <TextBlock Text="开始时间：" Margin="10,0,0,0" />
-                    <mah:DateTimePicker SelectedDateTime="{Binding StartTime, Mode=TwoWay}" />
+                    <mah:DateTimePicker SelectedDateTime="{Binding StartTime, Mode=TwoWay}"
+                                        Style="{StaticResource DateTimePicker.Styles.Default}" />
                     <TextBlock Text="结束时间：" Margin="10,0,0,0" />
-                    <mah:DateTimePicker SelectedDateTime="{Binding EndTime, Mode=TwoWay}" />
+                    <mah:DateTimePicker SelectedDateTime="{Binding EndTime, Mode=TwoWay}"
+                                        Style="{StaticResource DateTimePicker.Styles.Default}" />
                     <Button cal:Message.Attach="LoadLoginRecords()" Style="{StaticResource Button.Styles.Fluent.Focus}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />

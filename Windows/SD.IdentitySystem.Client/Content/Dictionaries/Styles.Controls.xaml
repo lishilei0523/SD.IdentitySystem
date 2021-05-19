@@ -57,7 +57,7 @@
         <Setter Property="BorderBrush" Value="#CCCCCC" />
         <Setter Property="BorderThickness" Value="1,1,1,0" />
     </Style>
-    <!--TabItem文档样式-->
+    <!--TabControlItem文档样式-->
     <Style x:Key="TabControlItem.Styles.Document" TargetType="{x:Type TabItem}">
         <Setter Property="Background" Value="WhiteSmoke" />
         <Setter Property="Padding" Value="10,3" />

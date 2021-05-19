@@ -11,7 +11,7 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <ResourceDictionary Source="/Resources/Menu/Styles.IndexView.xaml" />
+        <ResourceDictionary Source="/Resources/Menu/IndexView.xaml" />
     </UserControl.Resources>
 
     <Grid>
@@ -54,14 +54,14 @@
                               DisplayMemberPath="Name"
                               SelectedValue="{Binding SelectedInfoSystem}"
                               mah:TextBoxHelper.Watermark="全部" 
-                              Style="{StaticResource DefaultComboBox}" />
+                              Style="{StaticResource ComboBox.Styles.Default}" />
                     <TextBlock Text="应用程序类型：" Margin="10,0,0,0" />
                     <ComboBox ItemsSource="{Binding ApplicationTypes}" 
                               DisplayMemberPath="Value"
                               SelectedValuePath="Key"
                               SelectedValue="{Binding SelectedApplicationType}"
                               mah:TextBoxHelper.Watermark="全部" 
-                              Style="{StaticResource DefaultComboBox}" />
+                              Style="{StaticResource ComboBox.Styles.Default}" />
                     <Button cal:Message.Attach="LoadMenus()" Style="{StaticResource Button.Styles.Fluent.Focus}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />

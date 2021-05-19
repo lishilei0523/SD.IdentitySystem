@@ -42,7 +42,7 @@
                               DisplayMemberPath="Value"
                               SelectedValuePath="Key"
                               SelectedValue="{Binding ApplicationType}"
-                              Style="{StaticResource FormComboBox}" />
+                              Style="{StaticResource ComboBox.Styles.Fluent}" />
                 </kino:FormItem>
             </StackPanel>
             <!--占位区-->
