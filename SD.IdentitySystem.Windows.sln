@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.Infrastructure.WPF.Caliburn", "Windows\SD.Infrastructure.WPF\SD.Infrastructure.WPF.Caliburn.csproj", "{8593D205-377A-48ED-834E-F1FABBD88C00}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.Infrastructure.WPF.Caliburn", "Windows\SD.Infrastructure.WPF.Caliburn\SD.Infrastructure.WPF.Caliburn.csproj", "{8593D205-377A-48ED-834E-F1FABBD88C00}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Client", "Windows\SD.IdentitySystem.Client\SD.IdentitySystem.Client.csproj", "{F3F378A5-571F-4207-A9AA-E17E7BF3BEAD}"
 EndProject
@@ -13,7 +13,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - Projects", "01 - Proje
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Infrastructures", "02 - Infrastructures", "{7C0E9529-1019-49D5-8DCA-63B7B5D6C023}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.Infrastructure.WPF", "Windows\SD.Infrastructure.WPF.Primitives\SD.Infrastructure.WPF.csproj", "{8A7CCB16-13C5-4778-AC33-2D185B40DC6C}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.Infrastructure.WPF", "Windows\SD.Infrastructure.WPF\SD.Infrastructure.WPF.csproj", "{8A7CCB16-13C5-4778-AC33-2D185B40DC6C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

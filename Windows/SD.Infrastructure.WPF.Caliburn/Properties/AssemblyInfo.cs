@@ -1,15 +1,14 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows.Markup;
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("SD.Infrastructure.WPF")]
-[assembly: AssemblyDescription("SD.Framework 基础设施 - WPF基础")]
+[assembly: AssemblyTitle("SD.Infrastructure.WPF.Caliburn")]
+[assembly: AssemblyDescription("SD.Framework 基础设施 - WPF基础 - Caliburn.Micro扩展")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
-[assembly: AssemblyProduct("SD.Infrastructure.WPF")]
+[assembly: AssemblyProduct("SD.Infrastructure.WPF.Caliburn")]
 [assembly: AssemblyCopyright("Copyright © SD 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
@@ -20,7 +19,7 @@ using System.Windows.Markup;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("8a7ccb16-13c5-4778-ac33-2d185b40dc6c")]
+[assembly: Guid("e20b5687-7217-441e-92eb-b9ae0a5767de")]
 
 // 程序集的版本信息由下列四个值组成: 
 //
@@ -34,11 +33,3 @@ using System.Windows.Markup;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-
-//XAML命名空间映射
-[assembly: XmlnsPrefix("https://github.com/lishilei0523/SD.Framework", "sd")]
-[assembly: XmlnsDefinition("https://github.com/lishilei0523/SD.Framework", "SD.Infrastructure.WPF.Attachers")]
-[assembly: XmlnsDefinition("https://github.com/lishilei0523/SD.Framework", "SD.Infrastructure.WPF.Converters")]
-[assembly: XmlnsDefinition("https://github.com/lishilei0523/SD.Framework", "SD.Infrastructure.WPF.CustomControls")]
-[assembly: XmlnsDefinition("https://github.com/lishilei0523/SD.Framework", "SD.Infrastructure.WPF.UserControls")]

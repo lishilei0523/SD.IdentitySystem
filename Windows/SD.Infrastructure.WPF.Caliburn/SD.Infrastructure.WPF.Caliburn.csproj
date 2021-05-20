@@ -63,7 +63,7 @@
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SD.Infrastructure.WPF.Primitives\SD.Infrastructure.WPF.csproj">
+    <ProjectReference Include="..\SD.Infrastructure.WPF\SD.Infrastructure.WPF.csproj">
       <Project>{8a7ccb16-13c5-4778-ac33-2d185b40dc6c}</Project>
       <Name>SD.Infrastructure.WPF</Name>
     </ProjectReference>

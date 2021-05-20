@@ -38,9 +38,6 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
-    </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.IdentitySystem.IAppService.3.0.2\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
@@ -72,7 +69,7 @@
     </None>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SD.Infrastructure.WPF.Primitives\SD.Infrastructure.WPF.csproj">
+    <ProjectReference Include="..\SD.Infrastructure.WPF\SD.Infrastructure.WPF.csproj">
       <Project>{8a7ccb16-13c5-4778-ac33-2d185b40dc6c}</Project>
       <Name>SD.Infrastructure.WPF</Name>
     </ProjectReference>
