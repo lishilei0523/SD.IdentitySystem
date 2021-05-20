@@ -1,12 +1,12 @@
 ﻿using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
+using SD.Infrastructure.WPF.Caliburn.Aspects;
+using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows;
-using SD.Infrastructure.WPF.Caliburn.Aspects;
-using SD.Infrastructure.WPF.Caliburn.Base;
 
 namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 {

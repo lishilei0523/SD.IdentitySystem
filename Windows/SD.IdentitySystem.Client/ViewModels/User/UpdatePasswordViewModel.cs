@@ -1,10 +1,10 @@
 ﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.WPF.Caliburn.Aspects;
+using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
-using SD.Infrastructure.WPF.Caliburn.Aspects;
-using SD.Infrastructure.WPF.Caliburn.Base;
 
 namespace SD.IdentitySystem.Client.ViewModels.User
 {
