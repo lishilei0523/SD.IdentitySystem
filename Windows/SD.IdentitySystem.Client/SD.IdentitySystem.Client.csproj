@@ -426,9 +426,9 @@
       <Project>{8a7ccb16-13c5-4778-ac33-2d185b40dc6c}</Project>
       <Name>SD.Infrastructure.WPF</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SD.Infrastructure.WPF\SD.Infrastructure.WPF.MVVM.csproj">
+    <ProjectReference Include="..\SD.Infrastructure.WPF\SD.Infrastructure.WPF.Caliburn.csproj">
       <Project>{8593d205-377a-48ed-834e-f1fabbd88c00}</Project>
-      <Name>SD.Infrastructure.WPF.MVVM</Name>
+      <Name>SD.Infrastructure.WPF.Caliburn</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

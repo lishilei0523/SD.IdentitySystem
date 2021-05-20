@@ -1,8 +1,8 @@
 ﻿using Caliburn.Micro;
-using SD.Infrastructure.WPF.Aspects;
+using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Interfaces;
 
-namespace SD.Infrastructure.WPF.Base
+namespace SD.Infrastructure.WPF.Caliburn.Base
 {
     /// <summary>
     /// 单活动Conductor基类

@@ -3,8 +3,6 @@ using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.WPF.Aspects;
-using SD.Infrastructure.WPF.Base;
 using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Interfaces;
 using SD.Infrastructure.WPF.Models;
@@ -14,6 +12,8 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
+using SD.Infrastructure.WPF.Caliburn.Aspects;
+using SD.Infrastructure.WPF.Caliburn.Base;
 
 namespace SD.IdentitySystem.Client.ViewModels.Authority
 {

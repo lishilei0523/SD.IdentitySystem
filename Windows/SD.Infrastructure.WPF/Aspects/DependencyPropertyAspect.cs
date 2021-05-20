@@ -2,7 +2,7 @@
 using Caliburn.Micro;
 using System;
 
-namespace SD.Infrastructure.WPF.Aspects
+namespace SD.Infrastructure.WPF.Caliburn.Aspects
 {
     /// <summary>
     /// WPF依赖属性AOP特性

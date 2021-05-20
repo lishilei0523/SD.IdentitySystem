@@ -5,12 +5,12 @@ using System.Windows.Markup;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("SD.Infrastructure.WPF.Primitives")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("SD.Infrastructure.WPF")]
+[assembly: AssemblyDescription("SD.Framework 基础设施 - WPF基础")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("SD.Infrastructure.WPF.Primitives")]
-[assembly: AssemblyCopyright("Copyright ©  2021")]
+[assembly: AssemblyCompany("SD")]
+[assembly: AssemblyProduct("SD.Infrastructure.WPF")]
+[assembly: AssemblyCopyright("Copyright © SD 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

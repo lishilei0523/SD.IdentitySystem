@@ -1,9 +1,9 @@
 ﻿using ArxOne.MrAdvice.Advice;
-using SD.Infrastructure.WPF.Base;
+using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System;
 
-namespace SD.Infrastructure.WPF.Aspects
+namespace SD.Infrastructure.WPF.Caliburn.Aspects
 {
     /// <summary>
     /// 异常AOP特性

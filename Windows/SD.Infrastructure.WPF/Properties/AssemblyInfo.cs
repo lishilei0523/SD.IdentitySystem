@@ -4,11 +4,11 @@ using System.Runtime.InteropServices;
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
 // 与程序集关联的信息。
-[assembly: AssemblyTitle("SD.Infrastructure.WPF")]
-[assembly: AssemblyDescription("SD.Framework 基础设施 - WPF基础")]
+[assembly: AssemblyTitle("SD.Infrastructure.WPF.Caliburn")]
+[assembly: AssemblyDescription("SD.Framework 基础设施 - WPF基础 - Caliburn.Micro扩展")]
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
-[assembly: AssemblyProduct("SD.Infrastructure.WPF")]
+[assembly: AssemblyProduct("SD.Infrastructure.WPF.Caliburn")]
 [assembly: AssemblyCopyright("Copyright © SD 2021")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
