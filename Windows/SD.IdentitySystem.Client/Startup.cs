@@ -198,7 +198,7 @@ namespace SD.IdentitySystem.Client
                     + Environment.NewLine + "［异常明细］" + exception
                     + Environment.NewLine + "［内部异常］" + exception.InnerException
                     + Environment.NewLine + "［堆栈信息］" + exception.StackTrace
-                    + Environment.NewLine + Environment.NewLine);
+                    + Environment.NewLine + Environment.NewLine, true);
             });
         }
         #endregion
