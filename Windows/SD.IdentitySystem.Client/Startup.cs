@@ -78,18 +78,7 @@ namespace SD.IdentitySystem.Client
             #endregion
 
             //记录日志
-            string exceptionLogPath = $"{AppDomain.CurrentDomain.BaseDirectory}\\ExceptionLogs\\{{0:yyyy-MM-dd}}.txt";
-            Task.Run(() =>
-            {
-                FileExtension.WriteFile(string.Format(exceptionLogPath, DateTime.Today),
-                    "===================================WPF运行异常, 详细信息如下==================================="
-                    + Environment.NewLine + "［异常时间］" + DateTime.Now
-                    + Environment.NewLine + "［异常消息］" + exception.Message
-                    + Environment.NewLine + "［异常明细］" + exception
-                    + Environment.NewLine + "［内部异常］" + exception.InnerException
-                    + Environment.NewLine + "［堆栈信息］" + exception.StackTrace
-                    + Environment.NewLine + Environment.NewLine);
-            });
+            WriteLog(exception);
         }
         #endregion
 
@@ -99,7 +88,14 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void OnExit(object sender, EventArgs eventArgs)
         {
-            ResolveMediator.Dispose();
+            try
+            {
+                ResolveMediator.Dispose();
+            }
+            catch (Exception exception)
+            {
+                WriteLog(exception);
+            }
         }
         #endregion
 
@@ -182,6 +178,28 @@ namespace SD.IdentitySystem.Client
             {
                 return exceptionMessage;
             }
+        }
+        #endregion
+
+        #region 记录日志 —— static void WriteLog(Exception exception)
+        /// <summary>
+        /// 记录日志
+        /// </summary>
+        /// <param name="exception">异常</param>
+        private static void WriteLog(Exception exception)
+        {
+            string exceptionLogPath = $"{AppDomain.CurrentDomain.BaseDirectory}\\ExceptionLogs\\{{0:yyyy-MM-dd}}.txt";
+            Task.Run(() =>
+            {
+                FileExtension.WriteFile(string.Format(exceptionLogPath, DateTime.Today),
+                    "===================================WPF运行异常, 详细信息如下==================================="
+                    + Environment.NewLine + "［异常时间］" + DateTime.Now
+                    + Environment.NewLine + "［异常消息］" + exception.Message
+                    + Environment.NewLine + "［异常明细］" + exception
+                    + Environment.NewLine + "［内部异常］" + exception.InnerException
+                    + Environment.NewLine + "［堆栈信息］" + exception.StackTrace
+                    + Environment.NewLine + Environment.NewLine);
+            });
         }
         #endregion
 
