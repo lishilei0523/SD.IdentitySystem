@@ -64,11 +64,11 @@
         <Setter Property="BorderThickness" Value="1,0,1,0" />
     </Style>
     <!--TreeListView行号列数据模板-->
-    <DataTemplate x:Key="TreeListView.CellTemplate.RowIndex">
+    <DataTemplate x:Key="TreeListView.CellTemplates.RowIndex">
         <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type customControls:TreeListViewItem}}, Converter={StaticResource TreeListView.Converters.RowIndexConverter}}" />
     </DataTemplate>
     <!--TreeListView基准列数据模板-->
-    <DataTemplate x:Key="TreeListView.CellTemplate.Criterion">
+    <DataTemplate x:Key="TreeListView.CellTemplates.Criterion">
         <Border Style="{StaticResource TreeListView.Styles.Border}">
             <WrapPanel VerticalAlignment="Center">
                 <ToggleButton x:Name="CriterionExpander" 

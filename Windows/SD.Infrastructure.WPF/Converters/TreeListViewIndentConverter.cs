@@ -31,7 +31,7 @@ namespace SD.Infrastructure.WPF.Converters
 
         public object ConvertBack(object value, Type type, object parameter, CultureInfo culture)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }

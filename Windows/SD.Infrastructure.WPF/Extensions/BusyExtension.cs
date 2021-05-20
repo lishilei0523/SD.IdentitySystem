@@ -15,22 +15,22 @@ namespace SD.Infrastructure.WPF.Extensions
         /// <summary>
         /// 挂起繁忙状态
         /// </summary>
-        public static void Busy(this IBusy loadable)
+        public static void Busy(this IBusy busy)
         {
             lock (_Sync)
             {
-                loadable.IsBusy = true;
+                busy.IsBusy = true;
             }
         }
 
         /// <summary>
         /// 释放繁忙状态
         /// </summary>
-        public static void Idle(this IBusy loadable)
+        public static void Idle(this IBusy busy)
         {
             lock (_Sync)
             {
-                loadable.IsBusy = false;
+                busy.IsBusy = false;
             }
         }
     }

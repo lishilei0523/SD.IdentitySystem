@@ -5,7 +5,6 @@
 
     <!--DataGrid默认样式-->
     <Style x:Key="DataGrid.Styles.Default" TargetType="{x:Type DataGrid}">
-        <Setter Property="attachers:DataGridAttacher.DisplayRowNumber" Value="True" />
         <Setter Property="AutoGenerateColumns" Value="False" />
         <Setter Property="IsReadOnly" Value="True" />
         <Setter Property="CanUserSortColumns" Value="False" />
@@ -17,6 +16,7 @@
         <Setter Property="AlternatingRowBackground" Value="WhiteSmoke" />
         <Setter Property="HorizontalGridLinesBrush" Value="LightGray" />
         <Setter Property="VerticalGridLinesBrush" Value="LightGray" />
+        <Setter Property="attachers:DataGridAttacher.DisplayRowNumber" Value="True" />
     </Style>
     <!--DataGrid列头默认样式-->
     <Style x:Key="DataGrid.ColumnHeader.Styles.Default" TargetType="{x:Type DataGridColumnHeader}">
@@ -65,11 +65,11 @@
         </Setter>
     </Style>
     <!--DataGrid复选框单元格模板-->
-    <DataTemplate x:Key="DataGrid.CellTemplate.CheckBox">
+    <DataTemplate x:Key="DataGrid.CellTemplates.CheckBox.Default">
         <CheckBox HorizontalAlignment="Center" IsChecked="{Binding IsChecked, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
     </DataTemplate>
     <!--DataGrid复选框单元格头模板-->
-    <DataTemplate x:Key="DataGrid.CellHeaderTemplate.CheckBox">
+    <DataTemplate x:Key="DataGrid.CellHeaderTemplates.CheckBox.Default">
         <CheckBox cal:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
     </DataTemplate>
 </ResourceDictionary>

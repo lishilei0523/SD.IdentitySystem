@@ -70,8 +70,8 @@
                 <!--列定义-->
                 <DataGrid.Columns>
                     <DataGridTemplateColumn Width="35" 
-                                            CellTemplate="{StaticResource DataGrid.CellTemplate.CheckBox}"
-                                            HeaderTemplate="{StaticResource DataGrid.CellHeaderTemplate.CheckBox}" />
+                                            CellTemplate="{StaticResource DataGrid.CellTemplates.CheckBox.Default}"
+                                            HeaderTemplate="{StaticResource DataGrid.CellHeaderTemplates.CheckBox.Default}" />
                     <DataGridTextColumn Header="名称" Width="150" Binding="{Binding Model.Name}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="所属系统" Width="210" Binding="{Binding Model.InfoSystemInfo.Name}" 

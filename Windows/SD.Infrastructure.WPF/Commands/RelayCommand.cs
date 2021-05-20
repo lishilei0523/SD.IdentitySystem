@@ -14,7 +14,7 @@ namespace SD.Infrastructure.WPF.Commands
         /// <summary>
         /// 命令委托
         /// </summary>
-        private readonly Action<object> _action;
+        private readonly Action<object> _command;
 
         /// <summary>
         /// 是否可执行委托
@@ -22,7 +22,7 @@ namespace SD.Infrastructure.WPF.Commands
         private readonly Predicate<object> _canExecute;
 
         /// <summary>
-        /// 单参数构造器
+        /// 创建转接命令构造器
         /// </summary>
         /// <param name="command">命令委托</param>
         public RelayCommand(Action<object> command)
@@ -32,13 +32,13 @@ namespace SD.Infrastructure.WPF.Commands
         }
 
         /// <summary>
-        /// 双参数构造器
+        /// 创建转接命令构造器
         /// </summary>
-        /// <param name="action">命令委托</param>
+        /// <param name="command">命令委托</param>
         /// <param name="canExecute">是否可执行委托</param>
-        public RelayCommand(Action<object> action, Predicate<object> canExecute)
+        public RelayCommand(Action<object> command, Predicate<object> canExecute)
         {
-            this._action = action ?? throw new ArgumentNullException(nameof(action));
+            this._command = command ?? throw new ArgumentNullException(nameof(command));
             this._canExecute = canExecute;
         }
 
@@ -81,7 +81,7 @@ namespace SD.Infrastructure.WPF.Commands
         /// <param name="parameter">参数</param>
         public void Execute(object parameter)
         {
-            this._action.Invoke(parameter);
+            this._command.Invoke(parameter);
         }
         #endregion
 

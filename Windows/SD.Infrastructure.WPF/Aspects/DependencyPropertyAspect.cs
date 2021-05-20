@@ -1,13 +1,14 @@
-﻿using System;
-using ArxOne.MrAdvice.Advice;
+﻿using ArxOne.MrAdvice.Advice;
 using Caliburn.Micro;
+using System;
 
 namespace SD.Infrastructure.WPF.Aspects
 {
     /// <summary>
     /// WPF依赖属性AOP特性
     /// </summary>
-    [AttributeUsage(AttributeTargets.Property)]
+    [Serializable]
+    [AttributeUsage(AttributeTargets.Property, AllowMultiple = true)]
     public class DependencyPropertyAttribute : Attribute, IPropertyAdvice
     {
         /// <summary>

@@ -139,14 +139,14 @@
         <Setter Property="Padding" Value="1" />
         <Setter Property="IsExpanded" Value="True" />
     </Style>
-    <!--MahApps.Metro.HamburgerMenu按钮模板-->
-    <DataTemplate x:Key="HamburgerMenu.Panel.ButtonTemplate">
+    <!--MahApps.Metro.HamburgerMenu按钮数据模板-->
+    <DataTemplate x:Key="HamburgerMenu.Panel.DataTemplates.Button.Default">
         <ContentControl Width="22" Height="22" 
                         Content="M3,6H21V8H3V6M3,11H21V13H3V11M3,16H21V18H3V16Z" 
                         Style="{DynamicResource MahApps.Styles.ContentControl.PathIcon}" />
     </DataTemplate>
     <!--MahApps.Metro.HamburgerMenu面板控件模板-->
-    <ControlTemplate x:Key="HamburgerMenu.Panel.ContentTemplate" TargetType="{x:Type mah:HamburgerMenu}">
+    <ControlTemplate x:Key="HamburgerMenu.Panel.ControlTemplates.Default" TargetType="{x:Type mah:HamburgerMenu}">
         <Grid>
             <mah:SplitView x:Name="MainSplitView"
                            CanResizeOpenPane="{TemplateBinding CanResizeOpenPane}"
@@ -243,7 +243,7 @@
         <Setter Property="Focusable" Value="False" />
         <Setter Property="HamburgerButtonName" Value="HamburgerButton" />
         <Setter Property="HamburgerButtonStyle" Value="{DynamicResource MahApps.Styles.Button.Hamburger}" />
-        <Setter Property="HamburgerButtonTemplate" Value="{StaticResource HamburgerMenu.Panel.ButtonTemplate}" />
+        <Setter Property="HamburgerButtonTemplate" Value="{StaticResource HamburgerMenu.Panel.DataTemplates.Button.Default}" />
         <Setter Property="HeaderItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuHeader}" />
         <Setter Property="HorizontalContentAlignment" Value="Stretch" />
         <Setter Property="ItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuItem}" />
@@ -258,6 +258,6 @@
         <Setter Property="ResizeThumbStyle" Value="{DynamicResource MahApps.Styles.MetroThumb.SplitView.Resize}" />
         <Setter Property="SeparatorItemContainerStyle" Value="{StaticResource MahApps.Styles.ListBoxItem.HamburgerMenuSeparator}" />
         <Setter Property="VerticalContentAlignment" Value="Stretch" />
-        <Setter Property="Template" Value="{StaticResource HamburgerMenu.Panel.ContentTemplate}" />
+        <Setter Property="Template" Value="{StaticResource HamburgerMenu.Panel.ControlTemplates.Default}" />
     </Style>
 </ResourceDictionary>

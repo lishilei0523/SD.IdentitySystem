@@ -13,6 +13,15 @@ namespace SD.Infrastructure.WPF.Converters
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
+            #region # 验证
+
+            if (value == null)
+            {
+                return null;
+            }
+
+            #endregion
+
             bool enabled = (bool)value;
             if (enabled)
             {
@@ -24,7 +33,7 @@ namespace SD.Infrastructure.WPF.Converters
 
         public object ConvertBack(object value, Type targetType, object parameter, System.Globalization.CultureInfo culture)
         {
-            throw new NotImplementedException();
+            throw new NotSupportedException();
         }
     }
 }
