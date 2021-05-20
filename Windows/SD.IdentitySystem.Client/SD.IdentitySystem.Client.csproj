@@ -422,9 +422,13 @@
       <Project>{3f6e50ba-8e37-4730-9c2e-0d9483a026d8}</Project>
       <Name>SD.IdentitySystem.Presentation</Name>
     </ProjectReference>
-    <ProjectReference Include="..\SD.Infrastructure.WPF\SD.Infrastructure.WPF.csproj">
-      <Project>{8593d205-377a-48ed-834e-f1fabbd88c00}</Project>
+    <ProjectReference Include="..\SD.Infrastructure.WPF.Primitives\SD.Infrastructure.WPF.csproj">
+      <Project>{8a7ccb16-13c5-4778-ac33-2d185b40dc6c}</Project>
       <Name>SD.Infrastructure.WPF</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.Infrastructure.WPF\SD.Infrastructure.WPF.MVVM.csproj">
+      <Project>{8593d205-377a-48ed-834e-f1fabbd88c00}</Project>
+      <Name>SD.Infrastructure.WPF.MVVM</Name>
     </ProjectReference>
   </ItemGroup>
   <ItemGroup>

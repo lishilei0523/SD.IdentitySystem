@@ -8,7 +8,7 @@
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>SD.Infrastructure.WPF</RootNamespace>
-    <AssemblyName>SD.Infrastructure.WPF.Primitives</AssemblyName>
+    <AssemblyName>SD.Infrastructure.WPF</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -21,7 +21,7 @@
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Debug\SD.Infrastructure.WPF.Primitives.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\SD.Infrastructure.WPF.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
@@ -30,7 +30,7 @@
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
-    <DocumentationFile>bin\Release\SD.Infrastructure.WPF.Primitives.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\SD.Infrastructure.WPF.xml</DocumentationFile>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="PresentationCore" />
@@ -51,8 +51,14 @@
     <Compile Include="Converters\TreeListViewRowIndexConverter.cs" />
     <Compile Include="CustomControls\TreeListView.cs" />
     <Compile Include="CustomControls\TreeListViewItem.cs" />
+    <Compile Include="Extensions\BusyExtension.cs" />
+    <Compile Include="Extensions\ItemExtension.cs" />
+    <Compile Include="Extensions\WrapExtension.cs" />
     <Compile Include="Interfaces\IBusy.cs" />
     <Compile Include="Interfaces\IPaginatable.cs" />
+    <Compile Include="Models\Item.cs" />
+    <Compile Include="Models\Node.cs" />
+    <Compile Include="Models\Wrap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserControls\Paginator.xaml.cs">
       <DependentUpon>Paginator.xaml</DependentUpon>

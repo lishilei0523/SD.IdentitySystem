@@ -38,9 +38,6 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
-    <Reference Include="MrAdvice, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c0e7e6eab6f293d8, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\MrAdvice.2.8.11\lib\net40-client\MrAdvice.dll</HintPath>
-    </Reference>
     <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
     </Reference>
@@ -70,22 +67,15 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\SD.Infrastructure.WPF\SD.Infrastructure.WPF.csproj">
-      <Project>{8593d205-377a-48ed-834e-f1fabbd88c00}</Project>
-      <Name>SD.Infrastructure.WPF</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <ItemGroup>
     <None Include="packages.config">
       <SubType>Designer</SubType>
     </None>
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\SD.Infrastructure.WPF.Primitives\SD.Infrastructure.WPF.csproj">
+      <Project>{8a7ccb16-13c5-4778-ac33-2d185b40dc6c}</Project>
+      <Name>SD.Infrastructure.WPF</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
-  <Import Project="..\..\packages\MrAdvice.2.8.11\build\MrAdvice.targets" Condition="Exists('..\..\packages\MrAdvice.2.8.11\build\MrAdvice.targets')" />
-  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
-    <PropertyGroup>
-      <ErrorText>这台计算机上缺少此项目引用的 NuGet 程序包。使用“NuGet 程序包还原”可下载这些程序包。有关更多信息，请参见 http://go.microsoft.com/fwlink/?LinkID=322105。缺少的文件是 {0}。</ErrorText>
-    </PropertyGroup>
-    <Error Condition="!Exists('..\..\packages\MrAdvice.2.8.11\build\MrAdvice.targets')" Text="$([System.String]::Format('$(ErrorText)', '..\..\packages\MrAdvice.2.8.11\build\MrAdvice.targets'))" />
-  </Target>
 </Project>

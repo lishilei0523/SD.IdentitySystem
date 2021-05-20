@@ -1,16 +1,19 @@
-﻿using Caliburn.Micro;
-using SD.Infrastructure.WPF.Aspects;
+﻿using System.ComponentModel;
 
 namespace SD.Infrastructure.WPF.Models
 {
     /// <summary>
     /// 包裹模型
     /// </summary>
-    public class Wrap<T> : PropertyChangedBase
+    public class Wrap<T> : INotifyPropertyChanged
     {
         #region # 构造器
 
-        #region 00.无参构造器
+        /// <summary>
+        /// 属性变更事件
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// 无参构造器
         /// </summary>
@@ -20,9 +23,7 @@ namespace SD.Infrastructure.WPF.Models
             this.IsSelected = false;
             this.IsChecked = false;
         }
-        #endregion
 
-        #region 01.创建包裹模型构造器
         /// <summary>
         /// 创建包裹模型构造器
         /// </summary>
@@ -32,9 +33,7 @@ namespace SD.Infrastructure.WPF.Models
         {
             this.Model = model;
         }
-        #endregion
 
-        #region 02.创建包裹模型构造器
         /// <summary>
         /// 创建包裹模型构造器
         /// </summary>
@@ -47,26 +46,57 @@ namespace SD.Infrastructure.WPF.Models
             this.IsChecked = isChecked;
             this.Model = model;
         }
-        #endregion
 
         #endregion
 
         #region # 属性
 
         #region 是否选中 —— bool? IsSelected
+
         /// <summary>
         /// 是否选中
         /// </summary>
-        [DependencyProperty]
-        public bool? IsSelected { get; set; }
+        private bool? _isSelected;
+
+        /// <summary>
+        /// 是否选中
+        /// </summary>
+        public bool? IsSelected
+        {
+            get
+            {
+                return this._isSelected;
+            }
+            set
+            {
+                this._isSelected = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.IsSelected)));
+            }
+        }
         #endregion
 
         #region 是否勾选 —— bool? IsChecked
+
         /// <summary>
         /// 是否勾选
         /// </summary>
-        [DependencyProperty]
-        public bool? IsChecked { get; set; }
+        private bool? _isChecked;
+
+        /// <summary>
+        /// 是否勾选
+        /// </summary>
+        public bool? IsChecked
+        {
+            get
+            {
+                return this._isChecked;
+            }
+            set
+            {
+                this._isChecked = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.IsChecked)));
+            }
+        }
         #endregion
 
         #region 数据模型 —— T Model

@@ -1,17 +1,20 @@
-﻿using Caliburn.Micro;
-using SD.Infrastructure.WPF.Aspects;
-using System;
+﻿using System;
+using System.ComponentModel;
 
 namespace SD.Infrastructure.WPF.Models
 {
     /// <summary>
     /// 数据项
     /// </summary>
-    public class Item : PropertyChangedBase
+    public class Item : INotifyPropertyChanged
     {
-        #region # 构造器
+        #region # 字段及构造器
 
-        #region 00.无参构造器
+        /// <summary>
+        /// 属性变更事件
+        /// </summary>
+        public event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// 无参构造器
         /// </summary>
@@ -21,9 +24,7 @@ namespace SD.Infrastructure.WPF.Models
             this.IsSelected = false;
             this.IsChecked = false;
         }
-        #endregion
 
-        #region 01.创建数据项构造器
         /// <summary>
         /// 创建数据项构造器
         /// </summary>
@@ -41,7 +42,6 @@ namespace SD.Infrastructure.WPF.Models
             this.IsChecked = isChecked;
             this.GroupKey = groupKey;
         }
-        #endregion
 
         #endregion
 
@@ -62,19 +62,51 @@ namespace SD.Infrastructure.WPF.Models
         #endregion
 
         #region 是否选中 —— bool? IsSelected
+
         /// <summary>
         /// 是否选中
         /// </summary>
-        [DependencyProperty]
-        public bool? IsSelected { get; set; }
+        private bool? _isSelected;
+
+        /// <summary>
+        /// 是否选中
+        /// </summary>
+        public bool? IsSelected
+        {
+            get
+            {
+                return this._isSelected;
+            }
+            set
+            {
+                this._isSelected = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.IsSelected)));
+            }
+        }
         #endregion
 
         #region 是否勾选 —— bool? IsChecked
+
         /// <summary>
         /// 是否勾选
         /// </summary>
-        [DependencyProperty]
-        public bool? IsChecked { get; set; }
+        private bool? _isChecked;
+
+        /// <summary>
+        /// 是否勾选
+        /// </summary>
+        public bool? IsChecked
+        {
+            get
+            {
+                return this._isChecked;
+            }
+            set
+            {
+                this._isChecked = value;
+                this.PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(nameof(this.IsChecked)));
+            }
+        }
         #endregion
 
         #region 图标 —— string Icon

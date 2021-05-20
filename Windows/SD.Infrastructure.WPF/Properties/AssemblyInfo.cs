@@ -1,6 +1,5 @@
 ﻿using System.Reflection;
 using System.Runtime.InteropServices;
-using System.Windows.Markup;
 
 // 有关程序集的一般信息由以下
 // 控制。更改这些特性值可修改
@@ -34,11 +33,3 @@ using System.Windows.Markup;
 // [assembly: AssemblyVersion("1.0.*")]
 [assembly: AssemblyVersion("1.0.0")]
 [assembly: AssemblyFileVersion("1.0.0.0")]
-
-
-//XAML命名空间映射
-[assembly: XmlnsPrefix("https://github.com/lishilei0523/SD.Framework", "sd")]
-[assembly: XmlnsDefinition("https://github.com/lishilei0523/SD.Framework", "SD.Infrastructure.WPF.Attachers")]
-[assembly: XmlnsDefinition("https://github.com/lishilei0523/SD.Framework", "SD.Infrastructure.WPF.Converters")]
-[assembly: XmlnsDefinition("https://github.com/lishilei0523/SD.Framework", "SD.Infrastructure.WPF.CustomControls")]
-[assembly: XmlnsDefinition("https://github.com/lishilei0523/SD.Framework", "SD.Infrastructure.WPF.UserControls")]
