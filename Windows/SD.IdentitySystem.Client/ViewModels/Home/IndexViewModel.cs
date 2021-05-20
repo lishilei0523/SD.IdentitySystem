@@ -8,6 +8,7 @@ using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.IOC.Core.Mediators;
 using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
 using System.Threading.Tasks;
@@ -58,14 +59,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         public string CurrentTime { get; set; }
         #endregion
 
-        #region 菜单列表 —— IEnumerable<Menu> Menus
-        /// <summary>
-        /// 菜单列表
-        /// </summary>
-        [DependencyProperty]
-        public IEnumerable<Models.Menu> Menus { get; private set; }
-        #endregion
-
         #region 活动文档 —— IScreen ActiveDocument
         /// <summary>
         /// 活动文档
@@ -80,6 +73,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         /// </summary>
         [DependencyProperty]
         public Visibility BingVisibility { get; set; }
+        #endregion
+
+        #region 菜单列表 —— ObservableCollection<Menu> Menus
+        /// <summary>
+        /// 菜单列表
+        /// </summary>
+        [DependencyProperty]
+        public ObservableCollection<Models.Menu> Menus { get; set; }
         #endregion
 
         #region 只读属性 - 登录信息 —— LoginInfo LoginInfo
@@ -222,7 +223,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         public async Task ReloadMenus()
         {
             IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows));
-            this.Menus = menus;
+            this.Menus = new ObservableCollection<Models.Menu>(menus);
         }
         #endregion
 
