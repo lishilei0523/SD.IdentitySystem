@@ -3,6 +3,8 @@ using SD.IdentitySystem.Client.ViewModels.User;
 using SD.IdentitySystem.Presentation.Presentors;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.WPF.Caliburn.Aspects;
+using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.IOC.Core.Mediators;
 using System;
 using System.Collections.Generic;
@@ -11,8 +13,6 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using SD.Infrastructure.WPF.Caliburn.Aspects;
-using SD.Infrastructure.WPF.Caliburn.Base;
 using Models = SD.IdentitySystem.Presentation.Models;
 
 namespace SD.IdentitySystem.Client.ViewModels.Home
@@ -82,7 +82,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         public Visibility BingVisibility { get; set; }
         #endregion
 
-        #region 只读属性 - 登录信息 —— string LoginId
+        #region 只读属性 - 登录信息 —— LoginInfo LoginInfo
         /// <summary>
         /// 只读属性 - 登录信息
         /// </summary>
