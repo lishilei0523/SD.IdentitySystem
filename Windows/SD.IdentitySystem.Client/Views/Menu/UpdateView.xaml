@@ -34,7 +34,7 @@
                              IsEnabled="False" />
                 </kino:FormItem>
                 <kino:FormItem Label="应用程序类型：">
-                    <TextBox Text="{Binding ApplicationType,Converter={StaticResource EnumMemberConverter}}"
+                    <TextBox Text="{Binding ApplicationType,Converter={StaticResource Converters.EnumMemberConverter}}"
                              Style="{StaticResource TextBoxRevealStyle}"
                              IsEnabled="False" />
                 </kino:FormItem>

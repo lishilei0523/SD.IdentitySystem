@@ -7,7 +7,7 @@
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:customControls="clr-namespace:SD.Infrastructure.WPF.CustomControls;assembly=SD.Infrastructure.WPF"
+             xmlns:sd="https://github.com/lishilei0523/SD.Framework"
              mc:Ignorable="d">
 
     <UserControl.Resources>
@@ -74,13 +74,13 @@
         <!--内容区-->
         <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
             <Grid Background="WhiteSmoke">
-                <customControls:TreeListView ItemsSource="{Binding Menus}"
+                <sd:TreeListView ItemsSource="{Binding Menus}"
                                              Style="{StaticResource Menu.TreeListView.Styles}"
                                              ItemContainerStyle="{StaticResource Menu.TreeListViewItem.Styles}">
-                    <customControls:TreeListView.ItemTemplate>
+                    <sd:TreeListView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}"  />
-                    </customControls:TreeListView.ItemTemplate>
-                </customControls:TreeListView>
+                    </sd:TreeListView.ItemTemplate>
+                </sd:TreeListView>
             </Grid>
         </busyIndicator:BusyMask>
         <!--内容控制区-->

@@ -1,20 +1,19 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:customControls="clr-namespace:SD.Infrastructure.WPF.CustomControls;assembly=SD.Infrastructure.WPF"
-                    xmlns:converters="clr-namespace:SD.Infrastructure.WPF.Converters;assembly=SD.Infrastructure.WPF">
+                    xmlns:sd="https://github.com/lishilei0523/SD.Framework">
 
     <!--TreeListView缩进值转换器-->
-    <converters:TreeListViewIndentConverter x:Key="TreeListView.Converters.IndentConverter" />
+    <sd:TreeListViewIndentConverter x:Key="TreeListView.Converters.IndentConverter" />
     <!--TreeListView行号值转换器-->
-    <converters:TreeListViewRowIndexConverter x:Key="TreeListView.Converters.RowIndexConverter" />
+    <sd:TreeListViewRowIndexConverter x:Key="TreeListView.Converters.RowIndexConverter" />
     <!--TreeListView背景值转换器-->
-    <converters:TreeListViewBackgroundConverter x:Key="TreeListView.Converters.BackgroundConverter" />
+    <sd:TreeListViewBackgroundConverter x:Key="TreeListView.Converters.BackgroundConverter" />
     <!--TreeListView默认样式-->
-    <Style x:Key="TreeListView.Styles.Default" TargetType="{x:Type customControls:TreeListView}">
+    <Style x:Key="TreeListView.Styles.Default" TargetType="{x:Type sd:TreeListView}">
         <Setter Property="BorderThickness" Value="0" />
     </Style>
     <!--TreeListViewItem默认样式-->
-    <Style x:Key="TreeListViewItem.Styles.Default" TargetType="{x:Type customControls:TreeListViewItem}">
+    <Style x:Key="TreeListViewItem.Styles.Default" TargetType="{x:Type sd:TreeListViewItem}">
         <Setter Property="Background" Value="White" />
         <Setter Property="BorderBrush" Value="LightGray" />
         <Setter Property="BorderThickness" Value="0,0,0,1" />
@@ -65,7 +64,7 @@
     </Style>
     <!--TreeListView行号列数据模板-->
     <DataTemplate x:Key="TreeListView.CellTemplates.RowIndex">
-        <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type customControls:TreeListViewItem}}, Converter={StaticResource TreeListView.Converters.RowIndexConverter}}" />
+        <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type sd:TreeListViewItem}}, Converter={StaticResource TreeListView.Converters.RowIndexConverter}}" />
     </DataTemplate>
     <!--TreeListView基准列数据模板-->
     <DataTemplate x:Key="TreeListView.CellTemplates.Criterion">
@@ -73,8 +72,8 @@
             <WrapPanel VerticalAlignment="Center">
                 <ToggleButton x:Name="CriterionExpander" 
                               Style="{StaticResource TreeListView.Styles.ToggleButton}" 
-                              Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}, Converter={StaticResource TreeListView.Converters.IndentConverter}}"
-                              IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" 
+                              Margin="{Binding RelativeSource={RelativeSource AncestorType={x:Type sd:TreeListViewItem}}, Converter={StaticResource TreeListView.Converters.IndentConverter}}"
+                              IsChecked="{Binding Path=IsExpanded, RelativeSource={RelativeSource AncestorType={x:Type sd:TreeListViewItem}}}" 
                               ClickMode="Press" />
                 <Image x:Name="CriterionIcon" Width="14" Height="14" 
                        HorizontalAlignment="Center" VerticalAlignment="Center" 
@@ -84,7 +83,7 @@
             </WrapPanel>
         </Border>
         <DataTemplate.Triggers>
-            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" Value="False">
+            <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type sd:TreeListViewItem}}}" Value="False">
                 <Setter TargetName="CriterionExpander" Property="Visibility" Value="Hidden" />
                 <Setter TargetName="CriterionIcon" Property="Source" Value="{StaticResource Graphics.Icon.File}" />
                 <Setter TargetName="CriterionCbx" Property="Visibility" Value="Visible" />

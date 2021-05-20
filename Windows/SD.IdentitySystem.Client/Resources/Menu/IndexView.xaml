@@ -1,7 +1,7 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:customControls="clr-namespace:SD.Infrastructure.WPF.CustomControls;assembly=SD.Infrastructure.WPF"
-                    xmlns:cal="http://www.caliburnproject.org">
+                    xmlns:cal="http://www.caliburnproject.org"
+                    xmlns:sd="https://github.com/lishilei0523/SD.Framework">
 
     <!--菜单TreeListView列定义-->
     <GridViewColumnCollection x:Key="Menu.TreeListView.ColumnDefinitions">
@@ -39,7 +39,7 @@
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
-                        <TextBlock Text="{Binding ApplicationType, Converter={StaticResource EnumMemberConverter}}"
+                        <TextBlock Text="{Binding ApplicationType, Converter={StaticResource Converters.EnumMemberConverter}}"
                                    Style="{StaticResource TextBlock.Styles.Inline}" />
                     </Border>
                 </DataTemplate>
@@ -64,7 +64,7 @@
                                    Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                     </Border>
                     <DataTemplate.Triggers>
-                        <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type customControls:TreeListViewItem}}}" 
+                        <DataTrigger Binding="{Binding Path=HasItems, RelativeSource={RelativeSource AncestorType={x:Type sd:TreeListViewItem}}}" 
                                      Value="True">
                             <Setter TargetName="RelateAuthorities" Property="Visibility" Value="Collapsed" />
                         </DataTrigger>
@@ -96,7 +96,7 @@
         </GridViewColumn>
     </GridViewColumnCollection>
     <!--菜单TreeListView控件模板-->
-    <ControlTemplate x:Key="Menu.TreeListView.ControlTemplate" TargetType="{x:Type customControls:TreeListView}">
+    <ControlTemplate x:Key="Menu.TreeListView.ControlTemplate" TargetType="{x:Type sd:TreeListView}">
         <Border BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}">
             <ScrollViewer HorizontalScrollBarVisibility="Auto" VerticalScrollBarVisibility="Disabled">
                 <DockPanel>
@@ -115,7 +115,7 @@
         </Border>
     </ControlTemplate>
     <!--菜单TreeListViewItem控件模板-->
-    <ControlTemplate x:Key="Menu.TreeListViewItem.ControlTemplate" TargetType="{x:Type customControls:TreeListViewItem}">
+    <ControlTemplate x:Key="Menu.TreeListViewItem.ControlTemplate" TargetType="{x:Type sd:TreeListViewItem}">
         <StackPanel>
             <Border x:Name="PART_Border" 
                     Background="{TemplateBinding Background}" 
@@ -150,12 +150,12 @@
         </ControlTemplate.Triggers>
     </ControlTemplate>
     <!--菜单TreeListView样式-->
-    <Style x:Key="Menu.TreeListView.Styles" TargetType="{x:Type customControls:TreeListView}"
+    <Style x:Key="Menu.TreeListView.Styles" TargetType="{x:Type sd:TreeListView}"
            BasedOn="{StaticResource TreeListView.Styles.Default}">
         <Setter Property="Template" Value="{StaticResource Menu.TreeListView.ControlTemplate}" />
     </Style>
     <!--菜单TreeListViewItem样式-->
-    <Style x:Key="Menu.TreeListViewItem.Styles" TargetType="{x:Type customControls:TreeListViewItem}"
+    <Style x:Key="Menu.TreeListViewItem.Styles" TargetType="{x:Type sd:TreeListViewItem}"
            BasedOn="{StaticResource TreeListViewItem.Styles.Default}">
         <Setter Property="Template" Value="{StaticResource Menu.TreeListViewItem.ControlTemplate}" />
     </Style>

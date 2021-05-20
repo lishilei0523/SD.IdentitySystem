@@ -7,7 +7,7 @@
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-             xmlns:userControls="clr-namespace:SD.Infrastructure.WPF.UserControls;assembly=SD.Infrastructure.WPF"
+             xmlns:sd="https://github.com/lishilei0523/SD.Framework"
              mc:Ignorable="d">
 
     <Grid>
@@ -65,7 +65,7 @@
                     <DataGridTextColumn Header="名称" Width="200" Binding="{Binding Model.Name}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="应用程序类型" Width="190" 
-                                        Binding="{Binding Model.ApplicationType, Converter={StaticResource EnumMemberConverter}}" 
+                                        Binding="{Binding Model.ApplicationType, Converter={StaticResource Converters.EnumMemberConverter}}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="管理员账号" Width="130" Binding="{Binding Model.AdminLoginId}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
@@ -107,12 +107,12 @@
         <!--内容控制区-->
         <Border Grid.Row="2" Style="{StaticResource Panel.Styles.Function.Border}">
             <Grid Background="WhiteSmoke">
-                <userControls:Paginator Margin="10,0"
-                                        PageIndex="{Binding PageIndex, Mode=TwoWay}"
-                                        PageSize="{Binding PageSize, Mode=TwoWay}"
-                                        RowCount="{Binding RowCount, Mode=TwoWay}"
-                                        PageCount="{Binding PageCount, Mode=TwoWay}"
-                                        cal:Message.Attach="[Event Refresh] = [Action LoadInfoSystems()]" />
+                <sd:Paginator Margin="10,0"
+                              PageIndex="{Binding PageIndex, Mode=TwoWay}"
+                              PageSize="{Binding PageSize, Mode=TwoWay}"
+                              RowCount="{Binding RowCount, Mode=TwoWay}"
+                              PageCount="{Binding PageCount, Mode=TwoWay}"
+                              cal:Message.Attach="[Event Refresh] = [Action LoadInfoSystems()]" />
             </Grid>
         </Border>
     </Grid>

@@ -7,7 +7,7 @@
         xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
-        xmlns:attachers="clr-namespace:SD.Infrastructure.WPF.Attachers;assembly=SD.Infrastructure.WPF"
+        xmlns:sd="https://github.com/lishilei0523/SD.Framework"
         mc:Ignorable="d"
         Title="Powered by SD.Framework" 
         Width="465" Height="350" ResizeMode="NoResize"
@@ -41,7 +41,7 @@
                 </kino:FormItem>
                 <kino:FormItem Label="密码：" FontSize="14" Padding="5">
                     <PasswordBox Height="40" VerticalContentAlignment="Center" 
-                                 attachers:PasswordBoxAttacher.Password="{Binding Password, Mode=TwoWay}"
+                                 sd:PasswordBoxAttacher.Password="{Binding Password, Mode=TwoWay}"
                                  Style="{StaticResource PasswordBoxRevealStyle}">
                         <PasswordBox.InputBindings>
                             <KeyBinding Key="Enter" Command="{Binding LoginCommand}" />

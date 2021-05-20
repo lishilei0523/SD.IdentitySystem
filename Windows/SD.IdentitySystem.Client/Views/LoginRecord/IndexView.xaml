@@ -7,7 +7,7 @@
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
              xmlns:cal="http://www.caliburnproject.org"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
-             xmlns:userControls="clr-namespace:SD.Infrastructure.WPF.UserControls;assembly=SD.Infrastructure.WPF"
+             xmlns:sd="https://github.com/lishilei0523/SD.Framework"
              mc:Ignorable="d">
 
     <Grid>
@@ -73,12 +73,12 @@
         <!--内容控制区-->
         <Border Grid.Row="2" Style="{StaticResource Panel.Styles.Function.Border}">
             <Grid Background="WhiteSmoke">
-                <userControls:Paginator Margin="10,0"
-                                        PageIndex="{Binding PageIndex, Mode=TwoWay}"
-                                        PageSize="{Binding PageSize, Mode=TwoWay}"
-                                        RowCount="{Binding RowCount, Mode=TwoWay}"
-                                        PageCount="{Binding PageCount, Mode=TwoWay}"
-                                        cal:Message.Attach="[Event Refresh] = [Action LoadLoginRecords()]" />
+                <sd:Paginator Margin="10,0"
+                              PageIndex="{Binding PageIndex, Mode=TwoWay}"
+                              PageSize="{Binding PageSize, Mode=TwoWay}"
+                              RowCount="{Binding RowCount, Mode=TwoWay}"
+                              PageCount="{Binding PageCount, Mode=TwoWay}"
+                              cal:Message.Attach="[Event Refresh] = [Action LoadLoginRecords()]" />
             </Grid>
         </Border>
     </Grid>
