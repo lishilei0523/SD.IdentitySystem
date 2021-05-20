@@ -17,7 +17,7 @@
     <Content Update="App.config">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
-    <Content Include="favicon.ico" >
+    <Content Include="favicon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
@@ -35,7 +35,7 @@
     <PackageReference Include="SD.IOC.Extension.NetCore" Version="1.0.2" />
     <PackageReference Include="SD.AOP.Core" Version="2.0.9" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.0.6" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.1" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.3" />
     <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.0.1" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.0.3" />
