@@ -6,7 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SD.IdentitySystem.Presentation.Presentors
+namespace SD.IdentitySystem.Presentation.Presenters
 {
     /// <summary>
     /// 权限呈现器

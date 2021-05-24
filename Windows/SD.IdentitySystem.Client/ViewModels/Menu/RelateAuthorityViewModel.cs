@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.Presentation.Presentors;
+using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;

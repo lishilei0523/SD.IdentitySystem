@@ -1,6 +1,6 @@
 ﻿using Caliburn.Micro;
 using SD.IdentitySystem.Client.ViewModels.User;
-using SD.IdentitySystem.Presentation.Presentors;
+using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Caliburn.Aspects;

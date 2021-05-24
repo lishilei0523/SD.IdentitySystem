@@ -5,7 +5,7 @@ using SD.Infrastructure.WPF.Models;
 using System.Collections.Generic;
 using System.Linq;
 
-namespace SD.IdentitySystem.Presentation.Presentors
+namespace SD.IdentitySystem.Presentation.Presenters
 {
     /// <summary>
     /// 角色呈现器

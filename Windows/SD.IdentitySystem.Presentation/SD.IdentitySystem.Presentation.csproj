@@ -57,9 +57,9 @@
     <Reference Include="System.Core" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Presentors\AuthorityPresenter.cs" />
-    <Compile Include="Presentors\MenuPresenter.cs" />
-    <Compile Include="Presentors\RolePresenter.cs" />
+    <Compile Include="Presenters\AuthorityPresenter.cs" />
+    <Compile Include="Presenters\MenuPresenter.cs" />
+    <Compile Include="Presenters\RolePresenter.cs" />
     <Compile Include="Maps\AuthorityMap.cs" />
     <Compile Include="Maps\MenuMap.cs" />
     <Compile Include="Maps\RoleMap.cs" />
