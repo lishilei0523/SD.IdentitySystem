@@ -257,7 +257,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         #endregion
 
 
-        //Privates
+        //Private
 
         #region 加载角色列表 —— async Task ReloadRoles()
         /// <summary>

@@ -161,7 +161,7 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         #endregion
 
 
-        //Privates
+        //Private
 
         #region 加载登录记录列表 —— async Task ReloadLoginRecords()
         /// <summary>

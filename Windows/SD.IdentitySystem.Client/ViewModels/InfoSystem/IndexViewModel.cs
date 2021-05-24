@@ -203,7 +203,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         #endregion
 
 
-        //Privates
+        //Private
 
         #region 加载信息系统列表 —— async Task ReloadInfoSystems()
         /// <summary>

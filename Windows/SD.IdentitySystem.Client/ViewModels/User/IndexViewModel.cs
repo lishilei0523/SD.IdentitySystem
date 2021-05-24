@@ -319,7 +319,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         #endregion
 
 
-        //Privates
+        //Private
 
         #region 加载用户列表 —— async Task ReloadUsers()
         /// <summary>

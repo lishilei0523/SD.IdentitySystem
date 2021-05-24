@@ -245,7 +245,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         #endregion
 
 
-        //Privates
+        //Private
 
         #region 加载菜单列表 —— async Task ReloadMenus()
         /// <summary>

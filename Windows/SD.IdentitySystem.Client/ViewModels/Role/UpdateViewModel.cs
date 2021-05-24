@@ -106,7 +106,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         #endregion
 
 
-        //Privates
+        //Private
 
         #region 提交 —— async void Submit()
         /// <summary>
