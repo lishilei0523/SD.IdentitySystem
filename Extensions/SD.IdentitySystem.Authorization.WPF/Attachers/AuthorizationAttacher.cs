@@ -97,7 +97,7 @@ namespace SD.IdentitySystem.Authorization.WPF.Attachers
             #endregion
 
             //从登录信息中取出权限集
-            IEnumerable<string> ownedAuthorityPaths = loginInfo.LoginAuthorityInfos.Values.SelectMany(x => x).Select(x => x.AuthorityPath);
+            IEnumerable<string> ownedAuthorityPaths = loginInfo.LoginAuthorityInfos.Select(x => x.Path);
 
             //验证权限
             if (ownedAuthorityPaths.Contains(authorityPath))
