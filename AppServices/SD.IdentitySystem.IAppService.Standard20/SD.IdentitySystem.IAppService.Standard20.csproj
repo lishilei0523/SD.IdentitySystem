@@ -54,7 +54,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="3.0.2" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
   </ItemGroup>
 </Project>

@@ -54,11 +54,11 @@ namespace SD.IdentitySystem.AppService.Maps
         }
         #endregion
 
-        #region # 菜单登录信息映射 —— static LoginMenuInfo ToNode(this Menu menu)
+        #region # 菜单登录信息映射 —— static LoginMenuInfo ToLoginMenuInfoNode(this Menu menu)
         /// <summary>
         /// 菜单登录信息映射
         /// </summary>
-        public static LoginMenuInfo ToNode(this Menu menu)
+        public static LoginMenuInfo ToLoginMenuInfoNode(this Menu menu)
         {
             return new LoginMenuInfo
             {
@@ -75,11 +75,11 @@ namespace SD.IdentitySystem.AppService.Maps
         }
         #endregion
 
-        #region # 菜单树映射 —— static ICollection<LoginMenuInfo> ToTree(this...
+        #region # 菜单登录信息树映射 —— static ICollection<LoginMenuInfo> ToLoginMenuInfoTree(this...
         /// <summary>
-        /// 菜单树映射
+        /// 菜单登录信息树映射
         /// </summary>
-        public static ICollection<LoginMenuInfo> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
+        public static ICollection<LoginMenuInfo> ToLoginMenuInfoTree(this IEnumerable<Menu> menus, Guid? parentId)
         {
             //验证
             menus = menus?.ToArray() ?? new Menu[0];
@@ -93,9 +93,9 @@ namespace SD.IdentitySystem.AppService.Maps
                 //从根级开始遍历
                 foreach (Menu menu in menus.OrderBy(x => x.Sort).Where(x => x.IsRoot))
                 {
-                    LoginMenuInfo menuInfo = menu.ToNode();
+                    LoginMenuInfo menuInfo = menu.ToLoginMenuInfoNode();
                     loginMenuInfos.Add(menuInfo);
-                    menuInfo.SubMenuInfos = menus.ToTree(menuInfo.Id);
+                    menuInfo.SubMenuInfos = menus.ToLoginMenuInfoTree(menuInfo.Id);
                 }
             }
             else
@@ -103,9 +103,9 @@ namespace SD.IdentitySystem.AppService.Maps
                 //从给定Id向下遍历
                 foreach (Menu menu in menus.OrderBy(x => x.Sort).Where(x => x.ParentNode != null && x.ParentNode.Id == parentId.Value))
                 {
-                    LoginMenuInfo menuInfo = menu.ToNode();
+                    LoginMenuInfo menuInfo = menu.ToLoginMenuInfoNode();
                     loginMenuInfos.Add(menuInfo);
-                    menuInfo.SubMenuInfos = menus.ToTree(menuInfo.Id);
+                    menuInfo.SubMenuInfos = menus.ToLoginMenuInfoTree(menuInfo.Id);
                 }
             }
 
@@ -135,7 +135,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// </summary>
         public static LoginAuthorityInfo ToLoginAuthorityInfo(this Authority authority)
         {
-            return new LoginAuthorityInfo(authority.Name, authority.EnglishName, authority.AuthorityPath);
+            return new LoginAuthorityInfo(authority.SystemNo, authority.ApplicationType, authority.Id, authority.Name, authority.AuthorityPath, authority.EnglishName);
         }
         #endregion
 

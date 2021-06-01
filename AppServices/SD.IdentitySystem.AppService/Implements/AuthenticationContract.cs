@@ -230,12 +230,12 @@ namespace SD.IdentitySystem.AppService.Implements
             IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
             IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, null);
             menus = menus.TailRecurseParentNodes();
-            ICollection<LoginMenuInfo> menuTree = menus.ToTree(null);
+            ICollection<LoginMenuInfo> menuTree = menus.ToLoginMenuInfoTree(null);
             loginInfo.LoginMenuInfos.AddRange(menuTree);
 
             /*权限部分*/
             IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
-            loginInfo.LoginAuthorityInfos = authorities.GroupBy(x => x.SystemNo).ToDictionary(x => x.Key, x => x.Select(y => y.ToLoginAuthorityInfo()).ToArray());
+            loginInfo.LoginAuthorityInfos = authorities.Select(x => x.ToLoginAuthorityInfo()).ToList();
 
             #endregion
 
