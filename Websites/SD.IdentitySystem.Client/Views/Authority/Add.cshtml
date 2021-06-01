@@ -13,7 +13,7 @@
 }
 
 <div style="width: 100%; height: 100%; float:left; margin: 0;">
-    <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 423px; padding: 10px;">
+    <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 520px; padding: 10px;">
         <form id="frmCreateAuthority">
             <table id="tbAdd" style="margin: 0 auto;">
                 <tr>
@@ -31,7 +31,7 @@
                 <tr>
                     <td class="tdTitle">应用程序类型：</td>
                     <td class="tdContent">
-                        <select class="easyui-combobox" id="slApplicationType" name="applicationType" data-options="required:true,editable:false,onSelect:applicationTypeSelected" style="width: 210px">
+                        <select class="easyui-combobox" id="slApplicationType" name="applicationType" data-options="required:true,editable:false" style="width: 210px">
                             <option value="" selected="selected"></option>
                             @foreach (KeyValuePair<int, string> kv in ApplicationTypeDescriptions)
                             {
@@ -61,25 +61,25 @@
                 <tr>
                     <td class="tdTitle">程序集名称：</td>
                     <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="assemblyName" data-options="required:true,width:210" />
+                        <input class="easyui-textbox" type="text" name="assemblyName" data-options="width:210" />
                     </td>
                 </tr>
                 <tr>
                     <td class="tdTitle">命名空间：</td>
                     <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="namespace" data-options="required:true,width:210" />
+                        <input class="easyui-textbox" type="text" name="namespace" data-options="width:210" />
                     </td>
                 </tr>
                 <tr>
                     <td class="tdTitle">类名：</td>
                     <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="className" data-options="required:true,width:210" />
+                        <input class="easyui-textbox" type="text" name="className" data-options="width:210" />
                     </td>
                 </tr>
                 <tr>
                     <td class="tdTitle">方法名：</td>
                     <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="methodName" data-options="required:true,width:210" />
+                        <input class="easyui-textbox" type="text" name="methodName" data-options="width:210" />
                     </td>
                 </tr>
                 <tr>

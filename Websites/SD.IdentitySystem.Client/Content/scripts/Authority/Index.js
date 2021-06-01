@@ -71,12 +71,12 @@ function getAuthorities(queryParams) {
 
 //创建权限
 function createAuthority() {
-    $.easyuiExt.showWindow("创建权限", "/Authority/Add", 480, 468);
+    $.easyuiExt.showWindow("创建权限", "/Authority/Add", 480, 568);
 }
 
 //修改权限
 function updateAuthority(authorityId) {
-    $.easyuiExt.showWindow("修改权限", "/Authority/Update/" + authorityId, 480, 468);
+    $.easyuiExt.showWindow("修改权限", "/Authority/Update/" + authorityId, 480, 568);
 }
 
 //删除权限
