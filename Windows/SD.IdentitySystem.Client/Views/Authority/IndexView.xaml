@@ -81,6 +81,8 @@
                                             HeaderTemplate="{StaticResource DataGrid.CellHeaderTemplates.CheckBox.Default}" />
                     <DataGridTextColumn Header="名称" Width="150" Binding="{Binding Model.Name}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
+                    <DataGridTextColumn Header="英文名称" Width="150" Binding="{Binding Model.EnglishName}" 
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="所属系统" Width="210" Binding="{Binding Model.InfoSystemInfo.Name}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="应用程序类型" Width="150" Binding="{Binding Model.ApplicationType, Converter={StaticResource Converters.EnumMemberConverter}}" 
