@@ -167,6 +167,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
                 ICollection<Item> authorityItems = await Task.Run(() => this._authorityPresenter.GetSystemAuthorityItems(this.SelectedInfoSystem.Number));
                 this.AuthorityItems = new ObservableCollection<Item>(authorityItems);
             }
+
+            this.AuthorityItems.Group();
         }
         #endregion
 

@@ -51,6 +51,13 @@
                               SelectedValue="{Binding SelectedInfoSystem}"
                               mah:TextBoxHelper.Watermark="全部" 
                               Style="{StaticResource ComboBox.Styles.Default}" />
+                    <TextBlock Text="应用程序类型：" Margin="10,0,0,0" />
+                    <ComboBox ItemsSource="{Binding ApplicationTypes}" 
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              SelectedValue="{Binding SelectedApplicationType}"
+                              mah:TextBoxHelper.Watermark="全部" 
+                              Style="{StaticResource ComboBox.Styles.Default}" />
                     <Button cal:Message.Attach="LoadAuthorities()" Style="{StaticResource Button.Styles.Fluent.Focus}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />
@@ -75,6 +82,8 @@
                     <DataGridTextColumn Header="名称" Width="150" Binding="{Binding Model.Name}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="所属系统" Width="210" Binding="{Binding Model.InfoSystemInfo.Name}" 
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
+                    <DataGridTextColumn Header="应用程序类型" Width="150" Binding="{Binding Model.ApplicationType, Converter={StaticResource Converters.EnumMemberConverter}}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="路径" Width="400" Binding="{Binding Model.AuthorityPath}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />

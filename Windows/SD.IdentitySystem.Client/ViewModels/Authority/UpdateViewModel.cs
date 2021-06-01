@@ -1,6 +1,6 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
@@ -41,6 +41,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public string InfoSystemName { get; set; }
         #endregion
 
+        #region 应用程序类型 —— ApplicationType ApplicationType
+        /// <summary>
+        /// 应用程序类型
+        /// </summary>
+        public ApplicationType ApplicationType { get; set; }
+        #endregion
+
         #region 权限Id —— Guid AuthorityId
         /// <summary>
         /// 权限Id
@@ -54,6 +61,22 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         [DependencyProperty]
         public string AuthorityName { get; set; }
+        #endregion
+
+        #region 权限路径 —— string AuthorityPath
+        /// <summary>
+        /// 权限路径
+        /// </summary>
+        [DependencyProperty]
+        public string AuthorityPath { get; set; }
+        #endregion
+
+        #region 英文名称 —— string EnglishName
+        /// <summary>
+        /// 英文名称
+        /// </summary>
+        [DependencyProperty]
+        public string EnglishName { get; set; }
         #endregion
 
         #region 程序集名称 —— string AssemblyName
@@ -88,17 +111,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public string MethodName { get; set; }
         #endregion
 
-        #region 英文名 —— string EnglishName
+        #region 描述 —— string Description
         /// <summary>
-        /// 英文名
-        /// </summary>
-        [DependencyProperty]
-        public string EnglishName { get; set; }
-        #endregion
-
-        #region 权限描述 —— string Description
-        /// <summary>
-        /// 权限描述
+        /// 描述
         /// </summary>
         [DependencyProperty]
         public string Description { get; set; }
@@ -121,11 +136,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             this.InfoSystemName = authority.InfoSystemInfo.Name;
             this.AuthorityId = authority.Id;
             this.AuthorityName = authority.Name;
+            this.AuthorityPath = authority.AuthorityPath;
+            this.EnglishName = authority.EnglishName;
             this.AssemblyName = authority.AssemblyName;
             this.Namespace = authority.Namespace;
             this.ClassName = authority.ClassName;
             this.MethodName = authority.MethodName;
-            this.EnglishName = authority.EnglishName;
             this.Description = authority.Description;
         }
         #endregion
@@ -146,42 +162,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 MessageBox.Show("权限名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
-            if (string.IsNullOrWhiteSpace(this.AssemblyName))
-            {
-                MessageBox.Show("程序集名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.Namespace))
-            {
-                MessageBox.Show("命名空间不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.ClassName))
-            {
-                MessageBox.Show("类名不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.MethodName))
-            {
-                MessageBox.Show("方法名不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
 
             #endregion
 
             this.Busy();
 
-            AuthorityParam thisParam = new AuthorityParam
-            {
-                AuthorityName = this.AuthorityName,
-                AssemblyName = this.AssemblyName,
-                Namespace = this.Namespace,
-                ClassName = this.ClassName,
-                MethodName = this.MethodName,
-                EnglishName = this.EnglishName,
-                Description = this.Description
-            };
-            await Task.Run(() => this._authorizationContract.UpdateAuthority(this.AuthorityId, thisParam));
+            await Task.Run(() => this._authorizationContract.UpdateAuthority(this.AuthorityId, this.AuthorityName, this.AuthorityPath, this.EnglishName, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName, this.Description));
 
             base.TryClose(true);
             this.Idle();

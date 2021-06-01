@@ -9,7 +9,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="修改权限" 
-        Width="550" Height="650" ResizeMode="NoResize" 
+        Width="550" Height="730" ResizeMode="NoResize" 
         FontSize="14"
         WindowStyle="ThreeDBorderWindow"
         WindowStartupLocation="CenterOwner"
@@ -20,7 +20,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <!--表单区-->
-                <RowDefinition Height="550" />
+                <RowDefinition Height="630" />
                 <!--占位区-->
                 <RowDefinition Height="*" />
                 <!--控制区-->
@@ -31,8 +31,19 @@
                 <kino:FormItem Label="信息系统：">
                     <TextBox Text="{Binding InfoSystemName}" Style="{StaticResource TextBoxRevealStyle}" IsEnabled="False" />
                 </kino:FormItem>
+                <kino:FormItem Label="应用程序类型：">
+                    <TextBox Text="{Binding ApplicationType,Converter={StaticResource Converters.EnumMemberConverter}}"
+                             Style="{StaticResource TextBoxRevealStyle}"
+                             IsEnabled="False" />
+                </kino:FormItem>
                 <kino:FormItem Label="权限名称：">
                     <TextBox Text="{Binding AuthorityName}" Style="{StaticResource TextBoxRevealStyle}" />
+                </kino:FormItem>
+                <kino:FormItem Label="权限路径：">
+                    <TextBox Text="{Binding AuthorityPath}" Style="{StaticResource TextBoxRevealStyle}" />
+                </kino:FormItem>
+                <kino:FormItem Label="英文名称：">
+                    <TextBox Text="{Binding EnglishName}" Style="{StaticResource TextBoxRevealStyle}" />
                 </kino:FormItem>
                 <kino:FormItem Label="程序集名称：">
                     <TextBox Text="{Binding AssemblyName}" Style="{StaticResource TextBoxRevealStyle}" />
@@ -45,9 +56,6 @@
                 </kino:FormItem>
                 <kino:FormItem Label="方法名：">
                     <TextBox Text="{Binding MethodName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="英文名称：">
-                    <TextBox Text="{Binding EnglishName}" Style="{StaticResource TextBoxRevealStyle}" />
                 </kino:FormItem>
                 <kino:FormItem Label="描述：">
                     <TextBox Text="{Binding Description}"

@@ -2,6 +2,7 @@
 using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
@@ -99,6 +100,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public InfoSystemInfo SelectedInfoSystem { get; set; }
         #endregion
 
+        #region 已选应用程序类型 —— ApplicationType? SelectedApplicationType
+        /// <summary>
+        /// 已选应用程序类型
+        /// </summary>
+        [DependencyProperty]
+        public ApplicationType? SelectedApplicationType { get; set; }
+        #endregion
+
         #region 权限列表 —— ObservableCollection<Wrap<AuthorityInfo>> Authorities
         /// <summary>
         /// 权限列表
@@ -115,6 +124,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public ObservableCollection<InfoSystemInfo> InfoSystems { get; set; }
         #endregion
 
+        #region 应用程序类型字典 —— IDictionary<string, string> ApplicationTypes
+        /// <summary>
+        /// 应用程序类型字典
+        /// </summary>
+        [DependencyProperty]
+        public IDictionary<string, string> ApplicationTypes { get; set; }
+        #endregion
+
         #endregion
 
         #region # 方法
@@ -129,6 +146,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         {
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
+            this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
 
             this.LoadAuthorities();
         }
@@ -262,7 +280,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         private async Task ReloadAuthorities()
         {
-            PageModel<AuthorityInfo> pageModel = await Task.Run(() => this._authorizationContract.GetAuthoritiesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
+            PageModel<AuthorityInfo> pageModel = await Task.Run(() => this._authorizationContract.GetAuthoritiesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.SelectedApplicationType, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 

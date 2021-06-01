@@ -58,6 +58,11 @@
             <GroupBox Header="权限列表" Grid.Row="0" Grid.Column="1">
                 <!--权限列表-->
                 <ListBox ItemsSource="{Binding AuthorityItems}">
+                    <!--分组样式-->
+                    <ListBox.GroupStyle>
+                        <GroupStyle ContainerStyle="{StaticResource GroupItem.Styles.Default}" />
+                    </ListBox.GroupStyle>
+                    <!--数据模板-->
                     <ListBox.ItemTemplate>
                         <DataTemplate>
                             <WrapPanel>

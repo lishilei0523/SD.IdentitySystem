@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.Common;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.Infrastructure.WPF.Models;
 
 namespace SD.IdentitySystem.Presentation.Maps
@@ -14,7 +15,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// </summary>
         public static Item ToItem(this AuthorityInfo authority)
         {
-            return new Item(authority.Id, authority.Name, false, false);
+            return new Item(authority.Id, authority.Name, false, false, authority.ApplicationType.GetEnumMember());
         }
         #endregion
     }

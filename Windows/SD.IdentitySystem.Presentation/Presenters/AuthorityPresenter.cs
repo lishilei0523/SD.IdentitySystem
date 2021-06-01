@@ -40,8 +40,8 @@ namespace SD.IdentitySystem.Presentation.Presenters
         public ICollection<Item> GetRoleAuthorityItems(Guid roleId)
         {
             RoleInfo role = this._authorizationContract.GetRole(roleId);
-            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, role.SystemNo, null, null).ToArray();
-            AuthorityInfo[] roleSystemAuthorities = this._authorizationContract.GetAuthorities(null, null, null, role.Id).ToArray();
+            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, role.SystemNo, null, null, null).ToArray();
+            AuthorityInfo[] roleSystemAuthorities = this._authorizationContract.GetAuthorities(null, null, null, null, role.Id).ToArray();
 
             ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
             foreach (Item authorityItem in authorityItems)
@@ -65,8 +65,8 @@ namespace SD.IdentitySystem.Presentation.Presenters
         public ICollection<Item> GetMenuAuthorityItems(Guid menuId)
         {
             MenuInfo menu = this._authorizationContract.GetMenu(menuId);
-            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, menu.SystemNo, null, null).ToArray();
-            AuthorityInfo[] menuSystemAuthorities = this._authorizationContract.GetAuthorities(null, null, menu.Id, null).ToArray();
+            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, menu.SystemNo, null, null, null).ToArray();
+            AuthorityInfo[] menuSystemAuthorities = this._authorizationContract.GetAuthorities(null, null, null, menu.Id, null).ToArray();
 
             ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
             foreach (Item authorityItem in authorityItems)
@@ -89,7 +89,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
         /// <returns>权限数据项列表</returns>
         public ICollection<Item> GetSystemAuthorityItems(string systemNo)
         {
-            IEnumerable<AuthorityInfo> systemAuthorities = this._authorizationContract.GetAuthorities(null, systemNo, null, null);
+            IEnumerable<AuthorityInfo> systemAuthorities = this._authorizationContract.GetAuthorities(null, systemNo, null, null, null);
             IEnumerable<Item> authorityItems = systemAuthorities.Select(x => x.ToItem());
 
             return authorityItems.ToList();

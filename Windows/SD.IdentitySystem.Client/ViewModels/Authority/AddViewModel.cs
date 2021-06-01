@@ -1,5 +1,7 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.Common;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
@@ -42,6 +44,22 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public string AuthorityName { get; set; }
         #endregion
 
+        #region 权限路径 —— string AuthorityPath
+        /// <summary>
+        /// 权限路径
+        /// </summary>
+        [DependencyProperty]
+        public string AuthorityPath { get; set; }
+        #endregion
+
+        #region 英文名称 —— string EnglishName
+        /// <summary>
+        /// 英文名称
+        /// </summary>
+        [DependencyProperty]
+        public string EnglishName { get; set; }
+        #endregion
+
         #region 程序集名称 —— string AssemblyName
         /// <summary>
         /// 程序集名称
@@ -74,14 +92,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public string MethodName { get; set; }
         #endregion
 
-        #region 英文名 —— string EnglishName
-        /// <summary>
-        /// 英文名
-        /// </summary>
-        [DependencyProperty]
-        public string EnglishName { get; set; }
-        #endregion
-
         #region 描述 —— string Description
         /// <summary>
         /// 描述
@@ -98,12 +108,28 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public InfoSystemInfo SelectedInfoSystem { get; set; }
         #endregion
 
+        #region 已选应用程序类型 —— ApplicationType? SelectedApplicationType
+        /// <summary>
+        /// 已选应用程序类型
+        /// </summary>
+        [DependencyProperty]
+        public ApplicationType? SelectedApplicationType { get; set; }
+        #endregion
+
         #region 信息系统列表 —— ObservableCollection<InfoSystemInfo> InfoSystems
         /// <summary>
         /// 信息系统列表
         /// </summary>
         [DependencyProperty]
         public ObservableCollection<InfoSystemInfo> InfoSystems { get; set; }
+        #endregion
+
+        #region 应用程序类型字典 —— IDictionary<string, string> ApplicationTypes
+        /// <summary>
+        /// 应用程序类型字典
+        /// </summary>
+        [DependencyProperty]
+        public IDictionary<string, string> ApplicationTypes { get; set; }
         #endregion
 
         #endregion
@@ -120,6 +146,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         {
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
+            this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
         }
         #endregion
 
@@ -139,29 +166,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 MessageBox.Show("信息系统不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
+            if (!this.SelectedApplicationType.HasValue)
+            {
+                MessageBox.Show("应用程序类型不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
+                return;
+            }
             if (string.IsNullOrWhiteSpace(this.AuthorityName))
             {
                 MessageBox.Show("权限名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.AssemblyName))
-            {
-                MessageBox.Show("程序集名称不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.Namespace))
-            {
-                MessageBox.Show("命名空间不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.ClassName))
-            {
-                MessageBox.Show("类名不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
-                return;
-            }
-            if (string.IsNullOrWhiteSpace(this.MethodName))
-            {
-                MessageBox.Show("方法名不可为空！", "错误", MessageBoxButton.OK, MessageBoxImage.Error);
                 return;
             }
 
@@ -169,7 +181,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
             this.Busy();
 
-            await Task.Run(() => this._authorizationContract.CreateAuthority(this.SelectedInfoSystem.Number, this.AuthorityName, this.EnglishName, this.Description, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName));
+            await Task.Run(() => this._authorizationContract.CreateAuthority(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value, this.AuthorityName, this.AuthorityPath, this.EnglishName, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName, this.Description));
 
             base.TryClose(true);
             this.Idle();

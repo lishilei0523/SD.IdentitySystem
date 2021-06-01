@@ -102,6 +102,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             this.RoleName = role.Name;
             this.Description = role.Description;
             this.AuthorityItems = new ObservableCollection<Item>(authorityItems);
+            this.AuthorityItems.Group();
         }
         #endregion
 

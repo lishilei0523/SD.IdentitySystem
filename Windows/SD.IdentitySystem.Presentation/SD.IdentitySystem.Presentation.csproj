@@ -38,11 +38,14 @@
     <Reference Include="AutoMapper, Version=10.0.0.0, Culture=neutral, PublicKeyToken=be96cd2c38ef1005, processorArchitecture=MSIL">
       <HintPath>..\..\packages\AutoMapper.10.0.0\lib\net461\AutoMapper.dll</HintPath>
     </Reference>
+    <Reference Include="SD.Common, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
+    </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.3.0.2\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.3.0.4\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Infrastructure.3.0.1\lib\net46\SD.Infrastructure.dll</HintPath>
+      <HintPath>..\..\packages\SD.Infrastructure.3.0.3\lib\net46\SD.Infrastructure.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure.WPF, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.WPF.1.0.0\lib\net461\SD.Infrastructure.WPF.dll</HintPath>
