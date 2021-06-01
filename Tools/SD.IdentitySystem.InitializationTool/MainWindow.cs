@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
+﻿using SD.Common;
+using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Attributes;
@@ -53,14 +54,20 @@ namespace SD.IdentitySystem.InitializationTool
         /// </summary>
         private void MainWindow_Load(object sender, EventArgs e)
         {
-            //加载信息系统列表
             IEnumerable<InfoSystemInfo> infoSystems = this._authorizationContract.GetInfoSystems().OrderBy(x => x.Number);
+            IDictionary<string, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumMembers();
+
             foreach (InfoSystemInfo infoSystem in infoSystems)
             {
-                this.Cbx_SystemKind.Items.Add(infoSystem);
+                this.Cbx_InfoSystems.Items.Add(infoSystem);
+            }
+            foreach (KeyValuePair<string, string> kv in applicationTypeDescriptions)
+            {
+                this.Cbx_ApplicationTypes.Items.Add(kv);
             }
 
-            this.Cbx_SystemKind.DisplayMember = nameof(InfoSystemInfo.Name);
+            this.Cbx_InfoSystems.DisplayMember = nameof(InfoSystemInfo.Name);
+            this.Cbx_ApplicationTypes.DisplayMember = "Key";
         }
 
         /// <summary>
@@ -85,18 +92,24 @@ namespace SD.IdentitySystem.InitializationTool
                 MessageBox.Show(@"文件路径不可为空！", @"Warning");
                 return;
             }
-            if (this.Cbx_SystemKind.SelectedItem == null)
+            if (this.Cbx_InfoSystems.SelectedItem == null)
             {
                 MessageBox.Show(@"信息系统不可为空！", @"Warning");
+                return;
+            }
+            if (this.Cbx_ApplicationTypes.SelectedItem == null)
+            {
+                MessageBox.Show(@"应用程序类型不可为空！", @"Warning");
                 return;
             }
 
             #endregion
 
             string assemblyPath = this.Txt_FilePath.Text;
-            string infoSystemNo = ((InfoSystemInfo)this.Cbx_SystemKind.SelectedItem).Number;
+            string infoSystemNo = ((InfoSystemInfo)this.Cbx_InfoSystems.SelectedItem).Number;
+            ApplicationType applicationType = ((KeyValuePair<string, string>)this.Cbx_ApplicationTypes.SelectedItem).Key.GetEnum<ApplicationType>().Value;
 
-            await this.InitAuthorities(assemblyPath, infoSystemNo);
+            await this.InitAuthorities(assemblyPath, infoSystemNo, applicationType);
             MessageBox.Show(@"OK", @"OK");
         }
 
@@ -105,7 +118,8 @@ namespace SD.IdentitySystem.InitializationTool
         /// </summary>
         /// <param name="assemblyPath">程序集路径</param>
         /// <param name="infoSystemNo">信息系统编号</param>
-        private async Task InitAuthorities(string assemblyPath, string infoSystemNo)
+        /// <param name="applicationType">应用程序类型</param>
+        private async Task InitAuthorities(string assemblyPath, string infoSystemNo, ApplicationType applicationType)
         {
             //加载程序集、加载权限
             Assembly assembly = Assembly.LoadFrom(assemblyPath);
@@ -121,23 +135,18 @@ namespace SD.IdentitySystem.InitializationTool
                 RequireAuthorizationAttribute attribute = methodInfo.GetCustomAttribute<RequireAuthorizationAttribute>();
                 AuthorityParam authorityParam = new AuthorityParam
                 {
+                    EnglishName = attribute.EnglishName,
                     AssemblyName = assembly.GetName().Name,
                     Namespace = methodInfo.DeclaringType?.Namespace,
                     ClassName = methodInfo.DeclaringType?.Name,
                     MethodName = methodInfo.Name,
                     AuthorityName = attribute.AuthorityName,
-                    EnglishName = attribute.EnglishName,
                     Description = attribute.Description
                 };
-
-                bool authorityExisted = await Task.Run(() => this._authorizationContract.ExistsAuthority(authorityParam.AssemblyName, authorityParam.Namespace, authorityParam.ClassName, authorityParam.MethodName));
-                if (!authorityExisted)
-                {
-                    authorityParams.Add(authorityParam);
-                }
+                authorityParams.Add(authorityParam);
             }
 
-            await Task.Run(() => this._authorizationContract.CreateAuthorities(infoSystemNo, authorityParams));
+            await Task.Run(() => this._authorizationContract.CreateAuthorities(infoSystemNo, applicationType, authorityParams));
         }
     }
 }
