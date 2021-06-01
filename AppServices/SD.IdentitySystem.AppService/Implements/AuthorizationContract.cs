@@ -163,22 +163,22 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 创建权限
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
+        /// <param name="authorityPath">权限路径</param>
         /// <param name="englishName">英文名称</param>
-        /// <param name="description">描述</param>
         /// <param name="assemblyName">程序集名称</param>
         /// <param name="namespace">命名空间</param>
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
-        public void CreateAuthority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        /// <param name="description">描述</param>
+        public void CreateAuthority(string systemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
         {
             //验证
             Assert.IsTrue(this._repMediator.InfoSystemRep.ExistsNo(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
+            Assert.IsFalse(this._repMediator.AuthorityRep.ExistsPath(systemNo, applicationType, authorityPath), "已存在该权限！");
 
-            Authority authority = new Authority(systemNo, authorityName, englishName, description, assemblyName, @namespace, className, methodName);
-
-            //验证
-            Assert.IsFalse(this._repMediator.AuthorityRep.ExistsPath(authority.AuthorityPath), "已存在该权限！");
+            Authority authority = new Authority(systemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
 
             this._unitOfWork.RegisterAdd(authority);
             this._unitOfWork.UnitedCommit();
@@ -190,8 +190,9 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 批量创建权限
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityParams">权限参数模型集</param>
-        public void CreateAuthorities(string systemNo, IEnumerable<AuthorityParam> authorityParams)
+        public void CreateAuthorities(string systemNo, ApplicationType applicationType, IEnumerable<AuthorityParam> authorityParams)
         {
             //验证
             Assert.IsTrue(this._repMediator.InfoSystemRep.ExistsNo(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
@@ -199,10 +200,10 @@ namespace SD.IdentitySystem.AppService.Implements
             IList<Authority> authorities = new List<Authority>();
             foreach (AuthorityParam param in authorityParams)
             {
-                Authority authority = new Authority(systemNo, param.AuthorityName, param.EnglishName, param.Description, param.AssemblyName, param.Namespace, param.ClassName, param.MethodName);
+                Authority authority = new Authority(systemNo, applicationType, param.AuthorityName, param.AuthorityPath, param.EnglishName, param.AssemblyName, param.Namespace, param.ClassName, param.MethodName, param.Description);
 
                 //验证
-                Assert.IsFalse(this._repMediator.AuthorityRep.ExistsPath(authority.AuthorityPath), "已存在该权限！");
+                Assert.IsFalse(this._repMediator.AuthorityRep.ExistsPath(systemNo, applicationType, authority.AuthorityPath), "已存在该权限！");
 
                 authorities.Add(authority);
             }
@@ -217,12 +218,28 @@ namespace SD.IdentitySystem.AppService.Implements
         /// 修改权限
         /// </summary>
         /// <param name="authorityId">权限Id</param>
-        /// <param name="authorityParam">权限参数模型</param>
-        public void UpdateAuthority(Guid authorityId, AuthorityParam authorityParam)
+        /// <param name="authorityName">权限名称</param>
+        /// <param name="authorityPath">权限路径</param>
+        /// <param name="englishName">英文名称</param>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        /// <param name="description">描述</param>
+        public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
         {
             Authority authority = this._unitOfWork.Resolve<Authority>(authorityId);
 
-            authority.UpdateInfo(authorityParam.AuthorityName, authorityParam.EnglishName, authorityParam.Description, authorityParam.AssemblyName, authorityParam.Namespace, authorityParam.ClassName, authorityParam.MethodName);
+            #region # 验证
+
+            if (authority.AuthorityPath != authorityPath)
+            {
+                Assert.IsFalse(this._repMediator.AuthorityRep.ExistsPath(authority.SystemNo, authority.ApplicationType, authorityPath), "已存在该权限！");
+            }
+
+            #endregion
+
+            authority.UpdateInfo(authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
 
             this._unitOfWork.RegisterSave(authority);
             this._unitOfWork.Commit();
@@ -538,12 +555,13 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuId">菜单Id</param>
         /// <param name="roleId">角色Id</param>
         /// <returns>权限列表</returns>
-        public IEnumerable<AuthorityInfo> GetAuthorities(string keywords, string systemNo, Guid? menuId, Guid? roleId)
+        public IEnumerable<AuthorityInfo> GetAuthorities(string keywords, string systemNo, ApplicationType? applicationType, Guid? menuId, Guid? roleId)
         {
-            ICollection<Authority> authorities = this._repMediator.AuthorityRep.Find(keywords, systemNo, menuId, roleId);
+            ICollection<Authority> authorities = this._repMediator.AuthorityRep.Find(keywords, systemNo, applicationType, menuId, roleId);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -558,12 +576,13 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
-        public PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        public PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
-            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(keywords, systemNo, pageIndex, pageSize, out int rowCount, out int pageCount);
+            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(keywords, systemNo, applicationType, pageIndex, pageSize, out int rowCount, out int pageCount);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -690,18 +709,17 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 是否存在权限 —— bool ExistsAuthority(string assemblyName, string @namespace...
+        #region # 是否存在权限 —— bool ExistsAuthority(string systemNo, ApplicationType...
         /// <summary>
         /// 是否存在权限
         /// </summary>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <param name="authorityPath">权限路径</param>
         /// <returns>是否存在</returns>
-        public bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName)
+        public bool ExistsAuthority(string systemNo, ApplicationType applicationType, string authorityPath)
         {
-            return this._repMediator.AuthorityRep.ExistsPath(assemblyName, @namespace, className, methodName);
+            return this._repMediator.AuthorityRep.ExistsPath(systemNo, applicationType, authorityPath);
         }
         #endregion
 

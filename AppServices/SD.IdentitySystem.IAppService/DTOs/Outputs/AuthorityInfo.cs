@@ -1,5 +1,6 @@
-﻿using System.Runtime.Serialization;
+﻿using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
+using System.Runtime.Serialization;
 
 namespace SD.IdentitySystem.IAppService.DTOs.Outputs
 {
@@ -15,6 +16,30 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         /// </summary>
         [DataMember]
         public string SystemNo { get; set; }
+        #endregion
+
+        #region 应用程序类型 —— ApplicationType ApplicationType
+        /// <summary>
+        /// 应用程序类型
+        /// </summary>
+        [DataMember]
+        public ApplicationType ApplicationType { get; set; }
+        #endregion
+
+        #region 权限路径 —— string AuthorityPath
+        /// <summary>
+        /// 权限路径
+        /// </summary>
+        [DataMember]
+        public string AuthorityPath { get; set; }
+        #endregion
+
+        #region 英文名称 —— string EnglishName
+        /// <summary>
+        /// 英文名称
+        /// </summary>
+        [DataMember]
+        public string EnglishName { get; set; }
         #endregion
 
         #region 程序集名称 —— string AssemblyName
@@ -49,28 +74,12 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         public string MethodName { get; set; }
         #endregion
 
-        #region 英文名 —— string EnglishName
+        #region 描述 —— string Description
         /// <summary>
-        /// 英文名
-        /// </summary>
-        [DataMember]
-        public string EnglishName { get; set; }
-        #endregion
-
-        #region 权限描述 —— string Description
-        /// <summary>
-        /// 权限描述
+        /// 描述
         /// </summary>
         [DataMember]
         public string Description { get; set; }
-        #endregion
-
-        #region 权限路径 —— string AuthorityPath
-        /// <summary>
-        /// 权限路径
-        /// </summary>
-        [DataMember]
-        public string AuthorityPath { get; set; }
         #endregion
 
 

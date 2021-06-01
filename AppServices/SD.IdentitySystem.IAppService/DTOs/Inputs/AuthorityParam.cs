@@ -15,16 +15,16 @@ namespace SD.IdentitySystem.IAppService.DTOs.Inputs
         public string AuthorityName;
 
         /// <summary>
+        /// 权限路径
+        /// </summary>
+        [DataMember]
+        public string AuthorityPath;
+
+        /// <summary>
         /// 英文名称
         /// </summary>
         [DataMember]
         public string EnglishName;
-
-        /// <summary>
-        /// 描述
-        /// </summary>
-        [DataMember]
-        public string Description;
 
         /// <summary>
         /// 程序集名称
@@ -49,5 +49,11 @@ namespace SD.IdentitySystem.IAppService.DTOs.Inputs
         /// </summary>
         [DataMember]
         public string MethodName;
+
+        /// <summary>
+        /// 描述
+        /// </summary>
+        [DataMember]
+        public string Description;
     }
 }

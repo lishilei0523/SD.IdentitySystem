@@ -100,18 +100,20 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 创建权限
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
+        /// <param name="authorityPath">权限路径</param>
         /// <param name="englishName">英文名称</param>
-        /// <param name="description">描述</param>
         /// <param name="assemblyName">程序集名称</param>
         /// <param name="namespace">命名空间</param>
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
+        /// <param name="description">描述</param>
         [HttpPost]
         [WrapPostParameters]
-        public void CreateAuthority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        public void CreateAuthority(string systemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
         {
-            this._authorizationContract.CreateAuthority(systemNo, authorityName, englishName, description, assemblyName, @namespace, className, methodName);
+            this._authorizationContract.CreateAuthority(systemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
         }
         #endregion
 
@@ -120,12 +122,13 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 批量创建权限
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityParams">权限参数模型集</param>
         [HttpPost]
         [WrapPostParameters]
-        public void CreateAuthorities(string systemNo, IEnumerable<AuthorityParam> authorityParams)
+        public void CreateAuthorities(string systemNo, ApplicationType applicationType, IEnumerable<AuthorityParam> authorityParams)
         {
-            this._authorizationContract.CreateAuthorities(systemNo, authorityParams);
+            this._authorizationContract.CreateAuthorities(systemNo, applicationType, authorityParams);
         }
         #endregion
 
@@ -134,12 +137,19 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 修改权限
         /// </summary>
         /// <param name="authorityId">权限Id</param>
-        /// <param name="authorityParam">权限参数模型</param>
+        /// <param name="authorityName">权限名称</param>
+        /// <param name="authorityPath">权限路径</param>
+        /// <param name="englishName">英文名称</param>
+        /// <param name="assemblyName">程序集名称</param>
+        /// <param name="namespace">命名空间</param>
+        /// <param name="className">类名</param>
+        /// <param name="methodName">方法名</param>
+        /// <param name="description">描述</param>
         [HttpPost]
         [WrapPostParameters]
-        public void UpdateAuthority(Guid authorityId, AuthorityParam authorityParam)
+        public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
         {
-            this._authorizationContract.UpdateAuthority(authorityId, authorityParam);
+            this._authorizationContract.UpdateAuthority(authorityId, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
         }
         #endregion
 
@@ -356,13 +366,14 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuId">菜单Id</param>
         /// <param name="roleId">角色Id</param>
         /// <returns>权限列表</returns>
         [HttpGet]
-        public IEnumerable<AuthorityInfo> GetAuthorities(string keywords, string systemNo, Guid? menuId, Guid? roleId)
+        public IEnumerable<AuthorityInfo> GetAuthorities(string keywords, string systemNo, ApplicationType? applicationType, Guid? menuId, Guid? roleId)
         {
-            return this._authorizationContract.GetAuthorities(keywords, systemNo, menuId, roleId);
+            return this._authorizationContract.GetAuthorities(keywords, systemNo, applicationType, menuId, roleId);
         }
         #endregion
 
@@ -372,13 +383,14 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
         [HttpGet]
-        public PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        public PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
-            return this._authorizationContract.GetAuthoritiesByPage(keywords, systemNo, pageIndex, pageSize);
+            return this._authorizationContract.GetAuthoritiesByPage(keywords, systemNo, applicationType, pageIndex, pageSize);
         }
         #endregion
 
@@ -470,19 +482,18 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 是否存在权限 —— bool ExistsAuthority(string assemblyName, string @namespace...
+        #region # 是否存在权限 —— bool ExistsAuthority(string systemNo, ApplicationType...
         /// <summary>
         /// 是否存在权限
         /// </summary>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <param name="authorityPath">权限路径</param>
         /// <returns>是否存在</returns>
         [HttpGet]
-        public bool ExistsAuthority(string assemblyName, string @namespace, string className, string methodName)
+        public bool ExistsAuthority(string systemNo, ApplicationType applicationType, string authorityPath)
         {
-            return this._authorizationContract.ExistsAuthority(assemblyName, @namespace, className, methodName);
+            return this._authorizationContract.ExistsAuthority(systemNo, applicationType, authorityPath);
         }
         #endregion
 

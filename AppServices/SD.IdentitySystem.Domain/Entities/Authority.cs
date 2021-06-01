@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
 using SD.Infrastructure.EventBase.Mediator;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -32,45 +32,28 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 创建权限构造器
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
+        /// <param name="authorityPath">权限路径</param>
         /// <param name="englishName">英文名称</param>
-        /// <param name="description">描述</param>
         /// <param name="assemblyName">程序集名称</param>
         /// <param name="namespace">命名空间</param>
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
-        public Authority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        /// <param name="description">描述</param>
+        public Authority(string systemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
             : this()
         {
-            #region # 验证
-
-            if (string.IsNullOrWhiteSpace(assemblyName))
-            {
-                throw new ArgumentNullException(nameof(assemblyName), "程序集名称不可为空！");
-            }
-            if (string.IsNullOrWhiteSpace(@namespace))
-            {
-                throw new ArgumentNullException(nameof(@namespace), "命名空间不可为空！");
-            }
-            if (string.IsNullOrWhiteSpace(className))
-            {
-                throw new ArgumentNullException(nameof(className), "类名不可为空！");
-            }
-            if (string.IsNullOrWhiteSpace(methodName))
-            {
-                throw new ArgumentNullException(nameof(methodName), "方法名不可为空！");
-            }
-
-            #endregion
-
             base.Name = authorityName;
             this.SystemNo = systemNo;
+            this.ApplicationType = applicationType;
+            this.AuthorityPath = authorityPath;
             this.EnglishName = englishName;
-            this.Description = description;
             this.AssemblyName = assemblyName;
             this.Namespace = @namespace;
             this.ClassName = className;
             this.MethodName = methodName;
+            this.Description = description;
 
             //初始化权限路径与关键字
             this.InitPath();
@@ -90,6 +73,27 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 信息系统编号
         /// </summary>
         public string SystemNo { get; private set; }
+        #endregion
+
+        #region 应用程序类型 —— ApplicationType ApplicationType
+        /// <summary>
+        /// 应用程序类型
+        /// </summary>
+        public ApplicationType ApplicationType { get; private set; }
+        #endregion
+
+        #region 权限路径 —— string AuthorityPath
+        /// <summary>
+        /// 权限路径
+        /// </summary>
+        public string AuthorityPath { get; private set; }
+        #endregion
+
+        #region 英文名称 —— string EnglishName
+        /// <summary>
+        /// 英文名称
+        /// </summary>
+        public string EnglishName { get; private set; }
         #endregion
 
         #region 程序集名称 —— string AssemblyName
@@ -120,25 +124,11 @@ namespace SD.IdentitySystem.Domain.Entities
         public string MethodName { get; private set; }
         #endregion
 
-        #region 英文名 —— string EnglishName
+        #region 描述 —— string Description
         /// <summary>
-        /// 英文名
-        /// </summary>
-        public string EnglishName { get; private set; }
-        #endregion
-
-        #region 权限描述 —— string Description
-        /// <summary>
-        /// 权限描述
+        /// 描述
         /// </summary>
         public string Description { get; private set; }
-        #endregion
-
-        #region 权限路径 —— string AuthorityPath
-        /// <summary>
-        /// 权限路径
-        /// </summary>
-        public string AuthorityPath { get; private set; }
         #endregion
 
         #region 导航属性 - 菜单（叶子节点）集 —— ICollection<Menu> MenuLeaves
@@ -164,42 +154,23 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 修改权限
         /// </summary>
         /// <param name="authorityName">权限名称</param>
+        /// <param name="authorityPath">权限路径</param>
         /// <param name="englishName">英文名称</param>
-        /// <param name="description">描述</param>
         /// <param name="assemblyName">程序集名称</param>
         /// <param name="namespace">命名空间</param>
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
-        public void UpdateInfo(string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        /// <param name="description">描述</param>
+        public void UpdateInfo(string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
         {
-            #region # 验证
-
-            if (string.IsNullOrWhiteSpace(assemblyName))
-            {
-                throw new ArgumentNullException(nameof(assemblyName), "程序集名称不可为空！");
-            }
-            if (string.IsNullOrWhiteSpace(@namespace))
-            {
-                throw new ArgumentNullException(nameof(@namespace), "命名空间不可为空！");
-            }
-            if (string.IsNullOrWhiteSpace(className))
-            {
-                throw new ArgumentNullException(nameof(className), "类名不可为空！");
-            }
-            if (string.IsNullOrWhiteSpace(methodName))
-            {
-                throw new ArgumentNullException(nameof(methodName), "方法名不可为空！");
-            }
-
-            #endregion
-
             base.Name = authorityName;
+            this.AuthorityPath = authorityPath;
             this.EnglishName = englishName;
-            this.Description = description;
             this.AssemblyName = assemblyName;
             this.Namespace = @namespace;
             this.ClassName = className;
             this.MethodName = methodName;
+            this.Description = description;
 
             //初始化权限路径与关键字
             this.InitPath();
@@ -227,16 +198,19 @@ namespace SD.IdentitySystem.Domain.Entities
         /// </summary>
         private void InitPath()
         {
-            StringBuilder pathBuilder = new StringBuilder("/");
-            pathBuilder.Append(this.AssemblyName);
-            pathBuilder.Append("/");
-            pathBuilder.Append(this.Namespace);
-            pathBuilder.Append("/");
-            pathBuilder.Append(this.ClassName);
-            pathBuilder.Append("/");
-            pathBuilder.Append(this.MethodName);
+            if (string.IsNullOrWhiteSpace(this.AuthorityPath))
+            {
+                StringBuilder pathBuilder = new StringBuilder("/");
+                pathBuilder.Append(this.AssemblyName);
+                pathBuilder.Append("/");
+                pathBuilder.Append(this.Namespace);
+                pathBuilder.Append("/");
+                pathBuilder.Append(this.ClassName);
+                pathBuilder.Append("/");
+                pathBuilder.Append(this.MethodName);
 
-            this.AuthorityPath = pathBuilder.ToString();
+                this.AuthorityPath = pathBuilder.ToString();
+            }
         }
         #endregion
 
