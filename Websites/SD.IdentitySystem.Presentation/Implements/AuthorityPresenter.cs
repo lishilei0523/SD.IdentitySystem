@@ -3,6 +3,7 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System;
@@ -56,7 +57,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>权限列表</returns>
         public IEnumerable<Authority> GetAuthoritiesBySystem(string systemNo)
         {
-            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, systemNo, null, null);
+            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, systemNo, null, null, null);
             IEnumerable<Authority> authorities = authorityInfos.Select(x => x.ToModel());
 
             return authorities;
@@ -71,7 +72,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>权限列表</returns>
         public IEnumerable<Authority> GetAuthoritiesByMenu(Guid menuId)
         {
-            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, null, menuId, null);
+            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, null, null, menuId, null);
             IEnumerable<Authority> authorities = authorityInfos.Select(x => x.ToModel());
 
             return authorities;
@@ -86,7 +87,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>权限列表</returns>
         public IEnumerable<Authority> GetAuthoritiesByRole(Guid roleId)
         {
-            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, null, null, roleId);
+            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, null, null, null, roleId);
             IEnumerable<Authority> authorities = authorityInfos.Select(x => x.ToModel());
 
             return authorities;
@@ -173,12 +174,13 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
-        public PageModel<Authority> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        public PageModel<Authority> GetAuthoritiesByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
-            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(keywords, systemNo, pageIndex, pageSize);
+            PageModel<AuthorityInfo> pageModel = this._authorizationContract.GetAuthoritiesByPage(keywords, systemNo, applicationType, pageIndex, pageSize);
             IEnumerable<Authority> authorities = pageModel.Datas.Select(x => x.ToModel());
 
             return new PageModel<Authority>(authorities, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);

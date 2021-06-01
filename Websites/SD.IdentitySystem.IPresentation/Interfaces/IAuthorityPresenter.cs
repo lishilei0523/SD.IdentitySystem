@@ -1,4 +1,5 @@
 ﻿using SD.IdentitySystem.IPresentation.Models.Outputs;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.PresentationBase;
 using SD.Toolkits.EasyUI;
@@ -81,10 +82,11 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
-        PageModel<Authority> GetAuthoritiesByPage(string keywords, string systemNo, int pageIndex, int pageSize);
+        PageModel<Authority> GetAuthoritiesByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize);
         #endregion
     }
 }

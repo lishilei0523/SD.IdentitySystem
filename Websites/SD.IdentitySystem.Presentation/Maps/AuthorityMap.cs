@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.Common;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Toolkits.EasyUI;
 using SD.Toolkits.Mapper;
@@ -19,8 +20,8 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static Authority ToModel(this AuthorityInfo authorityInfo)
         {
             Authority authority = authorityInfo.Map<AuthorityInfo, Authority>();
-
             authority.SystemName = authorityInfo.InfoSystemInfo.Name;
+            authority.ApplicationType = authorityInfo.ApplicationType.GetEnumMember();
 
             return authority;
         }

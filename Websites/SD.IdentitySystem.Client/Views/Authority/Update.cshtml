@@ -21,9 +21,27 @@
                     </td>
                 </tr>
                 <tr>
+                    <td class="tdTitle">应用程序类型：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" data-options="disabled:true,width:210" value="@Model.ApplicationType" />
+                    </td>
+                </tr>
+                <tr>
                     <td class="tdTitle">权限名称：</td>
                     <td class="tdContent">
                         <input class="easyui-textbox" type="text" name="authorityName" data-options="required:true,width:210" value="@Model.Name" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">权限路径：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="authorityPath" data-options="required:true,width:210" value="@Model.AuthorityPath" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">英文名称：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="englishName" data-options="width:210" value="@Model.EnglishName" />
                     </td>
                 </tr>
                 <tr>
@@ -51,13 +69,7 @@
                     </td>
                 </tr>
                 <tr>
-                    <td class="tdTitle">英文名称：</td>
-                    <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="englishName" data-options="width:210" value="@Model.EnglishName" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdTitle">权限描述：</td>
+                    <td class="tdTitle">描述：</td>
                     <td class="tdContent">
                         <input class="easyui-textbox" type="text" name="description" data-options="multiline:true,width:210" style="height: 70px" value="@Model.Description" />
                     </td>

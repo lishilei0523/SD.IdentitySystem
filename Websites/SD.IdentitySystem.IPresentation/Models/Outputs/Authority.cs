@@ -7,6 +7,20 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
     /// </summary>
     public class Authority : ModelBase
     {
+        #region 权限路径 —— string AuthorityPath
+        /// <summary>
+        /// 权限路径
+        /// </summary>
+        public string AuthorityPath { get; set; }
+        #endregion
+
+        #region 英文名称 —— string EnglishName
+        /// <summary>
+        /// 英文名称
+        /// </summary>
+        public string EnglishName { get; set; }
+        #endregion
+
         #region 程序集名称 —— string AssemblyName
         /// <summary>
         /// 程序集名称
@@ -35,25 +49,11 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
         public string MethodName { get; set; }
         #endregion
 
-        #region 英文名 —— string EnglishName
+        #region 描述 —— string Description
         /// <summary>
-        /// 英文名
-        /// </summary>
-        public string EnglishName { get; set; }
-        #endregion
-
-        #region 权限描述 —— string Description
-        /// <summary>
-        /// 权限描述
+        /// 描述
         /// </summary>
         public string Description { get; set; }
-        #endregion
-
-        #region 权限路径 —— string AuthorityPath
-        /// <summary>
-        /// 权限路径
-        /// </summary>
-        public string AuthorityPath { get; set; }
         #endregion
 
 
@@ -71,6 +71,13 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
         /// 信息系统名称
         /// </summary>
         public string SystemName { get; set; }
+        #endregion
+
+        #region 应用程序类型 —— string ApplicationType
+        /// <summary>
+        /// 应用程序类型
+        /// </summary>
+        public string ApplicationType { get; set; }
         #endregion
     }
 }

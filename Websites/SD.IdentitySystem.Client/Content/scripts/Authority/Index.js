@@ -19,8 +19,9 @@ function getAuthorities(queryParams) {
             { field: "Id", title: "Id", halign: "center", hidden: true },
             { field: "Name", title: "权限名称", halign: "center", width: 120 },
             { field: "SystemName", title: "所属系统", halign: "center", width: 120 },
+            { field: "ApplicationType", title: "应用程序类型", halign: "center", width: 150 },
             { field: "AuthorityPath", title: "权限路径", halign: "center" },
-            { field: "Description", title: "权限描述", halign: "center", width: 200 },
+            { field: "Description", title: "描述", halign: "center", width: 200 },
             {
                 field: "AddedTime",
                 title: "创建时间",

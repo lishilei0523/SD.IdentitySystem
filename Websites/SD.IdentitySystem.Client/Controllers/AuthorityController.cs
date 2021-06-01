@@ -1,8 +1,9 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
+﻿using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Infrastructure.Attributes;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System;
@@ -61,7 +62,10 @@ namespace SD.IdentitySystem.Client.Controllers
         public ViewResult Index()
         {
             IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
+            IDictionary<int, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumDictionary();
+
             base.ViewBag.InfoSystems = systems;
+            base.ViewBag.ApplicationTypeDescriptions = applicationTypeDescriptions;
 
             return base.View();
         }
@@ -77,7 +81,10 @@ namespace SD.IdentitySystem.Client.Controllers
         public ViewResult Add()
         {
             IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
+            IDictionary<int, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumDictionary();
+
             base.ViewBag.InfoSystems = systems;
+            base.ViewBag.ApplicationTypeDescriptions = applicationTypeDescriptions;
 
             return base.View();
         }
@@ -102,35 +109,25 @@ namespace SD.IdentitySystem.Client.Controllers
 
         //命令部分
 
-        #region # 创建权限 —— void CreateAuthority(string systemNo, string authorityName...
+        #region # 创建权限 —— void CreateAuthority(string systemNo, ApplicationType applicationType...
         /// <summary>
         /// 创建权限
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
+        /// <param name="authorityPath">权限路径</param>
         /// <param name="englishName">英文名称</param>
-        /// <param name="description">描述</param>
         /// <param name="assemblyName">程序集名称</param>
         /// <param name="namespace">命名空间</param>
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
+        /// <param name="description">描述</param>
         [HttpPost]
         [RequireAuthorization("创建权限")]
-        public void CreateAuthority(string systemNo, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        public void CreateAuthority(string systemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
         {
-            //构造参数模型
-            AuthorityParam param = new AuthorityParam
-            {
-                AuthorityName = authorityName,
-                EnglishName = englishName,
-                Description = description,
-                AssemblyName = assemblyName,
-                Namespace = @namespace,
-                ClassName = className,
-                MethodName = methodName
-            };
-
-            this._authorizationContract.CreateAuthorities(systemNo, new[] { param });
+            this._authorizationContract.CreateAuthority(systemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
         }
         #endregion
 
@@ -140,29 +137,18 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="authorityId">权限Id</param>
         /// <param name="authorityName">权限名称</param>
+        /// <param name="authorityPath">权限路径</param>
         /// <param name="englishName">英文名称</param>
-        /// <param name="description">描述</param>
         /// <param name="assemblyName">程序集名称</param>
         /// <param name="namespace">命名空间</param>
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
+        /// <param name="description">描述</param>
         [HttpPost]
         [RequireAuthorization("修改权限")]
-        public void UpdateAuthority(Guid authorityId, string authorityName, string englishName, string description, string assemblyName, string @namespace, string className, string methodName)
+        public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
         {
-            //构造参数模型
-            AuthorityParam param = new AuthorityParam
-            {
-                AuthorityName = authorityName,
-                EnglishName = englishName,
-                Description = description,
-                AssemblyName = assemblyName,
-                Namespace = @namespace,
-                ClassName = className,
-                MethodName = methodName
-            };
-
-            this._authorizationContract.UpdateAuthority(authorityId, param);
+            this._authorizationContract.UpdateAuthority(authorityId, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
         }
         #endregion
 
@@ -257,13 +243,14 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>权限列表</returns>
         [RequireAuthorization("分页获取权限列表")]
-        public JsonResult GetAuthoritiesByPage(string keywords, string systemNo, int page, int rows)
+        public JsonResult GetAuthoritiesByPage(string keywords, string systemNo, ApplicationType? applicationType, int page, int rows)
         {
-            PageModel<Authority> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, systemNo, page, rows);
+            PageModel<Authority> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, systemNo, applicationType, page, rows);
             Grid<Authority> grid = new Grid<Authority>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);
