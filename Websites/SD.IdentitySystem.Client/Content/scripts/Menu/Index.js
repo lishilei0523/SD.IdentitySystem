@@ -17,8 +17,8 @@ function getMenus(queryParams) {
         [
             { field: "Id", title: "Id", hidden: true },
             { field: "Name", title: "菜单名称", halign: "center", width: 200 },
-            { field: "Url", title: "链接地址", halign: "center", width: 200 },
-            { field: "Path", title: "路径", halign: "center", width: 400 },
+            { field: "Url", title: "链接地址", halign: "center", width: 400 },
+            { field: "Path", title: "路径", halign: "center", width: 200 },
             { field: "SystemName", title: "所属系统", halign: "center", width: 150 },
             { field: "ApplicationType", title: "应用程序类型", halign: "center", width: 150 },
             {
@@ -26,7 +26,7 @@ function getMenus(queryParams) {
                 title: "创建时间",
                 align: "center",
                 halign: "center",
-                width: $.global.getRelativeWidth(15, $("#dvGrid")),
+                width: 150,
                 formatter: function (value) {
                     return $.global.formatDate(value, "yyyy-MM-dd hh:mm:ss");
                 }
