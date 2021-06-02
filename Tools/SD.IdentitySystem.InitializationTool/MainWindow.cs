@@ -67,7 +67,7 @@ namespace SD.IdentitySystem.InitializationTool
             }
 
             this.Cbx_InfoSystems.DisplayMember = nameof(InfoSystemInfo.Name);
-            this.Cbx_ApplicationTypes.DisplayMember = "Key";
+            this.Cbx_ApplicationTypes.DisplayMember = "Value";
         }
 
         /// <summary>
@@ -106,8 +106,12 @@ namespace SD.IdentitySystem.InitializationTool
             #endregion
 
             string assemblyPath = this.Txt_FilePath.Text;
-            string infoSystemNo = ((InfoSystemInfo)this.Cbx_InfoSystems.SelectedItem).Number;
-            ApplicationType applicationType = ((KeyValuePair<string, string>)this.Cbx_ApplicationTypes.SelectedItem).Key.GetEnum<ApplicationType>().Value;
+
+            InfoSystemInfo selectedSystemItem = (InfoSystemInfo)this.Cbx_InfoSystems.SelectedItem;
+            KeyValuePair<string, string> selectedApplicationTypeItem = (KeyValuePair<string, string>)this.Cbx_ApplicationTypes.SelectedItem;
+
+            string infoSystemNo = selectedSystemItem.Number;
+            ApplicationType applicationType = (ApplicationType)Enum.Parse(typeof(ApplicationType), selectedApplicationTypeItem.Key);
 
             await this.InitAuthorities(assemblyPath, infoSystemNo, applicationType);
             MessageBox.Show(@"OK", @"OK");
