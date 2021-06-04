@@ -1,24 +1,24 @@
 <nz-layout>
     <!--Header-->
-    <nz-header class="app-header">
+    <nz-header class="home-header">
         <div nz-row>
             <div nz-col nzSpan="1">
-                <span class="app-header-folder" (click)="menuCollapsed = !menuCollapsed">
-                    <i class="app-header-folder-button" nz-icon
+                <span class="home-header-folder" (click)="menuCollapsed = !menuCollapsed">
+                    <i class="home-header-folder-button" nz-icon
                        [nzType]="menuCollapsed ? 'double-right' : 'double-left'"></i>
                 </span>
             </div>
-            <div nz-col nzSpan="21" class="app-header-title">
+            <div nz-col nzSpan="21" class="home-header-title">
                 统一身份认证后台管理
             </div>
             <div nz-col nzSpan="2">
                 <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu"
-                   class="app-header-user">
+                   class="home-header-user">
                     <span>超级管理员</span>
                     <i nz-icon nzType="down"></i>
                 </a>
                 <nz-dropdown-menu #menu="nzDropdownMenu">
-                    <ul nz-menu class="app-header-user-menu">
+                    <ul nz-menu class="home-header-user-menu">
                         <li nz-menu-item>
                             <i nz-icon nzType="poweroff" nzTheme="outline"></i>
                             <span>注销登录</span>
@@ -33,33 +33,33 @@
         </div>
     </nz-header>
     <!--Body-->
-    <nz-layout class="app-body">
+    <nz-layout class="home-body">
         <!--Menu-->
-        <nz-sider class="app-menu-sidebar"
+        <nz-sider class="home-menu-sidebar"
                   nzCollapsible
                   nzWidth="220px"
                   nzBreakpoint="md"
                   [(nzCollapsed)]="menuCollapsed"
                   [nzTrigger]="null">
-            <ul nz-menu nzTheme="light" nzMode="inline" nzInlineCollapsed="false" class="app-menu-container">
-                <li nz-submenu nzOpen nzTitle="身份认证系统" nzIcon="bank" class="app-menu-item">
+            <ul nz-menu nzTheme="dark" nzMode="inline" nzInlineCollapsed="false">
+                <li nz-submenu nzOpen nzTitle="身份认证系统" nzIcon="bank" class="home-menu-item">
                     <ul>
-                        <li nz-menu-item class="app-menu-item">
+                        <li nz-menu-item class="home-menu-item">
                             信息系统管理
                         </li>
-                        <li nz-menu-item class="app-menu-item">
+                        <li nz-menu-item class="home-menu-item">
                             用户管理
                         </li>
-                        <li nz-menu-item class="app-menu-item">
+                        <li nz-menu-item class="home-menu-item">
                             <a>角色管理</a>
                         </li>
-                        <li nz-menu-item class="app-menu-item">
+                        <li nz-menu-item class="home-menu-item">
                             <a>菜单管理</a>
                         </li>
-                        <li nz-menu-item class="app-menu-item">
+                        <li nz-menu-item class="home-menu-item">
                             <a>权限管理</a>
                         </li>
-                        <li nz-menu-item class="app-menu-item">
+                        <li nz-menu-item class="home-menu-item">
                             <a>登录记录</a>
                         </li>
                     </ul>
@@ -68,8 +68,8 @@
         </nz-sider>
         <!--Content-->
         <nz-content>
-            <div class="app-content">
-                <p-tabView id="closableTabView" styleClass="app-content-tab">
+            <div class="home-content">
+                <p-tabView id="closableTabView" styleClass="home-content-tab">
                     <p-tabPanel header="Header I" [closable]="true">
                         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
                             labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
@@ -97,7 +97,18 @@
         </nz-content>
     </nz-layout>
     <!--Footer-->
-    <nz-footer class="app-footer">
-        Footer
+    <nz-footer class="home-footer">
+        <div nz-row>
+            <div nz-col nzSpan="12">
+                <span style="float: left;margin-left: 10px;color:#A6AAAE;">
+                    当前登录用户：admin
+                </span>
+            </div>
+            <div nz-col nzSpan="12">
+                 <span style="float: right;margin-right: 10px;color:#A6AAAE;">
+                     开发及技术支持 —— SlamDunk co.,ltd. 2021年6月4日 23时32分4秒 星期五
+                 </span>
+            </div>
+        </div>
     </nz-footer>
 </nz-layout>
