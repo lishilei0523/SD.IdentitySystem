@@ -206,7 +206,7 @@ chrome-profiler-events*.json
 speed-measure-plugin*.json
 
 # IDEs and editors
-/.idea
+/Angular/SD.IdentitySystem.Client/.idea
 .project
 .classpath
 .c9/
