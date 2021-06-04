@@ -18,16 +18,21 @@ function getAuthorities(queryParams) {
             { field: "ck", checkbox: true, halign: "center" },
             { field: "Id", title: "Id", halign: "center", hidden: true },
             { field: "Name", title: "权限名称", halign: "center", width: 120 },
+            { field: "EnglishName", title: "英文名称", halign: "center", width: 120 },
             { field: "SystemName", title: "所属系统", halign: "center", width: 120 },
             { field: "ApplicationType", title: "应用程序类型", halign: "center", width: 150 },
             { field: "AuthorityPath", title: "权限路径", halign: "center" },
+            { field: "AssemblyName", title: "程序集名称", halign: "center", width: 150 },
+            { field: "Namespace", title: "命名空间", halign: "center", width: 150 },
+            { field: "ClassName", title: "类名", halign: "center", width: 150 },
+            { field: "MethodName", title: "方法名", halign: "center", width: 150 },
             { field: "Description", title: "描述", halign: "center", width: 200 },
             {
                 field: "AddedTime",
                 title: "创建时间",
                 align: "center",
                 halign: "center",
-                width: $.global.getRelativeWidth(15, $("#dvGrid")),
+                width: 150,
                 formatter: function (value) {
                     return $.global.formatDate(value, "yyyy-MM-dd hh:mm:ss");
                 }

@@ -89,6 +89,14 @@
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="路径" Width="400" Binding="{Binding Model.AuthorityPath}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
+                    <DataGridTextColumn Header="程序集名称" Width="150" Binding="{Binding Model.AssemblyName}" 
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
+                    <DataGridTextColumn Header="命名空间" Width="150" Binding="{Binding Model.Namespace}" 
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
+                    <DataGridTextColumn Header="类名" Width="150" Binding="{Binding Model.ClassName}" 
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
+                    <DataGridTextColumn Header="方法名" Width="150" Binding="{Binding Model.MethodName}" 
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="描述" Width="250" Binding="{Binding Model.Description}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTemplateColumn Header="创建时间" Width="170">

@@ -28,7 +28,7 @@ function getSystems(queryParams) {
                 title: "创建时间",
                 align: "center",
                 halign: "center",
-                width: $.global.getRelativeWidth(15, $("#dvGrid")),
+                width: 150,
                 formatter: function (value) {
                     return $.global.formatDate(value, "yyyy-MM-dd hh:mm:ss");
                 }

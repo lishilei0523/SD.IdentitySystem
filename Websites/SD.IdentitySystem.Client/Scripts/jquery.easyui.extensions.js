@@ -48,7 +48,7 @@
                 //页容量数组
                 pageList: [5, 10, 15, 20, 30, 50],
                 //页容量（必须和 pageList 里某一个值一致）
-                pageSize: 15,
+                pageSize: 20,
                 queryParams: null,
                 onLoadSuccess: null,
                 //工具栏

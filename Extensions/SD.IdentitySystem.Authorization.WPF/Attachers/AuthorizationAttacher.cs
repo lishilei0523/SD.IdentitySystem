@@ -1,4 +1,5 @@
-﻿using SD.Infrastructure.CustomExceptions;
+﻿using SD.Infrastructure;
+using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.MemberShip;
 using System;
 using System.Collections.Generic;
@@ -79,34 +80,37 @@ namespace SD.IdentitySystem.Authorization.WPF.Attachers
         /// </summary>
         private static void OnAuthorityPathChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
-            UIElement element = (UIElement)dependencyObject;
-            string authorityPath = eventArgs.NewValue?.ToString();
-            LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
-
-            #region # 验证
-
-            if (string.IsNullOrWhiteSpace(authorityPath))
+            if (FrameworkSection.Setting.AuthorizationEnabled.Value == true)
             {
-                throw new ArgumentNullException(nameof(AuthorityPath), "权限路径不可为空！");
-            }
-            if (loginInfo == null)
-            {
-                throw new NoPermissionException("当前登录信息为空，请重新登录！");
-            }
+                UIElement element = (UIElement)dependencyObject;
+                string authorityPath = eventArgs.NewValue?.ToString();
+                LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
 
-            #endregion
+                #region # 验证
 
-            //从登录信息中取出权限集
-            IEnumerable<string> ownedAuthorityPaths = loginInfo.LoginAuthorityInfos.Select(x => x.Path);
+                if (string.IsNullOrWhiteSpace(authorityPath))
+                {
+                    throw new ArgumentNullException(nameof(AuthorityPath), "权限路径不可为空！");
+                }
+                if (loginInfo == null)
+                {
+                    throw new NoPermissionException("当前登录信息为空，请重新登录！");
+                }
 
-            //验证权限
-            if (ownedAuthorityPaths.Contains(authorityPath))
-            {
-                element.Visibility = Visibility.Visible;
-            }
-            else
-            {
-                element.Visibility = Visibility.Collapsed;
+                #endregion
+
+                //从登录信息中取出权限集
+                IEnumerable<string> ownedAuthorityPaths = loginInfo.LoginAuthorityInfos.Select(x => x.Path);
+
+                //验证权限
+                if (ownedAuthorityPaths.Contains(authorityPath))
+                {
+                    element.Visibility = Visibility.Visible;
+                }
+                else
+                {
+                    element.Visibility = Visibility.Collapsed;
+                }
             }
         }
         #endregion

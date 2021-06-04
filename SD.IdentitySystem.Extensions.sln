@@ -3,9 +3,9 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - 授权扩展", "01 - 授权扩展", "{B1F655D7-0873-4D79-A8AE-942A6A464EA6}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - 授权扩展", "04 - 授权扩展", "{B1F655D7-0873-4D79-A8AE-942A6A464EA6}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - WCF身份认证扩展", "03 - WCF身份认证扩展", "{4391B3BF-4B53-474A-8636-14BFA15DDB7B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - 身份认证扩展 - WCF", "01 - 身份认证扩展 - WCF", "{4391B3BF-4B53-474A-8636-14BFA15DDB7B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCF.Authentication.AspNet", "Extensions\SD.IdentitySystem.WCF.Authentication.AspNet\SD.IdentitySystem.WCF.Authentication.AspNet.csproj", "{FA4CA095-26A0-4E6F-B297-D98115A577D7}"
 EndProject
@@ -15,15 +15,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCF.Authe
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Authorization", "Extensions\SD.IdentitySystem.Authorization\SD.IdentitySystem.Authorization.csproj", "{18524D7D-9812-4EFC-9902-7123E3A167BB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - 用户信息扩展", "02 - 用户信息扩展", "{623424A5-633C-42E2-BD48-8C2F375417E1}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - 用户信息扩展", "05 - 用户信息扩展", "{623424A5-633C-42E2-BD48-8C2F375417E1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.SignalR.Authentication", "Extensions\SD.IdentitySystem.SignalR.Authentication\SD.IdentitySystem.SignalR.Authentication.csproj", "{BB3F0707-3302-4203-AA2E-728661D30479}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCF.Authentication.Owin", "Extensions\SD.IdentitySystem.WCF.Authentication.Owin\SD.IdentitySystem.WCF.Authentication.Owin.csproj", "{012D79B3-E908-4F00-ACC4-420371FF300E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - ASP.NET Core身份认证扩展", "05 - ASP.NET Core身份认证扩展", "{39428193-7C0B-4785-90F2-7C45A67B4D90}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - 身份认证扩展 - ASP.NET Core", "03 - 身份认证扩展 - ASP.NET Core", "{39428193-7C0B-4785-90F2-7C45A67B4D90}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - ASP.NET身份认证扩展", "04 - ASP.NET身份认证扩展", "{770A9686-CB3E-4D5D-A053-64AD17AE73A7}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - 身份认证扩展 - ASP.NET", "02 - 身份认证扩展 - ASP.NET", "{770A9686-CB3E-4D5D-A053-64AD17AE73A7}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WebApi.Authentication", "Extensions\SD.IdentitySystem.WebApi.Authentication\SD.IdentitySystem.WebApi.Authentication.csproj", "{F0DFAF28-E963-40D4-B1F0-46DF39963E0F}"
 EndProject
