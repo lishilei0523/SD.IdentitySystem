@@ -1,0 +1,98 @@
+:host {
+    display: flex;
+    text-rendering: optimizeLegibility;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+.app-header {
+    /*background-image: url("../assets/images/banner.gif");*/
+    background: whitesmoke;
+    border-width: 0 0 1px 0;
+    border-color: #CCCCCC;
+    border-style: solid;
+    height: 70px;
+    line-height: 70px;
+    margin: 0;
+    padding: 0;
+}
+
+.app-header-folder {
+    float: right;
+    margin-right: 30px;
+    font-size: 20px;
+    cursor: pointer;
+    transition: all .3s, padding 0s;
+}
+
+.app-header-folder-button {
+    color: black;
+}
+
+.app-header-folder-button:hover {
+    color: #1890ff;
+}
+
+.app-header-title {
+    font-size: 24px;
+    color: #1B4567
+}
+
+.app-header-user {
+    float: right;
+    margin-right: 20px;
+    color: black;
+}
+
+.app-header-user i {
+    width: 20px;
+}
+
+.app-header-user-menu {
+    width: 150px;
+    margin-right: 5px;
+}
+
+.app-body {
+    background: whitesmoke;
+    height: calc(100vh - 97px);
+    margin: 0;
+}
+
+.app-menu-sidebar {
+    background: white;
+    position: relative;
+    z-index: 10;
+    box-shadow: 1px 0 1px #CCCCCC;
+}
+
+.app-menu-container {
+    background: white;
+}
+
+.app-menu-item {
+    height: 30px;
+    line-height: 30px;
+    margin-bottom: 5px;
+}
+
+.app-content {
+    background: white;
+    height: 100%;
+    padding: 0;
+}
+
+.app-footer {
+    border-width: 1px 0 0 0;
+    border-color: #CCCCCC;
+    border-style: solid;
+    background: whitesmoke;
+    height: 25px;
+    line-height: 25px;
+    margin: 0;
+    padding: 0;
+}
+
+/deep/ .app-content-tab ul {
+    margin: 0 0 0 4px;
+}

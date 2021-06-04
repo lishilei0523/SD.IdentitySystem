@@ -1,1 +1,103 @@
-<h1>身份认证系统</h1>
+<nz-layout>
+    <!--Header-->
+    <nz-header class="app-header">
+        <div nz-row>
+            <div nz-col nzSpan="1">
+                <span class="app-header-folder" (click)="menuCollapsed = !menuCollapsed">
+                    <i class="app-header-folder-button" nz-icon
+                       [nzType]="menuCollapsed ? 'double-right' : 'double-left'"></i>
+                </span>
+            </div>
+            <div nz-col nzSpan="21" class="app-header-title">
+                统一身份认证后台管理
+            </div>
+            <div nz-col nzSpan="2">
+                <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu"
+                   class="app-header-user">
+                    <span>超级管理员</span>
+                    <i nz-icon nzType="down"></i>
+                </a>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu class="app-header-user-menu">
+                        <li nz-menu-item>
+                            <i nz-icon nzType="poweroff" nzTheme="outline"></i>
+                            <span>注销登录</span>
+                        </li>
+                        <li nz-menu-item>
+                            <i nz-icon nzType="lock" nzTheme="outline"></i>
+                            <span>修改密码</span>
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </div>
+    </nz-header>
+    <!--Body-->
+    <nz-layout class="app-body">
+        <!--Menu-->
+        <nz-sider class="app-menu-sidebar"
+                  nzCollapsible
+                  nzWidth="220px"
+                  nzBreakpoint="md"
+                  [(nzCollapsed)]="menuCollapsed"
+                  [nzTrigger]="null">
+            <ul nz-menu nzTheme="light" nzMode="inline" nzInlineCollapsed="false" class="app-menu-container">
+                <li nz-submenu nzOpen nzTitle="身份认证系统" nzIcon="bank" class="app-menu-item">
+                    <ul>
+                        <li nz-menu-item class="app-menu-item">
+                            信息系统管理
+                        </li>
+                        <li nz-menu-item class="app-menu-item">
+                            用户管理
+                        </li>
+                        <li nz-menu-item class="app-menu-item">
+                            <a>角色管理</a>
+                        </li>
+                        <li nz-menu-item class="app-menu-item">
+                            <a>菜单管理</a>
+                        </li>
+                        <li nz-menu-item class="app-menu-item">
+                            <a>权限管理</a>
+                        </li>
+                        <li nz-menu-item class="app-menu-item">
+                            <a>登录记录</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </nz-sider>
+        <!--Content-->
+        <nz-content>
+            <div class="app-content">
+                <p-tabView id="closableTabView" styleClass="app-content-tab">
+                    <p-tabPanel header="Header I" [closable]="true">
+                        <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut
+                            labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation
+                            ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
+                            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
+                            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit
+                            anim id est laborum.</p>
+                    </p-tabPanel>
+                    <p-tabPanel header="Header II" [closable]="true">
+                        <p>Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque
+                            laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi
+                            architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit
+                            aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione
+                            voluptatem sequi nesciunt. Consectetur, adipisci velit, sed quia non numquam eius modi.</p>
+                    </p-tabPanel>
+                    <p-tabPanel header="Header III" [closable]="true">
+                        <p>At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium
+                            voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati
+                            cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id
+                            est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
+                            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus.</p>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+        </nz-content>
+    </nz-layout>
+    <!--Footer-->
+    <nz-footer class="app-footer">
+        Footer
+    </nz-footer>
+</nz-layout>

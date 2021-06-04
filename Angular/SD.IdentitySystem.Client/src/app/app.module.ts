@@ -15,10 +15,15 @@ registerLocaleData(zh);
 //Ng-Zorro模块
 import {NZ_I18N} from 'ng-zorro-antd/i18n';
 import {zh_CN} from 'ng-zorro-antd/i18n';
+import {IconsProviderModule} from './icons-provider.module';
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzGridModule} from 'ng-zorro-antd/grid';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
+
+//PrimeNG模块
+import {ButtonModule} from "primeng/button";
+import {TabViewModule} from "primeng/tabview";
 
 //Angular组件
 import {HomeComponent} from './home/home.component';
@@ -33,10 +38,13 @@ import {HomeComponent} from './home/home.component';
         FormsModule,
         HttpClientModule,
         BrowserAnimationsModule,
+        IconsProviderModule,
         NzLayoutModule,
         NzGridModule,
         NzMenuModule,
-        NzDropDownModule
+        NzDropDownModule,
+        ButtonModule,
+        TabViewModule
     ],
     providers: [{provide: NZ_I18N, useValue: zh_CN}],
     bootstrap: [HomeComponent]

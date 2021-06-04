@@ -6,7 +6,7 @@ import {Component} from '@angular/core';
     styleUrls: ['./home.component.css']
 })
 export class HomeComponent {
-    private menuCollapsed: boolean;
+    public menuCollapsed: boolean;
 
     constructor() {
         this.menuCollapsed = false;
