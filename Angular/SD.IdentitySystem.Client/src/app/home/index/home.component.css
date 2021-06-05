@@ -30,7 +30,7 @@
 }
 
 .home-header-folder-button:hover {
-    color: #1890ff;
+    color: #2196F3;
 }
 
 .home-header-title {
@@ -49,7 +49,7 @@
 }
 
 .home-header-user-menu {
-    width: 150px;
+    width: 120px;
     margin-right: 5px;
 }
 
@@ -89,9 +89,6 @@
 }
 
 .home-content-route {
-    /*border-width: 1px;*/
-    /*border-color: blue;*/
-    /*border-style: solid;*/
     width: 100%;
     height: calc(100% - 53px);
     margin: 0;
