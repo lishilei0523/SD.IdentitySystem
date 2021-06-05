@@ -74,7 +74,28 @@
 .home-content {
     background: white;
     height: 100%;
-    padding: 3px 0 0 0;
+    padding: 0;
+}
+
+.home-content-bing {
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+}
+
+.home-content-nav {
+    margin-top: 3px;
+    height: 50px
+}
+
+.home-content-route {
+    /*border-width: 1px;*/
+    /*border-color: blue;*/
+    /*border-style: solid;*/
+    width: 100%;
+    height: calc(100% - 53px);
+    margin: 0;
+    padding: 0;
 }
 
 .home-footer {
@@ -90,3 +111,8 @@
 /deep/ .home-content-tab ul {
     margin: 0 0 0 3px;
 }
+
+/deep/ .home-content-tab span {
+    font-weight: normal;
+}
+

@@ -1,0 +1,98 @@
+<nz-layout>
+    <!--Header-->
+    <nz-header class="home-header">
+        <div nz-row>
+            <div nz-col nzSpan="1">
+                <span class="home-header-folder" (click)="menuCollapsed = !menuCollapsed">
+                    <i class="home-header-folder-button" nz-icon
+                       [nzType]="menuCollapsed ? 'double-right' : 'double-left'"></i>
+                </span>
+            </div>
+            <div nz-col nzSpan="21" class="home-header-title">
+                统一身份认证后台管理
+            </div>
+            <div nz-col nzSpan="2">
+                <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu"
+                   class="home-header-user">
+                    <span>超级管理员</span>
+                    <i nz-icon nzType="down"></i>
+                </a>
+                <nz-dropdown-menu #menu="nzDropdownMenu">
+                    <ul nz-menu class="home-header-user-menu">
+                        <li nz-menu-item>
+                            <i nz-icon nzType="poweroff" nzTheme="outline"></i>
+                            <span>注销登录</span>
+                        </li>
+                        <li nz-menu-item>
+                            <i nz-icon nzType="lock" nzTheme="outline"></i>
+                            <span>修改密码</span>
+                        </li>
+                    </ul>
+                </nz-dropdown-menu>
+            </div>
+        </div>
+    </nz-header>
+    <!--Body-->
+    <nz-layout class="home-body">
+        <!--Menu-->
+        <nz-sider class="home-menu-sidebar"
+                  nzCollapsible
+                  nzWidth="220px"
+                  nzBreakpoint="md"
+                  [(nzCollapsed)]="menuCollapsed"
+                  [nzTrigger]="null">
+            <ul nz-menu nzTheme="dark" nzMode="inline" nzInlineCollapsed="false">
+                <ng-container *ngTemplateOutlet="menuTpl; context: { $implicit: menus }"></ng-container>
+                <ng-template #menuTpl let-menus>
+                    <ng-container *ngFor="let menu of menus">
+                        <li *ngIf="menu.isLeaf" nz-menu-item [nzPaddingLeft]="menu.level * 24" class="home-menu-item"
+                            (click)="navigate(menu)">
+                            <a routerLink="{{menu.url}}">{{ menu.name }}</a>
+                        </li>
+                        <li *ngIf="!menu.isLeaf" nz-submenu nzOpen class="home-menu-item"
+                            [nzTitle]="menu.name"
+                            [nzPaddingLeft]="menu.level * 24"
+                            [nzIcon]="menu.icon">
+                            <ul>
+                                <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menu.subNodes}">
+                                </ng-container>
+                            </ul>
+                        </li>
+                    </ng-container>
+                </ng-template>
+            </ul>
+        </nz-sider>
+        <!--Content-->
+        <nz-content class="home-content">
+            <iframe src="https://cn.bing.com" [hidden]="bingHidden" class="home-content-bing"></iframe>
+            <div class="home-content-nav" [hidden]="!bingHidden">
+                <p-tabView styleClass="home-content-tab" [activeIndex]="activeIndex" (onChange)="changeTab($event)">
+                    <p-tabPanel *ngFor="let tab of tabs" [selected]="tab.selected">
+                        <ng-template pTemplate="header">
+                            <span class="p-tabview-title ng-star-inserted">{{tab.menuName}}</span>
+                            <span class="p-tabview-close pi pi-times ng-star-inserted" (click)="closeTab(tab)"></span>
+                        </ng-template>
+                    </p-tabPanel>
+                </p-tabView>
+            </div>
+            <div class="home-content-route" [hidden]="!bingHidden">
+                <router-outlet></router-outlet>
+            </div>
+        </nz-content>
+    </nz-layout>
+    <!--Footer-->
+    <nz-footer class="home-footer">
+        <div nz-row>
+            <div nz-col nzSpan="12">
+                <span style="float: left;margin-left: 10px;color:#A6AAAE;">
+                    当前登录用户：admin
+                </span>
+            </div>
+            <div nz-col nzSpan="12">
+                 <span style="float: right;margin-right: 10px;color:#A6AAAE;">
+                     开发及技术支持 —— SlamDunk co.,ltd. 2021年6月4日 23时32分4秒 星期五
+                 </span>
+            </div>
+        </div>
+    </nz-footer>
+</nz-layout>
