@@ -66,7 +66,7 @@
         <nz-content class="home-content">
             <iframe src="https://gitee.com/lishilei0523" [hidden]="bingHidden" class="home-content-bing"></iframe>
             <div class="home-content-nav" [hidden]="!bingHidden">
-                <p-tabView styleClass="home-content-tab" [activeIndex]="activeIndex" (onChange)="changeTab($event)">
+                <p-tabView styleClass="home-content-tab" [activeIndex]="activeTabIndex" (onChange)="changeTab($event)">
                     <p-tabPanel *ngFor="let tab of tabs" [selected]="tab.selected">
                         <ng-template pTemplate="header">
                             <span class="p-tabview-title ng-star-inserted">{{tab.menuName}}</span>
