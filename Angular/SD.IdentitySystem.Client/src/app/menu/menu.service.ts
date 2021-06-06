@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
-import {Menu} from "../../models/menu";
-import {ApplicationType} from "../../enums/applicationType";
+import {ApplicationType} from "../../values/enums/application-type";
+import {Menu} from "./menu.model";
 
 /*菜单服务*/
 @Injectable({

@@ -1,5 +1,6 @@
 /*应用程序类型*/
 export enum ApplicationType {
+    
     /*Web应用程序*/
     Web = 0,
 

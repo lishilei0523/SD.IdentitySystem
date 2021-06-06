@@ -1,5 +1,6 @@
 /*选项卡*/
 export class Tab {
+    
     /*菜单Id*/
     public menuId: string;
 

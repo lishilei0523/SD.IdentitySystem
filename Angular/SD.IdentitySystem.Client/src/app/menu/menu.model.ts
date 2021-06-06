@@ -1,7 +1,8 @@
-import {ApplicationType} from "../enums/applicationType";
+import {ApplicationType} from "../../values/enums/application-type";
 
 /*菜单*/
 export class Menu {
+
     /*信息系统编号*/
     public systemNo: string;
 

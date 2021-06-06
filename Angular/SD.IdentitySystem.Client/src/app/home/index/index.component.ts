@@ -1,16 +1,16 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {MenuService} from "../../menu/menu.service";
-import {Menu} from "../../../models/menu";
-import {Tab} from "../../../models/tab";
+import {Menu} from "../../menu/menu.model";
+import {Tab} from "../../../values/structs/tab";
 
 /*首页组件*/
 @Component({
-    selector: 'app-home',
-    templateUrl: './home.component.html',
-    styleUrls: ['./home.component.css']
+    selector: 'app-home-index',
+    templateUrl: './index.component.html',
+    styleUrls: ['./index.component.css']
 })
-export class HomeComponent implements OnInit {
+export class IndexComponent implements OnInit {
 
     /*路由*/
     private router: Router;
