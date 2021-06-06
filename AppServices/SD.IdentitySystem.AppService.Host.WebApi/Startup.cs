@@ -1,4 +1,5 @@
-﻿using Owin;
+﻿using Newtonsoft.Json.Serialization;
+using Owin;
 using SD.IdentitySystem.WebApi.Authentication.Filters;
 using SD.Infrastructure.WebApi.SelfHost.Server.Middlewares;
 using SD.IOC.Integration.WebApi.SelfHost;
@@ -43,7 +44,7 @@ namespace SD.IdentitySystem.AppService.Host
             httpConfiguration.MapHttpAttributeRoutes();
             httpConfiguration.Routes.MapHttpRoute(
                 "DefaultApi",
-                "{controller}/{action}/{id}",
+                "Api/{controller}/{action}/{id}",
                 new { id = RouteParameter.Optional }
             );
 
@@ -57,6 +58,9 @@ namespace SD.IdentitySystem.AppService.Host
             //添加过滤器
             httpConfiguration.Filters.Add(new WebApiAuthenticationFilter());
             httpConfiguration.Filters.Add(new WebApiExceptionFilter());
+
+            //返回值驼峰命名序列化
+            httpConfiguration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
         }
     }
 }

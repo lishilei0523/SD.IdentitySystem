@@ -52,6 +52,9 @@ namespace SD.IdentitySystem.AppService.Host
             {
                 options.Filters.Add<WebApiAuthenticationFilter>();
                 options.Filters.Add<WebApiExceptionFilter>();
+            }).AddJsonOptions(options =>
+            {
+                options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
             });
         }
 
