@@ -6,8 +6,15 @@ import {PrimeNGConfig} from 'primeng/api';
     selector: 'app-root',
     template: `
         <p-toast position="center"></p-toast>
-        <p-confirmDialog [style]="{width: '30vw'}" [baseZIndex]="10000" header="警告" icon="pi pi-exclamation-triangle"
-                         rejectButtonStyleClass="p-button-text"></p-confirmDialog>
+        <p-confirmDialog #cd [style]="{width: '30vw'}" [baseZIndex]="10000" header="警告"
+                         icon="pi pi-exclamation-triangle"
+                         rejectButtonStyleClass="p-button-text">
+            <ng-template pTemplate="footer">
+                <button type="button" pButton icon="pi pi-check" label="确定" (click)="cd.accept()"></button>
+                <button type="button" pButton pRipple icon="pi pi-times" label="取消" class="p-button-outlined"
+                        (click)="cd.reject()"></button>
+            </ng-template>
+        </p-confirmDialog>
         <router-outlet></router-outlet>
     `
 })
