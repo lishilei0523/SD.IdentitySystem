@@ -30,9 +30,6 @@ export class Menu {
     /*排序*/
     public sort: number;
 
-    /*层次*/
-    public level: number;
-
     /*是否是根级节点*/
     public isRoot: boolean;
 
@@ -61,7 +58,6 @@ export class Menu {
         this.path = path;
         this.icon = icon;
         this.sort = sort;
-        this.level = level;
         this.isRoot = isRoot;
         this.isLeaf = isLeaf;
         this.parentMenuId = parentMenuId;

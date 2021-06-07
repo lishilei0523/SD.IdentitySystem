@@ -17,8 +17,22 @@ registerLocaleData(zh);
 
 /*Ng-Zorro模块*/
 @NgModule({
-    imports: [NzIconModule, NzLayoutModule, NzGridModule, NzMenuModule, NzDropDownModule, NzSpinModule],
-    exports: [NzIconModule, NzLayoutModule, NzGridModule, NzMenuModule, NzDropDownModule, NzSpinModule],
+    imports: [
+        NzIconModule,
+        NzLayoutModule,
+        NzGridModule,
+        NzMenuModule,
+        NzDropDownModule,
+        NzSpinModule
+    ],
+    exports: [
+        NzIconModule,
+        NzLayoutModule,
+        NzGridModule,
+        NzMenuModule,
+        NzDropDownModule,
+        NzSpinModule
+    ],
     providers: [
         {provide: NZ_ICONS, useValue: [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline]},
         {provide: NZ_I18N, useValue: zh_CN}]

@@ -7,7 +7,6 @@ import {AuthenticationGuard} from "../extentions/authentication.guard";
 //Angular组件
 import {IndexComponent as HomeComponent} from '../app/home/index/index.component';
 import {LoginComponent} from '../app/home/login/login.component';
-import {ErrorComponent} from '../app/home/error/error.component';
 import {IndexComponent as InfoSystemIndexComponent} from '../app/infoSystem/index/index.component';
 import {IndexComponent as UserIndexComponent} from '../app/user/index/index.component';
 import {IndexComponent as RoleIndexComponent} from '../app/role/index/index.component';
@@ -28,7 +27,6 @@ const routes: Routes = [
         ]
     },
     {path: "Login", component: LoginComponent},
-    {path: "Error", component: ErrorComponent},
     {path: "**", component: HomeComponent, canActivate: [AuthenticationGuard]}
 ];
 

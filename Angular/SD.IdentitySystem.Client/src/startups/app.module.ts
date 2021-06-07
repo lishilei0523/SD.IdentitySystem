@@ -21,7 +21,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppComponent} from './app.component';
 import {IndexComponent as HomeComponent} from '../app/home/index/index.component';
 import {LoginComponent} from '../app/home/login/login.component';
-import {ErrorComponent} from '../app/home/error/error.component';
 import {IndexComponent as InfoSystemIndexComponent} from '../app/infoSystem/index/index.component';
 import {IndexComponent as UserIndexComponent} from '../app/user/index/index.component';
 import {IndexComponent as RoleIndexComponent} from '../app/role/index/index.component';
@@ -39,7 +38,6 @@ import {MenuService} from '../app/menu/menu.service';
         AppComponent,
         HomeComponent,
         LoginComponent,
-        ErrorComponent,
         InfoSystemIndexComponent,
         UserIndexComponent,
         RoleIndexComponent,

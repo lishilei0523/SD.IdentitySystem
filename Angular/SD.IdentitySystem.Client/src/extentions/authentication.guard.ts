@@ -8,11 +8,11 @@ import {Constants} from "../values/constants/constants";
 })
 export class AuthenticationGuard implements CanActivate {
 
-    /*路由*/
-    private router: Router;
+    /*路由器*/
+    private readonly router: Router;
 
     /**
-     * 创建身份认证守卫器构造器
+     * 依赖注入构造器
      * */
     public constructor(router: Router) {
         this.router = router;

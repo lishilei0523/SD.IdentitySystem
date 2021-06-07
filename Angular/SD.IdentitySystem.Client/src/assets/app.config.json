@@ -1,4 +1,5 @@
 {
     "webApiPrefix": "http://localhost:49732/Api",
+    "authenticationEnabled": false,
     "authorizationEnabled": false
 }

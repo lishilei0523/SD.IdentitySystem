@@ -1,14 +1,8 @@
-import {NgModule} from '@angular/core';
-import {Injectable} from "@angular/core";
-import {
-    HTTP_INTERCEPTORS,
-    HttpEvent,
-    HttpInterceptor,
-    HttpHandler,
-    HttpRequest,
-} from '@angular/common/http';
+import {NgModule, Injectable} from '@angular/core';
+import {Router} from "@angular/router";
+import {HTTP_INTERCEPTORS, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest,} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
-import {catchError, retry} from 'rxjs/operators';
+import {catchError} from 'rxjs/operators';
 import {MessageService} from "primeng/api";
 
 /*应用程序异常服务*/
@@ -17,13 +11,17 @@ import {MessageService} from "primeng/api";
 })
 export class AppExceptionService implements HttpInterceptor {
 
+    /*路由器*/
+    private readonly router: Router;
+
     /*消息服务*/
-    private messageService: MessageService;
+    private readonly messageService: MessageService;
 
     /**
-     * 创建应用程序异常服务构造器
+     * 依赖注入构造器
      * */
-    public constructor(messageService: MessageService) {
+    public constructor(router: Router, messageService: MessageService) {
+        this.router = router;
         this.messageService = messageService;
     }
 
@@ -36,6 +34,7 @@ export class AppExceptionService implements HttpInterceptor {
                 switch (error.status) {
                     case 401:
                         this.messageService.add({severity: "error", summary: error.error});
+                        this.router.navigate(["/Login"]);
                         return throwError(error);
                     case 404:
                         this.messageService.add({severity: "error", summary: error.error});
@@ -46,9 +45,6 @@ export class AppExceptionService implements HttpInterceptor {
                     default:
                         return throwError(error);
                 }
-
-                return throwError(error);
-                //return new Observable<never>();
             }));
     }
 }

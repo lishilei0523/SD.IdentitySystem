@@ -1,25 +1,25 @@
 import {NgModule} from '@angular/core';
+import {MessageService, ConfirmationService} from "primeng/api";
+import {RippleModule} from "primeng/ripple";
 import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
 import {ButtonModule} from "primeng/button";
-import {TabViewModule} from "primeng/tabview";
 import {PanelModule} from "primeng/panel";
-import {RippleModule} from "primeng/ripple";
-import {CardModule} from "primeng/card";
+import {TabViewModule} from "primeng/tabview";
 import {ToastModule} from "primeng/toast";
-import {MessageService} from "primeng/api";
+import {ConfirmDialogModule} from "primeng/confirmdialog";
 
 /*PrimeNG模块*/
 @NgModule({
     imports: [
-        PanelModule,
         RippleModule,
         InputTextModule,
         PasswordModule,
         ButtonModule,
+        PanelModule,
         TabViewModule,
-        CardModule,
-        ToastModule
+        ToastModule,
+        ConfirmDialogModule
     ],
     exports: [
         PanelModule,
@@ -28,10 +28,10 @@ import {MessageService} from "primeng/api";
         PasswordModule,
         ButtonModule,
         TabViewModule,
-        CardModule,
-        ToastModule
+        ToastModule,
+        ConfirmDialogModule
     ],
-    providers: [MessageService]
+    providers: [MessageService, ConfirmationService]
 })
 export class UiPrimeModule {
 

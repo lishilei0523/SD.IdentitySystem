@@ -1,9 +1,10 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {MenuService} from "../../menu/menu.service";
-import {Menu} from "../../menu/menu.model";
-import {Tab} from "../../../values/structs/tab";
+import {ConfirmationService} from 'primeng/api';
 import {Constants} from "../../../values/constants/constants";
+import {Tab} from "../../../values/structs/tab";
+import {LoginMenuInfo} from "../../../values/structs/loginMenuInfo";
+import {LoginInfo} from "../../../values/structs/loginInfo";
 
 /*首页组件*/
 @Component({
@@ -11,16 +12,16 @@ import {Constants} from "../../../values/constants/constants";
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.css']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent {
 
-    /*路由*/
-    private router: Router;
+    /*路由器*/
+    private readonly router: Router;
 
     /*活动路由*/
-    private activatedRoute: ActivatedRoute;
+    private readonly activatedRoute: ActivatedRoute;
 
-    /*菜单服务*/
-    private menuService: MenuService;
+    /*确认服务*/
+    private readonly confirmService: ConfirmationService;
 
     /*菜单是否折叠*/
     public menuCollapsed: boolean;
@@ -28,8 +29,11 @@ export class IndexComponent implements OnInit {
     /*Bing是否隐藏*/
     public bingHidden: boolean;
 
+    /*登录信息*/
+    public loginInfo: LoginInfo | null;
+
     /*菜单列表*/
-    public menus: Array<Menu>;
+    public menus: Array<LoginMenuInfo>;
 
     /*选项卡列表*/
     public tabs: Array<Tab>;
@@ -40,32 +44,26 @@ export class IndexComponent implements OnInit {
     /**
      * 创建首页组件构造器
      * */
-    public constructor(router: Router, activatedRoute: ActivatedRoute, menuService: MenuService) {
+    public constructor(router: Router, activatedRoute: ActivatedRoute, confirmService: ConfirmationService) {
         //依赖注入部分
         this.router = router;
         this.activatedRoute = activatedRoute;
-        this.menuService = menuService;
+        this.confirmService = confirmService;
 
         //默认值部分
         this.menuCollapsed = false;
         this.bingHidden = false;
-        this.menus = new Array<Menu>();
+        this.loginInfo = Constants.loginInfo;
+        this.menus = Constants.userMenus;
         this.tabs = new Array<any>();
         this.activeTabIndex = 1;
-    }
-
-    /**
-     * 初始化组件
-     * */
-    public ngOnInit(): void {
-        this.menus = this.menuService.getMenus();
     }
 
     /**
      * 导航至菜单
      * @param menu - 菜单
      * */
-    public navigate(menu: Menu): void {
+    public navigate(menu: LoginMenuInfo): void {
         //清空选中
         this.clearSelectedTabs();
 
@@ -92,6 +90,7 @@ export class IndexComponent implements OnInit {
         let index: number = eventArgs.index;
         let tab: Tab = this.tabs[index];
 
+        //清空选中
         this.clearSelectedTabs();
 
         tab.selected = true;
@@ -124,8 +123,13 @@ export class IndexComponent implements OnInit {
      * 注销
      * */
     public async logout(): Promise<void> {
-        Constants.loginInfo = null;
-        await this.router.navigate(["/Login"]);
+        this.confirmService.confirm({
+            message: "确定要注销吗？",
+            accept: async () => {
+                Constants.loginInfo = null;
+                await this.router.navigate(["/Login"]);
+            }
+        });
     }
 
     /**

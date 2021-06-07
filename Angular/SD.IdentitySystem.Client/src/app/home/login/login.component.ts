@@ -1,10 +1,10 @@
 import {Component} from '@angular/core';
 import {Router} from "@angular/router";
-import {Constants} from "../../../values/constants/constants";
-import {HomeService} from "../home.service";
-import {LoginInfo} from "../../../values/structs/loginInfo";
 import {MessageService} from 'primeng/api';
+import {Constants} from "../../../values/constants/constants";
+import {LoginInfo} from "../../../values/structs/loginInfo";
 import {BaseComponent} from "../../../extentions/base.component";
+import {HomeService} from "../home.service";
 
 /*登录组件*/
 @Component({
@@ -15,13 +15,13 @@ import {BaseComponent} from "../../../extentions/base.component";
 export class LoginComponent extends BaseComponent {
 
     /*路由器*/
-    private router: Router;
+    private readonly router: Router;
 
     /*消息服务*/
-    private messageService: MessageService;
+    private readonly messageService: MessageService;
 
     /*首页服务*/
-    private homeService: HomeService;
+    private readonly homeService: HomeService;
 
     /*用户名*/
     public loginId: string;
@@ -33,47 +33,44 @@ export class LoginComponent extends BaseComponent {
      * 创建登录组件构造器
      * */
     public constructor(router: Router, messageService: MessageService, homeService: HomeService) {
+        //基类构造器
         super();
 
+        //依赖注入部分
         this.router = router;
         this.messageService = messageService;
         this.homeService = homeService;
+
+        //默认值部分
         this.loginId = "";
         this.password = "";
+
+        //自动登录
+        this.autoLogin();
     }
 
     /**
      * 登录
      * */
-    @Busy
     public async login(): Promise<void> {
-        //super.busy();
+        this.busy();
 
         let promise: Promise<LoginInfo> = this.homeService.login(this.loginId, this.password);
-        promise.catch(_ => super.idle());
-
-        let loginInfo = await promise;
-        Constants.loginInfo = loginInfo;
-
+        promise.catch(_ => this.idle());
+        Constants.loginInfo = await promise;
         await this.router.navigate(["/Home"]);
-        //super.idle()
-    }
-}
 
-
-export function Busy(target: any, methodName: any) {
-    let busy = target["busy"];
-    let idle = target["busy"];
-
-    let methodInfo = target[methodName];
-    target[methodName] = function (...args: any[]) {
-
-        busy.apply(this);
-        let result = methodInfo.apply(this, args);
-        idle.apply(this);
-
-        return result
+        this.idle();
     }
 
-    return target[methodName];
+    /**
+     * 自动登录
+     * */
+    private async autoLogin(): Promise<void> {
+        if (!Constants.appConfig.authenticationEnabled) {
+            this.loginId = "admin";
+            this.password = "888888";
+            await this.login();
+        }
+    }
 }

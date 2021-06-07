@@ -6,22 +6,23 @@ import {Constants} from "../values/constants/constants";
     selector: '[authorityPath]'
 })
 export class AuthorityDirective {
+
+    /*模板引用*/
+    private readonly template: TemplateRef<any>;
+
+    /*视图容器引用*/
+    private readonly viewContainer: ViewContainerRef;
+
     /*是否已授权*/
     private authorized: boolean;
 
-    /*模板引用*/
-    private template: TemplateRef<any>;
-
-    /*视图容器引用*/
-    private viewContainer: ViewContainerRef;
-
     /**
-     * 创建Angular授权指令构造器
+     * 依赖注入构造器
      * */
     public constructor(template: TemplateRef<any>, viewContainer: ViewContainerRef) {
-        this.authorized = false;
         this.template = template;
         this.viewContainer = viewContainer;
+        this.authorized = false;
     }
 
     /**
@@ -30,7 +31,10 @@ export class AuthorityDirective {
      * */
     @Input()
     public set authorityPath(authorityPath: string) {
-        if (Constants.allowedAuthorityPaths.includes(authorityPath)) {
+        if (Constants.userAuthorityPaths.includes(authorityPath)) {
+            this.authorized = true;
+        }
+        if (!Constants.appConfig.authorizationEnabled) {
             this.authorized = true;
         }
 

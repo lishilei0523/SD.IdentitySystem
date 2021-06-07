@@ -1,9 +1,7 @@
-import {NgModule} from '@angular/core';
-import {Injectable} from "@angular/core";
-import {APP_INITIALIZER} from '@angular/core';
+import {NgModule, Injectable, APP_INITIALIZER} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {AppConfig} from "../values/structs/app-config";
 import {Constants} from "../values/constants/constants";
+import {AppConfig} from "../values/structs/app-config";
 
 /*应用程序配置服务*/
 @Injectable({
@@ -25,9 +23,8 @@ export class AppConfigService {
      * 加载应用程序配置
      * */
     public async loadAppConfig(): Promise<void> {
-        const configUrl = "assets/app.config.json";
-        let appConfig: AppConfig = await this.httpClient.get<AppConfig>(configUrl).toPromise();
-        Constants.appConfig = appConfig;
+        let configUrl: string = "assets/app.config.json";
+        Constants.appConfig = await this.httpClient.get<AppConfig>(configUrl).toPromise();
     }
 }
 

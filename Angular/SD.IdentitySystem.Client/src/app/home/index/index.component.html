@@ -14,7 +14,7 @@
             <div nz-col nzSpan="2">
                 <a nz-dropdown nzTrigger="click" [nzDropdownMenu]="menu"
                    class="home-header-user">
-                    <span>超级管理员</span>
+                    <span>{{loginInfo?.realName}}</span>
                     <i nz-icon nzType="down"></i>
                 </a>
                 <nz-dropdown-menu #menu="nzDropdownMenu">
@@ -54,7 +54,7 @@
                             [nzPaddingLeft]="menu.level * 24"
                             [nzIcon]="menu.icon">
                             <ul>
-                                <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menu.subNodes}">
+                                <ng-container *ngTemplateOutlet="menuTpl; context: {$implicit: menu.subMenuInfos}">
                                 </ng-container>
                             </ul>
                         </li>
@@ -85,7 +85,7 @@
         <div nz-row>
             <div nz-col nzSpan="12">
                 <span style="float: left;margin-left: 10px;color:#A6AAAE;">
-                    当前登录用户：admin
+                    当前登录用户：{{loginInfo?.loginId}}
                 </span>
             </div>
             <div nz-col nzSpan="12">

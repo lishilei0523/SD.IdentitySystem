@@ -21,6 +21,9 @@ export interface LoginMenuInfo {
     /*菜单排序*/
     sort: number;
 
+    /*菜单层次*/
+    level: number;
+
     /*菜单图标*/
     icon: string;
 
@@ -29,6 +32,9 @@ export interface LoginMenuInfo {
 
     /*路径*/
     path: string;
+
+    /*是否是叶子级节点*/
+    isLeaf: boolean;
 
     /*下级菜单列表*/
     subMenuInfos: Array<LoginMenuInfo>;
