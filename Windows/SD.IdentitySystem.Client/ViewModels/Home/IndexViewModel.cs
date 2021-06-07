@@ -11,10 +11,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using Models = SD.IdentitySystem.Presentation.Models;
 
 namespace SD.IdentitySystem.Client.ViewModels.Home
 {
@@ -75,12 +73,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         public Visibility BingVisibility { get; set; }
         #endregion
 
-        #region 菜单列表 —— ObservableCollection<Menu> Menus
+        #region 登录菜单列表 —— ObservableCollection<LoginMenuInfo> LoginMenuInfos
         /// <summary>
-        /// 菜单列表
+        /// 登录菜单列表
         /// </summary>
         [DependencyProperty]
-        public ObservableCollection<Models.Menu> Menus { get; set; }
+        public ObservableCollection<LoginMenuInfo> LoginMenuInfos { get; set; }
         #endregion
 
         #region 只读属性 - 登录信息 —— LoginInfo LoginInfo
@@ -103,27 +101,27 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
         //Initializations
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 初始化 —— override void OnInitialize()
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async void OnInitialize()
+        protected override void OnInitialize()
         {
-            await this.ReloadMenus();
+            this.ReloadMenus();
         }
         #endregion
 
 
         //Actions
 
-        #region 导航至菜单 —— void Navigate(Menu menu)
+        #region 导航至菜单 —— void Navigate(LoginMenuInfo menu)
         /// <summary>
         /// 导航至菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void Navigate(Models.Menu menu)
+        public void Navigate(LoginMenuInfo menu)
         {
-            if (menu.IsLeaf && !string.IsNullOrWhiteSpace(menu.Url))
+            if (!string.IsNullOrWhiteSpace(menu.Url))
             {
                 Type type = Type.GetType(menu.Url);
                 IScreen document = (IScreen)ResolveMediator.Resolve(type);
@@ -216,14 +214,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
         //Private
 
-        #region 加载菜单 —— async Task ReloadMenus()
+        #region 加载菜单 —— void ReloadMenus()
         /// <summary>
         /// 加载菜单
         /// </summary>
-        public async Task ReloadMenus()
+        public void ReloadMenus()
         {
-            IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList("00", ApplicationType.Windows));
-            this.Menus = new ObservableCollection<Models.Menu>(menus);
+            IEnumerable<LoginMenuInfo> loginMenuInfos = this.LoginInfo.LoginMenuInfos.Where(x => x.SystemNo == "00" && x.ApplicationType == ApplicationType.Windows);
+            this.LoginMenuInfos = new ObservableCollection<LoginMenuInfo>(loginMenuInfos);
         }
         #endregion
 

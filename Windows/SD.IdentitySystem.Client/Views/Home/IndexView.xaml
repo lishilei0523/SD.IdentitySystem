@@ -74,11 +74,11 @@
                            PaneHeaderMargin="0">
             <!--Menu-->
             <mah:HamburgerMenu.ItemsSource>
-                <TreeView ItemsSource="{Binding Menus}" 
+                <TreeView ItemsSource="{Binding LoginMenuInfos}" 
                           Style="{StaticResource TreeView.Styles.Menu}" 
                           ItemContainerStyle="{StaticResource TreeViewItem.Styles.Menu}">
                     <TreeView.ItemTemplate>
-                        <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}">
+                        <HierarchicalDataTemplate ItemsSource="{Binding SubMenuInfos}">
                             <WrapPanel Background="Transparent"
                                        cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]">
                                 <iconPacks:PackIconMaterialDesign Kind="{Binding Icon}" />

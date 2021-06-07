@@ -47,10 +47,13 @@ namespace SD.IdentitySystem.Repository.Base
         private readonly IList<Menu> _menus;
 
         /// <summary>
+        /// 权限列表
+        /// </summary>
+        private readonly IList<Authority> _authorities;
+
+        /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="repMediator">仓储中介者</param>
-        /// <param name="unitOfWork">单元事务</param>
         public DataInitializer(RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
         {
             this._repMediator = repMediator;
@@ -59,6 +62,7 @@ namespace SD.IdentitySystem.Repository.Base
             this._users = new List<User>();
             this._roles = new List<Role>();
             this._menus = new List<Menu>();
+            this._authorities = new List<Authority>();
         }
 
         #endregion
@@ -78,6 +82,7 @@ namespace SD.IdentitySystem.Repository.Base
             this.InitRoles();
             this.InitUserRoles();
             this.InitMenus();
+            this.InitRoleAuthorities();
 
             if (this._systems.Any())
             {
@@ -85,6 +90,7 @@ namespace SD.IdentitySystem.Repository.Base
                 this._unitOfWork.RegisterAddRange(this._users);
                 this._unitOfWork.RegisterAddRange(this._roles);
                 this._unitOfWork.RegisterAddRange(this._menus);
+                this._unitOfWork.RegisterAddRange(this._authorities);
 
                 this._unitOfWork.Commit();
             }
@@ -106,7 +112,6 @@ namespace SD.IdentitySystem.Repository.Base
             if (!this._repMediator.UserRep.ExistsNo(CommonConstants.AdminLoginId))
             {
                 User admin = new User(CommonConstants.AdminLoginId, "超级管理员", CommonConstants.InitialPassword);
-
                 this._users.Add(admin);
             }
         }
@@ -120,7 +125,7 @@ namespace SD.IdentitySystem.Repository.Base
         {
             if (this._repMediator.InfoSystemRep.Count() == 0)
             {
-                this._systems.Add(new InfoSystem("00", "身份认证", "identity", ApplicationType.Web));
+                this._systems.Add(new InfoSystem("00", "身份认证", "identity", ApplicationType.Complex));
             }
         }
         #endregion
@@ -147,18 +152,6 @@ namespace SD.IdentitySystem.Repository.Base
             foreach (InfoSystem system in this._systems)
             {
                 Role adminRole = new Role("系统管理员", system.Number, "系统管理员", CommonConstants.ManagerRoleNo);
-
-                #region # 给角色授权
-
-                IEnumerable<Authority> specAuthorities = this._unitOfWork.ResolveAuthorities(system.Number).ToArray();
-
-                if (specAuthorities.Any())
-                {
-                    adminRole.RelateAuthorities(specAuthorities);
-                }
-
-                #endregion
-
                 this._roles.Add(adminRole);
             }
         }
@@ -202,6 +195,7 @@ namespace SD.IdentitySystem.Repository.Base
                 const string systemNo = "00";
                 this.InitMvcMenus(systemNo);
                 this.InitWpfMenus(systemNo);
+                this.InitAngularMenus(systemNo);
             }
         }
         #endregion
@@ -212,6 +206,7 @@ namespace SD.IdentitySystem.Repository.Base
         /// </summary>
         private void InitMvcMenus(string systemNo)
         {
+            //创建菜单
             Menu root = new Menu(systemNo, ApplicationType.Web, "身份认证系统", 1, null, null, null, null);
             Menu systemManagement = new Menu(systemNo, ApplicationType.Web, "信息系统管理", 2, "/InfoSystem/Index", null, null, root);
             Menu userManagement = new Menu(systemNo, ApplicationType.Web, "用户管理", 3, "/User/Index", null, null, root);
@@ -220,6 +215,22 @@ namespace SD.IdentitySystem.Repository.Base
             Menu authorityManagement = new Menu(systemNo, ApplicationType.Web, "权限管理", 6, "/Authority/Index", null, null, root);
             Menu loginRecordManagement = new Menu(systemNo, ApplicationType.Web, "登录记录", 7, "/LoginRecord/Index", null, null, root);
 
+            //创建权限
+            Authority systemManagementIndex = new Authority(systemNo, ApplicationType.Web, "信息系统管理首页", "/InfoSystem/Index", null, null, null, null, null, null);
+            Authority userManagementIndex = new Authority(systemNo, ApplicationType.Web, "用户管理首页", "/User/Index", null, null, null, null, null, null);
+            Authority roleManagementIndex = new Authority(systemNo, ApplicationType.Web, "角色管理首页", "/Role/Index", null, null, null, null, null, null);
+            Authority menuManagementIndex = new Authority(systemNo, ApplicationType.Web, "菜单管理首页", "/Menu/Index", null, null, null, null, null, null);
+            Authority authorityManagementIndex = new Authority(systemNo, ApplicationType.Web, "权限管理首页", "/Authority/Index", null, null, null, null, null, null);
+            Authority loginRecordManagementIndex = new Authority(systemNo, ApplicationType.Web, "登录记录首页", "/LoginRecord/Index", null, null, null, null, null, null);
+
+            //菜单关联权限
+            systemManagement.RelateAuthorities(new[] { systemManagementIndex });
+            userManagement.RelateAuthorities(new[] { userManagementIndex });
+            roleManagement.RelateAuthorities(new[] { roleManagementIndex });
+            menuManagement.RelateAuthorities(new[] { menuManagementIndex });
+            authorityManagement.RelateAuthorities(new[] { authorityManagementIndex });
+            loginRecordManagement.RelateAuthorities(new[] { loginRecordManagementIndex });
+
             this._menus.Add(root);
             this._menus.Add(systemManagement);
             this._menus.Add(loginRecordManagement);
@@ -227,6 +238,13 @@ namespace SD.IdentitySystem.Repository.Base
             this._menus.Add(roleManagement);
             this._menus.Add(menuManagement);
             this._menus.Add(authorityManagement);
+
+            this._authorities.Add(systemManagementIndex);
+            this._authorities.Add(userManagementIndex);
+            this._authorities.Add(roleManagementIndex);
+            this._authorities.Add(menuManagementIndex);
+            this._authorities.Add(authorityManagementIndex);
+            this._authorities.Add(loginRecordManagementIndex);
         }
         #endregion
 
@@ -236,6 +254,7 @@ namespace SD.IdentitySystem.Repository.Base
         /// </summary>
         private void InitWpfMenus(string systemNo)
         {
+            //创建菜单
             Menu root = new Menu(systemNo, ApplicationType.Windows, "身份认证系统", 1, null, null, "Home", null);
             Menu systemManagement = new Menu(systemNo, ApplicationType.Windows, "信息系统管理", 2, "SD.IdentitySystem.Client.ViewModels.InfoSystem.IndexViewModel", null, "LabelOutline", root);
             Menu userManagement = new Menu(systemNo, ApplicationType.Windows, "用户管理", 3, "SD.IdentitySystem.Client.ViewModels.User.IndexViewModel", null, "LabelOutline", root);
@@ -244,6 +263,22 @@ namespace SD.IdentitySystem.Repository.Base
             Menu authorityManagement = new Menu(systemNo, ApplicationType.Windows, "权限管理", 6, "SD.IdentitySystem.Client.ViewModels.Authority.IndexViewModel", null, "LabelOutline", root);
             Menu loginRecordManagement = new Menu(systemNo, ApplicationType.Windows, "登录记录", 7, "SD.IdentitySystem.Client.ViewModels.LoginRecord.IndexViewModel", null, "LabelOutline", root);
 
+            //创建权限
+            Authority systemManagementIndex = new Authority(systemNo, ApplicationType.Windows, "信息系统管理首页", "/InfoSystem/Index", null, null, null, null, null, null);
+            Authority userManagementIndex = new Authority(systemNo, ApplicationType.Windows, "用户管理首页", "/User/Index", null, null, null, null, null, null);
+            Authority roleManagementIndex = new Authority(systemNo, ApplicationType.Windows, "角色管理首页", "/Role/Index", null, null, null, null, null, null);
+            Authority menuManagementIndex = new Authority(systemNo, ApplicationType.Windows, "菜单管理首页", "/Menu/Index", null, null, null, null, null, null);
+            Authority authorityManagementIndex = new Authority(systemNo, ApplicationType.Windows, "权限管理首页", "/Authority/Index", null, null, null, null, null, null);
+            Authority loginRecordManagementIndex = new Authority(systemNo, ApplicationType.Windows, "登录记录首页", "/LoginRecord/Index", null, null, null, null, null, null);
+
+            //菜单关联权限
+            systemManagement.RelateAuthorities(new[] { systemManagementIndex });
+            userManagement.RelateAuthorities(new[] { userManagementIndex });
+            roleManagement.RelateAuthorities(new[] { roleManagementIndex });
+            menuManagement.RelateAuthorities(new[] { menuManagementIndex });
+            authorityManagement.RelateAuthorities(new[] { authorityManagementIndex });
+            loginRecordManagement.RelateAuthorities(new[] { loginRecordManagementIndex });
+
             this._menus.Add(root);
             this._menus.Add(systemManagement);
             this._menus.Add(loginRecordManagement);
@@ -251,6 +286,78 @@ namespace SD.IdentitySystem.Repository.Base
             this._menus.Add(roleManagement);
             this._menus.Add(menuManagement);
             this._menus.Add(authorityManagement);
+
+            this._authorities.Add(systemManagementIndex);
+            this._authorities.Add(userManagementIndex);
+            this._authorities.Add(roleManagementIndex);
+            this._authorities.Add(menuManagementIndex);
+            this._authorities.Add(authorityManagementIndex);
+            this._authorities.Add(loginRecordManagementIndex);
+        }
+        #endregion
+
+        #region # 初始化Angular菜单 —— void InitAngularMenus(string systemNo)
+        /// <summary>
+        /// 初始化Angular菜单
+        /// </summary>
+        private void InitAngularMenus(string systemNo)
+        {
+            //创建菜单
+            Menu root = new Menu(systemNo, ApplicationType.IOS, "身份认证系统", 1, null, null, "Bank", null);
+            Menu systemManagement = new Menu(systemNo, ApplicationType.IOS, "信息系统管理", 2, "/Home/InfoSystem", null, null, root);
+            Menu userManagement = new Menu(systemNo, ApplicationType.IOS, "用户管理", 3, "/Home/User", null, null, root);
+            Menu roleManagement = new Menu(systemNo, ApplicationType.IOS, "角色管理", 4, "/Home/Role", null, null, root);
+            Menu menuManagement = new Menu(systemNo, ApplicationType.IOS, "菜单管理", 5, "/Home/Menu", null, null, root);
+            Menu authorityManagement = new Menu(systemNo, ApplicationType.IOS, "权限管理", 6, "/Home/Authority", null, null, root);
+            Menu loginRecordManagement = new Menu(systemNo, ApplicationType.IOS, "登录记录", 7, "/Home/LoginRecord", null, null, root);
+
+            //创建权限
+            Authority systemManagementIndex = new Authority(systemNo, ApplicationType.IOS, "信息系统管理首页", "/InfoSystem/Index", null, null, null, null, null, null);
+            Authority userManagementIndex = new Authority(systemNo, ApplicationType.IOS, "用户管理首页", "/User/Index", null, null, null, null, null, null);
+            Authority roleManagementIndex = new Authority(systemNo, ApplicationType.IOS, "角色管理首页", "/Role/Index", null, null, null, null, null, null);
+            Authority menuManagementIndex = new Authority(systemNo, ApplicationType.IOS, "菜单管理首页", "/Menu/Index", null, null, null, null, null, null);
+            Authority authorityManagementIndex = new Authority(systemNo, ApplicationType.IOS, "权限管理首页", "/Authority/Index", null, null, null, null, null, null);
+            Authority loginRecordManagementIndex = new Authority(systemNo, ApplicationType.IOS, "登录记录首页", "/LoginRecord/Index", null, null, null, null, null, null);
+
+            //菜单关联权限
+            systemManagement.RelateAuthorities(new[] { systemManagementIndex });
+            userManagement.RelateAuthorities(new[] { userManagementIndex });
+            roleManagement.RelateAuthorities(new[] { roleManagementIndex });
+            menuManagement.RelateAuthorities(new[] { menuManagementIndex });
+            authorityManagement.RelateAuthorities(new[] { authorityManagementIndex });
+            loginRecordManagement.RelateAuthorities(new[] { loginRecordManagementIndex });
+
+            this._menus.Add(root);
+            this._menus.Add(systemManagement);
+            this._menus.Add(loginRecordManagement);
+            this._menus.Add(userManagement);
+            this._menus.Add(roleManagement);
+            this._menus.Add(menuManagement);
+            this._menus.Add(authorityManagement);
+
+            this._authorities.Add(systemManagementIndex);
+            this._authorities.Add(userManagementIndex);
+            this._authorities.Add(roleManagementIndex);
+            this._authorities.Add(menuManagementIndex);
+            this._authorities.Add(authorityManagementIndex);
+            this._authorities.Add(loginRecordManagementIndex);
+        }
+        #endregion
+
+        #region # 初始化角色权限 —— void InitRoleAuthorities()
+        /// <summary>
+        /// 初始化角色权限
+        /// </summary>
+        private void InitRoleAuthorities()
+        {
+            foreach (InfoSystem infoSystem in this._systems)
+            {
+                foreach (Role role in this._roles.Where(x => x.SystemNo == infoSystem.Number))
+                {
+                    IEnumerable<Authority> authorities = this._authorities.Where(x => x.SystemNo == infoSystem.Number);
+                    role.RelateAuthorities(authorities);
+                }
+            }
         }
         #endregion
     }
