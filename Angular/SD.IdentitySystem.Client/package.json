@@ -20,6 +20,7 @@
         "@angular/platform-browser-dynamic": "~11.2.13",
         "@angular/router": "~11.2.13",
         "ng-zorro-antd": "^11.4.1",
+        "primeflex": "^2.0.0",
         "primeicons": "^4.1.0",
         "primeng": "^11.4.2",
         "rxjs": "~6.6.0",

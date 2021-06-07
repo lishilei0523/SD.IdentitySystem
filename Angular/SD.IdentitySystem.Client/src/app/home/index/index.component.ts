@@ -3,6 +3,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {MenuService} from "../../menu/menu.service";
 import {Menu} from "../../menu/menu.model";
 import {Tab} from "../../../values/structs/tab";
+import {Constants} from "../../../values/constants/constants";
 
 /*首页组件*/
 @Component({
@@ -117,6 +118,14 @@ export class IndexComponent implements OnInit {
 
         //刷新Bing可见性
         this.refreshBingVisibility();
+    }
+
+    /**
+     * 注销
+     * */
+    public async logout(): Promise<void> {
+        Constants.loginInfo = null;
+        await this.router.navigate(["/Login"]);
     }
 
     /**

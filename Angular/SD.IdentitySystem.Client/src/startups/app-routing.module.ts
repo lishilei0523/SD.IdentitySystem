@@ -18,18 +18,18 @@ import {IndexComponent as LoginRecordIndexComponent} from '../app/loginRecord/in
 //路由配置
 const routes: Routes = [
     {
-        path: "Home", component: HomeComponent, children: [
-            {path: "InfoSystem", component: InfoSystemIndexComponent},
-            {path: "User", component: UserIndexComponent},
-            {path: "Role", component: RoleIndexComponent},
-            {path: "Menu", component: MenuIndexComponent},
-            {path: "Authority", component: AuthorityIndexComponent},
-            {path: "LoginRecord", component: LoginRecordIndexComponent},
+        path: "Home", component: HomeComponent, canActivate: [AuthenticationGuard], children: [
+            {path: "InfoSystem", component: InfoSystemIndexComponent, canActivate: [AuthenticationGuard]},
+            {path: "User", component: UserIndexComponent, canActivate: [AuthenticationGuard]},
+            {path: "Role", component: RoleIndexComponent, canActivate: [AuthenticationGuard]},
+            {path: "Menu", component: MenuIndexComponent, canActivate: [AuthenticationGuard]},
+            {path: "Authority", component: AuthorityIndexComponent, canActivate: [AuthenticationGuard]},
+            {path: "LoginRecord", component: LoginRecordIndexComponent, canActivate: [AuthenticationGuard]},
         ]
     },
     {path: "Login", component: LoginComponent},
     {path: "Error", component: ErrorComponent},
-    {path: "**", component: HomeComponent}
+    {path: "**", component: HomeComponent, canActivate: [AuthenticationGuard]}
 ];
 
 /*应用程序路由模块*/

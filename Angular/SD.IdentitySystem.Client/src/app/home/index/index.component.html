@@ -19,7 +19,7 @@
                 </a>
                 <nz-dropdown-menu #menu="nzDropdownMenu">
                     <ul nz-menu class="home-header-user-menu">
-                        <li nz-menu-item>
+                        <li nz-menu-item (click)="logout()">
                             <i nz-icon nzType="poweroff" nzTheme="outline"></i>
                             <span>注销登录</span>
                         </li>

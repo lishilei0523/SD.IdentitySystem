@@ -7,6 +7,7 @@ import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzGridModule} from 'ng-zorro-antd/grid';
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
+import {NzSpinModule} from "ng-zorro-antd/spin";
 
 //Angular本地化
 import {registerLocaleData} from '@angular/common';
@@ -16,8 +17,8 @@ registerLocaleData(zh);
 
 /*Ng-Zorro模块*/
 @NgModule({
-    imports: [NzIconModule, NzLayoutModule, NzGridModule, NzMenuModule, NzDropDownModule],
-    exports: [NzIconModule, NzLayoutModule, NzGridModule, NzMenuModule, NzDropDownModule],
+    imports: [NzIconModule, NzLayoutModule, NzGridModule, NzMenuModule, NzDropDownModule, NzSpinModule],
+    exports: [NzIconModule, NzLayoutModule, NzGridModule, NzMenuModule, NzDropDownModule, NzSpinModule],
     providers: [
         {provide: NZ_ICONS, useValue: [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline]},
         {provide: NZ_I18N, useValue: zh_CN}]

@@ -10,6 +10,8 @@ import {UiZorroModule} from './ui-zorro.module';
 import {UiPrimeModule} from './ui-prime.module';
 
 //扩展模块
+import {AppConfigModule} from "./app-config.module";
+import {AppExceptionModule} from "./app-exception.module";
 import {ExtensionModule} from './extension.module';
 
 //路由模块
@@ -53,6 +55,8 @@ import {MenuService} from '../app/menu/menu.service';
         HttpClientModule,
         UiZorroModule,
         UiPrimeModule,
+        AppConfigModule,
+        AppExceptionModule,
         ExtensionModule,
         AppRoutingModule
     ],
