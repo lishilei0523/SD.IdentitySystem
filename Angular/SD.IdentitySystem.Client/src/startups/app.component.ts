@@ -10,7 +10,7 @@ import {PrimeNGConfig} from 'primeng/api';
                          icon="pi pi-exclamation-triangle"
                          rejectButtonStyleClass="p-button-text">
             <ng-template pTemplate="footer">
-                <button type="button" pButton icon="pi pi-check" label="确定" (click)="cd.accept()"></button>
+                <button type="button" pButton pRipple icon="pi pi-check" label="确定" (click)="cd.accept()"></button>
                 <button type="button" pButton pRipple icon="pi pi-times" label="取消" class="p-button-outlined"
                         (click)="cd.reject()"></button>
             </ng-template>
