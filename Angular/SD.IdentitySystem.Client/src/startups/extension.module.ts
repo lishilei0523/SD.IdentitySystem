@@ -1,6 +1,6 @@
 import {NgModule} from '@angular/core';
 import {AuthorityDirective} from "../extentions/authority.directive";
-import {TabRouteReuseStrategy} from "../extentions/tab-route-reuse.strategy";
+import {TabRouteReuseStrategy} from "../extentions/route-reuse.strategy";
 import {ApplicationTypeDescriptor} from '../values/enums/application-type.descriptor';
 
 /*扩展模块*/

@@ -1,6 +1,6 @@
-import {LoginSystemInfo} from "./loginSystemInfo";
-import {LoginMenuInfo} from "./loginMenuInfo";
-import {LoginAuthorityInfo} from "./loginAuthorityInfo";
+import {LoginSystemInfo} from "./login-system-info";
+import {LoginMenuInfo} from "./login-menu-info";
+import {LoginAuthorityInfo} from "./login-authority-info";
 
 /*登录信息*/
 export interface LoginInfo {

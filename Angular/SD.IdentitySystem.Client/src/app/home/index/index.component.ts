@@ -3,8 +3,8 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {ConfirmationService} from 'primeng/api';
 import {Constants} from "../../../values/constants/constants";
 import {Tab} from "../../../values/structs/tab";
-import {LoginMenuInfo} from "../../../values/structs/loginMenuInfo";
-import {LoginInfo} from "../../../values/structs/loginInfo";
+import {LoginMenuInfo} from "../../../values/structs/login-menu-info";
+import {LoginInfo} from "../../../values/structs/login-info";
 import {DialogService} from "primeng/dynamicdialog";
 import {UpdatePasswordComponent} from "../../user/update-password/update-password.component";
 

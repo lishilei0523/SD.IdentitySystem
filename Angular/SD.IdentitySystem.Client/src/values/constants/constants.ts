@@ -1,7 +1,7 @@
-import {LoginInfo} from "../structs/loginInfo";
+import {LoginInfo} from "../structs/login-info";
 import {AppConfig} from "../structs/app-config";
 import {HttpHeaders} from "@angular/common/http";
-import {LoginMenuInfo} from "../structs/loginMenuInfo";
+import {LoginMenuInfo} from "../structs/login-menu-info";
 import {ApplicationType} from "../enums/application-type";
 
 /*常量*/

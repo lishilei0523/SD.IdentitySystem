@@ -3,7 +3,7 @@ import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import {MessageService} from 'primeng/api';
 import {Constants} from "../../../values/constants/constants";
-import {LoginInfo} from "../../../values/structs/loginInfo";
+import {LoginInfo} from "../../../values/structs/login-info";
 import {BaseComponent} from "../../../extentions/base.component";
 import {UserService} from "../../user/user.service";
 

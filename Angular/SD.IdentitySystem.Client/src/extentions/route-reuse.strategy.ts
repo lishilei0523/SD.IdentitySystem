@@ -34,11 +34,7 @@ export class TabRouteReuseStrategy extends RouteReuseStrategy {
             return false;
         } else {
             let snapshot = TabRouteReuseStrategy.snapshots[route.routeConfig.path]
-            if (snapshot) {
-                return true;
-            } else {
-                return false;
-            }
+            return !!snapshot;
         }
     }
 
@@ -48,11 +44,7 @@ export class TabRouteReuseStrategy extends RouteReuseStrategy {
      * @return {boolean}
      */
     public shouldDetach(route: ActivatedRouteSnapshot): boolean {
-        if (route.routeConfig && route.routeConfig.data) {
-            return true;
-        } else {
-            return false;
-        }
+        return !!(route.routeConfig && route.routeConfig.data);
     }
 
     /**
