@@ -87,7 +87,10 @@ export class UpdatePasswordComponent extends BaseComponent implements OnInit {
         this.busy();
 
         let promise: Promise<void> = this.userService.updatePassword(this.loginId, this.oldPassword, this.newPassword);
-        promise.catch(_ => this.idle());
+        promise.catch(_ => {
+            this.idle();
+            this.dialogRef.close(false);
+        });
         await promise;
 
         this.idle();

@@ -1,4 +1,5 @@
 import {Component} from '@angular/core';
+import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import {MessageService} from 'primeng/api';
 import {Constants} from "../../../values/constants/constants";
@@ -68,7 +69,7 @@ export class LoginComponent extends BaseComponent {
      * 自动登录
      * */
     private async autoLogin(): Promise<void> {
-        if (!Constants.appConfig.authenticationEnabled) {
+        if (!environment.production) {
             this.loginId = "admin";
             this.password = "888888";
             await this.login();

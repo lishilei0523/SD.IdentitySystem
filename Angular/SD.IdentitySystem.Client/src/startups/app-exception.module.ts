@@ -31,6 +31,7 @@ export class AppExceptionService implements HttpInterceptor {
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         return next.handle(request).pipe(
             catchError(error => {
+                console.log(error);
                 switch (error.status) {
                     case 401:
                         this.messageService.add({severity: "error", summary: error.error});
@@ -43,6 +44,7 @@ export class AppExceptionService implements HttpInterceptor {
                         this.messageService.add({severity: "error", summary: error.error});
                         return throwError(error);
                     default:
+                        this.messageService.add({severity: "error", summary: error.message});
                         return throwError(error);
                 }
             }));
