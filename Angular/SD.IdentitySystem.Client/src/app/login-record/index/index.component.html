@@ -2,20 +2,31 @@
     <nz-header class="document-header">
         <div>
             <label for="keywords">关键字：</label>
-            <input id="keywords" type="text" pInputText style="height: 35px;"/>
+            <input pInputText id="keywords" type="text" placeholder="用户名/真实姓名" [(ngModel)]="keywords"/>
             <label for="startTime">开始时间：</label>
-            <input id="startTime" type="text" pInputText style="height: 35px;"/>
+            <p-calendar id="startTime" [(ngModel)]="startTime" [showTime]="true" [showIcon]="true"
+                        dateFormat="yy-mm-dd">
+            </p-calendar>
             <label for="endTime">结束时间：</label>
-            <input id="endTime" type="text" pInputText style="height: 35px;"/>
-            <button label="搜索" icon="pi pi-search" iconPos="left" pButton></button>
+            <p-calendar id="endTime" [(ngModel)]="endTime" [showTime]="true" [showIcon]="true"
+                        dateFormat="yy-mm-dd"></p-calendar>
+            <button label="搜索" icon="pi pi-search" iconPos="left" pButton pRipple (click)="loadLoginRecords()"></button>
+            <button label="重置" icon="pi pi-replay" iconPos="left" pButton pRipple class="p-button-outlined" (click)="resetForm()"></button>
         </div>
     </nz-header>
-    <nz-content>
+    <nz-content class="document-content">
         <p-table [value]="loginRecords"
-                 styleClass="p-datatable-sm"
-                 [scrollable]="true" scrollHeight="calc(100vh - 312px)">
+                 [scrollable]="true"
+                 [loading]="isBusy"
+                 [(selection)]="checkedItems"
+                 selectionMode="single"
+                 scrollHeight="calc(100vh - 301px)"
+                 styleClass="p-datatable-sm p-datatable-gridlines">
             <ng-template pTemplate="header">
                 <tr>
+                    <th class="document-content-checkbox">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
                     <th>用户名</th>
                     <th>真实姓名</th>
                     <th>IP地址</th>
@@ -24,6 +35,9 @@
             </ng-template>
             <ng-template pTemplate="body" let-loginRecord>
                 <tr>
+                    <td class="document-content-checkbox">
+                        <p-tableCheckbox [value]="loginRecord"></p-tableCheckbox>
+                    </td>
                     <td>{{loginRecord.loginId}}</td>
                     <td>{{loginRecord.realName}}</td>
                     <td>{{loginRecord.ip}}</td>
@@ -33,7 +47,15 @@
         </p-table>
     </nz-content>
     <nz-footer class="document-footer">
-        <p-paginator [rows]="pageSize"></p-paginator>
+        <p-paginator [first]="1"
+                     [rows]="pageSize"
+                     [totalRecords]="rowCount"
+                     [rowsPerPageOptions]="[15, 20 ,30 ,50]"
+                     [showCurrentPageReport]="true"
+                     currentPageReportTemplate="显示 {first} 到 {last} ，共 {totalRecords} 条记录"
+                     class="document-footer-paginator"
+                     (onPageChange)="paginate($event)">
+        </p-paginator>
     </nz-footer>
 </nz-layout>
 

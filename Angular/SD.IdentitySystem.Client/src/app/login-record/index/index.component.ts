@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {LoginRecordService} from "../login-record.service";
+import {Common} from "../../../extentions/common";
+import {BaseComponent} from "../../../extentions/base.component";
 import {LoginRecord} from "../login-record.model";
+import {LoginRecordService} from "../login-record.service";
 
 /*登录记录首页组件*/
 @Component({
@@ -8,7 +10,7 @@ import {LoginRecord} from "../login-record.model";
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.css']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent extends BaseComponent implements OnInit {
 
     /*登录记录服务*/
     private readonly loginRecordService: LoginRecordService;
@@ -37,28 +39,67 @@ export class IndexComponent implements OnInit {
     /*登录记录列表*/
     public loginRecords: Array<LoginRecord>;
 
+    /*选中项列表*/
+    public checkedItems: Array<LoginRecord>;
+
     /**
      * 创建登录记录首页组件构造器
      * */
     public constructor(loginRecordService: LoginRecordService) {
+        super();
         this.loginRecordService = loginRecordService;
-        this.loginRecords = new Array<LoginRecord>();
         this.keywords = "";
         this.startTime = "";
         this.endTime = "";
         this.pageIndex = 1;
-        this.pageSize = 50;
+        this.pageSize = 15;
         this.rowCount = 0;
         this.pageCount = 0
+        this.loginRecords = new Array<LoginRecord>();
+        this.checkedItems = new Array<LoginRecord>();
     }
 
     /**
      * 初始化组件
      * */
     public async ngOnInit(): Promise<void> {
-        let pageModel = await this.loginRecordService.getLoginRecordsByPage(this.keywords, this.startTime, this.endTime, this.pageIndex, this.pageSize);
+        await this.loadLoginRecords();
+    }
+
+    /**
+     * 分页
+     * */
+    public async paginate(eventAgrs: any): Promise<void> {
+        this.pageIndex = eventAgrs.page + 1;
+        this.pageSize = eventAgrs.rows;
+        await this.loadLoginRecords();
+    }
+
+    /**
+     * 加载登录记录列表
+     * */
+    public async loadLoginRecords(): Promise<void> {
+        this.busy();
+
+        let startTime = Common.formatDate(this.startTime);
+        let endTime = Common.formatDate(this.endTime);
+        let promise = this.loginRecordService.getLoginRecordsByPage(this.keywords, startTime, endTime, this.pageIndex, this.pageSize);
+        promise.catch(_ => this.idle());
+
+        let pageModel = await promise;
         this.rowCount = pageModel.rowCount;
         this.pageCount = pageModel.pageCount;
         this.loginRecords = pageModel.datas;
+
+        this.idle();
+    }
+
+    /**
+     * 重置表单
+     * */
+    public resetForm(): void {
+        this.keywords = "";
+        this.startTime = "";
+        this.endTime = "";
     }
 }

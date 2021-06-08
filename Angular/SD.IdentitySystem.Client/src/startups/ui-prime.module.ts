@@ -4,6 +4,8 @@ import {DialogService} from 'primeng/dynamicdialog';
 import {RippleModule} from "primeng/ripple";
 import {InputTextModule} from 'primeng/inputtext';
 import {PasswordModule} from 'primeng/password';
+import {CalendarModule} from "primeng/calendar";
+import {DropdownModule} from "primeng/dropdown";
 import {ButtonModule} from "primeng/button";
 import {PanelModule} from "primeng/panel";
 import {CardModule} from 'primeng/card';
@@ -21,6 +23,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
         RippleModule,
         InputTextModule,
         PasswordModule,
+        CalendarModule,
+        DropdownModule,
         ButtonModule,
         PanelModule,
         CardModule,
@@ -37,6 +41,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
         RippleModule,
         InputTextModule,
         PasswordModule,
+        CalendarModule,
+        DropdownModule,
         ButtonModule,
         PanelModule,
         CardModule,

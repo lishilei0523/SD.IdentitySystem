@@ -5,26 +5,75 @@
     padding: 0
 }
 
-.document-header label {
-    height: 35px;
-    margin-left: 10px;
-}
-
-.document-header input {
-    height: 35px;
+/deep/
+.document-header label, button, input, optgroup, select, textarea, p-calendar, p-button {
+    line-height: normal !important;
     margin-left: 10px;
 }
 
 .document-header button {
     font-weight: normal;
-    font-size: 14px;
     width: 95px;
+    height: 39px;
+    margin-bottom: 13px;
+}
+
+/*
+.document-header p-calendar {
+    display: inline-block;
     height: 35px;
-    margin: 15px 0 15px 10px;
+    margin-left: 10px;
+}
+
+
+*/
+
+.document-content {
+    /*background: green;*/
+    height: calc(100vh - 258px);
+}
+
+.document-content-checkbox {
+    width: 3rem !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    text-align: center !important;
+}
+
+/deep/
+.document-content .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
+    text-align: center;
+}
+
+/deep/
+.document-content .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
+    padding: 0.5rem 1.5rem;
 }
 
 .document-footer {
-    height: 58px;
+    /*background: red;*/
+    height: 46px;
     margin: 0;
     padding: 0;
+}
+
+.document-footer-paginator {
+    width: 100%;
+}
+
+
+/deep/
+.document-footer-paginator div.p-paginator {
+    justify-content: end;
+    padding: 2px 20px;
+}
+
+/deep/
+.document-footer-paginator .p-paginator .p-dropdown {
+    margin: 0;
+}
+
+/deep/
+.document-footer-paginator .p-inputtext {
+    padding: 0.3rem 0.5rem;
 }
