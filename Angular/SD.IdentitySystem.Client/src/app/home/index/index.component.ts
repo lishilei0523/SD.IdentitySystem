@@ -87,7 +87,6 @@ export class IndexComponent {
             let tab: Tab = new Tab(menu.id, menu.name, menu.url, this.tabs.length + 1, true);
             this.tabs.push(tab);
             this.activeTabIndex = this.tabs.length;
-            console.log("新开");
         }
 
         //刷新Bing可见性

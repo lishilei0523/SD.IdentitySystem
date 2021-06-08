@@ -1,0 +1,30 @@
+.document-header {
+    height: 64px;
+    background: white;
+    margin: 0;
+    padding: 0
+}
+
+.document-header label {
+    height: 35px;
+    margin-left: 10px;
+}
+
+.document-header input {
+    height: 35px;
+    margin-left: 10px;
+}
+
+.document-header button {
+    font-weight: normal;
+    font-size: 14px;
+    width: 95px;
+    height: 35px;
+    margin: 15px 0 15px 10px;
+}
+
+.document-footer {
+    height: 58px;
+    margin: 0;
+    padding: 0;
+}

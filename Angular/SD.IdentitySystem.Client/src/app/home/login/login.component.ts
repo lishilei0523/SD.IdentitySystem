@@ -62,7 +62,6 @@ export class LoginComponent extends BaseComponent {
         await this.router.navigate(["/Home"]);
 
         this.idle();
-        console.log(Constants.loginAuthorityPaths);
     }
 
     /**

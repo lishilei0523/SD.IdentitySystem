@@ -9,10 +9,10 @@ import {Constants} from "../../values/constants/constants";
 })
 export class UserService {
     /*Http客户端*/
-    private httpClient: HttpClient;
+    private readonly httpClient: HttpClient;
 
     /**
-     * 创建用户服务构造器
+     * 依赖注入构造器
      * */
     public constructor(httpClient: HttpClient) {
         this.httpClient = httpClient;

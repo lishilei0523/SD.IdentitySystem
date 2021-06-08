@@ -1,0 +1,44 @@
+<nz-layout>
+    <nz-header class="document-header">
+        <div>
+            <label for="keywords">关键字：</label>
+            <input id="keywords" type="text" pInputText style="height: 35px;"/>
+            <label for="startTime">开始时间：</label>
+            <input id="startTime" type="text" pInputText style="height: 35px;"/>
+            <label for="endTime">结束时间：</label>
+            <input id="endTime" type="text" pInputText style="height: 35px;"/>
+            <button label="搜索" icon="pi pi-search" iconPos="left" pButton></button>
+        </div>
+    </nz-header>
+    <nz-content>
+        <p-table [value]="loginRecords"
+                 styleClass="p-datatable-sm"
+                 [scrollable]="true" scrollHeight="calc(100vh - 312px)">
+            <ng-template pTemplate="header">
+                <tr>
+                    <th>用户名</th>
+                    <th>真实姓名</th>
+                    <th>IP地址</th>
+                    <th>登录时间</th>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="body" let-loginRecord>
+                <tr>
+                    <td>{{loginRecord.loginId}}</td>
+                    <td>{{loginRecord.realName}}</td>
+                    <td>{{loginRecord.ip}}</td>
+                    <td>{{loginRecord.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </nz-content>
+    <nz-footer class="document-footer">
+        <p-paginator [rows]="pageSize"></p-paginator>
+    </nz-footer>
+</nz-layout>
+
+
+
+
+
+

@@ -35,19 +35,17 @@ export class Constants {
         return new Array<string>();
     }
 
-    /*HTTP GET请求选项*/
-    public static get httpGetOptions() {
-        let httpOptions = {};
+    /*HTTP Headers*/
+    public static get httpHeaders() {
+        let headers: HttpHeaders;
         let publicKey: string = Constants.loginInfo == null ? "" : Constants.loginInfo.publicKey;
         if (publicKey) {
-            httpOptions = {
-                headers: new HttpHeaders({
-                    "CurrentPublicKey": publicKey
-                })
-            };
+            headers = new HttpHeaders({"CurrentPublicKey": publicKey});
+        } else {
+            headers = new HttpHeaders();
         }
 
-        return httpOptions;
+        return headers;
     };
 
     /*HTTP POST请求选项*/

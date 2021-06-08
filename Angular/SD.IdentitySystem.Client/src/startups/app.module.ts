@@ -31,6 +31,7 @@ import {IndexComponent as LoginRecordIndexComponent} from '../app/login-record/i
 
 //Angular服务
 import {MenuService} from '../app/menu/menu.service';
+import {LoginRecordService} from "../app/login-record/login-record.service";
 
 /*应用程序模块*/
 @NgModule({
@@ -61,7 +62,7 @@ import {MenuService} from '../app/menu/menu.service';
         AppRoutingModule
     ],
     //提供服务
-    providers: [MenuService],
+    providers: [MenuService, LoginRecordService],
     //启动页
     bootstrap: [AppComponent]
 })

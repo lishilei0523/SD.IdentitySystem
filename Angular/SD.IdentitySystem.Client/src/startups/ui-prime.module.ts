@@ -9,6 +9,8 @@ import {PanelModule} from "primeng/panel";
 import {CardModule} from 'primeng/card';
 import {ToolbarModule} from 'primeng/toolbar';
 import {TabViewModule} from "primeng/tabview";
+import {TableModule} from "primeng/table";
+import {PaginatorModule} from "primeng/paginator";
 import {ToastModule} from "primeng/toast";
 import {ConfirmDialogModule} from "primeng/confirmdialog";
 import {DynamicDialogModule} from 'primeng/dynamicdialog';
@@ -24,6 +26,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
         CardModule,
         ToolbarModule,
         TabViewModule,
+        TableModule,
+        PaginatorModule,
         ToastModule,
         ConfirmDialogModule,
         DynamicDialogModule
@@ -38,6 +42,8 @@ import {DynamicDialogModule} from 'primeng/dynamicdialog';
         CardModule,
         ToolbarModule,
         TabViewModule,
+        TableModule,
+        PaginatorModule,
         ToastModule,
         ConfirmDialogModule,
         DynamicDialogModule,
