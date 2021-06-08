@@ -52,7 +52,7 @@ export class IndexComponent extends BaseComponent implements OnInit {
         this.startTime = "";
         this.endTime = "";
         this.pageIndex = 1;
-        this.pageSize = 15;
+        this.pageSize = 20;
         this.rowCount = 0;
         this.pageCount = 0
         this.loginRecords = new Array<LoginRecord>();

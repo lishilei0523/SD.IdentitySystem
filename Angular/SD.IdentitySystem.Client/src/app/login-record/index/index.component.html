@@ -11,7 +11,8 @@
             <p-calendar id="endTime" [(ngModel)]="endTime" [showTime]="true" [showIcon]="true"
                         dateFormat="yy-mm-dd"></p-calendar>
             <button label="搜索" icon="pi pi-search" iconPos="left" pButton pRipple (click)="loadLoginRecords()"></button>
-            <button label="重置" icon="pi pi-replay" iconPos="left" pButton pRipple class="p-button-outlined" (click)="resetForm()"></button>
+            <button label="重置" icon="pi pi-replay" iconPos="left" pButton pRipple class="p-button-outlined"
+                    (click)="resetForm()"></button>
         </div>
     </nz-header>
     <nz-content class="document-content">
@@ -20,8 +21,17 @@
                  [loading]="isBusy"
                  [(selection)]="checkedItems"
                  selectionMode="single"
-                 scrollHeight="calc(100vh - 301px)"
+                 scrollHeight="calc(100vh - 295px)"
                  styleClass="p-datatable-sm p-datatable-gridlines">
+            <ng-template pTemplate="colgroup" let-columns>
+                <colgroup>
+                    <col style="width: 20px">
+                    <col style="width:130px">
+                    <col style="width:130px">
+                    <col style="width:200px">
+                    <col style="width:200px">
+                </colgroup>
+            </ng-template>
             <ng-template pTemplate="header">
                 <tr>
                     <th class="document-content-checkbox">

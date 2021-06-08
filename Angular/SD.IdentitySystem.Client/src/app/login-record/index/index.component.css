@@ -7,6 +7,7 @@
 
 /deep/
 .document-header label, button, input, optgroup, select, textarea, p-calendar, p-button {
+    display: inline !important;
     line-height: normal !important;
     margin-left: 10px;
 }
@@ -18,18 +19,8 @@
     margin-bottom: 13px;
 }
 
-/*
-.document-header p-calendar {
-    display: inline-block;
-    height: 35px;
-    margin-left: 10px;
-}
-
-
-*/
-
 .document-content {
-    /*background: green;*/
+    background: whitesmoke;
     height: calc(100vh - 258px);
 }
 
@@ -42,12 +33,15 @@
 
 /deep/
 .document-content .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
+    background: whitesmoke;
+    padding: 0.3rem 1.5rem;
+    font-weight: normal;
     text-align: center;
 }
 
 /deep/
 .document-content .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
-    padding: 0.5rem 1.5rem;
+    padding: 0.3rem 1.5rem;
 }
 
 .document-footer {
@@ -60,7 +54,6 @@
 .document-footer-paginator {
     width: 100%;
 }
-
 
 /deep/
 .document-footer-paginator div.p-paginator {
