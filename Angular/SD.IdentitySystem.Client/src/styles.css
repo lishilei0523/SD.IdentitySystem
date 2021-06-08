@@ -1,1 +1,7 @@
-/* You can add global styles to this file, and also import other style files */
+.form-footer {
+    float: right;
+}
+
+.form-footer button {
+    margin: 1.5rem 0 0 0.5rem;
+}

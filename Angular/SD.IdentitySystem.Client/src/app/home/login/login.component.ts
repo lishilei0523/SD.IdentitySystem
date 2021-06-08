@@ -4,7 +4,7 @@ import {MessageService} from 'primeng/api';
 import {Constants} from "../../../values/constants/constants";
 import {LoginInfo} from "../../../values/structs/loginInfo";
 import {BaseComponent} from "../../../extentions/base.component";
-import {HomeService} from "../home.service";
+import {UserService} from "../../user/user.service";
 
 /*登录组件*/
 @Component({
@@ -20,8 +20,8 @@ export class LoginComponent extends BaseComponent {
     /*消息服务*/
     private readonly messageService: MessageService;
 
-    /*首页服务*/
-    private readonly homeService: HomeService;
+    /*用户服务*/
+    private readonly userService: UserService;
 
     /*用户名*/
     public loginId: string;
@@ -32,14 +32,14 @@ export class LoginComponent extends BaseComponent {
     /**
      * 创建登录组件构造器
      * */
-    public constructor(router: Router, messageService: MessageService, homeService: HomeService) {
+    public constructor(router: Router, messageService: MessageService, userService: UserService) {
         //基类构造器
         super();
 
         //依赖注入部分
         this.router = router;
         this.messageService = messageService;
-        this.homeService = homeService;
+        this.userService = userService;
 
         //默认值部分
         this.loginId = "";
@@ -55,12 +55,13 @@ export class LoginComponent extends BaseComponent {
     public async login(): Promise<void> {
         this.busy();
 
-        let promise: Promise<LoginInfo> = this.homeService.login(this.loginId, this.password);
+        let promise: Promise<LoginInfo> = this.userService.login(this.loginId, this.password);
         promise.catch(_ => this.idle());
         Constants.loginInfo = await promise;
         await this.router.navigate(["/Home"]);
 
         this.idle();
+        console.log(Constants.loginAuthorityPaths);
     }
 
     /**

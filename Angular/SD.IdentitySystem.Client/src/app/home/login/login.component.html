@@ -1,30 +1,32 @@
 <div nz-row class="login">
     <div nz-col nzSpan="8"></div>
     <div nz-col nzSpan="8">
-        <nz-spin [nzSpinning]="isBusy">
-            <div class="login-container">
+        <div class="login-container">
+            <nz-spin [nzSpinning]="isBusy">
                 <p-panel header="统一身份认证系统">
                     <div class="login-form">
                         <div class="p-fluid">
                             <div class="p-field p-grid">
-                                <label for="loginId" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">用户名：</label>
-                                <div class="p-col-12 p-md-10">
+                                <label for="loginId" class="p-col-12 p-mb-3 p-md-3 p-mb-md-0">用户名：</label>
+                                <div class="p-col-12 p-md-9">
                                     <input id="loginId" type="text" pInputText [(ngModel)]="loginId"/>
                                 </div>
                             </div>
                             <div class="p-field p-grid">
-                                <label for="password" class="p-col-12 p-mb-2 p-md-2 p-mb-md-0">密码：</label>
-                                <div class="p-col-12 p-md-10">
+                                <label for="password" class="p-col-12 p-mb-3 p-md-3 p-mb-md-0">密码：</label>
+                                <div class="p-col-12 p-md-9">
                                     <p-password id="password" [toggleMask]="true" [feedback]="false"
                                                 [(ngModel)]="password" required minlength="6"></p-password>
                                 </div>
                             </div>
                         </div>
-                        <button pButton type="button" label="登录" class="login-submit" (click)="login()"></button>
+                        <div class="form-footer">
+                            <button pButton type="button" label="登录" class="login-submit" (click)="login()"></button>
+                        </div>
                     </div>
                 </p-panel>
-            </div>
-        </nz-spin>
+            </nz-spin>
+        </div>
     </div>
     <div nz-col nzSpan="8"></div>
 </div>

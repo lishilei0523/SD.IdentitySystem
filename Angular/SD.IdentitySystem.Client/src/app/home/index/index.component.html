@@ -23,7 +23,7 @@
                             <i nz-icon nzType="poweroff" nzTheme="outline"></i>
                             <span>注销登录</span>
                         </li>
-                        <li nz-menu-item>
+                        <li nz-menu-item (click)="updatePassword()">
                             <i nz-icon nzType="lock" nzTheme="outline"></i>
                             <span>修改密码</span>
                         </li>
@@ -90,7 +90,9 @@
             </div>
             <div nz-col nzSpan="12">
                  <span style="float: right;margin-right: 10px;color:#A6AAAE;">
-                     开发及技术支持 —— SlamDunk co.,ltd. 2021年6月4日 23时32分4秒 星期五
+                     <span>开发及技术支持&nbsp;——&nbsp;</span>
+                     <a href="https://gitee.com/lishilei0523" target="_blank">SlamDunk co.,ltd.&nbsp;&nbsp;</a>
+                     <span>{{currentTime | date:"yyyy年MM月dd日 HH时mm分ss秒"}}</span>
                  </span>
             </div>
         </div>

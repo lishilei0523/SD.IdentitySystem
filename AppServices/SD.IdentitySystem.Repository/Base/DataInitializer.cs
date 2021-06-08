@@ -303,7 +303,7 @@ namespace SD.IdentitySystem.Repository.Base
         private void InitAngularMenus(string systemNo)
         {
             //创建菜单
-            Menu root = new Menu(systemNo, ApplicationType.IOS, "身份认证系统", 1, null, null, "Bank", null);
+            Menu root = new Menu(systemNo, ApplicationType.IOS, "身份认证系统", 1, null, null, "bank", null);
             Menu systemManagement = new Menu(systemNo, ApplicationType.IOS, "信息系统管理", 2, "/Home/InfoSystem", null, null, root);
             Menu userManagement = new Menu(systemNo, ApplicationType.IOS, "用户管理", 3, "/Home/User", null, null, root);
             Menu roleManagement = new Menu(systemNo, ApplicationType.IOS, "角色管理", 4, "/Home/Role", null, null, root);

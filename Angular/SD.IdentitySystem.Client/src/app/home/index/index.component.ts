@@ -5,6 +5,8 @@ import {Constants} from "../../../values/constants/constants";
 import {Tab} from "../../../values/structs/tab";
 import {LoginMenuInfo} from "../../../values/structs/loginMenuInfo";
 import {LoginInfo} from "../../../values/structs/loginInfo";
+import {DialogService} from "primeng/dynamicdialog";
+import {UpdatePasswordComponent} from "../../user/update-password/update-password.component";
 
 /*首页组件*/
 @Component({
@@ -22,6 +24,9 @@ export class IndexComponent {
 
     /*确认服务*/
     private readonly confirmService: ConfirmationService;
+
+    /*对话框服务*/
+    public dialogService: DialogService;
 
     /*菜单是否折叠*/
     public menuCollapsed: boolean;
@@ -41,22 +46,29 @@ export class IndexComponent {
     /*活动选项卡索引*/
     public activeTabIndex: number;
 
+    /*当前时间*/
+    public currentTime: string;
+
     /**
      * 创建首页组件构造器
      * */
-    public constructor(router: Router, activatedRoute: ActivatedRoute, confirmService: ConfirmationService) {
+    public constructor(router: Router, activatedRoute: ActivatedRoute, confirmService: ConfirmationService, dialogService: DialogService) {
+
         //依赖注入部分
         this.router = router;
         this.activatedRoute = activatedRoute;
         this.confirmService = confirmService;
+        this.dialogService = dialogService;
 
         //默认值部分
         this.menuCollapsed = false;
         this.bingHidden = false;
         this.loginInfo = Constants.loginInfo;
-        this.menus = Constants.userMenus;
+        this.menus = Constants.loginMenus;
         this.tabs = new Array<any>();
         this.activeTabIndex = 1;
+        this.currentTime = Date();
+        this.initTimer();
     }
 
     /**
@@ -120,7 +132,7 @@ export class IndexComponent {
     }
 
     /**
-     * 注销
+     * 注销登录
      * */
     public async logout(): Promise<void> {
         this.confirmService.confirm({
@@ -129,6 +141,19 @@ export class IndexComponent {
                 Constants.loginInfo = null;
                 await this.router.navigate(["/Login"]);
             }
+        });
+    }
+
+    /**
+     * 修改密码
+     * */
+    public updatePassword(): void {
+        this.dialogService.open(UpdatePasswordComponent, {
+            data: {
+                loginId: this.loginInfo?.loginId
+            },
+            header: "修改密码",
+            width: "480px"
         });
     }
 
@@ -146,5 +171,14 @@ export class IndexComponent {
         for (let tab of this.tabs) {
             tab.selected = false;
         }
+    }
+
+    /**
+     * 初始化计时器
+     * */
+    private initTimer(): void {
+        setInterval(() => {
+            this.currentTime = Date();
+        }, 1000);
     }
 }

@@ -16,38 +16,60 @@ export class Constants {
     /*登录信息*/
     public static loginInfo: LoginInfo | null = null;
 
-    /*用户菜单列表*/
-    public static get userMenus(): Array<LoginMenuInfo> {
+    /*登录菜单列表*/
+    public static get loginMenus(): Array<LoginMenuInfo> {
         if (Constants.loginInfo) {
-            let userMenus = Constants.loginInfo.loginMenuInfos.filter(x => x.systemNo == "00" && x.applicationType == ApplicationType.IOS);
-            Constants.filterLoginMenu(userMenus, 1);
+            let loginMenus = Constants.loginInfo.loginMenuInfos.filter(x => x.systemNo == "00" && x.applicationType == ApplicationType.IOS);
+            Constants.filterLoginMenu(loginMenus, 1);
 
-            return userMenus;
+            return loginMenus;
         }
         return new Array<LoginMenuInfo>();
     }
 
-    /*用户权限列表*/
-    public static get userAuthorityPaths(): Array<string> {
+    /*登录权限列表*/
+    public static get loginAuthorityPaths(): Array<string> {
         if (Constants.loginInfo) {
-            return Constants.loginInfo.loginAuthorityInfos.map(x => x.path);
+            return Constants.loginInfo.loginAuthorityInfos.filter(x => x.systemNo == "00" && x.applicationType == ApplicationType.IOS).map(x => x.path);
         }
         return new Array<string>();
     }
 
-    /*HTTP POST请求选项*/
-    public static readonly httpPostOptions = {
-        headers: new HttpHeaders({
-            "Content-Type": "application/json"
-        })
+    /*HTTP GET请求选项*/
+    public static get httpGetOptions() {
+        let httpOptions = {};
+        let publicKey: string = Constants.loginInfo == null ? "" : Constants.loginInfo.publicKey;
+        if (publicKey) {
+            httpOptions = {
+                headers: new HttpHeaders({
+                    "CurrentPublicKey": publicKey
+                })
+            };
+        }
+
+        return httpOptions;
     };
 
-    /*HTTP POST认证请求选项*/
-    public static readonly httpPostAuthOptions = {
-        headers: new HttpHeaders({
-            "Content-Type": "application/json",
-            "CurrentPublicKey": Constants.loginInfo == null ? "" : Constants.loginInfo.publicKey
-        })
+    /*HTTP POST请求选项*/
+    public static get httpPostOptions() {
+        let httpOptions;
+        let publicKey: string = Constants.loginInfo == null ? "" : Constants.loginInfo.publicKey;
+        if (publicKey) {
+            httpOptions = {
+                headers: new HttpHeaders({
+                    "Content-Type": "application/json",
+                    "CurrentPublicKey": publicKey
+                })
+            };
+        } else {
+            httpOptions = {
+                headers: new HttpHeaders({
+                    "Content-Type": "application/json"
+                })
+            };
+        }
+
+        return httpOptions;
     };
 
     /**
