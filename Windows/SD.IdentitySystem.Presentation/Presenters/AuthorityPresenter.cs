@@ -65,8 +65,8 @@ namespace SD.IdentitySystem.Presentation.Presenters
         public ICollection<Item> GetMenuAuthorityItems(Guid menuId)
         {
             MenuInfo menu = this._authorizationContract.GetMenu(menuId);
-            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, menu.SystemNo, null, null, null).ToArray();
-            AuthorityInfo[] menuSystemAuthorities = this._authorizationContract.GetAuthorities(null, null, null, menu.Id, null).ToArray();
+            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, menu.SystemNo, menu.ApplicationType, null, null).ToArray();
+            AuthorityInfo[] menuSystemAuthorities = this._authorizationContract.GetAuthorities(null, menu.SystemNo, menu.ApplicationType, menu.Id, null).ToArray();
 
             ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
             foreach (Item authorityItem in authorityItems)

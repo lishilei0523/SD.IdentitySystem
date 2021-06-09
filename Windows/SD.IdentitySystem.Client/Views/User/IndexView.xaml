@@ -79,7 +79,7 @@
                     <DataGridTextColumn Header="私钥" Width="330" Binding="{Binding Model.PrivateKey}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="状态" Width="70" 
-                                        Binding="{Binding Model.Enabled, Converter={StaticResource Converters.EnabledConverter}}" 
+                                        Binding="{Binding Model.Enabled, Converter={StaticResource Converters.EnabledDescriptionConverter}}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTemplateColumn Header="创建时间" Width="170">
                         <DataGridTemplateColumn.CellTemplate>

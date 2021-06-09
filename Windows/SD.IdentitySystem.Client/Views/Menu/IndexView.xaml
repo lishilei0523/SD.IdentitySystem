@@ -75,8 +75,9 @@
         <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
             <Grid Background="WhiteSmoke">
                 <sd:TreeListView ItemsSource="{Binding Menus}"
-                                 Style="{StaticResource Menu.TreeListView.Styles}"
-                                 ItemContainerStyle="{StaticResource Menu.TreeListViewItem.Styles}">
+                                 ColumnsDefinition="{StaticResource Menu.TreeListView.ColumnDefinitions}"
+                                 Style="{StaticResource TreeListView.Styles.Default}"
+                                 ItemContainerStyle="{StaticResource TreeListViewItem.Styles.Default}">
                     <sd:TreeListView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}"  />
                     </sd:TreeListView.ItemTemplate>

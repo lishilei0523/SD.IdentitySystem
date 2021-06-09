@@ -2,18 +2,16 @@
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:sd="https://github.com/lishilei0523/SD.Framework">
 
-    <!--TreeListView缩进值转换器-->
+    <!--TreeListView缩进转换器-->
     <sd:TreeListViewIndentConverter x:Key="TreeListView.Converters.IndentConverter" />
-    <!--TreeListView行号值转换器-->
-    <sd:TreeListViewRowIndexConverter x:Key="TreeListView.Converters.RowIndexConverter" />
-    <!--TreeListView背景值转换器-->
-    <sd:TreeListViewBackgroundConverter x:Key="TreeListView.Converters.BackgroundConverter" />
     <!--TreeListView默认样式-->
-    <Style x:Key="TreeListView.Styles.Default" TargetType="{x:Type sd:TreeListView}">
+    <Style x:Key="TreeListView.Styles.Default" TargetType="{x:Type sd:TreeListView}"
+           BasedOn="{StaticResource TreeListView.Styles.Template}">
         <Setter Property="BorderThickness" Value="0" />
     </Style>
     <!--TreeListViewItem默认样式-->
-    <Style x:Key="TreeListViewItem.Styles.Default" TargetType="{x:Type sd:TreeListViewItem}">
+    <Style x:Key="TreeListViewItem.Styles.Default" TargetType="{x:Type sd:TreeListViewItem}"
+           BasedOn="{StaticResource TreeListViewItem.Styles.Template}">
         <Setter Property="Background" Value="White" />
         <Setter Property="BorderBrush" Value="LightGray" />
         <Setter Property="BorderThickness" Value="0,0,0,1" />
@@ -62,10 +60,6 @@
            BasedOn="{StaticResource TreeListView.Styles.Border}">
         <Setter Property="BorderThickness" Value="1,0,1,0" />
     </Style>
-    <!--TreeListView行号列数据模板-->
-    <DataTemplate x:Key="TreeListView.CellTemplates.RowIndex">
-        <TextBlock Text="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type sd:TreeListViewItem}}, Converter={StaticResource TreeListView.Converters.RowIndexConverter}}" />
-    </DataTemplate>
     <!--TreeListView基准列数据模板-->
     <DataTemplate x:Key="TreeListView.CellTemplates.Criterion">
         <Border Style="{StaticResource TreeListView.Styles.Border}">
