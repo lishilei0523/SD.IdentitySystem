@@ -7,16 +7,7 @@
 
 /deep/
 .document-header label, button, input, optgroup, select, textarea, p-calendar, p-button {
-    display: inline !important;
-    line-height: normal !important;
     margin-left: 10px;
-}
-
-.document-header button {
-    font-weight: normal;
-    width: 95px;
-    height: 39px;
-    margin-bottom: 13px;
 }
 
 .document-content {

@@ -1,18 +1,25 @@
 <nz-layout>
     <nz-header class="document-header">
-        <div>
-            <label for="keywords">关键字：</label>
-            <input pInputText id="keywords" type="text" placeholder="用户名/真实姓名" [(ngModel)]="keywords"/>
-            <label for="startTime">开始时间：</label>
-            <p-calendar id="startTime" [(ngModel)]="startTime" [showTime]="true" [showIcon]="true"
-                        dateFormat="yy-mm-dd">
-            </p-calendar>
-            <label for="endTime">结束时间：</label>
-            <p-calendar id="endTime" [(ngModel)]="endTime" [showTime]="true" [showIcon]="true"
-                        dateFormat="yy-mm-dd"></p-calendar>
-            <button label="搜索" icon="pi pi-search" iconPos="left" pButton pRipple (click)="loadLoginRecords()"></button>
-            <button label="重置" icon="pi pi-replay" iconPos="left" pButton pRipple class="p-button-outlined"
-                    (click)="resetForm()"></button>
+        <div nz-row>
+            <div nz-col nzSpan="20">
+                <label for="keywords">关键字：</label>
+                <input pInputText id="keywords" type="text" placeholder="用户名/真实姓名" [(ngModel)]="keywords"/>
+                <label for="startTime">开始时间：</label>
+                <p-calendar id="startTime" [(ngModel)]="startTime" [showTime]="true" [showIcon]="true"
+                            dateFormat="yy-mm-dd">
+                </p-calendar>
+                <label for="endTime">结束时间：</label>
+                <p-calendar id="endTime" [(ngModel)]="endTime" [showTime]="true" [showIcon]="true"
+                            dateFormat="yy-mm-dd"></p-calendar>
+            </div>
+            <div nz-col nzSpan="4">
+                <div style="float:right;padding-right: 20px;">
+                    <button label="搜索" icon="pi pi-search" iconPos="left" pButton pRipple
+                            (click)="loadLoginRecords()"></button>
+                    <button label="重置" icon="pi pi-replay" iconPos="left" pButton pRipple class="p-button-outlined"
+                            (click)="resetForm()"></button>
+                </div>
+            </div>
         </div>
     </nz-header>
     <nz-content class="document-content">

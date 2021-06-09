@@ -1,3 +1,8 @@
+label, button, input, optgroup, select, textarea, p-calendar, p-button {
+    line-height: normal !important;
+    vertical-align: middle !important;
+}
+
 .form-footer {
     float: right;
 }
