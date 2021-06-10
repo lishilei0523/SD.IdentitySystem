@@ -1,5 +1,4 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
@@ -71,11 +70,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         public async Task Load(Guid menuId)
         {
-            MenuInfo menu = await Task.Run(() => this._authorizationContract.Channel.GetMenu(menuId));
-            ICollection<Item> authorityItems = this._authorityPresenter.GetMenuAuthorityItems(menuId);
+            this.MenuId = menuId;
 
-            this.MenuId = menu.Id;
+            ICollection<Item> authorityItems = await Task.Run(() => this._authorityPresenter.GetMenuAuthorityItems(this.MenuId));
             this.AuthorityItems = new ObservableCollection<Item>(authorityItems);
+            this.AuthorityItems.Group();
         }
         #endregion
 

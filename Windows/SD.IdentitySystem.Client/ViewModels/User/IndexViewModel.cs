@@ -292,11 +292,8 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         {
             RelateRoleViewModel viewModel = ResolveMediator.Resolve<RelateRoleViewModel>();
             await viewModel.Load(user.Model.Number);
-            bool? result = this._windowManager.ShowDialog(viewModel);
-            if (result == true)
-            {
-                await this.ReloadUsers();
-            }
+
+            this._windowManager.ShowDialog(viewModel);
         }
         #endregion
 

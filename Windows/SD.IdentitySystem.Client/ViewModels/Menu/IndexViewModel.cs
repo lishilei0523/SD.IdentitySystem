@@ -237,10 +237,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// <param name="menu">菜单</param>
         public async void RelateAuthorities(Models.Menu menu)
         {
-            this.Busy();
             RelateAuthorityViewModel viewModel = ResolveMediator.Resolve<RelateAuthorityViewModel>();
-            await Task.Run(() => viewModel.Load(menu.Id));
-            this.Idle();
+            await viewModel.Load(menu.Id);
 
             this._windowManager.ShowDialog(viewModel);
         }

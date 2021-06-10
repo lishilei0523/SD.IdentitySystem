@@ -1,5 +1,4 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
@@ -65,16 +64,15 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
         //Initializations
 
-        #region 加载 —— async Task Load(Guid menuId)
+        #region 加载 —— async Task Load(string loginId)
         /// <summary>
         /// 加载
         /// </summary>
         public async Task Load(string loginId)
         {
-            UserInfo user = await Task.Run(() => this._userContract.Channel.GetUser(loginId));
-            ICollection<Item> roleItems = this._rolePresenter.GetUserRoleItems(loginId);
+            this.LoginId = loginId;
 
-            this.LoginId = user.Number;
+            ICollection<Item> roleItems = await Task.Run(() => this._rolePresenter.GetUserRoleItems(this.LoginId));
             this.RoleItems = new ObservableCollection<Item>(roleItems);
             this.RoleItems.Group();
         }
