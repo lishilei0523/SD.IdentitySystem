@@ -8,7 +8,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Formatting;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Web.Http;
@@ -54,13 +53,10 @@ namespace SD.IdentitySystem.WebApi.Authentication.Filters
             {
                 if (!context.Request.Headers.TryGetValues(SessionKey.CurrentPublicKey, out IEnumerable<string> headers))
                 {
-                    var message = new { Message = "身份认证消息头不存在，请检查程序！" };
-                    ObjectContent objectContent = new ObjectContent(message.GetType(), message, new JsonMediaTypeFormatter());
                     HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.Unauthorized)
                     {
-                        Content = objectContent
+                        Content = new StringContent("身份认证消息头不存在，请检查程序！")
                     };
-
                     return httpResponseMessage;
                 }
 
@@ -74,13 +70,10 @@ namespace SD.IdentitySystem.WebApi.Authentication.Filters
                     LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
                     if (loginInfo == null)
                     {
-                        var message = new { Message = "身份过期，请重新登录！" };
-                        ObjectContent objectContent = new ObjectContent(message.GetType(), message, new JsonMediaTypeFormatter());
                         HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.Unauthorized)
                         {
-                            Content = objectContent
+                            Content = new StringContent("身份过期，请重新登录！")
                         };
-
                         return httpResponseMessage;
                     }
 

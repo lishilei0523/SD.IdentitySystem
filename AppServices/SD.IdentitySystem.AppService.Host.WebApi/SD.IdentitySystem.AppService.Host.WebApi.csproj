@@ -95,7 +95,7 @@
       <HintPath>..\..\packages\SD.IdentitySystem.Membership.Owin.1.0.0\lib\net461\SD.IdentitySystem.Membership.Owin.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.WebApi.Authentication, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.WebApi.Authentication.1.0.5\lib\net461\SD.IdentitySystem.WebApi.Authentication.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.WebApi.Authentication.1.0.6\lib\net461\SD.IdentitySystem.WebApi.Authentication.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.3.0.3\lib\net46\SD.Infrastructure.dll</HintPath>
@@ -140,7 +140,7 @@
       <HintPath>..\..\packages\SD.Toolkits.Redis.2.0.6\lib\net461\SD.Toolkits.Redis.dll</HintPath>
     </Reference>
     <Reference Include="SD.Toolkits.WebApi, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.1.2\lib\net45\SD.Toolkits.WebApi.dll</HintPath>
+      <HintPath>..\..\packages\SD.Toolkits.WebApi.1.1.3\lib\net45\SD.Toolkits.WebApi.dll</HintPath>
     </Reference>
     <Reference Include="StackExchange.Redis, Version=2.0.0.0, Culture=neutral, PublicKeyToken=c219ff1ca8c2ce46, processorArchitecture=MSIL">
       <HintPath>..\..\packages\StackExchange.Redis.2.1.58\lib\net461\StackExchange.Redis.dll</HintPath>

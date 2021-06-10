@@ -47,7 +47,7 @@ namespace SD.IdentitySystem.AppService.Host
                 options.IncludeXmlComments(xmlFilePath);
             });
 
-            //添加过滤器
+            //添加过滤器及Camel命名设置
             services.AddControllers(options =>
             {
                 options.Filters.Add<WebApiAuthenticationFilter>();
