@@ -124,11 +124,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         public async void LoadMenus()
         {
-            this.Busy();
-
             await this.ReloadMenus();
-
-            this.Idle();
         }
         #endregion
 
@@ -155,7 +151,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         public async void UpdateMenu(Models.Menu menu)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            await viewModel.Load(menu.Id);
+            await viewModel.Load(menu);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
@@ -253,11 +249,15 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         private async Task ReloadMenus()
         {
+            this.Busy();
+
             string infoSystemNo = this.SelectedInfoSystem?.Number;
             ApplicationType? applicationType = this.SelectedApplicationType;
 
             IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
             this.Menus = new ObservableCollection<Models.Menu>(menus);
+
+            this.Idle();
         }
         #endregion
 

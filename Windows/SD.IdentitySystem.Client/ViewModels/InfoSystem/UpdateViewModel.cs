@@ -63,14 +63,13 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
         //Initializations
 
-        #region 加载 —— async Task Load(string infoSystemNo)
+        #region 加载 —— void Load(InfoSystemInfo infoSystem)
         /// <summary>
         /// 加载
         /// </summary>
-        /// <param name="infoSystemNo">信息系统编号</param>
-        public async Task Load(string infoSystemNo)
+        /// <param name="infoSystem">信息系统</param>
+        public void Load(InfoSystemInfo infoSystem)
         {
-            InfoSystemInfo infoSystem = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystem(infoSystemNo));
             this.InfoSystemId = infoSystem.Id;
             this.InfoSystemNo = infoSystem.Number;
             this.InfoSystemName = infoSystem.Name;

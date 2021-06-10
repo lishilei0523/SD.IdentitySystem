@@ -144,11 +144,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// </summary>
         public async void LoadRoles()
         {
-            this.Busy();
-
             await this.ReloadRoles();
-
-            this.Idle();
         }
         #endregion
 
@@ -176,7 +172,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         {
             this.Busy();
             UpdateViewModel viewModel = await Task.Run(ResolveMediator.Resolve<UpdateViewModel>);
-            await viewModel.Load(role.Model.Id);
+            await viewModel.Load(role.Model);
             this.Idle();
 
             bool? result = this._windowManager.ShowDialog(viewModel);
@@ -267,12 +263,16 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// </summary>
         private async Task ReloadRoles()
         {
+            this.Busy();
+
             PageModel<RoleInfo> pageModel = await Task.Run(() => this._authorizationContract.Channel.GetRolesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<RoleInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.Roles = new ObservableCollection<Wrap<RoleInfo>>(wrapModels);
+
+            this.Idle();
         }
         #endregion
 

@@ -150,11 +150,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public async void LoadUsers()
         {
-            this.Busy();
-
             await this.ReloadUsers();
-
-            this.Idle();
         }
         #endregion
 
@@ -275,7 +271,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         public async void ResetPrivateKey(Wrap<UserInfo> user)
         {
             ResetPrivateKeyViewModel viewModel = ResolveMediator.Resolve<ResetPrivateKeyViewModel>();
-            await viewModel.Load(user.Model.Number);
+            viewModel.Load(user.Model);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
@@ -326,12 +322,16 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public async Task ReloadUsers()
         {
+            this.Busy();
+
             PageModel<UserInfo> pageModel = await Task.Run(() => this._userContract.Channel.GetUsersByPage(this.Keywords, this.SelectedInfoSystem?.Number, null, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<UserInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.Users = new ObservableCollection<Wrap<UserInfo>>(wrapModels);
+
+            this.Idle();
         }
         #endregion
 

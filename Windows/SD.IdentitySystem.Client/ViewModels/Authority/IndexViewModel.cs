@@ -162,11 +162,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         public async void LoadAuthorities()
         {
-            this.Busy();
-
             await this.ReloadAuthorities();
-
-            this.Idle();
         }
         #endregion
 
@@ -193,7 +189,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public async void UpdateAuthority(Wrap<AuthorityInfo> authority)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            await viewModel.Load(authority.Model.Id);
+            viewModel.Load(authority.Model);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
@@ -282,12 +278,16 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         private async Task ReloadAuthorities()
         {
+            this.Busy();
+
             PageModel<AuthorityInfo> pageModel = await Task.Run(() => this._authorizationContract.Channel.GetAuthoritiesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.SelectedApplicationType, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<AuthorityInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.Authorities = new ObservableCollection<Wrap<AuthorityInfo>>(wrapModels);
+
+            this.Idle();
         }
         #endregion
 

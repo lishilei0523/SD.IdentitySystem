@@ -126,14 +126,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
         //Initializations
 
-        #region 加载 —— async Task Load(Guid authorityId)
+        #region 加载 —— void Load(AuthorityInfo authority)
         /// <summary>
         /// 加载
         /// </summary>
-        public async Task Load(Guid authorityId)
+        /// <param name="authority">权限</param>
+        public void Load(AuthorityInfo authority)
         {
-            AuthorityInfo authority = await Task.Run(() => this._authorizationContract.Channel.GetAuthority(authorityId));
-
             this.InfoSystemName = authority.InfoSystemInfo.Name;
             this.AuthorityId = authority.Id;
             this.AuthorityName = authority.Name;

@@ -124,11 +124,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// </summary>
         public async void LoadInfoSystems()
         {
-            this.Busy();
-
             await this.ReloadInfoSystems();
-
-            this.Idle();
         }
         #endregion
 
@@ -155,7 +151,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         public async void UpdateInfoSystem(Wrap<InfoSystemInfo> infoSystem)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            await viewModel.Load(infoSystem.Model.Number);
+            viewModel.Load(infoSystem.Model);
 
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
@@ -173,7 +169,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         public async void InitInfoSystem(Wrap<InfoSystemInfo> infoSystem)
         {
             InitViewModel viewModel = ResolveMediator.Resolve<InitViewModel>();
-            await viewModel.Load(infoSystem.Model.Number);
+            viewModel.Load(infoSystem.Model);
 
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
@@ -212,12 +208,16 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// </summary>
         private async Task ReloadInfoSystems()
         {
+            this.Busy();
+
             PageModel<InfoSystemInfo> pageModel = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystemsByPage(this.Keywords, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<InfoSystemInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.InfoSystems = new ObservableCollection<Wrap<InfoSystemInfo>>(wrapModels);
+
+            this.Idle();
         }
         #endregion
 

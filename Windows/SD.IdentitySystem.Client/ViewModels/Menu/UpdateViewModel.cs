@@ -8,6 +8,7 @@ using System;
 using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
+using Models = SD.IdentitySystem.Presentation.Models;
 
 namespace SD.IdentitySystem.Client.ViewModels.Menu
 {
@@ -109,20 +110,20 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
         //Initializations
 
-        #region 加载 —— async Task Load(Guid menuId)
+        #region 加载 —— async Task Load(Menu menu)
         /// <summary>
         /// 加载
         /// </summary>
-        public async Task Load(Guid menuId)
+        /// <param name="menu">菜单</param>
+        public async Task Load(Models.Menu menu)
         {
             IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
-            MenuInfo menu = await Task.Run(() => authorizationContract.GetMenu(menuId));
             MenuInfo parentMenu = menu.ParentMenuId.HasValue
                 ? await Task.Run(() => authorizationContract.GetMenu(menu.ParentMenuId.Value))
                 : null;
 
             this.MenuId = menu.Id;
-            this.InfoSystemName = menu.InfoSystemInfo.Name;
+            this.InfoSystemName = menu.SystemName;
             this.ApplicationType = menu.ApplicationType;
             this.ParentMenuName = parentMenu?.Name;
             this.MenuName = menu.Name;

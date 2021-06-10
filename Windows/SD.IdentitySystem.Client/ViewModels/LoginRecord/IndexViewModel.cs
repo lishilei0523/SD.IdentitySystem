@@ -133,11 +133,7 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         /// </summary>
         public async void LoadLoginRecords()
         {
-            this.Busy();
-
             await this.ReloadLoginRecords();
-
-            this.Idle();
         }
         #endregion
 
@@ -170,12 +166,16 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         /// </summary>
         private async Task ReloadLoginRecords()
         {
+            this.Busy();
+
             PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.Channel.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
             IEnumerable<Wrap<LoginRecordInfo>> wrapModels = pageModel.Datas.Select(x => x.Wrap());
             this.LoginRecords = new ObservableCollection<Wrap<LoginRecordInfo>>(wrapModels);
+
+            this.Idle();
         }
         #endregion
 

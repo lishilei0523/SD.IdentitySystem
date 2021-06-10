@@ -89,14 +89,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
         //Initializations
 
-        #region 加载 —— async Task Load(Guid roleId)
+        #region 加载 —— async Task Load(RoleInfo role)
         /// <summary>
         /// 加载
         /// </summary>
-        public async Task Load(Guid roleId)
+        public async Task Load(RoleInfo role)
         {
-            RoleInfo role = await Task.Run(() => this._authorizationContract.Channel.GetRole(roleId));
-            ICollection<Item> authorityItems = await Task.Run(() => this._authorityPresenter.GetRoleAuthorityItems(roleId));
+            ICollection<Item> authorityItems = await Task.Run(() => this._authorityPresenter.GetRoleAuthorityItems(role.Id));
 
             this.InfoSystemName = role.InfoSystemInfo.Name;
             this.RoleId = role.Id;

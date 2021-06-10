@@ -54,15 +54,14 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
         //Initializations
 
-        #region 加载 —— async Task Load(string loginId)
+        #region 加载 —— void Load(UserInfo user)
         /// <summary>
         /// 加载
         /// </summary>
-        /// <param name="loginId">用户名</param>
-        public async Task Load(string loginId)
+        /// <param name="user">用户</param>
+        public void Load(UserInfo user)
         {
-            UserInfo user = await Task.Run(() => this._userContract.Channel.GetUser(loginId));
-            this.LoginId = loginId;
+            this.LoginId = user.Number;
             this.PrivateKey = user.PrivateKey;
         }
         #endregion
