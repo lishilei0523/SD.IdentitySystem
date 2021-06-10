@@ -110,9 +110,10 @@ namespace SD.IdentitySystem.Presentation.Implements
 
             //获取菜单所在信息系统的权限树
             Node authroityTree = this.GetAuthorityTree(currentMenu.SystemNo, currentMenu.ApplicationType);
+            IEnumerable<Node> authroityNodes = authroityTree.children.SelectMany(x => x.children);
 
             //遍历子节点集（权限集）
-            foreach (Node node in authroityTree.children)
+            foreach (Node node in authroityNodes)
             {
                 //如果菜单中含有该权限，则选中
                 if (menuAuthorities.Any(x => x.Id == node.id))
