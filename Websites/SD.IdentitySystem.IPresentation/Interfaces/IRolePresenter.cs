@@ -21,32 +21,6 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         Role GetRole(Guid roleId);
         #endregion
 
-        #region # 获取角色列表 —— IEnumerable<Role> GetRoles(string systemNo)
-        /// <summary>
-        /// 获取角色列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>角色列表</returns>
-        IEnumerable<Role> GetRoles(string systemNo);
-        #endregion
-
-        #region # 获取用户角色列表 —— IEnumerable<Role> GetUserRoles(string loginId)
-        /// <summary>
-        /// 获取用户角色列表
-        /// </summary>
-        /// <param name="loginId">用户登录名</param>
-        /// <returns>角色列表</returns>
-        IEnumerable<Role> GetUserRoles(string loginId);
-        #endregion
-
-        #region # 获取信息系统/角色树 —— IEnumerable<Node> GetInfoSystemRoleTree()
-        /// <summary>
-        /// 获取信息系统/角色树
-        /// </summary>
-        /// <returns>信息系统/角色树</returns>
-        IEnumerable<Node> GetSystemRoleTree();
-        #endregion
-
         #region # 获取用户的信息系统/角色树 —— IEnumerable<Node> GetUserSystemRoleTree(string loginId)
         /// <summary>
         /// 获取用户的信息系统/角色树

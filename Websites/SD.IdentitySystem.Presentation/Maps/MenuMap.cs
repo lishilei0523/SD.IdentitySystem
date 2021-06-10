@@ -18,8 +18,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单模型映射
         /// </summary>
-        /// <param name="menuInfo">菜单数据传输对象</param>
-        /// <returns>菜单模型</returns>
         public static Menu ToModel(this MenuInfo menuInfo)
         {
             Menu menu = menuInfo.Map<MenuInfo, Menu>();
@@ -34,8 +32,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单EasyUI树节点映射
         /// </summary>
-        /// <param name="menu">菜单模型</param>
-        /// <returns>EasyUI树节点</returns>
         public static Node ToNode(this Menu menu)
         {
             var attributes = new
@@ -52,9 +48,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单EasyUI树集合映射
         /// </summary>
-        /// <param name="menus">菜单模型集</param>
-        /// <param name="parentId">父级菜单Id</param>
-        /// <returns>EasyUI树集合</returns>
         public static ICollection<Node> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
         {
             //验证
@@ -97,8 +90,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单EasyUI TreeGrid映射
         /// </summary>
-        /// <param name="menus">菜单模型集</param>
-        /// <returns>TreeGrid</returns>
         public static IEnumerable<Menu> ToTreeGrid(this IEnumerable<Menu> menus)
         {
             Menu[] allMenus = menus?.ToArray() ?? new Menu[0];

@@ -10,15 +10,6 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
     /// </summary>
     public interface IUserPresenter : IPresenter
     {
-        #region # 获取用户 —— User GetUser(string loginId)
-        /// <summary>
-        /// 获取用户
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <returns>用户</returns>
-        User GetUser(string loginId);
-        #endregion
-
         #region # 分页获取用户列表 —— PageModel<User> GetUsersByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表

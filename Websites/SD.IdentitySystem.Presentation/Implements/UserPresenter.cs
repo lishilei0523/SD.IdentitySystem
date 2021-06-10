@@ -33,20 +33,6 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 获取用户 —— User GetUser(string loginId)
-        /// <summary>
-        /// 获取用户
-        /// </summary>
-        /// <param name="loginId">登录名</param>
-        /// <returns>用户</returns>
-        public User GetUser(string loginId)
-        {
-            UserInfo userInfo = this._userContract.GetUser(loginId);
-
-            return userInfo.ToModel();
-        }
-        #endregion
-
         #region # 分页获取用户列表 —— PageModel<User> GetUsersByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表

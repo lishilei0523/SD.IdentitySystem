@@ -14,8 +14,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 角色模型映射
         /// </summary>
-        /// <param name="roleInfo">角色数据传输对象</param>
-        /// <returns>角色模型</returns>
         public static Role ToModel(this RoleInfo roleInfo)
         {
             Role role = roleInfo.Map<RoleInfo, Role>();
@@ -30,8 +28,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 角色EasyUI树节点映射
         /// </summary>
-        /// <param name="role">角色模型</param>
-        /// <returns>EasyUI树节点</returns>
         public static Node ToNode(this Role role)
         {
             var attributes = new

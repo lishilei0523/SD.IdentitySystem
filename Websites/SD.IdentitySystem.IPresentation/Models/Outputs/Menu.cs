@@ -1,7 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using SD.Infrastructure.PresentationBase;
+﻿using SD.Infrastructure.PresentationBase;
 using SD.Toolkits.EasyUI;
+using System;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.IPresentation.Models.Outputs
 {
@@ -63,9 +63,9 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
         public int Sort { get; set; }
         #endregion
 
-        #region 父级菜单Id —— Guid? ParentMenuId
+        #region 上级菜单Id —— Guid? ParentMenuId
         /// <summary>
-        /// 父级菜单Id
+        /// 上级菜单Id
         /// </summary>
         public Guid? ParentMenuId { get; set; }
         #endregion
@@ -101,9 +101,9 @@ namespace SD.IdentitySystem.IPresentation.Models.Outputs
         public string type { get; set; }
         #endregion
 
-        #region 导航属性 - 子级菜单集 —— ICollection<Menu> children
+        #region 导航属性 - 下级菜单集 —— ICollection<Menu> children
         /// <summary>
-        /// 导航属性 - 子级菜单集
+        /// 导航属性 - 下级菜单集
         /// </summary>
         public ICollection<Menu> children { get; set; }
         #endregion

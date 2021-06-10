@@ -13,8 +13,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 用户模型映射
         /// </summary>
-        /// <param name="userInfo">用户数据传输对象</param>
-        /// <returns>用户模型</returns>
         public static User ToModel(this UserInfo userInfo)
         {
             User user = userInfo.Map<UserInfo, User>();
@@ -27,8 +25,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 用户登录记录模型映射
         /// </summary>
-        /// <param name="loginRecordInfo">用户登录记录数据传输对象</param>
-        /// <returns>登录记录模型</returns>
         public static LoginRecord ToModel(this LoginRecordInfo loginRecordInfo)
         {
             LoginRecord loginRecord = loginRecordInfo.Map<LoginRecordInfo, LoginRecord>();

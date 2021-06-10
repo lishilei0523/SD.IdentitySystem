@@ -15,8 +15,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 权限模型映射
         /// </summary>
-        /// <param name="authorityInfo">权限数据传输对象</param>
-        /// <returns>权限模型</returns>
         public static Authority ToModel(this AuthorityInfo authorityInfo)
         {
             Authority authority = authorityInfo.Map<AuthorityInfo, Authority>();
@@ -31,8 +29,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 权限EasyUI树节点映射
         /// </summary>
-        /// <param name="authority">权限模型</param>
-        /// <returns>EasyUI树节点</returns>
         public static Node ToNode(this Authority authority)
         {
             var attributes = new

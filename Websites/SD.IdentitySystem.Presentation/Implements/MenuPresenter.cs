@@ -4,7 +4,6 @@ using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
@@ -53,22 +52,6 @@ namespace SD.IdentitySystem.Presentation.Implements
             MenuInfo menuInfo = this._authorizationContract.GetMenu(menuId);
 
             return menuInfo.ToModel();
-        }
-        #endregion
-
-        #region # 获取菜单列表 —— IEnumerable<Menu> GetMenus(string systemNo...
-        /// <summary>
-        /// 获取菜单列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="applicationType">应用程序类型</param>
-        /// <returns>菜单列表</returns>
-        public IEnumerable<Menu> GetMenus(string systemNo, ApplicationType? applicationType)
-        {
-            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.GetMenus(systemNo, applicationType);
-            IEnumerable<Menu> menus = menuInfos.OrderBy(x => x.Sort).Select(x => x.ToModel());
-
-            return menus;
         }
         #endregion
 
@@ -123,23 +106,22 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 分页获取菜单列表 —— PageModel<Menu> GetMenusByPage(string keywords...
+
+        //Private
+
+        #region # 获取菜单列表 —— IEnumerable<Menu> GetMenus(string systemNo...
         /// <summary>
-        /// 分页获取菜单列表
+        /// 获取菜单列表
         /// </summary>
-        /// <param name="keywords">关键字</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
         /// <returns>菜单列表</returns>
-        public PageModel<Menu> GetMenusByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
+        private IEnumerable<Menu> GetMenus(string systemNo, ApplicationType? applicationType)
         {
-            PageModel<MenuInfo> pageModel = this._authorizationContract.GetMenusByPage(keywords, systemNo, applicationType, pageIndex, pageSize);
+            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.GetMenus(systemNo, applicationType);
+            IEnumerable<Menu> menus = menuInfos.OrderBy(x => x.Sort).Select(x => x.ToModel());
 
-            IEnumerable<Menu> menus = pageModel.Datas.Select(x => x.ToModel());
-
-            return new PageModel<Menu>(menus, pageIndex, pageSize, pageModel.PageCount, pageModel.RowCount);
+            return menus;
         }
         #endregion
     }

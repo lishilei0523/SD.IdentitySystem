@@ -3,7 +3,9 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IPresentation.Models.Outputs;
 using SD.Toolkits.EasyUI;
 using SD.Toolkits.Mapper;
+using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SD.IdentitySystem.Presentation.Maps
 {
@@ -16,8 +18,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 信息系统模型映射
         /// </summary>
-        /// <param name="systemInfo">信息系统数据传输对象</param>
-        /// <returns>信息系统模型</returns>
         public static InfoSystem ToModel(this InfoSystemInfo systemInfo)
         {
             InfoSystem infoSystem = systemInfo.Map<InfoSystemInfo, InfoSystem>();
@@ -32,9 +32,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 信息系统/权限EasyUI树节点映射
         /// </summary>
-        /// <param name="infoSystem">信息系统模型</param>
-        /// <param name="authorities">权限列表</param>
-        /// <returns>EasyUI树节点</returns>
         public static Node ToNode(this InfoSystem infoSystem, IEnumerable<Authority> authorities)
         {
             var attributes = new
@@ -43,12 +40,14 @@ namespace SD.IdentitySystem.Presentation.Maps
             };
 
             Node systemNode = new Node(infoSystem.Id, infoSystem.Name, "open", false, attributes);
-
-            foreach (Authority authority in authorities)
+            IEnumerable<IGrouping<string, Authority>> authoritiesGroups = authorities.GroupBy(x => x.ApplicationType);
+            foreach (IGrouping<string, Authority> authoritiesGroup in authoritiesGroups)
             {
-                if (authority.SystemNo == infoSystem.Number)
+                Node applicationTypeNode = new Node(Guid.Empty, authoritiesGroup.Key, "open", false, attributes);
+                systemNode.children.Add(applicationTypeNode);
+                foreach (Authority authority in authoritiesGroup)
                 {
-                    systemNode.children.Add(authority.ToNode());
+                    applicationTypeNode.children.Add(authority.ToNode());
                 }
             }
 
@@ -60,9 +59,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 信息系统/角色EasyUI树节点映射
         /// </summary>
-        /// <param name="infoSystem">信息系统模型</param>
-        /// <param name="roles">角色列表</param>
-        /// <returns>EasyUI树节点</returns>
         public static Node ToNode(this InfoSystem infoSystem, IEnumerable<Role> roles)
         {
             var attributes = new

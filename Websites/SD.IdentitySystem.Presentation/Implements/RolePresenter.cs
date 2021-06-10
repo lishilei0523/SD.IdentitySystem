@@ -55,60 +55,6 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 获取角色列表 —— IEnumerable<Role> GetRoles(string systemNo)
-        /// <summary>
-        /// 获取角色列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>角色列表</returns>
-        public IEnumerable<Role> GetRoles(string systemNo)
-        {
-            IEnumerable<RoleInfo> roleInfos = this._authorizationContract.GetRoles(null, null, systemNo);
-
-            IEnumerable<Role> roles = roleInfos.Select(x => x.ToModel());
-
-            return roles;
-        }
-        #endregion
-
-        #region # 获取用户角色列表 —— IEnumerable<Role> GetUserRoles(string loginId)
-        /// <summary>
-        /// 获取用户角色列表
-        /// </summary>
-        /// <param name="loginId">用户登录名</param>
-        /// <returns>角色列表</returns>
-        public IEnumerable<Role> GetUserRoles(string loginId)
-        {
-            IEnumerable<RoleInfo> roleInfos = this._userContract.GetUserRoles(loginId, null);
-            IEnumerable<Role> roles = roleInfos.Select(x => x.ToModel());
-
-            return roles;
-        }
-        #endregion
-
-        #region # 获取信息系统/角色树 —— IEnumerable<Node> GetSystemRoleTree()
-        /// <summary>
-        /// 获取信息系统/角色树
-        /// </summary>
-        /// <returns>信息系统/角色树</returns>
-        public IEnumerable<Node> GetSystemRoleTree()
-        {
-            IEnumerable<InfoSystemInfo> systems = this._authorizationContract.GetInfoSystems();
-
-            IList<Node> tree = new List<Node>();
-
-            foreach (InfoSystemInfo system in systems)
-            {
-                IEnumerable<Role> roles = this.GetRoles(system.Number);
-
-                Node node = system.ToModel().ToNode(roles);
-                tree.Add(node);
-            }
-
-            return tree;
-        }
-        #endregion
-
         #region # 获取用户的信息系统/角色树 —— IEnumerable<Node> GetUserSystemRoleTree(string loginId)
         /// <summary>
         /// 获取用户的信息系统/角色树
@@ -153,10 +99,63 @@ namespace SD.IdentitySystem.Presentation.Implements
         public PageModel<Role> GetRolesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
         {
             PageModel<RoleInfo> pageModel = this._authorizationContract.GetRolesByPage(keywords, systemNo, pageIndex, pageSize);
-
             IEnumerable<Role> roles = pageModel.Datas.Select(x => x.ToModel());
 
             return new PageModel<Role>(roles, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+        }
+        #endregion
+
+
+        //Private
+
+        #region # 获取角色列表 —— IEnumerable<Role> GetRoles(string systemNo)
+        /// <summary>
+        /// 获取角色列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <returns>角色列表</returns>
+        private IEnumerable<Role> GetRoles(string systemNo)
+        {
+            IEnumerable<RoleInfo> roleInfos = this._authorizationContract.GetRoles(null, null, systemNo);
+            IEnumerable<Role> roles = roleInfos.Select(x => x.ToModel());
+
+            return roles;
+        }
+        #endregion
+
+        #region # 获取用户角色列表 —— IEnumerable<Role> GetUserRoles(string loginId)
+        /// <summary>
+        /// 获取用户角色列表
+        /// </summary>
+        /// <param name="loginId">用户登录名</param>
+        /// <returns>角色列表</returns>
+        private IEnumerable<Role> GetUserRoles(string loginId)
+        {
+            IEnumerable<RoleInfo> roleInfos = this._userContract.GetUserRoles(loginId, null);
+            IEnumerable<Role> roles = roleInfos.Select(x => x.ToModel());
+
+            return roles;
+        }
+        #endregion
+
+        #region # 获取信息系统/角色树 —— IEnumerable<Node> GetSystemRoleTree()
+        /// <summary>
+        /// 获取信息系统/角色树
+        /// </summary>
+        /// <returns>信息系统/角色树</returns>
+        private IEnumerable<Node> GetSystemRoleTree()
+        {
+            IEnumerable<InfoSystemInfo> systems = this._authorizationContract.GetInfoSystems();
+            IList<Node> tree = new List<Node>();
+            foreach (InfoSystemInfo system in systems)
+            {
+                IEnumerable<Role> roles = this.GetRoles(system.Number);
+
+                Node node = system.ToModel().ToNode(roles);
+                tree.Add(node);
+            }
+
+            return tree;
         }
         #endregion
     }

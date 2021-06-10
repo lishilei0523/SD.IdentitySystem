@@ -49,61 +49,17 @@ namespace SD.IdentitySystem.Presentation.Implements
         }
         #endregion
 
-        #region # 根据信息系统获取权限列表 —— IEnumerable<Authority> GetAuthoritiesBySystem(...
-        /// <summary>
-        /// 根据信息系统获取权限列表
-        /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <returns>权限列表</returns>
-        public IEnumerable<Authority> GetAuthoritiesBySystem(string systemNo)
-        {
-            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, systemNo, null, null, null);
-            IEnumerable<Authority> authorities = authorityInfos.Select(x => x.ToModel());
-
-            return authorities;
-        }
-        #endregion
-
-        #region # 根据菜单获取权限列表 —— IEnumerable<Authority> GetAuthoritiesByMenu(...
-        /// <summary>
-        /// 根据菜单获取权限列表
-        /// </summary>
-        /// <param name="menuId">菜单Id</param>
-        /// <returns>权限列表</returns>
-        public IEnumerable<Authority> GetAuthoritiesByMenu(Guid menuId)
-        {
-            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, null, null, menuId, null);
-            IEnumerable<Authority> authorities = authorityInfos.Select(x => x.ToModel());
-
-            return authorities;
-        }
-        #endregion
-
-        #region # 根据角色获取权限列表 —— IEnumerable<Authority> GetAuthoritiesByRole(...
-        /// <summary>
-        /// 根据角色获取权限列表
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        /// <returns>权限列表</returns>
-        public IEnumerable<Authority> GetAuthoritiesByRole(Guid roleId)
-        {
-            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, null, null, null, roleId);
-            IEnumerable<Authority> authorities = authorityInfos.Select(x => x.ToModel());
-
-            return authorities;
-        }
-        #endregion
-
-        #region # 获取信息系统的权限树 —— Node GetAuthorityTree(string systemNo)
+        #region # 获取信息系统的权限树 —— Node GetAuthorityTree(string systemNo...
         /// <summary>
         /// 获取信息系统的权限树
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>权限树</returns>
-        public Node GetAuthorityTree(string systemNo)
+        public Node GetAuthorityTree(string systemNo, ApplicationType? applicationType)
         {
             InfoSystemInfo system = this._authorizationContract.GetInfoSystem(systemNo);
-            IEnumerable<Authority> authorities = this.GetAuthoritiesBySystem(systemNo);
+            IEnumerable<Authority> authorities = this.GetAuthoritiesBySystem(systemNo, applicationType);
             Node node = system.ToModel().ToNode(authorities);
 
             return node;
@@ -120,13 +76,14 @@ namespace SD.IdentitySystem.Presentation.Implements
         {
             //获取当前角色及其权限集
             RoleInfo currentRole = this._authorizationContract.GetRole(roleId);
-            IEnumerable<Authority> roleAuthorities = this.GetAuthoritiesByRole(roleId).ToArray();
+            IEnumerable<Authority> roleAuthorities = this.GetAuthoritiesByRole(currentRole).ToArray();
 
             //获取角色所在信息系统的权限树
-            Node authroityTree = this.GetAuthorityTree(currentRole.SystemNo);
+            Node authroityTree = this.GetAuthorityTree(currentRole.SystemNo, null);
+            IEnumerable<Node> authroityNodes = authroityTree.children.SelectMany(x => x.children);
 
             //遍历子节点集（权限集）
-            foreach (Node node in authroityTree.children)
+            foreach (Node node in authroityNodes)
             {
                 //如果角色中含有该权限，则选中
                 if (roleAuthorities.Any(x => x.Id == node.id))
@@ -149,10 +106,10 @@ namespace SD.IdentitySystem.Presentation.Implements
         {
             //获取当前菜单及其权限集
             MenuInfo currentMenu = this._authorizationContract.GetMenu(menuId);
-            IEnumerable<Authority> menuAuthorities = this.GetAuthoritiesByMenu(menuId).ToArray();
+            IEnumerable<Authority> menuAuthorities = this.GetAuthoritiesByMenu(currentMenu).ToArray();
 
             //获取菜单所在信息系统的权限树
-            Node authroityTree = this.GetAuthorityTree(currentMenu.SystemNo);
+            Node authroityTree = this.GetAuthorityTree(currentMenu.SystemNo, currentMenu.ApplicationType);
 
             //遍历子节点集（权限集）
             foreach (Node node in authroityTree.children)
@@ -184,6 +141,55 @@ namespace SD.IdentitySystem.Presentation.Implements
             IEnumerable<Authority> authorities = pageModel.Datas.Select(x => x.ToModel());
 
             return new PageModel<Authority>(authorities, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);
+        }
+        #endregion
+
+
+        //Private
+
+        #region # 根据信息系统获取权限列表 —— IEnumerable<Authority> GetAuthoritiesBySystem(...
+        /// <summary>
+        /// 根据信息系统获取权限列表
+        /// </summary>
+        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <returns>权限列表</returns>
+        private IEnumerable<Authority> GetAuthoritiesBySystem(string systemNo, ApplicationType? applicationType)
+        {
+            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, systemNo, applicationType, null, null);
+            IEnumerable<Authority> authorities = authorityInfos.Select(x => x.ToModel());
+
+            return authorities;
+        }
+        #endregion
+
+        #region # 根据角色获取权限列表 —— IEnumerable<Authority> GetAuthoritiesByRole(...
+        /// <summary>
+        /// 根据角色获取权限列表
+        /// </summary>
+        /// <param name="role">角色</param>
+        /// <returns>权限列表</returns>
+        private IEnumerable<Authority> GetAuthoritiesByRole(RoleInfo role)
+        {
+            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, role.SystemNo, null, null, role.Id);
+            IEnumerable<Authority> authorities = authorityInfos.Select(x => x.ToModel());
+
+            return authorities;
+        }
+        #endregion
+
+        #region # 根据菜单获取权限列表 —— IEnumerable<Authority> GetAuthoritiesByMenu(...
+        /// <summary>
+        /// 根据菜单获取权限列表
+        /// </summary>
+        /// <param name="menu">菜单</param>
+        /// <returns>权限列表</returns>
+        private IEnumerable<Authority> GetAuthoritiesByMenu(MenuInfo menu)
+        {
+            IEnumerable<AuthorityInfo> authorityInfos = this._authorizationContract.GetAuthorities(null, menu.SystemNo, menu.ApplicationType, menu.Id, null);
+            IEnumerable<Authority> authorities = authorityInfos.Select(x => x.ToModel());
+
+            return authorities;
         }
         #endregion
     }

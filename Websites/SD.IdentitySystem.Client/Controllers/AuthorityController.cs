@@ -198,7 +198,7 @@ namespace SD.IdentitySystem.Client.Controllers
                 return base.Json(null, JsonRequestBehavior.AllowGet);
             }
 
-            Node node = this._authorityPresenter.GetAuthorityTree(id);
+            Node node = this._authorityPresenter.GetAuthorityTree(id, null);
             IEnumerable<Node> tree = new[] { node };
 
             return base.Json(tree, JsonRequestBehavior.AllowGet);
