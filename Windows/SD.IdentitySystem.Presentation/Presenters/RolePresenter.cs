@@ -4,6 +4,7 @@ using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.WPF.Models;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Extensions;
 
 namespace SD.IdentitySystem.Presentation.Presenters
 {
@@ -15,21 +16,19 @@ namespace SD.IdentitySystem.Presentation.Presenters
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务接口
+        /// 用户服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IUserContract> _userContract;
 
         /// <summary>
-        /// 用户服务接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IUserContract _userContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="authorizationContract">权限服务接口</param>
-        /// <param name="userContract">用户服务接口</param>
-        public RolePresenter(IAuthorizationContract authorizationContract, IUserContract userContract)
+        public RolePresenter(ServiceProxy<IUserContract> userContract, ServiceProxy<IAuthorizationContract> authorizationContract)
         {
             this._authorizationContract = authorizationContract;
             this._userContract = userContract;
@@ -44,7 +43,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
         /// <returns>角色数据项列表</returns>
         public ICollection<Item> GetRoleItems()
         {
-            IEnumerable<RoleInfo> roles = this._authorizationContract.GetRoles(null, null, null);
+            IEnumerable<RoleInfo> roles = this._authorizationContract.Channel.GetRoles(null, null, null);
             IEnumerable<Item> roleItems = roles.Select(x => x.ToItem());
 
             return roleItems.ToList();
@@ -58,8 +57,8 @@ namespace SD.IdentitySystem.Presentation.Presenters
         /// <returns>角色数据项列表</returns>
         public ICollection<Item> GetUserRoleItems(string loginId)
         {
-            RoleInfo[] roles = this._authorizationContract.GetRoles(null, null, null).ToArray();
-            RoleInfo[] userRoles = this._userContract.GetUserRoles(loginId, null).ToArray();
+            RoleInfo[] roles = this._authorizationContract.Channel.GetRoles(null, null, null).ToArray();
+            RoleInfo[] userRoles = this._userContract.Channel.GetUserRoles(loginId, null).ToArray();
 
             ICollection<Item> roleItems = roles.Select(x => x.ToItem()).ToList();
             foreach (Item roleItem in roleItems)

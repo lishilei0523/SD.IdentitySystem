@@ -5,6 +5,7 @@ using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -18,14 +19,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         #region # 字段及构造器
 
         /// <summary>
-        /// 角色服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public UpdateViewModel(IAuthorizationContract authorizationContract)
+        public UpdateViewModel(ServiceProxy<IAuthorizationContract> authorizationContract)
         {
             this._authorizationContract = authorizationContract;
         }
@@ -114,9 +115,10 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         public async Task Load(Guid menuId)
         {
-            MenuInfo menu = await Task.Run(() => this._authorizationContract.GetMenu(menuId));
+            IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
+            MenuInfo menu = await Task.Run(() => authorizationContract.GetMenu(menuId));
             MenuInfo parentMenu = menu.ParentMenuId.HasValue
-                ? await Task.Run(() => this._authorizationContract.GetMenu(menu.ParentMenuId.Value))
+                ? await Task.Run(() => authorizationContract.GetMenu(menu.ParentMenuId.Value))
                 : null;
 
             this.MenuId = menu.Id;
@@ -157,7 +159,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             this.Busy();
 
-            await Task.Run(() => this._authorizationContract.UpdateMenu(this.MenuId, this.MenuName, this.Sort.Value, this.Url, this.Path, this.Icon));
+            await Task.Run(() => this._authorizationContract.Channel.UpdateMenu(this.MenuId, this.MenuName, this.Sort.Value, this.Url, this.Path, this.Icon));
 
             base.TryClose(true);
             this.Idle();

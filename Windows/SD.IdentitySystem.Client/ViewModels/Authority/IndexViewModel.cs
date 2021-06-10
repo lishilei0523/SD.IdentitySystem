@@ -13,6 +13,7 @@ using SD.IOC.Core.Mediators;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -26,9 +27,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 窗口管理器
@@ -38,7 +39,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(IAuthorizationContract authorizationContract, IWindowManager windowManager)
+        public IndexViewModel(ServiceProxy<IAuthorizationContract> authorizationContract, IWindowManager windowManager)
         {
             this._authorizationContract = authorizationContract;
             this._windowManager = windowManager;
@@ -144,7 +145,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         protected override async void OnInitialize()
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
 
@@ -213,7 +214,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             {
                 this.Busy();
 
-                await Task.Run(() => this._authorizationContract.RemoveAuthority(authority.Model.Id));
+                await Task.Run(() => this._authorizationContract.Channel.RemoveAuthority(authority.Model.Id));
                 await this.ReloadAuthorities();
 
                 this.Idle();
@@ -243,7 +244,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             {
                 this.Busy();
 
-                await Task.Run(() => checkedAuthorities.ForEach(authority => this._authorizationContract.RemoveAuthority(authority.Id)));
+                IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
+                await Task.Run(() => checkedAuthorities.ForEach(authority => authorizationContract.RemoveAuthority(authority.Id)));
                 await this.ReloadAuthorities();
 
                 this.Idle();
@@ -280,7 +282,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         private async Task ReloadAuthorities()
         {
-            PageModel<AuthorityInfo> pageModel = await Task.Run(() => this._authorizationContract.GetAuthoritiesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.SelectedApplicationType, this.PageIndex, this.PageSize));
+            PageModel<AuthorityInfo> pageModel = await Task.Run(() => this._authorizationContract.Channel.GetAuthoritiesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.SelectedApplicationType, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 

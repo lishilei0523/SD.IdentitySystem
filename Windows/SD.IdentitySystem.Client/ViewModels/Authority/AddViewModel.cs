@@ -7,6 +7,7 @@ using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -20,14 +21,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public AddViewModel(IAuthorizationContract authorizationContract)
+        public AddViewModel(ServiceProxy<IAuthorizationContract> authorizationContract)
         {
             this._authorizationContract = authorizationContract;
         }
@@ -144,7 +145,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         protected override async void OnInitialize()
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
         }
@@ -181,7 +182,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
             this.Busy();
 
-            await Task.Run(() => this._authorizationContract.CreateAuthority(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value, this.AuthorityName, this.AuthorityPath, this.EnglishName, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName, this.Description));
+            await Task.Run(() => this._authorizationContract.Channel.CreateAuthority(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value, this.AuthorityName, this.AuthorityPath, this.EnglishName, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName, this.Description));
 
             base.TryClose(true);
             this.Idle();

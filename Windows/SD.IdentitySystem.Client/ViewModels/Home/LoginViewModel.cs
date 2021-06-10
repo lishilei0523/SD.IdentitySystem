@@ -8,6 +8,7 @@ using SD.Infrastructure.WPF.Commands;
 using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -22,9 +23,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         #region # 字段及构造器
 
         /// <summary>
-        /// 身份认证服务接口
+        /// 身份认证服务契约接口代理
         /// </summary>
-        private readonly IAuthenticationContract _authenticationContract;
+        private readonly ServiceProxy<IAuthenticationContract> _authenticationContract;
 
         /// <summary>
         /// 窗体管理器
@@ -34,9 +35,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="authenticationContract">身份认证服务接口</param>
-        /// <param name="windowManager">窗体管理器</param>
-        public LoginViewModel(IAuthenticationContract authenticationContract, IWindowManager windowManager)
+        public LoginViewModel(ServiceProxy<IAuthenticationContract> authenticationContract, IWindowManager windowManager)
         {
             this._authenticationContract = authenticationContract;
             this._windowManager = windowManager;
@@ -120,7 +119,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
             this.Busy();
 
-            LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Login(this.LoginId, this.Password));
+            LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Channel.Login(this.LoginId, this.Password));
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
 
             IndexViewModel homeViewModel = ResolveMediator.Resolve<IndexViewModel>();

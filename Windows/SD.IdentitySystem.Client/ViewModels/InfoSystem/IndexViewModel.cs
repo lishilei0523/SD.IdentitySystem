@@ -12,6 +12,7 @@ using SD.IOC.Core.Mediators;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
@@ -24,9 +25,9 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 窗体管理器
@@ -36,7 +37,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(IAuthorizationContract authorizationContract, IWindowManager windowManager)
+        public IndexViewModel(ServiceProxy<IAuthorizationContract> authorizationContract, IWindowManager windowManager)
         {
             this._authorizationContract = authorizationContract;
             this._windowManager = windowManager;
@@ -211,7 +212,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// </summary>
         private async Task ReloadInfoSystems()
         {
-            PageModel<InfoSystemInfo> pageModel = await Task.Run(() => this._authorizationContract.GetInfoSystemsByPage(this.Keywords, this.PageIndex, this.PageSize));
+            PageModel<InfoSystemInfo> pageModel = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystemsByPage(this.Keywords, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 

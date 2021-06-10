@@ -11,6 +11,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
@@ -23,14 +24,14 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务契约接口
+        /// 用户服务契约接口代理
         /// </summary>
-        private readonly IUserContract _userContract;
+        private readonly ServiceProxy<IUserContract> _userContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(IUserContract userContract)
+        public IndexViewModel(ServiceProxy<IUserContract> userContract)
         {
             this._userContract = userContract;
 
@@ -169,7 +170,7 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         /// </summary>
         private async Task ReloadLoginRecords()
         {
-            PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
+            PageModel<LoginRecordInfo> pageModel = await Task.Run(() => this._userContract.Channel.GetLoginRecordsByPage(this.Keywords, this.StartTime, this.EndTime, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 

@@ -12,6 +12,7 @@ using SD.IOC.Core.Mediators;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -25,14 +26,14 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务契约接口
+        /// 用户服务契约接口代理
         /// </summary>
-        private readonly IUserContract _userContract;
+        private readonly ServiceProxy<IUserContract> _userContract;
 
         /// <summary>
-        /// 权限服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 窗口管理器
@@ -42,7 +43,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(IUserContract userContract, IAuthorizationContract authorizationContract, IWindowManager windowManager)
+        public IndexViewModel(ServiceProxy<IUserContract> userContract, ServiceProxy<IAuthorizationContract> authorizationContract, IWindowManager windowManager)
         {
             this._userContract = userContract;
             this._authorizationContract = authorizationContract;
@@ -133,7 +134,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         protected override async void OnInitialize()
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
 
             this.LoadUsers();
@@ -181,7 +182,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         {
             this.Busy();
 
-            await Task.Run(() => this._userContract.EnableUser(user.Model.Number));
+            await Task.Run(() => this._userContract.Channel.EnableUser(user.Model.Number));
             await this.ReloadUsers();
 
             this.Idle();
@@ -197,7 +198,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         {
             this.Busy();
 
-            await Task.Run(() => this._userContract.DisableUser(user.Model.Number));
+            await Task.Run(() => this._userContract.Channel.DisableUser(user.Model.Number));
             await this.ReloadUsers();
 
             this.Idle();
@@ -216,7 +217,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             {
                 this.Busy();
 
-                await Task.Run(() => this._userContract.RemoveUser(user.Model.Number));
+                await Task.Run(() => this._userContract.Channel.RemoveUser(user.Model.Number));
                 await this.ReloadUsers();
 
                 this.Idle();
@@ -246,7 +247,8 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             {
                 this.Busy();
 
-                await Task.Run(() => checkedUsers.ForEach(user => this._userContract.RemoveUser(user.Number)));
+                IUserContract userContract = this._userContract.Channel;
+                await Task.Run(() => checkedUsers.ForEach(user => userContract.RemoveUser(user.Number)));
                 await this.ReloadUsers();
 
                 this.Idle();
@@ -327,7 +329,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public async Task ReloadUsers()
         {
-            PageModel<UserInfo> pageModel = await Task.Run(() => this._userContract.GetUsersByPage(this.Keywords, this.SelectedInfoSystem?.Number, null, this.PageIndex, this.PageSize));
+            PageModel<UserInfo> pageModel = await Task.Run(() => this._userContract.Channel.GetUsersByPage(this.Keywords, this.SelectedInfoSystem?.Number, null, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 

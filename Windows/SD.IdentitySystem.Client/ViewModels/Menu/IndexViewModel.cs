@@ -12,6 +12,7 @@ using SD.Toolkits.Recursion.Tree;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 using Models = SD.IdentitySystem.Presentation.Models;
@@ -31,9 +32,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         private readonly MenuPresenter _menuPresenter;
 
         /// <summary>
-        /// 权限服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 窗口管理器
@@ -43,7 +44,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(MenuPresenter menuPresenter, IAuthorizationContract authorizationContract, IWindowManager windowManager)
+        public IndexViewModel(MenuPresenter menuPresenter, ServiceProxy<IAuthorizationContract> authorizationContract, IWindowManager windowManager)
         {
             this._menuPresenter = menuPresenter;
             this._authorizationContract = authorizationContract;
@@ -106,7 +107,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         protected override async void OnInitialize()
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
 
@@ -175,7 +176,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             {
                 this.Busy();
 
-                await Task.Run(() => this._authorizationContract.RemoveMenu(menu.Id));
+                await Task.Run(() => this._authorizationContract.Channel.RemoveMenu(menu.Id));
                 await this.ReloadMenus();
 
                 this.Idle();
@@ -220,7 +221,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             {
                 this.Busy();
 
-                await Task.Run(() => checkedMenus.ForEach(menu => this._authorizationContract.RemoveMenu(menu.Id)));
+                IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
+                await Task.Run(() => checkedMenus.ForEach(menu => authorizationContract.RemoveMenu(menu.Id)));
                 await this.ReloadMenus();
 
                 this.Idle();

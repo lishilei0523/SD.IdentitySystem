@@ -2,6 +2,7 @@
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -15,14 +16,14 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务接口
+        /// 用户服务契约接口代理
         /// </summary>
-        private readonly IUserContract _userContract;
+        private readonly ServiceProxy<IUserContract> _userContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public ResetPasswordViewModel(IUserContract userContract)
+        public ResetPasswordViewModel(ServiceProxy<IUserContract> userContract)
         {
             this._userContract = userContract;
         }
@@ -110,7 +111,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             this.Busy();
 
-            await Task.Run(() => this._userContract.ResetPassword(this.LoginId, this.NewPassword));
+            await Task.Run(() => this._userContract.Channel.ResetPassword(this.LoginId, this.NewPassword));
 
             base.TryClose(true);
             this.Idle();

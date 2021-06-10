@@ -1,6 +1,5 @@
 ﻿using Caliburn.Micro;
 using SD.IdentitySystem.Client.ViewModels.User;
-using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
@@ -24,11 +23,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         #region # 字段及构造器
 
         /// <summary>
-        /// 菜单呈现器
-        /// </summary>
-        private readonly MenuPresenter _menuPresenter;
-
-        /// <summary>
         /// 窗体管理器
         /// </summary>
         private readonly IWindowManager _windowManager;
@@ -36,9 +30,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(MenuPresenter menuPresenter, IWindowManager windowManager)
+        public IndexViewModel(IWindowManager windowManager)
         {
-            this._menuPresenter = menuPresenter;
             this._windowManager = windowManager;
 
             //初始化定时器

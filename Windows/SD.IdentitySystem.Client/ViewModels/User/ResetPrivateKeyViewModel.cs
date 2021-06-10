@@ -3,6 +3,7 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,14 +17,14 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务接口
+        /// 用户服务契约接口代理
         /// </summary>
-        private readonly IUserContract _userContract;
+        private readonly ServiceProxy<IUserContract> _userContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public ResetPrivateKeyViewModel(IUserContract userContract)
+        public ResetPrivateKeyViewModel(ServiceProxy<IUserContract> userContract)
         {
             this._userContract = userContract;
         }
@@ -60,7 +61,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// <param name="loginId">用户名</param>
         public async Task Load(string loginId)
         {
-            UserInfo user = await Task.Run(() => this._userContract.GetUser(loginId));
+            UserInfo user = await Task.Run(() => this._userContract.Channel.GetUser(loginId));
             this.LoginId = loginId;
             this.PrivateKey = user.PrivateKey;
         }
@@ -87,7 +88,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             this.Busy();
 
-            await Task.Run(() => this._userContract.SetPrivateKey(this.LoginId, this.PrivateKey));
+            await Task.Run(() => this._userContract.Channel.SetPrivateKey(this.LoginId, this.PrivateKey));
 
             base.TryClose(true);
             this.Idle();

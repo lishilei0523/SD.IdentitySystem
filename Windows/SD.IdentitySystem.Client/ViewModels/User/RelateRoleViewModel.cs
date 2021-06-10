@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.Client.ViewModels.User
@@ -26,14 +27,14 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         private readonly RolePresenter _rolePresenter;
 
         /// <summary>
-        /// 用户服务契约接口
+        /// 用户服务契约接口代理
         /// </summary>
-        private readonly IUserContract _userContract;
+        private readonly ServiceProxy<IUserContract> _userContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public RelateRoleViewModel(RolePresenter rolePresenter, IUserContract userContract)
+        public RelateRoleViewModel(RolePresenter rolePresenter, ServiceProxy<IUserContract> userContract)
         {
             this._rolePresenter = rolePresenter;
             this._userContract = userContract;
@@ -70,7 +71,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public async Task Load(string loginId)
         {
-            UserInfo user = await Task.Run(() => this._userContract.GetUser(loginId));
+            UserInfo user = await Task.Run(() => this._userContract.Channel.GetUser(loginId));
             ICollection<Item> roleItems = this._rolePresenter.GetUserRoleItems(loginId);
 
             this.LoginId = user.Number;
@@ -91,7 +92,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             this.Busy();
 
             IEnumerable<Guid> roleIds = this.RoleItems.Where(x => x.IsChecked == true).Select(x => x.Id);
-            await Task.Run(() => this._userContract.RelateRolesToUser(this.LoginId, roleIds));
+            await Task.Run(() => this._userContract.Channel.RelateRolesToUser(this.LoginId, roleIds));
 
             base.TryClose(true);
             this.Idle();

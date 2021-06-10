@@ -9,6 +9,7 @@ using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -27,14 +28,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         private readonly MenuPresenter _menuPresenter;
 
         /// <summary>
-        /// 角色服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public AddViewModel(MenuPresenter menuPresenter, IAuthorizationContract authorizationContract)
+        public AddViewModel(MenuPresenter menuPresenter, ServiceProxy<IAuthorizationContract> authorizationContract)
         {
             this._menuPresenter = menuPresenter;
             this._authorizationContract = authorizationContract;
@@ -152,7 +153,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         protected override async void OnInitialize()
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
         }
@@ -231,7 +232,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             this.Busy();
 
-            await Task.Run(() => this._authorizationContract.CreateMenu(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value, this.MenuName, this.Sort.Value, this.Url, this.Path, this.Icon, this.ParentMenu?.Id));
+            await Task.Run(() => this._authorizationContract.Channel.CreateMenu(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value, this.MenuName, this.Sort.Value, this.Url, this.Path, this.Icon, this.ParentMenu?.Id));
 
             base.TryClose(true);
             this.Idle();

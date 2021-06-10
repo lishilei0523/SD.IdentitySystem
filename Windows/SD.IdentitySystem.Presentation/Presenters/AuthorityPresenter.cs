@@ -5,6 +5,7 @@ using SD.Infrastructure.WPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.ServiceModel.Extensions;
 
 namespace SD.IdentitySystem.Presentation.Presenters
 {
@@ -16,15 +17,14 @@ namespace SD.IdentitySystem.Presentation.Presenters
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="authorizationContract">权限服务接口</param>
-        public AuthorityPresenter(IAuthorizationContract authorizationContract)
+        public AuthorityPresenter(ServiceProxy<IAuthorizationContract> authorizationContract)
         {
             this._authorizationContract = authorizationContract;
         }
@@ -39,9 +39,10 @@ namespace SD.IdentitySystem.Presentation.Presenters
         /// <returns>权限数据项列表</returns>
         public ICollection<Item> GetRoleAuthorityItems(Guid roleId)
         {
-            RoleInfo role = this._authorizationContract.GetRole(roleId);
-            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, role.SystemNo, null, null, null).ToArray();
-            AuthorityInfo[] roleSystemAuthorities = this._authorizationContract.GetAuthorities(null, null, null, null, role.Id).ToArray();
+            IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
+            RoleInfo role = authorizationContract.GetRole(roleId);
+            AuthorityInfo[] systemAuthorities = authorizationContract.GetAuthorities(null, role.SystemNo, null, null, null).ToArray();
+            AuthorityInfo[] roleSystemAuthorities = authorizationContract.GetAuthorities(null, null, null, null, role.Id).ToArray();
 
             ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
             foreach (Item authorityItem in authorityItems)
@@ -64,9 +65,10 @@ namespace SD.IdentitySystem.Presentation.Presenters
         /// <returns>权限数据项列表</returns>
         public ICollection<Item> GetMenuAuthorityItems(Guid menuId)
         {
-            MenuInfo menu = this._authorizationContract.GetMenu(menuId);
-            AuthorityInfo[] systemAuthorities = this._authorizationContract.GetAuthorities(null, menu.SystemNo, menu.ApplicationType, null, null).ToArray();
-            AuthorityInfo[] menuSystemAuthorities = this._authorizationContract.GetAuthorities(null, menu.SystemNo, menu.ApplicationType, menu.Id, null).ToArray();
+            IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
+            MenuInfo menu = authorizationContract.GetMenu(menuId);
+            AuthorityInfo[] systemAuthorities = authorizationContract.GetAuthorities(null, menu.SystemNo, menu.ApplicationType, null, null).ToArray();
+            AuthorityInfo[] menuSystemAuthorities = authorizationContract.GetAuthorities(null, menu.SystemNo, menu.ApplicationType, menu.Id, null).ToArray();
 
             ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
             foreach (Item authorityItem in authorityItems)
@@ -89,7 +91,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
         /// <returns>权限数据项列表</returns>
         public ICollection<Item> GetSystemAuthorityItems(string systemNo)
         {
-            IEnumerable<AuthorityInfo> systemAuthorities = this._authorizationContract.GetAuthorities(null, systemNo, null, null, null);
+            IEnumerable<AuthorityInfo> systemAuthorities = this._authorizationContract.Channel.GetAuthorities(null, systemNo, null, null, null);
             IEnumerable<Item> authorityItems = systemAuthorities.Select(x => x.ToItem());
 
             return authorityItems.ToList();

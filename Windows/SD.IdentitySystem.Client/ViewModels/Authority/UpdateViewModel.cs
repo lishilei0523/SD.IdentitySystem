@@ -5,6 +5,7 @@ using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -18,14 +19,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public UpdateViewModel(IAuthorizationContract authorizationContract)
+        public UpdateViewModel(ServiceProxy<IAuthorizationContract> authorizationContract)
         {
             this._authorizationContract = authorizationContract;
         }
@@ -131,7 +132,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         public async Task Load(Guid authorityId)
         {
-            AuthorityInfo authority = await Task.Run(() => this._authorizationContract.GetAuthority(authorityId));
+            AuthorityInfo authority = await Task.Run(() => this._authorizationContract.Channel.GetAuthority(authorityId));
 
             this.InfoSystemName = authority.InfoSystemInfo.Name;
             this.AuthorityId = authority.Id;
@@ -167,7 +168,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
             this.Busy();
 
-            await Task.Run(() => this._authorizationContract.UpdateAuthority(this.AuthorityId, this.AuthorityName, this.AuthorityPath, this.EnglishName, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName, this.Description));
+            await Task.Run(() => this._authorizationContract.Channel.UpdateAuthority(this.AuthorityId, this.AuthorityName, this.AuthorityPath, this.EnglishName, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName, this.Description));
 
             base.TryClose(true);
             this.Idle();

@@ -3,6 +3,7 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -16,14 +17,14 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public InitViewModel(IAuthorizationContract authorizationContract)
+        public InitViewModel(ServiceProxy<IAuthorizationContract> authorizationContract)
         {
             this._authorizationContract = authorizationContract;
         }
@@ -76,7 +77,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// <param name="infoSystemNo">信息系统编号</param>
         public async Task Load(string infoSystemNo)
         {
-            InfoSystemInfo infoSystem = await Task.Run(() => this._authorizationContract.GetInfoSystem(infoSystemNo));
+            InfoSystemInfo infoSystem = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystem(infoSystemNo));
             this.InfoSystemNo = infoSystem.Number;
             this.Host = infoSystem.Host;
             this.Port = infoSystem.Port;
@@ -115,7 +116,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             this.Busy();
 
-            await Task.Run(() => this._authorizationContract.InitInfoSystem(this.InfoSystemNo, this.Host, this.Port.Value, this.Index));
+            await Task.Run(() => this._authorizationContract.Channel.InitInfoSystem(this.InfoSystemNo, this.Host, this.Port.Value, this.Index));
 
             base.TryClose(true);
             this.Idle();

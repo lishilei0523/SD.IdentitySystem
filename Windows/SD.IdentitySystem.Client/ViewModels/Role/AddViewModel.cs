@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -27,14 +28,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         private readonly AuthorityPresenter _authorityPresenter;
 
         /// <summary>
-        /// 角色服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public AddViewModel(AuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract)
+        public AddViewModel(AuthorityPresenter authorityPresenter, ServiceProxy<IAuthorizationContract> authorizationContract)
         {
             this._authorityPresenter = authorityPresenter;
             this._authorizationContract = authorizationContract;
@@ -96,7 +97,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// </summary>
         protected override async void OnInitialize()
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
         }
         #endregion
@@ -142,7 +143,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             this.Busy();
 
             IEnumerable<Guid> authorityIds = this.AuthorityItems.Where(x => x.IsChecked == true).Select(x => x.Id);
-            await Task.Run(() => this._authorizationContract.CreateRole(this.SelectedInfoSystem.Number, this.RoleName, this.Description, authorityIds));
+            await Task.Run(() => this._authorizationContract.Channel.CreateRole(this.SelectedInfoSystem.Number, this.RoleName, this.Description, authorityIds));
 
             base.TryClose(true);
             this.Idle();

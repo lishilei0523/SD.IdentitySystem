@@ -9,6 +9,7 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.Client.ViewModels.Menu
@@ -26,14 +27,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         private readonly AuthorityPresenter _authorityPresenter;
 
         /// <summary>
-        /// 角色服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public RelateAuthorityViewModel(AuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract)
+        public RelateAuthorityViewModel(AuthorityPresenter authorityPresenter, ServiceProxy<IAuthorizationContract> authorizationContract)
         {
             this._authorityPresenter = authorityPresenter;
             this._authorizationContract = authorizationContract;
@@ -70,7 +71,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// </summary>
         public async Task Load(Guid menuId)
         {
-            MenuInfo menu = await Task.Run(() => this._authorizationContract.GetMenu(menuId));
+            MenuInfo menu = await Task.Run(() => this._authorizationContract.Channel.GetMenu(menuId));
             ICollection<Item> authorityItems = this._authorityPresenter.GetMenuAuthorityItems(menuId);
 
             this.MenuId = menu.Id;
@@ -90,7 +91,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             this.Busy();
 
             IEnumerable<Guid> authorityIds = this.AuthorityItems.Where(x => x.IsChecked == true).Select(x => x.Id);
-            await Task.Run(() => this._authorizationContract.RelateAuthoritiesToMenu(this.MenuId, authorityIds));
+            await Task.Run(() => this._authorizationContract.Channel.RelateAuthoritiesToMenu(this.MenuId, authorityIds));
 
             base.TryClose(true);
             this.Idle();

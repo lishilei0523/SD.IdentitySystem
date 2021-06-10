@@ -12,6 +12,7 @@ using SD.IOC.Core.Mediators;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -25,9 +26,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         #region # 字段及构造器
 
         /// <summary>
-        /// 角色服务契约接口
+        /// 权限服务契约接口代理
         /// </summary>
-        private readonly IAuthorizationContract _authorizationContract;
+        private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
         /// <summary>
         /// 窗口管理器
@@ -37,7 +38,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public IndexViewModel(IAuthorizationContract authorizationContract, IWindowManager windowManager)
+        public IndexViewModel(ServiceProxy<IAuthorizationContract> authorizationContract, IWindowManager windowManager)
         {
             this._authorizationContract = authorizationContract;
             this._windowManager = windowManager;
@@ -127,7 +128,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// </summary>
         protected override async void OnInitialize()
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
 
             this.LoadRoles();
@@ -198,7 +199,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             {
                 this.Busy();
 
-                await Task.Run(() => this._authorizationContract.RemoveRole(role.Model.Id));
+                await Task.Run(() => this._authorizationContract.Channel.RemoveRole(role.Model.Id));
                 await this.ReloadRoles();
 
                 this.Idle();
@@ -228,7 +229,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             {
                 this.Busy();
 
-                await Task.Run(() => checkedRoles.ForEach(role => this._authorizationContract.RemoveRole(role.Id)));
+                IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
+                await Task.Run(() => checkedRoles.ForEach(role => authorizationContract.RemoveRole(role.Id)));
                 await this.ReloadRoles();
 
                 this.Idle();
@@ -265,7 +267,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         /// </summary>
         private async Task ReloadRoles()
         {
-            PageModel<RoleInfo> pageModel = await Task.Run(() => this._authorizationContract.GetRolesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
+            PageModel<RoleInfo> pageModel = await Task.Run(() => this._authorizationContract.Channel.GetRolesByPage(this.Keywords, this.SelectedInfoSystem?.Number, this.PageIndex, this.PageSize));
             this.RowCount = pageModel.RowCount;
             this.PageCount = pageModel.PageCount;
 
