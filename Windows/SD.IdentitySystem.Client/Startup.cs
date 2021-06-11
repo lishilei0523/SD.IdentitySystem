@@ -88,14 +88,7 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void OnExit(object sender, EventArgs eventArgs)
         {
-            try
-            {
-                ResolveMediator.Dispose();
-            }
-            catch (Exception exception)
-            {
-                WriteLog(exception);
-            }
+            ResolveMediator.Dispose();
         }
         #endregion
 
