@@ -56,7 +56,7 @@ namespace SD.IdentitySystem.Presentation.Maps
             //声明容器
             ICollection<Node> tree = new HashSet<Node>();
 
-            //判断父级菜单Id是否为null
+            //判断上级菜单Id是否为null
             if (!parentId.HasValue)
             {
                 //从根级开始遍历
@@ -118,7 +118,7 @@ namespace SD.IdentitySystem.Presentation.Maps
                 if (subMenu.ParentMenuId.HasValue && subMenu.ParentMenuId.Value == menu.Id)
                 {
                     menu.SubNodes.Add(subMenu);
-                    subMenu.ParentMenuId = null;
+                    subMenu.ParentNode = menu;
 
                     FillSubNodes(subMenu, allMenus);
                 }

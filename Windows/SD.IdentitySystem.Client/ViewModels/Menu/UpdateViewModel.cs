@@ -1,5 +1,4 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
@@ -110,22 +109,17 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
         //Initializations
 
-        #region 加载 —— async Task Load(Menu menu)
+        #region 加载 —— void Load(Menu menu)
         /// <summary>
         /// 加载
         /// </summary>
         /// <param name="menu">菜单</param>
-        public async Task Load(Models.Menu menu)
+        public void Load(Models.Menu menu)
         {
-            IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
-            MenuInfo parentMenu = menu.ParentMenuId.HasValue
-                ? await Task.Run(() => authorizationContract.GetMenu(menu.ParentMenuId.Value))
-                : null;
-
             this.MenuId = menu.Id;
             this.InfoSystemName = menu.SystemName;
             this.ApplicationType = menu.ApplicationType;
-            this.ParentMenuName = parentMenu?.Name;
+            this.ParentMenuName = menu.ParentNode?.Name;
             this.MenuName = menu.Name;
             this.Url = menu.Url;
             this.Path = menu.Path;

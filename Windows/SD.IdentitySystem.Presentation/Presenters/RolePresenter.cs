@@ -36,20 +36,6 @@ namespace SD.IdentitySystem.Presentation.Presenters
 
         #endregion
 
-        #region # 获取角色数据项列表 —— ICollection<Item> GetRoleItems()
-        /// <summary>
-        /// 获取角色数据项列表
-        /// </summary>
-        /// <returns>角色数据项列表</returns>
-        public ICollection<Item> GetRoleItems()
-        {
-            IEnumerable<RoleInfo> roles = this._authorizationContract.Channel.GetRoles(null, null, null);
-            IEnumerable<Item> roleItems = roles.Select(x => x.ToItem());
-
-            return roleItems.ToList();
-        }
-        #endregion
-
         #region # 获取用户角色数据项列表 —— ICollection<Item> GetUserRoleItems(string loginId)
         /// <summary>
         /// 获取用户角色数据项列表

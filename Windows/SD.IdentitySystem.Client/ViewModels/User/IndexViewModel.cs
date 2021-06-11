@@ -286,8 +286,10 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public async void RelateRoles(Wrap<UserInfo> user)
         {
+            this.Busy();
             RelateRoleViewModel viewModel = ResolveMediator.Resolve<RelateRoleViewModel>();
             await viewModel.Load(user.Model.Number);
+            this.Idle();
 
             this._windowManager.ShowDialog(viewModel);
         }

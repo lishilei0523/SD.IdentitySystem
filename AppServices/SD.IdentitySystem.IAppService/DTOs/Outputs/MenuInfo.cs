@@ -27,17 +27,17 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         public ApplicationType ApplicationType { get; set; }
         #endregion
 
-        #region 链接地址(Web适用) —— string Url
+        #region 链接地址 —— string Url
         /// <summary>
-        /// 链接地址(Web适用)
+        /// 链接地址
         /// </summary>
         [DataMember]
         public string Url { get; set; }
         #endregion
 
-        #region 路径(Windows适用) —— string Path
+        #region 路径 —— string Path
         /// <summary>
-        /// 路径(Windows适用)
+        /// 路径
         /// </summary>
         [DataMember]
         public string Path { get; set; }
@@ -75,9 +75,9 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         public bool IsLeaf { get; set; }
         #endregion
 
-        #region 父级菜单Id —— Guid? ParentMenuId
+        #region 上级菜单Id —— Guid? ParentMenuId
         /// <summary>
-        /// 父级菜单Id
+        /// 上级菜单Id
         /// </summary>
         [DataMember]
         public Guid? ParentMenuId { get; set; }

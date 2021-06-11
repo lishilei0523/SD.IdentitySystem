@@ -99,16 +99,16 @@ namespace SD.IdentitySystem.Presentation.Models
 
         //导航属性
 
-        #region 导航属性 - 上级菜单 —— Menu ParentNode
+        #region 导航属性 - 上级节点 —— Menu ParentNode
         /// <summary>
-        /// 导航属性 - 上级菜单
+        /// 导航属性 - 上级节点
         /// </summary>
         public Menu ParentNode { get; set; }
         #endregion
 
-        #region 导航属性 - 下级菜单集 —— ICollection<Menu> SubNodes
+        #region 导航属性 - 下级节点集 —— ICollection<Menu> SubNodes
         /// <summary>
-        /// 导航属性 - 下级菜单集
+        /// 导航属性 - 下级节点集
         /// </summary>
         public ICollection<Menu> SubNodes { get; set; }
         #endregion

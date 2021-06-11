@@ -151,7 +151,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         public async void UpdateMenu(Models.Menu menu)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
-            await viewModel.Load(menu);
+            viewModel.Load(menu);
             bool? result = this._windowManager.ShowDialog(viewModel);
             if (result == true)
             {
@@ -233,8 +233,10 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         /// <param name="menu">菜单</param>
         public async void RelateAuthorities(Models.Menu menu)
         {
+            this.Busy();
             RelateAuthorityViewModel viewModel = ResolveMediator.Resolve<RelateAuthorityViewModel>();
             await viewModel.Load(menu.Id);
+            this.Idle();
 
             this._windowManager.ShowDialog(viewModel);
         }

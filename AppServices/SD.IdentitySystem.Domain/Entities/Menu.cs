@@ -38,7 +38,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="url">链接地址</param>
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
-        /// <param name="parentNode">上级菜单</param>
+        /// <param name="parentNode">上级节点</param>
         public Menu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Menu parentNode)
             : this()
         {
@@ -73,6 +73,7 @@ namespace SD.IdentitySystem.Domain.Entities
             this.Icon = icon;
             this.ParentNode = parentNode;
             this.IsRoot = parentNode == null;
+            parentNode?.SubNodes.Add(this);
 
             //初始化关键字
             this.InitKeywords();
@@ -97,16 +98,16 @@ namespace SD.IdentitySystem.Domain.Entities
         public ApplicationType ApplicationType { get; private set; }
         #endregion
 
-        #region 链接地址(Web适用) —— string Url
+        #region 链接地址 —— string Url
         /// <summary>
-        /// 链接地址(Web适用)
+        /// 链接地址
         /// </summary>
         public string Url { get; private set; }
         #endregion
 
-        #region 路径(Windows适用) —— string Path
+        #region 路径 —— string Path
         /// <summary>
-        /// 路径(Windows适用)
+        /// 路径
         /// </summary>
         public string Path { get; private set; }
         #endregion
@@ -142,16 +143,16 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 导航属性 - 父级菜单 —— Menu ParentNode
+        #region 导航属性 - 上级节点 —— Menu ParentNode
         /// <summary>
-        /// 导航属性 - 父级菜单
+        /// 导航属性 - 上级节点
         /// </summary>
         public virtual Menu ParentNode { get; private set; }
         #endregion
 
-        #region 导航属性 - 子级菜单集 ——ICollection<Menu> SubNodes
+        #region 导航属性 - 下级节点集 ——ICollection<Menu> SubNodes
         /// <summary>
-        /// 导航属性 - 子级菜单集
+        /// 导航属性 - 下级节点集
         /// </summary>
         public virtual ICollection<Menu> SubNodes { get; private set; }
         #endregion

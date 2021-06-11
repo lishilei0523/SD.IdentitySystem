@@ -18,11 +18,6 @@ namespace SD.IdentitySystem.Presentation.Presenters
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务契约接口代理
-        /// </summary>
-        private readonly ServiceProxy<IUserContract> _userContract;
-
-        /// <summary>
         /// 权限服务契约接口代理
         /// </summary>
         private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
@@ -30,9 +25,8 @@ namespace SD.IdentitySystem.Presentation.Presenters
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public MenuPresenter(ServiceProxy<IUserContract> userContract, ServiceProxy<IAuthorizationContract> authorizationContract)
+        public MenuPresenter(ServiceProxy<IAuthorizationContract> authorizationContract)
         {
-            this._userContract = userContract;
             this._authorizationContract = authorizationContract;
         }
 
