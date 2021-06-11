@@ -33,7 +33,9 @@ namespace SD.IdentitySystem.Repository.Implements
                     (startTime == null || x.AddedTime >= startTime) &&
                     (endTime == null || x.AddedTime <= endTime);
 
-            return base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount).ToList();
+            IQueryable<LoginRecord> loginRecords = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
+
+            return loginRecords.ToList();
         }
         #endregion
     }

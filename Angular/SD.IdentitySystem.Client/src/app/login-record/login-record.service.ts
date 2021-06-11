@@ -26,7 +26,6 @@ export class LoginRecordService {
     public async getLoginRecordsByPage(keywords: string, startTime: string, endTime: string, pageIndex: number, pageSize: number)
         : Promise<PageModel<LoginRecord>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/User/GetLoginRecordsByPage`;
-        let headers = Constants.httpHeaders;
         let params = new HttpParams()
             .set("keywords", keywords)
             .set("startTime", startTime)
@@ -34,6 +33,6 @@ export class LoginRecordService {
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());
 
-        return this.httpClient.get<PageModel<LoginRecord>>(url, {headers, params}).toPromise();
+        return this.httpClient.get<PageModel<LoginRecord>>(url, {params}).toPromise();
     }
 }

@@ -3,12 +3,12 @@ import {AuthorityDirective} from "../extentions/authority.directive";
 import {TabRouteReuseStrategy} from "../extentions/route-reuse.strategy";
 import {ApplicationTypeDescriptor} from '../values/enums/application-type.descriptor';
 
-/*扩展模块*/
+/*应用程序扩展模块*/
 @NgModule({
     declarations: [AuthorityDirective, ApplicationTypeDescriptor],
     exports: [AuthorityDirective, ApplicationTypeDescriptor],
     providers: [TabRouteReuseStrategy]
 })
-export class ExtensionModule {
+export class AppExtensionModule {
 
 }

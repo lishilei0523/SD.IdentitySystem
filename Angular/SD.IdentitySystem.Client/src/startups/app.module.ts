@@ -9,13 +9,14 @@ import {HttpClientModule} from '@angular/common/http';
 import {UiZorroModule} from './ui-zorro.module';
 import {UiPrimeModule} from './ui-prime.module';
 
+//路由模块
+import {AppRoutingModule} from './app-routing.module';
+
 //扩展模块
 import {AppConfigModule} from "./app-config.module";
 import {AppExceptionModule} from "./app-exception.module";
-import {ExtensionModule} from './extension.module';
-
-//路由模块
-import {AppRoutingModule} from './app-routing.module';
+import {AppAuthenticationModule} from "./app-authentication.module";
+import {AppExtensionModule} from './app-extension.module';
 
 //Angular组件
 import {AppComponent} from './app.component';
@@ -32,6 +33,7 @@ import {IndexComponent as LoginRecordIndexComponent} from '../app/login-record/i
 //Angular服务
 import {MenuService} from '../app/menu/menu.service';
 import {LoginRecordService} from "../app/login-record/login-record.service";
+
 
 /*应用程序模块*/
 @NgModule({
@@ -56,10 +58,11 @@ import {LoginRecordService} from "../app/login-record/login-record.service";
         HttpClientModule,
         UiZorroModule,
         UiPrimeModule,
+        AppRoutingModule,
         AppConfigModule,
         AppExceptionModule,
-        ExtensionModule,
-        AppRoutingModule
+        AppAuthenticationModule,
+        AppExtensionModule
     ],
     //提供服务
     providers: [MenuService, LoginRecordService],

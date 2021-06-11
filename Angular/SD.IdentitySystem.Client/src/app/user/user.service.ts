@@ -30,7 +30,7 @@ export class UserService {
             password: password
         };
 
-        return await this.httpClient.post<LoginInfo>(url, params, Constants.httpPostOptions).toPromise();
+        return await this.httpClient.post<LoginInfo>(url, params).toPromise();
     }
 
     /**
@@ -47,6 +47,6 @@ export class UserService {
             newPassword: newPassword
         };
 
-        await this.httpClient.post(url, params, Constants.httpPostOptions).toPromise();
+        await this.httpClient.post(url, params).toPromise();
     }
 }

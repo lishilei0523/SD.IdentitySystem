@@ -1,6 +1,5 @@
 import {LoginInfo} from "../structs/login-info";
 import {AppConfig} from "../structs/app-config";
-import {HttpHeaders} from "@angular/common/http";
 import {LoginMenuInfo} from "../structs/login-menu-info";
 import {ApplicationType} from "../enums/application-type";
 
@@ -34,41 +33,6 @@ export class Constants {
         }
         return new Array<string>();
     }
-
-    /*HTTP Headers*/
-    public static get httpHeaders() {
-        let headers: HttpHeaders;
-        let publicKey: string = Constants.loginInfo == null ? "" : Constants.loginInfo.publicKey;
-        if (publicKey) {
-            headers = new HttpHeaders({"CurrentPublicKey": publicKey});
-        } else {
-            headers = new HttpHeaders();
-        }
-
-        return headers;
-    };
-
-    /*HTTP POST请求选项*/
-    public static get httpPostOptions() {
-        let httpOptions;
-        let publicKey: string = Constants.loginInfo == null ? "" : Constants.loginInfo.publicKey;
-        if (publicKey) {
-            httpOptions = {
-                headers: new HttpHeaders({
-                    "Content-Type": "application/json",
-                    "CurrentPublicKey": publicKey
-                })
-            };
-        } else {
-            httpOptions = {
-                headers: new HttpHeaders({
-                    "Content-Type": "application/json"
-                })
-            };
-        }
-
-        return httpOptions;
-    };
 
     /**
      * 过滤用户菜单

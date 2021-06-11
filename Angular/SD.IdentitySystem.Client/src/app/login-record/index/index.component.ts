@@ -67,6 +67,14 @@ export class IndexComponent extends BaseComponent implements OnInit {
     }
 
     /**
+     * 搜索
+     * */
+    public async search(): Promise<void> {
+        this.pageIndex = 1;
+        await this.loadLoginRecords();
+    }
+
+    /**
      * 分页
      * */
     public async paginate(eventAgrs: any): Promise<void> {
@@ -76,9 +84,18 @@ export class IndexComponent extends BaseComponent implements OnInit {
     }
 
     /**
+     * 重置表单
+     * */
+    public resetForm(): void {
+        this.keywords = "";
+        this.startTime = "";
+        this.endTime = "";
+    }
+
+    /**
      * 加载登录记录列表
      * */
-    public async loadLoginRecords(): Promise<void> {
+    private async loadLoginRecords(): Promise<void> {
         this.busy();
 
         let startTime = Common.formatDate(this.startTime);
@@ -87,19 +104,12 @@ export class IndexComponent extends BaseComponent implements OnInit {
         promise.catch(_ => this.idle());
 
         let pageModel = await promise;
+        this.pageIndex = pageModel.pageIndex;
+        this.pageSize = pageModel.pageSize;
         this.rowCount = pageModel.rowCount;
         this.pageCount = pageModel.pageCount;
         this.loginRecords = pageModel.datas;
 
         this.idle();
-    }
-
-    /**
-     * 重置表单
-     * */
-    public resetForm(): void {
-        this.keywords = "";
-        this.startTime = "";
-        this.endTime = "";
     }
 }
