@@ -6,14 +6,40 @@ import {ApplicationType} from "../enums/application-type";
 /*常量*/
 export class Constants {
 
+    /*当前登录用户键*/
+    private static readonly keyOfCurrentUser: string = "CurrentUser";
+
     /*当前公钥键*/
     public static readonly keyOfPublicKey: string = "CurrentPublicKey";
 
     /*应用程序配置*/
     public static appConfig: AppConfig;
 
-    /*登录信息*/
-    public static loginInfo: LoginInfo | null = null;
+    /**
+     * 获取登录信息
+     * @return 登录信息
+     * */
+    public static get loginInfo(): LoginInfo | null {
+        let json = localStorage.getItem(Constants.keyOfCurrentUser);
+        if (json) {
+            return JSON.parse(json);
+        } else {
+            return null;
+        }
+    }
+
+    /**
+     * 设置登录信息
+     * @param value - 登录信息
+     * */
+    public static set loginInfo(value: LoginInfo | null) {
+        if (value) {
+            localStorage.setItem(Constants.keyOfCurrentUser, JSON.stringify(value));
+        } else {
+            localStorage.removeItem(Constants.keyOfCurrentUser);
+        }
+    }
+
 
     /*登录菜单列表*/
     public static get loginMenus(): Array<LoginMenuInfo> {

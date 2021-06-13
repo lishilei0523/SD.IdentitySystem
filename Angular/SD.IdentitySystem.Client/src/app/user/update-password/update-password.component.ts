@@ -1,7 +1,6 @@
-import {Component, OnInit} from '@angular/core';
-import {DynamicDialogRef} from 'primeng/dynamicdialog';
-import {DynamicDialogConfig} from 'primeng/dynamicdialog';
-import {MessageService} from "primeng/api";
+import {Component, Input} from '@angular/core';
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {NzModalRef} from "ng-zorro-antd/modal";
 import {BaseComponent} from "../../../extentions/base.component";
 import {UserService} from "../user.service";
 
@@ -11,21 +10,19 @@ import {UserService} from "../user.service";
     templateUrl: './update-password.component.html',
     styleUrls: ['./update-password.component.css']
 })
-export class UpdatePasswordComponent extends BaseComponent implements OnInit {
+export class UpdatePasswordComponent extends BaseComponent {
 
     /*对话框引用*/
-    public readonly dialogRef: DynamicDialogRef;
+    private modalRef: NzModalRef;
 
-    /*对话框配置*/
-    public readonly dialogConfig: DynamicDialogConfig;
-
-    /*消息服务*/
-    private readonly messageService: MessageService;
+    /*表单建造者*/
+    private readonly formBuilder: FormBuilder;
 
     /*用户服务*/
     private readonly userService: UserService;
 
     /*用户名*/
+    @Input()
     public loginId: string;
 
     /*旧密码*/
@@ -37,70 +34,60 @@ export class UpdatePasswordComponent extends BaseComponent implements OnInit {
     /*确认密码*/
     public confirmedPassword: string;
 
+    /*表单表单*/
+    public formGroup!: FormGroup;
+
     /**
      * 创建用户修改密码组件构造器
      * */
-    public constructor(dialogRef: DynamicDialogRef, dialogConfig: DynamicDialogConfig, messageService: MessageService, userService: UserService) {
+    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, userService: UserService) {
+        //基类构造器
         super();
-        this.dialogRef = dialogRef;
-        this.dialogConfig = dialogConfig;
-        this.messageService = messageService;
+
+        //依赖注入部分
+        this.modalRef = modalRef;
+        this.formBuilder = formBuilder;
         this.userService = userService;
+
+        //默认值部分
         this.loginId = "";
         this.oldPassword = "";
         this.newPassword = "";
         this.confirmedPassword = "";
-    }
-
-    /**
-     * 初始化组件
-     * */
-    public ngOnInit(): void {
-        this.loginId = this.dialogConfig.data.loginId;
+        this.formGroup = this.formBuilder.group({
+            oldPassword: [null, [Validators.required]],
+            newPassword: [null, [Validators.required]],
+            confirmedPassword: [null, [Validators.required]],
+        });
     }
 
     /**
      * 提交
      * */
     public async submit(): Promise<void> {
-        //region # 验证
-
-        if (!this.oldPassword) {
-            this.messageService.add({severity: "error", summary: "旧密码不可为空！"});
-            return;
-        }
-        if (!this.newPassword) {
-            this.messageService.add({severity: "error", summary: "新密码不可为空！"});
-            return;
-        }
-        if (!this.confirmedPassword) {
-            this.messageService.add({severity: "error", summary: "确认密码不可为空！"});
-            return;
-        }
-        if (this.newPassword != this.confirmedPassword) {
-            this.messageService.add({severity: "error", summary: "两次密码输入不一致！"});
-            return;
+        for (let index in this.formGroup.controls) {
+            this.formGroup.controls[index].markAsDirty();
+            this.formGroup.controls[index].updateValueAndValidity();
         }
 
-        //endregion
+        if (this.formGroup.valid) {
+            this.busy();
 
-        this.busy();
+            let promise: Promise<void> = this.userService.updatePassword(this.loginId, this.oldPassword, this.newPassword);
+            promise.catch(_ => {
+                this.idle();
+            });
+            await promise;
 
-        let promise: Promise<void> = this.userService.updatePassword(this.loginId, this.oldPassword, this.newPassword);
-        promise.catch(_ => {
             this.idle();
-            this.dialogRef.close(false);
-        });
-        await promise;
-
-        this.idle();
-        this.dialogRef.close(true);
+            this.modalRef.close(true);
+        }
     }
 
     /**
      * 取消
      * */
     public cancel(): void {
-        this.dialogRef.close(false);
+        this.modalRef.close(false);
     }
 }

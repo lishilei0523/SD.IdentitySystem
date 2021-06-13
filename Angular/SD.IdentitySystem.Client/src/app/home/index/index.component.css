@@ -84,13 +84,13 @@
 }
 
 .home-content-nav {
-    margin-top: 3px;
-    height: 50px
+    height: 40px;
 }
 
 .home-content-route {
+    background: red;
     width: 100%;
-    height: calc(100% - 53px);
+    height: calc(100% - 40px);
     margin: 0;
     padding: 0;
 }
@@ -104,12 +104,3 @@
     box-sizing: border-box;
     box-shadow: 0 -5px 15px 0 rgba(0, 0, 0, 0.08);
 }
-
-/deep/ .home-content-tab ul {
-    margin: 0 0 0 3px;
-}
-
-/deep/ .home-content-tab span {
-    font-weight: normal;
-}
-

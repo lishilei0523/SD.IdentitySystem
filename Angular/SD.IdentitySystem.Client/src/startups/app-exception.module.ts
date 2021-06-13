@@ -3,7 +3,7 @@ import {Router} from "@angular/router";
 import {HTTP_INTERCEPTORS, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest,} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
-import {MessageService} from "primeng/api";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 /*应用程序异常服务*/
 @Injectable({
@@ -15,12 +15,12 @@ export class AppExceptionService implements HttpInterceptor {
     private readonly router: Router;
 
     /*消息服务*/
-    private readonly messageService: MessageService;
+    private readonly messageService: NzMessageService;
 
     /**
      * 依赖注入构造器
      * */
-    public constructor(router: Router, messageService: MessageService) {
+    public constructor(router: Router, messageService: NzMessageService) {
         this.router = router;
         this.messageService = messageService;
     }
@@ -34,17 +34,17 @@ export class AppExceptionService implements HttpInterceptor {
                 console.log(error);
                 switch (error.status) {
                     case 401:
-                        this.messageService.add({severity: "error", summary: error.error});
+                        this.messageService.create("error", error.error);
                         this.router.navigate(["/Login"]);
                         return throwError(error);
                     case 404:
-                        this.messageService.add({severity: "error", summary: error.error});
+                        this.messageService.create("error", error.error);
                         return throwError(error);
                     case 500:
-                        this.messageService.add({severity: "error", summary: error.error});
+                        this.messageService.create("error", error.error);
                         return throwError(error);
                     default:
-                        this.messageService.add({severity: "error", summary: error.message});
+                        this.messageService.create("error", error.message);
                         return throwError(error);
                 }
             }));

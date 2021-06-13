@@ -6,15 +6,11 @@
 .login-container {
     width: 450px;
     height: 300px;
-    margin: 100px auto;
+    margin: 15vh auto;
 }
 
 .login-form {
-    margin:30px auto;
+    margin: 30px auto;
     width: 90%;
     height: 170px;
-}
-
-.login-submit {
-    width: 100px;
 }

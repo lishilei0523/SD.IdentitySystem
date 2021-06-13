@@ -3,28 +3,40 @@
     <div nz-col nzSpan="8">
         <div class="login-container">
             <nz-spin [nzSpinning]="isBusy">
-                <p-panel header="统一身份认证系统">
-                    <div class="login-form">
-                        <div class="p-fluid">
-                            <div class="p-field p-grid">
-                                <label for="loginId" class="p-col-12 p-mb-3 p-md-3 p-mb-md-0">用户名：</label>
-                                <div class="p-col-12 p-md-9">
-                                    <input id="loginId" type="text" pInputText [(ngModel)]="loginId"/>
-                                </div>
-                            </div>
-                            <div class="p-field p-grid">
-                                <label for="password" class="p-col-12 p-mb-3 p-md-3 p-mb-md-0">密码：</label>
-                                <div class="p-col-12 p-md-9">
-                                    <p-password id="password" [toggleMask]="true" [feedback]="false"
-                                                [(ngModel)]="password" required minlength="6"></p-password>
-                                </div>
-                            </div>
-                        </div>
+                <nz-card nzTitle="统一身份认证系统">
+                    <form nz-form [formGroup]="formGroup" (ngSubmit)="login()">
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="4" nzFor="loginId">用户名</nz-form-label>
+                            <nz-form-control [nzSpan]="20" [nzErrorTip]="loginIdError">
+                                <input nz-input nzSize="large" type="text" id="loginId" formControlName="loginId"
+                                       [(ngModel)]="loginId">
+                                <ng-template #loginIdError let-control>
+                                    <ng-container *ngIf="control.hasError('required')">
+                                        用户名不可为空！
+                                    </ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
+                        <nz-form-item>
+                            <nz-form-label [nzSpan]="4" nzFor="password">密码</nz-form-label>
+                            <nz-form-control [nzSpan]="20" [nzErrorTip]="passwordError">
+                                <input nz-input nzSize="large" type="password" id="password" formControlName="password"
+                                       [(ngModel)]="password"/>
+                                <ng-template #passwordError let-control>
+                                    <ng-container *ngIf="control.hasError('required')">
+                                        密码不可为空！
+                                    </ng-container>
+                                </ng-template>
+                            </nz-form-control>
+                        </nz-form-item>
                         <div class="form-footer">
-                            <button pButton pRipple type="button" label="登录" class="login-submit" (click)="login()"></button>
+                            <button type="submit" nz-button nzType="primary"
+                                    nzSize="large" [nzLoading]="isBusy">
+                                登录
+                            </button>
                         </div>
-                    </div>
-                </p-panel>
+                    </form>
+                </nz-card>
             </nz-spin>
         </div>
     </div>

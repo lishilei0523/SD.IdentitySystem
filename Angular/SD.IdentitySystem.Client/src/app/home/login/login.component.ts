@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
-import {MessageService} from 'primeng/api';
 import {Constants} from "../../../values/constants/constants";
 import {LoginInfo} from "../../../values/structs/login-info";
 import {BaseComponent} from "../../../extentions/base.component";
 import {UserService} from "../../user/user.service";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 
 /*登录组件*/
 @Component({
@@ -18,8 +18,8 @@ export class LoginComponent extends BaseComponent {
     /*路由器*/
     private readonly router: Router;
 
-    /*消息服务*/
-    private readonly messageService: MessageService;
+    /*表单建造者*/
+    private readonly formBuilder: FormBuilder;
 
     /*用户服务*/
     private readonly userService: UserService;
@@ -30,48 +30,62 @@ export class LoginComponent extends BaseComponent {
     /*密码*/
     public password: string;
 
+    /*表单组*/
+    public formGroup: FormGroup;
+
     /**
      * 创建登录组件构造器
      * */
-    public constructor(router: Router, messageService: MessageService, userService: UserService) {
+    public constructor(router: Router, formBuilder: FormBuilder, userService: UserService) {
         //基类构造器
         super();
 
         //依赖注入部分
         this.router = router;
-        this.messageService = messageService;
+        this.formBuilder = formBuilder;
         this.userService = userService;
 
         //默认值部分
         this.loginId = "";
         this.password = "";
+        this.formGroup = this.formBuilder.group({
+            loginId: [null, [Validators.required]],
+            password: [null, [Validators.required]]
+        });
 
         //自动登录
-        this.autoLogin();
+        if (!environment.production) {
+            this.autoLogin();
+        }
     }
 
     /**
      * 登录
      * */
     public async login(): Promise<void> {
-        this.busy();
+        for (let index in this.formGroup.controls) {
+            this.formGroup.controls[index].markAsDirty();
+            this.formGroup.controls[index].updateValueAndValidity();
+        }
 
-        let promise: Promise<LoginInfo> = this.userService.login(this.loginId, this.password);
-        promise.catch(_ => this.idle());
-        Constants.loginInfo = await promise;
-        await this.router.navigate(["/Home"]);
+        if (this.formGroup.valid) {
+            this.busy();
 
-        this.idle();
+            let promise: Promise<LoginInfo> = this.userService.login(this.loginId, this.password);
+            promise.catch(_ => this.idle());
+            Constants.loginInfo = await promise;
+            await this.router.navigate(["/Home"]);
+
+            this.idle();
+        }
     }
 
     /**
      * 自动登录
      * */
     private async autoLogin(): Promise<void> {
-        if (!environment.production) {
-            this.loginId = "admin";
-            this.password = "888888";
-            await this.login();
-        }
+        this.loginId = "admin";
+        this.password = "888888";
+        await this.login();
     }
 }

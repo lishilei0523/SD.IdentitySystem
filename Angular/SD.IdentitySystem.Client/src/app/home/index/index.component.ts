@@ -1,11 +1,10 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
-import {ConfirmationService} from 'primeng/api';
+import {NzModalService} from "ng-zorro-antd/modal";
 import {Constants} from "../../../values/constants/constants";
 import {Tab} from "../../../values/structs/tab";
 import {LoginMenuInfo} from "../../../values/structs/login-menu-info";
 import {LoginInfo} from "../../../values/structs/login-info";
-import {DialogService} from "primeng/dynamicdialog";
 import {UpdatePasswordComponent} from "../../user/update-password/update-password.component";
 
 /*首页组件*/
@@ -22,11 +21,8 @@ export class IndexComponent {
     /*活动路由*/
     private readonly activatedRoute: ActivatedRoute;
 
-    /*确认服务*/
-    private readonly confirmService: ConfirmationService;
-
-    /*对话框服务*/
-    public dialogService: DialogService;
+    /*模态框服务*/
+    private modalService: NzModalService;
 
     /*菜单是否折叠*/
     public menuCollapsed: boolean;
@@ -52,13 +48,12 @@ export class IndexComponent {
     /**
      * 创建首页组件构造器
      * */
-    public constructor(router: Router, activatedRoute: ActivatedRoute, confirmService: ConfirmationService, dialogService: DialogService) {
+    public constructor(router: Router, activatedRoute: ActivatedRoute, modalService: NzModalService) {
 
         //依赖注入部分
         this.router = router;
         this.activatedRoute = activatedRoute;
-        this.confirmService = confirmService;
-        this.dialogService = dialogService;
+        this.modalService = modalService;
 
         //默认值部分
         this.menuCollapsed = false;
@@ -95,11 +90,10 @@ export class IndexComponent {
 
     /**
      * 切换选项卡
-     * @param eventArgs - 事件参数
+     * @param tab - 选项卡
      * */
-    public async changeTab(eventArgs: any): Promise<void> {
-        let index: number = eventArgs.index;
-        let tab: Tab = this.tabs[index];
+    public async changeTab(tab: Tab): Promise<void> {
+        let index: number = this.tabs.findIndex(x => x.menuId == tab.menuId);
 
         //清空选中
         this.clearSelectedTabs();
@@ -134,9 +128,10 @@ export class IndexComponent {
      * 注销登录
      * */
     public async logout(): Promise<void> {
-        this.confirmService.confirm({
-            message: "确定要注销吗？",
-            accept: async () => {
+        this.modalService.confirm({
+            nzTitle: "警告",
+            nzContent: "确定要注销吗？",
+            nzOnOk: async () => {
                 Constants.loginInfo = null;
                 await this.router.navigate(["/Login"]);
             }
@@ -147,12 +142,17 @@ export class IndexComponent {
      * 修改密码
      * */
     public updatePassword(): void {
-        this.dialogService.open(UpdatePasswordComponent, {
-            data: {
-                loginId: this.loginInfo?.loginId
+        this.modalService.create({
+            nzTitle: "修改密码",
+            nzWidth: "480px",
+            nzBodyStyle: {
+                height: "290px"
             },
-            header: "修改密码",
-            width: "480px"
+            nzContent: UpdatePasswordComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                loginId: this.loginInfo?.loginId
+            }
         });
     }
 
