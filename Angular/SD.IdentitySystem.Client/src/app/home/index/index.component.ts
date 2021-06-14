@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {ActivatedRoute, Router} from "@angular/router";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {Constants} from "../../../values/constants/constants";
+import {Membership} from "../../../values/constants/membership";
 import {Tab} from "../../../values/structs/tab";
 import {LoginMenuInfo} from "../../../values/structs/login-menu-info";
 import {LoginInfo} from "../../../values/structs/login-info";
@@ -58,8 +58,8 @@ export class IndexComponent {
         //默认值部分
         this.menuCollapsed = false;
         this.bingHidden = false;
-        this.loginInfo = Constants.loginInfo;
-        this.menus = Constants.loginMenus;
+        this.loginInfo = Membership.loginInfo;
+        this.menus = Membership.loginMenus;
         this.tabs = new Array<any>();
         this.activeTabIndex = 1;
         this.currentTime = Date();
@@ -132,7 +132,7 @@ export class IndexComponent {
             nzTitle: "警告",
             nzContent: "确定要注销吗？",
             nzOnOk: async () => {
-                Constants.loginInfo = null;
+                Membership.loginInfo = null;
                 await this.router.navigate(["/Login"]);
             }
         });

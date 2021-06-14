@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
-import {Constants} from "../../../values/constants/constants";
+import {Membership} from "../../../values/constants/membership";
 import {LoginInfo} from "../../../values/structs/login-info";
 import {BaseComponent} from "../../../extentions/base.component";
 import {UserService} from "../../user/user.service";
@@ -73,7 +73,7 @@ export class LoginComponent extends BaseComponent {
 
             let promise: Promise<LoginInfo> = this.userService.login(this.loginId, this.password);
             promise.catch(_ => this.idle());
-            Constants.loginInfo = await promise;
+            Membership.loginInfo = await promise;
             await this.router.navigate(["/Home"]);
 
             this.idle();

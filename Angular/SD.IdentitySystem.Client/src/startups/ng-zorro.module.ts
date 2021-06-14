@@ -28,7 +28,12 @@ import {NzTableModule} from "ng-zorro-antd/table";
 
 //Ng-Zorro全局配置
 const ngZorroConfig: NzConfig = {
-    message: {nzTop: 300}
+    message: {nzTop: 300},
+    table: {
+        nzBordered: true,
+        nzSize: "small",
+        nzShowSizeChanger: true
+    }
 };
 
 /*Ng-Zorro模块*/

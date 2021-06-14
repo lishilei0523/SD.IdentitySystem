@@ -1,5 +1,6 @@
 import {Directive, Input, TemplateRef, ViewContainerRef} from '@angular/core';
 import {Constants} from "../values/constants/constants";
+import {Membership} from "../values/constants/membership";
 
 /*Angular授权指令*/
 @Directive({
@@ -31,7 +32,7 @@ export class AuthorityDirective {
      * */
     @Input()
     public set authorityPath(authorityPath: string) {
-        if (Constants.loginAuthorityPaths.includes(authorityPath)) {
+        if (Membership.loginAuthorityPaths.includes(authorityPath)) {
             this.authorized = true;
         }
         if (!Constants.appConfig.authorizationEnabled) {

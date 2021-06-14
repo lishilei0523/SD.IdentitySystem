@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {CanActivate, Router} from "@angular/router";
-import {Constants} from "../values/constants/constants";
+import {Membership} from "../values/constants/membership";
 
 /*身份认证守卫器*/
 @Injectable({
@@ -22,7 +22,7 @@ export class AuthenticationGuard implements CanActivate {
      * 是否可激活
      * */
     public async canActivate(): Promise<boolean> {
-        if (Constants.loginInfo) {
+        if (Membership.loginInfo) {
             return true;
         } else {
             await this.router.navigate(["/Login"])

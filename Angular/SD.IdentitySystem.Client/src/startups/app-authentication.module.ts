@@ -1,7 +1,7 @@
 import {NgModule, Injectable} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest,} from '@angular/common/http';
 import {Observable} from 'rxjs';
-import {Constants} from "../values/constants/constants";
+import {Membership} from "../values/constants/membership";
 
 /*应用程序身份认证服务*/
 @Injectable({
@@ -13,7 +13,7 @@ export class AppAuthenticationService implements HttpInterceptor {
      * 拦截请求
      * */
     public intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        let publicKey: string = Constants.loginInfo == null ? "" : Constants.loginInfo.publicKey;
+        let publicKey: string = Membership.loginInfo == null ? "" : Membership.loginInfo.publicKey;
         if (request.method == "GET" && publicKey) {
             let headers = {
                 "CurrentPublicKey": publicKey
