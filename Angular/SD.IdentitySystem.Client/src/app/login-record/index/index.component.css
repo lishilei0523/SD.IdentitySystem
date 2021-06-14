@@ -1,63 +1,13 @@
-.document-header {
-    height: 64px;
-    background: white;
-    margin: 0;
-    padding: 0
+.ant-advanced-search-form {
+    padding: 10px;
+    border: 1px solid #d9d9d9;
+    border-radius: 2px;
 }
 
-/deep/
-.document-header label, button, input, optgroup, select, textarea, p-calendar, p-button {
-    margin-left: 10px;
+button {
+    margin-left: 8px;
 }
 
-.document-content {
-    background: whitesmoke;
-    height: calc(100vh - 258px);
-}
-
-.document-content-checkbox {
-    width: 3rem !important;
-    margin: 0 !important;
-    padding: 0 !important;
-    text-align: center !important;
-}
-
-/deep/
-.document-content .p-datatable.p-datatable-sm .p-datatable-thead > tr > th {
-    background: whitesmoke;
-    padding: 0.3rem 1.5rem;
-    font-weight: normal;
-    text-align: center;
-}
-
-/deep/
-.document-content .p-datatable.p-datatable-sm .p-datatable-tbody > tr > td {
-    padding: 0.3rem 1.5rem;
-}
-
-.document-footer {
-    /*background: red;*/
-    height: 46px;
-    margin: 0;
-    padding: 0;
-}
-
-.document-footer-paginator {
-    width: 100%;
-}
-
-/deep/
-.document-footer-paginator div.p-paginator {
-    justify-content: end;
-    padding: 2px 20px;
-}
-
-/deep/
-.document-footer-paginator .p-paginator .p-dropdown {
-    margin: 0;
-}
-
-/deep/
-.document-footer-paginator .p-inputtext {
-    padding: 0.3rem 0.5rem;
+.search-area {
+    text-align: right;
 }

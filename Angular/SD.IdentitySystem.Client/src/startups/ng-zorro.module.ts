@@ -1,3 +1,10 @@
+//Angular本地化
+import {registerLocaleData} from '@angular/common';
+import zh from '@angular/common/locales/zh';
+
+registerLocaleData(zh);
+
+//Ng-Zorro模块
 import {NgModule} from '@angular/core';
 import {NZ_I18N} from 'ng-zorro-antd/i18n';
 import {zh_CN} from 'ng-zorro-antd/i18n';
@@ -6,25 +13,20 @@ import {MenuFoldOutline, MenuUnfoldOutline, FormOutline, DashboardOutline} from 
 import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
 import {NzLayoutModule} from 'ng-zorro-antd/layout';
 import {NzGridModule} from 'ng-zorro-antd/grid';
-import {NzMenuModule} from 'ng-zorro-antd/menu';
-import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
-import {NzSpinModule} from "ng-zorro-antd/spin";
-
-//Angular本地化
-import {registerLocaleData} from '@angular/common';
-import zh from '@angular/common/locales/zh';
 import {NzSpaceModule} from "ng-zorro-antd/space";
+import {NzSpinModule} from "ng-zorro-antd/spin";
+import {NzModalModule} from "ng-zorro-antd/modal";
+import {NzMessageService} from "ng-zorro-antd/message";
+import {NzTabsModule} from "ng-zorro-antd/tabs";
 import {NzCardModule} from "ng-zorro-antd/card";
+import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
 import {NzButtonModule} from "ng-zorro-antd/button";
-import {NzTabsModule} from "ng-zorro-antd/tabs";
-import {NzModalModule} from "ng-zorro-antd/modal";
-import {NzMessageService} from "ng-zorro-antd/message";
+import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
+import {NzTableModule} from "ng-zorro-antd/table";
 
-
-registerLocaleData(zh);
-
+//Ng-Zorro全局配置
 const ngZorroConfig: NzConfig = {
     message: {nzTop: 300}
 };
@@ -36,30 +38,32 @@ const ngZorroConfig: NzConfig = {
         NzLayoutModule,
         NzGridModule,
         NzSpaceModule,
+        NzSpinModule,
         NzModalModule,
         NzTabsModule,
         NzCardModule,
-        NzSpinModule,
         NzMenuModule,
         NzFormModule,
         NzInputModule,
         NzButtonModule,
-        NzDropDownModule
+        NzDropDownModule,
+        NzTableModule
     ],
     exports: [
         NzIconModule,
         NzLayoutModule,
         NzGridModule,
         NzSpaceModule,
+        NzSpinModule,
         NzModalModule,
         NzTabsModule,
         NzCardModule,
-        NzSpinModule,
         NzMenuModule,
         NzFormModule,
         NzInputModule,
         NzButtonModule,
-        NzDropDownModule
+        NzDropDownModule,
+        NzTableModule
     ],
     providers: [
         {provide: NZ_ICONS, useValue: [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline]},
@@ -68,6 +72,6 @@ const ngZorroConfig: NzConfig = {
         NzMessageService
     ]
 })
-export class UiZorroModule {
+export class NgZorroModule {
 
 }

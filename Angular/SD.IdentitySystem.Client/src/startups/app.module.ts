@@ -5,9 +5,8 @@ import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
 
-//UI库模块
-import {UiZorroModule} from './ui-zorro.module';
-import {UiPrimeModule} from './ui-prime.module';
+//Ng-Zorro模块
+import {NgZorroModule} from './ng-zorro.module';
 
 //路由模块
 import {AppRoutingModule} from './app-routing.module';
@@ -57,8 +56,7 @@ import {LoginRecordService} from "../app/login-record/login-record.service";
         FormsModule,
         ReactiveFormsModule,
         HttpClientModule,
-        UiZorroModule,
-        UiPrimeModule,
+        NgZorroModule,
         AppRoutingModule,
         AppConfigModule,
         AppExceptionModule,

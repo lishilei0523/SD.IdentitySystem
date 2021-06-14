@@ -1,83 +1,74 @@
-<nz-layout>
-    <nz-header class="document-header">
-        <div nz-row>
-            <div nz-col nzSpan="20">
-                <label for="keywords">关键字：</label>
-                <input pInputText id="keywords" type="text" placeholder="用户名/真实姓名" [(ngModel)]="keywords"/>
-                <label for="startTime">开始时间：</label>
-                <p-calendar id="startTime" [(ngModel)]="startTime" [showTime]="true" [showIcon]="true"
-                            dateFormat="yy-mm-dd">
-                </p-calendar>
-                <label for="endTime">结束时间：</label>
-                <p-calendar id="endTime" [(ngModel)]="endTime" [showTime]="true" [showIcon]="true"
-                            dateFormat="yy-mm-dd"></p-calendar>
-            </div>
-            <div nz-col nzSpan="4">
-                <div style="float:right;padding-right: 20px;">
-                    <button label="搜索" icon="pi pi-search" iconPos="left" pButton pRipple
-                            (click)="search()"></button>
-                    <button label="重置" icon="pi pi-replay" iconPos="left" pButton pRipple class="p-button-outlined"
-                            (click)="resetForm()"></button>
-                </div>
-            </div>
+<form nz-form class="ant-advanced-search-form">
+    <div nz-row [nzGutter]="24">
+        <div nz-col [nzSpan]="6">
+            <nz-form-item>
+                <nz-form-label nzFor="field1">Field 1</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="placeholder" formControlName="field1" id="field1"/>
+                </nz-form-control>
+            </nz-form-item>
         </div>
-    </nz-header>
-    <nz-content class="document-content">
-        <p-table [value]="loginRecords"
-                 [scrollable]="true"
-                 [loading]="isBusy"
-                 [(selection)]="checkedItems"
-                 selectionMode="single"
-                 scrollHeight="calc(100vh - 295px)"
-                 styleClass="p-datatable-sm p-datatable-gridlines">
-            <ng-template pTemplate="colgroup" let-columns>
-                <colgroup>
-                    <col style="width: 20px">
-                    <col style="width:130px">
-                    <col style="width:130px">
-                    <col style="width:200px">
-                    <col style="width:200px">
-                </colgroup>
-            </ng-template>
-            <ng-template pTemplate="header">
-                <tr>
-                    <th class="document-content-checkbox">
-                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                    </th>
-                    <th>用户名</th>
-                    <th>真实姓名</th>
-                    <th>IP地址</th>
-                    <th>登录时间</th>
-                </tr>
-            </ng-template>
-            <ng-template pTemplate="body" let-loginRecord>
-                <tr>
-                    <td class="document-content-checkbox">
-                        <p-tableCheckbox [value]="loginRecord"></p-tableCheckbox>
-                    </td>
-                    <td>{{loginRecord.loginId}}</td>
-                    <td>{{loginRecord.realName}}</td>
-                    <td>{{loginRecord.ip}}</td>
-                    <td>{{loginRecord.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
-                </tr>
-            </ng-template>
-        </p-table>
-    </nz-content>
-    <nz-footer class="document-footer">
-        <p-paginator [first]="1"
-                     [rows]="pageSize"
-                     [totalRecords]="rowCount"
-                     [rowsPerPageOptions]="[15, 20 ,30 ,50]"
-                     [showCurrentPageReport]="true"
-                     currentPageReportTemplate="显示 {first} 到 {last} ，共 {totalRecords} 条记录"
-                     class="document-footer-paginator"
-                     (onPageChange)="paginate($event)">
-        </p-paginator>
-    </nz-footer>
-</nz-layout>
-
-
-
-
-
-
+        <div nz-col [nzSpan]="6">
+            <nz-form-item>
+                <nz-form-label nzFor="field2">Field 2</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="placeholder" formControlName="field1" id="field2"/>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="6">
+            <nz-form-item>
+                <nz-form-label nzFor="field3">Field 3</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="placeholder" formControlName="field1" id="field3"/>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="6">
+            <nz-form-item>
+                <nz-form-label nzFor="field4">Field 4</nz-form-label>
+                <nz-form-control>
+                    <input nz-input placeholder="placeholder" formControlName="field1" id="field4"/>
+                </nz-form-control>
+            </nz-form-item>
+        </div>
+    </div>
+    <div nz-row>
+        <div nz-col [nzSpan]="24" class="search-area">
+            <button nz-button [nzType]="'primary'">Search</button>
+            <button nz-button>Clear</button>
+        </div>
+    </div>
+</form>
+<nz-table style="margin-top: 5px;"
+          nzShowSizeChanger
+          [nzData]="loginRecords"
+          [nzFrontPagination]="false"
+          [nzLoading]="isBusy"
+          [nzBordered]="true"
+          [nzTitle]="tableTitle"
+          [nzScroll]="{ y: 'calc(100vh - 400px)' }"
+          nzSize="small"
+          [nzTotal]="rowCount"
+          [nzPageSize]="pageSize"
+          [nzPageIndex]="pageIndex">
+    <thead>
+    <tr>
+        <th nzWidth="100px">用户名</th>
+        <th nzWidth="100px">真实姓名</th>
+        <th nzWidth="200px">IP地址</th>
+        <th nzWidth="200px">登录时间</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let loginRecord of loginRecords">
+        <td>{{loginRecord.loginId}}</td>
+        <td>{{loginRecord.realName}}</td>
+        <td>{{loginRecord.ip}}</td>
+        <td>{{loginRecord.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+    </tr>
+    </tbody>
+</nz-table>
+<ng-template #tableTitle>
+    <span>表格标题</span>
+</ng-template>
