@@ -33,6 +33,6 @@ export class LoginRecordService {
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());
 
-        return this.httpClient.get<PageModel<LoginRecord>>(url, {params}).toPromise();
+        return await this.httpClient.get<PageModel<LoginRecord>>(url, {params}).toPromise();
     }
 }
