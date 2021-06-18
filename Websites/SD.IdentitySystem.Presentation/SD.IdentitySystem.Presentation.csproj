@@ -52,7 +52,7 @@
       <HintPath>..\..\packages\SD.Common.3.0.3\lib\net45\SD.Common.dll</HintPath>
     </Reference>
     <Reference Include="SD.IdentitySystem.IAppService, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
-      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.3.0.4\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
+      <HintPath>..\..\packages\SD.IdentitySystem.IAppService.4.3.1\lib\net461\SD.IdentitySystem.IAppService.dll</HintPath>
     </Reference>
     <Reference Include="SD.Infrastructure, Version=3.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <HintPath>..\..\packages\SD.Infrastructure.3.0.3\lib\net46\SD.Infrastructure.dll</HintPath>
