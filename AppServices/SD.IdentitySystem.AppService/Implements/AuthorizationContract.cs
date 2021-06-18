@@ -261,7 +261,7 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 创建菜单 —— void CreateMenu(string systemNo, string menuName...
+        #region # 创建菜单 —— Guid CreateMenu(string systemNo, string menuName...
         /// <summary>
         /// 创建菜单
         /// </summary>
@@ -273,7 +273,8 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentNodeId">上级节点Id</param>
-        public void CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId)
+        /// <returns>菜单Id</returns>
+        public Guid CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId)
         {
             //验证参数
             Assert.IsTrue(this._repMediator.InfoSystemRep.ExistsNo(systemNo), $"编号为\"{systemNo}\"的信息系统不存在！");
@@ -286,6 +287,8 @@ namespace SD.IdentitySystem.AppService.Implements
 
             this._unitOfWork.RegisterAdd(menu);
             this._unitOfWork.Commit();
+
+            return menu.Id;
         }
         #endregion
 

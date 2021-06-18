@@ -166,7 +166,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 创建菜单 —— void CreateMenu(string systemNo, ApplicationType applicationType...
+        #region # 创建菜单 —— Guid CreateMenu(string systemNo, ApplicationType applicationType...
         /// <summary>
         /// 创建菜单
         /// </summary>
@@ -178,11 +178,12 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentNodeId">上级节点Id</param>
+        /// <returns>菜单Id</returns>
         [HttpPost]
         [WrapPostParameters]
-        public void CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId)
+        public Guid CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId)
         {
-            this._authorizationContract.CreateMenu(systemNo, applicationType, menuName, sort, url, path, icon, parentNodeId);
+            return this._authorizationContract.CreateMenu(systemNo, applicationType, menuName, sort, url, path, icon, parentNodeId);
         }
         #endregion
 

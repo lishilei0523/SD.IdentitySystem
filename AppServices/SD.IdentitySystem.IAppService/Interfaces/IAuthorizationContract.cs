@@ -116,7 +116,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         void RemoveAuthority(Guid authorityId);
         #endregion
 
-        #region # 创建菜单 —— void CreateMenu(string systemNo, ApplicationType applicationType...
+        #region # 创建菜单 —— Guid CreateMenu(string systemNo, ApplicationType applicationType...
         /// <summary>
         /// 创建菜单
         /// </summary>
@@ -128,8 +128,9 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentNodeId">上级节点Id</param>
+        /// <returns>菜单Id</returns>
         [OperationContract]
-        void CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId);
+        Guid CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId);
         #endregion
 
         #region # 修改菜单 —— void UpdateMenu(Guid menuId, string menuName...
