@@ -13,9 +13,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseWr
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - 许可证工具", "02 - 许可证工具", "{CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseManager", "Tools\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj", "{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.LicenseManager.Standard20", "Tools\SD.IdentitySystem.LicenseManager.Standard20\SD.IdentitySystem.LicenseManager.Standard20.csproj", "{39285437-4F60-4C9E-B44D-A760DE837CFF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.LicenseManager", "Tools\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj", "{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.DataImporter", "Tools\SD.IdentitySystem.DataImporter\SD.IdentitySystem.DataImporter.csproj", "{0DC06212-3A5F-4486-8C3D-FC13978132F5}"
 EndProject
@@ -41,10 +39,6 @@ Global
 		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}.Release|Any CPU.Build.0 = Release|Any CPU
-		{39285437-4F60-4C9E-B44D-A760DE837CFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{39285437-4F60-4C9E-B44D-A760DE837CFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{39285437-4F60-4C9E-B44D-A760DE837CFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{39285437-4F60-4C9E-B44D-A760DE837CFF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0DC06212-3A5F-4486-8C3D-FC13978132F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0DC06212-3A5F-4486-8C3D-FC13978132F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0DC06212-3A5F-4486-8C3D-FC13978132F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -58,7 +52,6 @@ Global
 		{1ADB97CB-60D3-4D0F-99CA-744EB0726868} = {CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}
 		{8B2C63C4-2F19-47A9-B45E-DABD4E379624} = {CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}
 		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1} = {CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}
-		{39285437-4F60-4C9E-B44D-A760DE837CFF} = {CE4C0E05-3D3D-4213-BFF8-9F1075B3BFFB}
 		{0DC06212-3A5F-4486-8C3D-FC13978132F5} = {E738CC7C-C2A8-4038-ABD2-CD6205A1989B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

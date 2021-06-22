@@ -14,11 +14,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using SD.Infrastructure;
-#if NETFX
+#if NET461
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 #endif
-#if NETCORE
+#if NETSTANDARD2_1
 using CoreWCF;
 using SD.Toolkits.OwinCore.Extensions;
 #endif

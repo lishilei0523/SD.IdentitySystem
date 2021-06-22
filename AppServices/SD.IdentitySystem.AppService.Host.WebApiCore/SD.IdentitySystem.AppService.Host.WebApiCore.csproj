@@ -46,11 +46,11 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\SD.IdentitySystem.AppService.Standard21\SD.IdentitySystem.AppService.Standard21.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.Domain.Standard20\SD.IdentitySystem.Domain.Standard20.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.DomainEventHandler.Standard21\SD.IdentitySystem.DomainEventHandler.Standard21.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.DomainService.Standard21\SD.IdentitySystem.DomainService.Standard21.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.IAppService.Standard20\SD.IdentitySystem.IAppService.Standard20.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.Repository.Standard21\SD.IdentitySystem.Repository.Standard21.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.DomainService\SD.IdentitySystem.DomainService.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj" />
   </ItemGroup>
 </Project>

@@ -11,10 +11,10 @@ using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-#if NETFX
+#if NET461
 using System.ServiceModel;
 #endif
-#if NETCORE
+#if NETSTANDARD2_1
 using CoreWCF;
 #endif
 
