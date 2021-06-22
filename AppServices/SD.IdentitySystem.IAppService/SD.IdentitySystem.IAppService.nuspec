@@ -2,11 +2,12 @@
 <package>
   <metadata>
     <id>SD.IdentitySystem.IAppService</id>
-    <version>1.0.0.0</version>
+    <version>4.3.1</version>
     <title>SD.IdentitySystem.IAppService</title>
     <authors>Lee</authors>
-    <description>身份认证服务接口</description>
+    <description>SD.IdentitySystem 身份认证系统服务接口</description>
   </metadata>
+
   <files>
     <file src="*.transform" target="content" />
   </files>

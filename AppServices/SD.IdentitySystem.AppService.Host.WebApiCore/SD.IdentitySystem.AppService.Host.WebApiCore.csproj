@@ -47,10 +47,10 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.DomainService\SD.IdentitySystem.DomainService.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj" />
     <ProjectReference Include="..\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.DomainService\SD.IdentitySystem.DomainService.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj" />
     <ProjectReference Include="..\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj" />
   </ItemGroup>
 </Project>

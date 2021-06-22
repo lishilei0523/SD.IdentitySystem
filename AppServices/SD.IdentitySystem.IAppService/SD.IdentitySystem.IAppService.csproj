@@ -1,14 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
-    <AssemblyName>SD.IdentitySystem.IAppService</AssemblyName>
-    <RootNamespace>SD.IdentitySystem.IAppService</RootNamespace>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem 身份认证系统服务接口</Description>
     <Copyright>Copyright © SD 2021</Copyright>
-    <Version>3.0.0</Version>
-    <AssemblyVersion>3.0.0.0</AssemblyVersion>
+    <Version>4.3.1</Version>
+    <AssemblyVersion>4.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -1,19 +1,17 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.1</TargetFrameworks>
-    <AssemblyName>SD.IdentitySystem.Repository</AssemblyName>
-    <RootNamespace>SD.IdentitySystem.Repository</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.8.11" />
-    <PackageReference Include="SD.AOP.Core" Version="2.0.9" />
     <PackageReference Include="SD.Common" Version="3.0.3" />
-    <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
+    <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
+    <PackageReference Include="SD.AOP.Core" Version="2.0.9" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.3" />
     <PackageReference Include="SD.Infrastructure.Repository.EntityFramework" Version="2.0.9" />
-    <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
   </ItemGroup>
 
   <ItemGroup>
