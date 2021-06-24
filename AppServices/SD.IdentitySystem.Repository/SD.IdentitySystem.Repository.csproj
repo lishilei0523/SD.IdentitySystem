@@ -4,6 +4,7 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="MrAdvice" Version="2.8.11" />
     <PackageReference Include="SD.Common" Version="3.0.3" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
