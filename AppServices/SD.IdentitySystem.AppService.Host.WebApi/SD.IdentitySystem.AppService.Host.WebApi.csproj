@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net461;net48</TargetFrameworks>
-    <OutputType>Exe</OutputType>
     <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
     <AssemblyName>SD.IdentitySystem.AppService.Host</AssemblyName>
+    <OutputType>Exe</OutputType>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <Authors>Lee</Authors>
     <Company>SD</Company>
