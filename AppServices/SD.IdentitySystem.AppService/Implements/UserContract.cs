@@ -14,7 +14,7 @@ using System.Linq;
 #if NET461
 using System.ServiceModel;
 #endif
-#if NETSTANDARD2_1
+#if NETSTANDARD2_0_OR_GREATER
 using CoreWCF;
 #endif
 

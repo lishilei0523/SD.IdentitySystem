@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461;netstandard2.1</TargetFrameworks>
+    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
@@ -15,7 +15,7 @@
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.1'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="CoreWCF.Primitives" Version="0.1.0" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.1" />

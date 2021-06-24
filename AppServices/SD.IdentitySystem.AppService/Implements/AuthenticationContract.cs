@@ -18,7 +18,7 @@ using SD.Infrastructure;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 #endif
-#if NETSTANDARD2_1
+#if NETSTANDARD2_0_OR_GREATER
 using CoreWCF;
 using SD.Toolkits.OwinCore.Extensions;
 #endif
