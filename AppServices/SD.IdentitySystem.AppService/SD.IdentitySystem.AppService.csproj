@@ -6,7 +6,6 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <Reference Include="System.ServiceModel" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.0.0" />
-    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />

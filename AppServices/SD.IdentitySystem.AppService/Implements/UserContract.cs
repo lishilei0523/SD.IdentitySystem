@@ -11,7 +11,7 @@ using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-#if NET461
+#if NET461_OR_GREATER
 using System.ServiceModel;
 #endif
 #if NETSTANDARD2_0_OR_GREATER
