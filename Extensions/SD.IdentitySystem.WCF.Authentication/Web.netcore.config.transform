@@ -1,0 +1,12 @@
+﻿<configuration>
+  <system.serviceModel>
+    <behaviorConfigurations>
+      <behaviorConfiguration name="AuthenticationBehavior">
+        <endpointBehaviors>
+          <!--WCF客户端/服务端身份认证扩展配置-->
+          <endpointBehavior type="SD.IdentitySystem.WCF.Authentication.AuthenticationBehaviorElement" assembly="SD.IdentitySystem.WCF.Authentication" />
+        </endpointBehaviors>
+      </behaviorConfiguration>
+    </behaviorConfigurations>
+  </system.serviceModel>
+</configuration>

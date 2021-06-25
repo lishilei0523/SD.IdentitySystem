@@ -1,8 +1,16 @@
 ﻿using System.Collections.ObjectModel;
+#if NET46_OR_GREATER
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
+#endif
+#if NETSTANDARD2_0_OR_GREATER
+using CoreWCF;
+using CoreWCF.Channels;
+using CoreWCF.Description;
+using CoreWCF.Dispatcher;
+#endif
 
 namespace SD.IdentitySystem.WCF.Authentication
 {
@@ -38,8 +46,14 @@ namespace SD.IdentitySystem.WCF.Authentication
         /// <param name="clientRuntime">客户端运行时</param>
         public void ApplyClientBehavior(ServiceEndpoint endpoint, ClientRuntime clientRuntime)
         {
+#if NET46_OR_GREATER
             //添加消息拦截器
             clientRuntime.MessageInspectors.Add(new AuthenticationMessageInspector());
+#endif
+#if NETSTANDARD2_0_OR_GREATER
+            //添加消息拦截器
+            clientRuntime.ClientMessageInspectors.Add(new AuthenticationMessageInspector());
+#endif
         }
 
 

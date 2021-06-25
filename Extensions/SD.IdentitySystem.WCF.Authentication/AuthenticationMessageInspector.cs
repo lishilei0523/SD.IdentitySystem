@@ -6,9 +6,16 @@ using SD.Infrastructure.MemberShip;
 using System;
 using System.Linq;
 using System.Net;
+#if NET46_OR_GREATER
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
+#endif
+#if NETSTANDARD2_0_OR_GREATER
+using CoreWCF;
+using CoreWCF.Channels;
+using CoreWCF.Dispatcher;
+#endif
 
 namespace SD.IdentitySystem.WCF.Authentication
 {
