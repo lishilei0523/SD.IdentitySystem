@@ -7,7 +7,7 @@
 // </自动生成>
 //------------------------------------------------------------------------------
 
-namespace SD.IdentitySystem.MVC.Tests {
+namespace SD.IdentitySystem.AspNet.Tests {
     
     
     public partial class Default {

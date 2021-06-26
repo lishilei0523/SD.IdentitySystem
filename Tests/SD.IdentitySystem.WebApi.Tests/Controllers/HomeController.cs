@@ -15,7 +15,7 @@ namespace SD.IdentitySystem.WebApi.Tests.Controllers
     public class HomeController : ApiController
     {
         [HttpGet]
-        public string GetProducts()
+        public string Index()
         {
             return "Hello World";
         }

@@ -3,53 +3,51 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.31205.134
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "09 - Extensions", "09 - Extensions", "{BED16DF1-091A-4EAC-9EC7-A25987933B6C}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08 - Extensions", "08 - Extensions", "{BED16DF1-091A-4EAC-9EC7-A25987933B6C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCF.Authentication.AspNet", "Extensions\SD.IdentitySystem.WCF.Authentication.AspNet\SD.IdentitySystem.WCF.Authentication.AspNet.csproj", "{FA4CA095-26A0-4E6F-B297-D98115A577D7}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication.AspNet", "Extensions\SD.IdentitySystem.WCF.Authentication.AspNet\SD.IdentitySystem.WCF.Authentication.AspNet.csproj", "{FA4CA095-26A0-4E6F-B297-D98115A577D7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCF.Authentication", "Extensions\SD.IdentitySystem.WCF.Authentication\SD.IdentitySystem.WCF.Authentication.csproj", "{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication", "Extensions\SD.IdentitySystem.WCF.Authentication\SD.IdentitySystem.WCF.Authentication.csproj", "{55E99FFF-1BCC-423F-B945-931A4F2BF2D3}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - MVC客户端测试", "01 - MVC客户端测试", "{8ACEB5D2-2AB3-4A96-BE77-1D267AD2EA95}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - ASP.NET 客户端测试", "02 - ASP.NET 客户端测试", "{8ACEB5D2-2AB3-4A96-BE77-1D267AD2EA95}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - Windows客户端测试", "03 - Windows客户端测试", "{26F1A01E-E712-4C13-9078-8C23705EC4CF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - Windows 客户端测试", "05 - Windows 客户端测试", "{26F1A01E-E712-4C13-9078-8C23705EC4CF}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - WCF客户端测试", "02 - WCF客户端测试", "{80C033FF-4952-4E0E-9D80-4931FBA295D8}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - WCF 客户端测试", "01 - WCF 客户端测试", "{80C033FF-4952-4E0E-9D80-4931FBA295D8}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "07 - Stubs", "07 - Stubs", "{9B2E861F-F56E-4BFB-A83C-8A5A71B1047C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCF.Server", "Tests\SD.IdentitySystem.StubWCF.Server\SD.IdentitySystem.StubWCF.Server.csproj", "{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.StubWCF.Server", "Tests\SD.IdentitySystem.StubWCF.Server\SD.IdentitySystem.StubWCF.Server.csproj", "{757ECCC8-D24A-44A4-BC0B-184003B9DAAB}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCF.Client", "Tests\SD.IdentitySystem.StubWCF.Client\SD.IdentitySystem.StubWCF.Client.csproj", "{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.StubWCF.Client", "Tests\SD.IdentitySystem.StubWCF.Client\SD.IdentitySystem.StubWCF.Client.csproj", "{27C3D0AE-91E2-4548-A0DD-B5F2E9CFD805}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Windows.Tests", "Tests\SD.IdentitySystem.Windows.Tests\SD.IdentitySystem.Windows.Tests.csproj", "{BABA3361-BEB6-4381-A870-BF7BD76C477C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Windows.Tests", "Tests\SD.IdentitySystem.Windows.Tests\SD.IdentitySystem.Windows.Tests.csproj", "{BABA3361-BEB6-4381-A870-BF7BD76C477C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCFClient.Tests", "Tests\SD.IdentitySystem.WCFClient.Tests\SD.IdentitySystem.WCFClient.Tests.csproj", "{C9297885-9F2A-4722-A993-EBAB6B659878}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCFClient.Tests", "Tests\SD.IdentitySystem.WCFClient.Tests\SD.IdentitySystem.WCFClient.Tests.csproj", "{C9297885-9F2A-4722-A993-EBAB6B659878}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.MVC.Tests", "Tests\SD.IdentitySystem.MVC.Tests\SD.IdentitySystem.MVC.Tests.csproj", "{C6896688-B725-465A-8B5B-83F6549D64EE}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AspNet.Tests", "Tests\SD.IdentitySystem.AspNet.Tests\SD.IdentitySystem.AspNet.Tests.csproj", "{C6896688-B725-465A-8B5B-83F6549D64EE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCF.Authentication.Windows", "Extensions\SD.IdentitySystem.WCF.Authentication.Windows\SD.IdentitySystem.WCF.Authentication.Windows.csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication.Windows", "Extensions\SD.IdentitySystem.WCF.Authentication.Windows\SD.IdentitySystem.WCF.Authentication.Windows.csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 - 许可证工具测试", "06 - 许可证工具测试", "{074F5A49-ECAA-45C8-A9DF-26D5DEC119A0}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 - 许可证测试", "06 - 许可证测试", "{074F5A49-ECAA-45C8-A9DF-26D5DEC119A0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseManager.Tests", "Tests\SD.IdentitySystem.LicenseManager.Tests\SD.IdentitySystem.LicenseManager.Tests.csproj", "{F569D535-EE1B-46EC-9F67-F6A0B76761FA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.LicenseManager.Tests", "Tests\SD.IdentitySystem.LicenseManager.Tests\SD.IdentitySystem.LicenseManager.Tests.csproj", "{F569D535-EE1B-46EC-9F67-F6A0B76761FA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.LicenseManager", "Tools\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj", "{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.LicenseManager", "Tools\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj", "{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "08 - Tools", "08 - Tools", "{553D6749-CA27-43A0-A984-2819A1620E6F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication.Owin", "Extensions\SD.IdentitySystem.WCF.Authentication.Owin\SD.IdentitySystem.WCF.Authentication.Owin.csproj", "{012D79B3-E908-4F00-ACC4-420371FF300E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WCF.Authentication.Owin", "Extensions\SD.IdentitySystem.WCF.Authentication.Owin\SD.IdentitySystem.WCF.Authentication.Owin.csproj", "{012D79B3-E908-4F00-ACC4-420371FF300E}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - OWIN WebApi 客户端测试", "04 - OWIN WebApi 客户端测试", "{5324B7B9-FE94-4D10-9F3A-0430F6925F96}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - WebApi客户端测试", "04 - WebApi客户端测试", "{5324B7B9-FE94-4D10-9F3A-0430F6925F96}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.WebApi.Tests", "Tests\SD.IdentitySystem.WebApi.Tests\SD.IdentitySystem.WebApi.Tests.csproj", "{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WebApi.Tests", "Tests\SD.IdentitySystem.WebApi.Tests\SD.IdentitySystem.WebApi.Tests.csproj", "{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication.AspNetCore", "Extensions\SD.IdentitySystem.WCF.Authentication.AspNetCore\SD.IdentitySystem.WCF.Authentication.AspNetCore.csproj", "{FA9145F2-8C81-498A-9DE0-6D69C98FA8C2}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - AspNetCore客户端测试", "05 - AspNetCore客户端测试", "{EF25299A-81FD-4537-A803-48404B5FD859}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - ASP.NET Core 客户端测试", "03 - ASP.NET Core 客户端测试", "{EF25299A-81FD-4537-A803-48404B5FD859}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AspNetCore.Tests", "Tests\SD.IdentitySystem.AspNetCore.Tests\SD.IdentitySystem.AspNetCore.Tests.csproj", "{E5D589BB-8233-40FF-96D2-3623133EEB32}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.StubWCF.IAppService", "Tests\SD.IdentitySystem.StubWCF.IAppService\SD.IdentitySystem.StubWCF.IAppService.csproj", "{1429DE44-8DF0-41A6-93A7-8A2B3FD4873F}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.StubWCF.IAppService", "Tests\SD.IdentitySystem.StubWCF.IAppService\SD.IdentitySystem.StubWCF.IAppService.csproj", "{1429DE44-8DF0-41A6-93A7-8A2B3FD4873F}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -224,7 +222,7 @@ Global
 		{C6896688-B725-465A-8B5B-83F6549D64EE} = {8ACEB5D2-2AB3-4A96-BE77-1D267AD2EA95}
 		{FE93AC6F-B38F-412F-A2B1-2FBE2800C647} = {BED16DF1-091A-4EAC-9EC7-A25987933B6C}
 		{F569D535-EE1B-46EC-9F67-F6A0B76761FA} = {074F5A49-ECAA-45C8-A9DF-26D5DEC119A0}
-		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1} = {553D6749-CA27-43A0-A984-2819A1620E6F}
+		{9DB7A34C-CA30-4EC9-91D5-C6E46078E6F1} = {074F5A49-ECAA-45C8-A9DF-26D5DEC119A0}
 		{012D79B3-E908-4F00-ACC4-420371FF300E} = {BED16DF1-091A-4EAC-9EC7-A25987933B6C}
 		{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C} = {5324B7B9-FE94-4D10-9F3A-0430F6925F96}
 		{FA9145F2-8C81-498A-9DE0-6D69C98FA8C2} = {BED16DF1-091A-4EAC-9EC7-A25987933B6C}

@@ -8,7 +8,7 @@ using SD.IOC.Extension.NetFx;
 using System;
 using System.Web.UI;
 
-namespace SD.IdentitySystem.MVC.Tests
+namespace SD.IdentitySystem.AspNet.Tests
 {
     public partial class Default : Page
     {
@@ -47,10 +47,13 @@ namespace SD.IdentitySystem.MVC.Tests
         /// </summary>
         private static void InitContainer()
         {
-            IServiceCollection builder = ResolveMediator.GetServiceCollection();
-            builder.RegisterConfigs();
+            if (!ResolveMediator.ContainerBuilt)
+            {
+                IServiceCollection builder = ResolveMediator.GetServiceCollection();
+                builder.RegisterConfigs();
 
-            ResolveMediator.Build();
+                ResolveMediator.Build();
+            }
         }
     }
 }

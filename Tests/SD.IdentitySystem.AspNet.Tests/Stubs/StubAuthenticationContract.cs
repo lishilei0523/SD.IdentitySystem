@@ -4,7 +4,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using System;
 
-namespace SD.IdentitySystem.MVC.Tests.Stubs
+namespace SD.IdentitySystem.AspNet.Tests.Stubs
 {
     /// <summary>
     /// Stub身份认证服务契约实现

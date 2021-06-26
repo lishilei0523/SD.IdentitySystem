@@ -1,6 +1,7 @@
 ﻿using SD.Infrastructure.AppServiceBase;
 using System.ServiceModel;
 
+// ReSharper disable once CheckNamespace
 namespace SD.IdentitySystem.StubWCF.Client.Interfaces
 {
     /// <summary>

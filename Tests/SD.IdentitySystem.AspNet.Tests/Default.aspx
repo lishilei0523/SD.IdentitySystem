@@ -1,4 +1,4 @@
-﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="SD.IdentitySystem.MVC.Tests.Default" %>
+﻿<%@ Page Language="C#" AutoEventWireup="true" CodeBehind="Default.aspx.cs" Inherits="SD.IdentitySystem.AspNet.Tests.Default" %>
 
 <!DOCTYPE html>
 
