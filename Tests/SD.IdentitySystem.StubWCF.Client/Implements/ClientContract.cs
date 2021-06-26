@@ -10,13 +10,19 @@ namespace SD.IdentitySystem.StubWCF.Client.Implements
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class ClientContract : IClientContract
     {
-
+        /// <summary>
+        /// WCF服务端契约接口
+        /// </summary>
         private readonly IServerContract _serverContract;
 
+        /// <summary>
+        /// 依赖注入构造器
+        /// </summary>
         public ClientContract(IServerContract serverContract)
         {
             this._serverContract = serverContract;
         }
+
 
         /// <summary>
         /// 获取消息头

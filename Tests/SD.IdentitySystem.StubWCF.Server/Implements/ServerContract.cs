@@ -8,7 +8,7 @@ using System.ServiceModel.Channels;
 namespace SD.IdentitySystem.StubWCF.Server.Implements
 {
     /// <summary>
-    /// 服务契约实现
+    /// WCF服务端契约实现
     /// </summary>
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
     public class ServerContract : IServerContract
