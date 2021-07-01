@@ -37,42 +37,49 @@ namespace SD.IdentitySystem.WebApiCore.Authentication.Filters
         /// </summary>
         public void OnAuthorization(AuthorizationFilterContext context)
         {
-            if (AspNetSection.Setting.Authorized && !this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor))
+            //判断是否是ApiController
+            if (context.ActionDescriptor is ControllerActionDescriptor actionDescriptor &&
+                actionDescriptor.ControllerTypeInfo.IsDefined(typeof(ApiControllerAttribute), true))
             {
-                if (!context.HttpContext.Request.Headers.TryGetValue(SessionKey.CurrentPublicKey, out StringValues header))
+                bool needAuthorize = AspNetSection.Setting.Authorized;
+                bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
+                if (needAuthorize && !allowAnonymous)
                 {
-                    ObjectResult response = new ObjectResult("身份认证消息头不存在，请检查程序！")
+                    if (!context.HttpContext.Request.Headers.TryGetValue(SessionKey.CurrentPublicKey, out StringValues header))
                     {
-                        StatusCode = (int)HttpStatusCode.Unauthorized
-                    };
-                    context.Result = response;
-                }
-                else
-                {
-                    //读取消息头中的公钥
-                    Guid publicKey = new Guid(header.ToString());
-
-                    //认证
-                    lock (_Sync)
-                    {
-                        //以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
-                        LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
-
-                        if (loginInfo == null)
+                        ObjectResult response = new ObjectResult("身份认证消息头不存在，请检查程序！")
                         {
-                            ObjectResult response = new ObjectResult("身份过期，请重新登录！")
+                            StatusCode = (int)HttpStatusCode.Unauthorized
+                        };
+                        context.Result = response;
+                    }
+                    else
+                    {
+                        //读取消息头中的公钥
+                        Guid publicKey = new Guid(header.ToString());
+
+                        //认证
+                        lock (_Sync)
+                        {
+                            //以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
+                            LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
+
+                            if (loginInfo == null)
                             {
-                                StatusCode = (int)HttpStatusCode.Unauthorized
-                            };
-                            context.Result = response;
-                        }
-                        else
-                        {
-                            //通过后，重新设置缓存过期时间
-                            int timeout = FrameworkSection.Setting.AuthenticationTimeout.Value.HasValue
-                                ? FrameworkSection.Setting.AuthenticationTimeout.Value.Value
-                                : 20;
-                            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(timeout));
+                                ObjectResult response = new ObjectResult("身份过期，请重新登录！")
+                                {
+                                    StatusCode = (int)HttpStatusCode.Unauthorized
+                                };
+                                context.Result = response;
+                            }
+                            else
+                            {
+                                //通过后，重新设置缓存过期时间
+                                int timeout = FrameworkSection.Setting.AuthenticationTimeout.Value.HasValue
+                                    ? FrameworkSection.Setting.AuthenticationTimeout.Value.Value
+                                    : 20;
+                                CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(timeout));
+                            }
                         }
                     }
                 }

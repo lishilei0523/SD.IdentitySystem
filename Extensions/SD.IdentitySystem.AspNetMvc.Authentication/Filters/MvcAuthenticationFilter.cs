@@ -5,10 +5,10 @@ using System.Text;
 using System.Web;
 using System.Web.Mvc;
 
-namespace SD.IdentitySystem.MVC.Authentication.Filters
+namespace SD.IdentitySystem.AspNetMvc.Authentication.Filters
 {
     /// <summary>
-    /// MVC身份认证过滤器
+    /// ASP.NET MVC身份认证过滤器
     /// </summary>
     public class MvcAuthenticationFilter : IAuthorizationFilter
     {
