@@ -8,7 +8,6 @@ using SD.Infrastructure.Constants;
 using SD.Toolkits.AspNet;
 using SD.Toolkits.OwinCore.Extensions;
 using System;
-using System.Text;
 
 namespace SD.IdentitySystem.AspNetMvcCore.Authentication.Filters
 {
@@ -23,7 +22,7 @@ namespace SD.IdentitySystem.AspNetMvcCore.Authentication.Filters
         /// <summary>
         /// 执行授权过滤器事件
         /// </summary>
-        public async void OnAuthorization(AuthorizationFilterContext context)
+        public void OnAuthorization(AuthorizationFilterContext context)
         {
             //判断是否是ApiController
             if (context.ActionDescriptor is ControllerActionDescriptor actionDescriptor &&
@@ -43,15 +42,8 @@ namespace SD.IdentitySystem.AspNetMvcCore.Authentication.Filters
                     throw new InvalidOperationException("未登录，请重新登录！");
                 }
 
-                //构造脚本
-                StringBuilder scriptBuilder = new StringBuilder();
-                scriptBuilder.Append("<script type=\"text/javascript\">");
-                scriptBuilder.Append("window.top.location.href=");
-                scriptBuilder.Append($"\"{AspNetSection.Setting.LoginPage.Value}\"");
-                scriptBuilder.Append("</script>");
-
                 //跳转至登录页
-                await context.HttpContext.Response.WriteAsync(scriptBuilder.ToString());
+                context.HttpContext.Response.Redirect(AspNetSection.Setting.LoginPage.Value);
             }
         }
         #endregion
