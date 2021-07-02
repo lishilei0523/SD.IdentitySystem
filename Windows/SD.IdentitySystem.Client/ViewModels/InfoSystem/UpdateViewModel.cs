@@ -104,7 +104,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             await Task.Run(() => this._authorizationContract.Channel.UpdateInfoSystem(this.InfoSystemId, this.InfoSystemNo, this.InfoSystemName));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

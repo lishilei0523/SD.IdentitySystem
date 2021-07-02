@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel.Extensions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using Models = SD.IdentitySystem.Presentation.Models;
@@ -101,13 +102,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
         //Initializations
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems(), cancellationToken);
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
 
@@ -135,7 +136,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         public async void CreateMenu()
         {
             AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadMenus();
@@ -152,7 +153,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
             viewModel.Load(menu);
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadMenus();
@@ -238,7 +239,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             await viewModel.Load(menu.Id);
             this.Idle();
 
-            this._windowManager.ShowDialog(viewModel);
+            await this._windowManager.ShowDialogAsync(viewModel);
         }
         #endregion
 

@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel.Extensions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -128,13 +129,13 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
         //Initializations
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems(), cancellationToken);
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
 
             this.LoadUsers();
@@ -161,7 +162,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         public async void CreateUser()
         {
             AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadUsers();
@@ -252,15 +253,15 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         }
         #endregion
 
-        #region 重置密码 —— void ResetPassword(Wrap<UserInfo> user)
+        #region 重置密码 —— async void ResetPassword(Wrap<UserInfo> user)
         /// <summary>
         /// 重置密码
         /// </summary>
-        public void ResetPassword(Wrap<UserInfo> user)
+        public async void ResetPassword(Wrap<UserInfo> user)
         {
             ResetPasswordViewModel viewModel = ResolveMediator.Resolve<ResetPasswordViewModel>();
             viewModel.Load(user.Model.Number);
-            this._windowManager.ShowDialog(viewModel);
+            await this._windowManager.ShowDialogAsync(viewModel);
         }
         #endregion
 
@@ -272,7 +273,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         {
             ResetPrivateKeyViewModel viewModel = ResolveMediator.Resolve<ResetPrivateKeyViewModel>();
             viewModel.Load(user.Model);
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadUsers();
@@ -291,7 +292,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             await viewModel.Load(user.Model.Number);
             this.Idle();
 
-            this._windowManager.ShowDialog(viewModel);
+            await this._windowManager.ShowDialogAsync(viewModel);
         }
         #endregion
 

@@ -89,7 +89,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             await Task.Run(() => this._userContract.Channel.SetPrivateKey(this.LoginId, this.PrivateKey));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

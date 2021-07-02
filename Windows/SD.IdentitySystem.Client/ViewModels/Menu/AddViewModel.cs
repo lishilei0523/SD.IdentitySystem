@@ -10,6 +10,7 @@ using SD.Infrastructure.WPF.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ServiceModel.Extensions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -147,13 +148,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
         //Initializations
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems(), cancellationToken);
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
         }
@@ -234,7 +235,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             await Task.Run(() => this._authorizationContract.Channel.CreateMenu(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value, this.MenuName, this.Sort.Value, this.Url, this.Path, this.Icon, this.ParentMenu?.Id));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

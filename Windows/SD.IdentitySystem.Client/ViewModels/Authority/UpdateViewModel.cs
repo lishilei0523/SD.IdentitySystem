@@ -169,7 +169,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
             await Task.Run(() => this._authorizationContract.Channel.UpdateAuthority(this.AuthorityId, this.AuthorityName, this.AuthorityPath, this.EnglishName, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName, this.Description));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

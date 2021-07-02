@@ -113,7 +113,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             await Task.Run(() => this._userContract.Channel.ResetPassword(this.LoginId, this.NewPassword));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

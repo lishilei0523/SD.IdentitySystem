@@ -9,6 +9,7 @@ using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
 using System.ServiceModel.Extensions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -77,11 +78,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
         //Initializations
 
-        #region 初始化 —— override void OnInitialize()
+        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override void OnInitialize()
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
 #if DEBUG
             //自动登录
@@ -89,6 +90,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             this.Password = CommonConstants.InitialPassword;
             this.Login();
 #endif
+            return Task.CompletedTask;
         }
 
         #endregion
@@ -123,9 +125,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
 
             IndexViewModel homeViewModel = ResolveMediator.Resolve<IndexViewModel>();
-            this._windowManager.ShowWindow(homeViewModel);
+            await this._windowManager.ShowWindowAsync(homeViewModel);
 
-            base.TryClose();
+            await base.TryCloseAsync();
             this.Idle();
         }
         #endregion

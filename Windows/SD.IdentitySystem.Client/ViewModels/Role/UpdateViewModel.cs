@@ -1,10 +1,4 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.Presentation.Presenters;
-using SD.Infrastructure.WPF.Caliburn.Aspects;
-using SD.Infrastructure.WPF.Caliburn.Base;
-using SD.Infrastructure.WPF.Extensions;
-using SD.Infrastructure.WPF.Models;
+﻿using SD.IdentitySystem.Presentation.Presenters;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -12,6 +6,12 @@ using System.Linq;
 using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
+using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.IAppService.Interfaces;
+using SD.Infrastructure.WPF.Caliburn.Aspects;
+using SD.Infrastructure.WPF.Caliburn.Base;
+using SD.Infrastructure.WPF.Extensions;
+using SD.Infrastructure.WPF.Models;
 
 namespace SD.IdentitySystem.Client.ViewModels.Role
 {
@@ -130,7 +130,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             IEnumerable<Guid> authorityIds = this.AuthorityItems.Where(x => x.IsChecked == true).Select(x => x.Id);
             await Task.Run(() => this._authorizationContract.Channel.UpdateRole(this.RoleId, this.RoleName, this.Description, authorityIds));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

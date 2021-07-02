@@ -14,6 +14,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel.Extensions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -139,13 +140,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
         //Initializations
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems(), cancellationToken);
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
 
@@ -173,7 +174,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public async void CreateAuthority()
         {
             AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadAuthorities();
@@ -190,7 +191,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
             viewModel.Load(authority.Model);
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadAuthorities();

@@ -110,7 +110,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             await Task.Run(() => this._userContract.Channel.CreateUser(this.LoginId, this.RealName, this.Password));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

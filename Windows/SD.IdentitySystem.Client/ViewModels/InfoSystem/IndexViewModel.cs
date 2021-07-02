@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel.Extensions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
@@ -105,13 +106,13 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
         //Initializations
 
-        #region 初始化 —— override void OnInitialize()
+        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            this.LoadInfoSystems();
+            await this.ReloadInfoSystems();
         }
         #endregion
 
@@ -135,7 +136,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         public async void CreateInfoSystem()
         {
             AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadInfoSystems();
@@ -153,7 +154,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
             viewModel.Load(infoSystem.Model);
 
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadInfoSystems();
@@ -171,7 +172,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
             InitViewModel viewModel = ResolveMediator.Resolve<InitViewModel>();
             viewModel.Load(infoSystem.Model);
 
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadInfoSystems();

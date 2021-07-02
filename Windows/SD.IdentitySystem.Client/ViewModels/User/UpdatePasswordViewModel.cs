@@ -99,7 +99,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
             await Task.Run(() => this._userContract.Channel.UpdatePassword(loginInfo.LoginId, this.OldPassword, this.NewPassword));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

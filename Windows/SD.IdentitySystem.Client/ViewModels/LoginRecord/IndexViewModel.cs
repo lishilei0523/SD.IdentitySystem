@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel.Extensions;
+using System.Threading;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
@@ -114,13 +115,13 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
 
         //Initializations
 
-        #region 初始化 —— override void OnInitialize()
+        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            this.LoadLoginRecords();
+            await this.ReloadLoginRecords();
         }
         #endregion
 

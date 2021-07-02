@@ -156,7 +156,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             await Task.Run(() => this._authorizationContract.Channel.UpdateMenu(this.MenuId, this.MenuName, this.Sort.Value, this.Url, this.Path, this.Icon));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

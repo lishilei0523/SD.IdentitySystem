@@ -6,6 +6,7 @@ using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
 using System.Collections.Generic;
 using System.ServiceModel.Extensions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -81,13 +82,15 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
         //Initializations
 
-        #region 初始化 —— override void OnInitialize()
+        #region 初始化 —— override Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override void OnInitialize()
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
+
+            return Task.CompletedTask;
         }
         #endregion
 
@@ -129,7 +132,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             await Task.Run(() => this._authorizationContract.Channel.CreateInfoSystem(this.InfoSystemNo, this.InfoSystemName, this.AdminLoginId, this.ApplicationType.Value));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

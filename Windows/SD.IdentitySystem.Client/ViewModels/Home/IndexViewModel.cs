@@ -10,6 +10,8 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Linq;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 
@@ -94,13 +96,15 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
         //Initializations
 
-        #region 初始化 —— override void OnInitialize()
+        #region 初始化 —— override Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override void OnInitialize()
+        protected override Task OnInitializeAsync(CancellationToken cancellationToken)
         {
             this.ReloadMenus();
+
+            return Task.CompletedTask;
         }
         #endregion
 
@@ -126,12 +130,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         }
         #endregion
 
-        #region 激活文档 —— override void ActivateItem(IScreen item)
+        #region 激活文档 —— async void ActivateItem(IScreen item)
         /// <summary>
         /// 激活文档
         /// </summary>
         /// <param name="document">文档</param>
-        public override void ActivateItem(IScreen document)
+        public async void ActivateItem(IScreen document)
         {
             if (base.Items.Any(x => x.DisplayName == document.DisplayName))
             {
@@ -140,20 +144,20 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             }
             else
             {
-                base.ActivateItem(document);
+                await base.ActivateItemAsync(document);
             }
 
             this.BingVisibility = Visibility.Collapsed;
         }
         #endregion
 
-        #region 关闭文档 —— override void DeactivateItem(IScreen item...
+        #region 关闭文档 —— async void DeactivateItem(IScreen item...
         /// <summary>
         /// 关闭文档
         /// </summary>
-        public override void DeactivateItem(IScreen item, bool close)
+        public async void DeactivateItem(IScreen item, bool close)
         {
-            base.DeactivateItem(item, close);
+            await base.DeactivateItemAsync(item, close);
             if (!base.Items.Any())
             {
                 this.BingVisibility = Visibility.Visible;
@@ -161,11 +165,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         }
         #endregion
 
-        #region 注销登录 —— void Logout()
+        #region 注销登录 —— async void Logout()
         /// <summary>
         /// 注销登录
         /// </summary>
-        public void Logout()
+        public async void Logout()
         {
             MessageBoxResult result = MessageBox.Show("确定要注销吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
@@ -175,22 +179,22 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
                 //跳转到登录窗体
                 LoginViewModel loginViewModel = ResolveMediator.Resolve<LoginViewModel>();
-                this._windowManager.ShowWindow(loginViewModel);
+                await this._windowManager.ShowWindowAsync(loginViewModel);
 
                 //关闭当前窗口
-                base.TryClose();
+                await base.TryCloseAsync();
             }
         }
         #endregion
 
-        #region 修改密码 —— void UpdatePassword()
+        #region 修改密码 —— async void UpdatePassword()
         /// <summary>
         /// 修改密码
         /// </summary>
-        public void UpdatePassword()
+        public async void UpdatePassword()
         {
             UpdatePasswordViewModel viewModel = ResolveMediator.Resolve<UpdatePasswordViewModel>();
-            this._windowManager.ShowDialog(viewModel);
+            await this._windowManager.ShowDialogAsync(viewModel);
         }
         #endregion
 

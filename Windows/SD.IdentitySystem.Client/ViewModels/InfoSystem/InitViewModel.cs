@@ -117,7 +117,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             await Task.Run(() => this._authorizationContract.Channel.InitInfoSystem(this.InfoSystemNo, this.Host, this.Port.Value, this.Index));
 
-            base.TryClose(true);
+            await base.TryCloseAsync(true);
             this.Idle();
         }
         #endregion

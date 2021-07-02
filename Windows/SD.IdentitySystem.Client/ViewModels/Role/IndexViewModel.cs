@@ -13,6 +13,7 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel.Extensions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -122,13 +123,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
         //Initializations
 
-        #region 初始化 —— override async void OnInitialize()
+        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async void OnInitialize()
+        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems());
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems(), cancellationToken);
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
 
             this.LoadRoles();
@@ -155,7 +156,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         public async void CreateRole()
         {
             AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadRoles();
@@ -175,7 +176,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             await viewModel.Load(role.Model);
             this.Idle();
 
-            bool? result = this._windowManager.ShowDialog(viewModel);
+            bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {
                 await this.ReloadRoles();
