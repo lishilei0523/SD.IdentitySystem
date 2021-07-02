@@ -1,5 +1,5 @@
-﻿using SD.IdentitySystem.MVC.Authentication.Filters;
-using SD.Toolkits.MVC.Filters;
+﻿using SD.IdentitySystem.AspNetMvc.Authentication.Filters;
+using SD.Toolkits.AspNetMvc.Filters;
 using System.Web.Mvc;
 using System.Web.Routing;
 

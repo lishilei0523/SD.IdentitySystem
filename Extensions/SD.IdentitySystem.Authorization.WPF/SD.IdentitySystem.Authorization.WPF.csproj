@@ -4,7 +4,7 @@
     <UseWPF>true</UseWPF>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem 授权工具 - WPF</Description>
+    <Description>SD.IdentitySystem 授权组件 - WPF</Description>
     <Copyright>Copyright © SD 2021</Copyright>
   </PropertyGroup>
 

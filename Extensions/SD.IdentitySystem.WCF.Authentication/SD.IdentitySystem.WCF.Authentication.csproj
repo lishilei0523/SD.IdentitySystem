@@ -3,7 +3,7 @@
     <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem WCF身份认证工具 - WCF客户端/服务端</Description>
+    <Description>SD.IdentitySystem WCF身份认证组件 - WCF客户端/服务端</Description>
     <Copyright>Copyright © SD 2021</Copyright>
   </PropertyGroup>
 

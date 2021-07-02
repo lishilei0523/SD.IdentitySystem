@@ -73,8 +73,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
     <PackageReference Include="MrAdvice" Version="2.8.11" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.0.3" />
-    <PackageReference Include="SD.Toolkits.MVC" Version="1.0.4" />
-    <PackageReference Include="SD.Toolkits.EasyUI" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.AspNetMvc" Version="1.0.0" />
+    <PackageReference Include="SD.Toolkits.EasyUI" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.Image" Version="1.0.2" />
     <PackageReference Include="SD.Toolkits.Json" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.JavaScript" Version="1.0.0" />
@@ -85,9 +85,9 @@
     <PackageReference Include="SD.AOP.Core" Version="2.0.9" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.3" />
-    <PackageReference Include="SD.Infrastructure.MVC" Version="2.0.0" />
+    <PackageReference Include="SD.Infrastructure.AspNetMvc" Version="1.0.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.1" />
-    <PackageReference Include="SD.IdentitySystem.MVC.Authentication" Version="1.0.3" />
+    <PackageReference Include="SD.IdentitySystem.AspNetMvc.Authentication" Version="1.0.0" />
     <PackageReference Include="SD.IdentitySystem.WCF.Authentication.AspNet" Version="1.0.1" />
   </ItemGroup>
   <ItemGroup>

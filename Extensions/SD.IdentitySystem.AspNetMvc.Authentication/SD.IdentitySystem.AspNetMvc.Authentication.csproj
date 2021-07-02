@@ -3,15 +3,15 @@
     <TargetFramework>net461</TargetFramework>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem ASP.NET MVC身份认证工具</Description>
+    <Description>SD.IdentitySystem ASP.NET MVC身份认证组件</Description>
     <Copyright>Copyright © SD 2021</Copyright>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.MVC.Authentication.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.AspNetMvc.Authentication.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.MVC.Authentication.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.AspNetMvc.Authentication.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>

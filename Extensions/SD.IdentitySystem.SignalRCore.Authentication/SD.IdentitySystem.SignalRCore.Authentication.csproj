@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem ASP.NET Core SignalR身份认证工具</Description>
+    <Description>SD.IdentitySystem ASP.NET Core SignalR身份认证组件</Description>
     <Copyright>Copyright © SD 2021</Copyright>
   </PropertyGroup>
 
