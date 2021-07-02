@@ -22,7 +22,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
     <PackageReference Include="Caliburn.Micro" Version="4.0.173" />
-    <PackageReference Include="MahApps.Metro" Version="2.4.6" />
+    <PackageReference Include="MahApps.Metro" Version="2.4.7" />
     <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.8.0" />
     <PackageReference Include="FluentWPF" Version="0.9.0" />
     <PackageReference Include="Kino.Toolkit.Wpf" Version="1.5.0" />
