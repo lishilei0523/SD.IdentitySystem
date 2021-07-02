@@ -8,6 +8,7 @@ using SD.Infrastructure.Constants;
 using SD.Toolkits.AspNet;
 using SD.Toolkits.OwinCore.Extensions;
 using System;
+using System.Net;
 
 namespace SD.IdentitySystem.AspNetMvcCore.Authentication.Filters
 {
@@ -39,7 +40,12 @@ namespace SD.IdentitySystem.AspNetMvcCore.Authentication.Filters
                 //是不是Ajax请求
                 if (IsAjaxRequest(context.HttpContext.Request))
                 {
-                    throw new InvalidOperationException("未登录，请重新登录！");
+                    ObjectResult response = new ObjectResult("身份过期，请重新登录！")
+                    {
+                        StatusCode = (int)HttpStatusCode.Unauthorized
+                    };
+                    context.Result = response;
+                    return;
                 }
 
                 //跳转至登录页

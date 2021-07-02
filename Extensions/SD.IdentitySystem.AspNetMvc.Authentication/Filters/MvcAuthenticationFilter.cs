@@ -1,6 +1,7 @@
 ﻿using SD.Infrastructure.Constants;
 using SD.Toolkits.AspNet;
 using System;
+using System.Net;
 using System.Text;
 using System.Web;
 using System.Web.Mvc;
@@ -25,10 +26,14 @@ namespace SD.IdentitySystem.AspNetMvc.Authentication.Filters
             bool existsSession = HttpContext.Current.Session[SessionKey.CurrentUser] != null;
             if (needAuthorize && !allowAnonymous && !existsSession)
             {
+                //设置状态码为401
+                context.HttpContext.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+
                 //是不是Ajax请求
                 if (context.HttpContext.Request.IsAjaxRequest())
                 {
-                    throw new InvalidOperationException("未登录，请重新登录！");
+                    context.HttpContext.Response.Write("身份过期，请重新登录！");
+                    return;
                 }
 
                 //构造脚本
