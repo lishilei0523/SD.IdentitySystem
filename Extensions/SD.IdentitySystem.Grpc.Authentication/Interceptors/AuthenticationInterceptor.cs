@@ -6,6 +6,7 @@ using SD.CacheManager;
 using SD.Infrastructure;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
+using SD.Toolkits.AspNet;
 using SD.Toolkits.OwinCore.Extensions;
 using System;
 using System.Threading.Tasks;
@@ -23,8 +24,9 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
         public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(TRequest request, ServerCallContext context, UnaryServerMethod<TRequest, TResponse> continuation)
         {
             Endpoint endpoint = OwinContextReader.Current.GetEndpoint();
-            AllowAnonymousAttribute allowAnonymous = endpoint.Metadata.GetMetadata<AllowAnonymousAttribute>();
-            if (allowAnonymous == null)
+            bool needAuthorize = AspNetSection.Setting.Authorized;
+            bool allowAnonymous = endpoint.Metadata.GetMetadata<AllowAnonymousAttribute>() != null;
+            if (needAuthorize && !allowAnonymous)
             {
                 string headerKey = SessionKey.CurrentPublicKey.ToLower();
                 Metadata.Entry headerEntry = context.RequestHeaders.Get(headerKey);
