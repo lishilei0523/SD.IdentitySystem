@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <PackageReference Include="Grpc.Core.Api" Version="2.38.1" />
-    <PackageReference Include="SD.Toolkits.AspNet" Version="1.0.3" />
+    <PackageReference Include="SD.Toolkits.AspNet" Version="1.0.4" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.1" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
