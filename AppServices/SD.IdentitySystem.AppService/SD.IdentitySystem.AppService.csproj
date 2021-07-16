@@ -5,10 +5,13 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
     <Reference Include="System.ServiceModel" />
+    <PackageReference Include="MrAdvice" Version="2.8.11" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
+    <PackageReference Include="SD.AOP.Core" Version="2.1.0" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.4" />
     <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.2" />
     <PackageReference Include="SD.IdentitySystem.LicenseManager" Version="1.0.4" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
@@ -16,11 +19,14 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="CoreWCF.Primitives" Version="0.1.0" />
+    <PackageReference Include="MrAdvice" Version="2.8.11" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
+    <PackageReference Include="SD.AOP.Core" Version="2.1.0" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.4" />
     <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.2" />
     <PackageReference Include="SD.IdentitySystem.LicenseManager" Version="1.0.4" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />

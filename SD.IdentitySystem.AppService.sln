@@ -13,29 +13,29 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - 领域事件处理者"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "05 - 仓储实现", "05 - 仓储实现", "{736BB2F7-0FF7-4CAD-9713-BB82C3EDF7D1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Domain", "AppServices\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj", "{20443D88-D509-43C6-942C-0CE1923BC91E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Domain", "AppServices\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj", "{20443D88-D509-43C6-942C-0CE1923BC91E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.DomainService", "AppServices\SD.IdentitySystem.DomainService\SD.IdentitySystem.DomainService.csproj", "{21AB46C4-2C9B-4D96-AB4F-437AC2F662E6}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.DomainService", "AppServices\SD.IdentitySystem.DomainService\SD.IdentitySystem.DomainService.csproj", "{21AB46C4-2C9B-4D96-AB4F-437AC2F662E6}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.DomainEventHandler", "AppServices\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj", "{DE59EC3B-2E0C-41E4-B0F2-F4530E650E1D}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.DomainEventHandler", "AppServices\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj", "{DE59EC3B-2E0C-41E4-B0F2-F4530E650E1D}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Repository", "AppServices\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj", "{33F75AC9-F2CC-4117-A04D-E701EF897924}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository", "AppServices\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj", "{33F75AC9-F2CC-4117-A04D-E701EF897924}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.IAppService", "AppServices\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj", "{52BF9A76-1B01-4C29-8067-E6F1C88896FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.IAppService", "AppServices\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj", "{52BF9A76-1B01-4C29-8067-E6F1C88896FD}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Hosts", "00 - Hosts", "{08AC5539-024B-4EB6-A9A8-625BFE3671A7}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService", "AppServices\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj", "{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService", "AppServices\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj", "{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService.Host.WCF.IIS", "AppServices\SD.IdentitySystem.AppService.Host.WCF.IIS\SD.IdentitySystem.AppService.Host.WCF.IIS.csproj", "{76B33ADD-3ED7-4CDC-A9B5-6352203E951E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService.Host.WCF", "AppServices\SD.IdentitySystem.AppService.Host.WCF\SD.IdentitySystem.AppService.Host.WCF.csproj", "{96B38C17-6A74-4809-BD4C-8855E0A5A8CA}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WCF", "AppServices\SD.IdentitySystem.AppService.Host.WCF\SD.IdentitySystem.AppService.Host.WCF.csproj", "{96B38C17-6A74-4809-BD4C-8855E0A5A8CA}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService.Host.WCF.Proxy", "AppServices\SD.IdentitySystem.AppService.Host.WCF.Proxy\SD.IdentitySystem.AppService.Host.WCF.Proxy.csproj", "{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WCF.Proxy", "AppServices\SD.IdentitySystem.AppService.Host.WCF.Proxy\SD.IdentitySystem.AppService.Host.WCF.Proxy.csproj", "{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WebApiCore", "AppServices\SD.IdentitySystem.AppService.Host.WebApiCore\SD.IdentitySystem.AppService.Host.WebApiCore.csproj", "{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService.Host.WebApi", "AppServices\SD.IdentitySystem.AppService.Host.WebApi\SD.IdentitySystem.AppService.Host.WebApi.csproj", "{0A55552C-9755-4DC6-9810-39E1AB8B6E66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WebApi", "AppServices\SD.IdentitySystem.AppService.Host.WebApi\SD.IdentitySystem.AppService.Host.WebApi.csproj", "{0A55552C-9755-4DC6-9810-39E1AB8B6E66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,10 +63,6 @@ Global
 		{52BF9A76-1B01-4C29-8067-E6F1C88896FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{52BF9A76-1B01-4C29-8067-E6F1C88896FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{52BF9A76-1B01-4C29-8067-E6F1C88896FD}.Release|Any CPU.Build.0 = Release|Any CPU
-		{68D5F8E6-B6F3-4E71-B069-C970E26BD49A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{68D5F8E6-B6F3-4E71-B069-C970E26BD49A}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{68D5F8E6-B6F3-4E71-B069-C970E26BD49A}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{68D5F8E6-B6F3-4E71-B069-C970E26BD49A}.Release|Any CPU.Build.0 = Release|Any CPU
 		{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -83,26 +79,6 @@ Global
 		{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}.Release|Any CPU.Build.0 = Release|Any CPU
-		{E40A7430-C819-45CC-B352-890ED8A029A4}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{E40A7430-C819-45CC-B352-890ED8A029A4}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{E40A7430-C819-45CC-B352-890ED8A029A4}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{E40A7430-C819-45CC-B352-890ED8A029A4}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C383E7BF-DD5D-4E77-9D66-CFB2034E2D1C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C383E7BF-DD5D-4E77-9D66-CFB2034E2D1C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C383E7BF-DD5D-4E77-9D66-CFB2034E2D1C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C383E7BF-DD5D-4E77-9D66-CFB2034E2D1C}.Release|Any CPU.Build.0 = Release|Any CPU
-		{6DF5F0FE-6F24-495F-9CFB-8A7C9E19EF3B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6DF5F0FE-6F24-495F-9CFB-8A7C9E19EF3B}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6DF5F0FE-6F24-495F-9CFB-8A7C9E19EF3B}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6DF5F0FE-6F24-495F-9CFB-8A7C9E19EF3B}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EAE15988-AF76-470A-B3A5-2A8FFADE9285}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EAE15988-AF76-470A-B3A5-2A8FFADE9285}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EAE15988-AF76-470A-B3A5-2A8FFADE9285}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EAE15988-AF76-470A-B3A5-2A8FFADE9285}.Release|Any CPU.Build.0 = Release|Any CPU
-		{352A3C90-A167-4415-8C86-2BF88C2A9AE1}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{352A3C90-A167-4415-8C86-2BF88C2A9AE1}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{352A3C90-A167-4415-8C86-2BF88C2A9AE1}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{352A3C90-A167-4415-8C86-2BF88C2A9AE1}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -121,16 +97,10 @@ Global
 		{DE59EC3B-2E0C-41E4-B0F2-F4530E650E1D} = {E1405A60-894A-48A4-996A-DC23F5487281}
 		{33F75AC9-F2CC-4117-A04D-E701EF897924} = {736BB2F7-0FF7-4CAD-9713-BB82C3EDF7D1}
 		{52BF9A76-1B01-4C29-8067-E6F1C88896FD} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
-		{68D5F8E6-B6F3-4E71-B069-C970E26BD49A} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
 		{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
 		{76B33ADD-3ED7-4CDC-A9B5-6352203E951E} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 		{96B38C17-6A74-4809-BD4C-8855E0A5A8CA} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 		{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
-		{E40A7430-C819-45CC-B352-890ED8A029A4} = {4E46AC96-3000-4185-81F3-18D7FFE5CF82}
-		{C383E7BF-DD5D-4E77-9D66-CFB2034E2D1C} = {499F2B7C-CBDA-42BC-932C-C252D5335375}
-		{6DF5F0FE-6F24-495F-9CFB-8A7C9E19EF3B} = {E1405A60-894A-48A4-996A-DC23F5487281}
-		{EAE15988-AF76-470A-B3A5-2A8FFADE9285} = {736BB2F7-0FF7-4CAD-9713-BB82C3EDF7D1}
-		{352A3C90-A167-4415-8C86-2BF88C2A9AE1} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
 		{6195BA53-B23C-4B8E-B7B4-31EBE12BE557} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 		{0A55552C-9755-4DC6-9810-39E1AB8B6E66} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 	EndGlobalSection
