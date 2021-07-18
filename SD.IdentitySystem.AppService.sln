@@ -27,15 +27,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "00 - Hosts", "00 - Hosts", 
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService", "AppServices\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj", "{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService.Host.WCF.IIS", "AppServices\SD.IdentitySystem.AppService.Host.WCF.IIS\SD.IdentitySystem.AppService.Host.WCF.IIS.csproj", "{76B33ADD-3ED7-4CDC-A9B5-6352203E951E}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WCF", "AppServices\SD.IdentitySystem.AppService.Host.WCF\SD.IdentitySystem.AppService.Host.WCF.csproj", "{96B38C17-6A74-4809-BD4C-8855E0A5A8CA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WCF.Proxy", "AppServices\SD.IdentitySystem.AppService.Host.WCF.Proxy\SD.IdentitySystem.AppService.Host.WCF.Proxy.csproj", "{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.CoreWebApi", "AppServices\SD.IdentitySystem.AppService.Host.CoreWebApi\SD.IdentitySystem.AppService.Host.CoreWebApi.csproj", "{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WebApiCore", "AppServices\SD.IdentitySystem.AppService.Host.WebApiCore\SD.IdentitySystem.AppService.Host.WebApiCore.csproj", "{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WebApi", "AppServices\SD.IdentitySystem.AppService.Host.WebApi\SD.IdentitySystem.AppService.Host.WebApi.csproj", "{0A55552C-9755-4DC6-9810-39E1AB8B6E66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.OwinWebApi", "AppServices\SD.IdentitySystem.AppService.Host.OwinWebApi\SD.IdentitySystem.AppService.Host.OwinWebApi.csproj", "{0A55552C-9755-4DC6-9810-39E1AB8B6E66}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -67,18 +63,10 @@ Global
 		{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{76B33ADD-3ED7-4CDC-A9B5-6352203E951E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{76B33ADD-3ED7-4CDC-A9B5-6352203E951E}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{76B33ADD-3ED7-4CDC-A9B5-6352203E951E}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{76B33ADD-3ED7-4CDC-A9B5-6352203E951E}.Release|Any CPU.Build.0 = Release|Any CPU
 		{96B38C17-6A74-4809-BD4C-8855E0A5A8CA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{96B38C17-6A74-4809-BD4C-8855E0A5A8CA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{96B38C17-6A74-4809-BD4C-8855E0A5A8CA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{96B38C17-6A74-4809-BD4C-8855E0A5A8CA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5}.Release|Any CPU.Build.0 = Release|Any CPU
 		{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -98,9 +86,7 @@ Global
 		{33F75AC9-F2CC-4117-A04D-E701EF897924} = {736BB2F7-0FF7-4CAD-9713-BB82C3EDF7D1}
 		{52BF9A76-1B01-4C29-8067-E6F1C88896FD} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
 		{E85A09EB-4F34-4B0A-A033-7F9D764EDBB8} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
-		{76B33ADD-3ED7-4CDC-A9B5-6352203E951E} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 		{96B38C17-6A74-4809-BD4C-8855E0A5A8CA} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
-		{141C4E1E-460F-4554-81DE-E8ACB0C0D7A5} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 		{6195BA53-B23C-4B8E-B7B4-31EBE12BE557} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 		{0A55552C-9755-4DC6-9810-39E1AB8B6E66} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 	EndGlobalSection

@@ -1,1 +1,0 @@
-﻿<%@ ServiceHost Service="SD.IdentitySystem.AppService.Implements.UserContract" %>

@@ -17,5 +17,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("1907E394-C1EB-404B-BF29-961E92D62A52")]
 
 
-//AOP标签
+// AOP标签
 [assembly: DomainExceptionAspect]

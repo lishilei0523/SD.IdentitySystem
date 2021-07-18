@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net461;net48</TargetFrameworks>
-    <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
     <AssemblyName>SD.IdentitySystem.AppService.Host</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
     <OutputType>Exe</OutputType>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <Authors>Lee</Authors>

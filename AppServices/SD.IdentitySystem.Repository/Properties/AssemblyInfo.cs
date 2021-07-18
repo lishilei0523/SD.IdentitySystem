@@ -17,5 +17,5 @@ using System.Runtime.InteropServices;
 [assembly: Guid("4C51E3AB-6626-4A4B-9E2F-21B6B923B25C")]
 
 
-//AOP标签
+// AOP标签
 [assembly: RepositoryExceptionAspect]
