@@ -5,9 +5,6 @@ using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.LicenseManager.Models;
-using SD.IdentitySystem.LicenseManager.Toolkits;
-using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.MemberShip;
 using SD.Toolkits.Recursion.Tree;
 using System;
@@ -16,7 +13,6 @@ using System.Linq;
 using SD.Infrastructure;
 #if NET461_OR_GREATER
 using System.ServiceModel;
-using System.ServiceModel.Channels;
 #endif
 #if NETSTANDARD2_0_OR_GREATER
 using CoreWCF;
@@ -85,9 +81,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             lock (_Sync)
             {
-                //验证许可证
-                this.CheckLicense();
-
                 //验证登录
                 User currentUser = this._repMediator.UserRep.SingleByPrivateKey(privateKey);
 
@@ -136,9 +129,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             lock (_Sync)
             {
-                //验证许可证
-                this.CheckLicense();
-
                 //验证登录
                 User currentUser = this._repMediator.UserRep.SingleOrDefault(loginId);
 
@@ -168,40 +158,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
 
         //Private
-
-        #region # 验证许可证 —— void CheckLicense()
-        /// <summary>
-        /// 验证许可证
-        /// </summary>
-        private void CheckLicense()
-        {
-            bool authenticateMachine = true;
-#if DEBUG || NETCORE
-            authenticateMachine = false;
-#endif
-            if (authenticateMachine)
-            {
-                License? license = LicenseReader.GetLicense();
-
-                if (license == null)
-                {
-                    throw new NoPermissionException("未找到许可证，请联系系统管理员！");
-                }
-
-                string uniqueCode = UniqueCode.Compute();
-                bool equal = string.Equals(license.Value.UniqueCode, uniqueCode, StringComparison.CurrentCultureIgnoreCase);
-
-                if (!equal)
-                {
-                    throw new NoPermissionException("许可证授权与本机不匹配，请联系系统管理员！");
-                }
-                if (DateTime.Today > license.Value.LicenseExpiredDate)
-                {
-                    throw new NoPermissionException("许可证授权已过期，请联系系统管理员！");
-                }
-            }
-        }
-        #endregion
 
         #region # 构造登录信息 —— LoginInfo BuildLoginInfo(User user)
         /// <summary>

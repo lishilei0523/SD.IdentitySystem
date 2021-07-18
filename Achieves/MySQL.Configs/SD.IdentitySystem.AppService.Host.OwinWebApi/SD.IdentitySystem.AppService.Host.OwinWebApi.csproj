@@ -1,0 +1,80 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461;net48</TargetFrameworks>
+    <AssemblyName>SD.IdentitySystem.AppService.Host</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
+    <OutputType>Exe</OutputType>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <Authors>Lee</Authors>
+    <Company>SD</Company>
+    <Copyright>Copyright © SD 2021</Copyright>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="MySql.Data" Version="8.0.25" />
+    <PackageReference Include="MySql.Data.EntityFramework" Version="8.0.25" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Owin" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.7" />
+    <PackageReference Include="Microsoft.Owin" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Owin.Host.HttpListener" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Owin.Hosting" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
+    <PackageReference Include="MrAdvice" Version="2.8.11" />
+    <PackageReference Include="Swashbuckle.Core" Version="5.6.0" />
+    <PackageReference Include="Topshelf" Version="4.2.1" />
+    <PackageReference Include="SD.Toolkits.AspNet" Version="1.0.4" />
+    <PackageReference Include="SD.Toolkits.Owin" Version="1.0.1" />
+    <PackageReference Include="SD.Toolkits.WebApi" Version="1.1.3" />
+    <PackageReference Include="SD.Toolkits.Redis" Version="2.0.7" />
+    <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
+    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.0.2" />
+    <PackageReference Include="SD.IOC.Integration.WebApi" Version="2.0.2" />
+    <PackageReference Include="SD.IOC.Integration.WebApi.SelfHost" Version="2.0.2" />
+    <PackageReference Include="SD.AOP.Core" Version="2.1.0" />
+    <PackageReference Include="SD.AOP.Logger.MySql" Version="1.0.0" />
+    <PackageReference Include="SD.CacheManager" Version="2.0.3" />
+    <PackageReference Include="SD.CacheManager.Redis" Version="2.0.6" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
+    <PackageReference Include="SD.Infrastructure.Global" Version="2.0.3" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.4" />
+    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.2" />
+    <PackageReference Include="SD.Infrastructure.EventStore.Redis" Version="1.0.2" />
+    <PackageReference Include="SD.Infrastructure.WebApi.SelfHost.Server" Version="1.0.2" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership.Owin" Version="1.0.0" />
+    <PackageReference Include="SD.IdentitySystem.WebApi.Authentication" Version="1.0.6" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.AppService\SD.IdentitySystem.AppService.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.DomainService\SD.IdentitySystem.DomainService.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="E:\Packages\nuget\cache\mysql.data.entityframework\8.0.25\contentFiles\any\net452\app.config.transform" />
+    <Content Remove="E:\Packages\nuget\cache\mysql.data.entityframework\8.0.25\contentFiles\any\net452\web.config.transform" />
+  </ItemGroup>
+</Project>

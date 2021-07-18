@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net461;netstandard2.1</TargetFrameworks>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
+    <PackageReference Include="MySql.Data" Version="8.0.25" />
+    <PackageReference Include="MySql.Data.EntityFramework" Version="8.0.25" />
+    <PackageReference Include="MrAdvice" Version="2.8.11" />
+    <PackageReference Include="SD.Common" Version="3.0.4" />
+    <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
+    <PackageReference Include="SD.AOP.Core" Version="2.1.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.4" />
+    <PackageReference Include="SD.Infrastructure.Repository.EntityFramework" Version="2.0.9" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Remove="E:\Packages\nuget\cache\mysql.data.entityframework\8.0.25\contentFiles\any\net452\app.config.transform" />
+    <Content Remove="E:\Packages\nuget\cache\mysql.data.entityframework\8.0.25\contentFiles\any\net452\web.config.transform" />
+  </ItemGroup>
+</Project>

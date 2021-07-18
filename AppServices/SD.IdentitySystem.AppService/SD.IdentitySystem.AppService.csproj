@@ -13,7 +13,6 @@
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.4" />
     <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.2" />
-    <PackageReference Include="SD.IdentitySystem.LicenseManager" Version="1.0.4" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
   </ItemGroup>
 
@@ -28,7 +27,6 @@
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.4" />
     <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.2" />
-    <PackageReference Include="SD.IdentitySystem.LicenseManager" Version="1.0.4" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
   </ItemGroup>
 
