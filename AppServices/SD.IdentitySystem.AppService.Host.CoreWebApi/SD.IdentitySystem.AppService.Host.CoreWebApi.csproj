@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
     <TargetFramework>netcoreapp3.1</TargetFramework>
+    <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
     <AssemblyName>SD.IdentitySystem.AppService.Host</AssemblyName>
     <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
