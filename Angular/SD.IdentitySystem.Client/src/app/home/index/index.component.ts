@@ -1,6 +1,7 @@
 import {Component} from '@angular/core';
-import {ActivatedRoute, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {TabRouteReuseStrategy} from "../../../extentions/route-reuse.strategy";
 import {Membership} from "../../../values/constants/membership";
 import {Tab} from "../../../values/structs/tab";
 import {LoginMenuInfo} from "../../../values/structs/login-menu-info";
@@ -18,11 +19,8 @@ export class IndexComponent {
     /*路由器*/
     private readonly router: Router;
 
-    /*活动路由*/
-    private readonly activatedRoute: ActivatedRoute;
-
     /*模态框服务*/
-    private modalService: NzModalService;
+    private readonly modalService: NzModalService;
 
     /*菜单是否折叠*/
     public menuCollapsed: boolean;
@@ -48,11 +46,10 @@ export class IndexComponent {
     /**
      * 创建首页组件构造器
      * */
-    public constructor(router: Router, activatedRoute: ActivatedRoute, modalService: NzModalService) {
+    public constructor(router: Router, modalService: NzModalService) {
 
         //依赖注入部分
         this.router = router;
-        this.activatedRoute = activatedRoute;
         this.modalService = modalService;
 
         //默认值部分
@@ -117,8 +114,13 @@ export class IndexComponent {
             if (this.tabs.length > 0) {
                 this.tabs[0].selected = true;
                 await this.router.navigate([this.tabs[0].menuUrl]);
+            } else {
+                await this.router.navigate(["/Home"]);
             }
         }
+
+        //删除路由快照
+        TabRouteReuseStrategy.removeSnapshot(tab.menuUrl);
 
         //刷新Bing可见性
         this.refreshBingVisibility();

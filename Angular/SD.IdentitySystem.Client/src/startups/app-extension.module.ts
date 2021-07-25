@@ -1,4 +1,5 @@
 import {NgModule} from '@angular/core';
+import {RouteReuseStrategy} from "@angular/router";
 import {AuthorityDirective} from "../extentions/authority.directive";
 import {TabRouteReuseStrategy} from "../extentions/route-reuse.strategy";
 import {ApplicationTypeDescriptor} from '../values/enums/application-type.descriptor';
@@ -7,7 +8,9 @@ import {ApplicationTypeDescriptor} from '../values/enums/application-type.descri
 @NgModule({
     declarations: [AuthorityDirective, ApplicationTypeDescriptor],
     exports: [AuthorityDirective, ApplicationTypeDescriptor],
-    providers: [TabRouteReuseStrategy]
+    providers: [
+        {provide: RouteReuseStrategy, useClass: TabRouteReuseStrategy}
+    ]
 })
 export class AppExtensionModule {
 
