@@ -32,7 +32,7 @@
     <PackageReference Include="SD.Common" Version="3.0.4" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
     <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
-    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.0.2" />
+    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.0.3" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
     <PackageReference Include="SD.Infrastructure.WPF" Version="1.0.3" />
     <PackageReference Include="SD.Infrastructure.WPF.Caliburn" Version="1.0.1" />

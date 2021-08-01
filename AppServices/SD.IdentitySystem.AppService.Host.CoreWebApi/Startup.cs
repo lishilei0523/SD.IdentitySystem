@@ -1,6 +1,8 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
 using SD.IdentitySystem.WebApiCore.Authentication.Filters;
 using SD.Infrastructure.AspNetCore.Server.Middlewares;
 using SD.Toolkits.OwinCore.Middlewares;
@@ -47,14 +49,22 @@ namespace SD.IdentitySystem.AppService.Host
                 options.IncludeXmlComments(xmlFilePath);
             });
 
-            //添加过滤器及Camel命名设置
+            //添加过滤器
             services.AddControllers(options =>
             {
                 options.Filters.Add<WebApiAuthenticationFilter>();
                 options.Filters.Add<WebApiExceptionFilter>();
-            }).AddJsonOptions(options =>
+            }).AddNewtonsoftJson(options =>
             {
-                options.JsonSerializerOptions.PropertyNameCaseInsensitive = true;
+                //Camel命名设置
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+                //日期时间格式设置
+                IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter()
+                {
+                    DateTimeFormat = "yyyy-MM-dd HH:mm:ss"
+                };
+                options.SerializerSettings.Converters.Add(dateTimeConverter);
             });
         }
 
