@@ -21,11 +21,13 @@
   <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
     <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceModel" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
   </ItemGroup>
 </Project>
