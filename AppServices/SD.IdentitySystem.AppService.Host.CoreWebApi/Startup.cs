@@ -5,6 +5,7 @@ using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using SD.IdentitySystem.WebApiCore.Authentication.Filters;
 using SD.Infrastructure.AspNetCore.Server.Middlewares;
+using SD.Infrastructure.Constants;
 using SD.Toolkits.OwinCore.Middlewares;
 using SD.Toolkits.WebApiCore.Filters;
 using System;
@@ -62,7 +63,7 @@ namespace SD.IdentitySystem.AppService.Host
                 //日期时间格式设置
                 IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter()
                 {
-                    DateTimeFormat = "yyyy-MM-dd HH:mm:ss"
+                    DateTimeFormat = CommonConstants.TimeFormat
                 };
                 options.SerializerSettings.Converters.Add(dateTimeConverter);
             });
