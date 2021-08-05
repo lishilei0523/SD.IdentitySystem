@@ -3,6 +3,7 @@ import {Common} from "../../../extentions/common";
 import {BaseComponent} from "../../../extentions/base.component";
 import {LoginRecord} from "../login-record.model";
 import {LoginRecordService} from "../login-record.service";
+import {PageModel} from "../../../values/structs/page-model";
 
 /*登录记录首页组件*/
 @Component({
@@ -103,7 +104,7 @@ export class IndexComponent extends BaseComponent implements OnInit {
         let promise = this.loginRecordService.getLoginRecordsByPage(this.keywords, startTime, endTime, this.pageIndex, this.pageSize);
         promise.catch(_ => this.idle());
 
-        let pageModel = await promise;
+        let pageModel: PageModel<LoginRecord> = await promise;
         this.pageIndex = pageModel.pageIndex;
         this.pageSize = pageModel.pageSize;
         this.rowCount = pageModel.rowCount;
