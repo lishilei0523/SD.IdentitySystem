@@ -1,76 +1,41 @@
 <form nz-form class="ant-advanced-search-form">
-    <div nz-row [nzGutter]="24">
-        <div nz-col [nzSpan]="6">
+    <div nz-row [nzGutter]="15">
+        <div nz-col [nzSpan]="5">
             <nz-form-item>
-                <nz-form-label nzFor="field1">Field 1</nz-form-label>
+                <nz-form-label nzFor="keywords">关键字</nz-form-label>
+                <input nz-input style="width: 210px" placeholder="用户名/真实姓名" formControlName="keywords"
+                       id="keywords" [(ngModel)]="keywords"/>
+            </nz-form-item>
+        </div>
+        <div nz-col [nzSpan]="5">
+            <nz-form-item>
+                <nz-form-label nzFor="startTime">开始时间</nz-form-label>
                 <nz-form-control>
-                    <input nz-input placeholder="placeholder" formControlName="field1" id="field1"/>
+                    <nz-date-picker style="width: 210px" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" nzPlaceHolder="选择时间"
+                                    formControlName="startTime"
+                                    id="startTime" [(ngModel)]="startTime"></nz-date-picker>
                 </nz-form-control>
             </nz-form-item>
         </div>
-        <div nz-col [nzSpan]="6">
+        <div nz-col [nzSpan]="5">
             <nz-form-item>
-                <nz-form-label nzFor="field2">Field 2</nz-form-label>
+                <nz-form-label nzFor="endTime">结束时间</nz-form-label>
                 <nz-form-control>
-                    <input nz-input placeholder="placeholder" formControlName="field1" id="field2"/>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="6">
-            <nz-form-item>
-                <nz-form-label nzFor="field3">Field 3</nz-form-label>
-                <nz-form-control>
-                    <input nz-input placeholder="placeholder" formControlName="field1" id="field3"/>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="6">
-            <nz-form-item>
-                <nz-form-label nzFor="field4">Field 4</nz-form-label>
-                <nz-form-control>
-                    <input nz-input placeholder="placeholder" formControlName="field1" id="field4"/>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-    </div>
-    <div nz-row [nzGutter]="24">
-        <div nz-col [nzSpan]="6">
-            <nz-form-item>
-                <nz-form-label nzFor="field1">Field 1</nz-form-label>
-                <nz-form-control>
-                    <input nz-input placeholder="placeholder" formControlName="field1" id="field1"/>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="6">
-            <nz-form-item>
-                <nz-form-label nzFor="field2">Field 2</nz-form-label>
-                <nz-form-control>
-                    <input nz-input placeholder="placeholder" formControlName="field1" id="field2"/>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="6">
-            <nz-form-item>
-                <nz-form-label nzFor="field3">Field 3</nz-form-label>
-                <nz-form-control>
-                    <input nz-input placeholder="placeholder" formControlName="field1" id="field3"/>
-                </nz-form-control>
-            </nz-form-item>
-        </div>
-        <div nz-col [nzSpan]="6">
-            <nz-form-item>
-                <nz-form-label nzFor="field4">Field 4</nz-form-label>
-                <nz-form-control>
-                    <input nz-input placeholder="placeholder" formControlName="field1" id="field4"/>
+                    <nz-date-picker style="width: 210px" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" nzPlaceHolder="选择时间"
+                                    formControlName="endTime"
+                                    id="endTime" [(ngModel)]="endTime"></nz-date-picker>
                 </nz-form-control>
             </nz-form-item>
         </div>
     </div>
     <div nz-row>
         <div nz-col [nzSpan]="24" class="search-area">
-            <button nz-button [nzType]="'primary'">搜索</button>
-            <button nz-button>重置</button>
+            <button nz-button [nzType]="'primary'" (click)="search()">
+                <i nz-icon nzType="search"></i>搜索
+            </button>
+            <button nz-button (click)="resetForm()">
+                <i nz-icon nzType="undo"></i>重置
+            </button>
         </div>
     </div>
 </form>
@@ -79,24 +44,28 @@
           [nzData]="loginRecords"
           [nzFrontPagination]="false"
           [nzLoading]="isBusy"
-          [nzScroll]="{ y: 'calc(100vh - 600px)' }"
+          [nzScroll]="{y: 'calc(100vh - 370px)'}"
           [nzTotal]="rowCount"
           [nzPageSize]="pageSize"
-          [nzPageIndex]="pageIndex">
+          [nzPageIndex]="pageIndex"
+          (nzPageIndexChange)="pageIndexChange($event)"
+          (nzPageSizeChange)="pageSizeChange($event)">
     <thead>
     <tr>
-        <th nzWidth="100px">用户名</th>
-        <th nzWidth="100px">真实姓名</th>
-        <th nzWidth="200px">IP地址</th>
-        <th nzWidth="200px">登录时间</th>
+        <th nzWidth="200px" nzAlign="center">用户名</th>
+        <th nzWidth="200px" nzAlign="center">真实姓名</th>
+        <th nzWidth="240px" nzAlign="center">IP地址</th>
+        <th nzWidth="200px" nzAlign="center">登录时间</th>
+        <th nzWidth="*"></th>
     </tr>
     </thead>
     <tbody>
     <tr *ngFor="let loginRecord of loginRecords">
-        <td>{{loginRecord.loginId}}</td>
+        <td style="padding-left: 20px">{{loginRecord.loginId}}</td>
         <td>{{loginRecord.realName}}</td>
         <td>{{loginRecord.ip}}</td>
-        <td>{{loginRecord.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+        <td nzAlign="center">{{loginRecord.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+        <td></td>
     </tr>
     </tbody>
 </nz-table>

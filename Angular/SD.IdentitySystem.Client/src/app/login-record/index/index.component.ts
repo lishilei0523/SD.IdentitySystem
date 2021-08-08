@@ -76,11 +76,18 @@ export class IndexComponent extends BaseComponent implements OnInit {
     }
 
     /**
-     * 分页
+     * 页码改变事件
      * */
-    public async paginate(eventAgrs: any): Promise<void> {
-        this.pageIndex = eventAgrs.page + 1;
-        this.pageSize = eventAgrs.rows;
+    public async pageIndexChange(pageIndex: number): Promise<void> {
+        this.pageIndex = pageIndex;
+        await this.loadLoginRecords();
+    }
+
+    /**
+     * 页容量改变事件
+     * */
+    public async pageSizeChange(pageSize: number): Promise<void> {
+        this.pageSize = pageSize;
         await this.loadLoginRecords();
     }
 
@@ -88,6 +95,7 @@ export class IndexComponent extends BaseComponent implements OnInit {
      * 重置表单
      * */
     public resetForm(): void {
+        console.log(this.keywords);
         this.keywords = "";
         this.startTime = "";
         this.endTime = "";
@@ -101,6 +109,12 @@ export class IndexComponent extends BaseComponent implements OnInit {
 
         let startTime = Common.formatDate(this.startTime);
         let endTime = Common.formatDate(this.endTime);
+
+        console.log(this.startTime);
+        console.log(this.endTime);
+        console.log(startTime);
+        console.log(endTime);
+
         let promise = this.loginRecordService.getLoginRecordsByPage(this.keywords, startTime, endTime, this.pageIndex, this.pageSize);
         promise.catch(_ => this.idle());
 

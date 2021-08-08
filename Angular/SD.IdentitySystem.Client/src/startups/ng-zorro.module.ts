@@ -25,6 +25,8 @@ import {NzInputModule} from "ng-zorro-antd/input";
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
 import {NzTableModule} from "ng-zorro-antd/table";
+import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
+import {NzPaginationModule} from "ng-zorro-antd/pagination";
 
 //Ng-Zorro全局配置
 const ngZorroConfig: NzConfig = {
@@ -50,9 +52,11 @@ const ngZorroConfig: NzConfig = {
         NzMenuModule,
         NzFormModule,
         NzInputModule,
+        NzDatePickerModule,
         NzButtonModule,
         NzDropDownModule,
-        NzTableModule
+        NzTableModule,
+        NzPaginationModule,
     ],
     exports: [
         NzIconModule,
@@ -66,9 +70,11 @@ const ngZorroConfig: NzConfig = {
         NzMenuModule,
         NzFormModule,
         NzInputModule,
+        NzDatePickerModule,
         NzButtonModule,
         NzDropDownModule,
-        NzTableModule
+        NzTableModule,
+        NzPaginationModule,
     ],
     providers: [
         {provide: NZ_ICONS, useValue: [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline]},
