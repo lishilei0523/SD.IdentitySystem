@@ -1,5 +1,5 @@
 ﻿using Microsoft.Owin;
-using SD.IdentitySystem.WebApi.Tests;
+using SD.IdentitySystem.UpdateService;
 using System.Reflection;
 using System.Runtime.InteropServices;
 
@@ -15,7 +15,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("6de7971f-b7ea-480b-bce4-9bd25d330c2c")]
+[assembly: Guid("03d76b53-bffa-4b5a-82f4-581e83ae0761")]
 
 // OWIN启动器
 [assembly: OwinStartup(typeof(Startup))]

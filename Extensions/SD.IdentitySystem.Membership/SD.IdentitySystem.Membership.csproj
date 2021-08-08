@@ -17,6 +17,6 @@
 
   <ItemGroup>
     <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.3" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.4" />
   </ItemGroup>
 </Project>

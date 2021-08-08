@@ -1,11 +1,14 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using SD.Infrastructure.Constants;
 using SD.Toolkits.OwinCore.Middlewares;
 
 namespace SD.IdentitySystem.AspNetCore.Tests
 {
     /// <summary>
-    /// OWIN启动器
+    /// 应用程序启动器
     /// </summary>
     public class Startup
     {
@@ -14,7 +17,18 @@ namespace SD.IdentitySystem.AspNetCore.Tests
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().AddNewtonsoftJson(options =>
+            {
+                //Camel命名设置
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+
+                //日期时间格式设置
+                IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter()
+                {
+                    DateTimeFormat = CommonConstants.TimeFormat
+                };
+                options.SerializerSettings.Converters.Add(dateTimeConverter);
+            });
         }
 
         /// <summary>

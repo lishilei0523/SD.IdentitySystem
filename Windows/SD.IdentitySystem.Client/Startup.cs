@@ -1,9 +1,11 @@
-﻿using Caliburn.Micro;
+﻿using AutoUpdaterDotNET;
+using Caliburn.Micro;
 using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SD.Common;
 using SD.IdentitySystem.Client.ViewModels.Home;
+using SD.Infrastructure;
 using SD.IOC.Core.Mediators;
 using SD.IOC.Extension.NetFx;
 using System;
@@ -102,6 +104,9 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override void Configure()
         {
+            //配置自动更新服务
+            AutoUpdater.Start(FrameworkSection.Setting.WindowsUpdateService.Value);
+
             //初始化依赖注入容器
             if (!ResolveMediator.ContainerBuilt)
             {

@@ -1,0 +1,35 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net461</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <Authors>Lee</Authors>
+    <Company>SD</Company>
+    <Copyright>Copyright © SD 2021</Copyright>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="Content\favicon.ico">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Content\Release.xml">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.AspNet.WebApi.Core" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.Owin" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.7" />
+    <PackageReference Include="Microsoft.Owin" Version="4.1.1" />
+    <PackageReference Include="Microsoft.Owin.StaticFiles" Version="4.1.1" />
+    <PackageReference Include="Topshelf" Version="4.2.1" />
+    <PackageReference Include="SD.Toolkits.AspNet" Version="1.0.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.4" />
+  </ItemGroup>
+</Project>

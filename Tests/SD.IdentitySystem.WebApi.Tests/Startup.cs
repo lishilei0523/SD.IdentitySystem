@@ -1,14 +1,11 @@
-﻿using Microsoft.Owin;
-using Owin;
+﻿using Owin;
 using SD.IdentitySystem.WCF.Authentication.Owin;
-using SD.IdentitySystem.WebApi.Tests;
 using SD.IOC.Integration.WebApi.SelfHost;
 using SD.Toolkits.Owin.Middlewares;
 using SD.Toolkits.WebApi.Extensions;
 using System.Web.Http;
 using System.Web.Http.Cors;
 
-[assembly: OwinStartup(typeof(Startup))]
 namespace SD.IdentitySystem.WebApi.Tests
 {
     public class Startup : StartupBase
