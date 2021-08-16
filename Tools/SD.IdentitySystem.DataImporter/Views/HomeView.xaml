@@ -1,0 +1,43 @@
+﻿<Window x:Class="SD.IdentitySystem.DataImporter.Views.HomeView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
+        xmlns:cm="http://caliburnmicro.com"
+        mc:Ignorable="d"
+        Title="身份认证系统 - 数据导入工具" 
+        Width="400" Height="480" ResizeMode="NoResize" 
+        FontSize="14"
+        WindowStyle="ThreeDBorderWindow"
+        WindowStartupLocation="CenterScreen"
+        fluentWpf:AcrylicWindow.Enabled="True">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type Button}">
+            <Setter Property="FontSize" Value="14" />
+            <Setter Property="FontWeight" Value="Normal" />
+            <Setter Property="FontFamily" Value="微软雅黑" />
+            <Setter Property="Margin" Value="0,15,0,0" />
+            <Setter Property="Height" Value="30" />
+            <Setter Property="BorderBrush" Value="#0078D7" />
+            <Setter Property="BorderThickness" Value="2" />
+            <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0.5" />
+            <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="1" />
+        </Style>
+    </Window.Resources>
+
+    <busyIndicator:BusyMask IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
+        <StackPanel Margin="10,20">
+            <Button Content="导入信息系统" cm:Message.Attach="ImportInfoSystems()" />
+            <Button Content="导入权限" cm:Message.Attach="ImportAuthorities()" />
+            <Button Content="导入菜单" cm:Message.Attach="ImportMenus()" />
+            <Button Content="关联权限到菜单" cm:Message.Attach="RelateAuthoritiesToMenus()" />
+            <Button Content="导入角色" cm:Message.Attach="ImportRoles()" />
+            <Button Content="关联权限到角色" cm:Message.Attach="RelateAuthoritiesToRoles()" />
+            <Button Content="导入用户" cm:Message.Attach="ImportUsers()" />
+            <Button Content="关联角色到用户" cm:Message.Attach="RelateRolesToUsers()" />
+        </StackPanel>
+    </busyIndicator:BusyMask>
+</Window>

@@ -1,13 +1,13 @@
 ﻿using System.Windows;
 
-namespace SD.IdentitySystem.DataImporter
+namespace SD.IdentitySystem.DataImporter.Views
 {
     /// <summary>
-    /// 主窗体
+    /// 主页视图
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class HomeView : Window
     {
-        public MainWindow()
+        public HomeView()
         {
             this.InitializeComponent();
         }

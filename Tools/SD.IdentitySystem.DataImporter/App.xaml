@@ -1,9 +1,16 @@
 ﻿<Application x:Class="SD.IdentitySystem.DataImporter.App"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-             xmlns:local="clr-namespace:SD.IdentitySystem.DataImporter"
-             StartupUri="MainWindow.xaml">
+             xmlns:local="clr-namespace:SD.IdentitySystem.DataImporter">
     <Application.Resources>
-         
+        <ResourceDictionary>
+            <ResourceDictionary.MergedDictionaries>
+                <ResourceDictionary>
+                    <local:Startup x:Key="Startup" />
+                </ResourceDictionary>
+                <ResourceDictionary Source="pack://application:,,,/FluentWPF;component/Styles/Controls.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml" />
+            </ResourceDictionary.MergedDictionaries>
+        </ResourceDictionary>
     </Application.Resources>
 </Application>
