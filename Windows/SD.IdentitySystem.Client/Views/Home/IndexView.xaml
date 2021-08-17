@@ -6,12 +6,15 @@
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         mc:Ignorable="d"
         Title="Powered by SD.Framework"
         Width="1440" Height="900" 
         FontSize="14"
         WindowStyle="ThreeDBorderWindow"
-        WindowStartupLocation="CenterScreen">
+        WindowStartupLocation="CenterScreen"
+        fluentWpf:AcrylicWindow.Enabled="True"
+        fluentWpf:AcrylicWindow.AcrylicAccentState="Gradient">
 
     <Grid>
         <Grid.RowDefinitions>
