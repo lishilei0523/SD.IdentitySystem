@@ -4,6 +4,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
+using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
 using System.Collections.Generic;
@@ -111,43 +112,26 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
         //Actions
 
-        #region 导航至菜单 —— void Navigate(LoginMenuInfo menu)
+        #region 导航至菜单 —— async void Navigate(LoginMenuInfo menu)
         /// <summary>
         /// 导航至菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void Navigate(LoginMenuInfo menu)
+        public async void Navigate(LoginMenuInfo menu)
         {
             if (!string.IsNullOrWhiteSpace(menu.Url))
             {
+                this.Busy();
+
                 Type type = Type.GetType(menu.Url);
                 IScreen document = (IScreen)ResolveMediator.Resolve(type);
                 document.DisplayName = menu.Name;
 
-                this.ActivateItem(document);
+                await this.ActivateItem(document);
                 this.ActiveDocument = document;
-            }
-        }
-        #endregion
 
-        #region 激活文档 —— async void ActivateItem(IScreen item)
-        /// <summary>
-        /// 激活文档
-        /// </summary>
-        /// <param name="document">文档</param>
-        public async void ActivateItem(IScreen document)
-        {
-            if (base.Items.Any(x => x.DisplayName == document.DisplayName))
-            {
-                IScreen screen = base.Items.Single(x => x.DisplayName == document.DisplayName);
-                this.ActiveDocument = screen;
+                this.Idle();
             }
-            else
-            {
-                await base.ActivateItemAsync(document);
-            }
-
-            this.BingVisibility = Visibility.Collapsed;
         }
         #endregion
 
@@ -219,6 +203,27 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         {
             IEnumerable<LoginMenuInfo> loginMenuInfos = this.LoginInfo.LoginMenuInfos.Where(x => x.SystemNo == "00" && x.ApplicationType == ApplicationType.Windows);
             this.LoginMenuInfos = new ObservableCollection<LoginMenuInfo>(loginMenuInfos);
+        }
+        #endregion
+
+        #region 激活文档 —— async Task ActivateItem(IScreen item)
+        /// <summary>
+        /// 激活文档
+        /// </summary>
+        /// <param name="document">文档</param>
+        private async Task ActivateItem(IScreen document)
+        {
+            if (base.Items.Any(x => x.DisplayName == document.DisplayName))
+            {
+                IScreen screen = base.Items.Single(x => x.DisplayName == document.DisplayName);
+                this.ActiveDocument = screen;
+            }
+            else
+            {
+                await base.ActivateItemAsync(document);
+            }
+
+            this.BingVisibility = Visibility.Collapsed;
         }
         #endregion
 

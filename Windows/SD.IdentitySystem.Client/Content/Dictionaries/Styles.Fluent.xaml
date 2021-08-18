@@ -33,13 +33,16 @@
     <!--Fluent.Button透明圆角样式-->
     <Style x:Key="Button.Styles.Fluent.Transparent.Round" TargetType="{x:Type Button}"
            BasedOn="{StaticResource ButtonRoundRevealStyle}">
-        <Setter Property="Background" Value="Transparent" />
-        <Setter Property="BorderBrush" Value="Transparent" />
+        <Setter Property="BorderBrush" Value="#0078D7" />
+        <Setter Property="BorderThickness" Value="2" />
         <Setter Property="FontSize" Value="14" />
         <Setter Property="FontWeight" Value="Normal" />
+        <Setter Property="Width" Value="85" />
         <Setter Property="Height" Value="28" />
-        <Setter Property="Margin" Value="3,0,0,0" />
+        <Setter Property="Margin" Value="0,5,10,0" />
         <Setter Property="Padding" Value="4" />
+        <Setter Property="fluentWpf:RevealElement.BorderOpacity" Value="0.5" />
+        <Setter Property="fluentWpf:RevealElement.MouseOverBorderOpacity" Value="1" />
     </Style>
     <!--Fluent.Button透明面板样式-->
     <Style x:Key="Button.Styles.Fluent.Transparent.Panel" TargetType="{x:Type Button}"

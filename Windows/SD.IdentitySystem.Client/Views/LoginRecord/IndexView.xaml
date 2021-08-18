@@ -12,7 +12,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="50" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
@@ -20,10 +20,9 @@
         <Border Grid.Row="0" Style="{StaticResource Panel.Styles.Function.Border}">
             <Grid Background="WhiteSmoke">
                 <!--查询按钮区-->
-                <WrapPanel VerticalAlignment="Center" Margin="10,0,0,0">
+                <WrapPanel Style="{StaticResource WrapPanel.Styles.Function.Query}" Margin="10,5,0,5">
                     <TextBlock Text="关键字：" />
-                    <TextBox Width="210" 
-                             mah:TextBoxHelper.Watermark="用户名/真实姓名"
+                    <TextBox mah:TextBoxHelper.Watermark="用户名/真实姓名"
                              mah:TextBoxHelper.ClearTextButton="True"
                              Text="{Binding Keywords}" />
                     <TextBlock Text="开始时间：" Margin="10,0,0,0" />

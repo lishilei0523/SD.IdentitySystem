@@ -17,7 +17,7 @@
     <Grid>
         <Grid.RowDefinitions>
             <!--功能区-->
-            <RowDefinition Height="70" />
+            <RowDefinition Height="Auto" />
             <!--内容区-->
             <RowDefinition Height="*" />
             <!--内容控制区-->
@@ -31,7 +31,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <!--操作按钮区-->
-                <WrapPanel Grid.Row="0" VerticalAlignment="Center">
+                <WrapPanel Grid.Row="0" Style="{StaticResource WrapPanel.Styles.Function.Operation}">
                     <Button cal:Message.Attach="CreateMenu()"
                             Style="{StaticResource Button.Styles.Fluent.Transparent.Round}">
                         <WrapPanel>
@@ -48,7 +48,7 @@
                     </Button>
                 </WrapPanel>
                 <!--查询按钮区-->
-                <WrapPanel Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0">
+                <WrapPanel Grid.Row="1" Style="{StaticResource WrapPanel.Styles.Function.Query}">
                     <TextBlock Text="信息系统：" />
                     <ComboBox ItemsSource="{Binding InfoSystems}" 
                               DisplayMemberPath="Name"

@@ -7,6 +7,7 @@
         xmlns:cal="http://www.caliburnproject.org"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
         mc:Ignorable="d"
         Title="Powered by SD.Framework"
         Width="1440" Height="900" 
@@ -93,32 +94,34 @@
             </mah:HamburgerMenu.ItemsSource>
             <!--Body-->
             <mah:HamburgerMenu.Content>
-                <Grid>
-                    <!--Documents-->
-                    <TabControl ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveDocument}" 
+                <busyIndicator:BusyMask IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
+                    <Grid>
+                        <!--Documents-->
+                        <TabControl ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveDocument}" 
                                 Style="{StaticResource TabControl.Styles.Document}" 
                                 ItemContainerStyle="{StaticResource TabControlItem.Styles.Document}">
-                        <TabControl.ItemTemplate>
-                            <DataTemplate>
-                                <WrapPanel>
-                                    <TextBlock Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" />
-                                    <Button cal:Message.Attach="DeactivateItem($dataContext, 'true')" 
+                            <TabControl.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" />
+                                        <Button cal:Message.Attach="DeactivateItem($dataContext, 'true')" 
                                             Style="{StaticResource Button.Styles.Fluent.Transparent.Close}">
-                                        <TextBlock Text="×" FontSize="16" HorizontalAlignment="Center" />
-                                    </Button>
-                                </WrapPanel>
-                            </DataTemplate>
-                        </TabControl.ItemTemplate>
-                        <TabControl.ContentTemplate>
-                            <DataTemplate>
-                                <ContentControl cal:View.Model="{Binding UpdateSourceTrigger=PropertyChanged}" />
-                            </DataTemplate>
-                        </TabControl.ContentTemplate>
-                    </TabControl>
-                    <Grid Visibility="{Binding BingVisibility}">
-                        <WebBrowser Source="https://cn.bing.com" />
+                                            <TextBlock Text="×" FontSize="16" HorizontalAlignment="Center" />
+                                        </Button>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </TabControl.ItemTemplate>
+                            <TabControl.ContentTemplate>
+                                <DataTemplate>
+                                    <ContentControl cal:View.Model="{Binding UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </TabControl.ContentTemplate>
+                        </TabControl>
+                        <Grid Visibility="{Binding BingVisibility}">
+                            <WebBrowser Source="https://cn.bing.com" />
+                        </Grid>
                     </Grid>
-                </Grid>
+                </busyIndicator:BusyMask>
             </mah:HamburgerMenu.Content>
         </mah:HamburgerMenu>
         <!--Footer-->

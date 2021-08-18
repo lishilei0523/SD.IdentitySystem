@@ -12,7 +12,7 @@
 
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="70" />
+            <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
         </Grid.RowDefinitions>
@@ -24,7 +24,7 @@
                     <RowDefinition />
                 </Grid.RowDefinitions>
                 <!--操作按钮区-->
-                <WrapPanel Grid.Row="0" VerticalAlignment="Center">
+                <WrapPanel Grid.Row="0" Style="{StaticResource WrapPanel.Styles.Function.Operation}">
                     <Button cal:Message.Attach="CreateRole()" Style="{StaticResource Button.Styles.Fluent.Transparent.Round}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Add" />
@@ -39,10 +39,9 @@
                     </Button>
                 </WrapPanel>
                 <!--查询按钮区-->
-                <WrapPanel Grid.Row="1" VerticalAlignment="Center" Margin="10,0,0,0">
+                <WrapPanel Grid.Row="1" Style="{StaticResource WrapPanel.Styles.Function.Query}">
                     <TextBlock Text="关键字：" />
-                    <TextBox Width="210" 
-                             mah:TextBoxHelper.Watermark="角色名称"
+                    <TextBox mah:TextBoxHelper.Watermark="角色名称"
                              mah:TextBoxHelper.ClearTextButton="True"
                              Text="{Binding Keywords}" />
                     <TextBlock Text="信息系统："  Margin="10,0,0,0" />
