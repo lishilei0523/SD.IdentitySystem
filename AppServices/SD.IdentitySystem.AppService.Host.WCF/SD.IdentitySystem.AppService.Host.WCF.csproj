@@ -29,8 +29,8 @@
     <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.0.3" />
     <PackageReference Include="SD.IOC.Integration.WCF" Version="2.0.3" />
-    <PackageReference Include="SD.AOP.Core" Version="2.1.0" />
-    <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.0" />
+    <PackageReference Include="SD.AOP.Core" Version="2.1.1" />
+    <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.1" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.0.6" />
     <PackageReference Include="SD.Infrastructure" Version="3.0.5" />

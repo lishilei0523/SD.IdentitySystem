@@ -1,6 +1,6 @@
 ﻿using SD.Infrastructure.PresentationBase;
 
-namespace SD.IdentitySystem.IPresentation.Models.Outputs
+namespace SD.IdentitySystem.IPresentation.Models
 {
     /// <summary>
     /// 权限模型

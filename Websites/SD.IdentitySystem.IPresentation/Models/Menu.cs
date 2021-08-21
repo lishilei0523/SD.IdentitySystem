@@ -3,7 +3,7 @@ using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
 
-namespace SD.IdentitySystem.IPresentation.Models.Outputs
+namespace SD.IdentitySystem.IPresentation.Models
 {
     /// <summary>
     /// 菜单模型

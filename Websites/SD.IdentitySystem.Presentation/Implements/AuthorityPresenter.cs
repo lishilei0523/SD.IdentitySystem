@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.Models.Outputs;
+using SD.IdentitySystem.IPresentation.Models;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;

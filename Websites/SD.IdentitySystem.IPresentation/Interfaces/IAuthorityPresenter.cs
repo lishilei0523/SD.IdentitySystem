@@ -1,4 +1,4 @@
-﻿using SD.IdentitySystem.IPresentation.Models.Outputs;
+﻿using SD.IdentitySystem.IPresentation.Models;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.PresentationBase;
