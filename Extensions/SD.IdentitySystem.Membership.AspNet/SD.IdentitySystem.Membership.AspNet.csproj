@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <Reference Include="System.Web" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.5" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.7" />
   </ItemGroup>
 
   <ItemGroup>

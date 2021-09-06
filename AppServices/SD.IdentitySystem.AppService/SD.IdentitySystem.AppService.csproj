@@ -8,7 +8,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="CoreWCF.Primitives" Version="0.1.0" />
+    <PackageReference Include="CoreWCF.Primitives" Version="0.2.1" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.1" />
   </ItemGroup>
 
@@ -18,7 +18,7 @@
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
     <PackageReference Include="SD.AOP.Core" Version="2.1.1" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.5" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.7" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.4" />
     <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.2" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />

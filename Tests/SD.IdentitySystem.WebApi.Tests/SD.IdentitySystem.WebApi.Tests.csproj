@@ -31,7 +31,7 @@
     <PackageReference Include="SD.IOC.Integration.WebApi.SelfHost" Version="2.0.2" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.0.6" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.5" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.7" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.1" />
   </ItemGroup>
 

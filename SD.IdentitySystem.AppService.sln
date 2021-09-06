@@ -33,6 +33,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.OwinWebApi", "AppServices\SD.IdentitySystem.AppService.Host.OwinWebApi\SD.IdentitySystem.AppService.Host.OwinWebApi.csproj", "{0A55552C-9755-4DC6-9810-39E1AB8B6E66}"
 EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository.EFCore", "AppServices\SD.IdentitySystem.Repository.EFCore\SD.IdentitySystem.Repository.EFCore.csproj", "{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -75,6 +77,10 @@ Global
 		{0A55552C-9755-4DC6-9810-39E1AB8B6E66}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0A55552C-9755-4DC6-9810-39E1AB8B6E66}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0A55552C-9755-4DC6-9810-39E1AB8B6E66}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -89,6 +95,7 @@ Global
 		{96B38C17-6A74-4809-BD4C-8855E0A5A8CA} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 		{6195BA53-B23C-4B8E-B7B4-31EBE12BE557} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 		{0A55552C-9755-4DC6-9810-39E1AB8B6E66} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
+		{7DFBB9E0-A348-4408-BE63-03CFBC9242FD} = {736BB2F7-0FF7-4CAD-9713-BB82C3EDF7D1}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9428DB86-89E0-425E-9C5A-836EC410CD83}

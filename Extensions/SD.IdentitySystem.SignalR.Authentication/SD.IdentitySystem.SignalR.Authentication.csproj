@@ -20,7 +20,7 @@
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.0.3" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.0.4" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.5" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.7" />
     <PackageReference Include="SD.Infrastructure.SignalR.Server" Version="1.0.4" />
   </ItemGroup>
 </Project>

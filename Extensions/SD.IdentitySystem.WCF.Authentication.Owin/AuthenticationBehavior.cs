@@ -7,7 +7,7 @@ namespace SD.IdentitySystem.WCF.Authentication.Owin
     /// <summary>
     /// WCF/OWIN客户端身份认证行为
     /// </summary>
-    internal class AuthenticationBehavior : IEndpointBehavior
+    public class AuthenticationBehavior : IEndpointBehavior
     {
         /// <summary>
         /// 适用客户端行为

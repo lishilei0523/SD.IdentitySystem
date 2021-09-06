@@ -3,8 +3,14 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using System;
 using System.Linq;
+#if NET461_OR_GREATER
 using System.ServiceModel;
 using System.ServiceModel.Channels;
+#endif
+#if NETSTANDARD2_0_OR_GREATER
+using CoreWCF;
+using CoreWCF.Channels;
+#endif
 
 namespace SD.IdentitySystem.Membership.WCF
 {

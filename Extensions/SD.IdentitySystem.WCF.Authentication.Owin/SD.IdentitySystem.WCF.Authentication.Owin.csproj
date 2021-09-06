@@ -17,7 +17,10 @@
   <ItemGroup>
     <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="SD.Toolkits.Owin" Version="1.0.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.5" />
+    <PackageReference Include="SD.Infrastructure" Version="3.0.7" />
   </ItemGroup>
 </Project>

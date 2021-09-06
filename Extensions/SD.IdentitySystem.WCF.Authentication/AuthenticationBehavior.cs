@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.WCF.Authentication
     /// <summary>
     /// WCF客户端/服务端身份认证行为
     /// </summary>
-    internal class AuthenticationBehavior : IServiceBehavior, IEndpointBehavior
+    public class AuthenticationBehavior : IServiceBehavior, IEndpointBehavior
     {
         /// <summary>
         /// 适用身份认证服务端行为

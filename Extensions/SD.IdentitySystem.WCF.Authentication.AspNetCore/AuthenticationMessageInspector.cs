@@ -11,7 +11,7 @@ namespace SD.IdentitySystem.WCF.Authentication.AspNetCore
     /// <summary>
     /// WCF/ASP.NET Core客户端身份认证消息拦截器
     /// </summary>
-    public class AuthenticationMessageInspector : IClientMessageInspector
+    internal class AuthenticationMessageInspector : IClientMessageInspector
     {
         /// <summary>
         /// 请求发送前事件
