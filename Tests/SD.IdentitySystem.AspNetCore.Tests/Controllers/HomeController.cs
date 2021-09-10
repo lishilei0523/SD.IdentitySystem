@@ -5,7 +5,7 @@ using SD.IdentitySystem.StubWCF.Server.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using SD.IOC.Core.Mediators;
-using SD.Toolkits.WebApiCore.Attributes;
+using SD.Toolkits.AspNetCore.Attributes;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics;

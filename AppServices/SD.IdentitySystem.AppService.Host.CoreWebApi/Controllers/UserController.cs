@@ -3,7 +3,7 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.WebApiCore.Attributes;
+using SD.Toolkits.AspNetCore.Attributes;
 using System;
 using System.Collections.Generic;
 
