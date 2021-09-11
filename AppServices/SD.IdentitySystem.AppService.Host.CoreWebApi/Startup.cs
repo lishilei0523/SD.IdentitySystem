@@ -3,7 +3,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
-using SD.IdentitySystem.WebApiCore.Authentication.Filters;
+using SD.IdentitySystem.AspNetCore.Authentication.Filters;
 using SD.Infrastructure.AspNetCore.Server.Middlewares;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.AspNetCore.Filters;

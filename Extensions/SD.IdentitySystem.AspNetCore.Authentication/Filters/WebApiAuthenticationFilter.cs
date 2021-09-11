@@ -12,10 +12,10 @@ using SD.Toolkits.AspNet;
 using System;
 using System.Net;
 
-namespace SD.IdentitySystem.WebApiCore.Authentication.Filters
+namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
 {
     /// <summary>
-    /// WebApi身份认证过滤器
+    /// ASP.NET Core WebApi身份认证过滤器
     /// </summary>
     public class WebApiAuthenticationFilter : IAuthorizationFilter
     {

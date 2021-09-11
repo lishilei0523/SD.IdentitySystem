@@ -51,7 +51,7 @@
     <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.0.1" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
     <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="1.0.0" />
-    <PackageReference Include="SD.IdentitySystem.WebApiCore.Authentication" Version="1.0.5" />
+    <PackageReference Include="SD.IdentitySystem.AspNetCore.Authentication" Version="1.0.0" />
   </ItemGroup>
 
   <ItemGroup>

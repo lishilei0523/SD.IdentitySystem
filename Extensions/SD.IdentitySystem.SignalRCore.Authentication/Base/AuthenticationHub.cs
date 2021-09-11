@@ -3,7 +3,7 @@ using SD.Infrastructure.MessageBase;
 using SD.Infrastructure.SignalRCore.Server.Base;
 using System.Linq;
 
-namespace SD.IdentitySystem.SignalRCore.Authentication.Base
+namespace SD.IdentitySystem.SignalR.Authentication.Base
 {
     /// <summary>
     /// 认证消息Hub基类

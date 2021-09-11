@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.SignalR;
 
-namespace SD.IdentitySystem.SignalRCore.Authentication.Providers
+namespace SD.IdentitySystem.SignalR.Authentication.Providers
 {
     /// <summary>
     /// 用户登录名提供者

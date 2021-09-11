@@ -10,7 +10,7 @@ using SD.Toolkits.OwinCore.Extensions;
 using System;
 using System.Net;
 
-namespace SD.IdentitySystem.AspNetMvcCore.Authentication.Filters
+namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
 {
     /// <summary>
     /// ASP.NET Core MVC身份认证过滤器
