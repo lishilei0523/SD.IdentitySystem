@@ -21,15 +21,17 @@ import {AppExtensionModule} from './app-extension.module';
 import {AppComponent} from './app.component';
 import {IndexComponent as HomeComponent} from '../app/home/index/index.component';
 import {LoginComponent} from '../app/home/login/login.component';
+import {UpdatePasswordComponent} from '../app/home/update-password/update-password.component';
 import {IndexComponent as InfoSystemIndexComponent} from '../app/info-system/index/index.component';
 import {IndexComponent as UserIndexComponent} from '../app/user/index/index.component';
-import {UpdatePasswordComponent as UserUpdatePasswordComponent} from '../app/user/update-password/update-password.component';
 import {IndexComponent as RoleIndexComponent} from '../app/role/index/index.component';
 import {IndexComponent as MenuIndexComponent} from '../app/menu/index/index.component';
 import {IndexComponent as AuthorityIndexComponent} from '../app/authority/index/index.component';
 import {IndexComponent as LoginRecordIndexComponent} from '../app/login-record/index/index.component';
 
 //Angular服务
+import {HomeService} from "../app/home/home.service";
+import {UserService} from "../app/user/user.service";
 import {MenuService} from '../app/menu/menu.service';
 import {LoginRecordService} from "../app/login-record/login-record.service";
 
@@ -41,9 +43,9 @@ import {LoginRecordService} from "../app/login-record/login-record.service";
         AppComponent,
         HomeComponent,
         LoginComponent,
+        UpdatePasswordComponent,
         InfoSystemIndexComponent,
         UserIndexComponent,
-        UserUpdatePasswordComponent,
         RoleIndexComponent,
         MenuIndexComponent,
         AuthorityIndexComponent,
@@ -64,7 +66,7 @@ import {LoginRecordService} from "../app/login-record/login-record.service";
         AppExtensionModule
     ],
     //提供服务
-    providers: [MenuService, LoginRecordService],
+    providers: [HomeService, UserService, MenuService, LoginRecordService],
     //启动页
     bootstrap: [AppComponent]
 })

@@ -6,7 +6,7 @@ import {Membership} from "../../../values/constants/membership";
 import {Tab} from "../../../values/structs/tab";
 import {LoginMenuInfo} from "../../../values/structs/login-menu-info";
 import {LoginInfo} from "../../../values/structs/login-info";
-import {UpdatePasswordComponent} from "../../user/update-password/update-password.component";
+import {UpdatePasswordComponent} from "../update-password/update-password.component";
 
 /*首页组件*/
 @Component({
@@ -146,9 +146,9 @@ export class IndexComponent {
     public updatePassword(): void {
         this.modalService.create({
             nzTitle: "修改密码",
-            nzWidth: "480px",
+            nzWidth: "450px",
             nzBodyStyle: {
-                height: "290px"
+                height: "270px"
             },
             nzContent: UpdatePasswordComponent,
             nzFooter: null,

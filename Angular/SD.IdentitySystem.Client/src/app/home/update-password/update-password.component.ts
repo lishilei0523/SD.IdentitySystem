@@ -2,7 +2,7 @@ import {Component, Input} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {BaseComponent} from "../../../extentions/base.component";
-import {UserService} from "../user.service";
+import {HomeService} from "../home.service";
 
 /*用户修改密码组件*/
 @Component({
@@ -19,7 +19,7 @@ export class UpdatePasswordComponent extends BaseComponent {
     private readonly formBuilder: FormBuilder;
 
     /*用户服务*/
-    private readonly userService: UserService;
+    private readonly homeService: HomeService;
 
     /*用户名*/
     @Input()
@@ -40,14 +40,14 @@ export class UpdatePasswordComponent extends BaseComponent {
     /**
      * 创建用户修改密码组件构造器
      * */
-    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, userService: UserService) {
+    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, homeService: HomeService) {
         //基类构造器
         super();
 
         //依赖注入部分
         this.modalRef = modalRef;
         this.formBuilder = formBuilder;
-        this.userService = userService;
+        this.homeService = homeService;
 
         //默认值部分
         this.loginId = "";
@@ -73,7 +73,7 @@ export class UpdatePasswordComponent extends BaseComponent {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this.userService.updatePassword(this.loginId, this.oldPassword, this.newPassword);
+            let promise: Promise<void> = this.homeService.updatePassword(this.loginId, this.oldPassword, this.newPassword);
             promise.catch(_ => {
                 this.idle();
             });

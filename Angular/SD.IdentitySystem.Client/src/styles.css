@@ -1,4 +1,4 @@
-label, button, input, optgroup, select, textarea {
+label, button, input, optgroup, select, textarea, nz-date-picker {
     line-height: normal !important;
     vertical-align: middle !important;
 }
@@ -6,9 +6,3 @@ label, button, input, optgroup, select, textarea {
 .form-footer {
     float: right;
 }
-
-.form-footer button {
-    width: 100px;
-    margin: 1rem 0 0 0.5rem;
-}
-

@@ -22,6 +22,11 @@ export class LoginRecordService {
 
     /**
      * 分页获取登录记录列表
+     * @param keywords - 关键字
+     * @param startTime - 开始时间
+     * @param endTime - 结束时间
+     * @param pageIndex - 页码
+     * @param pageSize - 页容量
      * */
     public getLoginRecordsByPage(keywords: string, startTime: string, endTime: string, pageIndex: number, pageSize: number)
         : Promise<PageModel<LoginRecord>> {

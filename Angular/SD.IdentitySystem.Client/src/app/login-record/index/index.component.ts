@@ -76,6 +76,16 @@ export class IndexComponent extends BaseComponent implements OnInit {
     }
 
     /**
+     * 重置搜索
+     * */
+    public resetSearch(): void {
+        console.log(this.keywords);
+        this.keywords = "";
+        this.startTime = "";
+        this.endTime = "";
+    }
+
+    /**
      * 页码改变事件
      * */
     public async pageIndexChange(pageIndex: number): Promise<void> {
@@ -92,16 +102,6 @@ export class IndexComponent extends BaseComponent implements OnInit {
     }
 
     /**
-     * 重置表单
-     * */
-    public resetForm(): void {
-        console.log(this.keywords);
-        this.keywords = "";
-        this.startTime = "";
-        this.endTime = "";
-    }
-
-    /**
      * 加载登录记录列表
      * */
     private async loadLoginRecords(): Promise<void> {
@@ -109,12 +109,6 @@ export class IndexComponent extends BaseComponent implements OnInit {
 
         let startTime = Common.formatDate(this.startTime);
         let endTime = Common.formatDate(this.endTime);
-
-        console.log(this.startTime);
-        console.log(this.endTime);
-        console.log(startTime);
-        console.log(endTime);
-
         let promise = this.loginRecordService.getLoginRecordsByPage(this.keywords, startTime, endTime, this.pageIndex, this.pageSize);
         promise.catch(_ => this.idle());
 

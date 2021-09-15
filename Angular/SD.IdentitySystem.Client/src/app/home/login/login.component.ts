@@ -1,11 +1,11 @@
 import {Component} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Membership} from "../../../values/constants/membership";
 import {LoginInfo} from "../../../values/structs/login-info";
 import {BaseComponent} from "../../../extentions/base.component";
-import {UserService} from "../../user/user.service";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {HomeService} from "../home.service";
 
 /*登录组件*/
 @Component({
@@ -22,7 +22,7 @@ export class LoginComponent extends BaseComponent {
     private readonly formBuilder: FormBuilder;
 
     /*用户服务*/
-    private readonly userService: UserService;
+    private readonly homeService: HomeService;
 
     /*用户名*/
     public loginId: string;
@@ -36,14 +36,14 @@ export class LoginComponent extends BaseComponent {
     /**
      * 创建登录组件构造器
      * */
-    public constructor(router: Router, formBuilder: FormBuilder, userService: UserService) {
+    public constructor(router: Router, formBuilder: FormBuilder, homeService: HomeService) {
         //基类构造器
         super();
 
         //依赖注入部分
         this.router = router;
         this.formBuilder = formBuilder;
-        this.userService = userService;
+        this.homeService = homeService;
 
         //默认值部分
         this.loginId = "";
@@ -71,7 +71,7 @@ export class LoginComponent extends BaseComponent {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<LoginInfo> = this.userService.login(this.loginId, this.password);
+            let promise: Promise<LoginInfo> = this.homeService.login(this.loginId, this.password);
             promise.catch(_ => this.idle());
             Membership.loginInfo = await promise;
             await this.router.navigate(["/Home"]);
