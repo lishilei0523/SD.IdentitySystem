@@ -6,9 +6,9 @@
                 <nz-card nzTitle="统一身份认证系统">
                     <form nz-form [formGroup]="formGroup" (ngSubmit)="login()">
                         <nz-form-item>
-                            <nz-form-label [nzSpan]="4" nzFor="loginId">用户名</nz-form-label>
+                            <nz-form-label [nzSpan]="4">用户名</nz-form-label>
                             <nz-form-control [nzSpan]="20" [nzErrorTip]="loginIdError">
-                                <input nz-input nzSize="large" type="text" id="loginId" formControlName="loginId"
+                                <input nz-input nzSize="large" type="text" formControlName="loginId"
                                        [(ngModel)]="loginId">
                                 <ng-template #loginIdError let-control>
                                     <ng-container *ngIf="control.hasError('required')">
@@ -18,9 +18,9 @@
                             </nz-form-control>
                         </nz-form-item>
                         <nz-form-item>
-                            <nz-form-label [nzSpan]="4" nzFor="password">密码</nz-form-label>
+                            <nz-form-label [nzSpan]="4">密码</nz-form-label>
                             <nz-form-control [nzSpan]="20" [nzErrorTip]="passwordError">
-                                <input nz-input nzSize="large" type="password" id="password" formControlName="password"
+                                <input nz-input nzSize="large" type="password" formControlName="password"
                                        [(ngModel)]="password"/>
                                 <ng-template #passwordError let-control>
                                     <ng-container *ngIf="control.hasError('required')">

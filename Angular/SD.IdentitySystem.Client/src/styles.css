@@ -1,5 +1,4 @@
-label, button, input, optgroup, select, textarea, nz-date-picker {
-    line-height: normal !important;
+label, button, input, optgroup, select, textarea, nz-date-picker, nz-select {
     vertical-align: middle !important;
 }
 

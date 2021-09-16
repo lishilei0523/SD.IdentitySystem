@@ -82,6 +82,7 @@ export class IndexComponent extends BaseComponent implements OnInit {
 
     /**
      * 页码改变事件
+     * @param pageIndex - 页码
      * */
     public async pageIndexChange(pageIndex: number): Promise<void> {
         this.pageIndex = pageIndex;
@@ -90,6 +91,7 @@ export class IndexComponent extends BaseComponent implements OnInit {
 
     /**
      * 页容量改变事件
+     * @param pageSize - 页容量
      * */
     public async pageSizeChange(pageSize: number): Promise<void> {
         this.pageSize = pageSize;

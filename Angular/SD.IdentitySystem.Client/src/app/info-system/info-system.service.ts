@@ -44,13 +44,15 @@ export class InfoSystemService {
     /**
      * 修改信息系统
      * @param infoSystemId - 信息系统Id
+     * @param systemNo - 信息系统编号
      * @param systemName - 信息系统名称
      * */
-    public async updateInfoSystem(infoSystemId: string, systemName: string)
+    public async updateInfoSystem(infoSystemId: string, systemNo: string, systemName: string)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/UpdateInfoSystem`;
         let params = {
             infoSystemId: infoSystemId,
+            systemNo: systemNo,
             systemName: systemName
         };
 
@@ -59,16 +61,16 @@ export class InfoSystemService {
 
     /**
      * 初始化信息系统
-     * @param infoSystemId - 信息系统Id
+     * @param systemNo - 信息系统编号
      * @param host - 主机名称
      * @param port - 端口
      * @param index - 首页
      * */
-    public async initInfoSystem(infoSystemId: string, host: string, port: number, index: string)
+    public async initInfoSystem(systemNo: string, host: string, port: number, index: string)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/InitInfoSystem`;
         let params = {
-            infoSystemId: infoSystemId,
+            systemNo: systemNo,
             host: host,
             port: port,
             index: index

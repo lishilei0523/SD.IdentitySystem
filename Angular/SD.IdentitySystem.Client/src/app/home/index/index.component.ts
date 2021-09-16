@@ -148,7 +148,7 @@ export class IndexComponent {
             nzTitle: "修改密码",
             nzWidth: "450px",
             nzBodyStyle: {
-                height: "270px"
+                height: "260px"
             },
             nzContent: UpdatePasswordComponent,
             nzFooter: null,
