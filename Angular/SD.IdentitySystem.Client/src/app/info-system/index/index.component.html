@@ -1,1 +1,78 @@
-<h1>信息系统管理</h1>
+<!--搜索区-->
+<nz-card>
+    <div nz-row [nzGutter]="18">
+        <div nz-col [nzSpan]="4.5">
+            <nz-form-label nzFor="keywords">关键字</nz-form-label>
+            <input nz-input style="width: 210px" placeholder="信息系统编号/名称" id="keywords" [(ngModel)]="keywords"/>
+        </div>
+        <div nz-col [nzSpan]="4.5">
+            <nz-space>
+                <button nz-button *nzSpaceItem [nzType]="'primary'" (click)="search()">
+                    <i nz-icon nzType="search"></i>搜索
+                </button>
+                <button nz-button *nzSpaceItem (click)="resetSearch()">
+                    <i nz-icon nzType="undo"></i>重置
+                </button>
+            </nz-space>
+        </div>
+        <div nz-col [nzSpan]="4.5"></div>
+        <div nz-col [nzSpan]="4.5"></div>
+    </div>
+</nz-card>
+<!--表格区-->
+<nz-table style="margin-top: 5px;"
+          nzShowSizeChanger
+          [nzTitle]="tableTile"
+          [nzData]="infoSystems"
+          [nzFrontPagination]="false"
+          [nzLoading]="isBusy"
+          [nzScroll]="{y: 'calc(100vh - 390px)'}"
+          [nzTotal]="rowCount"
+          [nzPageSize]="pageSize"
+          [nzPageIndex]="pageIndex"
+          (nzPageIndexChange)="pageIndexChange($event)"
+          (nzPageSizeChange)="pageSizeChange($event)">
+    <thead>
+    <tr>
+        <th nzWidth="40px" nzAlign="center" nzLeft [nzChecked]="checkedAll" (nzCheckedChange)="checkAll($event)"></th>
+        <th nzWidth="70px" nzAlign="center" nzLeft>编号</th>
+        <th nzWidth="200px" nzAlign="center" nzLeft>名称</th>
+        <th nzWidth="190px" nzAlign="center">应用程序类型</th>
+        <th nzWidth="130px" nzAlign="center">管理员账号</th>
+        <th nzWidth="170px" nzAlign="center">主机名</th>
+        <th nzWidth="100px" nzAlign="center">端口</th>
+        <th nzWidth="150px" nzAlign="center">首页</th>
+        <th nzWidth="170px" nzAlign="center">创建时间</th>
+        <th nzWidth="180px" nzAlign="center" nzRight>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let infoSystem of infoSystems">
+        <td nzLeft [nzChecked]="checkedIds.has(infoSystem.id)" (nzCheckedChange)="checkItem(infoSystem.id, $event)"></td>
+        <td nzLeft>{{infoSystem.number}}</td>
+        <td nzLeft>{{infoSystem.name}}</td>
+        <td>{{infoSystem.applicationType | applicationTypeDescriptor}}</td>
+        <td>{{infoSystem.adminLoginId}}</td>
+        <td>{{infoSystem.host}}</td>
+        <td>{{infoSystem.port}}</td>
+        <td>{{infoSystem.index}}</td>
+        <td nzAlign="center">{{infoSystem.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+        <td nzAlign="center" nzRight>
+            <nz-space>
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>编辑
+                </button>
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                    <i nz-icon nzType="clock-circle" nzTheme="twotone"></i>初始化
+                </button>
+            </nz-space>
+        </td>
+    </tr>
+    </tbody>
+</nz-table>
+<!--表格操作区-->
+<ng-template #tableTile>
+    <button nz-button nzType="primary" nzSize="small" nzShape="round">
+        <i nz-icon nzType="plus" nzTheme="outline"></i>新增
+    </button>
+</ng-template>

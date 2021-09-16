@@ -31,6 +31,7 @@ import {IndexComponent as LoginRecordIndexComponent} from '../app/login-record/i
 
 //Angular服务
 import {HomeService} from "../app/home/home.service";
+import {InfoSystemService} from "../app/info-system/info-system.service";
 import {UserService} from "../app/user/user.service";
 import {MenuService} from '../app/menu/menu.service';
 import {LoginRecordService} from "../app/login-record/login-record.service";
@@ -66,7 +67,7 @@ import {LoginRecordService} from "../app/login-record/login-record.service";
         AppExtensionModule
     ],
     //提供服务
-    providers: [HomeService, UserService, MenuService, LoginRecordService],
+    providers: [HomeService, InfoSystemService, UserService, MenuService, LoginRecordService],
     //启动页
     bootstrap: [AppComponent]
 })

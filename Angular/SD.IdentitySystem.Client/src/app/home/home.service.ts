@@ -24,14 +24,15 @@ export class HomeService {
      * @param loginId - 用户名
      * @param password - 密码
      * */
-    public async login(loginId: string, password: string): Promise<LoginInfo> {
+    public login(loginId: string, password: string)
+        : Promise<LoginInfo> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authentication/Login`;
         let params = {
             loginId: loginId,
             password: password
         };
 
-        return await this.httpClient.post<LoginInfo>(url, params).toPromise();
+        return this.httpClient.post<LoginInfo>(url, params).toPromise();
     }
 
     /**
@@ -40,7 +41,8 @@ export class HomeService {
      * @param oldPassword - 旧密码
      * @param newPassword - 新密码
      * */
-    public async updatePassword(loginId: string, oldPassword: string, newPassword: string): Promise<void> {
+    public async updatePassword(loginId: string, oldPassword: string, newPassword: string)
+        : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/User/UpdatePassword`;
         let params = {
             loginId: loginId,

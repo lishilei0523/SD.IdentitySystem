@@ -3,6 +3,9 @@ import {ApplicationType} from "../../values/enums/application-type";
 /*信息系统*/
 export interface InfoSystem {
 
+    /*标识Id*/
+    id: string;
+
     /*编号*/
     number: string;
 

@@ -40,9 +40,6 @@ export class IndexComponent extends BaseComponent implements OnInit {
     /*登录记录列表*/
     public loginRecords: Array<LoginRecord>;
 
-    /*选中项列表*/
-    public checkedItems: Array<LoginRecord>;
-
     /**
      * 创建登录记录首页组件构造器
      * */
@@ -57,7 +54,6 @@ export class IndexComponent extends BaseComponent implements OnInit {
         this.rowCount = 0;
         this.pageCount = 0
         this.loginRecords = new Array<LoginRecord>();
-        this.checkedItems = new Array<LoginRecord>();
     }
 
     /**
@@ -79,7 +75,6 @@ export class IndexComponent extends BaseComponent implements OnInit {
      * 重置搜索
      * */
     public resetSearch(): void {
-        console.log(this.keywords);
         this.keywords = "";
         this.startTime = "";
         this.endTime = "";
