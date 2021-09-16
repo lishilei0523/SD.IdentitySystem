@@ -22,7 +22,8 @@ import {NzCardModule} from "ng-zorro-antd/card";
 import {NzMenuModule} from 'ng-zorro-antd/menu';
 import {NzFormModule} from "ng-zorro-antd/form";
 import {NzInputModule} from "ng-zorro-antd/input";
-import { NzSelectModule } from 'ng-zorro-antd/select';
+import {NzInputNumberModule} from 'ng-zorro-antd/input-number';
+import {NzSelectModule} from 'ng-zorro-antd/select';
 import {NzButtonModule} from "ng-zorro-antd/button";
 import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
 import {NzTableModule} from "ng-zorro-antd/table";
@@ -53,6 +54,7 @@ const ngZorroConfig: NzConfig = {
         NzMenuModule,
         NzFormModule,
         NzInputModule,
+        NzInputNumberModule,
         NzSelectModule,
         NzDatePickerModule,
         NzButtonModule,
@@ -72,6 +74,7 @@ const ngZorroConfig: NzConfig = {
         NzMenuModule,
         NzFormModule,
         NzInputModule,
+        NzInputNumberModule,
         NzSelectModule,
         NzDatePickerModule,
         NzButtonModule,

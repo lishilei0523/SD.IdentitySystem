@@ -5,6 +5,8 @@ import {InfoSystem} from "../info-system.model";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {InfoSystemService} from "../info-system.service";
 import {AddComponent} from "../add/add.component";
+import {UpdateComponent} from "../update/update.component";
+import {InitComponent} from "../init/init.component";
 
 /*信息系统首页组件*/
 @Component({
@@ -105,7 +107,63 @@ export class IndexComponent extends BaseComponent implements OnInit {
     }
 
     /**
+     * 修改信息系统
+     * @param infoSystem - 信息系统
+     * */
+    public async updateInfoSystem(infoSystem: InfoSystem): Promise<void> {
+        let modalRef = this.modalService.create({
+            nzTitle: "修改信息系统",
+            nzWidth: "460px",
+            nzBodyStyle: {
+                height: "220px"
+            },
+            nzContent: UpdateComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                systemId: infoSystem.id,
+                systemNo: infoSystem.number,
+                systemName: infoSystem.name
+            }
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadInfoSystems();
+            }
+        });
+    }
+
+    /**
+     * 初始化信息系统
+     * @param infoSystem - 信息系统
+     * */
+    public async initInfoSystem(infoSystem: InfoSystem): Promise<void> {
+        let modalRef = this.modalService.create({
+            nzTitle: "初始化信息系统",
+            nzWidth: "460px",
+            nzBodyStyle: {
+                height: "260px"
+            },
+            nzContent: InitComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                systemNo: infoSystem.number,
+                host: infoSystem.host,
+                port: infoSystem.port,
+                index: infoSystem.index
+            }
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadInfoSystems();
+            }
+        });
+    }
+
+    /**
      * 页码改变事件
+     * @param pageIndex - 页码
      * */
     public async pageIndexChange(pageIndex: number): Promise<void> {
         this.pageIndex = pageIndex;
@@ -114,6 +172,7 @@ export class IndexComponent extends BaseComponent implements OnInit {
 
     /**
      * 页容量改变事件
+     * @param pageSize - 页容量
      * */
     public async pageSizeChange(pageSize: number): Promise<void> {
         this.pageSize = pageSize;

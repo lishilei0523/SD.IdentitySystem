@@ -59,10 +59,10 @@
         <td nzAlign="center">{{infoSystem.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
         <td nzAlign="center" nzRight>
             <nz-space>
-                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="updateInfoSystem(infoSystem)">
                     <i nz-icon nzType="edit" nzTheme="outline"></i>编辑
                 </button>
-                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="initInfoSystem(infoSystem)">
                     <i nz-icon nzType="clock-circle" nzTheme="twotone"></i>初始化
                 </button>
             </nz-space>
