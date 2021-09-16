@@ -23,6 +23,7 @@ import {IndexComponent as HomeComponent} from '../app/home/index/index.component
 import {LoginComponent} from '../app/home/login/login.component';
 import {UpdatePasswordComponent} from '../app/home/update-password/update-password.component';
 import {IndexComponent as InfoSystemIndexComponent} from '../app/info-system/index/index.component';
+import {AddComponent as InfoSystemAddComponent} from '../app/info-system/add/add.component';
 import {IndexComponent as UserIndexComponent} from '../app/user/index/index.component';
 import {IndexComponent as RoleIndexComponent} from '../app/role/index/index.component';
 import {IndexComponent as MenuIndexComponent} from '../app/menu/index/index.component';
@@ -46,6 +47,7 @@ import {LoginRecordService} from "../app/login-record/login-record.service";
         LoginComponent,
         UpdatePasswordComponent,
         InfoSystemIndexComponent,
+        InfoSystemAddComponent,
         UserIndexComponent,
         RoleIndexComponent,
         MenuIndexComponent,

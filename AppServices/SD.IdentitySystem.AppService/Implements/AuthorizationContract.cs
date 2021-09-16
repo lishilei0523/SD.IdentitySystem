@@ -68,7 +68,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="systemName">信息系统名称</param>
-        /// <param name="adminLoginId">系统管理员登录名</param>
+        /// <param name="adminLoginId">系统管理员账号</param>
         /// <param name="applicationType">应用程序类型</param>
         public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
         {

@@ -2,15 +2,20 @@ import {Component, OnInit} from '@angular/core';
 import {BaseComponent} from "../../../extentions/base.component";
 import {PageModel} from "../../../values/structs/page-model";
 import {InfoSystem} from "../info-system.model";
+import {NzModalService} from "ng-zorro-antd/modal";
 import {InfoSystemService} from "../info-system.service";
+import {AddComponent} from "../add/add.component";
 
 /*信息系统首页组件*/
 @Component({
-    selector: 'app-index',
+    selector: 'app-info-system-index',
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.css']
 })
 export class IndexComponent extends BaseComponent implements OnInit {
+
+    /*模态框服务*/
+    private readonly modalService: NzModalService;
 
     /*信息系统服务*/
     private readonly infoSystemService: InfoSystemService;
@@ -42,8 +47,9 @@ export class IndexComponent extends BaseComponent implements OnInit {
     /**
      * 创建信息系统首页组件构造器
      * */
-    public constructor(infoSystemService: InfoSystemService) {
+    public constructor(modalService: NzModalService, infoSystemService: InfoSystemService) {
         super();
+        this.modalService = modalService;
         this.infoSystemService = infoSystemService;
         this.keywords = "";
         this.pageIndex = 1;
@@ -75,6 +81,27 @@ export class IndexComponent extends BaseComponent implements OnInit {
     public resetSearch(): void {
         console.log(this.checkedIds);
         this.keywords = "";
+    }
+
+    /**
+     * 创建信息系统
+     * */
+    public async createInfoSystem(): Promise<void> {
+        let modalRef = this.modalService.create({
+            nzTitle: "创建信息系统",
+            nzWidth: "460px",
+            nzBodyStyle: {
+                height: "320px"
+            },
+            nzContent: AddComponent,
+            nzFooter: null
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadInfoSystems();
+            }
+        });
     }
 
     /**
