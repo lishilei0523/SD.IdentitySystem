@@ -1,0 +1,31 @@
+<nz-spin [nzSpinning]="isBusy">
+    <form nz-form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7">信息系统编号</nz-form-label>
+            <nz-form-control [nzSpan]="17">
+                <input nz-input type="text" formControlName="systemNo" [(ngModel)]="systemNo" readonly/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="7">信息系统名称</nz-form-label>
+            <nz-form-control [nzSpan]="17" [nzErrorTip]="systemNameError">
+                <input nz-input type="text" formControlName="systemName" [(ngModel)]="systemName"/>
+                <ng-template #systemNameError let-control>
+                    <ng-container *ngIf="control.hasError('required')">
+                        信息系统名称不可为空！
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <div class="form-footer">
+            <nz-space>
+                <button type="submit" nz-button *nzSpaceItem nzType="primary" [nzLoading]="isBusy">
+                    确定
+                </button>
+                <button type="button" nz-button *nzSpaceItem (click)="cancel()">
+                    取消
+                </button>
+            </nz-space>
+        </div>
+    </form>
+</nz-spin>

@@ -1,0 +1,47 @@
+<nz-spin [nzSpinning]="isBusy">
+    <form nz-form [formGroup]="formGroup" (ngSubmit)="submit()">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="4">主机名</nz-form-label>
+            <nz-form-control [nzSpan]="20" [nzErrorTip]="hostError">
+                <input nz-input type="text" formControlName="host" [(ngModel)]="host"/>
+                <ng-template #hostError let-control>
+                    <ng-container *ngIf="control.hasError('required')">
+                        主机名不可为空！
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="4">端口</nz-form-label>
+            <nz-form-control [nzSpan]="20" [nzErrorTip]="portError">
+                <nz-input-number formControlName="port" [(ngModel)]="port" style="width: 100%;"></nz-input-number>
+                <ng-template #portError let-control>
+                    <ng-container *ngIf="control.hasError('required')">
+                        端口不可为空！
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="4">首页</nz-form-label>
+            <nz-form-control [nzSpan]="20" [nzErrorTip]="indexError">
+                <input nz-input type="text" formControlName="index" [(ngModel)]="index"/>
+                <ng-template #indexError let-control>
+                    <ng-container *ngIf="control.hasError('required')">
+                        首页不可为空！
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <div class="form-footer">
+            <nz-space>
+                <button type="submit" nz-button *nzSpaceItem nzType="primary" [nzLoading]="isBusy">
+                    确定
+                </button>
+                <button type="button" nz-button *nzSpaceItem (click)="cancel()">
+                    取消
+                </button>
+            </nz-space>
+        </div>
+    </form>
+</nz-spin>
