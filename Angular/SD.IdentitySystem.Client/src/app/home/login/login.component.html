@@ -3,8 +3,8 @@
     <div nz-col nzSpan="8">
         <div class="login-container">
             <nz-spin [nzSpinning]="isBusy">
-                <nz-card nzTitle="统一身份认证系统">
-                    <form nz-form [formGroup]="formGroup" (ngSubmit)="login()">
+                <nz-card nzTitle="统一身份认证系统" style="height: 270px">
+                    <form nz-form [formGroup]="formGroup">
                         <nz-form-item>
                             <nz-form-label [nzSpan]="4">用户名</nz-form-label>
                             <nz-form-control [nzSpan]="20" [nzErrorTip]="loginIdError">
@@ -29,12 +29,12 @@
                                 </ng-template>
                             </nz-form-control>
                         </nz-form-item>
-                        <div class="form-footer">
-                            <button type="submit" nz-button nzType="primary" [nzLoading]="isBusy">
-                                登录
-                            </button>
-                        </div>
                     </form>
+                    <div class="form-footer">
+                        <button type="submit" nz-button nzType="primary" [nzLoading]="isBusy" (click)="login()">
+                            登录
+                        </button>
+                    </div>
                 </nz-card>
             </nz-spin>
         </div>

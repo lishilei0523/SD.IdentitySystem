@@ -1,5 +1,5 @@
 <nz-spin [nzSpinning]="isBusy">
-    <form nz-form [formGroup]="formGroup" (ngSubmit)="submit()">
+    <form nz-form [formGroup]="formGroup">
         <nz-form-item>
             <nz-form-label [nzSpan]="7">信息系统编号</nz-form-label>
             <nz-form-control [nzSpan]="17" [nzErrorTip]="systemNoError">
@@ -48,15 +48,15 @@
                 </ng-template>
             </nz-form-control>
         </nz-form-item>
-        <div class="form-footer">
-            <nz-space>
-                <button type="submit" nz-button *nzSpaceItem nzType="primary" [nzLoading]="isBusy">
-                    确定
-                </button>
-                <button type="button" nz-button *nzSpaceItem (click)="cancel()">
-                    取消
-                </button>
-            </nz-space>
-        </div>
     </form>
 </nz-spin>
+<div class="form-footer">
+    <nz-space>
+        <button type="submit" nz-button *nzSpaceItem nzType="primary" [nzLoading]="isBusy" (click)="submit()">
+            确定
+        </button>
+        <button type="button" nz-button *nzSpaceItem (click)="cancel()">
+            取消
+        </button>
+    </nz-space>
+</div>
