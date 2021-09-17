@@ -15,7 +15,6 @@ import {AppRoutingModule} from './app-routing.module';
 import {AppConfigModule} from "./app-config.module";
 import {AppExceptionModule} from "./app-exception.module";
 import {AppAuthenticationModule} from "./app-authentication.module";
-import {AppExtensionModule} from './app-extension.module';
 
 //Angular组件
 import {AppComponent} from './app.component';
@@ -69,8 +68,7 @@ import {LoginRecordService} from "../app/login-record/login-record.service";
         AppRoutingModule,
         AppConfigModule,
         AppExceptionModule,
-        AppAuthenticationModule,
-        AppExtensionModule
+        AppAuthenticationModule
     ],
     //提供服务
     providers: [HomeService, InfoSystemService, UserService, MenuService, LoginRecordService],

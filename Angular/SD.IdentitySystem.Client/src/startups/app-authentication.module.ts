@@ -2,6 +2,7 @@ import {NgModule, Injectable} from '@angular/core';
 import {HTTP_INTERCEPTORS, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest,} from '@angular/common/http';
 import {Observable} from 'rxjs';
 import {Membership} from "../values/constants/membership";
+import {AuthorityDirective} from "../extentions/authority.directive";
 
 /*应用程序身份认证服务*/
 @Injectable({
@@ -42,6 +43,8 @@ export class AppAuthenticationService implements HttpInterceptor {
 
 /*应用程序身份认证模块*/
 @NgModule({
+    declarations: [AuthorityDirective],
+    exports: [AuthorityDirective],
     providers: [
         AppAuthenticationService, {
             provide: HTTP_INTERCEPTORS,

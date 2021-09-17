@@ -1,7 +1,10 @@
 import {NgModule, Injectable, APP_INITIALIZER} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
+import {RouteReuseStrategy} from "@angular/router";
 import {Constants} from "../values/constants/constants";
 import {AppConfig} from "../values/structs/app-config";
+import {TabRouteReuseStrategy} from "../extentions/route-reuse.strategy";
+import {ApplicationTypeDescriptor} from "../values/enums/application-type.descriptor";
 
 /*应用程序配置服务*/
 @Injectable({
@@ -30,8 +33,15 @@ export class AppConfigService {
 
 /*应用程序配置模块*/
 @NgModule({
+    declarations: [ApplicationTypeDescriptor],
+    exports: [ApplicationTypeDescriptor],
     providers: [
-        AppConfigService, {
+        AppConfigService,
+        {
+            provide: RouteReuseStrategy,
+            useClass: TabRouteReuseStrategy
+        },
+        {
             provide: APP_INITIALIZER,
             useFactory: InitializeAppConfig,
             deps: [AppConfigService],
