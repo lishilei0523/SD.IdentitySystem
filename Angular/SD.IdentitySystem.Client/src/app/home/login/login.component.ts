@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
@@ -13,7 +13,9 @@ import {HomeService} from "../home.service";
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-export class LoginComponent extends BaseComponent {
+export class LoginComponent extends BaseComponent implements OnInit {
+
+    //region # 字段及构造器
 
     /*路由器*/
     private readonly router: Router;
@@ -21,33 +23,44 @@ export class LoginComponent extends BaseComponent {
     /*表单建造者*/
     private readonly formBuilder: FormBuilder;
 
-    /*用户服务*/
+    /*首页服务*/
     private readonly homeService: HomeService;
-
-    /*用户名*/
-    public loginId: string;
-
-    /*密码*/
-    public password: string;
-
-    /*表单组*/
-    public formGroup: FormGroup;
 
     /**
      * 创建登录组件构造器
      * */
     public constructor(router: Router, formBuilder: FormBuilder, homeService: HomeService) {
-        //基类构造器
         super();
-
-        //依赖注入部分
         this.router = router;
         this.formBuilder = formBuilder;
         this.homeService = homeService;
+    }
 
-        //默认值部分
-        this.loginId = "";
-        this.password = "";
+    //endregion
+
+    //region # 属性
+
+    /*用户名*/
+    public loginId: string = "";
+
+    /*密码*/
+    public password: string = "";
+
+    /*表单组*/
+    public formGroup!: FormGroup;
+
+    //endregion
+
+    //region # 方法
+
+    //Initializations
+
+    //region 初始化组件 —— ngOnInit()
+    /**
+     * 初始化组件
+     * */
+    public ngOnInit(): void {
+        //初始化表单
         this.formGroup = this.formBuilder.group({
             loginId: [null, [Validators.required]],
             password: [null, [Validators.required]]
@@ -58,7 +71,12 @@ export class LoginComponent extends BaseComponent {
             this.autoLogin();
         }
     }
+    //endregion
 
+
+    //Actions
+
+    //region 登录 —— async login()
     /**
      * 登录
      * */
@@ -79,7 +97,12 @@ export class LoginComponent extends BaseComponent {
             this.idle();
         }
     }
+    //endregion
 
+
+    //Private
+
+    //region 自动登录 —— async autoLogin()
     /**
      * 自动登录
      * */
@@ -88,4 +111,7 @@ export class LoginComponent extends BaseComponent {
         this.password = "888888";
         await this.login();
     }
+    //endregion
+
+    //endregion
 }

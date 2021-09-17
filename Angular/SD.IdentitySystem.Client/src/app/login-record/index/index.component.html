@@ -35,8 +35,8 @@
           [nzTotal]="rowCount"
           [nzPageSize]="pageSize"
           [nzPageIndex]="pageIndex"
-          (nzPageIndexChange)="pageIndexChange($event)"
-          (nzPageSizeChange)="pageSizeChange($event)">
+          (nzPageIndexChange)="onPageIndexChange($event)"
+          (nzPageSizeChange)="onPageSizeChange($event)">
     <thead>
     <tr>
         <th nzWidth="200px" nzAlign="center">用户名</th>

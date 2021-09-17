@@ -10,6 +10,8 @@ import {Constants} from "../../values/constants/constants";
 })
 export class LoginRecordService {
 
+    //region # 字段及构造器
+
     /*Http客户端*/
     private readonly httpClient: HttpClient;
 
@@ -20,6 +22,9 @@ export class LoginRecordService {
         this.httpClient = httpClient;
     }
 
+    //endregion
+
+    //region # 分页获取登录记录列表 —— getLoginRecordsByPage(keywords: string, startTime...
     /**
      * 分页获取登录记录列表
      * @param keywords - 关键字
@@ -40,4 +45,5 @@ export class LoginRecordService {
 
         return this.httpClient.get<PageModel<LoginRecord>>(url, {params}).toPromise();
     }
+    //endregion
 }

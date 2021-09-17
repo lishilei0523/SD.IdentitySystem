@@ -11,6 +11,8 @@ import {InfoSystem} from "./info-system.model";
 })
 export class InfoSystemService {
 
+    //region # 字段及构造器
+
     /*Http客户端*/
     private readonly httpClient: HttpClient;
 
@@ -21,6 +23,9 @@ export class InfoSystemService {
         this.httpClient = httpClient;
     }
 
+    //endregion
+
+    //region # 创建信息系统 —— async createInfoSystem(systemNo: string...
     /**
      * 创建信息系统
      * @param systemNo - 信息系统编号
@@ -40,7 +45,9 @@ export class InfoSystemService {
 
         await this.httpClient.post(url, params).toPromise();
     }
+    //endregion
 
+    //region # 修改信息系统 —— async updateInfoSystem(infoSystemId: string...
     /**
      * 修改信息系统
      * @param infoSystemId - 信息系统Id
@@ -58,7 +65,9 @@ export class InfoSystemService {
 
         await this.httpClient.post(url, params).toPromise();
     }
+    //endregion
 
+    //region # 初始化信息系统 —— async initInfoSystem(systemNo: string...
     /**
      * 初始化信息系统
      * @param systemNo - 信息系统编号
@@ -78,7 +87,9 @@ export class InfoSystemService {
 
         await this.httpClient.post(url, params).toPromise();
     }
+    //endregion
 
+    //region # 分页获取信息系统列表 —— getInfoSystemsByPage(keywords: string, pageIndex...
     /**
      * 分页获取信息系统列表
      * @param keywords - 关键字
@@ -95,4 +106,5 @@ export class InfoSystemService {
 
         return this.httpClient.get<PageModel<InfoSystem>>(url, {params}).toPromise();
     }
+    //endregion
 }

@@ -16,35 +16,13 @@ import {InitComponent} from "../init/init.component";
 })
 export class IndexComponent extends BaseComponent implements OnInit {
 
+    //region # 字段及构造器
+
     /*模态框服务*/
     private readonly modalService: NzModalService;
 
     /*信息系统服务*/
     private readonly infoSystemService: InfoSystemService;
-
-    /*关键字*/
-    public keywords: string;
-
-    /*页码*/
-    public pageIndex: number;
-
-    /*页容量*/
-    public pageSize: number;
-
-    /*总记录数*/
-    public rowCount: number;
-
-    /*总页数*/
-    public pageCount: number;
-
-    /*信息系统列表*/
-    public infoSystems: Array<InfoSystem>;
-
-    /*是否全选*/
-    public checkedAll = false;
-
-    /*选中项列表*/
-    public checkedIds: Set<string>;
 
     /**
      * 创建信息系统首页组件构造器
@@ -53,22 +31,55 @@ export class IndexComponent extends BaseComponent implements OnInit {
         super();
         this.modalService = modalService;
         this.infoSystemService = infoSystemService;
-        this.keywords = "";
-        this.pageIndex = 1;
-        this.pageSize = 20;
-        this.rowCount = 0;
-        this.pageCount = 0
-        this.infoSystems = new Array<InfoSystem>();
-        this.checkedIds = new Set<string>();
     }
 
+    //endregion
+
+    //region # 属性
+
+    /*关键字*/
+    public keywords: string = "";
+
+    /*页码*/
+    public pageIndex: number = 1;
+
+    /*页容量*/
+    public pageSize: number = 20;
+
+    /*总记录数*/
+    public rowCount: number = 0;
+
+    /*总页数*/
+    public pageCount: number = 0;
+
+    /*信息系统列表*/
+    public infoSystems: Array<InfoSystem> = new Array<InfoSystem>();
+
+    /*是否全选*/
+    public checkedAll = false;
+
+    /*选中项列表*/
+    public checkedIds: Set<string> = new Set<string>();
+
+    //endregion
+
+    //region # 方法
+
+    //Initializations
+
+    //region 初始化组件 —— async ngOnInit()
     /**
      * 初始化组件
      * */
     public async ngOnInit(): Promise<void> {
         await this.loadInfoSystems();
     }
+    //endregion
 
+
+    //Actions
+
+    //region 搜索 —— async search()
     /**
      * 搜索
      * */
@@ -76,7 +87,9 @@ export class IndexComponent extends BaseComponent implements OnInit {
         this.pageIndex = 1;
         await this.loadInfoSystems();
     }
+    //endregion
 
+    //region 重置搜索 —— resetSearch()
     /**
      * 重置搜索
      * */
@@ -84,7 +97,9 @@ export class IndexComponent extends BaseComponent implements OnInit {
         console.log(this.checkedIds);
         this.keywords = "";
     }
+    //endregion
 
+    //region 创建信息系统 —— async createInfoSystem()
     /**
      * 创建信息系统
      * */
@@ -105,7 +120,9 @@ export class IndexComponent extends BaseComponent implements OnInit {
             }
         });
     }
+    //endregion
 
+    //region 修改信息系统 —— async updateInfoSystem(infoSystem: InfoSystem)
     /**
      * 修改信息系统
      * @param infoSystem - 信息系统
@@ -132,7 +149,9 @@ export class IndexComponent extends BaseComponent implements OnInit {
             }
         });
     }
+    //endregion
 
+    //region 初始化信息系统 —— async initInfoSystem(infoSystem: InfoSystem)
     /**
      * 初始化信息系统
      * @param infoSystem - 信息系统
@@ -160,25 +179,31 @@ export class IndexComponent extends BaseComponent implements OnInit {
             }
         });
     }
+    //endregion
 
+    //region 页码改变事件 —— async onPageIndexChange(pageIndex: number)
     /**
      * 页码改变事件
      * @param pageIndex - 页码
      * */
-    public async pageIndexChange(pageIndex: number): Promise<void> {
+    public async onPageIndexChange(pageIndex: number): Promise<void> {
         this.pageIndex = pageIndex;
         await this.loadInfoSystems();
     }
+    //endregion
 
+    //region 页容量改变事件 —— async onPageSizeChange(pageSize: number)
     /**
      * 页容量改变事件
      * @param pageSize - 页容量
      * */
-    public async pageSizeChange(pageSize: number): Promise<void> {
+    public async onPageSizeChange(pageSize: number): Promise<void> {
         this.pageSize = pageSize;
         await this.loadInfoSystems();
     }
+    //endregion
 
+    //region 勾选全部 —— checkAll(checked: boolean)
     /**
      * 勾选全部
      * @param checked - 是否勾选
@@ -186,7 +211,9 @@ export class IndexComponent extends BaseComponent implements OnInit {
     public checkAll(checked: boolean): void {
         this.infoSystems.forEach(infoSystem => this.refreshChecked(infoSystem.id, checked));
     }
+    //endregion
 
+    //region 勾选 —— checkItem(id: string, checked: boolean)
     /**
      * 勾选
      * @param id - 标识Id
@@ -195,7 +222,12 @@ export class IndexComponent extends BaseComponent implements OnInit {
     public checkItem(id: string, checked: boolean): void {
         this.refreshChecked(id, checked);
     }
+    //endregion
 
+
+    //Private
+
+    //region 加载信息系统列表 —— async loadInfoSystems()
     /**
      * 加载信息系统列表
      * */
@@ -214,7 +246,9 @@ export class IndexComponent extends BaseComponent implements OnInit {
 
         this.idle();
     }
+    //endregion
 
+    //region 刷新勾选 —— refreshChecked(id: string, checked: boolean)
     /**
      * 刷新勾选
      * @param id - 标识Id
@@ -228,4 +262,7 @@ export class IndexComponent extends BaseComponent implements OnInit {
         }
         this.checkedAll = this.infoSystems.every(infoSystem => this.checkedIds.has(infoSystem.id));
     }
+    //endregion
+    
+    //endregion
 }

@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {TabRouteReuseStrategy} from "../../../extentions/route-reuse.strategy";
@@ -14,7 +14,9 @@ import {UpdatePasswordComponent} from "../update-password/update-password.compon
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.css']
 })
-export class IndexComponent {
+export class IndexComponent implements OnInit{
+
+    //region # 字段及构造器
 
     /*路由器*/
     private readonly router: Router;
@@ -22,47 +24,58 @@ export class IndexComponent {
     /*模态框服务*/
     private readonly modalService: NzModalService;
 
-    /*菜单是否折叠*/
-    public menuCollapsed: boolean;
-
-    /*Bing是否隐藏*/
-    public bingHidden: boolean;
-
-    /*登录信息*/
-    public loginInfo: LoginInfo | null;
-
-    /*菜单列表*/
-    public menus: Array<LoginMenuInfo>;
-
-    /*选项卡列表*/
-    public tabs: Array<Tab>;
-
-    /*活动选项卡索引*/
-    public activeTabIndex: number;
-
-    /*当前时间*/
-    public currentTime: string;
-
     /**
      * 创建首页组件构造器
      * */
     public constructor(router: Router, modalService: NzModalService) {
-
-        //依赖注入部分
         this.router = router;
         this.modalService = modalService;
-
-        //默认值部分
-        this.menuCollapsed = false;
-        this.bingHidden = false;
-        this.loginInfo = Membership.loginInfo;
-        this.menus = Membership.loginMenus;
-        this.tabs = new Array<any>();
-        this.activeTabIndex = 1;
-        this.currentTime = Date();
-        this.initTimer();
     }
 
+    //endregion
+
+    //region # 属性
+
+    /*菜单是否折叠*/
+    public menuCollapsed: boolean = false;
+
+    /*Bing是否隐藏*/
+    public bingHidden: boolean = false;
+
+    /*登录信息*/
+    public loginInfo: LoginInfo | null = Membership.loginInfo;
+
+    /*菜单列表*/
+    public menus: Array<LoginMenuInfo> = Membership.loginMenus;
+
+    /*选项卡列表*/
+    public tabs: Array<Tab> = new Array<any>();
+
+    /*活动选项卡索引*/
+    public activeTabIndex: number = 1;
+
+    /*当前时间*/
+    public currentTime: string = Date();
+
+    //endregion
+
+    //region # 方法
+    
+    //Initializations
+
+    //region 初始化组件 —— ngOnInit()
+    /**
+     * 初始化组件
+     * */
+    public ngOnInit(): void {
+        this.initTimer();
+    }
+    //endregion
+
+
+    //Actions
+
+    //region 导航至菜单 —— navigate(menu: LoginMenuInfo)
     /**
      * 导航至菜单
      * @param menu - 菜单
@@ -84,7 +97,9 @@ export class IndexComponent {
         //刷新Bing可见性
         this.refreshBingVisibility();
     }
+    //endregion
 
+    //region 切换选项卡 —— async changeTab(tab: Tab)
     /**
      * 切换选项卡
      * @param tab - 选项卡
@@ -99,7 +114,9 @@ export class IndexComponent {
         this.activeTabIndex = index;
         await this.router.navigate([tab.menuUrl]);
     }
+    //endregion
 
+    //region 关闭选项卡 —— async closeTab(tab: Tab)
     /**
      * 关闭选项卡
      * @param tab - 选项卡
@@ -125,7 +142,9 @@ export class IndexComponent {
         //刷新Bing可见性
         this.refreshBingVisibility();
     }
+    //endregion
 
+    //region 注销登录 —— async logout()
     /**
      * 注销登录
      * */
@@ -139,7 +158,9 @@ export class IndexComponent {
             }
         });
     }
+    //endregion
 
+    //region 修改密码 —— updatePassword()
     /**
      * 修改密码
      * */
@@ -157,14 +178,21 @@ export class IndexComponent {
             }
         });
     }
+    //endregion
 
+
+    //Private
+
+    //region 刷新Bing可见性 —— refreshBingVisibility()
     /**
      * 刷新Bing可见性
      * */
     private refreshBingVisibility(): void {
         this.bingHidden = this.tabs.length != 0;
     }
+    //endregion
 
+    //region 清空选项卡选中 —— clearSelectedTabs()
     /**
      * 清空选项卡选中
      * */
@@ -173,7 +201,9 @@ export class IndexComponent {
             tab.selected = false;
         }
     }
+    //endregion
 
+    //region 初始化计时器 —— initTimer()
     /**
      * 初始化计时器
      * */
@@ -182,4 +212,7 @@ export class IndexComponent {
             this.currentTime = Date();
         }, 1000);
     }
+    //endregion
+
+    //endregion
 }

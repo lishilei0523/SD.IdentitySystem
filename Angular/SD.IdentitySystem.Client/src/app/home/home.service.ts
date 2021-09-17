@@ -9,6 +9,8 @@ import {Constants} from "../../values/constants/constants";
 })
 export class HomeService {
 
+    //region # 字段及构造器
+
     /*Http客户端*/
     private readonly httpClient: HttpClient;
 
@@ -19,6 +21,9 @@ export class HomeService {
         this.httpClient = httpClient;
     }
 
+    //endregion
+
+    //region # 登录 —— login(loginId: string, password: string)
     /**
      * 登录
      * @param loginId - 用户名
@@ -34,7 +39,9 @@ export class HomeService {
 
         return this.httpClient.post<LoginInfo>(url, params).toPromise();
     }
+    //endregion
 
+    //region # 修改密码 —— async updatePassword(loginId: string, oldPassword...
     /**
      * 修改密码
      * @param loginId - 用户名
@@ -52,4 +59,5 @@ export class HomeService {
 
         await this.httpClient.post(url, params).toPromise();
     }
+    //endregion
 }
