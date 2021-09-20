@@ -2,9 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Membership} from "../../../values/constants/membership";
-import {LoginInfo} from "../../../values/structs/login-info";
-import {BaseComponent} from "../../../extentions/base.component";
+import {Membership, LoginInfo, ComponentBase} from "sd-infrastructure";
 import {HomeService} from "../home.service";
 
 /*登录组件*/
@@ -13,7 +11,7 @@ import {HomeService} from "../home.service";
     templateUrl: './login.component.html',
     styleUrls: ['./login.component.css']
 })
-export class LoginComponent extends BaseComponent implements OnInit {
+export class LoginComponent extends ComponentBase implements OnInit {
 
     //region # 字段及构造器
 

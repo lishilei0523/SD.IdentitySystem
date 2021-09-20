@@ -1,8 +1,7 @@
-/*登录记录*/
-export interface LoginRecord {
+import {ModelBase} from "sd-infrastructure";
 
-    /*标识Id*/
-    id: string;
+/*登录记录*/
+export interface LoginRecord extends ModelBase {
 
     /*用户名*/
     loginId: string;
@@ -12,7 +11,4 @@ export interface LoginRecord {
 
     /*IP地址*/
     ip: string;
-
-    /*登录时间*/
-    addedTime: string;
 }

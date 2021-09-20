@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
-import {BaseComponent} from "../../../extentions/base.component";
+import {ComponentBase} from "sd-infrastructure";
 import {HomeService} from "../home.service";
 
 /*用户修改密码组件*/
@@ -10,7 +10,7 @@ import {HomeService} from "../home.service";
     templateUrl: './update-password.component.html',
     styleUrls: ['./update-password.component.css']
 })
-export class UpdatePasswordComponent extends BaseComponent implements OnInit{
+export class UpdatePasswordComponent extends ComponentBase implements OnInit {
 
     //region # 字段及构造器
 

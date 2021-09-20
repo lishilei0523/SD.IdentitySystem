@@ -1,7 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from "@angular/common/http";
-import {LoginInfo} from "../../values/structs/login-info";
-import {Constants} from "../../values/constants/constants";
+import {Constants, LoginInfo} from "sd-infrastructure";
 
 /*首页服务*/
 @Injectable({

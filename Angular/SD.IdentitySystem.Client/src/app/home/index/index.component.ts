@@ -1,11 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {TabRouteReuseStrategy} from "../../../extentions/route-reuse.strategy";
-import {Membership} from "../../../values/constants/membership";
-import {Tab} from "../../../values/structs/tab";
-import {LoginMenuInfo} from "../../../values/structs/login-menu-info";
-import {LoginInfo} from "../../../values/structs/login-info";
+import {Tab, Membership, LoginInfo, LoginMenuInfo, TabRouteReuseStrategy} from "sd-infrastructure";
 import {UpdatePasswordComponent} from "../update-password/update-password.component";
 
 /*首页组件*/
@@ -14,7 +10,7 @@ import {UpdatePasswordComponent} from "../update-password/update-password.compon
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.css']
 })
-export class IndexComponent implements OnInit{
+export class IndexComponent implements OnInit {
 
     //region # 字段及构造器
 
@@ -60,7 +56,7 @@ export class IndexComponent implements OnInit{
     //endregion
 
     //region # 方法
-    
+
     //Initializations
 
     //region 初始化组件 —— ngOnInit()

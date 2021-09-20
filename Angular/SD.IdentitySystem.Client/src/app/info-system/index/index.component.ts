@@ -1,8 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {BaseComponent} from "../../../extentions/base.component";
-import {PageModel} from "../../../values/structs/page-model";
-import {InfoSystem} from "../info-system.model";
 import {NzModalService} from "ng-zorro-antd/modal";
+import {PageModel, ComponentBase} from "sd-infrastructure";
+import {InfoSystem} from "../info-system.model";
 import {InfoSystemService} from "../info-system.service";
 import {AddComponent} from "../add/add.component";
 import {UpdateComponent} from "../update/update.component";
@@ -14,7 +13,7 @@ import {InitComponent} from "../init/init.component";
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.css']
 })
-export class IndexComponent extends BaseComponent implements OnInit {
+export class IndexComponent extends ComponentBase implements OnInit {
 
     //region # 字段及构造器
 
@@ -263,6 +262,6 @@ export class IndexComponent extends BaseComponent implements OnInit {
         this.checkedAll = this.infoSystems.every(infoSystem => this.checkedIds.has(infoSystem.id));
     }
     //endregion
-    
+
     //endregion
 }

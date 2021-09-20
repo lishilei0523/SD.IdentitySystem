@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
-import {BaseComponent} from "../../../extentions/base.component";
+import {ComponentBase} from "sd-infrastructure";
 import {InfoSystemService} from "../info-system.service";
 
 /*信息系统修改组件*/
@@ -10,7 +10,7 @@ import {InfoSystemService} from "../info-system.service";
     templateUrl: './update.component.html',
     styleUrls: ['./update.component.css']
 })
-export class UpdateComponent extends BaseComponent implements OnInit {
+export class UpdateComponent extends ComponentBase implements OnInit {
 
     //region # 字段及构造器
 

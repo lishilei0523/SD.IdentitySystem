@@ -1,16 +1,7 @@
-import {ApplicationType} from "../../values/enums/application-type";
+import {ApplicationType, ModelBase} from "sd-infrastructure";
 
 /*信息系统*/
-export interface InfoSystem {
-
-    /*标识Id*/
-    id: string;
-
-    /*编号*/
-    number: string;
-
-    /*名称*/
-    name: string;
+export interface InfoSystem extends ModelBase {
 
     /*应用程序类型*/
     applicationType: ApplicationType;
@@ -26,7 +17,4 @@ export interface InfoSystem {
 
     /*首页*/
     index: string | null;
-
-    /*创建时间*/
-    addedTime: string;
 }

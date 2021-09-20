@@ -1,7 +1,6 @@
 import {Component, OnInit} from '@angular/core';
-import {Common} from "../../../extentions/common";
-import {BaseComponent} from "../../../extentions/base.component";
-import {PageModel} from "../../../values/structs/page-model";
+import {formatDate} from "@angular/common";
+import {Constants, PageModel, ComponentBase} from "sd-infrastructure";
 import {LoginRecord} from "../login-record.model";
 import {LoginRecordService} from "../login-record.service";
 
@@ -11,7 +10,7 @@ import {LoginRecordService} from "../login-record.service";
     templateUrl: './index.component.html',
     styleUrls: ['./index.component.css']
 })
-export class IndexComponent extends BaseComponent implements OnInit {
+export class IndexComponent extends ComponentBase implements OnInit {
 
     //region # 字段及构造器
 
@@ -125,8 +124,8 @@ export class IndexComponent extends BaseComponent implements OnInit {
     private async loadLoginRecords(): Promise<void> {
         this.busy();
 
-        let startTime = Common.formatDate(this.startTime);
-        let endTime = Common.formatDate(this.endTime);
+        let startTime = this.startTime ? formatDate(this.startTime, Constants.dateTimeFormat, Constants.locale) : "";
+        let endTime = this.endTime ? formatDate(this.endTime, Constants.dateTimeFormat, Constants.locale) : "";
         let promise = this.loginRecordService.getLoginRecordsByPage(this.keywords, startTime, endTime, this.pageIndex, this.pageSize);
         promise.catch(_ => this.idle());
 

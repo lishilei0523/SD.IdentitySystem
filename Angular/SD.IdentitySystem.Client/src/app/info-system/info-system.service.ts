@@ -1,8 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {PageModel} from "../../values/structs/page-model";
-import {Constants} from "../../values/constants/constants";
-import {ApplicationType} from "../../values/enums/application-type";
+import {Constants, ApplicationType, PageModel} from "sd-infrastructure";
 import {InfoSystem} from "./info-system.model";
 
 /*信息系统服务*/

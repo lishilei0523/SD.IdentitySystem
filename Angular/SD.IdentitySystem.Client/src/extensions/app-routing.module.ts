@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {RouterModule, Routes} from '@angular/router';
 
 //路由守卫器
-import {AuthenticationGuard} from "../extentions/authentication.guard";
+import {AuthenticationGuard} from "sd-infrastructure";
 
 //Angular组件
 import {IndexComponent as HomeComponent} from '../app/home/index/index.component';

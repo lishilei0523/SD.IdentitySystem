@@ -1,4 +1,4 @@
-import {ApplicationType} from "../../values/enums/application-type";
+import {ApplicationType} from "sd-infrastructure";
 
 /*菜单*/
 export class Menu {
