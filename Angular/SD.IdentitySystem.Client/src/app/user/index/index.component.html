@@ -1,1 +1,98 @@
-<h1>用户管理</h1>
+<!--搜索区-->
+<nz-card>
+    <div nz-row [nzGutter]="18">
+        <div nz-col [nzSpan]="4.5">
+            <nz-space>
+                <div *nzSpaceItem>
+                    <nz-form-label>关键字</nz-form-label>
+                    <input nz-input style="width: 210px" placeholder="用户名/真实姓名" [(ngModel)]="keywords"/>
+                </div>
+                <div *nzSpaceItem>
+                    <nz-form-label>信息系统</nz-form-label>
+                    <nz-select nzAllowClear style="width: 210px" nzPlaceHolder="请选择" [(ngModel)]="selectedInfoSystemNo">
+                        <nz-option *ngFor="let infoSystem of infoSystems" [nzValue]="infoSystem.number"
+                                   [nzLabel]="infoSystem.name"></nz-option>
+                    </nz-select>
+                </div>
+            </nz-space>
+        </div>
+        <div nz-col [nzSpan]="4.5">
+            <nz-space>
+                <button nz-button *nzSpaceItem [nzType]="'primary'" (click)="search()">
+                    <i nz-icon nzType="search"></i>搜索
+                </button>
+                <button nz-button *nzSpaceItem (click)="resetSearch()">
+                    <i nz-icon nzType="undo"></i>重置
+                </button>
+            </nz-space>
+        </div>
+        <div nz-col [nzSpan]="4.5"></div>
+        <div nz-col [nzSpan]="4.5"></div>
+    </div>
+</nz-card>
+<!--表格区-->
+<nz-table style="margin-top: 5px;"
+          nzShowSizeChanger
+          [nzTitle]="tableTile"
+          [nzData]="users"
+          [nzFrontPagination]="false"
+          [nzLoading]="isBusy"
+          [nzScroll]="{y: 'calc(100vh - 390px)'}"
+          [nzTotal]="rowCount"
+          [nzPageSize]="pageSize"
+          [nzPageIndex]="pageIndex"
+          (nzPageIndexChange)="onPageIndexChange($event)"
+          (nzPageSizeChange)="onPageSizeChange($event)">
+    <thead>
+    <tr>
+        <th nzWidth="40px" nzAlign="center" nzLeft [nzChecked]="checkedAll" (nzCheckedChange)="checkAll($event)"></th>
+        <th nzWidth="80px" nzAlign="center">用户名</th>
+        <th nzWidth="100px" nzAlign="center">真实姓名</th>
+        <th nzWidth="150px" nzAlign="center">私钥</th>
+        <th nzWidth="40px" nzAlign="center">状态</th>
+        <th nzWidth="100px" nzAlign="center">创建时间</th>
+        <th nzWidth="260px" nzAlign="center">操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users">
+        <td nzLeft [nzChecked]="checkedLoginIds.has(user.number)"
+            (nzCheckedChange)="checkItem(user.number, $event)"></td>
+        <td>{{user.number}}</td>
+        <td>{{user.name}}</td>
+        <td nzAlign="center">{{user.privateKey}}</td>
+        <td nzAlign="center">{{user.enabled ? "启用" : "停用"}}</td>
+        <td nzAlign="center">{{user.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+        <td nzAlign="center">
+            <nz-space>
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                    <i nz-icon nzType="redo" nzTheme="outline"></i>重置密码
+                </button>
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                    <i nz-icon nzType="redo" nzTheme="outline"></i>重置私钥
+                </button>
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                    <i nz-icon nzType="send" nzTheme="outline"></i>分配角色
+                </button>
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                    <i nz-icon nzType="poweroff" nzTheme="outline"></i>停/启用
+                </button>
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                    <i nz-icon nzType="delete" nzTheme="outline"></i>删除
+                </button>
+            </nz-space>
+        </td>
+    </tr>
+    </tbody>
+</nz-table>
+<!--表格操作区-->
+<ng-template #tableTile>
+    <nz-space>
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+            <i nz-icon nzType="plus" nzTheme="outline"></i>新增
+        </button>
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+            <i nz-icon nzType="delete" nzTheme="outline"></i>删除
+        </button>
+    </nz-space>
+</ng-template>

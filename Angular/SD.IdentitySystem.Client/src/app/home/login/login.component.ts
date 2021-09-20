@@ -3,7 +3,7 @@ import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {Membership, LoginInfo, ComponentBase} from "sd-infrastructure";
-import {HomeService} from "../home.service";
+import {HomeService} from "../../../services/home.service";
 
 /*登录组件*/
 @Component({

@@ -2,7 +2,7 @@ import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {ComponentBase} from "sd-infrastructure";
-import {InfoSystemService} from "../info-system.service";
+import {InfoSystemService} from "../../../services/info-system.service";
 
 /*信息系统修改组件*/
 @Component({

@@ -3,12 +3,12 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {NgZorroModule} from "./extensions/ng-zorro.module";
 import {InfrastructureModule} from "sd-infrastructure";
-import {AppRoutingModule} from './extensions/app-routing.module';
-import {AppExceptionModule} from "./extensions/app-exception.module";
+import {AppRoutingModule} from './modules/app-routing.module';
+import {AppExceptionModule} from "./modules/app-exception.module";
+import {NgZorroModule} from "./modules/ng-zorro.module";
 
-//Angular组件
+//组件
 import {AppComponent} from './app.component';
 import {IndexComponent as HomeComponent} from './app/home/index/index.component';
 import {LoginComponent} from './app/home/login/login.component';
@@ -23,12 +23,12 @@ import {IndexComponent as MenuIndexComponent} from './app/menu/index/index.compo
 import {IndexComponent as AuthorityIndexComponent} from './app/authority/index/index.component';
 import {IndexComponent as LoginRecordIndexComponent} from './app/login-record/index/index.component';
 
-//Angular服务
-import {HomeService} from "./app/home/home.service";
-import {InfoSystemService} from "./app/info-system/info-system.service";
-import {UserService} from "./app/user/user.service";
-import {MenuService} from './app/menu/menu.service';
-import {LoginRecordService} from "./app/login-record/login-record.service";
+//服务
+import {HomeService} from "./services/home.service";
+import {InfoSystemService} from "./services/info-system.service";
+import {UserService} from "./services/user.service";
+import {MenuService} from './services/menu.service';
+import {LoginRecordService} from "./services/login-record.service";
 
 
 /*应用程序模块*/

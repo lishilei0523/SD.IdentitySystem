@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {NzModalService} from "ng-zorro-antd/modal";
 import {PageModel, ComponentBase} from "sd-infrastructure";
-import {InfoSystem} from "../info-system.model";
-import {InfoSystemService} from "../info-system.service";
+import {InfoSystem} from "../../../models/info-system";
+import {InfoSystemService} from "../../../services/info-system.service";
 import {AddComponent} from "../add/add.component";
 import {UpdateComponent} from "../update/update.component";
 import {InitComponent} from "../init/init.component";
@@ -93,7 +93,6 @@ export class IndexComponent extends ComponentBase implements OnInit {
      * 重置搜索
      * */
     public resetSearch(): void {
-        console.log(this.checkedIds);
         this.keywords = "";
     }
     //endregion

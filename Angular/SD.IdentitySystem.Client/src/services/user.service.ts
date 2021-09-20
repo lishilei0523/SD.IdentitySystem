@@ -1,7 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
 import {Constants, PageModel} from "sd-infrastructure";
-import {User} from "./user.model";
+import {User} from "../models/user";
 
 /*用户服务*/
 @Injectable({
@@ -154,12 +154,12 @@ export class UserService {
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getUsersByPage(keywords: string, systemNo: string, roleId: string, pageIndex: number, pageSize: number)
+    public getUsersByPage(keywords: string, systemNo: string | null, roleId: string, pageIndex: number, pageSize: number)
         : Promise<PageModel<User>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/User/GetUsersByPage`;
         let params = new HttpParams()
             .set("keywords", keywords)
-            .set("systemNo", systemNo)
+            .set("systemNo", systemNo ? systemNo : "")
             .set("roleId", roleId)
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());

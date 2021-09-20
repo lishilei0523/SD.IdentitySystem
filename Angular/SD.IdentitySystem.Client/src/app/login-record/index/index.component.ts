@@ -1,8 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {formatDate} from "@angular/common";
 import {Constants, PageModel, ComponentBase} from "sd-infrastructure";
-import {LoginRecord} from "../login-record.model";
-import {LoginRecordService} from "../login-record.service";
+import {LoginRecord} from "../../../models/login-record";
+import {LoginRecordService} from "../../../services/login-record.service";
 
 /*登录记录首页组件*/
 @Component({
