@@ -18,18 +18,18 @@ export class IndexComponent extends ComponentBase implements OnInit {
     //region # 字段及构造器
 
     /*模态框服务*/
-    private readonly modalService: NzModalService;
+    private readonly _modalService: NzModalService;
 
     /*信息系统服务*/
-    private readonly infoSystemService: InfoSystemService;
+    private readonly _infoSystemService: InfoSystemService;
 
     /**
      * 创建信息系统首页组件构造器
      * */
     public constructor(modalService: NzModalService, infoSystemService: InfoSystemService) {
         super();
-        this.modalService = modalService;
-        this.infoSystemService = infoSystemService;
+        this._modalService = modalService;
+        this._infoSystemService = infoSystemService;
     }
 
     //endregion
@@ -102,7 +102,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
      * 创建信息系统
      * */
     public async createInfoSystem(): Promise<void> {
-        let modalRef = this.modalService.create({
+        let modalRef = this._modalService.create({
             nzTitle: "创建信息系统",
             nzWidth: "460px",
             nzBodyStyle: {
@@ -126,7 +126,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
      * @param infoSystem - 信息系统
      * */
     public async updateInfoSystem(infoSystem: InfoSystem): Promise<void> {
-        let modalRef = this.modalService.create({
+        let modalRef = this._modalService.create({
             nzTitle: "修改信息系统",
             nzWidth: "460px",
             nzBodyStyle: {
@@ -155,7 +155,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
      * @param infoSystem - 信息系统
      * */
     public async initInfoSystem(infoSystem: InfoSystem): Promise<void> {
-        let modalRef = this.modalService.create({
+        let modalRef = this._modalService.create({
             nzTitle: "初始化信息系统",
             nzWidth: "460px",
             nzBodyStyle: {
@@ -232,7 +232,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
     private async loadInfoSystems(): Promise<void> {
         this.busy();
 
-        let promise = this.infoSystemService.getInfoSystemsByPage(this.keywords, this.pageIndex, this.pageSize);
+        let promise = this._infoSystemService.getInfoSystemsByPage(this.keywords, this.pageIndex, this.pageSize);
         promise.catch(_ => this.idle());
 
         let pageModel: PageModel<InfoSystem> = await promise;

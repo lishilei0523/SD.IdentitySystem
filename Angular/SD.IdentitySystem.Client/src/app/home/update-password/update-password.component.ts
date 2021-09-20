@@ -15,22 +15,22 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
     //region # 字段及构造器
 
     /*对话框引用*/
-    private readonly modalRef: NzModalRef;
+    private readonly _modalRef: NzModalRef;
 
     /*表单建造者*/
-    private readonly formBuilder: FormBuilder;
+    private readonly _formBuilder: FormBuilder;
 
     /*用户服务*/
-    private readonly homeService: HomeService;
+    private readonly _homeService: HomeService;
 
     /**
      * 创建用户修改密码组件构造器
      * */
     public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, homeService: HomeService) {
         super();
-        this.modalRef = modalRef;
-        this.formBuilder = formBuilder;
-        this.homeService = homeService;
+        this._modalRef = modalRef;
+        this._formBuilder = formBuilder;
+        this._homeService = homeService;
     }
 
     //endregion
@@ -65,7 +65,7 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
      * */
     public ngOnInit(): void {
         //初始表单
-        this.formGroup = this.formBuilder.group({
+        this.formGroup = this._formBuilder.group({
             oldPassword: [null, [Validators.required]],
             newPassword: [null, [Validators.required]],
             confirmedPassword: [null, [Validators.required]],
@@ -89,14 +89,14 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this.homeService.updatePassword(this.loginId, this.oldPassword, this.newPassword);
+            let promise: Promise<void> = this._homeService.updatePassword(this.loginId, this.oldPassword, this.newPassword);
             promise.catch(_ => {
                 this.idle();
             });
             await promise;
 
             this.idle();
-            this.modalRef.close(true);
+            this._modalRef.close(true);
         }
     }
     //endregion
@@ -106,7 +106,7 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
      * 取消
      * */
     public cancel(): void {
-        this.modalRef.close(false);
+        this._modalRef.close(false);
     }
     //endregion
 

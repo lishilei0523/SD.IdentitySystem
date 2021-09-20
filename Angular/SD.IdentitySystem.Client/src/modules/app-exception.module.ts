@@ -5,24 +5,24 @@ import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {NzMessageService} from "ng-zorro-antd/message";
 
-/*应用程序异常服务*/
+/*应用程序异常过滤器*/
 @Injectable({
     providedIn: 'root'
 })
-export class AppExceptionService implements HttpInterceptor {
+export class AppExceptionInterceptor implements HttpInterceptor {
 
     /*路由器*/
-    private readonly router: Router;
+    private readonly _router: Router;
 
     /*消息服务*/
-    private readonly messageService: NzMessageService;
+    private readonly _messageService: NzMessageService;
 
     /**
      * 依赖注入构造器
      * */
     public constructor(router: Router, messageService: NzMessageService) {
-        this.router = router;
-        this.messageService = messageService;
+        this._router = router;
+        this._messageService = messageService;
     }
 
     /**
@@ -34,17 +34,17 @@ export class AppExceptionService implements HttpInterceptor {
                 console.log(error);
                 switch (error.status) {
                     case 401:
-                        this.messageService.create("error", error.error);
-                        this.router.navigate(["/Login"]);
+                        this._messageService.create("error", error.error);
+                        this._router.navigate(["/Login"]);
                         return throwError(error);
                     case 404:
-                        this.messageService.create("error", error.error);
+                        this._messageService.create("error", error.error);
                         return throwError(error);
                     case 500:
-                        this.messageService.create("error", error.error);
+                        this._messageService.create("error", error.error);
                         return throwError(error);
                     default:
-                        this.messageService.create("error", error.message);
+                        this._messageService.create("error", error.message);
                         return throwError(error);
                 }
             }));
@@ -54,9 +54,10 @@ export class AppExceptionService implements HttpInterceptor {
 /*应用程序异常模块*/
 @NgModule({
     providers: [
-        AppExceptionService, {
+        AppExceptionInterceptor,
+        {
             provide: HTTP_INTERCEPTORS,
-            useClass: AppExceptionService,
+            useClass: AppExceptionInterceptor,
             multi: true
         }
     ]

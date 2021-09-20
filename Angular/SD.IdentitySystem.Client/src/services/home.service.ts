@@ -11,13 +11,13 @@ export class HomeService {
     //region # 字段及构造器
 
     /*Http客户端*/
-    private readonly httpClient: HttpClient;
+    private readonly _httpClient: HttpClient;
 
     /**
      * 依赖注入构造器
      * */
     public constructor(httpClient: HttpClient) {
-        this.httpClient = httpClient;
+        this._httpClient = httpClient;
     }
 
     //endregion
@@ -36,7 +36,7 @@ export class HomeService {
             password: password
         };
 
-        return this.httpClient.post<LoginInfo>(url, params).toPromise();
+        return this._httpClient.post<LoginInfo>(url, params).toPromise();
     }
     //endregion
 
@@ -56,7 +56,7 @@ export class HomeService {
             newPassword: newPassword
         };
 
-        await this.httpClient.post(url, params).toPromise();
+        await this._httpClient.post(url, params).toPromise();
     }
     //endregion
 }

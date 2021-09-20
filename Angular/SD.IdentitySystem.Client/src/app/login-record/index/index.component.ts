@@ -15,14 +15,14 @@ export class IndexComponent extends ComponentBase implements OnInit {
     //region # 字段及构造器
 
     /*登录记录服务*/
-    private readonly loginRecordService: LoginRecordService;
+    private readonly _loginRecordService: LoginRecordService;
 
     /**
      * 创建登录记录首页组件构造器
      * */
     public constructor(loginRecordService: LoginRecordService) {
         super();
-        this.loginRecordService = loginRecordService;
+        this._loginRecordService = loginRecordService;
     }
 
     //endregion
@@ -126,7 +126,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
 
         let startTime = this.startTime ? formatDate(this.startTime, Constants.dateTimeFormat, Constants.locale) : "";
         let endTime = this.endTime ? formatDate(this.endTime, Constants.dateTimeFormat, Constants.locale) : "";
-        let promise = this.loginRecordService.getLoginRecordsByPage(this.keywords, startTime, endTime, this.pageIndex, this.pageSize);
+        let promise = this._loginRecordService.getLoginRecordsByPage(this.keywords, startTime, endTime, this.pageIndex, this.pageSize);
         promise.catch(_ => this.idle());
 
         let pageModel: PageModel<LoginRecord> = await promise;

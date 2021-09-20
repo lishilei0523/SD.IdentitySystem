@@ -12,13 +12,13 @@ export class LoginRecordService {
     //region # 字段及构造器
 
     /*Http客户端*/
-    private readonly httpClient: HttpClient;
+    private readonly _httpClient: HttpClient;
 
     /**
      * 依赖注入构造器
      * */
     public constructor(httpClient: HttpClient) {
-        this.httpClient = httpClient;
+        this._httpClient = httpClient;
     }
 
     //endregion
@@ -42,7 +42,7 @@ export class LoginRecordService {
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());
 
-        return this.httpClient.get<PageModel<LoginRecord>>(url, {params}).toPromise();
+        return this._httpClient.get<PageModel<LoginRecord>>(url, {params}).toPromise();
     }
     //endregion
 }

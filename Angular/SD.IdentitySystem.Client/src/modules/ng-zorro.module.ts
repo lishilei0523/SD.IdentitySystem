@@ -16,7 +16,6 @@ import {NzGridModule} from 'ng-zorro-antd/grid';
 import {NzSpaceModule} from "ng-zorro-antd/space";
 import {NzSpinModule} from "ng-zorro-antd/spin";
 import {NzModalModule} from "ng-zorro-antd/modal";
-import {NzMessageService} from "ng-zorro-antd/message";
 import {NzTabsModule} from "ng-zorro-antd/tabs";
 import {NzCardModule} from "ng-zorro-antd/card";
 import {NzMenuModule} from 'ng-zorro-antd/menu';
@@ -29,6 +28,7 @@ import {NzDropDownModule} from 'ng-zorro-antd/dropdown';
 import {NzTableModule} from "ng-zorro-antd/table";
 import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 import {NzPaginationModule} from "ng-zorro-antd/pagination";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 //Ng-Zorro全局配置
 const ngZorroConfig: NzConfig = {

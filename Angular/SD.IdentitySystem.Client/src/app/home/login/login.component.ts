@@ -16,22 +16,22 @@ export class LoginComponent extends ComponentBase implements OnInit {
     //region # 字段及构造器
 
     /*路由器*/
-    private readonly router: Router;
+    private readonly _router: Router;
 
     /*表单建造者*/
-    private readonly formBuilder: FormBuilder;
+    private readonly _formBuilder: FormBuilder;
 
     /*首页服务*/
-    private readonly homeService: HomeService;
+    private readonly _homeService: HomeService;
 
     /**
      * 创建登录组件构造器
      * */
     public constructor(router: Router, formBuilder: FormBuilder, homeService: HomeService) {
         super();
-        this.router = router;
-        this.formBuilder = formBuilder;
-        this.homeService = homeService;
+        this._router = router;
+        this._formBuilder = formBuilder;
+        this._homeService = homeService;
     }
 
     //endregion
@@ -59,7 +59,7 @@ export class LoginComponent extends ComponentBase implements OnInit {
      * */
     public ngOnInit(): void {
         //初始化表单
-        this.formGroup = this.formBuilder.group({
+        this.formGroup = this._formBuilder.group({
             loginId: [null, [Validators.required]],
             password: [null, [Validators.required]]
         });
@@ -87,10 +87,10 @@ export class LoginComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<LoginInfo> = this.homeService.login(this.loginId, this.password);
+            let promise: Promise<LoginInfo> = this._homeService.login(this.loginId, this.password);
             promise.catch(_ => this.idle());
             Membership.loginInfo = await promise;
-            await this.router.navigate(["/Home"]);
+            await this._router.navigate(["/Home"]);
 
             this.idle();
         }

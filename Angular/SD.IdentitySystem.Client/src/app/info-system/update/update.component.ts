@@ -15,22 +15,22 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     //region # 字段及构造器
 
     /*对话框引用*/
-    private readonly modalRef: NzModalRef;
+    private readonly _modalRef: NzModalRef;
 
     /*表单建造者*/
-    private readonly formBuilder: FormBuilder;
+    private readonly _formBuilder: FormBuilder;
 
     /*信息系统服务*/
-    private readonly infoSystemService: InfoSystemService;
+    private readonly _infoSystemService: InfoSystemService;
 
     /**
      * 创建信息系统修改组件构造器
      * */
     public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, infoSystemService: InfoSystemService) {
         super();
-        this.modalRef = modalRef;
-        this.formBuilder = formBuilder;
-        this.infoSystemService = infoSystemService;
+        this._modalRef = modalRef;
+        this._formBuilder = formBuilder;
+        this._infoSystemService = infoSystemService;
     }
 
     //endregion
@@ -64,7 +64,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
      * */
     public ngOnInit(): void {
         //初始化表单
-        this.formGroup = this.formBuilder.group({
+        this.formGroup = this._formBuilder.group({
             systemNo: [null, [Validators.required]],
             systemName: [null, [Validators.required]],
         });
@@ -87,14 +87,14 @@ export class UpdateComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this.infoSystemService.updateInfoSystem(this.systemId, this.systemNo, this.systemName);
+            let promise: Promise<void> = this._infoSystemService.updateInfoSystem(this.systemId, this.systemNo, this.systemName);
             promise.catch(_ => {
                 this.idle();
             });
             await promise;
 
             this.idle();
-            this.modalRef.close(true);
+            this._modalRef.close(true);
         }
     }
     //endregion
@@ -104,7 +104,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
      * 取消
      * */
     public cancel(): void {
-        this.modalRef.close(false);
+        this._modalRef.close(false);
     }
     //endregion
 

@@ -15,17 +15,17 @@ export class IndexComponent implements OnInit {
     //region # 字段及构造器
 
     /*路由器*/
-    private readonly router: Router;
+    private readonly _router: Router;
 
     /*模态框服务*/
-    private readonly modalService: NzModalService;
+    private readonly _modalService: NzModalService;
 
     /**
      * 创建首页组件构造器
      * */
     public constructor(router: Router, modalService: NzModalService) {
-        this.router = router;
-        this.modalService = modalService;
+        this._router = router;
+        this._modalService = modalService;
     }
 
     //endregion
@@ -108,7 +108,7 @@ export class IndexComponent implements OnInit {
 
         tab.selected = true;
         this.activeTabIndex = index;
-        await this.router.navigate([tab.menuUrl]);
+        await this._router.navigate([tab.menuUrl]);
     }
     //endregion
 
@@ -126,9 +126,9 @@ export class IndexComponent implements OnInit {
             this.clearSelectedTabs();
             if (this.tabs.length > 0) {
                 this.tabs[0].selected = true;
-                await this.router.navigate([this.tabs[0].menuUrl]);
+                await this._router.navigate([this.tabs[0].menuUrl]);
             } else {
-                await this.router.navigate(["/Home"]);
+                await this._router.navigate(["/Home"]);
             }
         }
 
@@ -145,12 +145,12 @@ export class IndexComponent implements OnInit {
      * 注销登录
      * */
     public async logout(): Promise<void> {
-        this.modalService.confirm({
+        this._modalService.confirm({
             nzTitle: "警告",
             nzContent: "确定要注销吗？",
             nzOnOk: async () => {
                 Membership.loginInfo = null;
-                await this.router.navigate(["/Login"]);
+                await this._router.navigate(["/Login"]);
             }
         });
     }
@@ -161,7 +161,7 @@ export class IndexComponent implements OnInit {
      * 修改密码
      * */
     public updatePassword(): void {
-        this.modalService.create({
+        this._modalService.create({
             nzTitle: "修改密码",
             nzWidth: "450px",
             nzBodyStyle: {
