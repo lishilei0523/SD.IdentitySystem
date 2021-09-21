@@ -69,7 +69,7 @@ import {LoginRecordService} from "./services/login-record.service";
         MenuService,
         LoginRecordService
     ],
-    //启动页
+    //启动项
     bootstrap: [AppComponent]
 })
 export class AppModule {

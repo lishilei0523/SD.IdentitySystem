@@ -1,6 +1,6 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {Constants,PageModel} from "sd-infrastructure";
+import {Constants, PageModel} from "sd-infrastructure";
 import {LoginRecord} from "../models/login-record";
 
 /*登录记录服务*/

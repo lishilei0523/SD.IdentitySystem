@@ -34,17 +34,17 @@ export class AppExceptionInterceptor implements HttpInterceptor {
                 console.log(error);
                 switch (error.status) {
                     case 401:
-                        this._messageService.create("error", error.error);
+                        this._messageService.error(error.error);
                         this._router.navigate(["/Login"]);
                         return throwError(error);
                     case 404:
-                        this._messageService.create("error", error.error);
+                        this._messageService.error(error.error);
                         return throwError(error);
                     case 500:
-                        this._messageService.create("error", error.error);
+                        this._messageService.error(error.error);
                         return throwError(error);
                     default:
-                        this._messageService.create("error", error.message);
+                        this._messageService.error(error.message);
                         return throwError(error);
                 }
             }));
@@ -55,11 +55,7 @@ export class AppExceptionInterceptor implements HttpInterceptor {
 @NgModule({
     providers: [
         AppExceptionInterceptor,
-        {
-            provide: HTTP_INTERCEPTORS,
-            useClass: AppExceptionInterceptor,
-            multi: true
-        }
+        {provide: HTTP_INTERCEPTORS, useClass: AppExceptionInterceptor, multi: true}
     ]
 })
 export class AppExceptionModule {
