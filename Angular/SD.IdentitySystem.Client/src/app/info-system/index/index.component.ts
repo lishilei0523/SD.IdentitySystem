@@ -54,12 +54,6 @@ export class IndexComponent extends ComponentBase implements OnInit {
     /*信息系统列表*/
     public infoSystems: Array<InfoSystem> = new Array<InfoSystem>();
 
-    /*是否全选*/
-    public checkedAll = false;
-
-    /*选中项列表*/
-    public checkedIds: Set<string> = new Set<string>();
-
     //endregion
 
     //region # 方法
@@ -201,27 +195,6 @@ export class IndexComponent extends ComponentBase implements OnInit {
     }
     //endregion
 
-    //region 勾选全部 —— checkAll(checked: boolean)
-    /**
-     * 勾选全部
-     * @param checked - 是否勾选
-     * */
-    public checkAll(checked: boolean): void {
-        this.infoSystems.forEach(infoSystem => this.refreshChecked(infoSystem.id, checked));
-    }
-    //endregion
-
-    //region 勾选 —— checkItem(id: string, checked: boolean)
-    /**
-     * 勾选
-     * @param id - 标识Id
-     * @param checked - 是否勾选
-     * */
-    public checkItem(id: string, checked: boolean): void {
-        this.refreshChecked(id, checked);
-    }
-    //endregion
-
 
     //Private
 
@@ -243,22 +216,6 @@ export class IndexComponent extends ComponentBase implements OnInit {
         this.infoSystems = pageModel.datas;
 
         this.idle();
-    }
-    //endregion
-
-    //region 刷新勾选 —— refreshChecked(id: string, checked: boolean)
-    /**
-     * 刷新勾选
-     * @param id - 标识Id
-     * @param checked - 是否勾选
-     * */
-    private refreshChecked(id: string, checked: boolean): void {
-        if (checked) {
-            this.checkedIds.add(id);
-        } else {
-            this.checkedIds.delete(id);
-        }
-        this.checkedAll = this.infoSystems.every(infoSystem => this.checkedIds.has(infoSystem.id));
     }
     //endregion
 

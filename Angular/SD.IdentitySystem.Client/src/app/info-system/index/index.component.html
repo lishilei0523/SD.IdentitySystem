@@ -34,7 +34,6 @@
           (nzPageSizeChange)="onPageSizeChange($event)">
     <thead>
     <tr>
-        <th nzWidth="40px" nzAlign="center" nzLeft [nzChecked]="checkedAll" (nzCheckedChange)="checkAll($event)"></th>
         <th nzWidth="70px" nzAlign="center" nzLeft>编号</th>
         <th nzWidth="200px" nzAlign="center" nzLeft>名称</th>
         <th nzWidth="190px" nzAlign="center">应用程序类型</th>
@@ -48,7 +47,6 @@
     </thead>
     <tbody>
     <tr *ngFor="let infoSystem of infoSystems">
-        <td nzLeft [nzChecked]="checkedIds.has(infoSystem.id)" (nzCheckedChange)="checkItem(infoSystem.id, $event)"></td>
         <td nzLeft>{{infoSystem.number}}</td>
         <td nzLeft>{{infoSystem.name}}</td>
         <td>{{infoSystem.applicationType | applicationTypeDescriptor}}</td>
