@@ -1,10 +1,12 @@
 import {Component, OnInit} from '@angular/core';
 import {Constants, PageModel, ComponentBase} from "sd-infrastructure";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {UserService} from "../../../services/user.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 import {User} from "../../../models/user";
 import {InfoSystem} from "../../../models/info-system";
+import {UserService} from "../../../services/user.service";
 import {InfoSystemService} from "../../../services/info-system.service";
+import {AddComponent} from "../add/add.component";
 
 /*用户首页组件*/
 @Component({
@@ -19,6 +21,9 @@ export class IndexComponent extends ComponentBase implements OnInit {
     /*模态框服务*/
     private readonly _modalService: NzModalService;
 
+    /*消息服务*/
+    private readonly _messageService: NzMessageService;
+
     /*信息系统服务*/
     private readonly _infoSystemService: InfoSystemService;
 
@@ -28,9 +33,10 @@ export class IndexComponent extends ComponentBase implements OnInit {
     /**
      * 创建用户首页组件构造器
      * */
-    public constructor(modalService: NzModalService, infoSystemService: InfoSystemService, userService: UserService) {
+    public constructor(modalService: NzModalService, messageService: NzMessageService, infoSystemService: InfoSystemService, userService: UserService) {
         super();
         this._modalService = modalService;
+        this._messageService = messageService;
         this._infoSystemService = infoSystemService;
         this._userService = userService;
     }
@@ -129,6 +135,102 @@ export class IndexComponent extends ComponentBase implements OnInit {
     public async onPageSizeChange(pageSize: number): Promise<void> {
         this.pageSize = pageSize;
         await this.loadUsers();
+    }
+    //endregion
+
+    //region 创建用户 —— async createUser()
+    /**
+     * 创建用户
+     * */
+    public async createUser(): Promise<void> {
+        let modalRef = this._modalService.create({
+            nzTitle: "创建用户",
+            nzWidth: "460px",
+            nzBodyStyle: {
+                height: "320px"
+            },
+            nzContent: AddComponent,
+            nzFooter: null
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadUsers();
+            }
+        });
+    }
+    //endregion
+
+    //region 删除用户 —— async removeUser(loginId: string)
+    /**
+     * 删除用户
+     * @param loginId - 用户名
+     * */
+    public async removeUser(loginId: string): Promise<void> {
+        this._modalService.confirm({
+            nzTitle: "警告",
+            nzContent: "确定要删除吗？",
+            nzOnOk: async () => {
+                await this._userService.removeUser(loginId);
+                await this.loadUsers();
+            }
+        });
+    }
+    //endregion
+
+    //region 批量删除用户 —— async removeUsers()
+    /**
+     * 批量删除用户
+     * */
+    public async removeUsers(): Promise<void> {
+        if (this.checkedLoginIds == null || this.checkedLoginIds.size == 0) {
+            this._messageService.error("请勾选要删除的用户！");
+        } else {
+            this._modalService.confirm({
+                nzTitle: "警告",
+                nzContent: "确定要删除吗？",
+                nzOnOk: async () => {
+                    for (const loginId of this.checkedLoginIds) {
+                        await this._userService.removeUser(loginId);
+                    }
+                    await this.loadUsers();
+                }
+            });
+        }
+    }
+    //endregion
+
+    //region 启用用户 —— async enableUser(loginId: string)
+    /**
+     * 启用用户
+     * @param loginId - 用户名
+     * */
+    public async enableUser(loginId: string) {
+        this._modalService.confirm({
+            nzTitle: "警告",
+            nzContent: "确定要启用吗？",
+            nzOnOk: async () => {
+                await this._userService.enableUser(loginId);
+                await this.loadUsers();
+            }
+        });
+    }
+    //endregion
+
+    //region 停用用户 —— async disableUser(loginId: string)
+    /**
+     * 停用用户
+     * @param loginId - 用户名
+     * */
+    public async disableUser(loginId: string) {
+        this._modalService.confirm({
+            nzTitle: "警告",
+            nzContent: "确定要停用吗？",
+            nzOnOk: async () => {
+                await this._userService.disableUser(loginId);
+                await this.loadUsers();
+            }
+        });
     }
     //endregion
 

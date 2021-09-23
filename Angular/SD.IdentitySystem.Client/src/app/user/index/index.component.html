@@ -74,10 +74,14 @@
                 <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
                     <i nz-icon nzType="send" nzTheme="outline"></i>分配角色
                 </button>
-                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
-                    <i nz-icon nzType="poweroff" nzTheme="outline"></i>停/启用
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                        (click)="user.enabled ? disableUser(user.number) : enableUser(user.number)">
+                    <i nz-icon nzType="poweroff" nzTheme="outline"></i>
+                    <span *ngIf="!user.enabled">启用</span>
+                    <span *ngIf="user.enabled">停用</span>
                 </button>
-                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                        (click)="removeUser(user.number)">
                     <i nz-icon nzType="delete" nzTheme="outline"></i>删除
                 </button>
             </nz-space>
@@ -88,10 +92,10 @@
 <!--表格操作区-->
 <ng-template #tableTile>
     <nz-space>
-        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="createUser()">
             <i nz-icon nzType="plus" nzTheme="outline"></i>新增
         </button>
-        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="removeUsers()">
             <i nz-icon nzType="delete" nzTheme="outline"></i>删除
         </button>
     </nz-space>

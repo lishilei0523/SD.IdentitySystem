@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {ComponentBase} from "sd-infrastructure";
 import {HomeService} from "../../../services/home.service";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 /*用户修改密码组件*/
 @Component({
@@ -17,6 +18,9 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
     /*对话框引用*/
     private readonly _modalRef: NzModalRef;
 
+    /*消息服务*/
+    private readonly _messageService: NzMessageService;
+
     /*表单建造者*/
     private readonly _formBuilder: FormBuilder;
 
@@ -26,9 +30,10 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
     /**
      * 创建用户修改密码组件构造器
      * */
-    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, homeService: HomeService) {
+    public constructor(modalRef: NzModalRef, messageService: NzMessageService, formBuilder: FormBuilder, homeService: HomeService) {
         super();
         this._modalRef = modalRef;
+        this._messageService = messageService;
         this._formBuilder = formBuilder;
         this._homeService = homeService;
     }
@@ -86,6 +91,10 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
             this.formGroup.controls[index].updateValueAndValidity();
         }
 
+        if (this.newPassword != this.confirmedPassword) {
+            this._messageService.error("两次密码输入不一致！");
+            return;
+        }
         if (this.formGroup.valid) {
             this.busy();
 

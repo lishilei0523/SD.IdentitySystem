@@ -18,6 +18,7 @@ import {AddComponent as InfoSystemAddComponent} from './app/info-system/add/add.
 import {UpdateComponent as InfoSystemUpdateComponent} from './app/info-system/update/update.component';
 import {InitComponent as InfoSystemInitComponent} from './app/info-system/init/init.component';
 import {IndexComponent as UserIndexComponent} from './app/user/index/index.component';
+import {AddComponent as UserAddComponent} from './app/user/add/add.component';
 import {IndexComponent as RoleIndexComponent} from './app/role/index/index.component';
 import {IndexComponent as MenuIndexComponent} from './app/menu/index/index.component';
 import {IndexComponent as AuthorityIndexComponent} from './app/authority/index/index.component';
@@ -44,6 +45,7 @@ import {LoginRecordService} from "./services/login-record.service";
         InfoSystemUpdateComponent,
         InfoSystemInitComponent,
         UserIndexComponent,
+        UserAddComponent,
         RoleIndexComponent,
         MenuIndexComponent,
         AuthorityIndexComponent,
