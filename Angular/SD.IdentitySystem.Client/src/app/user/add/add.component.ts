@@ -54,7 +54,7 @@ export class AddComponent extends ComponentBase implements OnInit {
     /*确认密码*/
     public confirmedPassword = "";
 
-    /*表单表单*/
+    /*表单*/
     public formGroup!: FormGroup;
 
     //endregion

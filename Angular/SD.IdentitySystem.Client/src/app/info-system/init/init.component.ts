@@ -53,7 +53,7 @@ export class InitComponent extends ComponentBase implements OnInit {
     @Input()
     public index: string | null = "";
 
-    /*表单表单*/
+    /*表单*/
     public formGroup!: FormGroup;
 
     //endregion

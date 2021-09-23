@@ -49,7 +49,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     @Input()
     public systemName: string = "";
 
-    /*表单表单*/
+    /*表单*/
     public formGroup!: FormGroup;
 
     //endregion

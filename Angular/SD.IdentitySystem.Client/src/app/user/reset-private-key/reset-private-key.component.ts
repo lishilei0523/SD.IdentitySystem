@@ -1,16 +1,16 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
-import {ApplicationType, ApplicationTypeDescriptor, ComponentBase} from "sd-infrastructure";
-import {InfoSystemService} from "../../../services/info-system.service";
+import {ComponentBase} from "sd-infrastructure";
+import {UserService} from "../../../services/user.service";
 
-/*信息系统创建组件*/
+/*用户重置私钥组件*/
 @Component({
-    selector: 'app-info-system-add',
-    templateUrl: './add.component.html',
-    styleUrls: ['./add.component.css']
+    selector: 'app-user-reset-private-key',
+    templateUrl: './reset-private-key.component.html',
+    styleUrls: ['./reset-private-key.component.css']
 })
-export class AddComponent extends ComponentBase implements OnInit {
+export class ResetPrivateKeyComponent extends ComponentBase implements OnInit {
 
     //region # 字段及构造器
 
@@ -20,37 +20,30 @@ export class AddComponent extends ComponentBase implements OnInit {
     /*表单建造者*/
     private readonly _formBuilder: FormBuilder;
 
-    /*信息系统服务*/
-    private readonly _infoSystemService: InfoSystemService;
+    /*用户服务*/
+    private readonly _userService: UserService;
 
     /**
-     * 创建信息系统创建组件构造器
+     * 创建用户重置私钥组件构造器
      * */
-    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, infoSystemService: InfoSystemService) {
+    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, userService: UserService) {
         super();
         this._modalRef = modalRef;
         this._formBuilder = formBuilder;
-        this._infoSystemService = infoSystemService;
+        this._userService = userService;
     }
 
     //endregion
 
     //region # 属性
 
-    /*信息系统编号*/
-    public systemNo: string = "";
+    /*用户名*/
+    @Input()
+    public loginId: string = "";
 
-    /*信息系统名称*/
-    public systemName: string = "";
-
-    /*系统管理员账号*/
-    public adminLoginId: string = "";
-
-    /*应用程序类型字典*/
-    public applicationTypes: Set<{ key: ApplicationType, value: string }> = ApplicationTypeDescriptor.getEnumMembers();
-
-    /*已选应用程序类型*/
-    public selectedApplicationType: ApplicationType | null = null;
+    /*私钥*/
+    @Input()
+    public privateKey: string = "";
 
     /*表单*/
     public formGroup!: FormGroup;
@@ -68,10 +61,7 @@ export class AddComponent extends ComponentBase implements OnInit {
     public ngOnInit(): void {
         //初始化表单
         this.formGroup = this._formBuilder.group({
-            systemNo: [null, [Validators.required]],
-            systemName: [null, [Validators.required]],
-            adminLoginId: [null, [Validators.required]],
-            applicationType: [null, [Validators.required]],
+            privateKey: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(36)]]
         });
     }
     //endregion
@@ -92,7 +82,7 @@ export class AddComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this._infoSystemService.createInfoSystem(this.systemNo, this.systemName, this.adminLoginId, this.selectedApplicationType!);
+            let promise: Promise<void> = this._userService.setPrivateKey(this.loginId, this.privateKey);
             promise.catch(_ => {
                 this.idle();
             });

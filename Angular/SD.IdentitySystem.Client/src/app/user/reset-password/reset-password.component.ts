@@ -1,17 +1,17 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {NzModalRef} from "ng-zorro-antd/modal";
 import {ComponentBase} from "sd-infrastructure";
-import {HomeService} from "../../../services/home.service";
+import {NzModalRef} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UserService} from "../../../services/user.service";
 
-/*用户修改密码组件*/
+/*用户重置密码组件*/
 @Component({
-    selector: 'app-update-password',
-    templateUrl: './update-password.component.html',
-    styleUrls: ['./update-password.component.css']
+  selector: 'app-user-reset-password',
+  templateUrl: './reset-password.component.html',
+  styleUrls: ['./reset-password.component.css']
 })
-export class UpdatePasswordComponent extends ComponentBase implements OnInit {
+export class ResetPasswordComponent extends ComponentBase implements OnInit {
 
     //region # 字段及构造器
 
@@ -25,17 +25,17 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
     private readonly _formBuilder: FormBuilder;
 
     /*用户服务*/
-    private readonly _homeService: HomeService;
+    private readonly _userService: UserService;
 
     /**
-     * 创建用户修改密码组件构造器
+     * 创建用户重置密码组件构造器
      * */
-    public constructor(modalRef: NzModalRef, messageService: NzMessageService, formBuilder: FormBuilder, homeService: HomeService) {
+    public constructor(modalRef: NzModalRef, messageService: NzMessageService, formBuilder: FormBuilder, userService: UserService) {
         super();
         this._modalRef = modalRef;
         this._messageService = messageService;
         this._formBuilder = formBuilder;
-        this._homeService = homeService;
+        this._userService = userService;
     }
 
     //endregion
@@ -46,14 +46,11 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
     @Input()
     public loginId: string = "";
 
-    /*旧密码*/
-    public oldPassword: string = "";
-
     /*新密码*/
     public newPassword: string = "";
 
     /*确认密码*/
-    public confirmedPassword: string = "";
+    public confirmedPassword = "";
 
     /*表单*/
     public formGroup!: FormGroup;
@@ -69,11 +66,10 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
      * 初始化组件
      * */
     public ngOnInit(): void {
-        //初始表单
+        //初始化表单
         this.formGroup = this._formBuilder.group({
-            oldPassword: [null, [Validators.required]],
-            newPassword: [null, [Validators.required]],
-            confirmedPassword: [null, [Validators.required]],
+            newPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
+            confirmedPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
         });
     }
     //endregion
@@ -98,7 +94,7 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this._homeService.updatePassword(this.loginId, this.oldPassword, this.newPassword);
+            let promise: Promise<void> = this._userService.resetPassword(this.loginId, this.newPassword);
             promise.catch(_ => {
                 this.idle();
             });
