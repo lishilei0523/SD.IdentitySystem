@@ -19,6 +19,8 @@ import {UpdateComponent as InfoSystemUpdateComponent} from './app/info-system/up
 import {InitComponent as InfoSystemInitComponent} from './app/info-system/init/init.component';
 import {IndexComponent as UserIndexComponent} from './app/user/index/index.component';
 import {AddComponent as UserAddComponent} from './app/user/add/add.component';
+import {ResetPasswordComponent as UserResetPasswordComponent} from './app/user/reset-password/reset-password.component';
+import {ResetPrivateKeyComponent as UserResetPrivateKeyComponent} from './app/user/reset-private-key/reset-private-key.component';
 import {IndexComponent as RoleIndexComponent} from './app/role/index/index.component';
 import {IndexComponent as MenuIndexComponent} from './app/menu/index/index.component';
 import {IndexComponent as AuthorityIndexComponent} from './app/authority/index/index.component';
@@ -46,6 +48,8 @@ import {LoginRecordService} from "./services/login-record.service";
         InfoSystemInitComponent,
         UserIndexComponent,
         UserAddComponent,
+        UserResetPasswordComponent,
+        UserResetPrivateKeyComponent,
         RoleIndexComponent,
         MenuIndexComponent,
         AuthorityIndexComponent,

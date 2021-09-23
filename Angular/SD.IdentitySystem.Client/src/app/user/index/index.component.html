@@ -65,10 +65,12 @@
         <td nzAlign="center">{{user.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
         <td nzAlign="center">
             <nz-space>
-                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                        (click)="resetPassword(user)">
                     <i nz-icon nzType="redo" nzTheme="outline"></i>重置密码
                 </button>
-                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                        (click)="resetPrivateKey(user)">
                     <i nz-icon nzType="redo" nzTheme="outline"></i>重置私钥
                 </button>
                 <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">

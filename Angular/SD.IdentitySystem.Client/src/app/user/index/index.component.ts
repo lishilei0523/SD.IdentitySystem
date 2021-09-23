@@ -7,6 +7,8 @@ import {InfoSystem} from "../../../models/info-system";
 import {UserService} from "../../../services/user.service";
 import {InfoSystemService} from "../../../services/info-system.service";
 import {AddComponent} from "../add/add.component";
+import {ResetPasswordComponent} from "../reset-password/reset-password.component";
+import {ResetPrivateKeyComponent} from "../reset-private-key/reset-private-key.component";
 
 /*用户首页组件*/
 @Component({
@@ -151,6 +153,55 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: AddComponent,
             nzFooter: null
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadUsers();
+            }
+        });
+    }
+    //endregion
+
+    //region 重置密码 —— async resetPassword(user: User)
+    /**
+     * 重置密码
+     * @param user - 用户
+     * */
+    public async resetPassword(user: User): Promise<void> {
+        this._modalService.create({
+            nzTitle: "重置密码",
+            nzWidth: "460px",
+            nzBodyStyle: {
+                height: "220px"
+            },
+            nzContent: ResetPasswordComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                loginId: user.number
+            }
+        });
+    }
+    //endregion
+
+    //region 重置私钥 —— async resetPrivateKey(user: User)
+    /**
+     * 重置私钥
+     * @param user - 用户
+     * */
+    public async resetPrivateKey(user: User): Promise<void> {
+        let modalRef = this._modalService.create({
+            nzTitle: "重置私钥",
+            nzWidth: "460px",
+            nzBodyStyle: {
+                height: "200px"
+            },
+            nzContent: ResetPrivateKeyComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                loginId: user.number,
+                privateKey: user.privateKey
+            }
         });
 
         modalRef.afterClose.subscribe((result) => {
