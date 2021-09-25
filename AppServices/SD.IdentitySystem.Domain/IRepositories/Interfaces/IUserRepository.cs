@@ -38,7 +38,7 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <summary>
         /// 是否存在私钥
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="privateKey">私钥</param>
         /// <returns>是否存在</returns>
         bool ExistsPrivateKey(string loginId, string privateKey);

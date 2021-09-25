@@ -32,7 +32,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// </summary>
         /// <param name="roleName">角色名称</param>
         /// <param name="systemNo">信息系统编号</param>
-        /// <param name="description">角色描述</param>
+        /// <param name="description">描述</param>
         /// <param name="roleNo">角色编号</param>
         public Role(string roleName, string systemNo, string description, string roleNo = null)
             : this()
@@ -61,9 +61,9 @@ namespace SD.IdentitySystem.Domain.Entities
         public string SystemNo { get; private set; }
         #endregion
 
-        #region 角色描述 —— string Description
+        #region 描述 —— string Description
         /// <summary>
-        /// 角色描述
+        /// 描述
         /// </summary>
         public string Description { get; private set; }
         #endregion
@@ -91,7 +91,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 修改角色
         /// </summary>
         /// <param name="roleName">角色名称</param>
-        /// <param name="description">角色描述</param>
+        /// <param name="description">描述</param>
         public void UpdateInfo(string roleName, string description)
         {
             base.Name = roleName;

@@ -1,5 +1,5 @@
-﻿using System.Runtime.Serialization;
-using SD.Infrastructure.DTOBase;
+﻿using SD.Infrastructure.DTOBase;
+using System.Runtime.Serialization;
 
 namespace SD.IdentitySystem.IAppService.DTOs.Outputs
 {
@@ -17,9 +17,9 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         public string SystemNo { get; set; }
         #endregion
 
-        #region 角色描述 —— string Description
+        #region 描述 —— string Description
         /// <summary>
-        /// 角色描述
+        /// 描述
         /// </summary>
         [DataMember]
         public string Description { get; set; }

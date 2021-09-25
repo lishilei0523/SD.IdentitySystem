@@ -1,1 +1,101 @@
-<h1>菜单管理</h1>
+<!--搜索区-->
+<nz-card>
+    <div nz-row [nzGutter]="18">
+        <div nz-col [nzSpan]="4.5">
+            <nz-form-label>信息系统</nz-form-label>
+            <nz-select nzAllowClear style="width: 210px" nzPlaceHolder="请选择" [(ngModel)]="selectedInfoSystemNo">
+                <nz-option *ngFor="let infoSystem of infoSystems" [nzValue]="infoSystem.number"
+                           [nzLabel]="infoSystem.name"></nz-option>
+            </nz-select>
+        </div>
+        <div nz-col [nzSpan]="4.5">
+            <nz-form-label>应用程序类型</nz-form-label>
+            <nz-select nzAllowClear style="width: 210px" nzPlaceHolder="请选择" [(ngModel)]="selectedApplicationType">
+                <nz-option *ngFor="let applicationType of applicationTypes" [nzValue]="applicationType.key"
+                           [nzLabel]="applicationType.value"></nz-option>
+            </nz-select>
+        </div>
+        <div nz-col [nzSpan]="4.5">
+            <nz-space>
+                <button nz-button *nzSpaceItem [nzType]="'primary'" (click)="search()">
+                    <i nz-icon nzType="search"></i>搜索
+                </button>
+                <button nz-button *nzSpaceItem (click)="resetSearch()">
+                    <i nz-icon nzType="undo"></i>重置
+                </button>
+            </nz-space>
+        </div>
+        <div nz-col [nzSpan]="4.5"></div>
+        <div nz-col [nzSpan]="4.5"></div>
+    </div>
+</nz-card>
+<!--表格区-->
+<nz-table style="margin-top: 5px;"
+          #expandTable
+          [nzTitle]="tableTile"
+          [nzData]="menus"
+          [nzShowPagination]="false"
+          [nzFrontPagination]="false"
+          [nzLoading]="isBusy"
+          [nzScroll]="{y: 'calc(100vh - 350px)'}">
+    <thead>
+    <tr>
+        <th nzWidth="40px" nzAlign="center" nzLeft></th>
+        <th nzWidth="150px" nzAlign="center" nzLeft>名称</th>
+        <th nzWidth="330px" nzAlign="center">链接地址</th>
+        <th nzWidth="100px" nzAlign="center">路径</th>
+        <th nzWidth="120px" nzAlign="center">所属系统</th>
+        <th nzWidth="150px" nzAlign="center">应用程序类型</th>
+        <th nzWidth="150px" nzAlign="center">创建时间</th>
+        <th nzWidth="100px" nzAlign="center" nzRight>关联权限</th>
+        <th nzWidth="150px" nzAlign="center" nzRight>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <ng-container *ngFor="let data of expandTable.data">
+        <ng-container *ngFor="let menu of expandedMenus[data.id]">
+            <tr *ngIf="(menu.parent && menu.parent.expand) || !menu.parent">
+                <td nzLeft [nzChecked]="checkedIds.has(menu.id)" [nzDisabled]="!menu.isLeaf"
+                    (nzCheckedChange)="checkItem(menu.id, $event)"></td>
+                <td [nzIndentSize]="menu.level! * 10"
+                    [nzShowExpand]="!menu.isLeaf"
+                    [(nzExpand)]="menu.expand"
+                    (nzExpandChange)="collapse(expandedMenus[data.id], menu, $event)" nzLeft>
+                    {{menu.name}}
+                </td>
+                <td>{{menu.url}}</td>
+                <td>{{menu.path}}</td>
+                <td>{{menu.infoSystemInfo?.name}}</td>
+                <td>{{menu.applicationType | applicationTypeDescriptor}}</td>
+                <td nzAlign="center">{{menu.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+                <td nzAlign="center" nzRight>
+                    <button nz-button *ngIf="menu.isLeaf" nzType="primary" nzSize="small" nzShape="round">
+                        <i nz-icon nzType="api" nzTheme="outline"></i>关联权限
+                    </button>
+                </td>
+                <td nzAlign="center" nzRight>
+                    <nz-space>
+                        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                            <i nz-icon nzType="edit" nzTheme="outline"></i>编辑
+                        </button>
+                        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                            <i nz-icon nzType="delete" nzTheme="outline"></i>删除
+                        </button>
+                    </nz-space>
+                </td>
+            </tr>
+        </ng-container>
+    </ng-container>
+    </tbody>
+</nz-table>
+<!--表格操作区-->
+<ng-template #tableTile>
+    <nz-space>
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+            <i nz-icon nzType="plus" nzTheme="outline"></i>新增
+        </button>
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+            <i nz-icon nzType="delete" nzTheme="outline"></i>删除
+        </button>
+    </nz-space>
+</ng-template>

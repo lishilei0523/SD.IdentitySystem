@@ -23,7 +23,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 创建登录记录构造器
         /// </summary>
         /// <param name="publicKey">公钥</param>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="realName">真实姓名</param>
         /// <param name="ip">IP地址</param>
         public LoginRecord(Guid publicKey, string loginId, string realName, string ip)
@@ -50,9 +50,9 @@ namespace SD.IdentitySystem.Domain.Entities
         public Guid PublicKey { get; private set; }
         #endregion
 
-        #region 登录名 —— string LoginId
+        #region 用户名 —— string LoginId
         /// <summary>
-        /// 登录名
+        /// 用户名
         /// </summary>
         public string LoginId { get; private set; }
         #endregion

@@ -19,9 +19,9 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         public Guid PublicKey { get; set; }
         #endregion
 
-        #region 登录名 —— string LoginId
+        #region 用户名 —— string LoginId
         /// <summary>
-        /// 登录名
+        /// 用户名
         /// </summary>
         [DataMember]
         public string LoginId { get; set; }

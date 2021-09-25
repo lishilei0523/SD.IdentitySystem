@@ -33,7 +33,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <summary>
         /// 创建用户构造器
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="realName">真实姓名</param>
         /// <param name="password">密码</param>
         public User(string loginId, string realName, string password)
@@ -47,7 +47,7 @@ namespace SD.IdentitySystem.Domain.Entities
             }
             if (loginId.Length < 2 || loginId.Length > 20)
             {
-                throw new ArgumentOutOfRangeException(nameof(loginId), @"登录名长度不可小于2或大于20！");
+                throw new ArgumentOutOfRangeException(nameof(loginId), @"用户名长度不可小于2或大于20！");
             }
             if (password.Length < 6 || password.Length > 20)
             {

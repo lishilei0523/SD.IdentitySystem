@@ -1,15 +1,213 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ApplicationType, ApplicationTypeDescriptor, ComponentBase, Constants} from "sd-infrastructure";
+import {NzModalService} from "ng-zorro-antd/modal";
+import {InfoSystem} from "../../../models/info-system";
+import {Menu} from "../../../models/menu";
+import {InfoSystemService} from "../../../services/info-system.service";
+import {MenuService} from "../../../services/menu.service";
+import {MenuMap} from "../../../maps/menu.map";
 
+/*菜单首页组件*/
 @Component({
-  selector: 'app-index',
-  templateUrl: './index.component.html',
-  styleUrls: ['./index.component.css']
+    selector: 'app-menu-index',
+    templateUrl: './index.component.html',
+    styleUrls: ['./index.component.css']
 })
-export class IndexComponent implements OnInit {
+export class IndexComponent extends ComponentBase implements OnInit {
 
-  constructor() { }
+    //region # 字段及构造器
 
-  ngOnInit(): void {
-  }
+    /*模态框服务*/
+    private readonly _modalService: NzModalService;
 
+    /*信息系统服务*/
+    private readonly _infoSystemService: InfoSystemService;
+
+    /*菜单服务*/
+    private readonly _menuService: MenuService;
+
+    /**
+     * 创建菜单首页组件构造器
+     * */
+    public constructor(modalService: NzModalService, infoSystemService: InfoSystemService, menuService: MenuService) {
+        super();
+        this._modalService = modalService;
+        this._infoSystemService = infoSystemService;
+        this._menuService = menuService;
+    }
+
+    //endregion
+
+    //region # 属性
+
+    /*菜单列表*/
+    public menus: Array<Menu> = new Array<Menu>();
+
+    /*菜单展开列表*/
+    public expandedMenus: { [key: string]: Array<Menu> } = {};
+
+    /*信息系统列表*/
+    public infoSystems: Array<InfoSystem> = new Array<InfoSystem>();
+
+    /*已选信息系统*/
+    public selectedInfoSystemNo: string | null = null;
+
+    /*应用程序类型字典*/
+    public applicationTypes: Set<{ key: ApplicationType, value: string }> = ApplicationTypeDescriptor.getEnumMembers();
+
+    /*已选应用程序类型*/
+    public selectedApplicationType: ApplicationType | null = null;
+
+    /*选中项列表*/
+    public checkedIds: Set<string> = new Set<string>();
+
+    //endregion
+
+    //region # 方法
+
+    //Initializations
+
+    //region 初始化组件 —— async ngOnInit()
+    /**
+     * 初始化组件
+     * */
+    public async ngOnInit(): Promise<void> {
+        await this.loadMenus();
+
+        let infoSystemsPageModel = await this._infoSystemService.getInfoSystemsByPage(Constants.stringEmpty, 1, Constants.intMaxValue);
+        this.infoSystems = infoSystemsPageModel.datas;
+    }
+    //endregion
+
+
+    //Actions
+
+    //region 搜索 —— async search()
+    /**
+     * 搜索
+     * */
+    public async search(): Promise<void> {
+        await this.loadMenus();
+    }
+    //endregion
+
+    //region 重置搜索 —— resetSearch()
+    /**
+     * 重置搜索
+     * */
+    public resetSearch(): void {
+        this.selectedInfoSystemNo = null;
+        this.selectedApplicationType = null;
+    }
+    //endregion
+
+    //region 勾选 —— checkItem(loginId: string, checked: boolean)
+    /**
+     * 勾选
+     * @param loginId - 用户名
+     * @param checked - 是否勾选
+     * */
+    public checkItem(loginId: string, checked: boolean): void {
+        this.refreshChecked(loginId, checked);
+    }
+    //endregion
+
+    //region 折叠 —— collapse(menus: Array<Menu>, menu: Menu...
+    /**
+     * 折叠
+     * */
+    public collapse(menus: Array<Menu>, menu: Menu, $event: boolean): void {
+        if (!$event) {
+            if (menu.children) {
+                menu.children.forEach(subMenu => {
+                    const target = menus.find(menu => menu.id == subMenu.id)!;
+                    target.expand = false;
+                    this.collapse(menus, target, false);
+                });
+            } else {
+                return;
+            }
+        }
+    }
+    //endregion
+
+
+    //Private
+
+    //region 加载菜单列表 —— async loadMenus()
+    /**
+     * 加载菜单列表
+     * */
+    private async loadMenus(): Promise<void> {
+        this.busy();
+
+        let promise = this._menuService.getMenus(this.selectedInfoSystemNo, this.selectedApplicationType);
+        promise.catch(_ => this.idle());
+
+        let menus: Array<Menu> = await promise;
+        this.menus = MenuMap.toTreeList(menus);
+
+        this.expandedMenus = {};
+        this.menus.forEach(menu => this.expandedMenus[menu.id] = this.convertTreeToArray(menu));
+
+        this.idle();
+    }
+    //endregion
+
+    //region 刷新勾选 —— refreshChecked(menuId: string, checked: boolean)
+    /**
+     * 刷新勾选
+     * @param menuId - 菜单Id
+     * @param checked - 是否勾选
+     * */
+    private refreshChecked(menuId: string, checked: boolean): void {
+        if (checked) {
+            this.checkedIds.add(menuId);
+        } else {
+            this.checkedIds.delete(menuId);
+        }
+    }
+    //endregion
+
+    //region 转换树为列表 —— convertTreeToArray(rootMenu: Menu)
+    /**
+     * 转换树为列表
+     * @param rootMenu - 根级菜单
+     * */
+    private convertTreeToArray(rootMenu: Menu): Array<Menu> {
+        const stack: Array<Menu> = new Array<Menu>();
+        const array: Array<Menu> = new Array<Menu>();
+        const hashMap = {};
+        stack.push({...rootMenu, level: 0, expand: false});
+
+        while (stack.length != 0) {
+            const node = stack.pop()!;
+            this.visitNode(node, array, hashMap);
+            if (node.children) {
+                for (let index = node.children.length - 1; index >= 0; index--) {
+                    stack.push({...node.children[index], level: node.level! + 1, expand: false, parent: node});
+                }
+            }
+        }
+
+        return array;
+    }
+    //endregion
+
+    //region 访问节点 —— visitNode(menu: Menu, menus: Array<Menu>, dictionary...
+    /**
+     * 访问节点
+     * @param menu - 菜单
+     * @param menus - 菜单列表
+     * @param dictionary - 键：菜单Id，值：是否已存在
+     * */
+    private visitNode(menu: Menu, menus: Array<Menu>, dictionary: { [key: string]: boolean }): void {
+        if (!dictionary[menu.id]) {
+            menus.push(menu);
+            dictionary[menu.id] = true;
+        }
+    }
+    //endregion
+
+    //endregion
 }

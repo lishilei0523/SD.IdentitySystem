@@ -43,7 +43,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="systemName">信息系统名称</param>
-        /// <param name="adminLoginId">系统管理员登录名</param>
+        /// <param name="adminLoginId">系统管理员用户名</param>
         /// <param name="applicationType">应用程序类型</param>
         [HttpPost]
         [WrapPostParameters]
@@ -175,7 +175,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
-        /// <param name="sort">排序（倒序）</param>
+        /// <param name="sort">排序</param>
         /// <param name="url">链接地址</param>
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
@@ -195,7 +195,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// </summary>
         /// <param name="menuId">菜单Id</param>
         /// <param name="menuName">菜单名称</param>
-        /// <param name="sort">排序（倒序）</param>
+        /// <param name="sort">排序</param>
         /// <param name="url">链接地址</param>
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
@@ -240,7 +240,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// </summary>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="roleName">角色名称</param>
-        /// <param name="description">角色描述</param>
+        /// <param name="description">描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
         [WrapPostParameters]
@@ -256,7 +256,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// </summary>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
-        /// <param name="description">角色描述</param>
+        /// <param name="description">描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
         [WrapPostParameters]
@@ -459,7 +459,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 获取角色列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
         [HttpGet]

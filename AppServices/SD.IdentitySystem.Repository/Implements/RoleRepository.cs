@@ -43,7 +43,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// 获取角色列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
         public ICollection<Role> Find(string keywords, string loginId, string systemNo)
@@ -92,7 +92,7 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <summary>
         /// 获取角色Id列表
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色Id列表</returns>
         public ICollection<Guid> FindIds(string loginId, string systemNo)

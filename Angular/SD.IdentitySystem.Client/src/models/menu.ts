@@ -22,6 +22,12 @@ export interface Menu extends ModelBase {
     /*排序*/
     sort: number;
 
+    /*层次*/
+    level?: number;
+
+    /*是否展开*/
+    expand?: boolean;
+
     /*是否是根级节点*/
     isRoot: boolean;
 
@@ -30,6 +36,12 @@ export interface Menu extends ModelBase {
 
     /*上级菜单Id*/
     parentMenuId: string | null;
+
+    /*导航属性 - 上级节点*/
+    parent: Menu | null;
+
+    /*导航属性 - 下级节点集*/
+    children: Array<Menu>;
 
     /*导航属性 - 信息系统*/
     infoSystemInfo: InfoSystem | null;

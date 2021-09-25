@@ -20,7 +20,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 创建用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="realName">真实姓名</param>
         /// <param name="password">密码</param>
         [OperationContract]
@@ -31,7 +31,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 修改密码
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="oldPassword">旧密码</param>
         /// <param name="newPassword">新密码</param>
         [OperationContract]
@@ -42,7 +42,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 重置密码
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="password">密码</param>
         [OperationContract]
         void ResetPassword(string loginId, string password);
@@ -52,7 +52,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 设置私钥
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="privateKey">私钥</param>
         [OperationContract]
         void SetPrivateKey(string loginId, string privateKey);
@@ -62,7 +62,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 启用用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         [OperationContract]
         void EnableUser(string loginId);
         #endregion
@@ -71,7 +71,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 停用用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         [OperationContract]
         void DisableUser(string loginId);
         #endregion
@@ -80,7 +80,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 删除用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         [OperationContract]
         void RemoveUser(string loginId);
         #endregion
@@ -89,7 +89,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 关联角色到用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="roleIds">角色Id集</param>
         [OperationContract]
         void RelateRolesToUser(string loginId, IEnumerable<Guid> roleIds);
@@ -99,7 +99,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 追加角色到用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="roleIds">角色Id集</param>
         [OperationContract]
         void AppendRolesToUser(string loginId, IEnumerable<Guid> roleIds);
@@ -112,7 +112,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 获取用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <returns>用户</returns>
         [OperationContract]
         UserInfo GetUser(string loginId);
@@ -132,7 +132,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 获取用户字典
         /// </summary>
-        /// <param name="loginIds">登录名集</param>
+        /// <param name="loginIds">用户名集</param>
         /// <returns>用户字典</returns>
         [OperationContract]
         IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds);
@@ -156,7 +156,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 获取用户信息系统列表
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <returns>信息系统列表</returns>
         [OperationContract]
         IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId);
@@ -166,7 +166,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 获取用户菜单树
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>用户菜单树</returns>
@@ -178,7 +178,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 获取用户角色列表
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
         [OperationContract]
@@ -189,7 +189,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 获取用户权限列表
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限列表</returns>
         [OperationContract]
@@ -214,7 +214,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 是否存在用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <returns>是否存在</returns>
         [OperationContract]
         bool ExistsUser(string loginId);
@@ -224,7 +224,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// <summary>
         /// 是否存在私钥
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="privateKey">私钥</param>
         /// <returns>是否存在</returns>
         [OperationContract]

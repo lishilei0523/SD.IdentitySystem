@@ -58,13 +58,13 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 创建用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="realName">真实姓名</param>
         /// <param name="password">密码</param>
         public void CreateUser(string loginId, string realName, string password)
         {
             //验证参数
-            Assert.IsFalse(this.ExistsUser(loginId), $"登录名\"{loginId}\"已存在，请重试！");
+            Assert.IsFalse(this.ExistsUser(loginId), $"用户名\"{loginId}\"已存在，请重试！");
 
             User user = new User(loginId, realName, password);
 
@@ -77,7 +77,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 修改密码
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="oldPassword">旧密码</param>
         /// <param name="newPassword">新密码</param>
         public void UpdatePassword(string loginId, string oldPassword, string newPassword)
@@ -94,7 +94,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 重置密码
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="password">新密码</param>
         public void ResetPassword(string loginId, string password)
         {
@@ -110,7 +110,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 设置私钥
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="privateKey">私钥</param>
         public void SetPrivateKey(string loginId, string privateKey)
         {
@@ -136,7 +136,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 启用用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         public void EnableUser(string loginId)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
@@ -151,7 +151,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 停用用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         public void DisableUser(string loginId)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
@@ -166,7 +166,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 删除用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         public void RemoveUser(string loginId)
         {
             User currentUser = this._unitOfWork.Resolve<User>(loginId);
@@ -192,7 +192,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 关联角色到用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="roleIds">角色Id集</param>
         public void RelateRolesToUser(string loginId, IEnumerable<Guid> roleIds)
         {
@@ -212,7 +212,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 追加角色到用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="roleIds">角色Id集</param>
         public void AppendRolesToUser(string loginId, IEnumerable<Guid> roleIds)
         {
@@ -235,7 +235,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 获取用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <returns>用户</returns>
         public UserInfo GetUser(string loginId)
         {
@@ -264,7 +264,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 获取用户字典
         /// </summary>
-        /// <param name="loginIds">登录名集</param>
+        /// <param name="loginIds">用户名集</param>
         /// <returns>用户字典</returns>
         public IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds)
         {
@@ -298,7 +298,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 获取用户信息系统列表
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <returns>信息系统列表</returns>
         public IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId)
         {
@@ -315,7 +315,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 获取用户菜单树
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>用户菜单树</returns>
@@ -338,7 +338,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 获取用户角色列表
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
         public IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
@@ -356,7 +356,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 获取用户权限列表
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="systemNo">信息系统编号</param>
         /// <returns>权限列表</returns>
         public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string systemNo)
@@ -394,7 +394,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 是否存在用户
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <returns>是否存在</returns>
         public bool ExistsUser(string loginId)
         {
@@ -406,7 +406,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 是否存在私钥
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="privateKey">私钥</param>
         /// <returns>是否存在</returns>
         public bool ExistsPrivateKey(string loginId, string privateKey)

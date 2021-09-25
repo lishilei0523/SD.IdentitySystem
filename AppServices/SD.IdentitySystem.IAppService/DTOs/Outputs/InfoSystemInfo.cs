@@ -10,9 +10,9 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
     public class InfoSystemInfo : BaseDTO
     {
-        #region 管理员登录名 —— string AdminLoginId
+        #region 管理员用户名 —— string AdminLoginId
         /// <summary>
-        /// 管理员登录名
+        /// 管理员用户名
         /// </summary>
         [DataMember]
         public string AdminLoginId { get; set; }

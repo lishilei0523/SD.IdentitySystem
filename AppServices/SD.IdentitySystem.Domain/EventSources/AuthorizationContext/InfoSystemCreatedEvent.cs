@@ -24,7 +24,7 @@ namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
         /// <param name="systemNo">信息系统编号</param>
         /// <param name="systemName">信息系统名称</param>
         /// <param name="applicationType">应用程序类型</param>
-        /// <param name="adminLoginId">管理员登录名</param>
+        /// <param name="adminLoginId">管理员用户名</param>
         public InfoSystemCreatedEvent(string systemNo, string systemName, ApplicationType applicationType, string adminLoginId)
             : this()
         {
@@ -60,9 +60,9 @@ namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
         public ApplicationType ApplicationType { get; set; }
         #endregion
 
-        #region 管理员登录名 —— string AdminLoginId
+        #region 管理员用户名 —— string AdminLoginId
         /// <summary>
-        /// 管理员登录名
+        /// 管理员用户名
         /// </summary>
         public string AdminLoginId { get; set; }
         #endregion

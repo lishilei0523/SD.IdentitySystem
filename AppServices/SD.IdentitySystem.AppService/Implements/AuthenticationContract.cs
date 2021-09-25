@@ -108,7 +108,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 登录
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="password">密码</param>
         /// <returns>登录信息</returns>
         [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
