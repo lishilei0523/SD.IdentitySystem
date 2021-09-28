@@ -36,8 +36,8 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
     <PackageReference Include="Caliburn.Micro" Version="4.0.173" />
     <PackageReference Include="MahApps.Metro" Version="2.4.7" />
-    <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.8.0" />
-    <PackageReference Include="FluentWPF" Version="0.10.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.9.0" />
+    <PackageReference Include="FluentWPF" Version="0.10.1" />
     <PackageReference Include="Kino.Toolkit.Wpf" Version="1.5.0" />
     <PackageReference Include="BusyIndicator" Version="1.7.0" />
     <PackageReference Include="Autoupdater.NET.Official" Version="1.7.0" />
@@ -53,7 +53,7 @@
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.1" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
     <PackageReference Include="SD.IdentitySystem.Membership.Windows" Version="1.0.0" />
-    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Windows" Version="1.0.1" />
+    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Windows" Version="1.0.2" />
     <PackageReference Include="SD.IdentitySystem.Authorization.WPF" Version="1.0.0" />
   </ItemGroup>
 

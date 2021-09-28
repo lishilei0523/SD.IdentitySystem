@@ -13,6 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="CoreWCF.Primitives" Version="0.3.1" />
     <PackageReference Include="MrAdvice" Version="2.8.11" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />

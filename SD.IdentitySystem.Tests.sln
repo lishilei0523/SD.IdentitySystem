@@ -37,7 +37,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.LicenseMa
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication.Owin", "Extensions\SD.IdentitySystem.WCF.Authentication.Owin\SD.IdentitySystem.WCF.Authentication.Owin.csproj", "{012D79B3-E908-4F00-ACC4-420371FF300E}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - OWIN WebApi 客户端测试", "04 - OWIN WebApi 客户端测试", "{5324B7B9-FE94-4D10-9F3A-0430F6925F96}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "04 - Owin WebApi 客户端测试", "04 - Owin WebApi 客户端测试", "{5324B7B9-FE94-4D10-9F3A-0430F6925F96}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WebApi.Tests", "Tests\SD.IdentitySystem.WebApi.Tests\SD.IdentitySystem.WebApi.Tests.csproj", "{6DE7971F-B7EA-480B-BCE4-9BD25D330C2C}"
 EndProject

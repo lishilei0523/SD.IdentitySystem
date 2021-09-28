@@ -3,7 +3,7 @@
     <endpointBehaviors>
       <behavior name="AuthenticationBehavior">
         <!--WCF/Windows客户端身份认证扩展配置-->
-        <endpointBehavior type="SD.IdentitySystem.WCF.Authentication.Windows.AuthenticationBehaviorElement" assembly="SD.IdentitySystem.WCF.Authentication.Windows" />
+        <endpointBehavior type="SD.IdentitySystem.WCF.Authentication.Windows.AuthenticationBehavior" assembly="SD.IdentitySystem.WCF.Authentication.Windows" />
       </behavior>
     </endpointBehaviors>
   </system.serviceModel>
