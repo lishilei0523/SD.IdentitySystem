@@ -1,12 +1,10 @@
 ﻿<configuration>
   <system.serviceModel>
-    <behaviorConfigurations>
-      <behaviorConfiguration name="AuthenticationBehavior">
-        <endpointBehaviors>
-          <!--WCF/ASP.NET Core客户端身份认证行为配置-->
-          <endpointBehavior type="SD.IdentitySystem.WCF.Authentication.AspNetCore.AuthenticationBehavior" assembly="SD.IdentitySystem.WCF.Authentication.AspNetCore" />
-        </endpointBehaviors>
-      </behaviorConfiguration>
-    </behaviorConfigurations>
+    <endpointBehaviors>
+      <behavior name="AuthenticationBehavior">
+        <!--WCF/ASP.NET Core客户端身份认证行为配置-->
+        <endpointBehavior type="SD.IdentitySystem.WCF.Authentication.AspNetCore.AuthenticationBehavior" assembly="SD.IdentitySystem.WCF.Authentication.AspNetCore" />
+      </behavior>
+    </endpointBehaviors>
   </system.serviceModel>
 </configuration>
