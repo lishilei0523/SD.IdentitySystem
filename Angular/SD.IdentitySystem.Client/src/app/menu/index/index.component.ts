@@ -6,6 +6,7 @@ import {Menu} from "../../../models/menu";
 import {InfoSystemService} from "../../../services/info-system.service";
 import {MenuService} from "../../../services/menu.service";
 import {MenuMap} from "../../../maps/menu.map";
+import {NzMessageService} from "ng-zorro-antd/message";
 
 /*菜单首页组件*/
 @Component({
@@ -20,6 +21,9 @@ export class IndexComponent extends ComponentBase implements OnInit {
     /*模态框服务*/
     private readonly _modalService: NzModalService;
 
+    /*消息服务*/
+    private readonly _messageService: NzMessageService;
+
     /*信息系统服务*/
     private readonly _infoSystemService: InfoSystemService;
 
@@ -29,9 +33,10 @@ export class IndexComponent extends ComponentBase implements OnInit {
     /**
      * 创建菜单首页组件构造器
      * */
-    public constructor(modalService: NzModalService, infoSystemService: InfoSystemService, menuService: MenuService) {
+    public constructor(modalService: NzModalService, messageService: NzMessageService, infoSystemService: InfoSystemService, menuService: MenuService) {
         super();
         this._modalService = modalService;
+        this._messageService = messageService;
         this._infoSystemService = infoSystemService;
         this._menuService = menuService;
     }
@@ -127,6 +132,45 @@ export class IndexComponent extends ComponentBase implements OnInit {
             } else {
                 return;
             }
+        }
+    }
+    //endregion
+
+    //region 删除菜单 —— async removeMenu(menuId: string)
+    /**
+     * 删除菜单
+     * @param menuId - 菜单Id
+     * */
+    public async removeMenu(menuId: string): Promise<void> {
+        this._modalService.confirm({
+            nzTitle: "警告",
+            nzContent: "确定要删除吗？",
+            nzOnOk: async () => {
+                await this._menuService.removeMenu(menuId);
+                await this.loadMenus();
+            }
+        });
+    }
+    //endregion
+
+    //region 批量删除菜单 —— async removeMenus()
+    /**
+     * 批量删除菜单
+     * */
+    public async removeMenus(): Promise<void> {
+        if (this.checkedIds == null || this.checkedIds.size == 0) {
+            this._messageService.error("请勾选要删除的菜单！");
+        } else {
+            this._modalService.confirm({
+                nzTitle: "警告",
+                nzContent: "确定要删除吗？",
+                nzOnOk: async () => {
+                    for (const loginId of this.checkedIds) {
+                        await this._menuService.removeMenu(loginId);
+                    }
+                    await this.loadMenus();
+                }
+            });
         }
     }
     //endregion
