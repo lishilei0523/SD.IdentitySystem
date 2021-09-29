@@ -1,0 +1,108 @@
+<nz-spin [nzSpinning]="isBusy">
+    <div nz-row [nzGutter]="12">
+        <div nz-col [nzSpan]="12">
+            <nz-card style="height: 560px;" nzTitle="菜单信息">
+                <form nz-form [formGroup]="formGroup">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7">信息系统</nz-form-label>
+                        <nz-form-control [nzSpan]="17" [nzErrorTip]="infoSystemError">
+                            <nz-select nzAllowClear nzPlaceHolder="请选择" formControlName="selectedInfoSystemNo"
+                                       [(ngModel)]="selectedInfoSystemNo" (ngModelChange)="loadMenuTree()">
+                                <nz-option *ngFor="let infoSystem of infoSystems" [nzValue]="infoSystem.number"
+                                           [nzLabel]="infoSystem.name"></nz-option>
+                            </nz-select>
+                            <ng-template #infoSystemError let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    信息系统不可为空！
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7">应用程序类型</nz-form-label>
+                        <nz-form-control [nzSpan]="17" [nzErrorTip]="applicationTypeError">
+                            <nz-select nzAllowClear nzPlaceHolder="请选择" formControlName="selectedApplicationType"
+                                       [(ngModel)]="selectedApplicationType" (ngModelChange)="loadMenuTree()">
+                                <nz-option *ngFor="let applicationType of applicationTypes"
+                                           [nzValue]="applicationType.key"
+                                           [nzLabel]="applicationType.value"></nz-option>
+                            </nz-select>
+                            <ng-template #applicationTypeError let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    应用程序类型不可为空！
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7">上级菜单</nz-form-label>
+                        <nz-form-control [nzSpan]="17">
+                            <input nz-input type="text" formControlName="parentMenuName" [(ngModel)]="parentMenuName"
+                                   readonly/>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7">菜单名称</nz-form-label>
+                        <nz-form-control [nzSpan]="17" [nzErrorTip]="menuNameError">
+                            <input nz-input type="text" formControlName="menuName" [(ngModel)]="menuName"/>
+                            <ng-template #menuNameError let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    菜单名称不可为空！
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7">链接地址</nz-form-label>
+                        <nz-form-control [nzSpan]="17">
+                            <input nz-input type="text" formControlName="url" [(ngModel)]="url"/>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7">路径</nz-form-label>
+                        <nz-form-control [nzSpan]="17">
+                            <input nz-input type="text" formControlName="path" [(ngModel)]="path"/>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7">图标</nz-form-label>
+                        <nz-form-control [nzSpan]="17">
+                            <input nz-input type="text" formControlName="icon" [(ngModel)]="icon"/>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="7">排序</nz-form-label>
+                        <nz-form-control [nzSpan]="17" [nzErrorTip]="sortError">
+                            <nz-input-number formControlName="sort" [(ngModel)]="sort"></nz-input-number>
+                            <ng-template #sortError let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    排序不可为空！
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+                    </nz-form-item>
+                </form>
+            </nz-card>
+        </div>
+        <div nz-col [nzSpan]="12">
+            <nz-card style="height: 560px;" [nzBodyStyle]="{padding: '1px 0'}" nzTitle="请选择上级菜单" [nzExtra]="extraTemplate">
+                <nz-tree nzBlockNode [nzData]="menuTree" nzVirtualHeight="500px" (nzClick)="selectParentMenu($event)"></nz-tree>
+            </nz-card>
+            <ng-template #extraTemplate>
+                <button nz-button nzType="primary" nzSize="small" nzShape="round" (click)="clearParentMenu()">
+                    <i nz-icon nzType="clear" nzTheme="outline"></i>清空选择
+                </button>
+            </ng-template>
+        </div>
+    </div>
+</nz-spin>
+<div class="form-footer">
+    <nz-space>
+        <button type="submit" nz-button *nzSpaceItem nzType="primary" [nzLoading]="isBusy" (click)="submit()">
+            确定
+        </button>
+        <button type="button" nz-button *nzSpaceItem (click)="cancel()">
+            取消
+        </button>
+    </nz-space>
+</div>

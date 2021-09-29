@@ -23,6 +23,7 @@ import {ResetPasswordComponent as UserResetPasswordComponent} from './app/user/r
 import {ResetPrivateKeyComponent as UserResetPrivateKeyComponent} from './app/user/reset-private-key/reset-private-key.component';
 import {IndexComponent as RoleIndexComponent} from './app/role/index/index.component';
 import {IndexComponent as MenuIndexComponent} from './app/menu/index/index.component';
+import {AddComponent as MenuAddComponent} from './app/menu/add/add.component';
 import {IndexComponent as AuthorityIndexComponent} from './app/authority/index/index.component';
 import {IndexComponent as LoginRecordIndexComponent} from './app/login-record/index/index.component';
 
@@ -52,6 +53,7 @@ import {LoginRecordService} from "./services/login-record.service";
         UserResetPrivateKeyComponent,
         RoleIndexComponent,
         MenuIndexComponent,
+        MenuAddComponent,
         AuthorityIndexComponent,
         LoginRecordIndexComponent
     ],

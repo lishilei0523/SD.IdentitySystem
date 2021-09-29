@@ -91,7 +91,7 @@
 <!--表格操作区-->
 <ng-template #tableTile>
     <nz-space>
-        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="createMenu()">
             <i nz-icon nzType="plus" nzTheme="outline"></i>新增
         </button>
         <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="removeMenus()">

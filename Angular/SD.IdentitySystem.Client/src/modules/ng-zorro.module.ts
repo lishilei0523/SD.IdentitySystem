@@ -38,6 +38,7 @@ import {NzDatePickerModule} from "ng-zorro-antd/date-picker";
 
 //数据类
 import {NzTableModule} from "ng-zorro-antd/table";
+import {NzTreeModule} from 'ng-zorro-antd/tree';
 
 //Ng-Zorro全局配置
 const ngZorroConfig: NzConfig = {
@@ -68,7 +69,8 @@ const ngZorroConfig: NzConfig = {
         NzInputNumberModule,
         NzSelectModule,
         NzDatePickerModule,
-        NzTableModule
+        NzTableModule,
+        NzTreeModule
     ],
     exports: [
         NzIconModule,
@@ -87,7 +89,8 @@ const ngZorroConfig: NzConfig = {
         NzInputNumberModule,
         NzSelectModule,
         NzDatePickerModule,
-        NzTableModule
+        NzTableModule,
+        NzTreeModule
     ],
     providers: [
         {provide: NZ_ICONS, useValue: [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline]},

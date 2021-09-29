@@ -7,6 +7,7 @@ import {InfoSystemService} from "../../../services/info-system.service";
 import {MenuService} from "../../../services/menu.service";
 import {MenuMap} from "../../../maps/menu.map";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {AddComponent} from "../add/add.component";
 
 /*菜单首页组件*/
 @Component({
@@ -133,6 +134,33 @@ export class IndexComponent extends ComponentBase implements OnInit {
                 return;
             }
         }
+    }
+    //endregion
+
+    //region 创建菜单 —— async createMenu()
+    /**
+     * 创建菜单
+     * */
+    public async createMenu(): Promise<void> {
+        let modalRef = this._modalService.create({
+            nzTitle: "创建菜单",
+            nzWidth: "900px",
+            nzBodyStyle: {
+                height: "650px"
+            },
+            nzContent: AddComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                infoSystems: this.infoSystems,
+                applicationTypes: this.applicationTypes
+            }
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadMenus();
+            }
+        });
     }
     //endregion
 
