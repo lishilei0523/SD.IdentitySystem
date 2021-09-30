@@ -2,7 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {Membership, LoginInfo, ComponentBase} from "sd-infrastructure";
+import {ApplicationType, ComponentBase, LoginInfo, LoginMenuInfo, Membership} from "sd-infrastructure";
 import {HomeService} from "../../../services/home.service";
 
 /*登录组件*/
@@ -89,7 +89,12 @@ export class LoginComponent extends ComponentBase implements OnInit {
 
             let promise: Promise<LoginInfo> = this._homeService.login(this.loginId, this.password);
             promise.catch(_ => this.idle());
-            Membership.loginInfo = await promise;
+
+            let loginInfo: LoginInfo = await promise;
+            Membership.loginInfo = loginInfo;
+            this.initMenus(loginInfo);
+            this.initAuthorityPaths(loginInfo);
+
             await this._router.navigate(["/Home"]);
 
             this.idle();
@@ -99,6 +104,48 @@ export class LoginComponent extends ComponentBase implements OnInit {
 
 
     //Private
+
+    //region 初始化用户菜单列表 —— initMenus(loginInfo: LoginInfo)
+    /**
+     * 初始化用户菜单列表
+     * @param loginInfo - 登录信息
+     * */
+    private initMenus(loginInfo: LoginInfo): void {
+        let loginMenus = loginInfo.loginMenuInfos.filter(x => x.systemNo == "00" && x.applicationType == ApplicationType.IOS);
+        this.filterLoginMenu(loginMenus, 1);
+
+        Membership.loginMenus = loginMenus;
+    }
+    //endregion
+
+    //region 初始化用户权限路径列表 —— initAuthorityPaths(loginInfo: LoginInfo)
+    /**
+     * 初始化用户权限路径列表
+     * @param loginInfo - 登录信息
+     * */
+    private initAuthorityPaths(loginInfo: LoginInfo): void {
+        Membership.loginAuthorityPaths = loginInfo.loginAuthorityInfos.filter(x => x.systemNo == "00" && x.applicationType == ApplicationType.IOS).map(x => x.path);
+    }
+    //endregion
+
+    //region 过滤用户菜单 —— filterLoginMenu(loginMenus: LoginMenuInfo[], level...
+    /**
+     * 过滤用户菜单
+     * @param loginMenus - 登录菜单列表
+     * @param level - 节点层级
+     * */
+    private filterLoginMenu(loginMenus: LoginMenuInfo[], level: number): void {
+        for (let loginMenu of loginMenus) {
+            loginMenu.level = level;
+            if (loginMenu.subMenuInfos.length > 0) {
+                loginMenu.isLeaf = false;
+                this.filterLoginMenu(loginMenu.subMenuInfos, level + 1);
+            } else {
+                loginMenu.isLeaf = true;
+            }
+        }
+    }
+    //endregion
 
     //region 自动登录 —— async autoLogin()
     /**

@@ -42,7 +42,7 @@ export class IndexComponent implements OnInit {
     public loginInfo: LoginInfo | null = Membership.loginInfo;
 
     /*菜单列表*/
-    public menus: Array<LoginMenuInfo> = Membership.loginMenus;
+    public menus: Array<LoginMenuInfo> = Membership.loginMenus!;
 
     /*选项卡列表*/
     public tabs: Array<Tab> = new Array<any>();
@@ -149,7 +149,7 @@ export class IndexComponent implements OnInit {
             nzTitle: "警告",
             nzContent: "确定要注销吗？",
             nzOnOk: async () => {
-                Membership.loginInfo = null;
+                Membership.logout();
                 await this._router.navigate(["/Login"]);
             }
         });
