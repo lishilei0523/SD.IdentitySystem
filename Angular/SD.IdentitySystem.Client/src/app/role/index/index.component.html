@@ -1,1 +1,86 @@
-<h1>角色管理</h1>
+<!--搜索区-->
+<nz-card>
+    <div nz-row [nzGutter]="18">
+        <div nz-col [nzSpan]="4.5">
+            <nz-space>
+                <div *nzSpaceItem>
+                    <nz-form-label>关键字</nz-form-label>
+                    <input nz-input style="width: 210px" placeholder="角色名称/描述" [(ngModel)]="keywords"/>
+                </div>
+                <div *nzSpaceItem>
+                    <nz-form-label>信息系统</nz-form-label>
+                    <nz-select nzAllowClear style="width: 210px" nzPlaceHolder="请选择" [(ngModel)]="selectedInfoSystemNo">
+                        <nz-option *ngFor="let infoSystem of infoSystems" [nzValue]="infoSystem.number"
+                                   [nzLabel]="infoSystem.name"></nz-option>
+                    </nz-select>
+                </div>
+            </nz-space>
+        </div>
+        <div nz-col [nzSpan]="4.5">
+            <nz-space>
+                <button nz-button *nzSpaceItem [nzType]="'primary'" (click)="search()">
+                    <i nz-icon nzType="search"></i>搜索
+                </button>
+                <button nz-button *nzSpaceItem (click)="resetSearch()">
+                    <i nz-icon nzType="undo"></i>重置
+                </button>
+            </nz-space>
+        </div>
+    </div>
+</nz-card>
+<!--表格区-->
+<nz-table style="margin-top: 5px;"
+          nzShowSizeChanger
+          [nzTitle]="tableTile"
+          [nzData]="roles"
+          [nzFrontPagination]="false"
+          [nzLoading]="isBusy"
+          [nzScroll]="{y: 'calc(100vh - 390px)'}"
+          [nzTotal]="rowCount"
+          [nzPageSize]="pageSize"
+          [nzPageIndex]="pageIndex"
+          (nzPageIndexChange)="onPageIndexChange($event)"
+          (nzPageSizeChange)="onPageSizeChange($event)">
+    <thead>
+    <tr>
+        <th nzWidth="40px" nzAlign="center" nzLeft [nzChecked]="checkedAll" (nzCheckedChange)="checkAll($event)"></th>
+        <th nzWidth="150px" nzAlign="center" nzLeft>名称</th>
+        <th nzWidth="150px" nzAlign="center">所属系统</th>
+        <th nzWidth="450px" nzAlign="center">描述</th>
+        <th nzWidth="150px" nzAlign="center">创建时间</th>
+        <th nzWidth="150px" nzAlign="center" nzRight>操作</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let role of roles">
+        <td nzLeft [nzChecked]="checkedIds.has(role.id)"
+            (nzCheckedChange)="checkItem(role.id, $event)"></td>
+        <td nzLeft>{{role.name}}</td>
+        <td>{{role.infoSystemInfo?.name}}</td>
+        <td>{{role.description}}</td>
+        <td nzAlign="center">{{role.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
+        <td nzAlign="center" nzRight>
+            <nz-space>
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                    <i nz-icon nzType="edit" nzTheme="outline"></i>编辑
+                </button>
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                        (click)="removeRole(role.id)">
+                    <i nz-icon nzType="delete" nzTheme="outline"></i>删除
+                </button>
+            </nz-space>
+        </td>
+    </tr>
+    </tbody>
+</nz-table>
+<!--表格操作区-->
+<ng-template #tableTile>
+    <nz-space>
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+            <i nz-icon nzType="plus" nzTheme="outline"></i>新增
+        </button>
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="removeRoles()">
+            <i nz-icon nzType="delete" nzTheme="outline"></i>删除
+        </button>
+    </nz-space>
+</ng-template>

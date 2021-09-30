@@ -2,18 +2,23 @@
 <nz-card>
     <div nz-row [nzGutter]="18">
         <div nz-col [nzSpan]="4.5">
-            <nz-form-label>信息系统</nz-form-label>
-            <nz-select nzAllowClear style="width: 210px" nzPlaceHolder="请选择" [(ngModel)]="selectedInfoSystemNo">
-                <nz-option *ngFor="let infoSystem of infoSystems" [nzValue]="infoSystem.number"
-                           [nzLabel]="infoSystem.name"></nz-option>
-            </nz-select>
-        </div>
-        <div nz-col [nzSpan]="4.5">
-            <nz-form-label>应用程序类型</nz-form-label>
-            <nz-select nzAllowClear style="width: 210px" nzPlaceHolder="请选择" [(ngModel)]="selectedApplicationType">
-                <nz-option *ngFor="let applicationType of applicationTypes" [nzValue]="applicationType.key"
-                           [nzLabel]="applicationType.value"></nz-option>
-            </nz-select>
+            <nz-space>
+                <div *nzSpaceItem>
+                    <nz-form-label>信息系统</nz-form-label>
+                    <nz-select nzAllowClear style="width: 210px" nzPlaceHolder="请选择" [(ngModel)]="selectedInfoSystemNo">
+                        <nz-option *ngFor="let infoSystem of infoSystems" [nzValue]="infoSystem.number"
+                                   [nzLabel]="infoSystem.name"></nz-option>
+                    </nz-select>
+                </div>
+                <div *nzSpaceItem>
+                    <nz-form-label>应用程序类型</nz-form-label>
+                    <nz-select nzAllowClear style="width: 210px" nzPlaceHolder="请选择"
+                               [(ngModel)]="selectedApplicationType">
+                        <nz-option *ngFor="let applicationType of applicationTypes" [nzValue]="applicationType.key"
+                                   [nzLabel]="applicationType.value"></nz-option>
+                    </nz-select>
+                </div>
+            </nz-space>
         </div>
         <div nz-col [nzSpan]="4.5">
             <nz-space>
@@ -25,8 +30,6 @@
                 </button>
             </nz-space>
         </div>
-        <div nz-col [nzSpan]="4.5"></div>
-        <div nz-col [nzSpan]="4.5"></div>
     </div>
 </nz-card>
 <!--表格区-->

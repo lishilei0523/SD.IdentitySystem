@@ -6,7 +6,7 @@ import {MenuService} from "../../../services/menu.service";
 
 /*菜单修改组件*/
 @Component({
-    selector: 'app-update',
+    selector: 'app-menu-update',
     templateUrl: './update.component.html',
     styleUrls: ['./update.component.css']
 })

@@ -113,7 +113,7 @@ export class AuthorityService {
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getAuthoritiesByPage(keywords: string, systemNo: string, applicationType: ApplicationType | null, pageIndex: number, pageSize: number)
+    public getAuthoritiesByPage(keywords: string, systemNo: string | null, applicationType: ApplicationType | null, pageIndex: number, pageSize: number)
         : Promise<PageModel<Authority>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetAuthoritiesByPage`;
         let params = new HttpParams()

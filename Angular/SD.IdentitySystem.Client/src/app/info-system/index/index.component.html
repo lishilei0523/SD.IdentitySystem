@@ -2,8 +2,8 @@
 <nz-card>
     <div nz-row [nzGutter]="18">
         <div nz-col [nzSpan]="4.5">
-            <nz-form-label nzFor="keywords">关键字</nz-form-label>
-            <input nz-input style="width: 210px" placeholder="信息系统编号/名称" id="keywords" [(ngModel)]="keywords"/>
+            <nz-form-label>关键字</nz-form-label>
+            <input nz-input style="width: 210px" placeholder="信息系统编号/名称" [(ngModel)]="keywords"/>
         </div>
         <div nz-col [nzSpan]="4.5">
             <nz-space>
@@ -15,8 +15,6 @@
                 </button>
             </nz-space>
         </div>
-        <div nz-col [nzSpan]="4.5"></div>
-        <div nz-col [nzSpan]="4.5"></div>
     </div>
 </nz-card>
 <!--表格区-->
@@ -57,10 +55,12 @@
         <td nzAlign="center">{{infoSystem.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
         <td nzAlign="center" nzRight>
             <nz-space>
-                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="updateInfoSystem(infoSystem)">
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                        (click)="updateInfoSystem(infoSystem)">
                     <i nz-icon nzType="edit" nzTheme="outline"></i>编辑
                 </button>
-                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="initInfoSystem(infoSystem)">
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                        (click)="initInfoSystem(infoSystem)">
                     <i nz-icon nzType="clock-circle" nzTheme="twotone"></i>初始化
                 </button>
             </nz-space>
@@ -70,7 +70,7 @@
 </nz-table>
 <!--表格操作区-->
 <ng-template #tableTile>
-    <button nz-button nzType="primary" nzSize="small" nzShape="round" (click)="createInfoSystem()" >
+    <button nz-button nzType="primary" nzSize="small" nzShape="round" (click)="createInfoSystem()">
         <i nz-icon nzType="plus" nzTheme="outline"></i>新增
     </button>
 </ng-template>

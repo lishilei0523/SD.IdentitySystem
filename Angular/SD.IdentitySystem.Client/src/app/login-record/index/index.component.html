@@ -1,18 +1,22 @@
 <nz-card>
     <div nz-row [nzGutter]="18">
         <div nz-col [nzSpan]="4.5">
-            <nz-form-label nzFor="keywords">关键字</nz-form-label>
-            <input nz-input style="width: 210px" placeholder="用户名/真实姓名" id="keywords" [(ngModel)]="keywords"/>
-        </div>
-        <div nz-col [nzSpan]="4.5">
-            <nz-form-label nzFor="startTime">开始时间</nz-form-label>
-            <nz-date-picker style="width: 210px" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" nzPlaceHolder="选择时间"
-                            id="startTime" [(ngModel)]="startTime"></nz-date-picker>
-        </div>
-        <div nz-col [nzSpan]="4.5">
-            <nz-form-label nzFor="endTime">结束时间</nz-form-label>
-            <nz-date-picker style="width: 210px" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" nzPlaceHolder="选择时间"
-                            id="endTime" [(ngModel)]="endTime"></nz-date-picker>
+            <nz-space>
+                <div *nzSpaceItem>
+                    <nz-form-label>关键字</nz-form-label>
+                    <input nz-input style="width: 210px" placeholder="用户名/真实姓名" [(ngModel)]="keywords"/>
+                </div>
+                <div *nzSpaceItem>
+                    <nz-form-label>开始时间</nz-form-label>
+                    <nz-date-picker style="width: 210px" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" nzPlaceHolder="选择时间"
+                                    [(ngModel)]="startTime"></nz-date-picker>
+                </div>
+                <div *nzSpaceItem>
+                    <nz-form-label>结束时间</nz-form-label>
+                    <nz-date-picker style="width: 210px" nzShowTime nzFormat="yyyy-MM-dd HH:mm:ss" nzPlaceHolder="选择时间"
+                                    [(ngModel)]="endTime"></nz-date-picker>
+                </div>
+            </nz-space>
         </div>
         <div nz-col [nzSpan]="4.5">
             <nz-space>

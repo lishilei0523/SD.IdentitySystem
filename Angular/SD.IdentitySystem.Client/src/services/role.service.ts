@@ -91,7 +91,7 @@ export class RoleService {
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getRolesByPage(keywords: string, systemNo: string, pageIndex: number, pageSize: number)
+    public getRolesByPage(keywords: string, systemNo: string | null, pageIndex: number, pageSize: number)
         : Promise<PageModel<Role>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetRolesByPage`;
         let params = new HttpParams()
