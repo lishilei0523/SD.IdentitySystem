@@ -102,10 +102,10 @@ export class AddComponent extends ComponentBase implements OnInit {
             selectedInfoSystemNo: [null, [Validators.required]],
             selectedApplicationType: [null, [Validators.required]],
             parentMenuName: [null],
+            menuName: [null, [Validators.required]],
             url: [null],
             path: [null],
             icon: [null],
-            menuName: [null, [Validators.required]],
             sort: [null, [Validators.required]],
         });
     }

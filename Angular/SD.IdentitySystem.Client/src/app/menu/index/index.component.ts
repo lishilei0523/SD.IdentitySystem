@@ -8,6 +8,7 @@ import {MenuService} from "../../../services/menu.service";
 import {MenuMap} from "../../../maps/menu.map";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {AddComponent} from "../add/add.component";
+import {UpdateComponent} from "../update/update.component";
 
 /*菜单首页组件*/
 @Component({
@@ -153,6 +154,42 @@ export class IndexComponent extends ComponentBase implements OnInit {
             nzComponentParams: {
                 infoSystems: this.infoSystems,
                 applicationTypes: this.applicationTypes
+            }
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadMenus();
+            }
+        });
+    }
+    //endregion
+
+    //region 修改菜单 —— async updateMenu(menu: Menu)
+    /**
+     * 修改菜单
+     * @param menu - 菜单
+     * */
+    public async updateMenu(menu: Menu): Promise<void> {
+        let applicationTypeDescripttor = new ApplicationTypeDescriptor();
+        let modalRef = this._modalService.create({
+            nzTitle: "修改菜单",
+            nzWidth: "500px",
+            nzBodyStyle: {
+                height: "560px"
+            },
+            nzContent: UpdateComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                menuId: menu.id,
+                infoSystemName: menu.infoSystemInfo?.name,
+                applicationTypeName: applicationTypeDescripttor.transform(menu.applicationType),
+                parentMenuName: menu.parent?.name,
+                menuName: menu.name,
+                url: menu.url,
+                path: menu.path,
+                icon: menu.icon,
+                sort: menu.sort
             }
         });
 

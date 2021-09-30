@@ -1,0 +1,74 @@
+<nz-spin [nzSpinning]="isBusy">
+    <form nz-form [formGroup]="formGroup">
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">信息系统</nz-form-label>
+            <nz-form-control [nzSpan]="19">
+                <input nz-input type="text" formControlName="infoSystemName" [(ngModel)]="infoSystemName" readonly/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">应用程序类型</nz-form-label>
+            <nz-form-control [nzSpan]="19">
+                <input nz-input type="text" formControlName="applicationTypeName" [(ngModel)]="applicationTypeName"
+                       readonly/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">上级菜单</nz-form-label>
+            <nz-form-control [nzSpan]="19">
+                <input nz-input type="text" formControlName="parentMenuName" [(ngModel)]="parentMenuName"
+                       readonly/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">菜单名称</nz-form-label>
+            <nz-form-control [nzSpan]="19" [nzErrorTip]="menuNameError">
+                <input nz-input type="text" formControlName="menuName" [(ngModel)]="menuName"/>
+                <ng-template #menuNameError let-control>
+                    <ng-container *ngIf="control.hasError('required')">
+                        菜单名称不可为空！
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">链接地址</nz-form-label>
+            <nz-form-control [nzSpan]="19">
+                <input nz-input type="text" formControlName="url" [(ngModel)]="url"/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">路径</nz-form-label>
+            <nz-form-control [nzSpan]="19">
+                <input nz-input type="text" formControlName="path" [(ngModel)]="path"/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">图标</nz-form-label>
+            <nz-form-control [nzSpan]="19">
+                <input nz-input type="text" formControlName="icon" [(ngModel)]="icon"/>
+            </nz-form-control>
+        </nz-form-item>
+        <nz-form-item>
+            <nz-form-label [nzSpan]="5">排序</nz-form-label>
+            <nz-form-control [nzSpan]="19" [nzErrorTip]="sortError">
+                <nz-input-number formControlName="sort" [(ngModel)]="sort"></nz-input-number>
+                <ng-template #sortError let-control>
+                    <ng-container *ngIf="control.hasError('required')">
+                        排序不可为空！
+                    </ng-container>
+                </ng-template>
+            </nz-form-control>
+        </nz-form-item>
+    </form>
+</nz-spin>
+<div class="form-footer">
+    <nz-space>
+        <button type="submit" nz-button *nzSpaceItem nzType="primary" [nzLoading]="isBusy" (click)="submit()">
+            确定
+        </button>
+        <button type="button" nz-button *nzSpaceItem (click)="cancel()">
+            取消
+        </button>
+    </nz-space>
+</div>

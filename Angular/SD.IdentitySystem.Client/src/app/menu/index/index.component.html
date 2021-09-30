@@ -75,10 +75,12 @@
                 </td>
                 <td nzAlign="center" nzRight>
                     <nz-space>
-                        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                                (click)="updateMenu(menu)">
                             <i nz-icon nzType="edit" nzTheme="outline"></i>编辑
                         </button>
-                        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="removeMenu(menu.id)">
+                        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                                (click)="removeMenu(menu.id)">
                             <i nz-icon nzType="delete" nzTheme="outline"></i>删除
                         </button>
                     </nz-space>
