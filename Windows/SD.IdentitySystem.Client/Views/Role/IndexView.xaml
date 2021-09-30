@@ -41,7 +41,7 @@
                 <!--查询按钮区-->
                 <WrapPanel Grid.Row="1" Style="{StaticResource WrapPanel.Styles.Function.Query}">
                     <TextBlock Text="关键字：" />
-                    <TextBox mah:TextBoxHelper.Watermark="角色名称"
+                    <TextBox mah:TextBoxHelper.Watermark="角色名称/描述"
                              mah:TextBoxHelper.ClearTextButton="True"
                              Text="{Binding Keywords}" />
                     <TextBlock Text="信息系统："  Margin="10,0,0,0" />
