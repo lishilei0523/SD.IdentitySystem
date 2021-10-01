@@ -26,6 +26,8 @@ import {IndexComponent as MenuIndexComponent} from './app/menu/index/index.compo
 import {AddComponent as MenuAddComponent} from './app/menu/add/add.component';
 import {UpdateComponent as MenuUpdateComponent} from './app/menu/update/update.component';
 import {IndexComponent as AuthorityIndexComponent} from './app/authority/index/index.component';
+import {AddComponent as AuthorityAddComponent} from './app/authority/add/add.component';
+import {UpdateComponent as AuthorityUpdateComponent} from './app/authority/update/update.component';
 import {IndexComponent as LoginRecordIndexComponent} from './app/login-record/index/index.component';
 
 //服务
@@ -57,6 +59,8 @@ import {LoginRecordService} from "./services/login-record.service";
         MenuAddComponent,
         MenuUpdateComponent,
         AuthorityIndexComponent,
+        AuthorityAddComponent,
+        AuthorityUpdateComponent,
         LoginRecordIndexComponent
     ],
     //导入模块

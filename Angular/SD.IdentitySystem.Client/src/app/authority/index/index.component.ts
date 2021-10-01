@@ -6,6 +6,8 @@ import {InfoSystemService} from "../../../services/info-system.service";
 import {AuthorityService} from "../../../services/authority.service";
 import {Authority} from "../../../models/authority";
 import {InfoSystem} from "../../../models/info-system";
+import {AddComponent} from "../add/add.component";
+import {UpdateComponent} from "../update/update.component";
 
 /*权限首页组件*/
 @Component({
@@ -141,6 +143,71 @@ export class IndexComponent extends ComponentBase implements OnInit {
     public async onPageSizeChange(pageSize: number): Promise<void> {
         this.pageSize = pageSize;
         await this.loadAuthorities();
+    }
+    //endregion
+
+    //region 创建权限 —— async createAuthority()
+    /**
+     * 创建权限
+     * */
+    public async createAuthority(): Promise<void> {
+        let modalRef = this._modalService.create({
+            nzTitle: "创建权限",
+            nzWidth: "500px",
+            nzBodyStyle: {
+                height: "700px"
+            },
+            nzContent: AddComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                infoSystems: this.infoSystems,
+                applicationTypes: this.applicationTypes
+            }
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadAuthorities();
+            }
+        });
+    }
+    //endregion
+
+    //region 修改权限 —— async updateAuthority(authority: Authority)
+    /**
+     * 修改权限
+     * @param authority - 权限
+     * */
+    public async updateAuthority(authority: Authority): Promise<void> {
+        let applicationTypeDescripttor = new ApplicationTypeDescriptor();
+        let modalRef = this._modalService.create({
+            nzTitle: "修改权限",
+            nzWidth: "500px",
+            nzBodyStyle: {
+                height: "700px"
+            },
+            nzContent: UpdateComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                authorityId: authority.id,
+                infoSystemName: authority.infoSystemInfo?.name,
+                applicationTypeName: applicationTypeDescripttor.transform(authority.applicationType),
+                authorityName: authority.name,
+                authorityPath: authority.authorityPath,
+                englishName: authority.englishName,
+                assemblyName: authority.assemblyName,
+                namespace: authority.namespace,
+                className: authority.className,
+                methodName: authority.methodName,
+                description: authority.description
+            }
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadAuthorities();
+            }
+        });
     }
     //endregion
 

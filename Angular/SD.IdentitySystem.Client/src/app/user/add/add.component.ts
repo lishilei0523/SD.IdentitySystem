@@ -52,7 +52,7 @@ export class AddComponent extends ComponentBase implements OnInit {
     public password: string = "";
 
     /*确认密码*/
-    public confirmedPassword = "";
+    public confirmedPassword: string = "";
 
     /*表单*/
     public formGroup!: FormGroup;
