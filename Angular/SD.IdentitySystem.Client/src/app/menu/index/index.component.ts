@@ -9,6 +9,7 @@ import {MenuMap} from "../../../maps/menu.map";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {AddComponent} from "../add/add.component";
 import {UpdateComponent} from "../update/update.component";
+import {RelateAuthorityComponent} from "../relate-authority/relate-authority.component";
 
 /*菜单首页组件*/
 @Component({
@@ -213,6 +214,30 @@ export class IndexComponent extends ComponentBase implements OnInit {
             nzOnOk: async () => {
                 await this._menuService.removeMenu(menuId);
                 await this.loadMenus();
+            }
+        });
+    }
+    //endregion
+
+    //region 关联权限 —— async relateAuthorities(menu: Menu)
+    /**
+     * 关联权限
+     * @param menu - 菜单
+     * */
+    public async relateAuthorities(menu: Menu): Promise<void> {
+        this._modalService.create({
+            nzTitle: "关联权限",
+            nzWidth: "500px",
+            nzBodyStyle: {
+                padding: "0",
+                height: "580px"
+            },
+            nzContent: RelateAuthorityComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                menuId: menu.id,
+                infoSystemNo: menu.infoSystemInfo?.number,
+                applicationType: menu.applicationType
             }
         });
     }

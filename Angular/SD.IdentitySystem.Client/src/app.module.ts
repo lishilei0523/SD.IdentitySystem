@@ -28,6 +28,7 @@ import {UpdateComponent as RoleUpdateComponent} from './app/role/update/update.c
 import {IndexComponent as MenuIndexComponent} from './app/menu/index/index.component';
 import {AddComponent as MenuAddComponent} from './app/menu/add/add.component';
 import {UpdateComponent as MenuUpdateComponent} from './app/menu/update/update.component';
+import {RelateAuthorityComponent as MenuRelateAuthorityComponent} from './app/menu/relate-authority/relate-authority.component';
 import {IndexComponent as AuthorityIndexComponent} from './app/authority/index/index.component';
 import {AddComponent as AuthorityAddComponent} from './app/authority/add/add.component';
 import {UpdateComponent as AuthorityUpdateComponent} from './app/authority/update/update.component';
@@ -64,6 +65,7 @@ import {LoginRecordService} from "./services/login-record.service";
         MenuIndexComponent,
         MenuAddComponent,
         MenuUpdateComponent,
+        MenuRelateAuthorityComponent,
         AuthorityIndexComponent,
         AuthorityAddComponent,
         AuthorityUpdateComponent,

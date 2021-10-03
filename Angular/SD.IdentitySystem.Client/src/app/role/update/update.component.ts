@@ -149,7 +149,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     /**
      * 加载权限树
      * */
-    public async loadAuthorityTree(): Promise<void> {
+    private async loadAuthorityTree(): Promise<void> {
         let authorities: Array<Authority> = await this._authorityService.getAuthorities(null, this.infoSystemNo, null, null, null);
         let roleAuthorities: Array<Authority> = await this._authorityService.getAuthorities(null, this.infoSystemNo, null, null, this.roleId);
 

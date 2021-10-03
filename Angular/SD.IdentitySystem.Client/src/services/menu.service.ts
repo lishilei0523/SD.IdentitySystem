@@ -95,6 +95,24 @@ export class MenuService {
     }
     //endregion
 
+    //region # 关联权限到菜单 —— async relateAuthoritiesToMenu(menuId: string, authorityIds...
+    /**
+     * 关联权限到菜单
+     * @param menuId - 菜单Id
+     * @param authorityIds - 权限Id集
+     * */
+    public async relateAuthoritiesToMenu(menuId: string, authorityIds: Array<string>)
+        : Promise<void> {
+        let requestUrl: string = `${Constants.appConfig.webApiPrefix}/Authorization/RelateAuthoritiesToMenu`;
+        let params = {
+            menuId: menuId,
+            authorityIds: authorityIds
+        };
+
+        await this._httpClient.post(requestUrl, params).toPromise();
+    }
+    //endregion
+
     //region # 获取菜单列表 —— getMenus(systemNo: string | null, applicationType...
     /**
      * 获取菜单列表

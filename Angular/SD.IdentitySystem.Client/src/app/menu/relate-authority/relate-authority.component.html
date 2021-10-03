@@ -1,0 +1,32 @@
+<nz-spin [nzSpinning]="isBusy">
+    <nz-table [nzData]="authorities"
+              [nzFrontPagination]="false"
+              [nzLoading]="isBusy"
+              [nzScroll]="{y: '460px'}">
+        <thead>
+        <tr>
+            <th nzWidth="40px" nzAlign="center"></th>
+            <th nzWidth="150px" nzAlign="center">权限名称</th>
+            <th nzWidth="150px" nzAlign="center">权限路径</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr *ngFor="let authority of authorities">
+            <td [nzChecked]="checkedAuthorityIds.has(authority.id)"
+                (nzCheckedChange)="checkItem(authority.id, $event)"></td>
+            <td>{{authority.name}}</td>
+            <td>{{authority.authorityPath}}</td>
+        </tr>
+        </tbody>
+    </nz-table>
+</nz-spin>
+<div class="form-footer">
+    <nz-space>
+        <button type="submit" nz-button *nzSpaceItem nzType="primary" [nzLoading]="isBusy" (click)="submit()">
+            确定
+        </button>
+        <button type="button" nz-button *nzSpaceItem (click)="cancel()">
+            取消
+        </button>
+    </nz-space>
+</div>
