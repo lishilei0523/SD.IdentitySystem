@@ -1,12 +1,12 @@
 import {Component, OnInit} from '@angular/core';
-import {ApplicationType, ApplicationTypeDescriptor, ComponentBase, Constants} from "sd-infrastructure";
+import {Constants, ApplicationType, ApplicationTypeDescriptor, ComponentBase} from "sd-infrastructure";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {InfoSystem} from "../../../models/info-system";
-import {Menu} from "../../../models/menu";
-import {InfoSystemService} from "../../../services/info-system.service";
-import {MenuService} from "../../../services/menu.service";
-import {MenuMap} from "../../../maps/menu.map";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {InfoSystem} from "../../../models/info-system";
+import {InfoSystemService} from "../../../services/info-system.service";
+import {Menu} from "../../../models/menu";
+import {MenuMap} from "../../../maps/menu.map";
+import {MenuService} from "../../../services/menu.service";
 import {AddComponent} from "../add/add.component";
 import {UpdateComponent} from "../update/update.component";
 import {RelateAuthorityComponent} from "../relate-authority/relate-authority.component";
