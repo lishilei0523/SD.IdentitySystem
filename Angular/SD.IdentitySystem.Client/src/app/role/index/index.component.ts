@@ -6,6 +6,8 @@ import {InfoSystem} from "../../../models/info-system";
 import {InfoSystemService} from "../../../services/info-system.service";
 import {Role} from "../../../models/role";
 import {RoleService} from "../../../services/role.service";
+import {AddComponent} from "../add/add.component";
+import {UpdateComponent} from "../update/update.component";
 
 /*角色首页组件*/
 @Component({
@@ -134,6 +136,62 @@ export class IndexComponent extends ComponentBase implements OnInit {
     public async onPageSizeChange(pageSize: number): Promise<void> {
         this.pageSize = pageSize;
         await this.loadRoles();
+    }
+    //endregion
+
+    //region 创建角色 —— async createRole()
+    /**
+     * 创建角色
+     * */
+    public async createRole(): Promise<void> {
+        let modalRef = this._modalService.create({
+            nzTitle: "创建角色",
+            nzWidth: "900px",
+            nzBodyStyle: {
+                height: "650px"
+            },
+            nzContent: AddComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                infoSystems: this.infoSystems
+            }
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadRoles();
+            }
+        });
+    }
+    //endregion
+
+    //region 修改角色 —— async updateRole(role: Role)
+    /**
+     * 修改角色
+     * */
+    public async updateRole(role: Role): Promise<void> {
+        let modalRef = this._modalService.create({
+            nzTitle: "修改角色",
+            nzWidth: "900px",
+            nzBodyStyle: {
+                height: "650px"
+            },
+            nzContent: UpdateComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                roleId: role.id,
+                infoSystemNo: role.infoSystemInfo?.number,
+                infoSystemName: role.infoSystemInfo?.name,
+                roleName: role.name,
+                description: role.description
+            }
+        });
+
+        modalRef.afterClose.subscribe((result) => {
+            if (result == true) {
+                this.loadRoles();
+            }
+        });
     }
     //endregion
 

@@ -61,7 +61,8 @@
         <td nzAlign="center">{{role.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
         <td nzAlign="center" nzRight>
             <nz-space>
-                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+                <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
+                        (click)="updateRole(role)">
                     <i nz-icon nzType="edit" nzTheme="outline"></i>编辑
                 </button>
                 <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round"
@@ -76,7 +77,7 @@
 <!--表格操作区-->
 <ng-template #tableTile>
     <nz-space>
-        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round">
+        <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="createRole()">
             <i nz-icon nzType="plus" nzTheme="outline"></i>新增
         </button>
         <button nz-button *nzSpaceItem nzType="primary" nzSize="small" nzShape="round" (click)="removeRoles()">

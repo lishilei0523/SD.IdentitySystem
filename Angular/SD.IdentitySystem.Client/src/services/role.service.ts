@@ -31,12 +31,13 @@ export class RoleService {
      * @param description - 描述
      * @param authorityIds - 权限Id集
      * */
-    public async createRole(systemNo: string, roleName: string, description: string | null, authorityIds: Set<string>)
+    public async createRole(systemNo: string, roleName: string, description: string | null, authorityIds: Array<string>)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/CreateRole`;
         let params = {
             systemNo: systemNo,
             roleName: roleName,
+            description: description,
             authorityIds: authorityIds
         };
 
@@ -44,22 +45,21 @@ export class RoleService {
     }
     //endregion
 
-    //region # 修改角色 —— async updateRole(roleId: string, systemNo...
+    //region # 修改角色 —— async updateRole(roleId: string, roleName...
     /**
      * 修改角色
      * @param roleId - 角色Id
-     * @param systemNo - 信息系统编号
      * @param roleName - 角色名称
      * @param description - 描述
      * @param authorityIds - 权限Id集
      * */
-    public async updateRole(roleId: string, systemNo: string, roleName: string, description: string | null, authorityIds: Set<string>)
+    public async updateRole(roleId: string, roleName: string, description: string | null, authorityIds: Array<string>)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/UpdateRole`;
         let params = {
             roleId: roleId,
-            systemNo: systemNo,
             roleName: roleName,
+            description: description,
             authorityIds: authorityIds
         };
 

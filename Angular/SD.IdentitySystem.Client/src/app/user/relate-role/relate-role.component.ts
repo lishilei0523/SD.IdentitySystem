@@ -51,8 +51,8 @@ export class RelateRoleComponent extends ComponentBase implements OnInit {
     /*角色树*/
     public roleTree: Array<NzNode> = new Array<NzNode>();
 
-    /*勾选节点键集*/
-    public checkedKeys: Array<string> = new Array<string>();
+    /*勾选角色Id集*/
+    public checkedRoleIds: Array<string> = new Array<string>();
 
     //endregion
 
@@ -65,8 +65,8 @@ export class RelateRoleComponent extends ComponentBase implements OnInit {
      * 初始化组件
      * */
     public async ngOnInit(): Promise<void> {
-        //初始化角色树
-        await this.initRoleTree();
+        //加载角色树
+        await this.loadRoleTree();
     }
     //endregion
 
@@ -82,9 +82,9 @@ export class RelateRoleComponent extends ComponentBase implements OnInit {
 
         //获取勾选节点
         let checkedNodes: Array<NzTreeNode> = this.nzTreeComponent.getCheckedNodeList();
-        let checkedKeys: Array<string> = checkedNodes.map(x => x.key);
+        let checkedRoleIds: Array<string> = checkedNodes.map(x => x.key);
 
-        let promise: Promise<void> = this._userService.relateRolesToUser(this.loginId, checkedKeys);
+        let promise: Promise<void> = this._userService.relateRolesToUser(this.loginId, checkedRoleIds);
         promise.catch(_ => {
             this.idle();
         });
@@ -107,11 +107,11 @@ export class RelateRoleComponent extends ComponentBase implements OnInit {
 
     //Private
 
-    //region 初始化角色树 —— async initRoleTree()
+    //region 加载角色树 —— async loadRoleTree()
     /**
-     * 初始化角色树
+     * 加载角色树
      * */
-    private async initRoleTree(): Promise<void> {
+    private async loadRoleTree(): Promise<void> {
         let roles: Array<Role> = await this._roleService.getRoles(null, null, null);
         let userRoles: Array<Role> = await this._roleService.getRoles(null, this.loginId, null);
 
@@ -127,7 +127,7 @@ export class RelateRoleComponent extends ComponentBase implements OnInit {
         }
 
         this.roleTree = roleTree;
-        this.checkedKeys = checkedKeys;
+        this.checkedRoleIds = checkedKeys;
     }
     //endregion
 

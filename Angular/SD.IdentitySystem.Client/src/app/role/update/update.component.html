@@ -1,0 +1,51 @@
+<nz-spin [nzSpinning]="isBusy">
+    <div nz-row [nzGutter]="12">
+        <div nz-col [nzSpan]="12">
+            <nz-card style="height: 560px;" nzTitle="角色信息">
+                <form nz-form [formGroup]="formGroup">
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="5">信息系统</nz-form-label>
+                        <nz-form-control [nzSpan]="19">
+                            <input nz-input type="text" formControlName="infoSystemName" [(ngModel)]="infoSystemName" readonly/>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="5">角色名称</nz-form-label>
+                        <nz-form-control [nzSpan]="19" [nzErrorTip]="roleNameError">
+                            <input nz-input type="text" formControlName="roleName" [(ngModel)]="roleName"/>
+                            <ng-template #roleNameError let-control>
+                                <ng-container *ngIf="control.hasError('required')">
+                                    角色名称不可为空！
+                                </ng-container>
+                            </ng-template>
+                        </nz-form-control>
+                    </nz-form-item>
+                    <nz-form-item>
+                        <nz-form-label [nzSpan]="5">描述</nz-form-label>
+                        <nz-form-control [nzSpan]="19">
+                            <textarea rows="4" nz-input formControlName="description"
+                                      [(ngModel)]="description"></textarea>
+                        </nz-form-control>
+                    </nz-form-item>
+                </form>
+            </nz-card>
+        </div>
+        <div nz-col [nzSpan]="12">
+            <nz-card style="height: 560px;" [nzBodyStyle]="{padding: '1px 0'}" nzTitle="权限列表">
+                <nz-tree #nzTreeComponent nzCheckable nzBlockNode [nzData]="authorityTree"
+                         [(nzCheckedKeys)]="checkedAuthorityIds"
+                         nzVirtualHeight="500px"></nz-tree>
+            </nz-card>
+        </div>
+    </div>
+</nz-spin>
+<div class="form-footer">
+    <nz-space>
+        <button type="submit" nz-button *nzSpaceItem nzType="primary" [nzLoading]="isBusy" (click)="submit()">
+            确定
+        </button>
+        <button type="button" nz-button *nzSpaceItem (click)="cancel()">
+            取消
+        </button>
+    </nz-space>
+</div>

@@ -104,6 +104,29 @@ export class AuthorityService {
     }
     //endregion
 
+    //region # 获取权限列表 —— getAuthorities(keywords: string | null, systemNo: string...
+    /**
+     * 获取权限列表
+     * @param keywords - 关键字
+     * @param systemNo - 信息系统编号
+     * @param applicationType - 应用程序类型
+     * @param menuId - 菜单Id
+     * @param roleId - 角色Id
+     * */
+    public getAuthorities(keywords: string | null, systemNo: string | null, applicationType: ApplicationType | null, menuId: string | null, roleId: string | null)
+        : Promise<Array<Authority>> {
+        let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetAuthorities`;
+        let params = new HttpParams()
+            .set("keywords", keywords ? keywords : "")
+            .set("systemNo", systemNo ? systemNo : "")
+            .set("applicationType", applicationType ? applicationType.toString() : "")
+            .set("menuId", menuId ? menuId : "")
+            .set("roleId", roleId ? roleId : "");
+
+        return this._httpClient.get<Array<Authority>>(url, {params}).toPromise();
+    }
+    //endregion
+
     //region # 分页获取权限列表 —— getAuthoritiesByPage(keywords: string | null, systemNo: string...
     /**
      * 分页获取权限列表
