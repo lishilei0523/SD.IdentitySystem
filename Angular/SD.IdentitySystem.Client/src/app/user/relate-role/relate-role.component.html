@@ -1,0 +1,14 @@
+<nz-spin [nzSpinning]="isBusy">
+    <nz-tree #nzTreeComponent nzCheckable nzBlockNode [nzData]="roleTree" [(nzCheckedKeys)]="checkedKeys"
+             nzVirtualHeight="480px"></nz-tree>
+</nz-spin>
+<div class="form-footer">
+    <nz-space>
+        <button type="submit" nz-button *nzSpaceItem nzType="primary" [nzLoading]="isBusy" (click)="submit()">
+            确定
+        </button>
+        <button type="button" nz-button *nzSpaceItem (click)="cancel()">
+            取消
+        </button>
+    </nz-space>
+</div>

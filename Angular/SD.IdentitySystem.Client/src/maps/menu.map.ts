@@ -1,5 +1,5 @@
-import {Menu} from "../models/menu";
 import {NzNode} from "sd-infrastructure";
+import {Menu} from "../models/menu";
 
 /*菜单映射工具类*/
 export class MenuMap {

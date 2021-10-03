@@ -45,7 +45,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
     //region # 属性
 
     /*关键字*/
-    public keywords: string = "";
+    public keywords: string | null = null;
 
     /*页码*/
     public pageIndex: number = 1;
@@ -110,7 +110,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
      * 重置搜索
      * */
     public resetSearch(): void {
-        this.keywords = "";
+        this.keywords = null;
         this.selectedInfoSystemNo = null;
     }
     //endregion

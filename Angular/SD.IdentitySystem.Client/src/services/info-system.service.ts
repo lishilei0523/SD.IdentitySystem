@@ -87,18 +87,18 @@ export class InfoSystemService {
     }
     //endregion
 
-    //region # 分页获取信息系统列表 —— getInfoSystemsByPage(keywords: string, pageIndex...
+    //region # 分页获取信息系统列表 —— getInfoSystemsByPage(keywords: string | null, pageIndex...
     /**
      * 分页获取信息系统列表
      * @param keywords - 关键字
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getInfoSystemsByPage(keywords: string, pageIndex: number, pageSize: number):
+    public getInfoSystemsByPage(keywords: string | null, pageIndex: number, pageSize: number):
         Promise<PageModel<InfoSystem>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetInfoSystemsByPage`;
         let params = new HttpParams()
-            .set("keywords", keywords)
+            .set("keywords", keywords ? keywords : "")
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());
 

@@ -133,7 +133,7 @@ export class UserService {
      * @param loginId - 用户名
      * @param roleIds - 角色Id集
      * */
-    public async relateRolesToUser(loginId: string, roleIds: Set<string>)
+    public async relateRolesToUser(loginId: string, roleIds: Array<string>)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/User/RelateRolesToUser`;
         let params = {
@@ -154,11 +154,11 @@ export class UserService {
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getUsersByPage(keywords: string, systemNo: string | null, roleId: string, pageIndex: number, pageSize: number)
+    public getUsersByPage(keywords: string | null, systemNo: string | null, roleId: string, pageIndex: number, pageSize: number)
         : Promise<PageModel<User>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/User/GetUsersByPage`;
         let params = new HttpParams()
-            .set("keywords", keywords)
+            .set("keywords", keywords ? keywords : "")
             .set("systemNo", systemNo ? systemNo : "")
             .set("roleId", roleId)
             .set("pageIndex", pageIndex.toString())

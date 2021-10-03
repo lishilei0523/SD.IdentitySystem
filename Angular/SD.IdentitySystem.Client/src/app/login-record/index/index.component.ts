@@ -30,13 +30,13 @@ export class IndexComponent extends ComponentBase implements OnInit {
     //region # 属性
 
     /*关键字*/
-    public keywords: string = "";
+    public keywords: string | null = null;
 
     /*开始时间*/
-    public startTime: string = "";
+    public startTime: string | null = null;
 
     /*结束时间*/
-    public endTime: string = "";
+    public endTime: string | null = null;
 
     /*页码*/
     public pageIndex: number = 1;
@@ -86,9 +86,9 @@ export class IndexComponent extends ComponentBase implements OnInit {
      * 重置搜索
      * */
     public resetSearch(): void {
-        this.keywords = "";
-        this.startTime = "";
-        this.endTime = "";
+        this.keywords = null;
+        this.startTime = null;
+        this.endTime = null;
     }
     //endregion
 
@@ -124,8 +124,8 @@ export class IndexComponent extends ComponentBase implements OnInit {
     private async loadLoginRecords(): Promise<void> {
         this.busy();
 
-        let startTime = this.startTime ? formatDate(this.startTime, Constants.dateTimeFormat, Constants.locale) : "";
-        let endTime = this.endTime ? formatDate(this.endTime, Constants.dateTimeFormat, Constants.locale) : "";
+        let startTime = this.startTime ? formatDate(this.startTime, Constants.dateTimeFormat, Constants.locale) : null;
+        let endTime = this.endTime ? formatDate(this.endTime, Constants.dateTimeFormat, Constants.locale) : null;
         let promise = this._loginRecordService.getLoginRecordsByPage(this.keywords, startTime, endTime, this.pageIndex, this.pageSize);
         promise.catch(_ => this.idle());
 

@@ -51,7 +51,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
 
     /*上级菜单名称*/
     @Input()
-    public parentMenuName: string = "";
+    public parentMenuName: string | null = null;
 
     /*菜单名称*/
     @Input()
@@ -59,15 +59,15 @@ export class UpdateComponent extends ComponentBase implements OnInit {
 
     /*链接地址*/
     @Input()
-    public url: string = "";
+    public url: string | null = null;
 
     /*路径*/
     @Input()
-    public path: string = "";
+    public path: string | null = null;
 
     /*图标*/
     @Input()
-    public icon: string = "";
+    public icon: string | null = null;
 
     /*排序*/
     @Input()

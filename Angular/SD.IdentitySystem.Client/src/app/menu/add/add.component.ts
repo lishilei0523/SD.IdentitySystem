@@ -46,19 +46,19 @@ export class AddComponent extends ComponentBase implements OnInit {
     //region # 属性
 
     /*上级菜单名称*/
-    public parentMenuName: string = "";
+    public parentMenuName: string | null = null;
 
     /*菜单名称*/
     public menuName: string = "";
 
     /*链接地址*/
-    public url: string = "";
+    public url: string | null = null;
 
     /*路径*/
-    public path: string = "";
+    public path: string | null = null;
 
     /*图标*/
-    public icon: string = "";
+    public icon: string | null = null;
 
     /*排序*/
     public sort: number | null = null;

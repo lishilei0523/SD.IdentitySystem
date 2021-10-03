@@ -9,6 +9,7 @@ import {InfoSystemService} from "../../../services/info-system.service";
 import {AddComponent} from "../add/add.component";
 import {ResetPasswordComponent} from "../reset-password/reset-password.component";
 import {ResetPrivateKeyComponent} from "../reset-private-key/reset-private-key.component";
+import {RelateRoleComponent} from "../relate-role/relate-role.component";
 
 /*用户首页组件*/
 @Component({
@@ -48,7 +49,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
     //region # 属性
 
     /*关键字*/
-    public keywords: string = "";
+    public keywords: string | null = null;
 
     /*页码*/
     public pageIndex: number = 1;
@@ -113,7 +114,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
      * 重置搜索
      * */
     public resetSearch(): void {
-        this.keywords = "";
+        this.keywords = null;
         this.selectedInfoSystemNo = null;
     }
     //endregion
@@ -207,6 +208,28 @@ export class IndexComponent extends ComponentBase implements OnInit {
         modalRef.afterClose.subscribe((result) => {
             if (result == true) {
                 this.loadUsers();
+            }
+        });
+    }
+    //endregion
+
+    //region 分配角色 —— async relateRoles(user: User)
+    /**
+     * 分配角色
+     * @param user - 用户
+     * */
+    public async relateRoles(user: User): Promise<void> {
+        this._modalService.create({
+            nzTitle: "分配角色",
+            nzWidth: "460px",
+            nzBodyStyle: {
+                padding: "0",
+                height: "550px"
+            },
+            nzContent: RelateRoleComponent,
+            nzFooter: null,
+            nzComponentParams: {
+                loginId: user.number
             }
         });
     }

@@ -104,7 +104,7 @@ export class AuthorityService {
     }
     //endregion
 
-    //region # 分页获取权限列表 —— getAuthoritiesByPage(keywords: string, systemNo: string...
+    //region # 分页获取权限列表 —— getAuthoritiesByPage(keywords: string | null, systemNo: string...
     /**
      * 分页获取权限列表
      * @param keywords - 关键字
@@ -113,11 +113,11 @@ export class AuthorityService {
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getAuthoritiesByPage(keywords: string, systemNo: string | null, applicationType: ApplicationType | null, pageIndex: number, pageSize: number)
+    public getAuthoritiesByPage(keywords: string | null, systemNo: string | null, applicationType: ApplicationType | null, pageIndex: number, pageSize: number)
         : Promise<PageModel<Authority>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetAuthoritiesByPage`;
         let params = new HttpParams()
-            .set("keywords", keywords)
+            .set("keywords", keywords ? keywords : "")
             .set("systemNo", systemNo ? systemNo : "")
             .set("applicationType", applicationType ? applicationType.toString() : "")
             .set("pageIndex", pageIndex.toString())

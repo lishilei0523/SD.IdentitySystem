@@ -31,7 +31,7 @@ export class RoleService {
      * @param description - 描述
      * @param authorityIds - 权限Id集
      * */
-    public async createRole(systemNo: string, roleName: string, description: string, authorityIds: Set<string>)
+    public async createRole(systemNo: string, roleName: string, description: string | null, authorityIds: Set<string>)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/CreateRole`;
         let params = {
@@ -53,7 +53,7 @@ export class RoleService {
      * @param description - 描述
      * @param authorityIds - 权限Id集
      * */
-    public async updateRole(roleId: string, systemNo: string, roleName: string, description: string, authorityIds: Set<string>)
+    public async updateRole(roleId: string, systemNo: string, roleName: string, description: string | null, authorityIds: Set<string>)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/UpdateRole`;
         let params = {
@@ -83,7 +83,26 @@ export class RoleService {
     }
     //endregion
 
-    //region # 分页获取角色列表 —— getRolesByPage(keywords: string, systemNo...
+    //region # 获取角色列表 —— getRoles(keywords: string | null, loginId...
+    /**
+     * 获取角色列表
+     * @param keywords - 关键字
+     * @param loginId - 用户名
+     * @param systemNo - 信息系统编号
+     * */
+    public getRoles(keywords: string | null, loginId: string | null, systemNo: string | null)
+        : Promise<Array<Role>> {
+        let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetRoles`;
+        let params = new HttpParams()
+            .set("keywords", keywords ? keywords : "")
+            .set("loginId", loginId ? loginId : "")
+            .set("systemNo", systemNo ? systemNo : "");
+
+        return this._httpClient.get<Array<Role>>(url, {params}).toPromise();
+    }
+    //endregion
+
+    //region # 分页获取角色列表 —— getRolesByPage(keywords: string | null, systemNo...
     /**
      * 分页获取角色列表
      * @param keywords - 关键字
@@ -91,11 +110,11 @@ export class RoleService {
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getRolesByPage(keywords: string, systemNo: string | null, pageIndex: number, pageSize: number)
+    public getRolesByPage(keywords: string | null, systemNo: string | null, pageIndex: number, pageSize: number)
         : Promise<PageModel<Role>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetRolesByPage`;
         let params = new HttpParams()
-            .set("keywords", keywords)
+            .set("keywords", keywords ? keywords : "")
             .set("systemNo", systemNo ? systemNo : "")
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());

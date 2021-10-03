@@ -23,7 +23,7 @@ export class LoginRecordService {
 
     //endregion
 
-    //region # 分页获取登录记录列表 —— getLoginRecordsByPage(keywords: string, startTime...
+    //region # 分页获取登录记录列表 —— getLoginRecordsByPage(keywords: string | null, startTime...
     /**
      * 分页获取登录记录列表
      * @param keywords - 关键字
@@ -32,13 +32,13 @@ export class LoginRecordService {
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getLoginRecordsByPage(keywords: string, startTime: string, endTime: string, pageIndex: number, pageSize: number)
+    public getLoginRecordsByPage(keywords: string | null, startTime: string | null, endTime: string | null, pageIndex: number, pageSize: number)
         : Promise<PageModel<LoginRecord>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/User/GetLoginRecordsByPage`;
         let params = new HttpParams()
-            .set("keywords", keywords)
-            .set("startTime", startTime)
-            .set("endTime", endTime)
+            .set("keywords", keywords ? keywords : "")
+            .set("startTime", startTime ? startTime : "")
+            .set("endTime", endTime ? endTime : "")
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());
 

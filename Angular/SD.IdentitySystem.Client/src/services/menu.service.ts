@@ -35,7 +35,7 @@ export class MenuService {
      * @param icon - 图标
      * @param parentNodeId - 上级节点Id
      * */
-    public async createMenu(systemNo: string, applicationType: ApplicationType, menuName: string, sort: number, url: string, path: string, icon: string, parentNodeId: string | null)
+    public async createMenu(systemNo: string, applicationType: ApplicationType, menuName: string, sort: number, url: string | null, path: string | null, icon: string | null, parentNodeId: string | null)
         : Promise<void> {
         let requestUrl: string = `${Constants.appConfig.webApiPrefix}/Authorization/CreateMenu`;
         let params = {
@@ -63,7 +63,7 @@ export class MenuService {
      * @param path - 路径
      * @param icon - 图标
      * */
-    public async updateMenu(menuId: string, menuName: string, sort: number, url: string, path: string, icon: string)
+    public async updateMenu(menuId: string, menuName: string, sort: number, url: string | null, path: string | null, icon: string | null)
         : Promise<void> {
         let requestUrl: string = `${Constants.appConfig.webApiPrefix}/Authorization/UpdateMenu`;
         let params = {
