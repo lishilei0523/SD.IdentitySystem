@@ -14,7 +14,7 @@ using System.Runtime.InteropServices;
 [assembly: ComVisible(false)]
 
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
-[assembly: Guid("4C51E3AB-6626-4A4B-9E2F-21B6B923B25C")]
+[assembly: Guid("50166c7f-93f3-4206-8d8b-1b1096a549ac")]
 
 
 // AOP标签
