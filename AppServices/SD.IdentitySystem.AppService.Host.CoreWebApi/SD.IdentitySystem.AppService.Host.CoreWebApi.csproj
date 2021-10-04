@@ -21,25 +21,16 @@
     <Content Update="App.config">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
-    <AppConfigWithTargetPath Include="App.config">
-      <TargetPath>ef.dll.config</TargetPath>
-    </AppConfigWithTargetPath>
     <Content Include="favicon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Proxies" Version="5.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
-      <PrivateAssets>all</PrivateAssets>
-      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
-    </PackageReference>
+    <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.17" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
-    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="3.1.8" />
+    <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
     <PackageReference Include="MrAdvice" Version="2.8.11" />
     <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.0.4" />
@@ -69,6 +60,6 @@
     <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj" />
     <ProjectReference Include="..\SD.IdentitySystem.DomainService\SD.IdentitySystem.DomainService.csproj" />
     <ProjectReference Include="..\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.Repository.EFCore\SD.IdentitySystem.Repository.EFCore.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj" />
   </ItemGroup>
 </Project>

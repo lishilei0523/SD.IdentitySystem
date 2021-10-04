@@ -410,7 +410,6 @@ namespace SD.IdentitySystem.AppService.Implements
         public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
             Role role = this._unitOfWork.Resolve<Role>(roleId);
-
             role.UpdateInfo(roleName, description);
 
             //分配权限

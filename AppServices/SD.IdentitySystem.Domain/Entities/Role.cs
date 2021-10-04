@@ -109,7 +109,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="authorities">权限集</param>
         public void RelateAuthorities(IEnumerable<Authority> authorities)
         {
-            authorities = authorities?.ToArray() ?? new Authority[0];
+            authorities = authorities?.ToArray() ?? Array.Empty<Authority>();
 
             this.ClearAuthorities();
             if (authorities.Any())
@@ -128,7 +128,7 @@ namespace SD.IdentitySystem.Domain.Entities
         {
             #region # 验证
 
-            authorities = authorities?.ToArray() ?? new Authority[0];
+            authorities = authorities?.ToArray() ?? Array.Empty<Authority>();
             if (!authorities.Any())
             {
                 throw new ArgumentNullException(nameof(authorities), "要追加的权限不可为空！");
@@ -158,7 +158,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <summary>
         /// 清空权限
         /// </summary>
-        public void ClearAuthorities()
+        private void ClearAuthorities()
         {
             foreach (Authority authority in this.Authorities.ToArray())
             {
