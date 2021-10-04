@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SD.IdentitySystem.Domain.Entities;
 using SD.Infrastructure;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.Repository.EntityConfigurations
 {
@@ -15,7 +16,20 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public void Configure(EntityTypeBuilder<Menu> builder)
         {
-            builder.HasMany(menu => menu.Authorities).WithMany(authority => authority.MenuLeaves).UsingEntity(map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}Menu_Authority"));
+            //配置菜单树形结构关系
+            builder
+                .HasOne(menu => menu.ParentNode)
+                .WithMany(menu => menu.SubNodes)
+                .HasForeignKey("ParentNode_Id");
+
+            //配置菜单/权限多对多关系
+            builder
+                .HasMany(menu => menu.Authorities)
+                .WithMany(authority => authority.MenuLeaves)
+                .UsingEntity<Dictionary<string, object>>("Menu_Authority",
+                    x => x.HasOne<Authority>().WithMany().HasForeignKey("Authority_Id"),
+                    x => x.HasOne<Menu>().WithMany().HasForeignKey("Menu_Id"),
+                    map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}Menu_Authority"));
 
             //设置信息系统编号长度
             builder.Property(menu => menu.SystemNo).HasMaxLength(16);

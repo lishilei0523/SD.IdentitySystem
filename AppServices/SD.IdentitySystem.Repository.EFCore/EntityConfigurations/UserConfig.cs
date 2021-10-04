@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using SD.IdentitySystem.Domain.Entities;
 using SD.Infrastructure;
+using System.Collections.Generic;
 
 namespace SD.IdentitySystem.Repository.EntityConfigurations
 {
@@ -15,7 +16,14 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            builder.HasMany(user => user.Roles).WithMany(role => role.Users).UsingEntity(map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}User_Role"));
+            //配置用户/角色多对多关系
+            builder
+                .HasMany(user => user.Roles)
+                .WithMany(role => role.Users)
+                .UsingEntity<Dictionary<string, object>>("User_Role",
+                    x => x.HasOne<Role>().WithMany().HasForeignKey("Role_Id"),
+                    x => x.HasOne<User>().WithMany().HasForeignKey("User_Id"),
+                    map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}User_Role"));
 
             //设置编号长度
             builder.Property(user => user.Number).HasMaxLength(20);

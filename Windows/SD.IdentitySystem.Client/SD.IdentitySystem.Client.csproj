@@ -36,7 +36,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
     <PackageReference Include="Caliburn.Micro" Version="4.0.173" />
     <PackageReference Include="MahApps.Metro" Version="2.4.7" />
-    <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.9.0" />
+    <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.10.0" />
     <PackageReference Include="FluentWPF" Version="0.10.1" />
     <PackageReference Include="Kino.Toolkit.Wpf" Version="1.5.0" />
     <PackageReference Include="BusyIndicator" Version="1.7.0" />
@@ -47,7 +47,7 @@
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
     <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.0.3" />
-    <PackageReference Include="SD.Infrastructure" Version="3.0.7" />
+    <PackageReference Include="SD.Infrastructure" Version="3.1.0" />
     <PackageReference Include="SD.Infrastructure.WPF" Version="1.0.3" />
     <PackageReference Include="SD.Infrastructure.WPF.Caliburn" Version="1.0.1" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.1" />
