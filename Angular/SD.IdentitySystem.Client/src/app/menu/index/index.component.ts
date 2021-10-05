@@ -227,7 +227,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
     public async relateAuthorities(menu: Menu): Promise<void> {
         this._modalService.create({
             nzTitle: "关联权限",
-            nzWidth: "500px",
+            nzWidth: "550px",
             nzBodyStyle: {
                 padding: "0",
                 height: "580px"

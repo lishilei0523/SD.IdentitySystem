@@ -119,7 +119,7 @@ export class AuthorityService {
         let params = new HttpParams()
             .set("keywords", keywords ? keywords : "")
             .set("systemNo", systemNo ? systemNo : "")
-            .set("applicationType", applicationType ? applicationType.toString() : "")
+            .set("applicationType", applicationType == null ? "" : applicationType.toString())
             .set("menuId", menuId ? menuId : "")
             .set("roleId", roleId ? roleId : "");
 
@@ -142,7 +142,7 @@ export class AuthorityService {
         let params = new HttpParams()
             .set("keywords", keywords ? keywords : "")
             .set("systemNo", systemNo ? systemNo : "")
-            .set("applicationType", applicationType ? applicationType.toString() : "")
+            .set("applicationType", applicationType == null ? "" : applicationType.toString())
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());
 

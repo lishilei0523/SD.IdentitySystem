@@ -25,7 +25,7 @@ export class RelateAuthorityComponent extends ComponentBase implements OnInit {
     private readonly _menuService: MenuService;
 
     /**
-     * 创建菜单修改组件构造器
+     * 创建菜单关联权限组件构造器
      * */
     public constructor(modalRef: NzModalRef, authorityService: AuthorityService, menuService: MenuService) {
         super();
