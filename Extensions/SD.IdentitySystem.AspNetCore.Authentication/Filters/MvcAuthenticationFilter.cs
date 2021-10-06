@@ -32,7 +32,7 @@ namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
                 return;
             }
 
-            bool needAuthorize = AspNetSection.Setting.Authorized;
+            bool needAuthorize = AspNetSetting.Authorized;
             bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
             bool existsSession = OwinContextReader.Current.Session.TryGetValue(SessionKey.CurrentUser, out _);
             if (needAuthorize && !allowAnonymous && !existsSession)

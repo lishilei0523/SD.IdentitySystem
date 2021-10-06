@@ -28,7 +28,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Middlewares
         /// </summary>
         public override Task Invoke(IOwinContext context)
         {
-            if (AspNetSection.Setting.Authorized)
+            if (AspNetSetting.Authorized)
             {
                 //读Header
                 string publicKey = context.Request.Headers.Get(SessionKey.CurrentPublicKey);

@@ -21,7 +21,7 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="3.1.8" />
     <PackageReference Include="Microsoft.Owin" Version="4.1.1" />
     <PackageReference Include="Topshelf" Version="4.2.1" />
-    <PackageReference Include="SD.Toolkits.AspNet" Version="1.0.4" />
+    <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.0" />
     <PackageReference Include="SD.Toolkits.Owin" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.Redis" Version="2.0.7" />
     <PackageReference Include="SD.Toolkits.WebApi" Version="1.1.3" />

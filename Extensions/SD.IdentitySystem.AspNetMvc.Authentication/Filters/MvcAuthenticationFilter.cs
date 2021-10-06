@@ -21,7 +21,7 @@ namespace SD.IdentitySystem.AspNetMvc.Authentication.Filters
         /// </summary>
         public void OnAuthorization(AuthorizationContext context)
         {
-            bool needAuthorize = AspNetSection.Setting.Authorized;
+            bool needAuthorize = AspNetSetting.Authorized;
             bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
             bool existsSession = HttpContext.Current.Session[SessionKey.CurrentUser] != null;
             if (needAuthorize && !allowAnonymous && !existsSession)

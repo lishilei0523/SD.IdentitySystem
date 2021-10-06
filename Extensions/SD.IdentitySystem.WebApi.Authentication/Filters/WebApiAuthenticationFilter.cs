@@ -49,7 +49,7 @@ namespace SD.IdentitySystem.WebApi.Authentication.Filters
         /// </summary>
         public async Task<HttpResponseMessage> ExecuteAuthorizationFilterAsync(HttpActionContext context, CancellationToken cancellationToken, Func<Task<HttpResponseMessage>> continuation)
         {
-            if (AspNetSection.Setting.Authorized && !this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor))
+            if (AspNetSetting.Authorized && !this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor))
             {
                 if (!context.Request.Headers.TryGetValues(SessionKey.CurrentPublicKey, out IEnumerable<string> headers))
                 {

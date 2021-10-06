@@ -32,7 +32,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Middlewares
         /// </summary>
         public async Task Invoke(HttpContext context)
         {
-            if (AspNetSection.Setting.Authorized)
+            if (AspNetSetting.Authorized)
             {
                 //读Header
                 string publicKey = context.Request.Headers[SessionKey.CurrentPublicKey];

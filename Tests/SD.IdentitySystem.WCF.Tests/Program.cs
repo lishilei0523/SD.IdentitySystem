@@ -7,7 +7,7 @@ using SD.IOC.Core.Mediators;
 using SD.IOC.Extension.NetFx;
 using System;
 
-namespace SD.IdentitySystem.WCFClient.Tests
+namespace SD.IdentitySystem.WCF.Tests
 {
     class Program
     {
@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.WCFClient.Tests
         static void Main()
         {
             //初始化容器
-            InitContainer();
+            Program.InitContainer();
 
             //伪造一个登录信息
             IAuthenticationContract authenticationContract = ResolveMediator.Resolve<IAuthenticationContract>();

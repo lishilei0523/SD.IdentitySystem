@@ -1,6 +1,5 @@
 ﻿using Microsoft.Owin.Hosting;
 using SD.Toolkits.AspNet;
-using SD.Toolkits.AspNet.Configurations;
 using System;
 
 namespace SD.IdentitySystem.WebApi.Tests
@@ -18,10 +17,10 @@ namespace SD.IdentitySystem.WebApi.Tests
         public void Start()
         {
             StartOptions startOptions = new StartOptions();
-            foreach (HostElement host in AspNetSection.Setting.HostElements)
+            foreach (string url in AspNetSetting.OwinUrls)
             {
-                startOptions.Urls.Add(host.Url);
-                Console.WriteLine($"Listening: {host.Url}");
+                Console.WriteLine($"Listening: {url}");
+                startOptions.Urls.Add(url);
             }
 
             //开启服务

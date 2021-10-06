@@ -24,7 +24,7 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
         public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(TRequest request, ServerCallContext context, UnaryServerMethod<TRequest, TResponse> continuation)
         {
             Endpoint endpoint = OwinContextReader.Current.GetEndpoint();
-            bool needAuthorize = AspNetSection.Setting.Authorized;
+            bool needAuthorize = AspNetSetting.Authorized;
             bool allowAnonymous = endpoint.Metadata.GetMetadata<AllowAnonymousAttribute>() != null;
             if (needAuthorize && !allowAnonymous)
             {

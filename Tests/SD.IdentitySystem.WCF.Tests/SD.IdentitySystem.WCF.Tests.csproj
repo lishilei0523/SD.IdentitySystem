@@ -25,7 +25,7 @@
 
   <ItemGroup>
     <ProjectReference Include="..\SD.IdentitySystem.StubWCF.Client\SD.IdentitySystem.StubWCF.Client.csproj" />
-    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication.Windows\SD.IdentitySystem.WCF.Authentication.Windows.csproj" />
     <ProjectReference Include="..\SD.IdentitySystem.StubWCF.IAppService\SD.IdentitySystem.StubWCF.IAppService.csproj" />
+    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication.Windows\SD.IdentitySystem.WCF.Authentication.Windows.csproj" />
   </ItemGroup>
 </Project>

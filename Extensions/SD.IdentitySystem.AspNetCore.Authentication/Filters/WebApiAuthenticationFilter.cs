@@ -41,7 +41,7 @@ namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
             if (context.ActionDescriptor is ControllerActionDescriptor actionDescriptor &&
                 actionDescriptor.ControllerTypeInfo.IsDefined(typeof(ApiControllerAttribute), true))
             {
-                bool needAuthorize = AspNetSection.Setting.Authorized;
+                bool needAuthorize = AspNetSetting.Authorized;
                 bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
                 if (needAuthorize && !allowAnonymous)
                 {

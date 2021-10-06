@@ -4,7 +4,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using System;
 
-namespace SD.IdentitySystem.WCFClient.Tests.Stubs
+namespace SD.IdentitySystem.WCF.Tests.Stubs
 {
     /// <summary>
     /// Stub身份认证服务契约实现
