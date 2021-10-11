@@ -2,6 +2,7 @@
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Repository.EntityFramework;
+using SD.Toolkits.EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,14 +29,22 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>用户列表</returns>
         public ICollection<User> FindByPage(string keywords, string systemNo, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
-            Expression<Func<User, bool>> condition =
-                x =>
+            QueryBuilder<User> queryBuilder = new QueryBuilder<User>(x => x.Number != CommonConstants.AdminLoginId);
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                queryBuilder.And(x => x.Keywords.Contains(keywords));
+            }
+            if (!string.IsNullOrWhiteSpace(systemNo))
+            {
+                queryBuilder.And(x => x.Roles.Any(y => y.SystemNo == systemNo));
+            }
+            if (roleId.HasValue)
+            {
+                Guid roleId_ = roleId.Value;
+                queryBuilder.And(x => x.Roles.Any(y => y.Id == roleId_));
+            }
 
-                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
-                    (string.IsNullOrEmpty(systemNo) || x.Roles.Any(y => y.SystemNo == systemNo)) &&
-                    (roleId == null || x.Roles.Any(y => y.Id == roleId)) &&
-                    (x.Number != CommonConstants.AdminLoginId);
-
+            Expression<Func<User, bool>> condition = queryBuilder.Build();
             IQueryable<User> users = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
 
             return users.ToList();

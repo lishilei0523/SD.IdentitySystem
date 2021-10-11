@@ -2,7 +2,7 @@
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Repository.EntityFramework;
-using SD.Infrastructure.RepositoryBase;
+using SD.Toolkits.EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,23 +29,23 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>菜单列表</returns>
         public ICollection<Menu> FindByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
-            IQueryable<Menu> menus = base.FindAllInner();
-
+            QueryBuilder<Menu> queryBuilder = QueryBuilder<Menu>.Affirm();
             if (!string.IsNullOrWhiteSpace(keywords))
             {
-                menus = menus.Where(x => x.Keywords.Contains(keywords));
+                queryBuilder.And(x => x.Keywords.Contains(keywords));
             }
             if (!string.IsNullOrWhiteSpace(systemNo))
             {
-                menus = menus.Where(x => x.SystemNo == systemNo);
+                queryBuilder.And(x => x.SystemNo == systemNo);
             }
             if (applicationType != null)
             {
-                menus = menus.Where(x => x.ApplicationType == applicationType || x.ApplicationType == ApplicationType.Complex);
+                ApplicationType applicationType_ = applicationType.Value;
+                queryBuilder.And(x => x.ApplicationType == applicationType_ || x.ApplicationType == ApplicationType.Complex);
             }
 
-            IOrderedQueryable<Menu> orderedMenus = menus.OrderByDescending(x => x.AddedTime);
-            menus = orderedMenus.ToPage(pageIndex, pageSize, out rowCount, out pageCount);
+            Expression<Func<Menu, bool>> condition = queryBuilder.Build();
+            IQueryable<Menu> menus = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
 
             return menus.ToList();
         }
@@ -60,16 +60,19 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>菜单列表</returns>
         public ICollection<Menu> FindBySystem(string systemNo, ApplicationType? applicationType)
         {
-            IQueryable<Menu> menus = base.FindAllInner();
-
-            if (!string.IsNullOrEmpty(systemNo))
+            QueryBuilder<Menu> queryBuilder = QueryBuilder<Menu>.Affirm();
+            if (!string.IsNullOrWhiteSpace(systemNo))
             {
-                menus = menus.Where(x => x.SystemNo == systemNo);
+                queryBuilder.And(x => x.SystemNo == systemNo);
             }
             if (applicationType != null)
             {
-                menus = menus.Where(x => x.ApplicationType == applicationType || x.ApplicationType == ApplicationType.Complex);
+                ApplicationType applicationType_ = applicationType.Value;
+                queryBuilder.And(x => x.ApplicationType == applicationType_ || x.ApplicationType == ApplicationType.Complex);
             }
+
+            Expression<Func<Menu, bool>> condition = queryBuilder.Build();
+            IQueryable<Menu> menus = base.Find(condition).OrderBy(x => x.Sort);
 
             return menus.ToList();
         }
@@ -84,32 +87,43 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>菜单列表</returns>
         public ICollection<Menu> FindByAuthority(IEnumerable<Guid> authorityIds, ApplicationType? applicationType)
         {
-            Expression<Func<Menu, bool>> condition =
-                x =>
-                    (x.Authorities.Any(y => authorityIds.Contains(y.Id))) &&
-                    (applicationType == null || x.ApplicationType == applicationType);
+            Guid[] authorityIds_ = authorityIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
 
-            return base.Find(condition).ToList();
+            QueryBuilder<Menu> queryBuilder = QueryBuilder<Menu>.Affirm();
+            if (authorityIds_.Any())
+            {
+                queryBuilder.And(x => x.Authorities.Any(y => authorityIds_.Contains(y.Id)));
+            }
+            if (applicationType != null)
+            {
+                ApplicationType applicationType_ = applicationType.Value;
+                queryBuilder.And(x => x.ApplicationType == applicationType_);
+            }
+
+            Expression<Func<Menu, bool>> condition = queryBuilder.Build();
+            IQueryable<Menu> menus = base.Find(condition).OrderBy(x => x.Sort);
+
+            return menus.ToList();
         }
         #endregion
 
-        #region # 是否存在菜单 —— bool Exists(Guid? parentId, ApplicationType applicationType...
+        #region # 是否存在菜单 —— bool Exists(Guid? parentNodeId, ApplicationType applicationType...
         /// <summary>
         /// 是否存在菜单
         /// </summary>
-        /// <param name="parentId">上级菜单Id</param>
+        /// <param name="parentNodeId">上级节点Id</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
         /// <returns>是否存在</returns>
-        public bool Exists(Guid? parentId, ApplicationType applicationType, string menuName)
+        public bool Exists(Guid? parentNodeId, ApplicationType applicationType, string menuName)
         {
             Expression<Func<Menu, bool>> condition;
-
-            if (parentId == null)
+            if (parentNodeId.HasValue)
             {
+                Guid parentNodeId_ = parentNodeId.Value;
                 condition =
                     x =>
-                        x.IsRoot &&
+                        x.ParentNode.Id == parentNodeId_ &&
                         x.ApplicationType == applicationType &&
                         x.Name == menuName;
             }
@@ -117,7 +131,7 @@ namespace SD.IdentitySystem.Repository.Implements
             {
                 condition =
                     x =>
-                        x.ParentNode.Id == parentId &&
+                        x.IsRoot &&
                         x.ApplicationType == applicationType &&
                         x.Name == menuName;
             }

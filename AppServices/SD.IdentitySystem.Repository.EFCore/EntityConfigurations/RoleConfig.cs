@@ -16,7 +16,11 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public void Configure(EntityTypeBuilder<Role> builder)
         {
-            //配置角色/权限多对多关系
+            //配置属性
+            builder.Property(role => role.Name).IsRequired().HasMaxLength(32);
+            builder.Property(role => role.SystemNo).IsRequired().HasMaxLength(16);
+
+            //配置中间表
             builder
                 .HasMany(role => role.Authorities)
                 .WithMany(authority => authority.Roles)
@@ -25,10 +29,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
                     x => x.HasOne<Role>().WithMany().HasForeignKey("Role_Id"),
                     map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}Role_Authority"));
 
-            //设置信息系统编号长度
-            builder.Property(role => role.SystemNo).HasMaxLength(16);
-
-            //设置索引
+            //配置索引
             builder.HasIndex(role => role.SystemNo).HasDatabaseName("IX_SystemNo");
         }
     }

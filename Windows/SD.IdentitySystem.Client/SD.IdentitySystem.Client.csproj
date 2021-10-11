@@ -23,6 +23,11 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="E:\Packages\nuget\cache\busyindicator\1.8.0\contentFiles\any\net45\Icon.ico" />
+    <Content Remove="E:\Packages\nuget\cache\busyindicator\1.8.0\contentFiles\any\net45\Icon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Resource Include="Content\Images\banner.gif" />
     <Resource Include="favicon.ico" />
   </ItemGroup>
@@ -37,9 +42,9 @@
     <PackageReference Include="Caliburn.Micro" Version="4.0.173" />
     <PackageReference Include="MahApps.Metro" Version="2.4.7" />
     <PackageReference Include="MahApps.Metro.IconPacks.MaterialDesign" Version="4.10.0" />
-    <PackageReference Include="FluentWPF" Version="0.10.1" />
+    <PackageReference Include="FluentWPF" Version="0.10.2" />
     <PackageReference Include="Kino.Toolkit.Wpf" Version="1.5.0" />
-    <PackageReference Include="BusyIndicator" Version="1.7.0" />
+    <PackageReference Include="BusyIndicator" Version="1.8.0" />
     <PackageReference Include="Autoupdater.NET.Official" Version="1.7.0" />
     <PackageReference Include="MrAdvice" Version="2.8.11" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
@@ -47,7 +52,7 @@
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
     <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.0.3" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.1.1" />
     <PackageReference Include="SD.Infrastructure.WPF" Version="1.0.3" />
     <PackageReference Include="SD.Infrastructure.WPF.Caliburn" Version="1.0.1" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.1" />

@@ -46,15 +46,15 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         ICollection<Menu> FindByAuthority(IEnumerable<Guid> authorityIds, ApplicationType? applicationType);
         #endregion
 
-        #region # 是否存在菜单 —— bool Exists(Guid? parentId, ApplicationType applicationType...
+        #region # 是否存在菜单 —— bool Exists(Guid? parentNodeId, ApplicationType applicationType...
         /// <summary>
         /// 是否存在菜单
         /// </summary>
-        /// <param name="parentId">上级菜单Id</param>
+        /// <param name="parentNodeId">上级节点Id</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
         /// <returns>是否存在</returns>
-        bool Exists(Guid? parentId, ApplicationType applicationType, string menuName);
+        bool Exists(Guid? parentNodeId, ApplicationType applicationType, string menuName);
         #endregion
     }
 }

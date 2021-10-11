@@ -31,7 +31,8 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>信息系统字典</returns>
         public IDictionary<string, InfoSystem> FindDictionary()
         {
-            IDictionary<string, InfoSystem> dictionary = this.FindAll().ToDictionary(x => x.Number, x => x);
+            IQueryable<InfoSystem> infoSystems = base.FindAllInner();
+            IDictionary<string, InfoSystem> dictionary = infoSystems.ToDictionary(x => x.Number, x => x);
 
             return dictionary;
         }

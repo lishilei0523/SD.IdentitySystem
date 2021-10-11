@@ -2,6 +2,7 @@
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Repository.EntityFramework;
+using SD.Toolkits.EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,12 +29,22 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>权限列表</returns>
         public ICollection<Authority> FindByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
-            Expression<Func<Authority, bool>> condition =
-                x =>
-                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
-                    (string.IsNullOrEmpty(systemNo) || x.SystemNo == systemNo) &&
-                    (applicationType == null || x.ApplicationType == applicationType);
+            QueryBuilder<Authority> queryBuilder = QueryBuilder<Authority>.Affirm();
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                queryBuilder.And(x => x.Keywords.Contains(keywords));
+            }
+            if (!string.IsNullOrWhiteSpace(systemNo))
+            {
+                queryBuilder.And(x => x.SystemNo == systemNo);
+            }
+            if (applicationType.HasValue)
+            {
+                ApplicationType applicationType_ = applicationType.Value;
+                queryBuilder.And(x => x.ApplicationType == applicationType_);
+            }
 
+            Expression<Func<Authority, bool>> condition = queryBuilder.Build();
             IQueryable<Authority> authorities = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
 
             return authorities.ToList();
@@ -52,24 +63,33 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>权限列表</returns>
         public ICollection<Authority> Find(string keywords, string systemNo, ApplicationType? applicationType, Guid? menuId, Guid? roleId)
         {
-            IQueryable<Authority> authorities = base.Find(x => string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords));
-
+            QueryBuilder<Authority> queryBuilder = QueryBuilder<Authority>.Affirm();
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                queryBuilder.And(x => x.Keywords.Contains(keywords));
+            }
             if (!string.IsNullOrWhiteSpace(systemNo))
             {
-                authorities = authorities.Where(x => x.SystemNo == systemNo);
+                queryBuilder.And(x => x.SystemNo == systemNo);
             }
             if (applicationType.HasValue)
             {
-                authorities = authorities.Where(x => x.ApplicationType == applicationType);
+                ApplicationType applicationType_ = applicationType.Value;
+                queryBuilder.And(x => x.ApplicationType == applicationType_);
             }
             if (menuId.HasValue)
             {
-                authorities = authorities.Where(x => x.MenuLeaves.Any(y => y.Id == menuId));
+                Guid menuId_ = menuId.Value;
+                queryBuilder.And(x => x.MenuLeaves.Any(y => y.Id == menuId_));
             }
             if (roleId.HasValue)
             {
-                authorities = authorities.Where(x => x.Roles.Any(y => y.Id == roleId));
+                Guid roleId_ = roleId.Value;
+                queryBuilder.And(x => x.Roles.Any(y => y.Id == roleId_));
             }
+
+            Expression<Func<Authority, bool>> condition = queryBuilder.Build();
+            IQueryable<Authority> authorities = base.Find(condition);
 
             return authorities.ToList();
         }
@@ -85,7 +105,7 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             #region # 验证
 
-            Guid[] roleIds_ = roleIds?.Distinct().ToArray() ?? new Guid[0];
+            Guid[] roleIds_ = roleIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
             if (!roleIds_.Any())
             {
                 return new List<Authority>();
@@ -113,7 +133,7 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             #region # 验证
 
-            Guid[] roleIds_ = roleIds?.Distinct().ToArray() ?? new Guid[0];
+            Guid[] roleIds_ = roleIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
             if (!roleIds_.Any())
             {
                 return new List<Guid>();

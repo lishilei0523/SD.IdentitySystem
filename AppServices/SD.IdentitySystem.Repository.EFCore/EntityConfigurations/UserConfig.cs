@@ -16,7 +16,12 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public void Configure(EntityTypeBuilder<User> builder)
         {
-            //配置用户/角色多对多关系
+            //配置属性
+            builder.Property(user => user.Number).IsRequired().HasMaxLength(20);
+            builder.Property(user => user.Password).IsRequired().HasMaxLength(32);
+            builder.Property(user => user.PrivateKey).IsRequired().HasMaxLength(64);
+
+            //配置中间表
             builder
                 .HasMany(user => user.Roles)
                 .WithMany(role => role.Users)
@@ -25,11 +30,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
                     x => x.HasOne<User>().WithMany().HasForeignKey("User_Id"),
                     map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}User_Role"));
 
-            //设置编号长度
-            builder.Property(user => user.Number).HasMaxLength(20);
-            builder.Property(user => user.PrivateKey).HasMaxLength(64);
-
-            //设置索引
+            //配置索引
             builder.HasIndex(user => user.Number).HasDatabaseName("IX_Number").IsUnique();
             builder.HasIndex(user => user.PrivateKey).HasDatabaseName("IX_PrivateKey").IsUnique();
         }

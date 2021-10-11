@@ -13,6 +13,7 @@ using System.Linq;
 using SD.Infrastructure;
 #if NET461_OR_GREATER
 using System.ServiceModel;
+using System.ServiceModel.Channels;
 #endif
 #if NETSTANDARD2_0_OR_GREATER
 using CoreWCF;
@@ -203,7 +204,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             //获取客户端IP
             string ip = "localhost";
-#if NETFX
+#if NET461_OR_GREATER
             if (OperationContext.Current != null)
             {
                 MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
@@ -215,7 +216,7 @@ namespace SD.IdentitySystem.AppService.Implements
                 }
             }
 #endif
-#if NETCORE
+#if NETSTANDARD2_0_OR_GREATER
             if (OwinContextReader.Current != null)
             {
                 ip = OwinContextReader.Current.Connection.RemoteIpAddress.ToString();

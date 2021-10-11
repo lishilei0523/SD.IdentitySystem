@@ -1,6 +1,7 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.Infrastructure.Repository.EntityFramework;
+using SD.Toolkits.EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -27,12 +28,23 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>用户登录记录列表</returns>
         public ICollection<LoginRecord> FindByPage(string keywords, DateTime? startTime, DateTime? endTime, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
-            Expression<Func<LoginRecord, bool>> condition =
-                x =>
-                    (string.IsNullOrEmpty(keywords) || x.Keywords.Contains(keywords)) &&
-                    (startTime == null || x.AddedTime >= startTime) &&
-                    (endTime == null || x.AddedTime <= endTime);
+            QueryBuilder<LoginRecord> queryBuilder = QueryBuilder<LoginRecord>.Affirm();
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                queryBuilder.And(x => x.Keywords.Contains(keywords));
+            }
+            if (startTime.HasValue)
+            {
+                DateTime startTime_ = startTime.Value;
+                queryBuilder.And(x => x.AddedTime >= startTime_);
+            }
+            if (endTime.HasValue)
+            {
+                DateTime endTime_ = endTime.Value;
+                queryBuilder.And(x => x.AddedTime <= endTime_);
+            }
 
+            Expression<Func<LoginRecord, bool>> condition = queryBuilder.Build();
             IQueryable<LoginRecord> loginRecords = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
 
             return loginRecords.ToList();

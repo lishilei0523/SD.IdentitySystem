@@ -84,7 +84,7 @@
     <PackageReference Include="SD.IOC.Integration.AspNetMvc" Version="1.0.0" />
     <PackageReference Include="SD.AOP.Core" Version="2.1.1" />
     <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.1.1" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.4" />
     <PackageReference Include="SD.Infrastructure.AspNetMvc" Version="1.0.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.1" />

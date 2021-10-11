@@ -14,10 +14,12 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public void Configure(EntityTypeBuilder<Authority> builder)
         {
-            //设置信息系统编号长度
-            builder.Property(authority => authority.SystemNo).HasMaxLength(16);
+            //配置属性
+            builder.Property(authority => authority.Name).IsRequired().HasMaxLength(64);
+            builder.Property(authority => authority.AuthorityPath).IsRequired().HasMaxLength(256);
+            builder.Property(authority => authority.SystemNo).IsRequired().HasMaxLength(16);
 
-            //设置索引
+            //配置索引
             builder.HasIndex(authority => authority.SystemNo).HasDatabaseName("IX_SystemNo");
         }
     }

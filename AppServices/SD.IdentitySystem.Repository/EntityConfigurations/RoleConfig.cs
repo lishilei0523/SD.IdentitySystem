@@ -15,12 +15,14 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public RoleConfig()
         {
+            //配置属性
+            this.Property(role => role.Name).IsRequired().HasMaxLength(32);
+            this.Property(role => role.SystemNo).IsRequired().HasMaxLength(16);
+
+            //配置中间表
             this.HasMany(role => role.Authorities).WithMany(authority => authority.Roles).Map(map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}Role_Authority"));
 
-            //设置信息系统编号长度
-            this.Property(role => role.SystemNo).HasMaxLength(16);
-
-            //设置索引
+            //配置索引
             this.HasIndex("IX_SystemNo", IndexType.Nonclustered, table => table.Property(role => role.SystemNo));
         }
     }

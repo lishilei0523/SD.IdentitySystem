@@ -39,7 +39,7 @@ namespace SD.IdentitySystem.Domain.Entities
         public User(string loginId, string realName, string password)
             : this()
         {
-            #region # 验证参数
+            #region # 验证
 
             if (string.IsNullOrWhiteSpace(password))
             {
@@ -209,7 +209,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="roles">角色集</param>
         public void RelateRoles(IEnumerable<Role> roles)
         {
-            roles = roles?.ToArray() ?? new Role[0];
+            roles = roles?.ToArray() ?? Array.Empty<Role>();
 
             this.ClearRoleRelations();
             if (roles.Any())
@@ -228,7 +228,7 @@ namespace SD.IdentitySystem.Domain.Entities
         {
             #region # 验证
 
-            roles = roles?.ToArray() ?? new Role[0];
+            roles = roles?.ToArray() ?? Array.Empty<Role>();
             if (!roles.Any())
             {
                 throw new ArgumentNullException(nameof(roles), @"要追加的角色不可为空！");
@@ -244,9 +244,9 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 清空角色关系 —— void ClearRoleRelations()
+        #region 清空角色 —— void ClearRoleRelations()
         /// <summary>
-        /// 清空角色关系
+        /// 清空角色
         /// </summary>
         public void ClearRoleRelations()
         {

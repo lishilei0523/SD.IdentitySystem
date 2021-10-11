@@ -15,13 +15,15 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         /// </summary>
         public UserConfig()
         {
+            //配置属性
+            this.Property(user => user.Number).IsRequired().HasMaxLength(20);
+            this.Property(user => user.Password).IsRequired().HasMaxLength(32);
+            this.Property(user => user.PrivateKey).IsRequired().HasMaxLength(64);
+
+            //配置中间表
             this.HasMany(user => user.Roles).WithMany(role => role.Users).Map(map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}User_Role"));
 
-            //设置编号长度
-            this.Property(user => user.Number).HasMaxLength(20);
-            this.Property(user => user.PrivateKey).HasMaxLength(64);
-
-            //设置索引
+            //配置索引
             this.HasIndex("IX_Number", IndexType.Unique, table => table.Property(user => user.Number));
             this.HasIndex("IX_PrivateKey", IndexType.Unique, table => table.Property(user => user.PrivateKey));
         }
