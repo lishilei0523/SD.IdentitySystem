@@ -10,7 +10,7 @@ namespace SD.IdentitySystem.DomainService.Implements
     /// </summary>
     public class RoleService : IRoleService
     {
-        #region # 字段及依赖注入构造器
+        #region # 字段及构造器
 
         /// <summary>
         /// 仓储中介者
@@ -20,7 +20,6 @@ namespace SD.IdentitySystem.DomainService.Implements
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="repMediator">仓储中介者</param>
         public RoleService(RepositoryMediator repMediator)
         {
             this._repMediator = repMediator;
@@ -43,9 +42,8 @@ namespace SD.IdentitySystem.DomainService.Implements
                 return this._repMediator.RoleRep.Exists(systemNo, roleName);
             }
 
-            Role currentRole = this._repMediator.RoleRep.Single(roleId.Value);
-
-            if (currentRole.Name != roleName)
+            Role role = this._repMediator.RoleRep.Single(roleId.Value);
+            if (role.Name != roleName)
             {
                 return this._repMediator.RoleRep.Exists(systemNo, roleName);
             }

@@ -17,8 +17,6 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <summary>
         /// 信息系统映射
         /// </summary>
-        /// <param name="infoSystem">信息系统领域模型</param>
-        /// <returns>信息系统数据传输对象</returns>
         public static InfoSystemInfo ToDTO(this InfoSystem infoSystem)
         {
             InfoSystemInfo systemInfo = infoSystem.Map<InfoSystem, InfoSystemInfo>();
@@ -41,9 +39,6 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <summary>
         /// 菜单映射
         /// </summary>
-        /// <param name="menu">菜单领域模型</param>
-        /// <param name="systemInfos">信息系统数据传输对象字典</param>
-        /// <returns>菜单数据传输对象</returns>
         public static MenuInfo ToDTO(this Menu menu, IDictionary<string, InfoSystemInfo> systemInfos)
         {
             MenuInfo menuInfo = menu.Map<Menu, MenuInfo>();
@@ -82,7 +77,7 @@ namespace SD.IdentitySystem.AppService.Maps
         public static ICollection<LoginMenuInfo> ToLoginMenuInfoTree(this IEnumerable<Menu> menus, Guid? parentId)
         {
             //验证
-            menus = menus?.ToArray() ?? new Menu[0];
+            menus = menus?.ToArray() ?? Array.Empty<Menu>();
 
             //声明容器
             ICollection<LoginMenuInfo> loginMenuInfos = new HashSet<LoginMenuInfo>();
@@ -117,9 +112,6 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <summary>
         /// 权限映射
         /// </summary>
-        /// <param name="authority">权限领域模型</param>
-        /// <param name="systemInfos">信息系统数据传输对象字典</param>
-        /// <returns>权限数据传输对象</returns>
         public static AuthorityInfo ToDTO(this Authority authority, IDictionary<string, InfoSystemInfo> systemInfos)
         {
             AuthorityInfo authorityInfo = authority.Map<Authority, AuthorityInfo>();
@@ -143,9 +135,6 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <summary>
         /// 角色映射
         /// </summary>
-        /// <param name="role">角色领域模型</param>
-        /// <param name="systemInfos">信息系统数据传输对象字典</param>
-        /// <returns>角色数据传输对象</returns>
         public static RoleInfo ToDTO(this Role role, IDictionary<string, InfoSystemInfo> systemInfos)
         {
             RoleInfo roleInfo = role.Map<Role, RoleInfo>();

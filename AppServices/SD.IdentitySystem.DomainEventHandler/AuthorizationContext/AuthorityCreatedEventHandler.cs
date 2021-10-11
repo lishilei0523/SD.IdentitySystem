@@ -1,9 +1,9 @@
-﻿using System;
-using SD.IdentitySystem.Domain.Entities;
+﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.Infrastructure.EventBase;
+using System;
 
 namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
 {
@@ -17,12 +17,7 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
     /// </remarks>
     public class AuthorityCreatedEventHandler : IEventHandler<AuthorityCreatedEvent>
     {
-        #region # 字段及依赖注入构造器
-
-        /// <summary>
-        /// 领域服务中介者
-        /// </summary>
-        private readonly DomainServiceMediator _svcMediator;
+        #region # 字段及构造器
 
         /// <summary>
         /// 仓储中介者
@@ -37,12 +32,8 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="svcMediator">领域服务中介者</param>
-        /// <param name="repMediator">仓储中介者</param>
-        /// <param name="unitOfWork">单元事务</param>
-        public AuthorityCreatedEventHandler(DomainServiceMediator svcMediator, RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
+        public AuthorityCreatedEventHandler(RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
         {
-            this._svcMediator = svcMediator;
             this._repMediator = repMediator;
             this._unitOfWork = unitOfWork;
             this.Sort = uint.MaxValue;
@@ -76,12 +67,12 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
         /// <param name="authorityId">权限Id</param>
         private void AppendAuthorities(string systemNo, Guid authorityId)
         {
-            Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
+            Authority authority = this._unitOfWork.Resolve<Authority>(authorityId);
 
             //为系统管理员角色追加权限
             Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(systemNo);
             Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
-            adminRole.AppendAuthorities(new[] { currentAuthority });
+            adminRole.AppendAuthorities(new[] { authority });
 
             //注册保存
             this._unitOfWork.RegisterSave(adminRole);

@@ -13,8 +13,6 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <summary>
         /// 用户映射
         /// </summary>
-        /// <param name="user">用户领域模型</param>
-        /// <returns>用户数据传输对象</returns>
         public static UserInfo ToDTO(this User user)
         {
             return user.Map<User, UserInfo>();
@@ -25,8 +23,6 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <summary>
         /// 登录记录映射
         /// </summary>
-        /// <param name="loginRecord">登录记录户领域模型</param>
-        /// <returns>登录记录数据传输对象</returns>
         public static LoginRecordInfo ToDTO(this LoginRecord loginRecord)
         {
             return loginRecord.Map<LoginRecord, LoginRecordInfo>();

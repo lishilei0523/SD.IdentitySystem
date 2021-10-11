@@ -82,10 +82,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="newPassword">新密码</param>
         public void UpdatePassword(string loginId, string oldPassword, string newPassword)
         {
-            User currentUser = this._unitOfWork.Resolve<User>(loginId);
-            currentUser.UpdatePassword(oldPassword, newPassword);
+            User user = this._unitOfWork.Resolve<User>(loginId);
+            user.UpdatePassword(oldPassword, newPassword);
 
-            this._unitOfWork.RegisterSave(currentUser);
+            this._unitOfWork.RegisterSave(user);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -98,10 +98,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="password">新密码</param>
         public void ResetPassword(string loginId, string password)
         {
-            User currentUser = this._unitOfWork.Resolve<User>(loginId);
-            currentUser.SetPassword(password);
+            User user = this._unitOfWork.Resolve<User>(loginId);
+            user.SetPassword(password);
 
-            this._unitOfWork.RegisterSave(currentUser);
+            this._unitOfWork.RegisterSave(user);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -114,20 +114,20 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="privateKey">私钥</param>
         public void SetPrivateKey(string loginId, string privateKey)
         {
-            User currentUser = this._unitOfWork.Resolve<User>(loginId);
+            User user = this._unitOfWork.Resolve<User>(loginId);
 
             #region # 验证
 
-            if (!string.IsNullOrWhiteSpace(privateKey) && currentUser.PrivateKey != privateKey)
+            if (!string.IsNullOrWhiteSpace(privateKey) && user.PrivateKey != privateKey)
             {
                 Assert.IsFalse(this._repMediator.UserRep.ExistsPrivateKey(null, privateKey), "私钥已存在！");
             }
 
             #endregion
 
-            currentUser.SetPrivateKey(privateKey);
+            user.SetPrivateKey(privateKey);
 
-            this._unitOfWork.RegisterSave(currentUser);
+            this._unitOfWork.RegisterSave(user);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -139,10 +139,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">用户名</param>
         public void EnableUser(string loginId)
         {
-            User currentUser = this._unitOfWork.Resolve<User>(loginId);
-            currentUser.Enable();
+            User user = this._unitOfWork.Resolve<User>(loginId);
+            user.Enable();
 
-            this._unitOfWork.RegisterSave(currentUser);
+            this._unitOfWork.RegisterSave(user);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -154,10 +154,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">用户名</param>
         public void DisableUser(string loginId)
         {
-            User currentUser = this._unitOfWork.Resolve<User>(loginId);
-            currentUser.Disable();
+            User user = this._unitOfWork.Resolve<User>(loginId);
+            user.Disable();
 
-            this._unitOfWork.RegisterSave(currentUser);
+            this._unitOfWork.RegisterSave(user);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -169,7 +169,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="loginId">用户名</param>
         public void RemoveUser(string loginId)
         {
-            User currentUser = this._unitOfWork.Resolve<User>(loginId);
+            User user = this._unitOfWork.Resolve<User>(loginId);
 
             #region # 验证
 
@@ -180,10 +180,10 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #endregion
 
-            //清空用户关系
-            currentUser.ClearRoleRelations();
+            //清空用户/角色关系
+            user.ClearRoleRelations();
 
-            this._unitOfWork.RegisterPhysicsRemove<User>(currentUser);
+            this._unitOfWork.RegisterPhysicsRemove(user);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -196,7 +196,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="roleIds">角色Id集</param>
         public void RelateRolesToUser(string loginId, IEnumerable<Guid> roleIds)
         {
-            roleIds = roleIds?.Distinct().ToArray() ?? new Guid[0];
+            roleIds = roleIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
 
             User user = this._unitOfWork.Resolve<User>(loginId);
             ICollection<Role> roles = this._unitOfWork.ResolveRange<Role>(roleIds);
@@ -216,7 +216,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="roleIds">角色Id集</param>
         public void AppendRolesToUser(string loginId, IEnumerable<Guid> roleIds)
         {
-            roleIds = roleIds?.Distinct().ToArray() ?? new Guid[0];
+            roleIds = roleIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
 
             User user = this._unitOfWork.Resolve<User>(loginId);
             ICollection<Role> roles = this._unitOfWork.ResolveRange<Role>(roleIds);
@@ -239,9 +239,9 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户</returns>
         public UserInfo GetUser(string loginId)
         {
-            User currentUser = this._repMediator.UserRep.SingleOrDefault(loginId);
+            User user = this._repMediator.UserRep.SingleOrDefault(loginId);
 
-            return currentUser.ToDTO();
+            return user.ToDTO();
         }
         #endregion
 
@@ -302,9 +302,9 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>信息系统列表</returns>
         public IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId)
         {
-            User currentUser = this._repMediator.UserRep.Single(loginId);
+            User user = this._repMediator.UserRep.Single(loginId);
 
-            ICollection<string> systemNos = currentUser.GetInfoSystemNos();
+            ICollection<string> systemNos = user.GetInfoSystemNos();
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
 
             return systems.Values.Select(x => x.ToDTO());

@@ -83,22 +83,22 @@ namespace SD.IdentitySystem.AppService.Implements
             lock (_Sync)
             {
                 //验证登录
-                User currentUser = this._repMediator.UserRep.SingleByPrivateKey(privateKey);
+                User user = this._repMediator.UserRep.SingleByPrivateKey(privateKey);
 
                 #region # 验证
 
-                if (currentUser == null)
+                if (user == null)
                 {
                     throw new InvalidOperationException("私钥不存在！");
                 }
-                if (!currentUser.Enabled)
+                if (!user.Enabled)
                 {
                     throw new InvalidOperationException("用户已停用！");
                 }
 
                 #endregion
 
-                LoginInfo loginInfo = this.BuildLoginInfo(currentUser);
+                LoginInfo loginInfo = this.BuildLoginInfo(user);
 
                 return loginInfo;
             }
@@ -131,26 +131,26 @@ namespace SD.IdentitySystem.AppService.Implements
             lock (_Sync)
             {
                 //验证登录
-                User currentUser = this._repMediator.UserRep.SingleOrDefault(loginId);
+                User user = this._repMediator.UserRep.SingleOrDefault(loginId);
 
                 #region # 验证
 
-                if (currentUser == null)
+                if (user == null)
                 {
                     throw new InvalidOperationException("用户不存在！");
                 }
-                if (!currentUser.Enabled)
+                if (!user.Enabled)
                 {
                     throw new InvalidOperationException("用户已停用！");
                 }
-                if (currentUser.Password != password.ToMD5())
+                if (user.Password != password.ToMD5())
                 {
                     throw new InvalidOperationException("登录失败，密码错误！");
                 }
 
                 #endregion
 
-                LoginInfo loginInfo = this.BuildLoginInfo(currentUser);
+                LoginInfo loginInfo = this.BuildLoginInfo(user);
 
                 return loginInfo;
             }

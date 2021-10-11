@@ -208,6 +208,7 @@ namespace SD.IdentitySystem.Domain.Entities
         {
             #region # 验证
 
+            authorities = authorities?.ToArray() ?? Array.Empty<Authority>();
             if (!this.IsLeaf)
             {
                 throw new InvalidOperationException("非叶子级菜单不可关联权限！");
@@ -215,19 +216,24 @@ namespace SD.IdentitySystem.Domain.Entities
 
             #endregion
 
-            //先清空
-            this.ClearAuthorityRelations();
-            foreach (Authority authority in authorities)
+            IList<Authority> toAddAuthorities = authorities.Except(this.Authorities).ToList();
+            IList<Authority> toRemoveAuthorities = this.Authorities.Except(authorities).ToList();
+            foreach (Authority authority in toAddAuthorities)
             {
                 this.Authorities.Add(authority);
                 authority.MenuLeaves.Add(this);
             }
+            foreach (Authority authority in toRemoveAuthorities)
+            {
+                this.Authorities.Remove(authority);
+                authority.MenuLeaves.Remove(this);
+            }
         }
         #endregion
 
-        #region 清空权限关联 —— void ClearAuthorityRelations()
+        #region 清空权限关系 —— void ClearAuthorityRelations()
         /// <summary>
-        /// 清空权限关联
+        /// 清空权限关系
         /// </summary>
         public void ClearAuthorityRelations()
         {

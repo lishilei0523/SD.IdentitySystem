@@ -110,10 +110,10 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #endregion
 
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(infoSystemId);
-            currentSystem.UpdateInfo(systemNo, systemName);
+            InfoSystem infoSystem = this._unitOfWork.Resolve<InfoSystem>(infoSystemId);
+            infoSystem.UpdateInfo(systemNo, systemName);
 
-            this._unitOfWork.RegisterSave(currentSystem);
+            this._unitOfWork.RegisterSave(infoSystem);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -128,10 +128,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="index">首页</param>
         public void InitInfoSystem(string systemNo, string host, int port, string index)
         {
-            InfoSystem currentSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
-            currentSystem.Init(host, port, index);
+            InfoSystem infoSystem = this._unitOfWork.Resolve<InfoSystem>(systemNo);
+            infoSystem.Init(host, port, index);
 
-            this._unitOfWork.RegisterSave(currentSystem);
+            this._unitOfWork.RegisterSave(infoSystem);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -143,7 +143,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="initParams">初始化信息系统参数模型集</param>
         public void InitInfoSystems(IEnumerable<InfoSystemParam> initParams)
         {
-            initParams = initParams?.ToArray() ?? new InfoSystemParam[0];
+            initParams = initParams?.ToArray() ?? Array.Empty<InfoSystemParam>();
             IDictionary<string, InfoSystemParam> paramDictionary = initParams.ToDictionary(x => x.SystemNo, x => x);
 
             ICollection<InfoSystem> infoSystems = this._unitOfWork.ResolveRange<InfoSystem>(paramDictionary.Keys);
@@ -253,10 +253,13 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="authorityId">权限Id</param>
         public void RemoveAuthority(Guid authorityId)
         {
-            Authority currentAuthority = this._unitOfWork.Resolve<Authority>(authorityId);
-            currentAuthority.ClearMenuRelations();
+            Authority authority = this._unitOfWork.Resolve<Authority>(authorityId);
 
-            this._unitOfWork.RegisterRemove<Authority>(currentAuthority);
+            //清空关系
+            authority.ClearRoleRelations();
+            authority.ClearMenuRelations();
+
+            this._unitOfWork.RegisterRemove(authority);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -304,21 +307,21 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="icon">图标</param>
         public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string path, string icon)
         {
-            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
+            Menu menu = this._unitOfWork.Resolve<Menu>(menuId);
 
-            #region # 验证参数
+            #region # 验证
 
-            if (menuName != currentMenu.Name)
+            if (menuName != menu.Name)
             {
-                Guid? parentId = currentMenu.ParentNode?.Id;
-                Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, currentMenu.ApplicationType, menuName), "给定菜单级别下，相同应用程序类型的菜单名称已存在！");
+                Guid? parentId = menu.ParentNode?.Id;
+                Assert.IsFalse(this._repMediator.MenuRep.Exists(parentId, menu.ApplicationType, menuName), "给定菜单级别下，相同应用程序类型的菜单名称已存在！");
             }
 
             #endregion
 
-            currentMenu.UpdateInfo(menuName, sort, url, path, icon);
+            menu.UpdateInfo(menuName, sort, url, path, icon);
 
-            this._unitOfWork.RegisterSave(currentMenu);
+            this._unitOfWork.RegisterSave(menu);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -331,17 +334,16 @@ namespace SD.IdentitySystem.AppService.Implements
         public void RemoveMenu(Guid menuId)
         {
             //递归删除
-            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
-
-            foreach (Menu subMenu in currentMenu.SubNodes.ToArray())
+            Menu menu = this._unitOfWork.Resolve<Menu>(menuId);
+            foreach (Menu subMenu in menu.SubNodes.ToArray())
             {
                 this.RemoveMenu(subMenu.Id);
             }
 
-            //清空关联
-            currentMenu.ClearAuthorityRelations();
+            //清空权限关系
+            menu.ClearAuthorityRelations();
 
-            this._unitOfWork.RegisterPhysicsRemove<Menu>(menuId);
+            this._unitOfWork.RegisterPhysicsRemove(menu);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -354,11 +356,11 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="authorityIds">权限Id集</param>
         public void RelateAuthoritiesToMenu(Guid menuId, IEnumerable<Guid> authorityIds)
         {
-            Menu currentMenu = this._unitOfWork.Resolve<Menu>(menuId);
+            Menu menu = this._unitOfWork.Resolve<Menu>(menuId);
 
             #region # 验证
 
-            if (!currentMenu.IsLeaf)
+            if (!menu.IsLeaf)
             {
                 throw new InvalidOperationException("非叶子级菜单不可关联权限！");
             }
@@ -366,9 +368,9 @@ namespace SD.IdentitySystem.AppService.Implements
             #endregion
 
             ICollection<Authority> authorities = this._unitOfWork.ResolveRange<Authority>(authorityIds);
-            currentMenu.RelateAuthorities(authorities);
+            menu.RelateAuthorities(authorities);
 
-            this._unitOfWork.RegisterSave(currentMenu);
+            this._unitOfWork.RegisterSave(menu);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -384,7 +386,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public void CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
             //验证
-            authorityIds = authorityIds?.Distinct().ToArray() ?? new Guid[0];
+            authorityIds = authorityIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
             Assert.IsTrue(this._repMediator.InfoSystemRep.ExistsNo(systemNo));
 
             //创建角色
@@ -430,7 +432,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="authorityIds">权限Id集</param>
         public void RelateAuthoritiesToRole(Guid roleId, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds?.Distinct().ToArray() ?? new Guid[0];
+            authorityIds = authorityIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
 
             Role role = this._unitOfWork.Resolve<Role>(roleId);
             ICollection<Authority> authorities = this._unitOfWork.ResolveRange<Authority>(authorityIds);
@@ -450,7 +452,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="authorityIds">权限Id集</param>
         public void AppendAuthoritiesToRole(Guid roleId, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds?.Distinct().ToArray() ?? new Guid[0];
+            authorityIds = authorityIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
             if (!authorityIds.Any()) return;
 
             Role role = this._unitOfWork.Resolve<Role>(roleId);
@@ -470,18 +472,21 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="roleId">角色Id</param>
         public void RemoveRole(Guid roleId)
         {
+            Role role = this._unitOfWork.Resolve<Role>(roleId);
+
             #region # 验证
 
-            Role currentRole = this._unitOfWork.Resolve<Role>(roleId);
-
-            if (currentRole.Users.Any())
+            if (role.Users.Any())
             {
-                throw new InvalidOperationException($"角色\"{currentRole.Name}\"已被用户使用，不可删除！");
+                throw new InvalidOperationException($"角色\"{role.Name}\"已被用户使用，不可删除！");
             }
 
             #endregion
 
-            this._unitOfWork.RegisterPhysicsRemove<Role>(currentRole);
+            //清空角色/权限关系
+            role.ClearAuthorityRelations();
+
+            this._unitOfWork.RegisterPhysicsRemove(role);
             this._unitOfWork.Commit();
         }
         #endregion
@@ -497,9 +502,9 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>信息系统</returns>
         public InfoSystemInfo GetInfoSystem(string systemNo)
         {
-            InfoSystem currentSystem = this._repMediator.InfoSystemRep.Single(systemNo);
+            InfoSystem infoSystem = this._repMediator.InfoSystemRep.Single(systemNo);
 
-            return currentSystem.ToDTO();
+            return infoSystem.ToDTO();
         }
         #endregion
 
@@ -542,12 +547,14 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>权限视图模型</returns>
         public AuthorityInfo GetAuthority(Guid authorityId)
         {
-            Authority currentAuthority = this._repMediator.AuthorityRep.Single(authorityId);
+            Authority authority = this._repMediator.AuthorityRep.Single(authorityId);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            return currentAuthority.ToDTO(systemInfos);
+            AuthorityInfo authorityInfo = authority.ToDTO(systemInfos);
+
+            return authorityInfo;
         }
         #endregion
 
@@ -603,12 +610,12 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>菜单</returns>
         public MenuInfo GetMenu(Guid menuId)
         {
-            Menu currentMenu = this._repMediator.MenuRep.Single(menuId);
+            Menu menu = this._repMediator.MenuRep.Single(menuId);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            return currentMenu.ToDTO(systemInfos);
+            return menu.ToDTO(systemInfos);
         }
         #endregion
 
@@ -661,12 +668,14 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>角色</returns>
         public RoleInfo GetRole(Guid roleId)
         {
-            Role currentRole = this._repMediator.RoleRep.Single(roleId);
+            Role role = this._repMediator.RoleRep.Single(roleId);
 
             IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.FindDictionary();
             IDictionary<string, InfoSystemInfo> systemInfos = systems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            return currentRole.ToDTO(systemInfos);
+            RoleInfo roleInfo = role.ToDTO(systemInfos);
+
+            return roleInfo;
         }
         #endregion
 

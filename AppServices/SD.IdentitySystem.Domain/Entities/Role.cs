@@ -111,10 +111,17 @@ namespace SD.IdentitySystem.Domain.Entities
         {
             authorities = authorities?.ToArray() ?? Array.Empty<Authority>();
 
-            this.ClearAuthorities();
-            if (authorities.Any())
+            IList<Authority> toAddAuthorities = authorities.Except(this.Authorities).ToList();
+            IList<Authority> toRemoveAuthorities = this.Authorities.Except(authorities).ToList();
+            foreach (Authority authority in toAddAuthorities)
             {
-                this.AppendAuthorities(authorities);
+                this.Authorities.Add(authority);
+                authority.Roles.Add(this);
+            }
+            foreach (Authority authority in toRemoveAuthorities)
+            {
+                this.Authorities.Remove(authority);
+                authority.Roles.Remove(this);
             }
         }
         #endregion
@@ -147,18 +154,17 @@ namespace SD.IdentitySystem.Domain.Entities
 
                 #endregion
 
+                this.Authorities.Add(authority);
                 authority.Roles.Add(this);
             }
-
-            this.Authorities.AddRange(authorities);
         }
         #endregion
 
-        #region 清空权限 —— void ClearAuthorities()
+        #region 清空权限关系 —— void ClearAuthorityRelations()
         /// <summary>
-        /// 清空权限
+        /// 清空权限关系
         /// </summary>
-        private void ClearAuthorities()
+        public void ClearAuthorityRelations()
         {
             foreach (Authority authority in this.Authorities.ToArray())
             {

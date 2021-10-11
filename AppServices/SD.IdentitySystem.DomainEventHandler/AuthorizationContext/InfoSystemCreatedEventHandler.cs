@@ -11,7 +11,7 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
     /// </summary>
     public class InfoSystemCreatedEventHandler : IEventHandler<InfoSystemCreatedEvent>
     {
-        #region # 字段及依赖注入构造器
+        #region # 字段及构造器
         /// <summary>
         /// 单元事务
         /// </summary>
@@ -20,7 +20,6 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="unitOfWork">单元事务</param>
         public InfoSystemCreatedEventHandler(IUnitOfWorkIdentity unitOfWork)
         {
             this._unitOfWork = unitOfWork;

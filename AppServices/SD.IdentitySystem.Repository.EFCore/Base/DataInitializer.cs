@@ -171,10 +171,10 @@ namespace SD.IdentitySystem.Repository.Base
                 foreach (Role role in this._roles)
                 {
                     //获取信息系统
-                    InfoSystem currentSystem = this._systems.Single(x => x.Number == role.SystemNo);
+                    InfoSystem infoSystem = this._systems.Single(x => x.Number == role.SystemNo);
 
                     //追加系统管理员权限
-                    User systemAdmin = this._users.Single(x => x.Number == currentSystem.AdminLoginId);
+                    User systemAdmin = this._users.Single(x => x.Number == infoSystem.AdminLoginId);
                     systemAdmin.AppendRoles(new[] { role });
 
                     //追加超级管理员权限

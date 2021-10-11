@@ -211,10 +211,17 @@ namespace SD.IdentitySystem.Domain.Entities
         {
             roles = roles?.ToArray() ?? Array.Empty<Role>();
 
-            this.ClearRoleRelations();
-            if (roles.Any())
+            IList<Role> toAddRoles = roles.Except(this.Roles).ToList();
+            IList<Role> toRemoveRoles = this.Roles.Except(roles).ToList();
+            foreach (Role role in toAddRoles)
             {
-                this.AppendRoles(roles);
+                this.Roles.Add(role);
+                role.Users.Add(this);
+            }
+            foreach (Role role in toRemoveRoles)
+            {
+                this.Roles.Remove(role);
+                role.Users.Remove(this);
             }
         }
         #endregion
@@ -244,9 +251,9 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 清空角色 —— void ClearRoleRelations()
+        #region 清空角色关系 —— void ClearRoleRelations()
         /// <summary>
-        /// 清空角色
+        /// 清空角色关系
         /// </summary>
         public void ClearRoleRelations()
         {

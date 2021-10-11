@@ -178,9 +178,23 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 清空菜单关联 —— void ClearMenuRelations()
+        #region 清空角色关系 —— void ClearRoleRelations()
         /// <summary>
-        /// 清空菜单关联
+        /// 清空角色关系
+        /// </summary>
+        public void ClearRoleRelations()
+        {
+            foreach (Role role in this.Roles.ToArray())
+            {
+                this.Roles.Remove(role);
+                role.Authorities.Remove(this);
+            }
+        }
+        #endregion
+
+        #region 清空菜单关系 —— void ClearMenuRelations()
+        /// <summary>
+        /// 清空菜单关系
         /// </summary>
         public void ClearMenuRelations()
         {
