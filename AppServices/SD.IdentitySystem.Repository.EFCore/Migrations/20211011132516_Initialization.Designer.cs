@@ -10,7 +10,7 @@ using SD.IdentitySystem.Repository.Base;
 namespace SD.IdentitySystem.Repository.Migrations
 {
     [DbContext(typeof(DbSession))]
-    [Migration("20211004122825_Initialization")]
+    [Migration("20211011132516_Initialization")]
     partial class Initialization
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -66,7 +66,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("AuthorityPath")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("ClassName")
                         .HasColumnType("nvarchar(max)");
@@ -96,7 +98,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("Namespace")
                         .HasColumnType("nvarchar(max)");
@@ -114,6 +118,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SystemNo")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
@@ -161,9 +166,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(64)
+                        .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("Number")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
@@ -183,8 +191,7 @@ namespace SD.IdentitySystem.Repository.Migrations
 
                     b.HasIndex("Number")
                         .IsUnique()
-                        .HasDatabaseName("IX_Number")
-                        .HasFilter("[Number] IS NOT NULL");
+                        .HasDatabaseName("IX_Number");
 
                     b.ToTable("InfoSystem");
                 });
@@ -277,7 +284,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
@@ -301,6 +310,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("SystemNo")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
@@ -344,7 +354,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
                     b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
@@ -359,6 +371,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("datetime2");
 
                     b.Property<string>("SystemNo")
+                        .IsRequired()
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
@@ -400,6 +413,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Number")
+                        .IsRequired()
                         .HasMaxLength(20)
                         .HasColumnType("nvarchar(20)");
 
@@ -410,9 +424,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Password")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(32)
+                        .HasColumnType("nvarchar(32)");
 
                     b.Property<string>("PrivateKey")
+                        .IsRequired()
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
@@ -423,13 +440,11 @@ namespace SD.IdentitySystem.Repository.Migrations
 
                     b.HasIndex("Number")
                         .IsUnique()
-                        .HasDatabaseName("IX_Number")
-                        .HasFilter("[Number] IS NOT NULL");
+                        .HasDatabaseName("IX_Number");
 
                     b.HasIndex("PrivateKey")
                         .IsUnique()
-                        .HasDatabaseName("IX_PrivateKey")
-                        .HasFilter("[PrivateKey] IS NOT NULL");
+                        .HasDatabaseName("IX_PrivateKey");
 
                     b.ToTable("User");
                 });

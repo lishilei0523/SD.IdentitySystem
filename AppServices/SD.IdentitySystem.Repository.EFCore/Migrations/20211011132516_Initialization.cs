@@ -12,9 +12,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SystemNo = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
+                    SystemNo = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     ApplicationType = table.Column<int>(type: "int", nullable: false),
-                    AuthorityPath = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AuthorityPath = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     EnglishName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AssemblyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Namespace = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -23,7 +23,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -49,8 +49,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                     Port = table.Column<int>(type: "int", nullable: true),
                     Index = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -96,7 +96,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SystemNo = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
+                    SystemNo = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     ApplicationType = table.Column<int>(type: "int", nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Path = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -106,7 +106,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     ParentNode_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -132,11 +132,11 @@ namespace SD.IdentitySystem.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SystemNo = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: true),
+                    SystemNo = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -156,11 +156,11 @@ namespace SD.IdentitySystem.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    PrivateKey = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: true),
+                    Password = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    PrivateKey = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Enabled = table.Column<bool>(type: "bit", nullable: false),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Number = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: true),
+                    Number = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -257,8 +257,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 name: "IX_Number",
                 table: "InfoSystem",
                 column: "Number",
-                unique: true,
-                filter: "[Number] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Menu_ParentNode_Id",
@@ -289,15 +288,13 @@ namespace SD.IdentitySystem.Repository.Migrations
                 name: "IX_Number",
                 table: "User",
                 column: "Number",
-                unique: true,
-                filter: "[Number] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PrivateKey",
                 table: "User",
                 column: "PrivateKey",
-                unique: true,
-                filter: "[PrivateKey] IS NOT NULL");
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Role_User_Id",
