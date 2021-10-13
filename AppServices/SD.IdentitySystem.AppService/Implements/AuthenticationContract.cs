@@ -17,6 +17,7 @@ using System.ServiceModel.Channels;
 #endif
 #if NETSTANDARD2_0_OR_GREATER
 using CoreWCF;
+using CoreWCF.Channels;
 using SD.Toolkits.OwinCore.Extensions;
 #endif
 
@@ -204,7 +205,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             //获取客户端IP
             string ip = "localhost";
-#if NET461_OR_GREATER
             if (OperationContext.Current != null)
             {
                 MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
@@ -215,7 +215,6 @@ namespace SD.IdentitySystem.AppService.Implements
                     ip = remoteEndpointMessageProperty.Address;
                 }
             }
-#endif
 #if NETSTANDARD2_0_OR_GREATER
             if (OwinContextReader.Current != null)
             {
