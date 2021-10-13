@@ -31,7 +31,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.CoreWebApi", "AppServices\SD.IdentitySystem.AppService.Host.CoreWebApi\SD.IdentitySystem.AppService.Host.CoreWebApi.csproj", "{6195BA53-B23C-4B8E-B7B4-31EBE12BE557}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.OwinWebApi", "AppServices\SD.IdentitySystem.AppService.Host.OwinWebApi\SD.IdentitySystem.AppService.Host.OwinWebApi.csproj", "{0A55552C-9755-4DC6-9810-39E1AB8B6E66}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host.WebApi", "AppServices\SD.IdentitySystem.AppService.Host.WebApi\SD.IdentitySystem.AppService.Host.WebApi.csproj", "{0A55552C-9755-4DC6-9810-39E1AB8B6E66}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository.EFCore", "AppServices\SD.IdentitySystem.Repository.EFCore\SD.IdentitySystem.Repository.EFCore.csproj", "{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}"
 EndProject
