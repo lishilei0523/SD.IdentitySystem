@@ -87,6 +87,18 @@ export class InfoSystemService {
     }
     //endregion
 
+    //region # 获取信息系统列表 —— getInfoSystems()
+    /**
+     * 获取信息系统列表
+     * */
+    public getInfoSystems():
+        Promise<Array<InfoSystem>> {
+        let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetInfoSystems`;
+
+        return this._httpClient.get<Array<InfoSystem>>(url).toPromise();
+    }
+    //endregion
+
     //region # 分页获取信息系统列表 —— getInfoSystemsByPage(keywords: string | null, pageIndex...
     /**
      * 分页获取信息系统列表

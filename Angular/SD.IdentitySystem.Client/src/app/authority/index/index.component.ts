@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ApplicationType, ApplicationTypeDescriptor, ComponentBase, Constants, PageModel} from "sd-infrastructure";
+import {ApplicationType, ApplicationTypeDescriptor, PageModel, ComponentBase} from "sd-infrastructure";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {InfoSystemService} from "../../../services/info-system.service";
@@ -93,10 +93,9 @@ export class IndexComponent extends ComponentBase implements OnInit {
      * 初始化组件
      * */
     public async ngOnInit(): Promise<void> {
-        let infoSystemsPageModel = await this._infoSystemService.getInfoSystemsByPage(Constants.stringEmpty, 1, Constants.intMaxValue);
-        this.infoSystems = infoSystemsPageModel.datas;
-
         await this.loadAuthorities();
+
+        this.infoSystems = await this._infoSystemService.getInfoSystems();
     }
     //endregion
 
