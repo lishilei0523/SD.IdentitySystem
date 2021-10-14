@@ -12,6 +12,7 @@ using System.Collections.Generic;
 using System.Linq;
 using SD.Infrastructure;
 #if NET461_OR_GREATER
+using SD.Toolkits.Owin.Extensions;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 #endif
@@ -20,7 +21,6 @@ using CoreWCF;
 using CoreWCF.Channels;
 using SD.Toolkits.OwinCore.Extensions;
 #endif
-
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -204,7 +204,29 @@ namespace SD.IdentitySystem.AppService.Implements
             CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(timeout));
 
             //获取客户端IP
-            string ip = "localhost";
+            string ip = this.GetClientIp();
+
+            //生成登录记录
+            LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
+
+            this._unitOfWork.RegisterAdd(loginRecord);
+            this._unitOfWork.Commit();
+
+            return loginInfo;
+        }
+        #endregion
+
+        #region # 获取客户端IP地址 —— string GetClientIp()
+        /// <summary>
+        /// 获取客户端IP地址
+        /// </summary>
+        /// <returns>客户端IP地址</returns>
+        private string GetClientIp()
+        {
+            string ip = null;
+
+            #region # WCF获取
+
             if (OperationContext.Current != null)
             {
                 MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
@@ -215,19 +237,38 @@ namespace SD.IdentitySystem.AppService.Implements
                     ip = remoteEndpointMessageProperty.Address;
                 }
             }
+            if (!string.IsNullOrWhiteSpace(ip))
+            {
+                return ip;
+            }
+
+            #endregion
+
+            #region # WebApi获取
+
+#if NET461_OR_GREATER
+            if (OwinContextReader.Current != null)
+            {
+                ip = OwinContextReader.Current.Request.RemoteIpAddress;
+            }
+            if (!string.IsNullOrWhiteSpace(ip))
+            {
+                return ip;
+            }
+#endif
 #if NETSTANDARD2_0_OR_GREATER
             if (OwinContextReader.Current != null)
             {
                 ip = OwinContextReader.Current.Connection.RemoteIpAddress.ToString();
             }
+            if (!string.IsNullOrWhiteSpace(ip))
+            {
+                return ip;
+            }
 #endif
-            //生成登录记录
-            LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
+            #endregion
 
-            this._unitOfWork.RegisterAdd(loginRecord);
-            this._unitOfWork.Commit();
-
-            return loginInfo;
+            return ip;
         }
         #endregion
     }
