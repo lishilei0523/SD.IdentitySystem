@@ -27,7 +27,7 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <!--表单区-->
-            <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="40,30">
+            <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="30,30">
                 <kino:FormItem Label="主机名：">
                     <TextBox Text="{Binding Host}" Style="{StaticResource TextBoxRevealStyle}" />
                 </kino:FormItem>

@@ -7,7 +7,6 @@ using SD.Common;
 using SD.IdentitySystem.Client.ViewModels.Home;
 using SD.Infrastructure;
 using SD.IOC.Core.Mediators;
-using SD.IOC.Extension.NetFx;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -15,6 +14,14 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+#if NET461_OR_GREATER
+using SD.IOC.Extension.NetFx;
+#endif
+#if NETCOREAPP3_1
+using SD.IOC.Extension.NetCore;
+using SD.IOC.Extension.NetCore.ServiceModel;
+#endif
+
 
 namespace SD.IdentitySystem.Client
 {
@@ -112,6 +119,10 @@ namespace SD.IdentitySystem.Client
             {
                 IServiceCollection serviceCollection = ResolveMediator.GetServiceCollection();
                 serviceCollection.RegisterConfigs();
+
+#if NETCOREAPP3_1
+                serviceCollection.RegisterServiceModels();
+#endif
                 ResolveMediator.Build();
             }
         }

@@ -1,9 +1,9 @@
 ﻿using System.Windows;
 
-namespace SD.IdentitySystem.Client.Views.User
+namespace SD.IdentitySystem.Client.Views.Home
 {
     /// <summary>
-    /// 用户修改密码视图
+    /// 修改密码视图
     /// </summary>
     public partial class UpdatePasswordView : Window
     {

@@ -7,10 +7,10 @@ using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
 
-namespace SD.IdentitySystem.Client.ViewModels.User
+namespace SD.IdentitySystem.Client.ViewModels.Home
 {
     /// <summary>
-    /// 用户修改密码视图模型
+    /// 修改密码视图模型
     /// </summary>
     public class UpdatePasswordViewModel : ScreenBase
     {
