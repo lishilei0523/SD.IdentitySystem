@@ -26,7 +26,7 @@
     <PackageReference Include="SD.Toolkits.Redis" Version="2.0.7" />
     <PackageReference Include="SD.Toolkits.WebApi" Version="1.1.3" />
     <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
-    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.0.3" />
+    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.0.4" />
     <PackageReference Include="SD.IOC.Integration.WebApi" Version="2.0.2" />
     <PackageReference Include="SD.IOC.Integration.WebApi.SelfHost" Version="2.0.2" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />

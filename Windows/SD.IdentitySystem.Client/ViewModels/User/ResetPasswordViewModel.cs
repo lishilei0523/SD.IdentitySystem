@@ -55,14 +55,6 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         public string ConfirmedPassword { get; set; }
         #endregion
 
-        #region 是否繁忙 —— bool IsBusy
-        /// <summary>
-        /// 是否繁忙
-        /// </summary>
-        [DependencyProperty]
-        public bool IsBusy { get; set; }
-        #endregion
-
         #endregion
 
         #region # 方法
