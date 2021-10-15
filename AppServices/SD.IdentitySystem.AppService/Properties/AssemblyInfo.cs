@@ -14,9 +14,4 @@ using System.Runtime.InteropServices;
 
 
 // AOP标签
-#if NET461_OR_GREATER
-[assembly: WCFServiceExceptionAspect]
-#endif
-#if NETSTANDARD2_0_OR_GREATER
 [assembly: AppServiceExceptionAspect]
-#endif
