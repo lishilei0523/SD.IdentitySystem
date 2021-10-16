@@ -14,6 +14,13 @@ namespace SD.IdentitySystem.IPresentation.Models
         public string PrivateKey { get; set; }
         #endregion
 
+        #region 状态 —— string Status
+        /// <summary>
+        /// 状态
+        /// </summary>
+        public string Status { get; set; }
+        #endregion
+
         #region 是否启用 —— bool Enabled
         /// <summary>
         /// 是否启用

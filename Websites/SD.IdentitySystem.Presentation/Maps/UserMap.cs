@@ -16,6 +16,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static User ToModel(this UserInfo userInfo)
         {
             User user = userInfo.Map<UserInfo, User>();
+            user.Status = user.Enabled ? "已启用" : "已停用";
 
             return user;
         }

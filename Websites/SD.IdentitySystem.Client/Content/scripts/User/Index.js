@@ -20,6 +20,7 @@ function getUsers(queryParams) {
             { field: "Number", title: "用户名", halign: "center", width: 100 },
             { field: "Name", title: "真实姓名", halign: "center", width: 150 },
             { field: "PrivateKey", title: "私钥", halign: "center", width: 300 },
+            { field: "Status", title: "状态", align: "center", halign: "center", width: 45 },
             {
                 field: "AddedTime",
                 title: "创建时间",
@@ -56,10 +57,10 @@ function getUsers(queryParams) {
             },
             {
                 field: "Enabled",
-                title: "状态",
+                title: "停/启用",
                 align: "center",
                 halign: "center",
-                width: 35,
+                width: 50,
                 formatter: function (value, row) {
                     var start =
                         value === true ?
@@ -70,7 +71,7 @@ function getUsers(queryParams) {
                             '\');" >停用</a>' :
                             '\');" >启用</a>';
 
-                    var element = start + row.Number + end;;
+                    var element = start + row.Number + end;
 
                     return element;
                 }
