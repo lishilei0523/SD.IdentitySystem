@@ -268,6 +268,15 @@ namespace SD.IdentitySystem.AppService.Implements
 #endif
             #endregion
 
+            #region # 本机
+
+            if (string.IsNullOrWhiteSpace(ip))
+            {
+                ip = "localhost";
+            }
+
+            #endregion
+
             return ip;
         }
         #endregion
