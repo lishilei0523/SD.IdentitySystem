@@ -174,6 +174,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public async void CreateAuthority()
         {
             AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
+            viewModel.Load(this.InfoSystems);
             bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {

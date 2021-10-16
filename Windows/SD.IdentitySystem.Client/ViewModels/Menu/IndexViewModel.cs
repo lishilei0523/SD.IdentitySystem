@@ -136,6 +136,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         public async void CreateMenu()
         {
             AddViewModel viewModel = ResolveMediator.Resolve<AddViewModel>();
+            viewModel.Load(this.InfoSystems);
             bool? result = await this._windowManager.ShowDialogAsync(viewModel);
             if (result == true)
             {

@@ -10,7 +10,6 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.ServiceModel.Extensions;
-using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 
@@ -92,13 +91,13 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
         //Initializations
 
-        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
+        #region 加载 —— void Load(IEnumerable<InfoSystemInfo> infoSystems)
         /// <summary>
-        /// 初始化
+        /// 加载
         /// </summary>
-        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
+        /// <param name="infoSystems">信息系统集</param>
+        public void Load(IEnumerable<InfoSystemInfo> infoSystems)
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems(), cancellationToken);
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
         }
         #endregion
