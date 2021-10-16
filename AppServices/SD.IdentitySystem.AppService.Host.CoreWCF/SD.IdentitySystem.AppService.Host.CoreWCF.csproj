@@ -21,6 +21,9 @@
     <Content Include="favicon.ico">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
+    <AppConfigWithTargetPath Include="App.config">
+      <TargetPath>ef.dll.config</TargetPath>
+    </AppConfigWithTargetPath>
   </ItemGroup>
 
   <ItemGroup>
