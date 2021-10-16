@@ -177,12 +177,16 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// <param name="user">用户</param>
         public async void EnableUser(Wrap<UserInfo> user)
         {
-            this.Busy();
+            MessageBoxResult result = MessageBox.Show("确定要启用吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Busy();
 
-            await Task.Run(() => this._userContract.Channel.EnableUser(user.Model.Number));
-            await this.ReloadUsers();
+                await Task.Run(() => this._userContract.Channel.EnableUser(user.Model.Number));
+                await this.ReloadUsers();
 
-            this.Idle();
+                this.Idle();
+            }
         }
         #endregion
 
@@ -193,12 +197,16 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// <param name="user">用户</param>
         public async void DisableUser(Wrap<UserInfo> user)
         {
-            this.Busy();
+            MessageBoxResult result = MessageBox.Show("确定要停用吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
+            if (result == MessageBoxResult.Yes)
+            {
+                this.Busy();
 
-            await Task.Run(() => this._userContract.Channel.DisableUser(user.Model.Number));
-            await this.ReloadUsers();
+                await Task.Run(() => this._userContract.Channel.DisableUser(user.Model.Number));
+                await this.ReloadUsers();
 
-            this.Idle();
+                this.Idle();
+            }
         }
         #endregion
 
