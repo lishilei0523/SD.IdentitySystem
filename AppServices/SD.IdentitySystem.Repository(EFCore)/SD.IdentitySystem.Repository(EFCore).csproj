@@ -1,8 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>netstandard2.1</TargetFramework>
-    <RootNamespace>SD.IdentitySystem.Repository</RootNamespace>
     <AssemblyName>SD.IdentitySystem.Repository</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.Repository</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>

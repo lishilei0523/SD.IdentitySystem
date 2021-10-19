@@ -69,6 +69,6 @@
     <ProjectReference Include="..\SD.IdentitySystem.Domain\SD.IdentitySystem.Domain.csproj" />
     <ProjectReference Include="..\SD.IdentitySystem.DomainService\SD.IdentitySystem.DomainService.csproj" />
     <ProjectReference Include="..\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj" />
-    <ProjectReference Include="..\SD.IdentitySystem.Repository.EFCore\SD.IdentitySystem.Repository.EFCore.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.Repository(EFCore)\SD.IdentitySystem.Repository(EFCore).csproj" />
   </ItemGroup>
 </Project>

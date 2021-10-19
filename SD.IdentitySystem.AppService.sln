@@ -19,7 +19,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.DomainSer
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.DomainEventHandler", "AppServices\SD.IdentitySystem.DomainEventHandler\SD.IdentitySystem.DomainEventHandler.csproj", "{DE59EC3B-2E0C-41E4-B0F2-F4530E650E1D}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository", "AppServices\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj", "{33F75AC9-F2CC-4117-A04D-E701EF897924}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository(EF6)", "AppServices\SD.IdentitySystem.Repository(EF6)\SD.IdentitySystem.Repository(EF6).csproj", "{33F75AC9-F2CC-4117-A04D-E701EF897924}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.IAppService", "AppServices\SD.IdentitySystem.IAppService\SD.IdentitySystem.IAppService.csproj", "{52BF9A76-1B01-4C29-8067-E6F1C88896FD}"
 EndProject
@@ -33,7 +33,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppServic
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host(WebApi)", "AppServices\SD.IdentitySystem.AppService.Host(WebApi)\SD.IdentitySystem.AppService.Host(WebApi).csproj", "{0A55552C-9755-4DC6-9810-39E1AB8B6E66}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository.EFCore", "AppServices\SD.IdentitySystem.Repository.EFCore\SD.IdentitySystem.Repository.EFCore.csproj", "{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository(EFCore)", "AppServices\SD.IdentitySystem.Repository(EFCore)\SD.IdentitySystem.Repository(EFCore).csproj", "{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AppService.Host(CoreWCF)", "AppServices\SD.IdentitySystem.AppService.Host(CoreWCF)\SD.IdentitySystem.AppService.Host(CoreWCF).csproj", "{6B0B7C13-7C1B-470F-A494-11B7764F3C2E}"
 EndProject

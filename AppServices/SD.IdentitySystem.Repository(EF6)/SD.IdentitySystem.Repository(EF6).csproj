@@ -1,6 +1,8 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net461;netstandard2.1</TargetFrameworks>
+    <AssemblyName>SD.IdentitySystem.Repository</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.Repository</RootNamespace>
   </PropertyGroup>
 
   <ItemGroup>
