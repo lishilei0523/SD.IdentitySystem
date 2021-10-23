@@ -3,6 +3,15 @@
                     xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
                     xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls">
 
+    <!--MahApps.Metro.Window默认样式-->
+    <Style x:Key="MetroWindow.Styles.Clean" TargetType="{x:Type mah:MetroWindow}" 
+           BasedOn="{StaticResource MahApps.Styles.MetroWindow.Clean}">
+        <Setter Property="WindowTitleBrush" Value="{DynamicResource MahApps.Brushes.Transparent}" />
+        <Setter Property="NonActiveWindowTitleBrush" Value="{DynamicResource MahApps.Brushes.Transparent}" />
+        <Setter Property="TitleAlignment" Value="Left" />
+        <Setter Property="TitleCharacterCasing" Value="Normal" />
+        <Setter Property="TitleForeground" Value="{DynamicResource MahApps.Brushes.ThemeForeground}" />
+    </Style>
     <!--MahApps.Metro.Icon默认样式-->
     <Style TargetType="{x:Type iconPacks:PackIconMaterialDesign}">
         <Setter Property="VerticalAlignment" Value="Center" />
