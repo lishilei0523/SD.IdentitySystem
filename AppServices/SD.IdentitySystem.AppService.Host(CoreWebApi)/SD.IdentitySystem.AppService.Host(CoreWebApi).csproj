@@ -41,9 +41,9 @@
     <PackageReference Include="Microsoft.Extensions.DependencyInjection" Version="5.0.2" />
     <PackageReference Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="5.0.0" />
     <PackageReference Include="MrAdvice" Version="2.8.11" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.2" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.0" />
-    <PackageReference Include="SD.Toolkits.AspNetCore" Version="2.0.0" />
+    <PackageReference Include="SD.Toolkits.AspNetCore" Version="2.0.1" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.Redis" Version="2.0.7" />
     <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
