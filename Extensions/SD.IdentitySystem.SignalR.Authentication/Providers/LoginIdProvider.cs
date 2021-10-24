@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNet.SignalR;
+﻿using Microsoft.AspNetCore.SignalR;
 
 namespace SD.IdentitySystem.SignalR.Authentication.Providers
 {
@@ -10,11 +10,11 @@ namespace SD.IdentitySystem.SignalR.Authentication.Providers
         /// <summary>
         /// 获取用户登录名
         /// </summary>
-        /// <param name="request">请求</param>
+        /// <param name="connection">Hub连接</param>
         /// <returns>用户登录名</returns>
-        public string GetUserId(IRequest request)
+        public string GetUserId(HubConnectionContext connection)
         {
-            return request.User?.Identity.Name;
+            return connection.User?.Identity.Name;
         }
     }
 }

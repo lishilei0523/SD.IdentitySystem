@@ -1,4 +1,5 @@
-﻿using SD.Infrastructure.MessageBase;
+﻿using Microsoft.AspNetCore.SignalR;
+using SD.Infrastructure.MessageBase;
 using SD.Infrastructure.SignalR.Server.Base;
 using System.Linq;
 
@@ -17,8 +18,8 @@ namespace SD.IdentitySystem.SignalR.Authentication.Base
         {
             if (message.ReceiverAccounts != null && message.ReceiverAccounts.Any())
             {
-                IMessageHub<T> messageHub = base.Clients.Users(message.ReceiverAccounts);
-                messageHub.Exchange(message);
+                IClientProxy clientProxy = base.Clients.Users(message.ReceiverAccounts);
+                clientProxy.SendAsync(nameof(this.Exchange), message);
             }
             else
             {

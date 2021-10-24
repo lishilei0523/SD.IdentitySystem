@@ -1,4 +1,4 @@
-﻿using Microsoft.Owin;
+﻿using Microsoft.AspNetCore.Http;
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
@@ -12,26 +12,30 @@ namespace SD.IdentitySystem.SignalR.Authentication.Middlewares
     /// <summary>
     /// 身份认证中间件
     /// </summary>
-    public class AuthenticationMiddleware : OwinMiddleware
+    public class AuthenticationMiddleware
     {
         /// <summary>
-        /// 默认构造器
+        /// 请求委托
         /// </summary>
-        public AuthenticationMiddleware(OwinMiddleware next)
-            : base(next)
-        {
+        private readonly RequestDelegate _next;
 
+        /// <summary>
+        /// 依赖注入构造器
+        /// </summary>
+        public AuthenticationMiddleware(RequestDelegate next)
+        {
+            this._next = next;
         }
 
         /// <summary>
         /// 执行中间件
         /// </summary>
-        public override Task Invoke(IOwinContext context)
+        public async Task Invoke(HttpContext context)
         {
             if (AspNetSetting.Authorized)
             {
                 //读Header
-                string publicKey = context.Request.Headers.Get(SessionKey.CurrentPublicKey);
+                string publicKey = context.Request.Headers[SessionKey.CurrentPublicKey];
                 if (string.IsNullOrWhiteSpace(publicKey))
                 {
                     //读QueryString
@@ -42,25 +46,27 @@ namespace SD.IdentitySystem.SignalR.Authentication.Middlewares
                     context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
                     context.Response.Headers.Append("ErrorMessage", "Public key not found");
 
-                    return base.Next.Invoke(context);
+                    await this._next.Invoke(context);
                 }
-
-                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey);
-                if (loginInfo == null)
+                else
                 {
-                    context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
-                    context.Response.Headers.Append("ErrorMessage", "Login info expired");
+                    LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey);
+                    if (loginInfo == null)
+                    {
+                        context.Response.StatusCode = (int)HttpStatusCode.Unauthorized;
+                        context.Response.Headers.Append("ErrorMessage", "Login info expired");
 
-                    return base.Next.Invoke(context);
+                        await this._next.Invoke(context);
+                    }
+                    else
+                    {
+                        IIdentity identity = new GenericIdentity(loginInfo.LoginId);
+                        context.User = new GenericPrincipal(identity, null);
+
+                        await this._next.Invoke(context);
+                    }
                 }
-
-                IIdentity identity = new GenericIdentity(loginInfo.LoginId);
-                context.Request.User = new GenericPrincipal(identity, null);
-
-                return base.Next.Invoke(context);
             }
-
-            return base.Next.Invoke(context);
         }
     }
 }
