@@ -120,7 +120,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .IsClustered(false);
 
                     b.HasIndex("SystemNo")
                         .HasDatabaseName("IX_SystemNo");
@@ -185,7 +186,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .IsClustered(false);
 
                     b.HasIndex("Number")
                         .IsUnique()
@@ -315,7 +317,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .IsClustered(false);
 
                     b.HasIndex("ParentNode_Id");
 
@@ -373,7 +376,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasMaxLength(16)
                         .HasColumnType("nvarchar(16)");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .IsClustered(false);
 
                     b.HasIndex("SystemNo")
                         .HasDatabaseName("IX_SystemNo");
@@ -434,7 +438,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .IsClustered(false);
 
                     b.HasIndex("Number")
                         .IsUnique()

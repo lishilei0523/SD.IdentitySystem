@@ -16,6 +16,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public MenuConfig()
         {
             //配置属性
+            this.HasKey(menu => menu.Id, index => index.IsClustered(false));
             this.Property(menu => menu.Name).IsRequired().HasMaxLength(32);
             this.Property(menu => menu.SystemNo).IsRequired().HasMaxLength(16);
 

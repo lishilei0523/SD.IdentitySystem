@@ -15,6 +15,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public AuthorityConfig()
         {
             //配置属性
+            this.HasKey(authority => authority.Id, index => index.IsClustered(false));
             this.Property(authority => authority.Name).IsRequired().HasMaxLength(64);
             this.Property(authority => authority.AuthorityPath).IsRequired().HasMaxLength(256);
             this.Property(authority => authority.SystemNo).IsRequired().HasMaxLength(16);

@@ -15,6 +15,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public void Configure(EntityTypeBuilder<InfoSystem> builder)
         {
             //配置属性
+            builder.HasKey(system => system.Id).IsClustered(false);
             builder.Property(system => system.Number).IsRequired().HasMaxLength(16);
             builder.Property(system => system.Name).IsRequired().HasMaxLength(64);
 

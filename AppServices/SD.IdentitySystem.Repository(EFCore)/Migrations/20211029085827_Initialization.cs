@@ -35,7 +35,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Authority", x => x.Id);
+                    table.PrimaryKey("PK_Authority", x => x.Id)
+                        .Annotation("SqlServer:Clustered", false);
                 });
 
             migrationBuilder.CreateTable(
@@ -62,7 +63,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InfoSystem", x => x.Id);
+                    table.PrimaryKey("PK_InfoSystem", x => x.Id)
+                        .Annotation("SqlServer:Clustered", false);
                 });
 
             migrationBuilder.CreateTable(
@@ -118,7 +120,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Menu", x => x.Id);
+                    table.PrimaryKey("PK_Menu", x => x.Id)
+                        .Annotation("SqlServer:Clustered", false);
                     table.ForeignKey(
                         name: "FK_Menu_Menu_ParentNode_Id",
                         column: x => x.ParentNode_Id,
@@ -148,7 +151,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Role", x => x.Id);
+                    table.PrimaryKey("PK_Role", x => x.Id)
+                        .Annotation("SqlServer:Clustered", false);
                 });
 
             migrationBuilder.CreateTable(
@@ -173,7 +177,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Id);
+                    table.PrimaryKey("PK_User", x => x.Id)
+                        .Annotation("SqlServer:Clustered", false);
                 });
 
             migrationBuilder.CreateTable(

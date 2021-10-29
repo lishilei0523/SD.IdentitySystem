@@ -16,6 +16,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public UserConfig()
         {
             //配置属性
+            this.HasKey(user => user.Id, index => index.IsClustered(false));
             this.Property(user => user.Number).IsRequired().HasMaxLength(20);
             this.Property(user => user.Password).IsRequired().HasMaxLength(32);
             this.Property(user => user.PrivateKey).IsRequired().HasMaxLength(64);

@@ -17,6 +17,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public void Configure(EntityTypeBuilder<Role> builder)
         {
             //配置属性
+            builder.HasKey(role => role.Id).IsClustered(false);
             builder.Property(role => role.Name).IsRequired().HasMaxLength(32);
             builder.Property(role => role.SystemNo).IsRequired().HasMaxLength(16);
 

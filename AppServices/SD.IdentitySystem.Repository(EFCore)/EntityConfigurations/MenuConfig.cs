@@ -17,6 +17,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public void Configure(EntityTypeBuilder<Menu> builder)
         {
             //配置属性
+            builder.HasKey(menu => menu.Id).IsClustered(false);
             builder.Property(menu => menu.Name).IsRequired().HasMaxLength(32);
             builder.Property(menu => menu.SystemNo).IsRequired().HasMaxLength(16);
 
