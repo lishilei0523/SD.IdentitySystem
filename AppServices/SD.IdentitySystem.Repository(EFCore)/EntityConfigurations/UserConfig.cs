@@ -32,6 +32,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
                     map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}User_Role"));
 
             //配置索引
+            builder.HasIndex(user => user.AddedTime).HasDatabaseName("IX_AddedTime").IsUnique(false).IsClustered(true);
             builder.HasIndex(user => user.Number).HasDatabaseName("IX_Number").IsUnique();
             builder.HasIndex(user => user.PrivateKey).HasDatabaseName("IX_PrivateKey").IsUnique();
         }

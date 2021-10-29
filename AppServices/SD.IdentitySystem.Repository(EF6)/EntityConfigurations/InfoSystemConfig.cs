@@ -20,6 +20,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             this.Property(system => system.Name).IsRequired().HasMaxLength(64);
 
             //配置索引
+            this.HasIndex("IX_AddedTime", IndexType.Clustered, table => table.Property(system => system.AddedTime));
             this.HasIndex("IX_Number", IndexType.Unique, table => table.Property(system => system.Number));
         }
     }

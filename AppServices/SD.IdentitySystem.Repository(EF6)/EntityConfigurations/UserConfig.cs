@@ -25,6 +25,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             this.HasMany(user => user.Roles).WithMany(role => role.Users).Map(map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}User_Role"));
 
             //配置索引
+            this.HasIndex("IX_AddedTime", IndexType.Clustered, table => table.Property(user => user.AddedTime));
             this.HasIndex("IX_Number", IndexType.Unique, table => table.Property(user => user.Number));
             this.HasIndex("IX_PrivateKey", IndexType.Unique, table => table.Property(user => user.PrivateKey));
         }

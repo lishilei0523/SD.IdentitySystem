@@ -21,6 +21,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             builder.Property(authority => authority.SystemNo).IsRequired().HasMaxLength(16);
 
             //配置索引
+            builder.HasIndex(authority => authority.AddedTime).HasDatabaseName("IX_AddedTime").IsUnique(false).IsClustered(true);
             builder.HasIndex(authority => authority.SystemNo).HasDatabaseName("IX_SystemNo");
         }
     }

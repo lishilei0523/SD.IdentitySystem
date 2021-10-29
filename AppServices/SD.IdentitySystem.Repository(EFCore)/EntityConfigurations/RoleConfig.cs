@@ -31,6 +31,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
                     map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}Role_Authority"));
 
             //配置索引
+            builder.HasIndex(role => role.AddedTime).HasDatabaseName("IX_AddedTime").IsUnique(false).IsClustered(true);
             builder.HasIndex(role => role.SystemNo).HasDatabaseName("IX_SystemNo");
         }
     }

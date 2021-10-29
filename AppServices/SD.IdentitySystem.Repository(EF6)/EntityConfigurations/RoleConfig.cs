@@ -24,6 +24,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             this.HasMany(role => role.Authorities).WithMany(authority => authority.Roles).Map(map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}Role_Authority"));
 
             //配置索引
+            this.HasIndex("IX_AddedTime", IndexType.Clustered, table => table.Property(role => role.AddedTime));
             this.HasIndex("IX_SystemNo", IndexType.Nonclustered, table => table.Property(role => role.SystemNo));
         }
     }
