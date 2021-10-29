@@ -10,7 +10,7 @@ using SD.IdentitySystem.Repository.Base;
 namespace SD.IdentitySystem.Repository.Migrations
 {
     [DbContext(typeof(DbSession))]
-    [Migration("20211029085827_Initialization")]
+    [Migration("20211029091958_Initialization")]
     partial class Initialization
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -227,12 +227,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("LoginId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Number")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("OperatorAccount")
                         .HasColumnType("nvarchar(max)");
 
@@ -248,7 +242,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .IsClustered(false);
+
+                    b.HasIndex("AddedTime")
+                        .HasDatabaseName("IX_AddedTime")
+                        .IsClustered();
 
                     b.ToTable("LoginRecord");
                 });

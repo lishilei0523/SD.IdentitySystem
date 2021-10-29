@@ -77,8 +77,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                     RealName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IP = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
@@ -90,7 +88,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_LoginRecord", x => x.Id);
+                    table.PrimaryKey("PK_LoginRecord", x => x.Id)
+                        .Annotation("SqlServer:Clustered", false);
                 });
 
             migrationBuilder.CreateTable(
@@ -263,6 +262,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                 table: "InfoSystem",
                 column: "Number",
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AddedTime",
+                table: "LoginRecord",
+                column: "AddedTime")
+                .Annotation("SqlServer:Clustered", true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Menu_ParentNode_Id",

@@ -225,12 +225,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("LoginId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Number")
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("OperatorAccount")
                         .HasColumnType("nvarchar(max)");
 
@@ -246,7 +240,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id");
+                    b.HasKey("Id")
+                        .IsClustered(false);
+
+                    b.HasIndex("AddedTime")
+                        .HasDatabaseName("IX_AddedTime")
+                        .IsClustered();
 
                     b.ToTable("LoginRecord");
                 });
