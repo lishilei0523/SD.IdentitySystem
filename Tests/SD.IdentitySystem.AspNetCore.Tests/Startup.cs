@@ -25,7 +25,7 @@ namespace SD.IdentitySystem.AspNetCore.Tests
                 //日期时间格式设置
                 IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter()
                 {
-                    DateTimeFormat = CommonConstants.TimeFormat
+                    DateTimeFormat = CommonConstants.DateTimeFormat
                 };
                 options.SerializerSettings.Converters.Add(dateTimeConverter);
             });
