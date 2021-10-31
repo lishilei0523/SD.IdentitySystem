@@ -10,6 +10,10 @@
     <Copyright>Copyright © SD 2021</Copyright>
   </PropertyGroup>
 
+  <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
+
   <ItemGroup>
     <Resource Include="favicon.ico" />
   </ItemGroup>

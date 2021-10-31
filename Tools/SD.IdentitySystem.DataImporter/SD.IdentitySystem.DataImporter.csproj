@@ -9,11 +9,12 @@
     <Copyright>Copyright © SD 2021</Copyright>
   </PropertyGroup>
 
-  <ItemGroup>
-    <Resource Include="favicon.ico" />
-  </ItemGroup>
+  <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+  </PropertyGroup>
 
   <ItemGroup>
+    <Resource Include="favicon.ico" />
     <None Update="Content\Datas\IdentitySystem.xls">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
