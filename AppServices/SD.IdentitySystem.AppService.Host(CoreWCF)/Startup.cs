@@ -7,6 +7,8 @@ using SD.IdentitySystem.AppService.Implements;
 using SD.IdentitySystem.WCF.Authentication;
 using SD.Infrastructure.WCF.Server;
 using SD.IOC.Integration.WCF.Behaviors;
+using SD.Toolkits.AspNet;
+using System.Collections.Generic;
 using System.Configuration;
 
 namespace SD.IdentitySystem.AppService.Host
@@ -37,11 +39,17 @@ namespace SD.IdentitySystem.AppService.Host
             //≈‰÷√WCF∑˛ŒÒ
             DependencyInjectionBehavior dependencyInjectionBehavior = new DependencyInjectionBehavior();
             InitializationBehavior initializationBehavior = new InitializationBehavior();
-            AuthenticationBehavior authenticationBehavior = new AuthenticationBehavior();
-            IServiceBehavior[] serviceBehaviors =
+            IList<IServiceBehavior> serviceBehaviors = new List<IServiceBehavior>
             {
-                dependencyInjectionBehavior, initializationBehavior, authenticationBehavior
+                dependencyInjectionBehavior, initializationBehavior
             };
+
+            if (AspNetSetting.Authorized)
+            {
+                AuthenticationBehavior authenticationBehavior = new AuthenticationBehavior();
+                serviceBehaviors.Add(authenticationBehavior);
+            }
+
             appBuilder.UseServiceModel(builder =>
             {
                 builder.ConfigureServiceHostBase<AuthenticationContract>(host => host.Description.Behaviors.AddRange(serviceBehaviors));
