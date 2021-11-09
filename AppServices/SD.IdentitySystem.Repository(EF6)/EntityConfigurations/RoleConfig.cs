@@ -17,6 +17,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             this.HasKey(role => role.Id, index => index.IsClustered(false));
+            this.Property(role => role.Keywords).IsRequired().HasMaxLength(256);
             this.Property(role => role.Name).IsRequired().HasMaxLength(32);
             this.Property(role => role.SystemNo).IsRequired().HasMaxLength(16);
 

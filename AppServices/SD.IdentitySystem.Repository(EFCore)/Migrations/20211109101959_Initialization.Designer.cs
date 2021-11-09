@@ -10,7 +10,7 @@ using SD.IdentitySystem.Repository.Base;
 namespace SD.IdentitySystem.Repository.Migrations
 {
     [DbContext(typeof(DbSession))]
-    [Migration("20211029091958_Initialization")]
+    [Migration("20211109101959_Initialization")]
     partial class Initialization
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -92,7 +92,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("MethodName")
                         .HasColumnType("nvarchar(max)");
@@ -103,9 +105,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(64)");
 
                     b.Property<string>("Namespace")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("Number")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OperatorAccount")
@@ -124,6 +123,10 @@ namespace SD.IdentitySystem.Repository.Migrations
 
                     b.HasKey("Id")
                         .IsClustered(false);
+
+                    b.HasIndex("AddedTime")
+                        .HasDatabaseName("IX_AddedTime")
+                        .IsClustered();
 
                     b.HasIndex("SystemNo")
                         .HasDatabaseName("IX_SystemNo");
@@ -164,7 +167,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -190,6 +195,10 @@ namespace SD.IdentitySystem.Repository.Migrations
 
                     b.HasKey("Id")
                         .IsClustered(false);
+
+                    b.HasIndex("AddedTime")
+                        .HasDatabaseName("IX_AddedTime")
+                        .IsClustered();
 
                     b.HasIndex("Number")
                         .IsUnique()
@@ -222,7 +231,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("LoginId")
                         .HasColumnType("nvarchar(max)");
@@ -282,15 +293,14 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Name")
                         .IsRequired()
                         .HasMaxLength(32)
                         .HasColumnType("nvarchar(32)");
-
-                    b.Property<string>("Number")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("OperatorAccount")
                         .HasColumnType("nvarchar(max)");
@@ -353,7 +363,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Name")
                         .IsRequired()
@@ -379,6 +391,10 @@ namespace SD.IdentitySystem.Repository.Migrations
 
                     b.HasKey("Id")
                         .IsClustered(false);
+
+                    b.HasIndex("AddedTime")
+                        .HasDatabaseName("IX_AddedTime")
+                        .IsClustered();
 
                     b.HasIndex("SystemNo")
                         .HasDatabaseName("IX_SystemNo");
@@ -410,7 +426,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasColumnType("bit");
 
                     b.Property<string>("Keywords")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(256)
+                        .HasColumnType("nvarchar(256)");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -441,6 +459,10 @@ namespace SD.IdentitySystem.Repository.Migrations
 
                     b.HasKey("Id")
                         .IsClustered(false);
+
+                    b.HasIndex("AddedTime")
+                        .HasDatabaseName("IX_AddedTime")
+                        .IsClustered();
 
                     b.HasIndex("Number")
                         .IsUnique()

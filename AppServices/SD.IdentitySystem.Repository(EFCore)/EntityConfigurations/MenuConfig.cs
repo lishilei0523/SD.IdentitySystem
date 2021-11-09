@@ -18,6 +18,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             builder.HasKey(menu => menu.Id).IsClustered(false);
+            builder.Property(menu => menu.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(menu => menu.Name).IsRequired().HasMaxLength(32);
             builder.Property(menu => menu.SystemNo).IsRequired().HasMaxLength(16);
 
@@ -38,6 +39,9 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
 
             //配置索引
             builder.HasIndex(menu => menu.SystemNo).HasDatabaseName("IX_SystemNo");
+
+            //忽略映射
+            builder.Ignore(menu => menu.Number);
         }
     }
 }

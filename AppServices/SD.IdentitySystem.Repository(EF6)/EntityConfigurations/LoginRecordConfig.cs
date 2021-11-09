@@ -16,11 +16,14 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             this.HasKey(record => record.Id, index => index.IsClustered(false));
-            this.Ignore(record => record.Number);
-            this.Ignore(record => record.Name);
+            this.Property(record => record.Keywords).IsRequired().HasMaxLength(256);
 
             //配置索引
             this.HasIndex("IX_AddedTime", IndexType.Clustered, table => table.Property(record => record.AddedTime));
+
+            //忽略映射
+            this.Ignore(record => record.Number);
+            this.Ignore(record => record.Name);
         }
     }
 }

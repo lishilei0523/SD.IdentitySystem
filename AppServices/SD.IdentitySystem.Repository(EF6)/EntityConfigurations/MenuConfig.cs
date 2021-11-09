@@ -17,6 +17,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             this.HasKey(menu => menu.Id, index => index.IsClustered(false));
+            this.Property(menu => menu.Keywords).IsRequired().HasMaxLength(256);
             this.Property(menu => menu.Name).IsRequired().HasMaxLength(32);
             this.Property(menu => menu.SystemNo).IsRequired().HasMaxLength(16);
 
@@ -25,6 +26,9 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
 
             //配置索引
             this.HasIndex("IX_SystemNo", IndexType.Nonclustered, table => table.Property(menu => menu.SystemNo));
+
+            //忽略映射
+            this.Ignore(menu => menu.Number);
         }
     }
 }

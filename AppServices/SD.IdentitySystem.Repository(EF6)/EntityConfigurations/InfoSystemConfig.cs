@@ -16,6 +16,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             this.HasKey(system => system.Id, index => index.IsClustered(false));
+            this.Property(system => system.Keywords).IsRequired().HasMaxLength(256);
             this.Property(system => system.Number).IsRequired().HasMaxLength(16);
             this.Property(system => system.Name).IsRequired().HasMaxLength(64);
 

@@ -1,6 +1,6 @@
-﻿using SD.IdentitySystem.Domain.Entities;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using SD.IdentitySystem.Domain.Entities;
 
 namespace SD.IdentitySystem.Repository.EntityConfigurations
 {
@@ -16,11 +16,14 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             builder.HasKey(record => record.Id).IsClustered(false);
-            builder.Ignore(record => record.Number);
-            builder.Ignore(record => record.Name);
+            builder.Property(record => record.Keywords).IsRequired().HasMaxLength(256);
 
             //配置索引
             builder.HasIndex(record => record.AddedTime).HasDatabaseName("IX_AddedTime").IsUnique(false).IsClustered(true);
+
+            //忽略映射
+            builder.Ignore(record => record.Number);
+            builder.Ignore(record => record.Name);
         }
     }
 }

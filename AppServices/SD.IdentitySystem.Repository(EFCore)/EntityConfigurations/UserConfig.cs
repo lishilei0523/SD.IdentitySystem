@@ -18,6 +18,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             builder.HasKey(user => user.Id).IsClustered(false);
+            builder.Property(user => user.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(user => user.Number).IsRequired().HasMaxLength(20);
             builder.Property(user => user.Password).IsRequired().HasMaxLength(32);
             builder.Property(user => user.PrivateKey).IsRequired().HasMaxLength(64);

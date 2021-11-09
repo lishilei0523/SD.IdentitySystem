@@ -22,9 +22,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                     MethodName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -52,7 +51,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -77,7 +76,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     RealName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IP = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -106,9 +105,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                     IsRoot = table.Column<bool>(type: "bit", nullable: false),
                     ParentNode_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -139,7 +137,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -165,7 +163,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Keywords = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Deleted = table.Column<bool>(type: "bit", nullable: false),
                     DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
@@ -253,9 +251,21 @@ namespace SD.IdentitySystem.Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
+                name: "IX_AddedTime",
+                table: "Authority",
+                column: "AddedTime")
+                .Annotation("SqlServer:Clustered", true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SystemNo",
                 table: "Authority",
                 column: "SystemNo");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AddedTime",
+                table: "InfoSystem",
+                column: "AddedTime")
+                .Annotation("SqlServer:Clustered", true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Number",
@@ -285,6 +295,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                 column: "Menu_Id");
 
             migrationBuilder.CreateIndex(
+                name: "IX_AddedTime",
+                table: "Role",
+                column: "AddedTime")
+                .Annotation("SqlServer:Clustered", true);
+
+            migrationBuilder.CreateIndex(
                 name: "IX_SystemNo",
                 table: "Role",
                 column: "SystemNo");
@@ -293,6 +309,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                 name: "IX_Role_Authority_Role_Id",
                 table: "Role_Authority",
                 column: "Role_Id");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_AddedTime",
+                table: "User",
+                column: "AddedTime")
+                .Annotation("SqlServer:Clustered", true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Number",
