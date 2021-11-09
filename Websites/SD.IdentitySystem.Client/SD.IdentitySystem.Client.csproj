@@ -555,6 +555,7 @@
     <Content Include="Views\User\ResetPassword.cshtml" />
     <Content Include="Views\User\SetRole.cshtml" />
     <Content Include="Views\User\ResetPrivateKey.cshtml" />
+    <Content Include="Views\Home\Exception.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
