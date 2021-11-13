@@ -1,0 +1,6 @@
+<service>
+  <id>SD.IdentitySystem.AppService(CoreWCF)</id>
+  <name>SD.IdentitySystem.AppService(CoreWCF)</name>
+  <description>身份认证系统CoreWCF服务</description>
+  <executable>%BASE%\..\SD.IdentitySystem.AppService.Host.exe</executable>
+</service>

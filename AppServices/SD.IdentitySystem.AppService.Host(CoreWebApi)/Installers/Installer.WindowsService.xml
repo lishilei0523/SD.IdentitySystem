@@ -1,0 +1,6 @@
+<service>
+  <id>SD.IdentitySystem.AppService(CoreWebApi)</id>
+  <name>SD.IdentitySystem.AppService(CoreWebApi)</name>
+  <description>身份认证系统CoreWebApi服务</description>
+  <executable>%BASE%\..\SD.IdentitySystem.AppService.Host.exe</executable>
+</service>
