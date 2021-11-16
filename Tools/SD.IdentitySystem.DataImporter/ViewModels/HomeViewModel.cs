@@ -263,7 +263,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
                     foreach (RoleRelatedAuthority relatedAuthority in relatedAuthorityGroup)
                     {
                         ApplicationType applicationType = (ApplicationType)Enum.Parse(typeof(ApplicationType), relatedAuthority.应用程序类型);
-                        AuthorityInfo authorityInfo = authorityInfos.Single(x => x.ApplicationType == applicationType && x.Name == relatedAuthority.权限名称);
+                        AuthorityInfo authorityInfo = authorityInfos.Single(x => x.InfoSystemInfo.Number == relatedAuthority.信息系统编号 && x.ApplicationType == applicationType && x.Name == relatedAuthority.权限名称);
                         relatedAuthorityInfos.Add(authorityInfo);
                     }
 
