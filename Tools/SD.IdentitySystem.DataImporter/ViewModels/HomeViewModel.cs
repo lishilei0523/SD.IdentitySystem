@@ -198,7 +198,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
                     IList<AuthorityInfo> relatedAuthorityInfos = new List<AuthorityInfo>();
                     foreach (MenuRelatedAuthority relatedAuthority in relatedAuthorityGroup)
                     {
-                        AuthorityInfo authorityInfo = authorityInfos.Single(x => x.ApplicationType == applicationType && x.Name == relatedAuthority.权限名称);
+                        AuthorityInfo authorityInfo = authorityInfos.Single(x => x.InfoSystemInfo.Number == relatedAuthority.信息系统编号 && x.ApplicationType == applicationType && x.Name == relatedAuthority.权限名称);
                         relatedAuthorityInfos.Add(authorityInfo);
                     }
 
