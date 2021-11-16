@@ -1,6 +1,8 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFramework>net461</TargetFramework>
+    <AssemblyName>SD.IdentitySystem.UpdateService</AssemblyName>
+    <RootNamespace>SD.IdentitySystem.UpdateService</RootNamespace>
     <OutputType>Exe</OutputType>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <Authors>Lee</Authors>
