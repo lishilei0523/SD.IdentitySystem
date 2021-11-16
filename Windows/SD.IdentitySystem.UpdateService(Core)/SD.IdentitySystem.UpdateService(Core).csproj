@@ -11,12 +11,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Include="favicon.ico" />
-    <Content Include="Content\favicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Update="App.config">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
-    <Content Include="Content\Release.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    <Content Include="favicon.ico">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Content>
   </ItemGroup>
 
@@ -27,6 +26,17 @@
     <None Update="Installers\Installer.WindowsService.xml">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Content Include="..\SD.IdentitySystem.UpdateService(Owin)\Content\favicon.ico">
+      <Link>Content\favicon.ico</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
+    <Content Include="..\SD.IdentitySystem.UpdateService(Owin)\Content\Release.xml">
+      <Link>Content\Release.xml</Link>
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Content>
   </ItemGroup>
 
   <ItemGroup>
