@@ -15,7 +15,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// </summary>
         public static Item ToItem(this AuthorityInfo authority)
         {
-            return new Item(authority.Id, authority.Name, false, false, authority.ApplicationType.GetEnumMember());
+            return new Item(authority.Id, null, authority.Name, false, false, authority.ApplicationType.GetEnumMember());
         }
         #endregion
     }

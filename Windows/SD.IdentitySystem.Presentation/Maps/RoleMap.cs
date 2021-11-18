@@ -14,7 +14,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// </summary>
         public static Item ToItem(this RoleInfo role)
         {
-            return new Item(role.Id, role.Name, false, false, role.InfoSystemInfo.Name);
+            return new Item(role.Id, null, role.Name, false, false, role.InfoSystemInfo.Name);
         }
         #endregion
     }

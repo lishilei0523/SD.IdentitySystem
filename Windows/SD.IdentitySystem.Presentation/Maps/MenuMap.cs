@@ -37,7 +37,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <returns>树节点</returns>
         public static Node ToNode(this Menu menu)
         {
-            return new Node(menu.Id, menu.Name, false, null);
+            return new Node(menu.Id, null, menu.Name, false, null);
         }
         #endregion
 
@@ -51,7 +51,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static ICollection<Node> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
         {
             //验证
-            menus = menus == null ? new Menu[0] : menus.ToArray();
+            menus = menus?.ToArray() ?? Array.Empty<Menu>();
 
             //声明容器
             ICollection<Node> tree = new HashSet<Node>();
@@ -92,7 +92,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <returns>菜单树列表</returns>
         public static IEnumerable<Menu> ToTreeList(this IEnumerable<Menu> menus)
         {
-            Menu[] allMenus = menus?.ToArray() ?? new Menu[0];
+            Menu[] allMenus = menus?.ToArray() ?? Array.Empty<Menu>();
             foreach (Menu menu in allMenus)
             {
                 menu.FillSubNodes(allMenus);
