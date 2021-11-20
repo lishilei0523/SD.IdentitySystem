@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net46;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem WCF身份认证组件 - WCF客户端/服务端</Description>
@@ -18,7 +18,7 @@
     <Compile Remove="AuthenticationBehaviorElement.cs" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net46'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <Reference Include="System.Configuration" />
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
@@ -30,6 +30,6 @@
 
   <ItemGroup>
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
   </ItemGroup>
 </Project>

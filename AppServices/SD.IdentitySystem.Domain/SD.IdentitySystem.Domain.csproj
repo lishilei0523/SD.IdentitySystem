@@ -4,11 +4,11 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="MrAdvice" Version="2.8.11" />
-    <PackageReference Include="SD.Common" Version="3.0.7" />
+    <PackageReference Include="MrAdvice" Version="2.9.2" />
+    <PackageReference Include="SD.Common" Version="3.0.8" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
     <PackageReference Include="SD.AOP.Core" Version="2.1.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.0.5" />
     <PackageReference Include="SD.Infrastructure.EventBase" Version="2.0.2" />
   </ItemGroup>

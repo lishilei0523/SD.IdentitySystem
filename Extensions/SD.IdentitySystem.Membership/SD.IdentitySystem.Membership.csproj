@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
     <Description>SD.IdentitySystem 用户信息组件</Description>
     <Authors>Lee</Authors>
     <Company>SD</Company>
@@ -15,8 +15,15 @@
     <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Membership.xml</DocumentationFile>
   </PropertyGroup>
 
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+    <Reference Include="System.Configuration" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
+  </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="SD.IOC.Core" Version="2.0.7" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
   </ItemGroup>
 </Project>

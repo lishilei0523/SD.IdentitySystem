@@ -1,7 +1,7 @@
 ﻿<configuration>
   <configSections>
     <!--SD.Membership配置节点-->
-    <section name="sd.membership" type="SD.IdentitySystem.MembershipSection, SD.IdentitySystem.Membership" />
+    <section name="sd.membership" type="SD.IdentitySystem.Membership.MembershipSection, SD.IdentitySystem.Membership" />
   </configSections>
   <!--SD.Membership配置-->
   <sd.membership>

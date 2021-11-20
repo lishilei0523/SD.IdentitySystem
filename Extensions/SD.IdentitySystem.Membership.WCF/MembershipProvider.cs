@@ -3,7 +3,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.MemberShip;
 using System;
 using System.Linq;
-#if NET461_OR_GREATER
+#if NET40_OR_GREATER
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 #endif

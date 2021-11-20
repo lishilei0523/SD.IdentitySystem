@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem 用户信息组件 - WCF提供者</Description>
@@ -14,7 +14,7 @@
     <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Membership.WCF.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
 
@@ -24,7 +24,7 @@
 
   <ItemGroup>
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
   </ItemGroup>
 
   <ItemGroup>

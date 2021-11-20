@@ -9,9 +9,8 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.17" />
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="4.7.0" />
-    <PackageReference Include="SD.System.ServiceModel.NetCore" Version="1.0.3" />
+    <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.1.20" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.0" />
     <PackageReference Include="SD.Toolkits.AspNetCore" Version="2.0.1" />
     <PackageReference Include="SD.Toolkits.Redis" Version="2.0.7" />

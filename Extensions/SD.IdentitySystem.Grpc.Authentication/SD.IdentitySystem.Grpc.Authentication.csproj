@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <TargetFrameworks>netcoreapp3.1;net5.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem ASP.NET Core gRPC身份认证组件</Description>
@@ -19,10 +19,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.Core.Api" Version="2.38.1" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.42.0" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.0" />
-    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.1" />
+    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.3" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
   </ItemGroup>
 </Project>

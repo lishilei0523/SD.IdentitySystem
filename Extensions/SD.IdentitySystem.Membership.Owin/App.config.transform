@@ -1,7 +1,11 @@
 ﻿<configuration>
-  <sd.ioc>
-    <asInterfaceTypes>
-      <type name="SD.IdentitySystem.Membership.Owin.MembershipProvider" assembly="SD.IdentitySystem.Membership.Owin" />
-    </asInterfaceTypes>
-  </sd.ioc>
+  <configSections>
+    <!--SD.Membership配置节点-->
+    <section name="sd.membership" type="SD.IdentitySystem.MembershipSection, SD.IdentitySystem.Membership" />
+  </configSections>
+  <!--SD.Membership配置-->
+  <sd.membership>
+    <!--Membership提供者-->
+    <membershipProvider type="SD.IdentitySystem.Membership.Owin.MembershipProvider" assembly="SD.IdentitySystem.Membership.Owin" />
+  </sd.membership>
 </configuration>
