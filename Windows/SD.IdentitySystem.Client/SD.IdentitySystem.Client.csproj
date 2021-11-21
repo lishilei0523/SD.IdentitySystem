@@ -49,10 +49,10 @@
     <PackageReference Include="SD.Infrastructure.WPF" Version="1.0.4" />
     <PackageReference Include="SD.Infrastructure.WPF.Caliburn" Version="1.0.2" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.1" />
-    <PackageReference Include="SD.IdentitySystem.Membership" Version="3.0.1" />
-    <PackageReference Include="SD.IdentitySystem.Membership.Windows" Version="1.0.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.0.0" />
+    <PackageReference Include="SD.IdentitySystem.Membership.Windows" Version="1.0.2" />
     <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Windows" Version="1.0.2" />
-    <PackageReference Include="SD.IdentitySystem.Authorization.WPF" Version="1.0.0" />
+    <PackageReference Include="SD.IdentitySystem.Authorization.WPF" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup>
