@@ -6,6 +6,6 @@
   <!--SD.Membership配置-->
   <sd.membership>
     <!--Membership提供者-->
-    <membershipProvider type="SD.IdentitySystem.Membership.Owin.MembershipProvider" assembly="SD.IdentitySystem.Membership.Owin" />
+    <provider type="SD.IdentitySystem.Membership.Owin.MembershipProvider" assembly="SD.IdentitySystem.Membership.Owin" />
   </sd.membership>
 </configuration>

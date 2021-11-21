@@ -6,6 +6,6 @@
   <!--SD.Membership配置-->
   <sd.membership>
     <!--Membership提供者-->
-    <membershipProvider type="SD.IdentitySystem.Membership.WCF.MembershipProvider" assembly="SD.IdentitySystem.Membership.WCF" />
+    <provider type="SD.IdentitySystem.Membership.WCF.MembershipProvider" assembly="SD.IdentitySystem.Membership.WCF" />
   </sd.membership>
 </configuration>

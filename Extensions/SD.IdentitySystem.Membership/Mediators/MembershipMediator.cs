@@ -20,8 +20,8 @@ namespace SD.IdentitySystem
         /// </summary>
         static MembershipMediator()
         {
-            Assembly implAssembly = Assembly.Load(MembershipSection.Setting.MembershipProvider.Assembly);
-            _MembershipProviderImplType = implAssembly.GetType(MembershipSection.Setting.MembershipProvider.Type);
+            Assembly implAssembly = Assembly.Load(MembershipSection.Setting.Provider.Assembly);
+            _MembershipProviderImplType = implAssembly.GetType(MembershipSection.Setting.Provider.Type);
 
         }
 

@@ -46,15 +46,15 @@ namespace SD.IdentitySystem
         }
         #endregion
 
-        #region # Membership提供者节点 —— MembershipProviderElement MembershipProvider
+        #region # Membership提供者节点 —— MembershipProviderElement Provider
         /// <summary>
         /// Membership提供者节点
         /// </summary>
-        [ConfigurationProperty("membershipProvider", IsRequired = true)]
-        public MembershipProviderElement MembershipProvider
+        [ConfigurationProperty("provider", IsRequired = true)]
+        public MembershipProviderElement Provider
         {
-            get { return (MembershipProviderElement)this["membershipProvider"]; }
-            set { this["membershipProvider"] = value; }
+            get { return (MembershipProviderElement)this["provider"]; }
+            set { this["provider"] = value; }
         }
         #endregion
     }

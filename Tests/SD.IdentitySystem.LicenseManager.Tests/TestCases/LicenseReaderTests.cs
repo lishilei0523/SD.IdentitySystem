@@ -3,20 +3,19 @@ using SD.IdentitySystem.LicenseManager.Models;
 using SD.IdentitySystem.LicenseManager.Toolkits;
 using SD.Infrastructure.Constants;
 
-// ReSharper disable once CheckNamespace
-namespace SD.IdentitySystem.Tests
+namespace SD.IdentitySystem.LicenseManager.Tests.TestCases
 {
     /// <summary>
     /// 测试许可证读取器
     /// </summary>
     [TestClass]
-    public class TestLicenseReader
+    public class LicenseReaderTests
     {
         /// <summary>
         /// 读取许可证测试
         /// </summary>
         [TestMethod]
-        public void ReadLicenseTest()
+        public void TestReadLicense()
         {
             License? license = LicenseReader.GetLicense();
 
