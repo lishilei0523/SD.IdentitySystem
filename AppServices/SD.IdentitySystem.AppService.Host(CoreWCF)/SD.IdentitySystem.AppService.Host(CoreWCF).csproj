@@ -32,13 +32,13 @@
   </ItemGroup>
 
   <ItemGroup>
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
     <PackageReference Include="CoreWCF.Primitives" Version="0.3.2" />
     <PackageReference Include="CoreWCF.Http" Version="0.3.2" />
     <PackageReference Include="CoreWCF.NetTcp" Version="0.3.2" />
     <PackageReference Include="CoreWCF.ConfigurationManager" Version="0.3.2">
       <ExcludeAssets>contentFiles</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
