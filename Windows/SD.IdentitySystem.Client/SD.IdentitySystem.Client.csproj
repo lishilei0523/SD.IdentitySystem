@@ -51,7 +51,7 @@
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.2" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.0.1" />
     <PackageReference Include="SD.IdentitySystem.Membership.Windows" Version="1.0.3" />
-    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Windows" Version="1.1.0" />
+    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Windows" Version="1.1.1" />
     <PackageReference Include="SD.IdentitySystem.Authorization.WPF" Version="1.1.0" />
   </ItemGroup>
 

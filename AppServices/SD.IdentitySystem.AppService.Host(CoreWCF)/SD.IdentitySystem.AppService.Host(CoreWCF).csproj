@@ -61,7 +61,7 @@
     <PackageReference Include="SD.Infrastructure.WCF.Server" Version="2.1.0" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.0.1" />
     <PackageReference Include="SD.IdentitySystem.Membership.WCF" Version="1.0.3" />
-    <PackageReference Include="SD.IdentitySystem.WCF.Authentication" Version="1.1.0" />
+    <PackageReference Include="SD.IdentitySystem.WCF.Authentication" Version="1.1.1" />
   </ItemGroup>
 
   <ItemGroup>
