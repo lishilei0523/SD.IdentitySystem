@@ -1,5 +1,5 @@
 ﻿using SD.Infrastructure.AppServiceBase;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using System.ServiceModel;
 
 namespace SD.IdentitySystem.IAppService.Interfaces

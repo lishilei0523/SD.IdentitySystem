@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.Mapper;
 using System;
 using System.Collections.Generic;
@@ -127,7 +127,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// </summary>
         public static LoginAuthorityInfo ToLoginAuthorityInfo(this Authority authority)
         {
-            return new LoginAuthorityInfo(authority.SystemNo, authority.ApplicationType, authority.Id, authority.Name, authority.AuthorityPath, authority.EnglishName);
+            return new LoginAuthorityInfo(authority.SystemNo, authority.ApplicationType, authority.Name, authority.AuthorityPath);
         }
         #endregion
 

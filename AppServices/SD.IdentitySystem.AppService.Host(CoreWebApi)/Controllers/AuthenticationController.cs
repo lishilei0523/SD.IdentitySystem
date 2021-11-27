@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNetCore.Attributes;
 
 namespace SD.IdentitySystem.AppService.Host.Controllers

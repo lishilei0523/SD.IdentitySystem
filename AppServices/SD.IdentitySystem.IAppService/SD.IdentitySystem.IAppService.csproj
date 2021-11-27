@@ -5,7 +5,7 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem 身份认证系统服务接口</Description>
     <Copyright>Copyright © SD 2021</Copyright>
-    <Version>4.3.1</Version>
+    <Version>4.3.2</Version>
     <AssemblyVersion>4.0.0.0</AssemblyVersion>
   </PropertyGroup>
 
@@ -25,6 +25,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.0" />
   </ItemGroup>
 </Project>
