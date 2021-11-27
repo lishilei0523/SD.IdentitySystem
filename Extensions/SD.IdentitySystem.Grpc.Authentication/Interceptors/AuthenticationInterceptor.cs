@@ -5,7 +5,7 @@ using Microsoft.AspNetCore.Http;
 using SD.CacheManager;
 using SD.Infrastructure;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNet;
 using SD.Toolkits.OwinCore.Extensions;
 using System;

@@ -1,7 +1,7 @@
 ﻿using Microsoft.Owin;
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.Owin.Extensions;
 using System;
 using System.Linq;

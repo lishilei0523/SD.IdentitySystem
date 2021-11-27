@@ -1,6 +1,6 @@
 ﻿using SD.CacheManager;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using System;
 using System.Linq;
 #if NET40_OR_GREATER

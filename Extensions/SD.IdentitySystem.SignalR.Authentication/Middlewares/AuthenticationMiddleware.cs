@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Http;
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNet;
 using System.Net;
 using System.Security.Principal;

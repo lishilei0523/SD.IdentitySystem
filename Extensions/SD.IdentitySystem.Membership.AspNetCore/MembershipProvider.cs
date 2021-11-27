@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Primitives;
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.OwinCore.Extensions;
 using System;
 

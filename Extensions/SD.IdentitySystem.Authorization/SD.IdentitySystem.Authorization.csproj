@@ -1,6 +1,6 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net451;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net45;netstandard2.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem 授权组件</Description>
@@ -16,7 +16,7 @@
 
   <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.9.2" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.0" />
   </ItemGroup>
 
   <ItemGroup>

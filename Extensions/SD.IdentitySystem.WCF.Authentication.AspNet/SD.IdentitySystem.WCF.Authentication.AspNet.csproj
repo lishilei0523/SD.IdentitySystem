@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFrameworks>net45;net46</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem WCF身份认证组件 - ASP.NET客户端</Description>
@@ -21,7 +21,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Toolkits.WebHost" Version="1.0.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
+    <PackageReference Include="SD.Toolkits.WebHost" Version="1.0.1" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.0" />
   </ItemGroup>
 </Project>

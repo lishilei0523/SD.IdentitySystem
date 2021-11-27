@@ -1,4 +1,4 @@
-﻿using SD.Infrastructure.MemberShip;
+﻿using SD.Infrastructure.Membership;
 
 // ReSharper disable once CheckNamespace
 namespace SD.IdentitySystem

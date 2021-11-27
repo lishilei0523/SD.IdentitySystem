@@ -1,5 +1,5 @@
 ﻿using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using System;
 
 namespace SD.IdentitySystem.Membership.Windows

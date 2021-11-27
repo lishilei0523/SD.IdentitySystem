@@ -1,6 +1,6 @@
 ﻿using SD.Infrastructure;
 using SD.Infrastructure.CustomExceptions;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using System;
 using System.Collections.Generic;
 using System.Globalization;

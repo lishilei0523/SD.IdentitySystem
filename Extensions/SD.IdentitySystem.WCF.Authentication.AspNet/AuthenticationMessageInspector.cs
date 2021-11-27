@@ -1,5 +1,5 @@
 ﻿using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.WebHost.Extensions;
 using System;
 using System.ServiceModel;

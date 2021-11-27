@@ -7,7 +7,7 @@ using Microsoft.Extensions.Primitives;
 using SD.CacheManager;
 using SD.Infrastructure;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNet;
 using System;
 using System.Net;

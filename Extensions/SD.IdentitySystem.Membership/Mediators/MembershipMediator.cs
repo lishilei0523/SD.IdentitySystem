@@ -1,4 +1,4 @@
-﻿using SD.Infrastructure.MemberShip;
+﻿using SD.Infrastructure.Membership;
 using System;
 using System.Reflection;
 

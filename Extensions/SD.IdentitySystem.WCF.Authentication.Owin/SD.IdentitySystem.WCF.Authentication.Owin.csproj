@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net46</TargetFramework>
+    <TargetFrameworks>net45;net46</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem WCF身份认证组件 - OWIN客户端</Description>
@@ -20,7 +20,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Toolkits.Owin" Version="1.0.2" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
+    <PackageReference Include="SD.Toolkits.Owin" Version="1.0.3" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.0" />
   </ItemGroup>
 </Project>
