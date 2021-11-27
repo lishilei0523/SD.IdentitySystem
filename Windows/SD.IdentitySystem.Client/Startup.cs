@@ -14,7 +14,7 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-#if NET461_OR_GREATER
+#if NET45_OR_GREATER
 using SD.IOC.Extension.NetFx;
 #endif
 #if NETCOREAPP3_1

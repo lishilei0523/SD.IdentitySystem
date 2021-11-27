@@ -24,10 +24,10 @@
 
   <ItemGroup>
     <PackageReference Include="SD.Common" Version="3.0.8" />
-    <PackageReference Include="SD.IOC.Core" Version="2.0.8" />
-    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.0.5" />
-    <PackageReference Include="SD.Infrastructure" Version="3.1.5" />
-    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.1" />
-    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Windows" Version="1.0.2" />
+    <PackageReference Include="SD.IOC.Core" Version="2.1.0" />
+    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.1.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.0" />
+    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.2" />
+    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Windows" Version="1.1.0" />
   </ItemGroup>
 </Project>

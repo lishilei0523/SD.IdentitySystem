@@ -3,7 +3,7 @@ using SD.IdentitySystem.AspNetCore.Tests.Models;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.StubWCF.Server.Interfaces;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.IOC.Core.Mediators;
 using SD.Toolkits.AspNetCore.Attributes;
 using System;

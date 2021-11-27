@@ -46,7 +46,7 @@ namespace SD.IdentitySystem.WCF.Authentication
         /// <param name="clientRuntime">客户端运行时</param>
         public void ApplyClientBehavior(ServiceEndpoint endpoint, ClientRuntime clientRuntime)
         {
-#if NET46_OR_GREATER
+#if NET40_OR_GREATER
             //添加消息拦截器
             clientRuntime.MessageInspectors.Add(new AuthenticationMessageInspector());
 #endif

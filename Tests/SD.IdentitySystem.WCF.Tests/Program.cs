@@ -2,7 +2,7 @@
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.StubWCF.Client.Interfaces;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.IOC.Core.Mediators;
 using SD.IOC.Extension.NetFx;
 using System;

@@ -5,7 +5,7 @@ using SD.Infrastructure.AspNetMvc;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;

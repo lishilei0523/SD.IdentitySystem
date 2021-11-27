@@ -1,6 +1,6 @@
 ﻿using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
-using SD.Infrastructure.MemberShip;
+using SD.Infrastructure.Membership;
 using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Client.Controllers
