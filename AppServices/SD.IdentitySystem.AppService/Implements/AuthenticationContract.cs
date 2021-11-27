@@ -246,7 +246,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #region # WebApi获取
 
-#if NET461_OR_GREATER
+#if NET45_OR_GREATER
             if (OwinContextReader.Current != null)
             {
                 ip = OwinContextReader.Current.Request.RemoteIpAddress;
