@@ -8,6 +8,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem 唯一码生成工具</Description>
     <Copyright>Copyright © SD 2021</Copyright>
+    <Version>4.3.2</Version>
+    <AssemblyVersion>4.3.2</AssemblyVersion>
+    <FileVersion>4.3.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">

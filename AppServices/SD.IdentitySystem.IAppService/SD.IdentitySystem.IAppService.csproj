@@ -6,7 +6,8 @@
     <Description>SD.IdentitySystem 身份认证系统服务接口</Description>
     <Copyright>Copyright © SD 2021</Copyright>
     <Version>4.3.2</Version>
-    <AssemblyVersion>4.0.0.0</AssemblyVersion>
+    <AssemblyVersion>4.3.2</AssemblyVersion>
+    <FileVersion>4.3.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

@@ -5,6 +5,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem 许可证管理工具</Description>
     <Copyright>Copyright © SD 2021</Copyright>
+    <Version>4.3.2</Version>
+    <AssemblyVersion>4.3.2</AssemblyVersion>
+    <FileVersion>4.3.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
