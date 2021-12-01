@@ -3,11 +3,11 @@
     <TargetFrameworks>net35;net45;netstandard2.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem 许可证管理工具</Description>
+    <Description>SD.IdentitySystem 许可证管理组件</Description>
     <Copyright>Copyright © SD 2021</Copyright>
-    <Version>4.3.2</Version>
-    <AssemblyVersion>4.3.2</AssemblyVersion>
-    <FileVersion>4.3.2.0</FileVersion>
+    <Version>4.4.0</Version>
+    <AssemblyVersion>4.4.0</AssemblyVersion>
+    <FileVersion>4.4.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

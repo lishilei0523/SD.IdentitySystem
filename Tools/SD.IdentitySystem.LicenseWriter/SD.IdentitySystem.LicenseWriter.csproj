@@ -8,9 +8,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem 许可证生成工具</Description>
     <Copyright>Copyright © SD 2021</Copyright>
-    <Version>4.3.2</Version>
-    <AssemblyVersion>4.3.2</AssemblyVersion>
-    <FileVersion>4.3.2.0</FileVersion>
+    <Version>4.4.0</Version>
+    <AssemblyVersion>4.4.0</AssemblyVersion>
+    <FileVersion>4.4.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">

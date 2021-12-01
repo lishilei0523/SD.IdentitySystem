@@ -8,9 +8,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem 初始化工具</Description>
     <Copyright>Copyright © SD 2021</Copyright>
-    <Version>4.3.2</Version>
-    <AssemblyVersion>4.3.2</AssemblyVersion>
-    <FileVersion>4.3.2.0</FileVersion>
+    <Version>4.4.0</Version>
+    <AssemblyVersion>4.4.0</AssemblyVersion>
+    <FileVersion>4.4.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
@@ -30,7 +30,7 @@
     <PackageReference Include="SD.IOC.Core" Version="2.1.0" />
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.1.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.2.0" />
-    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.3.2" />
+    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.4.0" />
     <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Windows" Version="1.1.1" />
   </ItemGroup>
 </Project>

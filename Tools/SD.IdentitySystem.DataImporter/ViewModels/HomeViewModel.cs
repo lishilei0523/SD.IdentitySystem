@@ -110,7 +110,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
 
             await Task.Run(() =>
             {
-                IAuthorizationContract authorizationContract = this._authorizationContract.Channel; ;
+                IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
                 Authority[] authorities = ExcelReader.ReadFile<Authority>(ExcelPath, "权限");
                 var authorityGroups = authorities.GroupBy(x => new
                 {
@@ -125,8 +125,8 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
                     {
                         AuthorityParam authorityParam = new AuthorityParam()
                         {
-                            AuthorityName = authority.权限名称,
-                            AuthorityPath = authority.权限路径
+                            authorityName = authority.权限名称,
+                            authorityPath = authority.权限路径
                         };
                         authorityParams.Add(authorityParam);
                     }
@@ -150,17 +150,17 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
 
             await Task.Run(() =>
             {
-                IAuthorizationContract authorizationContract = this._authorizationContract.Channel; ;
+                IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
                 Menu[] menus = ExcelReader.ReadFile<Menu>(ExcelPath, "菜单");
 
                 IEnumerable<IGrouping<string, Menu>> menuGroups = menus.GroupBy(x => x.信息系统编号);
                 foreach (IGrouping<string, Menu> menuGroup in menuGroups)
                 {
                     //获取信息系统根级菜单
-                    Guid systemMenuId = authorizationContract.GetMenus(menuGroup.Key, null).First().Id;
+                    Guid infoSystemMenuId = authorizationContract.GetMenus(menuGroup.Key, null).First().Id;
 
                     IList<Menu> rootMenus = menuGroup.Where(x => string.IsNullOrWhiteSpace(x.上级Id)).ToList();
-                    this.CreateMenus(authorizationContract, menuGroup.Key, menus, rootMenus, systemMenuId);
+                    this.CreateMenus(authorizationContract, menuGroup.Key, menus, rootMenus, infoSystemMenuId);
                 }
             });
 
@@ -178,7 +178,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
 
             await Task.Run(() =>
             {
-                IAuthorizationContract authorizationContract = this._authorizationContract.Channel; ;
+                IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
                 MenuRelatedAuthority[] relatedAuthorities = ExcelReader.ReadFile<MenuRelatedAuthority>(ExcelPath, "菜单相关权限");
 
                 MenuInfo[] menuInfos = authorizationContract.GetMenus(null, null).ToArray();
@@ -193,7 +193,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
                 foreach (var relatedAuthorityGroup in relatedAuthorityGroups)
                 {
                     ApplicationType applicationType = (ApplicationType)Enum.Parse(typeof(ApplicationType), relatedAuthorityGroup.Key.应用程序类型);
-                    MenuInfo menuInfo = menuInfos.Single(x => x.SystemNo == relatedAuthorityGroup.Key.信息系统编号 && x.ApplicationType == applicationType && x.Name == relatedAuthorityGroup.Key.菜单名称);
+                    MenuInfo menuInfo = menuInfos.Single(x => x.InfoSystemNo == relatedAuthorityGroup.Key.信息系统编号 && x.ApplicationType == applicationType && x.Name == relatedAuthorityGroup.Key.菜单名称);
 
                     IList<AuthorityInfo> relatedAuthorityInfos = new List<AuthorityInfo>();
                     foreach (MenuRelatedAuthority relatedAuthority in relatedAuthorityGroup)
@@ -222,7 +222,6 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             await Task.Run(() =>
             {
                 IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
-                ;
                 Role[] roles = ExcelReader.ReadFile<Role>(ExcelPath, "角色");
                 foreach (Role role in roles)
                 {
@@ -244,7 +243,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
 
             await Task.Run(() =>
             {
-                IAuthorizationContract authorizationContract = this._authorizationContract.Channel; ;
+                IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
                 RoleRelatedAuthority[] relatedAuthorities = ExcelReader.ReadFile<RoleRelatedAuthority>(ExcelPath, "角色相关权限");
 
                 RoleInfo[] roleInfos = authorizationContract.GetRoles(null, null, null).ToArray();
@@ -257,7 +256,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
                 });
                 foreach (var relatedAuthorityGroup in relatedAuthorityGroups)
                 {
-                    RoleInfo roleInfo = roleInfos.Single(x => x.SystemNo == relatedAuthorityGroup.Key.信息系统编号 && x.Name == relatedAuthorityGroup.Key.角色名称);
+                    RoleInfo roleInfo = roleInfos.Single(x => x.InfoSystemNo == relatedAuthorityGroup.Key.信息系统编号 && x.Name == relatedAuthorityGroup.Key.角色名称);
 
                     IList<AuthorityInfo> relatedAuthorityInfos = new List<AuthorityInfo>();
                     foreach (RoleRelatedAuthority relatedAuthority in relatedAuthorityGroup)
@@ -308,8 +307,8 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
 
             await Task.Run(() =>
             {
-                IUserContract userContract = this._userContract.Channel; ;
-                IAuthorizationContract authorizationContract = this._authorizationContract.Channel; ;
+                IUserContract userContract = this._userContract.Channel;
+                IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
                 UserRelatedRole[] relatedRoles = ExcelReader.ReadFile<UserRelatedRole>(ExcelPath, "用户相关角色");
 
                 RoleInfo[] roleInfos = authorizationContract.GetRoles(null, null, null).ToArray();
@@ -319,7 +318,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
                     IList<RoleInfo> relatedRoleInfos = new List<RoleInfo>();
                     foreach (UserRelatedRole userRelatedRole in relatedRoleGroup)
                     {
-                        RoleInfo roleInfo = roleInfos.Single(x => x.SystemNo == userRelatedRole.信息系统编号 && x.Name == userRelatedRole.角色名称);
+                        RoleInfo roleInfo = roleInfos.Single(x => x.InfoSystemNo == userRelatedRole.信息系统编号 && x.Name == userRelatedRole.角色名称);
                         relatedRoleInfos.Add(roleInfo);
                     }
 
