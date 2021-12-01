@@ -59,25 +59,25 @@ namespace SD.IdentitySystem.IPresentation.Models
 
         //Others
 
-        #region 信息系统编号 —— string SystemNo
+        #region 信息系统编号 —— string InfoSystemNo
         /// <summary>
         /// 信息系统编号
         /// </summary>
-        public string SystemNo { get; set; }
+        public string InfoSystemNo { get; set; }
         #endregion
 
-        #region 信息系统名称 —— string SystemName
+        #region 信息系统名称 —— string InfoSystemName
         /// <summary>
         /// 信息系统名称
         /// </summary>
-        public string SystemName { get; set; }
+        public string InfoSystemName { get; set; }
         #endregion
 
-        #region 应用程序类型 —— string ApplicationType
+        #region 应用程序类型名称 —— string ApplicationTypeName
         /// <summary>
-        /// 应用程序类型
+        /// 应用程序类型名称
         /// </summary>
-        public string ApplicationType { get; set; }
+        public string ApplicationTypeName { get; set; }
         #endregion
     }
 }

@@ -25,30 +25,20 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 信息系统呈现器接口
         /// </summary>
-        private readonly IInfoSystemPresenter _systemPresenter;
+        private readonly IInfoSystemPresenter _infoSystemPresenter;
 
         /// <summary>
-        /// 权限呈现器接口
-        /// </summary>
-        private readonly IAuthorityPresenter _authorityPresenter;
-
-        /// <summary>
-        /// 权限服务接口
+        /// 权限管理服务契约接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="rolePresenter">角色呈现器接口</param>
-        /// <param name="systemPresenter">信息系统呈现器接口</param>
-        /// <param name="authorityPresenter">权限呈现器接口</param>
-        /// <param name="authorizationContract">权限服务接口</param>
-        public RoleController(IRolePresenter rolePresenter, IInfoSystemPresenter systemPresenter, IAuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract)
+        public RoleController(IRolePresenter rolePresenter, IInfoSystemPresenter infoSystemPresenter, IAuthorizationContract authorizationContract)
         {
             this._rolePresenter = rolePresenter;
-            this._systemPresenter = systemPresenter;
-            this._authorityPresenter = authorityPresenter;
+            this._infoSystemPresenter = infoSystemPresenter;
             this._authorizationContract = authorizationContract;
         }
 
@@ -66,8 +56,8 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("角色管理首页视图")]
         public ViewResult Index()
         {
-            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
-            base.ViewBag.InfoSystems = systems;
+            IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
+            base.ViewBag.InfoSystems = infoSystems;
 
             return base.View();
         }
@@ -82,8 +72,8 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("创建角色视图")]
         public ViewResult Add()
         {
-            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
-            base.ViewBag.InfoSystems = systems;
+            IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
+            base.ViewBag.InfoSystems = infoSystems;
 
             return base.View();
         }
@@ -108,21 +98,21 @@ namespace SD.IdentitySystem.Client.Controllers
 
         //命令部分
 
-        #region # 创建角色 —— void CreateRole(string systemNo, string roleName...
+        #region # 创建角色 —— void CreateRole(string infoSystemNo, string roleName...
         /// <summary>
         /// 创建角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="roleName">角色名称</param>
         /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
         [RequireAuthorization("创建角色")]
-        public void CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
+        public void CreateRole(string infoSystemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
             authorityIds = authorityIds ?? new Guid[0];
 
-            this._authorizationContract.CreateRole(systemNo, roleName, description, authorityIds);
+            this._authorizationContract.CreateRole(infoSystemNo, roleName, description, authorityIds);
         }
         #endregion
 
@@ -178,17 +168,17 @@ namespace SD.IdentitySystem.Client.Controllers
 
         //查询部分
 
-        #region # 获取用户的信息系统/角色树 —— JsonResult GetUserSystemRoleTree(string id)
+        #region # 获取用户的信息系统/角色树 —— JsonResult GetUserInfoSystemRoleTree(string id)
         /// <summary>
         /// 获取用户的信息系统/角色树
         /// </summary>
-        /// <param name="id">用户登录名</param>
+        /// <param name="id">用户名</param>
         /// <returns>信息系统/角色树</returns>
         [RequireAuthorization("获取用户的信息系统-角色树")]
-        public JsonResult GetUserSystemRoleTree(string id)
+        public JsonResult GetUserInfoSystemRoleTree(string id)
         {
             string loginId = id;
-            IEnumerable<Node> tree = this._rolePresenter.GetUserSystemRoleTree(loginId);
+            IEnumerable<Node> tree = this._rolePresenter.GetUserInfoSystemRoleTree(loginId);
 
             return base.Json(tree, JsonRequestBehavior.AllowGet);
         }
@@ -199,14 +189,14 @@ namespace SD.IdentitySystem.Client.Controllers
         /// 分页获取角色列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>角色列表</returns>
         [RequireAuthorization("分页获取角色列表")]
-        public JsonResult GetRolesByPage(string keywords, string systemNo, int page, int rows)
+        public JsonResult GetRolesByPage(string keywords, string infoSystemNo, int page, int rows)
         {
-            PageModel<Role> pageModel = this._rolePresenter.GetRolesByPage(keywords, systemNo, page, rows);
+            PageModel<Role> pageModel = this._rolePresenter.GetRolesByPage(keywords, infoSystemNo, page, rows);
             Grid<Role> grid = new Grid<Role>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

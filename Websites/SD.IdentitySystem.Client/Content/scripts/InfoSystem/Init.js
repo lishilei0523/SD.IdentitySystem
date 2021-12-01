@@ -1,7 +1,7 @@
 ﻿//初始化信息系统
-function initSystem() {
+function initInfoSystem() {
     //获取表单JSON
-    var form = $.global.formatForm($("#frmInitSystem"));
+    var form = $.global.formatForm($("#frmInitInfoSystem"));
 
     $.ajax({
         type: "POST",

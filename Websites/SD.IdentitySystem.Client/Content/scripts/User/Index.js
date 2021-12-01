@@ -161,7 +161,7 @@ function removeUsers() {
     if (checkedRows.length > 0) {
         $.easyuiExt.messager.confirm("Warning", "确定要删除吗？", function (confirm) {
             if (confirm) {
-                //填充用户登录名数组
+                //填充用户名数组
                 var checkedLoginIds = [];
                 for (var i = 0; i < checkedRows.length; i++) {
                     checkedLoginIds.push(checkedRows[i].Number);

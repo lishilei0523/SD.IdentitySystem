@@ -18,7 +18,7 @@ function getRoles(queryParams) {
             { field: "ck", checkbox: true, halign: "center" },
             { field: "Id", title: "Id", halign: "center", hidden: true },
             { field: "Name", title: "角色名称", halign: "center", width: 120 },
-            { field: "SystemName", title: "所属系统", halign: "center", width: 120 },
+            { field: "InfoSystemName", title: "所属系统", halign: "center", width: 120 },
             { field: "Description", title: "角色描述", halign: "center", width: 200 },
             {
                 field: "AddedTime",

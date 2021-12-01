@@ -1,15 +1,15 @@
 ﻿$(function () {
     //获取用户选中的信息系统编号
-    var systemNo = $("#slSystem").val();
+    var infoSystemNo = $("#cbxInfoSystem").val();
 
     //初始化权限树
-    initAuthorityTree(systemNo);
+    initAuthorityTree(infoSystemNo);
 });
 
 //初始化权限树
-function initAuthorityTree(systemNo) {
+function initAuthorityTree(infoSystemNo) {
     $("#authorityTree").tree({
-        url: "/Authority/GetAuthorityTree/" + systemNo,
+        url: "/Authority/GetAuthorityTree/" + infoSystemNo,
         animate: true,
         lines: true,
         checkbox: function (node) {
@@ -24,7 +24,7 @@ function initAuthorityTree(systemNo) {
 }
 
 //信息系统选中事件
-function systemSelected(record) {
+function infoSystemSelected(record) {
     //重新初始化权限树
     initAuthorityTree(record.value);
 }

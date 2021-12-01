@@ -15,11 +15,11 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// 分页获取用户列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
-        PageModel<User> GetUsersByPage(string keywords, string systemNo, int pageIndex, int pageSize);
+        PageModel<User> GetUsersByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize);
         #endregion
 
         #region # 分页获取登录记录列表 —— PageModel<LoginRecord> GetLoginRecordsByPage(string keywords...

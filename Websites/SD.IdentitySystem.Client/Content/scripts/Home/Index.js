@@ -7,12 +7,12 @@ $(function () {
     var loginId = $("#spLoginId").text();
 
     //常量
-    var systemNo = "00";
+    var infoSystemNo = "00";
     var applicationType = 0;
 
     //初始化用户菜单
     $("#menuTree").tree({
-        url: "/Menu/GetUserMenuTree?loginId=" + loginId + "&systemNo=" + systemNo + "&applicationType=" + applicationType,
+        url: "/Menu/GetUserMenuTree?loginId=" + loginId + "&infoSystemNo=" + infoSystemNo + "&applicationType=" + applicationType,
         animate: true,
         lines: true,
         onClick: function (node) {
@@ -146,7 +146,7 @@ function changePassword() {
         return;
     }
     else {
-        //填充用户登录名
+        //填充用户名
         var loginId = $("#spLoginId").text();
         $("#hdLoginId").val(loginId);
 

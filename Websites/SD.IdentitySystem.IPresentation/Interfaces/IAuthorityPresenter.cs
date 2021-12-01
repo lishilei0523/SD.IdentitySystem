@@ -21,14 +21,14 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         Authority GetAuthority(Guid authorityId);
         #endregion
 
-        #region # 获取信息系统的权限树 —— Node GetAuthorityTree(string systemNo...
+        #region # 获取信息系统的权限树 —— Node GetAuthorityTree(string infoSystemNo...
         /// <summary>
         /// 获取信息系统的权限树
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>权限树</returns>
-        Node GetAuthorityTree(string systemNo, ApplicationType? applicationType);
+        Node GetAuthorityTree(string infoSystemNo, ApplicationType? applicationType);
         #endregion
 
         #region # 获取角色的权限树 —— Node GetAuthorityTreeByRole(Guid roleId)
@@ -54,12 +54,12 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// 分页获取权限列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
-        PageModel<Authority> GetAuthoritiesByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize);
+        PageModel<Authority> GetAuthoritiesByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int pageIndex, int pageSize);
         #endregion
     }
 }

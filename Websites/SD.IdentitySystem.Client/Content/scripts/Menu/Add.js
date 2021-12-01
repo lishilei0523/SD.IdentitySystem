@@ -4,9 +4,9 @@
 });
 
 //初始化菜单树
-function initMenuTree(systemNo, applicationType) {
+function initMenuTree(infoSystemNo, applicationType) {
     $("#slMenu").combotree({
-        url: "/Menu/GetMenuTree?systemNo=" + systemNo + "&applicationType=" + applicationType,
+        url: "/Menu/GetMenuTree?infoSystemNo=" + infoSystemNo + "&applicationType=" + applicationType,
         animate: true,
         lines: true,
         checkbox: true,
@@ -16,23 +16,23 @@ function initMenuTree(systemNo, applicationType) {
 }
 
 //信息系统选中事件
-function systemSelected() {
+function infoSystemSelected() {
     //获取用户选中的信息系统编号与应用程序类型
-    var systemNo = $("#slSystem").combobox("getValue");
+    var infoSystemNo = $("#cbxInfoSystem").combobox("getValue");
     var applicationType = $("#slApplicationType").combobox("getValue");
 
     //初始化菜单树
-    initMenuTree(systemNo, applicationType);
+    initMenuTree(infoSystemNo, applicationType);
 }
 
 //应用程序类型选中事件
 function applicationTypeSelected() {
     //获取用户选中的信息系统编号与应用程序类型
-    var systemNo = $("#slSystem").combobox("getValue");
+    var infoSystemNo = $("#cbxInfoSystem").combobox("getValue");
     var applicationType = $("#slApplicationType").combobox("getValue");
 
     //初始化菜单树
-    initMenuTree(systemNo, applicationType);
+    initMenuTree(infoSystemNo, applicationType);
 }
 
 //创建菜单

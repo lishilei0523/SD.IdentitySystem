@@ -7,9 +7,9 @@ namespace SD.IdentitySystem.IPresentation.Models
     /// </summary>
     public class LoginRecord : ModelBase
     {
-        #region 登录名 —— string LoginId
+        #region 用户名 —— string LoginId
         /// <summary>
-        /// 登录名
+        /// 用户名
         /// </summary>
         public string LoginId { get; set; }
         #endregion

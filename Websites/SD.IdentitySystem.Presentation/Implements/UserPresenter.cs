@@ -18,14 +18,13 @@ namespace SD.IdentitySystem.Presentation.Implements
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务接口
+        /// 用户管理服务契约接口
         /// </summary>
         private readonly IUserContract _userContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="userContract">用户服务接口</param>
         public UserPresenter(IUserContract userContract)
         {
             this._userContract = userContract;
@@ -38,13 +37,13 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// 分页获取用户列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
-        public PageModel<User> GetUsersByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        public PageModel<User> GetUsersByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize)
         {
-            PageModel<UserInfo> pageModel = this._userContract.GetUsersByPage(keywords, systemNo, null, pageIndex, pageSize);
+            PageModel<UserInfo> pageModel = this._userContract.GetUsersByPage(keywords, infoSystemNo, null, pageIndex, pageSize);
             IEnumerable<User> users = pageModel.Datas.Select(x => x.ToModel());
 
             return new PageModel<User>(users, pageModel.PageIndex, pageModel.PageSize, pageModel.PageCount, pageModel.RowCount);

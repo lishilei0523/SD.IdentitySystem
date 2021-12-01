@@ -21,9 +21,8 @@ namespace SD.IdentitySystem.Client.Controllers
         private readonly IUserPresenter _userPresenter;
 
         /// <summary>
-        /// 字段及依赖注入构造器
+        /// 依赖注入构造器
         /// </summary>
-        /// <param name="userPresenter">用户呈现器接口</param>
         public LoginRecordController(IUserPresenter userPresenter)
         {
             this._userPresenter = userPresenter;

@@ -1,5 +1,5 @@
 ﻿$(function () {
-    //获取用户登录名
+    //获取用户名
     var loginId = $("#txtLoginId").val();
 
     //初始化角色树
@@ -9,7 +9,7 @@
 //初始化信息系统/角色树
 function initRoleTree(loginId) {
     $("#roleTree").tree({
-        url: "/Role/GetUserSystemRoleTree/" + loginId,
+        url: "/Role/GetUserInfoSystemRoleTree/" + loginId,
         animate: true,
         lines: true,
         checkbox: function (node) {

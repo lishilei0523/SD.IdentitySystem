@@ -18,8 +18,8 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static Authority ToModel(this AuthorityInfo authorityInfo)
         {
             Authority authority = authorityInfo.Map<AuthorityInfo, Authority>();
-            authority.SystemName = authorityInfo.InfoSystemInfo.Name;
-            authority.ApplicationType = authorityInfo.ApplicationType.GetEnumMember();
+            authority.InfoSystemName = authorityInfo.InfoSystemInfo.Name;
+            authority.ApplicationTypeName = authorityInfo.ApplicationType.GetEnumMember();
 
             return authority;
         }

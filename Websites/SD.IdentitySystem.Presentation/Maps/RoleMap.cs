@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         {
             Role role = roleInfo.Map<RoleInfo, Role>();
 
-            role.SystemName = roleInfo.InfoSystemInfo.Name;
+            role.InfoSystemName = roleInfo.InfoSystemInfo.Name;
 
             return role;
         }

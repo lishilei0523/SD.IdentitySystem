@@ -17,14 +17,13 @@ namespace SD.IdentitySystem.Presentation.Implements
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务接口
+        /// 权限管理服务契约接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="authorizationContract">权限服务接口</param>
         public InfoSystemPresenter(IAuthorizationContract authorizationContract)
         {
             this._authorizationContract = authorizationContract;
@@ -32,17 +31,17 @@ namespace SD.IdentitySystem.Presentation.Implements
 
         #endregion
 
-        #region # 获取信息系统 —— InfoSystem GetInfoSystem(string systemNo)
+        #region # 获取信息系统 —— InfoSystem GetInfoSystem(string infoSystemNo)
         /// <summary>
         /// 获取信息系统
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>信息系统</returns>
-        public InfoSystem GetInfoSystem(string systemNo)
+        public InfoSystem GetInfoSystem(string infoSystemNo)
         {
-            InfoSystemInfo systemInfo = this._authorizationContract.GetInfoSystem(systemNo);
+            InfoSystemInfo infoSystemInfo = this._authorizationContract.GetInfoSystem(infoSystemNo);
 
-            return systemInfo.ToModel();
+            return infoSystemInfo.ToModel();
         }
         #endregion
 
@@ -53,9 +52,9 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>信息系统列表</returns>
         public IEnumerable<InfoSystem> GetInfoSystems()
         {
-            IEnumerable<InfoSystemInfo> systemInfos = this._authorizationContract.GetInfoSystems();
+            IEnumerable<InfoSystemInfo> infoSystemInfos = this._authorizationContract.GetInfoSystems();
 
-            IEnumerable<InfoSystem> infoSystems = systemInfos.Select(x => x.ToModel());
+            IEnumerable<InfoSystem> infoSystems = infoSystemInfos.Select(x => x.ToModel());
 
             return infoSystems;
         }

@@ -3,7 +3,7 @@
     ViewBag.Title = "用户管理";
     Layout = "~/Views/Shared/_Layout.cshtml";
 
-    IEnumerable<InfoSystem> Systems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
+    IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
 }
 
 @section header{
@@ -26,11 +26,11 @@
                 关键字：<input class="easyui-textbox" type="text" id="txtKeywords" name="keywords" style="width: 210px" data-options="prompt:'用户名/真实姓名'" />
 
                 信息系统：
-                <select class="easyui-combobox" id="slSystem" name="systemNo" data-options="editable:false" style="width: 210px">
+                <select class="easyui-combobox" id="cbxInfoSystem" name="infoSystemNo" data-options="editable:false" style="width: 210px">
                     <option value="" selected="selected">全部</option>
-                    @foreach (InfoSystem system in Systems)
+                    @foreach (InfoSystem infoSystem in InfoSystems)
                     {
-                        <option value="@system.Number">@system.Name</option>
+                        <option value="@infoSystem.Number">@infoSystem.Name</option>
                     }
                 </select>
 

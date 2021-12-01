@@ -22,7 +22,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 信息系统呈现器接口
         /// </summary>
-        private readonly IInfoSystemPresenter _systemPresenter;
+        private readonly IInfoSystemPresenter _infoSystemPresenter;
 
         /// <summary>
         /// 权限呈现器接口
@@ -30,19 +30,16 @@ namespace SD.IdentitySystem.Client.Controllers
         private readonly IAuthorityPresenter _authorityPresenter;
 
         /// <summary>
-        /// 权限服务接口
+        /// 权限管理服务契约接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="systemPresenter">信息系统呈现器接口</param>
-        /// <param name="authorityPresenter">权限呈现器接口</param>
-        /// <param name="authorizationContract">权限服务接口</param>
-        public AuthorityController(IInfoSystemPresenter systemPresenter, IAuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract)
+        public AuthorityController(IInfoSystemPresenter infoSystemPresenter, IAuthorityPresenter authorityPresenter, IAuthorizationContract authorizationContract)
         {
-            this._systemPresenter = systemPresenter;
+            this._infoSystemPresenter = infoSystemPresenter;
             this._authorityPresenter = authorityPresenter;
             this._authorizationContract = authorizationContract;
         }
@@ -61,10 +58,10 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("权限管理首页视图")]
         public ViewResult Index()
         {
-            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
+            IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
             IDictionary<int, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumDictionary();
 
-            base.ViewBag.InfoSystems = systems;
+            base.ViewBag.InfoSystems = infoSystems;
             base.ViewBag.ApplicationTypeDescriptions = applicationTypeDescriptions;
 
             return base.View();
@@ -80,10 +77,10 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("创建权限视图")]
         public ViewResult Add()
         {
-            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
+            IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
             IDictionary<int, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumDictionary();
 
-            base.ViewBag.InfoSystems = systems;
+            base.ViewBag.InfoSystems = infoSystems;
             base.ViewBag.ApplicationTypeDescriptions = applicationTypeDescriptions;
 
             return base.View();
@@ -109,11 +106,11 @@ namespace SD.IdentitySystem.Client.Controllers
 
         //命令部分
 
-        #region # 创建权限 —— void CreateAuthority(string systemNo, ApplicationType applicationType...
+        #region # 创建权限 —— void CreateAuthority(string infoSystemNo, ApplicationType applicationType...
         /// <summary>
         /// 创建权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
@@ -125,9 +122,9 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="description">描述</param>
         [HttpPost]
         [RequireAuthorization("创建权限")]
-        public void CreateAuthority(string systemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public void CreateAuthority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
         {
-            this._authorizationContract.CreateAuthority(systemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
+            this._authorizationContract.CreateAuthority(infoSystemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
         }
         #endregion
 
@@ -242,15 +239,15 @@ namespace SD.IdentitySystem.Client.Controllers
         /// 分页获取权限列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>权限列表</returns>
         [RequireAuthorization("分页获取权限列表")]
-        public JsonResult GetAuthoritiesByPage(string keywords, string systemNo, ApplicationType? applicationType, int page, int rows)
+        public JsonResult GetAuthoritiesByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int page, int rows)
         {
-            PageModel<Authority> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, systemNo, applicationType, page, rows);
+            PageModel<Authority> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, infoSystemNo, applicationType, page, rows);
             Grid<Authority> grid = new Grid<Authority>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

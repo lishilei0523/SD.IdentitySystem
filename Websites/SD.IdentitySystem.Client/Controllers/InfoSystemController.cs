@@ -19,21 +19,19 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 信息系统呈现器接口
         /// </summary>
-        private readonly IInfoSystemPresenter _systemPresenter;
+        private readonly IInfoSystemPresenter _infoSystemPresenter;
 
         /// <summary>
-        /// 权限服务接口
+        /// 权限管理服务契约接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="systemPresenter">信息系统呈现器接口</param>
-        /// <param name="authorizationContract">权限服务接口</param>
-        public InfoSystemController(IInfoSystemPresenter systemPresenter, IAuthorizationContract authorizationContract)
+        public InfoSystemController(IInfoSystemPresenter infoSystemPresenter, IAuthorizationContract authorizationContract)
         {
-            this._systemPresenter = systemPresenter;
+            this._infoSystemPresenter = infoSystemPresenter;
             this._authorizationContract = authorizationContract;
         }
 
@@ -78,7 +76,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("初始化信息系统视图")]
         public ViewResult Init(string id)
         {
-            InfoSystem currentSystem = this._systemPresenter.GetInfoSystem(id);
+            InfoSystem currentSystem = this._infoSystemPresenter.GetInfoSystem(id);
 
             return base.View(currentSystem);
         }
@@ -87,35 +85,35 @@ namespace SD.IdentitySystem.Client.Controllers
 
         //命令部分
 
-        #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
+        #region # 创建信息系统 —— void CreateInfoSystem(string infoSystemNo, string infoSystemName...
         /// <summary>
         /// 创建信息系统
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="systemName">信息系统名称</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="infoSystemName">信息系统名称</param>
         /// <param name="adminLoginId">系统管理员账号</param>
         /// <param name="applicationType">应用程序类型</param>
         [HttpPost]
         [RequireAuthorization("创建信息系统")]
-        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
+        public void CreateInfoSystem(string infoSystemNo, string infoSystemName, string adminLoginId, ApplicationType applicationType)
         {
-            this._authorizationContract.CreateInfoSystem(systemNo, systemName, adminLoginId, applicationType);
+            this._authorizationContract.CreateInfoSystem(infoSystemNo, infoSystemName, adminLoginId, applicationType);
         }
         #endregion
 
-        #region # 初始化信息系统 —— void InitInfoSystem(string systemNo, string host...
+        #region # 初始化信息系统 —— void InitInfoSystem(string infoSystemNo, string host...
         /// <summary>
         /// 初始化信息系统
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="host">主机名称</param>
         /// <param name="port">端口</param>
         /// <param name="index">首页</param>
         [HttpPost]
         [RequireAuthorization("初始化信息系统")]
-        public void InitInfoSystem(string systemNo, string host, int port, string index)
+        public void InitInfoSystem(string infoSystemNo, string host, int port, string index)
         {
-            this._authorizationContract.InitInfoSystem(systemNo, host, port, index);
+            this._authorizationContract.InitInfoSystem(infoSystemNo, host, port, index);
         }
         #endregion
 
@@ -130,7 +128,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("分页获取信息系统列表")]
         public JsonResult GetInfoSystemsByPage(string keywords, int page, int rows)
         {
-            PageModel<InfoSystem> pageModel = this._systemPresenter.GetInfoSystemsByPage(keywords, page, rows);
+            PageModel<InfoSystem> pageModel = this._infoSystemPresenter.GetInfoSystemsByPage(keywords, page, rows);
             Grid<InfoSystem> grid = new Grid<InfoSystem>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

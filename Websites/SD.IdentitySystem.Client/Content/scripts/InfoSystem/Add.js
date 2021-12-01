@@ -1,7 +1,7 @@
 ﻿//创建信息系统
-function createSystem() {
+function createInfoSystem() {
     //获取表单JSON
-    var form = $.global.formatForm($("#frmCreateSystem"));
+    var form = $.global.formatForm($("#frmCreateInfoSystem"));
 
     $.ajax({
         type: "POST",

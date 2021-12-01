@@ -28,7 +28,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 信息系统呈现器接口
         /// </summary>
-        private readonly IInfoSystemPresenter _systemPresenter;
+        private readonly IInfoSystemPresenter _infoSystemPresenter;
 
         /// <summary>
         /// 身份认证服务接口
@@ -36,23 +36,19 @@ namespace SD.IdentitySystem.Client.Controllers
         private readonly IAuthenticationContract _authenticationContract;
 
         /// <summary>
-        /// 用户服务接口
+        /// 用户管理服务契约接口
         /// </summary>
         private readonly IUserContract _userContract;
 
         /// <summary>
-        /// 字段及依赖注入构造器
+        /// 依赖注入构造器
         /// </summary>
-        /// <param name="userPresenter">用户呈现器接口</param>
-        /// <param name="authenticationContract">身份认证服务接口</param>
-        /// <param name="userContract">用户服务接口</param>
-        /// <param name="systemPresenter">信息系统呈现器接口</param>
-        public UserController(IUserPresenter userPresenter, IAuthenticationContract authenticationContract, IUserContract userContract, IInfoSystemPresenter systemPresenter)
+        public UserController(IUserPresenter userPresenter, IAuthenticationContract authenticationContract, IUserContract userContract, IInfoSystemPresenter infoSystemPresenter)
         {
             this._userPresenter = userPresenter;
             this._authenticationContract = authenticationContract;
             this._userContract = userContract;
-            this._systemPresenter = systemPresenter;
+            this._infoSystemPresenter = infoSystemPresenter;
         }
 
         #endregion
@@ -82,8 +78,8 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("用户管理首页视图")]
         public ViewResult Index()
         {
-            IEnumerable<InfoSystem> systems = this._systemPresenter.GetInfoSystems();
-            base.ViewBag.InfoSystems = systems;
+            IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
+            base.ViewBag.InfoSystems = infoSystems;
 
             return this.View();
         }
@@ -106,7 +102,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 加载重置密码视图
         /// </summary>
-        /// <param name="id">用户登录名</param>
+        /// <param name="id">用户名</param>
         /// <returns>重置密码视图</returns>
         [HttpGet]
         [RequireAuthorization("重置密码视图")]
@@ -122,7 +118,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 加载重置私钥视图
         /// </summary>
-        /// <param name="id">用户登录名</param>
+        /// <param name="id">用户名</param>
         /// <returns>重置私钥视图</returns>
         [HttpGet]
         [RequireAuthorization("重置私钥视图")]
@@ -138,7 +134,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 加载分配角色视图
         /// </summary>
-        /// <param name="id">用户登录名</param>
+        /// <param name="id">用户名</param>
         /// <returns>分配角色视图</returns>
         [HttpGet]
         [RequireAuthorization("分配角色视图")]
@@ -201,7 +197,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 修改密码
         /// </summary>
-        /// <param name="loginId">登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="oldPassword">旧密码</param>
         /// <param name="newPassword">新密码</param>
         /// <param name="confirmPassword">确认密码</param>
@@ -226,7 +222,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 创建用户
         /// </summary>
-        /// <param name="loginId">用户登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="realName">真实姓名</param>
         /// <param name="password">密码</param>
         /// <param name="confirmPassword">确认密码</param>
@@ -251,7 +247,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 删除用户
         /// </summary>
-        /// <param name="id">用户登录名</param>
+        /// <param name="id">用户名</param>
         [HttpPost]
         [RequireAuthorization("删除用户")]
         public void RemoveUser(string id)
@@ -264,7 +260,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 批量删除用户
         /// </summary>
-        /// <param name="loginIds">用户登录名集</param>
+        /// <param name="loginIds">用户名集</param>
         [HttpPost]
         [RequireAuthorization("批量删除用户")]
         public void RemoveUsers(IEnumerable<string> loginIds)
@@ -282,7 +278,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 重置密码
         /// </summary>
-        /// <param name="loginId">用户登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="newPassword">新密码</param>
         /// <param name="confirmPassword">确认密码</param>
         [HttpPost]
@@ -297,7 +293,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 重置私钥
         /// </summary>
-        /// <param name="loginId">用户登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="privateKey">私钥</param>
         [HttpPost]
         [RequireAuthorization("重置私钥")]
@@ -311,7 +307,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 启用用户
         /// </summary>
-        /// <param name="id">登录名</param>
+        /// <param name="id">用户名</param>
         [HttpPost]
         [RequireAuthorization("启用用户")]
         public void EnableUser(string id)
@@ -324,7 +320,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 停用用户
         /// </summary>
-        /// <param name="id">登录名</param>
+        /// <param name="id">用户名</param>
         [HttpPost]
         [RequireAuthorization("停用用户")]
         public void DisableUser(string id)
@@ -337,7 +333,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 分配角色
         /// </summary>
-        /// <param name="loginId">用户登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="roleIds">角色Id集</param>
         [HttpPost]
         [RequireAuthorization("分配角色")]
@@ -369,14 +365,14 @@ namespace SD.IdentitySystem.Client.Controllers
         /// 分页获取用户列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>用户列表</returns>
         [RequireAuthorization("分页获取用户列表")]
-        public JsonResult GetUsersByPage(string keywords, string systemNo, int page, int rows)
+        public JsonResult GetUsersByPage(string keywords, string infoSystemNo, int page, int rows)
         {
-            PageModel<User> pageModel = this._userPresenter.GetUsersByPage(keywords, systemNo, page, rows);
+            PageModel<User> pageModel = this._userPresenter.GetUsersByPage(keywords, infoSystemNo, page, rows);
             Grid<User> grid = new Grid<User>(pageModel.RowCount, pageModel.Datas);
 
             return base.Json(grid, JsonRequestBehavior.AllowGet);

@@ -21,13 +21,13 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         Role GetRole(Guid roleId);
         #endregion
 
-        #region # 获取用户的信息系统/角色树 —— IEnumerable<Node> GetUserSystemRoleTree(string loginId)
+        #region # 获取用户的信息系统/角色树 —— IEnumerable<Node> GetUserInfoSystemRoleTree(string loginId)
         /// <summary>
         /// 获取用户的信息系统/角色树
         /// </summary>
-        /// <param name="loginId">用户登录名</param>
+        /// <param name="loginId">用户名</param>
         /// <returns>信息系统/角色树</returns>
-        IEnumerable<Node> GetUserSystemRoleTree(string loginId);
+        IEnumerable<Node> GetUserInfoSystemRoleTree(string loginId);
         #endregion
 
         #region # 分页获取角色列表 —— PageModel<Role> GetRolesByPage(string keywords...
@@ -35,11 +35,11 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         /// 分页获取角色列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
-        PageModel<Role> GetRolesByPage(string keywords, string systemNo, int pageIndex, int pageSize);
+        PageModel<Role> GetRolesByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize);
         #endregion
     }
 }

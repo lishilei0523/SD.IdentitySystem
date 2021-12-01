@@ -18,11 +18,11 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 信息系统模型映射
         /// </summary>
-        public static InfoSystem ToModel(this InfoSystemInfo systemInfo)
+        public static InfoSystem ToModel(this InfoSystemInfo infoSystemInfo)
         {
-            InfoSystem infoSystem = systemInfo.Map<InfoSystemInfo, InfoSystem>();
+            InfoSystem infoSystem = infoSystemInfo.Map<InfoSystemInfo, InfoSystem>();
 
-            infoSystem.ApplicationTypeName = systemInfo.ApplicationType.GetEnumMember();
+            infoSystem.ApplicationTypeName = infoSystemInfo.ApplicationType.GetEnumMember();
 
             return infoSystem;
         }
@@ -39,19 +39,19 @@ namespace SD.IdentitySystem.Presentation.Maps
                 type = "infoSystem"
             };
 
-            Node systemNode = new Node(infoSystem.Id, infoSystem.Name, "open", false, attributes);
-            IEnumerable<IGrouping<string, Authority>> authoritiesGroups = authorities.GroupBy(x => x.ApplicationType);
+            Node infoSystemNode = new Node(infoSystem.Id, infoSystem.Name, "open", false, attributes);
+            IEnumerable<IGrouping<string, Authority>> authoritiesGroups = authorities.GroupBy(x => x.ApplicationTypeName);
             foreach (IGrouping<string, Authority> authoritiesGroup in authoritiesGroups)
             {
                 Node applicationTypeNode = new Node(Guid.Empty, authoritiesGroup.Key, "open", false, attributes);
-                systemNode.children.Add(applicationTypeNode);
+                infoSystemNode.children.Add(applicationTypeNode);
                 foreach (Authority authority in authoritiesGroup)
                 {
                     applicationTypeNode.children.Add(authority.ToNode());
                 }
             }
 
-            return systemNode;
+            return infoSystemNode;
         }
         #endregion
 
@@ -66,17 +66,17 @@ namespace SD.IdentitySystem.Presentation.Maps
                 type = "infoSystem"
             };
 
-            Node systemNode = new Node(infoSystem.Id, infoSystem.Name, "open", false, attributes);
+            Node infoSystemNode = new Node(infoSystem.Id, infoSystem.Name, "open", false, attributes);
 
             foreach (Role role in roles)
             {
-                if (role.SystemNo == infoSystem.Number)
+                if (role.InfoSystemNo == infoSystem.Number)
                 {
-                    systemNode.children.Add(role.ToNode());
+                    infoSystemNode.children.Add(role.ToNode());
                 }
             }
 
-            return systemNode;
+            return infoSystemNode;
         }
         #endregion
     }

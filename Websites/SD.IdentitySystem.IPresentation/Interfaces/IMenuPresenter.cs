@@ -21,35 +21,35 @@ namespace SD.IdentitySystem.IPresentation.Interfaces
         Menu GetMenu(Guid menuId);
         #endregion
 
-        #region # 获取菜单树 —— IEnumerable<Node> GetMenuTree(string systemNo...
+        #region # 获取菜单树 —— IEnumerable<Node> GetMenuTree(string infoSystemNo...
         /// <summary>
         /// 获取菜单树
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
-        IEnumerable<Node> GetMenuTree(string systemNo, ApplicationType? applicationType);
+        IEnumerable<Node> GetMenuTree(string infoSystemNo, ApplicationType? applicationType);
         #endregion
 
-        #region # 获取用户菜单树 —— IEnumerable<Node> GetUserMenuTree(string loginId, string systemNo...
+        #region # 获取用户菜单树 —— IEnumerable<Node> GetUserMenuTree(string loginId, string infoSystemNo...
         /// <summary>
         /// 获取用户菜单树
         /// </summary>
-        /// <param name="loginId">用户登录名</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="loginId">用户名</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
-        IEnumerable<Node> GetUserMenuTree(string loginId, string systemNo, ApplicationType? applicationType);
+        IEnumerable<Node> GetUserMenuTree(string loginId, string infoSystemNo, ApplicationType? applicationType);
         #endregion
 
-        #region # 获取菜单TreeGrid —— IEnumerable<Menu> GetMenuTreeGrid(string systemNo...
+        #region # 获取菜单TreeGrid —— IEnumerable<Menu> GetMenuTreeGrid(string infoSystemNo...
         /// <summary>
         /// 获取菜单TreeGrid
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单TreeGrid</returns>
-        IEnumerable<Menu> GetMenuTreeGrid(string systemNo, ApplicationType? applicationType);
+        IEnumerable<Menu> GetMenuTreeGrid(string infoSystemNo, ApplicationType? applicationType);
         #endregion
     }
 }
