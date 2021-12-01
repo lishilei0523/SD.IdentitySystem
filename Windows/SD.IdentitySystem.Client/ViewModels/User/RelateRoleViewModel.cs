@@ -26,7 +26,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         private readonly RolePresenter _rolePresenter;
 
         /// <summary>
-        /// 用户服务契约接口代理
+        /// 用户管理服务契约接口代理
         /// </summary>
         private readonly ServiceProxy<IUserContract> _userContract;
 

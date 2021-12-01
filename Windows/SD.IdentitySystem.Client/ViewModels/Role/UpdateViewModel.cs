@@ -28,7 +28,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         private readonly AuthorityPresenter _authorityPresenter;
 
         /// <summary>
-        /// 权限服务契约接口代理
+        /// 权限管理服务契约接口代理
         /// </summary>
         private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 

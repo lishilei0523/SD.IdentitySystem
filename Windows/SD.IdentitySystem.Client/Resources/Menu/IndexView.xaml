@@ -28,7 +28,7 @@
             <GridViewColumn.CellTemplate>
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
-                        <TextBlock Text="{Binding SystemName}" Style="{StaticResource TextBlock.Styles.Inline}" />
+                        <TextBlock Text="{Binding InfoSystemName}" Style="{StaticResource TextBlock.Styles.Inline}" />
                     </Border>
                 </DataTemplate>
             </GridViewColumn.CellTemplate>

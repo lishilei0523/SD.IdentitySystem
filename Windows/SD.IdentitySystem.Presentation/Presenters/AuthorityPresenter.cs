@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口代理
+        /// 权限管理服务契约接口代理
         /// </summary>
         private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
@@ -41,10 +41,10 @@ namespace SD.IdentitySystem.Presentation.Presenters
         {
             IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
             RoleInfo role = authorizationContract.GetRole(roleId);
-            AuthorityInfo[] systemAuthorities = authorizationContract.GetAuthorities(null, role.SystemNo, null, null, null).ToArray();
+            AuthorityInfo[] infoSystemAuthorities = authorizationContract.GetAuthorities(null, role.InfoSystemNo, null, null, null).ToArray();
             AuthorityInfo[] roleSystemAuthorities = authorizationContract.GetAuthorities(null, null, null, null, role.Id).ToArray();
 
-            ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
+            ICollection<Item> authorityItems = infoSystemAuthorities.Select(x => x.ToItem()).ToList();
             foreach (Item authorityItem in authorityItems)
             {
                 if (roleSystemAuthorities.Any(x => x.Id == authorityItem.Id))
@@ -67,10 +67,10 @@ namespace SD.IdentitySystem.Presentation.Presenters
         {
             IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
             MenuInfo menu = authorizationContract.GetMenu(menuId);
-            AuthorityInfo[] systemAuthorities = authorizationContract.GetAuthorities(null, menu.SystemNo, menu.ApplicationType, null, null).ToArray();
-            AuthorityInfo[] menuSystemAuthorities = authorizationContract.GetAuthorities(null, menu.SystemNo, menu.ApplicationType, menu.Id, null).ToArray();
+            AuthorityInfo[] infoSystemAuthorities = authorizationContract.GetAuthorities(null, menu.InfoSystemNo, menu.ApplicationType, null, null).ToArray();
+            AuthorityInfo[] menuSystemAuthorities = authorizationContract.GetAuthorities(null, menu.InfoSystemNo, menu.ApplicationType, menu.Id, null).ToArray();
 
-            ICollection<Item> authorityItems = systemAuthorities.Select(x => x.ToItem()).ToList();
+            ICollection<Item> authorityItems = infoSystemAuthorities.Select(x => x.ToItem()).ToList();
             foreach (Item authorityItem in authorityItems)
             {
                 if (menuSystemAuthorities.Any(x => x.Id == authorityItem.Id))
@@ -83,16 +83,16 @@ namespace SD.IdentitySystem.Presentation.Presenters
         }
         #endregion
 
-        #region # 获取信息系统相关权限数据项列表 —— ICollection<Item> GetSystemAuthorityItems(string systemNo)
+        #region # 获取信息系统相关权限数据项列表 —— ICollection<Item> GetSystemAuthorityItems(string infoSystemNo)
         /// <summary>
         /// 获取信息系统相关权限数据项列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>权限数据项列表</returns>
-        public ICollection<Item> GetSystemAuthorityItems(string systemNo)
+        public ICollection<Item> GetSystemAuthorityItems(string infoSystemNo)
         {
-            IEnumerable<AuthorityInfo> systemAuthorities = this._authorizationContract.Channel.GetAuthorities(null, systemNo, null, null, null);
-            IEnumerable<Item> authorityItems = systemAuthorities.Select(x => x.ToItem());
+            IEnumerable<AuthorityInfo> infoSystemAuthorities = this._authorizationContract.Channel.GetAuthorities(null, infoSystemNo, null, null, null);
+            IEnumerable<Item> authorityItems = infoSystemAuthorities.Select(x => x.ToItem());
 
             return authorityItems.ToList();
         }

@@ -16,12 +16,12 @@ namespace SD.IdentitySystem.Presentation.Presenters
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务契约接口代理
+        /// 用户管理服务契约接口代理
         /// </summary>
         private readonly ServiceProxy<IUserContract> _userContract;
 
         /// <summary>
-        /// 权限服务契约接口代理
+        /// 权限管理服务契约接口代理
         /// </summary>
         private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 

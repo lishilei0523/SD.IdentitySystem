@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口代理
+        /// 权限管理服务契约接口代理
         /// </summary>
         private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
@@ -35,32 +35,32 @@ namespace SD.IdentitySystem.Presentation.Presenters
 
         //Public
 
-        #region # 获取菜单树 —— ICollection<Node> GetMenuTree(string systemNo...
+        #region # 获取菜单树 —— ICollection<Node> GetMenuTree(string infoSystemNo...
         /// <summary>
         /// 获取菜单树
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
-        public ICollection<Node> GetMenuTree(string systemNo, ApplicationType? applicationType)
+        public ICollection<Node> GetMenuTree(string infoSystemNo, ApplicationType? applicationType)
         {
-            IEnumerable<Menu> menus = this.GetMenus(systemNo, applicationType);
+            IEnumerable<Menu> menus = this.GetMenus(infoSystemNo, applicationType);
             ICollection<Node> menuTree = menus.ToTree(null);
 
             return menuTree;
         }
         #endregion
 
-        #region # 获取菜单树列表 —— IEnumerable<Menu> GetMenuTreeList(string systemNo...
+        #region # 获取菜单树列表 —— IEnumerable<Menu> GetMenuTreeList(string infoSystemNo...
         /// <summary>
         /// 获取菜单树列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单TreeGrid</returns>
-        public IEnumerable<Menu> GetMenuTreeList(string systemNo, ApplicationType? applicationType)
+        public IEnumerable<Menu> GetMenuTreeList(string infoSystemNo, ApplicationType? applicationType)
         {
-            IEnumerable<Menu> menus = this.GetMenus(systemNo, applicationType);
+            IEnumerable<Menu> menus = this.GetMenus(infoSystemNo, applicationType);
             IEnumerable<Menu> menuTreeList = menus.ToTreeList();
 
             return menuTreeList;
@@ -70,16 +70,16 @@ namespace SD.IdentitySystem.Presentation.Presenters
 
         //Private
 
-        #region # 获取菜单列表 —— IEnumerable<Menu> GetMenus(string systemNo...
+        #region # 获取菜单列表 —— IEnumerable<Menu> GetMenus(string infoSystemNo...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        private IEnumerable<Menu> GetMenus(string systemNo, ApplicationType? applicationType)
+        private IEnumerable<Menu> GetMenus(string infoSystemNo, ApplicationType? applicationType)
         {
-            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.Channel.GetMenus(systemNo, applicationType);
+            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.Channel.GetMenus(infoSystemNo, applicationType);
             IEnumerable<Menu> menus = menuInfos.OrderBy(x => x.Sort).Select(x => x.ToModel());
 
             return menus;

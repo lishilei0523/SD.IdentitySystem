@@ -25,18 +25,18 @@ namespace SD.IdentitySystem.Presentation.Models
         }
         #endregion
 
-        #region 信息系统编号 —— string SystemNo
+        #region 信息系统编号 —— string InfoSystemNo
         /// <summary>
         /// 信息系统编号
         /// </summary>
-        public string SystemNo { get; set; }
+        public string InfoSystemNo { get; set; }
         #endregion
 
-        #region 信息系统名称 —— string SystemName
+        #region 信息系统名称 —— string InfoSystemName
         /// <summary>
         /// 信息系统名称
         /// </summary>
-        public string SystemName { get; set; }
+        public string InfoSystemName { get; set; }
         #endregion
 
         #region 应用程序类型 —— ApplicationType ApplicationType

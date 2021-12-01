@@ -19,7 +19,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口代理
+        /// 权限管理服务契约接口代理
         /// </summary>
         private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
@@ -117,7 +117,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         public void Load(Models.Menu menu)
         {
             this.MenuId = menu.Id;
-            this.InfoSystemName = menu.SystemName;
+            this.InfoSystemName = menu.InfoSystemName;
             this.ApplicationType = menu.ApplicationType;
             this.ParentMenuName = menu.ParentNode?.Name;
             this.MenuName = menu.Name;

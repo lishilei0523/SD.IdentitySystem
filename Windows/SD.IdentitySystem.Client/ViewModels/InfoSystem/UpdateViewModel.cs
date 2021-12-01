@@ -3,7 +3,6 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Extensions;
-using System;
 using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -18,7 +17,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         #region # 字段及构造器
 
         /// <summary>
-        /// 权限服务契约接口代理
+        /// 权限管理服务契约接口代理
         /// </summary>
         private readonly ServiceProxy<IAuthorizationContract> _authorizationContract;
 
@@ -34,18 +33,10 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
         #region # 属性
 
-        #region 信息系统Id —— Guid InfoSystemId
-        /// <summary>
-        /// 信息系统Id
-        /// </summary>
-        public Guid InfoSystemId { get; set; }
-        #endregion
-
         #region 信息系统编号 —— string InfoSystemNo
         /// <summary>
         /// 信息系统编号
         /// </summary>
-        [DependencyProperty]
         public string InfoSystemNo { get; set; }
         #endregion
 
@@ -70,7 +61,6 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         /// <param name="infoSystem">信息系统</param>
         public void Load(InfoSystemInfo infoSystem)
         {
-            this.InfoSystemId = infoSystem.Id;
             this.InfoSystemNo = infoSystem.Number;
             this.InfoSystemName = infoSystem.Name;
         }
@@ -102,7 +92,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             this.Busy();
 
-            await Task.Run(() => this._authorizationContract.Channel.UpdateInfoSystem(this.InfoSystemId, this.InfoSystemNo, this.InfoSystemName));
+            await Task.Run(() => this._authorizationContract.Channel.UpdateInfoSystem(this.InfoSystemNo, this.InfoSystemName));
 
             await base.TryCloseAsync(true);
             this.Idle();

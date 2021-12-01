@@ -23,7 +23,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static Menu ToModel(this MenuInfo menuInfo)
         {
             Menu menu = menuInfo.Map<MenuInfo, Menu>();
-            menu.SystemName = menuInfo.InfoSystemInfo.Name;
+            menu.InfoSystemName = menuInfo.InfoSystemInfo.Name;
 
             return menu;
         }
