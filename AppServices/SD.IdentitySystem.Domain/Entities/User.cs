@@ -43,15 +43,15 @@ namespace SD.IdentitySystem.Domain.Entities
 
             if (string.IsNullOrWhiteSpace(password))
             {
-                throw new ArgumentNullException(nameof(password), @"密码不可为空！");
+                throw new ArgumentNullException(nameof(password), "密码不可为空！");
             }
             if (loginId.Length < 2 || loginId.Length > 20)
             {
-                throw new ArgumentOutOfRangeException(nameof(loginId), @"用户名长度不可小于2或大于20！");
+                throw new ArgumentOutOfRangeException(nameof(loginId), "用户名长度不可小于2或大于20！");
             }
             if (password.Length < 6 || password.Length > 20)
             {
-                throw new ArgumentOutOfRangeException(nameof(password), @"密码长度不可小于6或大于20！");
+                throw new ArgumentOutOfRangeException(nameof(password), "密码长度不可小于6或大于20！");
             }
 
             #endregion
@@ -109,7 +109,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="newPassword">新密码</param>
         public void UpdatePassword(string oldPassword, string newPassword)
         {
-            #region # 验证参数
+            #region # 验证
 
             if (string.IsNullOrWhiteSpace(oldPassword))
             {
@@ -125,7 +125,7 @@ namespace SD.IdentitySystem.Domain.Entities
             }
             if (this.Password != oldPassword.ToMD5())
             {
-                throw new ArgumentOutOfRangeException(nameof(oldPassword), @"旧密码不正确！");
+                throw new ArgumentOutOfRangeException(nameof(oldPassword), "旧密码不正确！");
             }
 
             #endregion
@@ -238,7 +238,7 @@ namespace SD.IdentitySystem.Domain.Entities
             roles = roles?.ToArray() ?? Array.Empty<Role>();
             if (!roles.Any())
             {
-                throw new ArgumentNullException(nameof(roles), @"要追加的角色不可为空！");
+                throw new ArgumentNullException(nameof(roles), "要追加的角色不可为空！");
             }
 
             #endregion
@@ -272,7 +272,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <returns>信息系统编号列表</returns>
         public ICollection<string> GetInfoSystemNos()
         {
-            return this.Roles.Select(x => x.SystemNo).Distinct().ToList();
+            return this.Roles.Select(x => x.InfoSystemNo).Distinct().ToList();
         }
         #endregion
 

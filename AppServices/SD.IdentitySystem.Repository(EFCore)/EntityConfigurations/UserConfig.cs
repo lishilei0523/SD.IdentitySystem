@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             //配置属性
-            builder.HasKey(user => user.Id).IsClustered(false);
+            builder.HasKey(user => user.Number).IsClustered(false);
             builder.Property(user => user.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(user => user.Number).IsRequired().HasMaxLength(20);
             builder.Property(user => user.Password).IsRequired().HasMaxLength(32);
@@ -33,9 +33,11 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
                     map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}User_Role"));
 
             //配置索引
-            builder.HasIndex(user => user.AddedTime).HasDatabaseName("IX_AddedTime").IsUnique(false).IsClustered(true);
-            builder.HasIndex(user => user.Number).HasDatabaseName("IX_Number").IsUnique();
-            builder.HasIndex(user => user.PrivateKey).HasDatabaseName("IX_PrivateKey").IsUnique();
+            builder.HasIndex(user => user.AddedTime).IsUnique(false).IsClustered().HasDatabaseName("IX_AddedTime");
+            builder.HasIndex(user => user.PrivateKey).IsUnique().HasDatabaseName("IX_PrivateKey");
+
+            //忽略映射
+            builder.Ignore(user => user.Id);
         }
     }
 }

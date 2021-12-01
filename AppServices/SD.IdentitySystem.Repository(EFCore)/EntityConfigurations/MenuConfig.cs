@@ -18,15 +18,10 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             builder.HasKey(menu => menu.Id).IsClustered(false);
+            builder.HasOne(menu => menu.ParentNode).WithMany(menu => menu.SubNodes).IsRequired(false).HasForeignKey("ParentNode_Id");
+            builder.HasOne<InfoSystem>().WithMany().IsRequired().HasForeignKey(menu => menu.InfoSystemNo).OnDelete(DeleteBehavior.Restrict); ;
             builder.Property(menu => menu.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(menu => menu.Name).IsRequired().HasMaxLength(32);
-            builder.Property(menu => menu.SystemNo).IsRequired().HasMaxLength(16);
-
-            //配置菜单树形结构关系
-            builder
-                .HasOne(menu => menu.ParentNode)
-                .WithMany(menu => menu.SubNodes)
-                .HasForeignKey("ParentNode_Id");
 
             //配置中间表
             builder
@@ -36,9 +31,6 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
                     x => x.HasOne<Authority>().WithMany().HasForeignKey("Authority_Id"),
                     x => x.HasOne<Menu>().WithMany().HasForeignKey("Menu_Id"),
                     map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}Menu_Authority"));
-
-            //配置索引
-            builder.HasIndex(menu => menu.SystemNo).HasDatabaseName("IX_SystemNo");
 
             //忽略映射
             builder.Ignore(menu => menu.Number);

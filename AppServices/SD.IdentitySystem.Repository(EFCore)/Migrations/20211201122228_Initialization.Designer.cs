@@ -10,7 +10,7 @@ using SD.IdentitySystem.Repository.Base;
 namespace SD.IdentitySystem.Repository.Migrations
 {
     [DbContext(typeof(DbSession))]
-    [Migration("20211109101959_Initialization")]
+    [Migration("20211201122228_Initialization")]
     partial class Initialization
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -91,6 +91,10 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("EnglishName")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("InfoSystemNo")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(16)");
+
                     b.Property<string>("Keywords")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -116,11 +120,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("SystemNo")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
                     b.HasKey("Id")
                         .IsClustered(false);
 
@@ -128,16 +127,16 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
-                    b.HasIndex("SystemNo")
-                        .HasDatabaseName("IX_SystemNo");
+                    b.HasIndex("InfoSystemNo");
 
                     b.ToTable("Authority");
                 });
 
             modelBuilder.Entity("SD.IdentitySystem.Domain.Entities.InfoSystem", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Number")
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
 
                     b.Property<DateTime>("AddedTime")
                         .HasColumnType("datetime2");
@@ -176,11 +175,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
                     b.Property<string>("OperatorAccount")
                         .HasColumnType("nvarchar(max)");
 
@@ -193,16 +187,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id")
+                    b.HasKey("Number")
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
                         .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
-
-                    b.HasIndex("Number")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Number");
 
                     b.ToTable("InfoSystem");
                 });
@@ -289,6 +279,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("InfoSystemNo")
+                        .HasColumnType("nvarchar(16)");
+
                     b.Property<bool>("IsRoot")
                         .HasColumnType("bit");
 
@@ -320,21 +313,15 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<int>("Sort")
                         .HasColumnType("int");
 
-                    b.Property<string>("SystemNo")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
                     b.Property<string>("Url")
                         .HasColumnType("nvarchar(max)");
 
                     b.HasKey("Id")
                         .IsClustered(false);
 
-                    b.HasIndex("ParentNode_Id");
+                    b.HasIndex("InfoSystemNo");
 
-                    b.HasIndex("SystemNo")
-                        .HasDatabaseName("IX_SystemNo");
+                    b.HasIndex("ParentNode_Id");
 
                     b.ToTable("Menu");
                 });
@@ -362,6 +349,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("InfoSystemNo")
+                        .HasColumnType("nvarchar(16)");
+
                     b.Property<string>("Keywords")
                         .IsRequired()
                         .HasMaxLength(256)
@@ -384,11 +374,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.Property<string>("SystemNo")
-                        .IsRequired()
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
-
                     b.HasKey("Id")
                         .IsClustered(false);
 
@@ -396,16 +381,16 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
-                    b.HasIndex("SystemNo")
-                        .HasDatabaseName("IX_SystemNo");
+                    b.HasIndex("InfoSystemNo");
 
                     b.ToTable("Role");
                 });
 
             modelBuilder.Entity("SD.IdentitySystem.Domain.Entities.User", b =>
                 {
-                    b.Property<Guid>("Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("Number")
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
 
                     b.Property<DateTime>("AddedTime")
                         .HasColumnType("datetime2");
@@ -433,11 +418,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("Number")
-                        .IsRequired()
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
-
                     b.Property<string>("OperatorAccount")
                         .HasColumnType("nvarchar(max)");
 
@@ -457,16 +437,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Id")
+                    b.HasKey("Number")
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
                         .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
-
-                    b.HasIndex("Number")
-                        .IsUnique()
-                        .HasDatabaseName("IX_Number");
 
                     b.HasIndex("PrivateKey")
                         .IsUnique()
@@ -480,8 +456,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<Guid>("Role_Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<Guid>("User_Id")
-                        .HasColumnType("uniqueidentifier");
+                    b.Property<string>("User_Id")
+                        .HasColumnType("nvarchar(20)");
 
                     b.HasKey("Role_Id", "User_Id");
 
@@ -520,13 +496,37 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .IsRequired();
                 });
 
+            modelBuilder.Entity("SD.IdentitySystem.Domain.Entities.Authority", b =>
+                {
+                    b.HasOne("SD.IdentitySystem.Domain.Entities.InfoSystem", null)
+                        .WithMany()
+                        .HasForeignKey("InfoSystemNo")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+                });
+
             modelBuilder.Entity("SD.IdentitySystem.Domain.Entities.Menu", b =>
                 {
+                    b.HasOne("SD.IdentitySystem.Domain.Entities.InfoSystem", null)
+                        .WithMany()
+                        .HasForeignKey("InfoSystemNo")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
                     b.HasOne("SD.IdentitySystem.Domain.Entities.Menu", "ParentNode")
                         .WithMany("SubNodes")
                         .HasForeignKey("ParentNode_Id");
 
                     b.Navigation("ParentNode");
+                });
+
+            modelBuilder.Entity("SD.IdentitySystem.Domain.Entities.Role", b =>
+                {
+                    b.HasOne("SD.IdentitySystem.Domain.Entities.InfoSystem", null)
+                        .WithMany()
+                        .HasForeignKey("InfoSystemNo")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("User_Role", b =>

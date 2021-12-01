@@ -1,5 +1,4 @@
-﻿using SD.Common;
-using SD.Infrastructure.EntityBase;
+﻿using SD.Infrastructure.EntityBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -31,18 +30,24 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 创建角色构造器
         /// </summary>
         /// <param name="roleName">角色名称</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="description">描述</param>
         /// <param name="roleNo">角色编号</param>
-        public Role(string roleName, string systemNo, string description, string roleNo = null)
+        public Role(string roleName, string infoSystemNo, string description, string roleNo = null)
             : this()
         {
-            //验证参数
-            Assert.IsFalse(string.IsNullOrWhiteSpace(roleName), "角色名称不可为空！");
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(roleName))
+            {
+                throw new ArgumentNullException(nameof(roleName), "角色名称不可为空！");
+            }
+
+            #endregion
 
             base.Number = roleNo;
             base.Name = roleName;
-            this.SystemNo = systemNo;
+            this.InfoSystemNo = infoSystemNo;
             this.Description = description;
 
             //初始化关键字
@@ -54,11 +59,11 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 属性
 
-        #region 信息系统编号 —— string SystemNo
+        #region 信息系统编号 —— string InfoSystemNo
         /// <summary>
         /// 信息系统编号
         /// </summary>
-        public string SystemNo { get; private set; }
+        public string InfoSystemNo { get; private set; }
         #endregion
 
         #region 描述 —— string Description
@@ -147,9 +152,9 @@ namespace SD.IdentitySystem.Domain.Entities
             {
                 #region # 验证
 
-                if (this.SystemNo != authority.SystemNo)
+                if (this.InfoSystemNo != authority.InfoSystemNo)
                 {
-                    throw new ArgumentOutOfRangeException(nameof(authorities), $"角色与Id为\"{authority.Id}\"的权限的信息系统不匹配！角色所在信息系统：\"{this.SystemNo}\"，权限所在信息系统：\"{authority.SystemNo}\"");
+                    throw new ArgumentOutOfRangeException(nameof(authorities), $"角色与Id为\"{authority.Id}\"的权限的信息系统不匹配！角色所在信息系统：\"{this.InfoSystemNo}\"，权限所在信息系统：\"{authority.InfoSystemNo}\"");
                 }
 
                 #endregion

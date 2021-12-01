@@ -20,23 +20,23 @@ namespace SD.IdentitySystem.Repository.Implements
         /// 分页获取用户列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount"></param>
         /// <param name="pageCount"></param>
         /// <returns>用户列表</returns>
-        public ICollection<User> FindByPage(string keywords, string systemNo, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        public ICollection<User> FindByPage(string keywords, string infoSystemNo, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
             QueryBuilder<User> queryBuilder = new QueryBuilder<User>(x => x.Number != CommonConstants.AdminLoginId);
             if (!string.IsNullOrWhiteSpace(keywords))
             {
                 queryBuilder.And(x => x.Keywords.Contains(keywords));
             }
-            if (!string.IsNullOrWhiteSpace(systemNo))
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
             {
-                queryBuilder.And(x => x.Roles.Any(y => y.SystemNo == systemNo));
+                queryBuilder.And(x => x.Roles.Any(y => y.InfoSystemNo == infoSystemNo));
             }
             if (roleId.HasValue)
             {

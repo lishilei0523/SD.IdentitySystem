@@ -10,7 +10,7 @@ using System.Web.Http;
 namespace SD.IdentitySystem.AppService.Host.Controllers
 {
     /// <summary>
-    /// 用户WebApi接口
+    /// 用户管理WebApi接口
     /// </summary>
     public class UserController : ApiController
     {
@@ -206,15 +206,15 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 分页获取用户列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>用户列表</returns>
         [HttpGet]
-        public PageModel<UserInfo> GetUsersByPage(string keywords, string systemNo, Guid? roleId, int pageIndex, int pageSize)
+        public PageModel<UserInfo> GetUsersByPage(string keywords, string infoSystemNo, Guid? roleId, int pageIndex, int pageSize)
         {
-            return this._userContract.GetUsersByPage(keywords, systemNo, roleId, pageIndex, pageSize);
+            return this._userContract.GetUsersByPage(keywords, infoSystemNo, roleId, pageIndex, pageSize);
         }
         #endregion
 
@@ -231,32 +231,32 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo...
+        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetUserMenus(string loginId, string infoSystemNo...
         /// <summary>
         /// 获取用户菜单树
         /// </summary>
         /// <param name="loginId">用户名</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>用户菜单树</returns>
         [HttpGet]
-        public IEnumerable<MenuInfo> GetUserMenus(string loginId, string systemNo, ApplicationType? applicationType)
+        public IEnumerable<MenuInfo> GetUserMenus(string loginId, string infoSystemNo, ApplicationType? applicationType)
         {
-            return this._userContract.GetUserMenus(loginId, systemNo, applicationType);
+            return this._userContract.GetUserMenus(loginId, infoSystemNo, applicationType);
         }
         #endregion
 
-        #region # 获取用户角色列表 —— IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
+        #region # 获取用户角色列表 —— IEnumerable<RoleInfo> GetUserRoles(string loginId, string infoSystemNo)
         /// <summary>
         /// 获取用户角色列表
         /// </summary>
         /// <param name="loginId">用户名</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
         [HttpGet]
-        public IEnumerable<RoleInfo> GetUserRoles(string loginId, string systemNo)
+        public IEnumerable<RoleInfo> GetUserRoles(string loginId, string infoSystemNo)
         {
-            return this._userContract.GetUserRoles(loginId, systemNo);
+            return this._userContract.GetUserRoles(loginId, infoSystemNo);
         }
         #endregion
 
@@ -265,12 +265,12 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 获取用户权限列表
         /// </summary>
         /// <param name="loginId">用户名</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>权限列表</returns>
         [HttpGet]
-        public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string systemNo)
+        public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string infoSystemNo)
         {
-            return this._userContract.GetUserAuthorities(loginId, systemNo);
+            return this._userContract.GetUserAuthorities(loginId, infoSystemNo);
         }
         #endregion
 

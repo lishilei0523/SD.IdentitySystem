@@ -21,15 +21,15 @@ namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
         /// <summary>
         /// 基础构造器
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="systemName">信息系统名称</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="infoSystemName">信息系统名称</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="adminLoginId">管理员用户名</param>
-        public InfoSystemCreatedEvent(string systemNo, string systemName, ApplicationType applicationType, string adminLoginId)
+        public InfoSystemCreatedEvent(string infoSystemNo, string infoSystemName, ApplicationType applicationType, string adminLoginId)
             : this()
         {
-            this.SystemNo = systemNo;
-            this.SystemName = systemName;
+            this.InfoSystemNo = infoSystemNo;
+            this.SystemName = infoSystemName;
             this.ApplicationType = applicationType;
             this.AdminLoginId = adminLoginId;
         }
@@ -39,11 +39,11 @@ namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
 
         #region # 属性
 
-        #region 信息系统编号 —— string SystemNo
+        #region 信息系统编号 —— string InfoSystemNo
         /// <summary>
         /// 信息系统编号
         /// </summary>
-        public string SystemNo { get; set; }
+        public string InfoSystemNo { get; set; }
         #endregion
 
         #region 信息系统名称 —— string SystemName

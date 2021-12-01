@@ -15,14 +15,16 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public void Configure(EntityTypeBuilder<InfoSystem> builder)
         {
             //配置属性
-            builder.HasKey(system => system.Id).IsClustered(false);
+            builder.HasKey(system => system.Number).IsClustered(false);
             builder.Property(system => system.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(system => system.Number).IsRequired().HasMaxLength(16);
             builder.Property(system => system.Name).IsRequired().HasMaxLength(64);
 
             //配置索引
-            builder.HasIndex(system => system.AddedTime).HasDatabaseName("IX_AddedTime").IsUnique(false).IsClustered(true);
-            builder.HasIndex(system => system.Number).HasDatabaseName("IX_Number").IsUnique();
+            builder.HasIndex(system => system.AddedTime).IsUnique(false).IsClustered().HasDatabaseName("IX_AddedTime");
+
+            //忽略映射
+            builder.Ignore(system => system.Id);
         }
     }
 }

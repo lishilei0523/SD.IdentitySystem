@@ -26,12 +26,12 @@ namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
         /// <summary>
         /// 基础构造器
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="authorityId">权限Id</param>
-        public AuthorityCreatedEvent(string systemNo, Guid authorityId)
+        public AuthorityCreatedEvent(string infoSystemNo, Guid authorityId)
             : this()
         {
-            this.SystemNo = systemNo;
+            this.InfoSystemNo = infoSystemNo;
             this.AuthorityId = authorityId;
         }
         #endregion
@@ -40,11 +40,11 @@ namespace SD.IdentitySystem.Domain.EventSources.AuthorizationContext
 
         #region # 属性
 
-        #region 信息系统编号 —— string SystemNo
+        #region 信息系统编号 —— string InfoSystemNo
         /// <summary>
         /// 信息系统编号
         /// </summary>
-        public string SystemNo { get; set; }
+        public string InfoSystemNo { get; set; }
         #endregion
 
         #region 权限Id —— Guid AuthorityId

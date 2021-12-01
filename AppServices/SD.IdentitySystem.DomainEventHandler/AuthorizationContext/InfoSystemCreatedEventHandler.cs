@@ -47,21 +47,21 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
 
             //创建系统管理员用户
             string adminName = $"{eventSource.SystemName}管理员";
-            User systemAdmin = new User(eventSource.AdminLoginId, adminName, CommonConstants.InitialPassword);
+            User infoSystemAdmin = new User(eventSource.AdminLoginId, adminName, CommonConstants.InitialPassword);
 
             //创建系统管理员角色
-            Role adminRole = new Role("系统管理员", eventSource.SystemNo, "系统管理员", CommonConstants.ManagerRoleNo);
+            Role adminRole = new Role("系统管理员", eventSource.InfoSystemNo, "系统管理员", CommonConstants.ManagerRoleNo);
 
             //为超级管理员与系统管理员追加角色
             admin.AppendRoles(new[] { adminRole });
-            systemAdmin.AppendRoles(new[] { adminRole });
+            infoSystemAdmin.AppendRoles(new[] { adminRole });
 
             //创建系统根级菜单
-            Menu systemMenu = new Menu(eventSource.SystemNo, eventSource.ApplicationType, eventSource.SystemName, 0, null, null, null, null);
+            Menu infoSystemMenu = new Menu(eventSource.InfoSystemNo, eventSource.ApplicationType, eventSource.SystemName, 0, null, null, null, null);
 
-            this._unitOfWork.RegisterAdd(systemAdmin);
+            this._unitOfWork.RegisterAdd(infoSystemAdmin);
             this._unitOfWork.RegisterAdd(adminRole);
-            this._unitOfWork.RegisterAdd(systemMenu);
+            this._unitOfWork.RegisterAdd(infoSystemMenu);
             this._unitOfWork.RegisterSave(admin);
             this._unitOfWork.Commit();
         }

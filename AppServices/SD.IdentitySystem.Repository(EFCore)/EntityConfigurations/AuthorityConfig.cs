@@ -16,14 +16,13 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             builder.HasKey(authority => authority.Id).IsClustered(false);
+            builder.HasOne<InfoSystem>().WithMany().IsRequired().HasForeignKey(authority => authority.InfoSystemNo).OnDelete(DeleteBehavior.Restrict);
             builder.Property(authority => authority.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(authority => authority.Name).IsRequired().HasMaxLength(64);
             builder.Property(authority => authority.AuthorityPath).IsRequired().HasMaxLength(256);
-            builder.Property(authority => authority.SystemNo).IsRequired().HasMaxLength(16);
 
             //配置索引
-            builder.HasIndex(authority => authority.AddedTime).HasDatabaseName("IX_AddedTime").IsUnique(false).IsClustered(true);
-            builder.HasIndex(authority => authority.SystemNo).HasDatabaseName("IX_SystemNo");
+            builder.HasIndex(authority => authority.AddedTime).IsUnique(false).IsClustered().HasDatabaseName("IX_AddedTime");
 
             //忽略映射
             builder.Ignore(authority => authority.Number);

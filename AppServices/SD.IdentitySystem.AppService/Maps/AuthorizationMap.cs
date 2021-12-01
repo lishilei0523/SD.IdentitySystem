@@ -19,9 +19,9 @@ namespace SD.IdentitySystem.AppService.Maps
         /// </summary>
         public static InfoSystemInfo ToDTO(this InfoSystem infoSystem)
         {
-            InfoSystemInfo systemInfo = infoSystem.Map<InfoSystem, InfoSystemInfo>();
+            InfoSystemInfo infoSystemInfo = infoSystem.Map<InfoSystem, InfoSystemInfo>();
 
-            return systemInfo;
+            return infoSystemInfo;
         }
         #endregion
 
@@ -39,10 +39,10 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <summary>
         /// 菜单映射
         /// </summary>
-        public static MenuInfo ToDTO(this Menu menu, IDictionary<string, InfoSystemInfo> systemInfos)
+        public static MenuInfo ToDTO(this Menu menu, IDictionary<string, InfoSystemInfo> infoSystemInfos)
         {
             MenuInfo menuInfo = menu.Map<Menu, MenuInfo>();
-            menuInfo.InfoSystemInfo = systemInfos[menu.SystemNo];
+            menuInfo.InfoSystemInfo = infoSystemInfos[menu.InfoSystemNo];
             menuInfo.ParentMenuId = menu.ParentNode?.Id;
 
             return menuInfo;
@@ -57,7 +57,7 @@ namespace SD.IdentitySystem.AppService.Maps
         {
             return new LoginMenuInfo
             {
-                SystemNo = menu.SystemNo,
+                SystemNo = menu.InfoSystemNo,
                 ApplicationType = menu.ApplicationType,
                 ParentId = menu.ParentNode?.Id,
                 Id = menu.Id,
@@ -82,7 +82,7 @@ namespace SD.IdentitySystem.AppService.Maps
             //声明容器
             ICollection<LoginMenuInfo> loginMenuInfos = new HashSet<LoginMenuInfo>();
 
-            //判断父级菜单Id是否为null
+            //判断上级菜单Id是否为null
             if (!parentId.HasValue)
             {
                 //从根级开始遍历
@@ -112,10 +112,10 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <summary>
         /// 权限映射
         /// </summary>
-        public static AuthorityInfo ToDTO(this Authority authority, IDictionary<string, InfoSystemInfo> systemInfos)
+        public static AuthorityInfo ToDTO(this Authority authority, IDictionary<string, InfoSystemInfo> infoSystemInfos)
         {
             AuthorityInfo authorityInfo = authority.Map<Authority, AuthorityInfo>();
-            authorityInfo.InfoSystemInfo = systemInfos[authority.SystemNo];
+            authorityInfo.InfoSystemInfo = infoSystemInfos[authority.InfoSystemNo];
 
             return authorityInfo;
         }
@@ -127,7 +127,7 @@ namespace SD.IdentitySystem.AppService.Maps
         /// </summary>
         public static LoginAuthorityInfo ToLoginAuthorityInfo(this Authority authority)
         {
-            return new LoginAuthorityInfo(authority.SystemNo, authority.ApplicationType, authority.Name, authority.AuthorityPath);
+            return new LoginAuthorityInfo(authority.InfoSystemNo, authority.ApplicationType, authority.Name, authority.AuthorityPath);
         }
         #endregion
 
@@ -135,10 +135,10 @@ namespace SD.IdentitySystem.AppService.Maps
         /// <summary>
         /// 角色映射
         /// </summary>
-        public static RoleInfo ToDTO(this Role role, IDictionary<string, InfoSystemInfo> systemInfos)
+        public static RoleInfo ToDTO(this Role role, IDictionary<string, InfoSystemInfo> infoSystemInfos)
         {
             RoleInfo roleInfo = role.Map<Role, RoleInfo>();
-            roleInfo.InfoSystemInfo = systemInfos[role.SystemNo];
+            roleInfo.InfoSystemInfo = infoSystemInfos[role.InfoSystemNo];
 
             return roleInfo;
         }

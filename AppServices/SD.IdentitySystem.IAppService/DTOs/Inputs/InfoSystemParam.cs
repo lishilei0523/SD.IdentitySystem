@@ -12,24 +12,24 @@ namespace SD.IdentitySystem.IAppService.DTOs.Inputs
         /// 信息系统编号
         /// </summary>
         [DataMember]
-        public string SystemNo;
+        public string infoSystemNo;
 
         /// <summary>
         /// 主机名称
         /// </summary>
         [DataMember]
-        public string Host;
+        public string host;
 
         /// <summary>
         /// 端口
         /// </summary>
         [DataMember]
-        public int Port;
+        public int port;
 
         /// <summary>
         /// 首页
         /// </summary>
         [DataMember]
-        public string Index;
+        public string index;
     }
 }

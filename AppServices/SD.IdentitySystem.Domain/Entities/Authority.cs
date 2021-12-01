@@ -31,7 +31,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <summary>
         /// 创建权限构造器
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
@@ -41,11 +41,11 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="className">类名</param>
         /// <param name="methodName">方法名</param>
         /// <param name="description">描述</param>
-        public Authority(string systemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public Authority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
             : this()
         {
             base.Name = authorityName;
-            this.SystemNo = systemNo;
+            this.InfoSystemNo = infoSystemNo;
             this.ApplicationType = applicationType;
             this.AuthorityPath = authorityPath;
             this.EnglishName = englishName;
@@ -60,7 +60,7 @@ namespace SD.IdentitySystem.Domain.Entities
             this.InitKeywords();
 
             //挂起领域事件
-            EventMediator.Suspend(new AuthorityCreatedEvent(this.SystemNo, this.Id));
+            EventMediator.Suspend(new AuthorityCreatedEvent(this.InfoSystemNo, this.Id));
         }
         #endregion
 
@@ -68,11 +68,11 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 属性
 
-        #region 信息系统编号 —— string SystemNo
+        #region 信息系统编号 —— string InfoSystemNo
         /// <summary>
         /// 信息系统编号
         /// </summary>
-        public string SystemNo { get; private set; }
+        public string InfoSystemNo { get; private set; }
         #endregion
 
         #region 应用程序类型 —— ApplicationType ApplicationType

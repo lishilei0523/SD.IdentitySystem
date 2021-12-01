@@ -25,24 +25,24 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <summary>
         /// 创建信息系统构造器
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="systemName">信息系统名称</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="infoSystemName">信息系统名称</param>
         /// <param name="adminLoginId">管理员用户名</param>
         /// <param name="applicationType">应用程序类型</param>
-        public InfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
+        public InfoSystem(string infoSystemNo, string infoSystemName, string adminLoginId, ApplicationType applicationType)
             : this()
         {
             #region # 验证
 
-            if (string.IsNullOrWhiteSpace(systemNo))
+            if (string.IsNullOrWhiteSpace(infoSystemNo))
             {
-                throw new ArgumentNullException(nameof(systemNo), @"信息系统编号不可为空！");
+                throw new ArgumentNullException(nameof(infoSystemNo), "信息系统编号不可为空！");
             }
 
             #endregion
 
-            base.Number = systemNo;
-            base.Name = systemName;
+            base.Number = infoSystemNo;
+            base.Name = infoSystemName;
             this.AdminLoginId = adminLoginId;
             this.ApplicationType = applicationType;
 
@@ -97,25 +97,23 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 方法
 
-        #region 修改信息系统 —— void UpdateInfo(string systemNo, string systemName)
+        #region 修改信息系统 —— void UpdateInfo(string infoSystemName)
         /// <summary>
         /// 修改信息系统
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="systemName">信息系统名称</param>
-        public void UpdateInfo(string systemNo, string systemName)
+        /// <param name="infoSystemName">信息系统名称</param>
+        public void UpdateInfo(string infoSystemName)
         {
             #region # 验证
 
-            if (string.IsNullOrWhiteSpace(systemNo))
+            if (string.IsNullOrWhiteSpace(infoSystemName))
             {
-                throw new ArgumentNullException(nameof(systemNo), @"信息系统编号不可为空！");
+                throw new ArgumentNullException(nameof(infoSystemName), "信息系统名称不可为空！");
             }
 
             #endregion
 
-            base.Number = systemNo;
-            base.Name = systemName;
+            base.Name = infoSystemName;
 
             //初始化关键字
             this.InitKeywords();

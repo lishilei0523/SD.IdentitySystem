@@ -7,18 +7,24 @@ namespace SD.IdentitySystem.Domain.Mediators
     /// </summary>
     public sealed class RepositoryMediator
     {
+        #region # 依赖注入构造器
+
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public RepositoryMediator(IInfoSystemRepository systemRep, IUserRepository userRep, IAuthorityRepository authorityRep, IMenuRepository menuRep, IRoleRepository roleRep, ILoginRecordRepository loginRecordRep)
+        public RepositoryMediator(IInfoSystemRepository infoSystemRep, IUserRepository userRep, IRoleRepository roleRep, IAuthorityRepository authorityRep, IMenuRepository menuRep, ILoginRecordRepository loginRecordRep)
         {
-            this.InfoSystemRep = systemRep;
+            this.InfoSystemRep = infoSystemRep;
             this.UserRep = userRep;
+            this.RoleRep = roleRep;
             this.AuthorityRep = authorityRep;
             this.MenuRep = menuRep;
-            this.RoleRep = roleRep;
             this.LoginRecordRep = loginRecordRep;
         }
+
+        #endregion
+
+        #region # 属性
 
         /// <summary>
         /// 信息系统仓储接口
@@ -31,6 +37,11 @@ namespace SD.IdentitySystem.Domain.Mediators
         public IUserRepository UserRep { get; private set; }
 
         /// <summary>
+        /// 角色仓储接口
+        /// </summary>
+        public IRoleRepository RoleRep { get; private set; }
+
+        /// <summary>
         /// 权限仓储接口
         /// </summary>
         public IAuthorityRepository AuthorityRep { get; private set; }
@@ -41,13 +52,10 @@ namespace SD.IdentitySystem.Domain.Mediators
         public IMenuRepository MenuRep { get; private set; }
 
         /// <summary>
-        /// 角色仓储接口
-        /// </summary>
-        public IRoleRepository RoleRep { get; private set; }
-
-        /// <summary>
         /// 登录记录仓储接口
         /// </summary>
         public ILoginRecordRepository LoginRecordRep { get; private set; }
+
+        #endregion
     }
 }

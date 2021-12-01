@@ -27,25 +27,25 @@ namespace SD.IdentitySystem.DomainService.Implements
 
         #endregion
 
-        #region # 是否存在角色 —— bool ExistsRole(string systemNo, Guid? roleId...
+        #region # 是否存在角色 —— bool ExistsRole(string infoSystemNo, Guid? roleId...
         /// <summary>
         /// 是否存在角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
         /// <returns>是否存在</returns>
-        public bool ExistsRole(string systemNo, Guid? roleId, string roleName)
+        public bool ExistsRole(string infoSystemNo, Guid? roleId, string roleName)
         {
-            if (roleId == null)
+            if (!roleId.HasValue)
             {
-                return this._repMediator.RoleRep.Exists(systemNo, roleName);
+                return this._repMediator.RoleRep.Exists(infoSystemNo, roleName);
             }
 
             Role role = this._repMediator.RoleRep.Single(roleId.Value);
             if (role.Name != roleName)
             {
-                return this._repMediator.RoleRep.Exists(systemNo, roleName);
+                return this._repMediator.RoleRep.Exists(infoSystemNo, roleName);
             }
 
             return false;

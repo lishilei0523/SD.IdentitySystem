@@ -20,22 +20,22 @@ namespace SD.IdentitySystem.Repository.Implements
         /// 分页获取角色列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
-        /// <param name="rowCount">总记录条数</param>
+        /// <param name="rowCount">总记录数</param>
         /// <param name="pageCount">总页数</param>
         /// <returns>角色列表</returns>
-        public ICollection<Role> FindByPage(string keywords, string systemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        public ICollection<Role> FindByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
             QueryBuilder<Role> queryBuilder = QueryBuilder<Role>.Affirm();
             if (!string.IsNullOrWhiteSpace(keywords))
             {
                 queryBuilder.And(x => x.Keywords.Contains(keywords));
             }
-            if (!string.IsNullOrWhiteSpace(systemNo))
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
             {
-                queryBuilder.And(x => x.SystemNo == systemNo);
+                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
             }
 
             Expression<Func<Role, bool>> condition = queryBuilder.Build();
@@ -51,9 +51,9 @@ namespace SD.IdentitySystem.Repository.Implements
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="loginId">用户名</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
-        public ICollection<Role> Find(string keywords, string loginId, string systemNo)
+        public ICollection<Role> Find(string keywords, string loginId, string infoSystemNo)
         {
             QueryBuilder<Role> queryBuilder = QueryBuilder<Role>.Affirm();
             if (!string.IsNullOrWhiteSpace(keywords))
@@ -64,9 +64,9 @@ namespace SD.IdentitySystem.Repository.Implements
             {
                 queryBuilder.And(x => x.Users.Any(y => y.Number == loginId));
             }
-            if (!string.IsNullOrWhiteSpace(systemNo))
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
             {
-                queryBuilder.And(x => x.SystemNo == systemNo);
+                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
             }
 
             Expression<Func<Role, bool>> condition = queryBuilder.Build();
@@ -76,17 +76,17 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 获取系统管理员角色 —— Role GetManagerRole(string systemNo)
+        #region # 获取系统管理员角色 —— Role GetManagerRole(string infoSystemNo)
         /// <summary>
         /// 获取系统管理员角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>系统管理员角色</returns>
-        public Role GetManagerRole(string systemNo)
+        public Role GetManagerRole(string infoSystemNo)
         {
             Expression<Func<Role, bool>> condition =
                 x =>
-                    x.SystemNo == systemNo &&
+                    x.InfoSystemNo == infoSystemNo &&
                     x.Number == CommonConstants.ManagerRoleNo;
 
             Role managerRole = base.SingleOrDefault(condition);
@@ -95,7 +95,7 @@ namespace SD.IdentitySystem.Repository.Implements
 
             if (managerRole == null)
             {
-                throw new ApplicationException($"未为编号为\"{systemNo}\"的信息系统初始化系统管理员角色！");
+                throw new ApplicationException($"未为编号为\"{infoSystemNo}\"的信息系统初始化系统管理员角色！");
             }
 
             #endregion
@@ -104,23 +104,23 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 获取角色Id列表 —— ICollection<Guid> FindIds(string loginId, string systemNo)
+        #region # 获取角色Id列表 —— ICollection<Guid> FindIds(string loginId, string infoSystemNo)
         /// <summary>
         /// 获取角色Id列表
         /// </summary>
         /// <param name="loginId">用户名</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>角色Id列表</returns>
-        public ICollection<Guid> FindIds(string loginId, string systemNo)
+        public ICollection<Guid> FindIds(string loginId, string infoSystemNo)
         {
             QueryBuilder<Role> queryBuilder = QueryBuilder<Role>.Affirm();
             if (!string.IsNullOrWhiteSpace(loginId))
             {
                 queryBuilder.And(x => x.Users.Any(y => y.Number == loginId));
             }
-            if (!string.IsNullOrWhiteSpace(systemNo))
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
             {
-                queryBuilder.And(x => x.SystemNo == systemNo);
+                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
             }
 
             Expression<Func<Role, bool>> condition = queryBuilder.Build();
@@ -130,45 +130,45 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 获取系统管理员角色Id —— Guid GetManagerRoleId(string systemNo)
+        #region # 获取系统管理员角色Id —— Guid GetManagerRoleId(string infoSystemNo)
         /// <summary>
         /// 获取系统管理员角色Id
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>系统管理员角色Id</returns>
-        public Guid GetManagerRoleId(string systemNo)
+        public Guid GetManagerRoleId(string infoSystemNo)
         {
-            IQueryable<Role> roles = base.Find(x => x.SystemNo == systemNo);
+            IQueryable<Role> roles = base.Find(x => x.InfoSystemNo == infoSystemNo);
 
             #region # 验证
 
             if (roles.All(x => x.Number != CommonConstants.ManagerRoleNo))
             {
-                throw new ApplicationException($"未为编号为\"{systemNo}\"的信息系统初始化系统管理员角色！");
+                throw new ApplicationException($"未为编号为\"{infoSystemNo}\"的信息系统初始化系统管理员角色！");
             }
 
             #endregion
 
             roles = roles.Where(x => x.Number == CommonConstants.ManagerRoleNo);
             IQueryable<Guid> roleIds = roles.Select(x => x.Id);
-            Guid systemAdminRoleId = roleIds.Single();
+            Guid infoSystemAdminRoleId = roleIds.Single();
 
-            return systemAdminRoleId;
+            return infoSystemAdminRoleId;
         }
         #endregion
 
-        #region # 是否存在角色 —— bool Exists(string systemNo, string roleName)
+        #region # 是否存在角色 —— bool Exists(string infoSystemNo, string roleName)
         /// <summary>
         /// 是否存在角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="roleName">角色名称</param>
         /// <returns>是否存在</returns>
-        public bool Exists(string systemNo, string roleName)
+        public bool Exists(string infoSystemNo, string roleName)
         {
             Expression<Func<Role, bool>> condition =
                 x =>
-                    x.SystemNo == systemNo &&
+                    x.InfoSystemNo == infoSystemNo &&
                     x.Name == roleName;
 
             return base.Exists(condition);

@@ -19,13 +19,13 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             this.HasKey(menu => menu.Id, index => index.IsClustered(false));
             this.Property(menu => menu.Keywords).IsRequired().HasMaxLength(256);
             this.Property(menu => menu.Name).IsRequired().HasMaxLength(32);
-            this.Property(menu => menu.SystemNo).IsRequired().HasMaxLength(16);
+            this.Property(menu => menu.InfoSystemNo).IsRequired().HasMaxLength(16);
 
             //配置中间表
             this.HasMany(menu => menu.Authorities).WithMany(authority => authority.MenuLeaves).Map(map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}Menu_Authority"));
 
             //配置索引
-            this.HasIndex("IX_SystemNo", IndexType.Nonclustered, table => table.Property(menu => menu.SystemNo));
+            this.HasIndex("IX_Menu_InfoSystemNo", IndexType.Nonclustered, table => table.Property(menu => menu.InfoSystemNo));
 
             //忽略映射
             this.Ignore(menu => menu.Number);

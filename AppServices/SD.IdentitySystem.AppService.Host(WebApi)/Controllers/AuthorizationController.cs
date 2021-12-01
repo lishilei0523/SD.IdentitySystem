@@ -11,7 +11,7 @@ using System.Web.Http;
 namespace SD.IdentitySystem.AppService.Host.Controllers
 {
     /// <summary>
-    /// 权限WebApi接口
+    /// 权限管理WebApi接口
     /// </summary>
     public class AuthorizationController : ApiController
     {
@@ -35,50 +35,49 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
 
         //命令部分
 
-        #region # 创建信息系统 —— void CreateInfoSystem(string systemNo, string systemName...
+        #region # 创建信息系统 —— void CreateInfoSystem(string infoSystemNo, string infoSystemName...
         /// <summary>
         /// 创建信息系统
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="systemName">信息系统名称</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="infoSystemName">信息系统名称</param>
         /// <param name="adminLoginId">系统管理员用户名</param>
         /// <param name="applicationType">应用程序类型</param>
         [HttpPost]
         [WrapPostParameters]
-        public void CreateInfoSystem(string systemNo, string systemName, string adminLoginId, ApplicationType applicationType)
+        public void CreateInfoSystem(string infoSystemNo, string infoSystemName, string adminLoginId, ApplicationType applicationType)
         {
-            this._authorizationContract.CreateInfoSystem(systemNo, systemName, adminLoginId, applicationType);
+            this._authorizationContract.CreateInfoSystem(infoSystemNo, infoSystemName, adminLoginId, applicationType);
         }
         #endregion
 
-        #region # 修改信息系统 —— void UpdateInfoSystem(Guid infoSystemId, string systemNo...
+        #region # 修改信息系统 —— void UpdateInfoSystem(string infoSystemNo, string infoSystemName)
         /// <summary>
         /// 修改信息系统
         /// </summary>
-        /// <param name="infoSystemId">信息系统Id</param>
-        /// <param name="systemNo">信息系统编号</param>
-        /// <param name="systemName">信息系统名称</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="infoSystemName">信息系统名称</param>
         [HttpPost]
         [WrapPostParameters]
-        public void UpdateInfoSystem(Guid infoSystemId, string systemNo, string systemName)
+        public void UpdateInfoSystem(string infoSystemNo, string infoSystemName)
         {
-            this._authorizationContract.UpdateInfoSystem(infoSystemId, systemNo, systemName);
+            this._authorizationContract.UpdateInfoSystem(infoSystemNo, infoSystemName);
         }
         #endregion
 
-        #region # 初始化信息系统 —— void InitInfoSystem(string systemNo, string host...
+        #region # 初始化信息系统 —— void InitInfoSystem(string infoSystemNo, string host...
         /// <summary>
         /// 初始化信息系统
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="host">主机名称</param>
         /// <param name="port">端口</param>
         /// <param name="index">首页</param>
         [HttpPost]
         [WrapPostParameters]
-        public void InitInfoSystem(string systemNo, string host, int port, string index)
+        public void InitInfoSystem(string infoSystemNo, string host, int port, string index)
         {
-            this._authorizationContract.InitInfoSystem(systemNo, host, port, index);
+            this._authorizationContract.InitInfoSystem(infoSystemNo, host, port, index);
         }
         #endregion
 
@@ -95,11 +94,11 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 创建权限 —— void CreateAuthority(string systemNo...
+        #region # 创建权限 —— void CreateAuthority(string infoSystemNo...
         /// <summary>
         /// 创建权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
@@ -111,24 +110,24 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// <param name="description">描述</param>
         [HttpPost]
         [WrapPostParameters]
-        public void CreateAuthority(string systemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public void CreateAuthority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
         {
-            this._authorizationContract.CreateAuthority(systemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
+            this._authorizationContract.CreateAuthority(infoSystemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
         }
         #endregion
 
-        #region # 批量创建权限 —— void CreateAuthorities(string systemNo...
+        #region # 批量创建权限 —— void CreateAuthorities(string infoSystemNo...
         /// <summary>
         /// 批量创建权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityParams">权限参数模型集</param>
         [HttpPost]
         [WrapPostParameters]
-        public void CreateAuthorities(string systemNo, ApplicationType applicationType, IEnumerable<AuthorityParam> authorityParams)
+        public void CreateAuthorities(string infoSystemNo, ApplicationType applicationType, IEnumerable<AuthorityParam> authorityParams)
         {
-            this._authorizationContract.CreateAuthorities(systemNo, applicationType, authorityParams);
+            this._authorizationContract.CreateAuthorities(infoSystemNo, applicationType, authorityParams);
         }
         #endregion
 
@@ -166,11 +165,11 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 创建菜单 —— Guid CreateMenu(string systemNo, ApplicationType applicationType...
+        #region # 创建菜单 —— Guid CreateMenu(string infoSystemNo, ApplicationType applicationType...
         /// <summary>
         /// 创建菜单
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">排序</param>
@@ -181,9 +180,9 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// <returns>菜单Id</returns>
         [HttpPost]
         [WrapPostParameters]
-        public Guid CreateMenu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId)
+        public Guid CreateMenu(string infoSystemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentNodeId)
         {
-            return this._authorizationContract.CreateMenu(systemNo, applicationType, menuName, sort, url, path, icon, parentNodeId);
+            return this._authorizationContract.CreateMenu(infoSystemNo, applicationType, menuName, sort, url, path, icon, parentNodeId);
         }
         #endregion
 
@@ -232,19 +231,19 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 创建角色 —— void CreateRole(string systemNo, string roleName...
+        #region # 创建角色 —— void CreateRole(string infoSystemNo, string roleName...
         /// <summary>
         /// 创建角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="roleName">角色名称</param>
         /// <param name="description">描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
         [WrapPostParameters]
-        public void CreateRole(string systemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
+        public void CreateRole(string infoSystemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
-            this._authorizationContract.CreateRole(systemNo, roleName, description, authorityIds);
+            this._authorizationContract.CreateRole(infoSystemNo, roleName, description, authorityIds);
         }
         #endregion
 
@@ -261,6 +260,19 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
             this._authorizationContract.UpdateRole(roleId, roleName, description, authorityIds);
+        }
+        #endregion
+
+        #region # 删除角色 —— void RemoveRole(Guid roleId)
+        /// <summary>
+        /// 删除角色
+        /// </summary>
+        /// <param name="roleId">角色Id</param>
+        [HttpPost]
+        [WrapPostParameters]
+        public void RemoveRole(Guid roleId)
+        {
+            this._authorizationContract.RemoveRole(roleId);
         }
         #endregion
 
@@ -292,32 +304,19 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 删除角色 —— void RemoveRole(Guid roleId)
-        /// <summary>
-        /// 删除角色
-        /// </summary>
-        /// <param name="roleId">角色Id</param>
-        [HttpPost]
-        [WrapPostParameters]
-        public void RemoveRole(Guid roleId)
-        {
-            this._authorizationContract.RemoveRole(roleId);
-        }
-        #endregion
-
 
         //查询部分
 
-        #region # 获取信息系统 —— InfoSystemInfo GetInfoSystem(string systemNo)
+        #region # 获取信息系统 —— InfoSystemInfo GetInfoSystem(string infoSystemNo)
         /// <summary>
         /// 获取信息系统
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>信息系统</returns>
         [HttpGet]
-        public InfoSystemInfo GetInfoSystem(string systemNo)
+        public InfoSystemInfo GetInfoSystem(string infoSystemNo)
         {
-            return this._authorizationContract.GetInfoSystem(systemNo);
+            return this._authorizationContract.GetInfoSystem(infoSystemNo);
         }
         #endregion
 
@@ -366,15 +365,15 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 获取权限列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuId">菜单Id</param>
         /// <param name="roleId">角色Id</param>
         /// <returns>权限列表</returns>
         [HttpGet]
-        public IEnumerable<AuthorityInfo> GetAuthorities(string keywords, string systemNo, ApplicationType? applicationType, Guid? menuId, Guid? roleId)
+        public IEnumerable<AuthorityInfo> GetAuthorities(string keywords, string infoSystemNo, ApplicationType? applicationType, Guid? menuId, Guid? roleId)
         {
-            return this._authorizationContract.GetAuthorities(keywords, systemNo, applicationType, menuId, roleId);
+            return this._authorizationContract.GetAuthorities(keywords, infoSystemNo, applicationType, menuId, roleId);
         }
         #endregion
 
@@ -383,15 +382,15 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 分页获取权限列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>权限列表</returns>
         [HttpGet]
-        public PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
+        public PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
-            return this._authorizationContract.GetAuthoritiesByPage(keywords, systemNo, applicationType, pageIndex, pageSize);
+            return this._authorizationContract.GetAuthoritiesByPage(keywords, infoSystemNo, applicationType, pageIndex, pageSize);
         }
         #endregion
 
@@ -408,17 +407,17 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string systemNo...
+        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string infoSystemNo...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
         [HttpGet]
-        public IEnumerable<MenuInfo> GetMenus(string systemNo, ApplicationType? applicationType)
+        public IEnumerable<MenuInfo> GetMenus(string infoSystemNo, ApplicationType? applicationType)
         {
-            return this._authorizationContract.GetMenus(systemNo, applicationType);
+            return this._authorizationContract.GetMenus(infoSystemNo, applicationType);
         }
         #endregion
 
@@ -427,15 +426,15 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 分页获取菜单列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>菜单列表</returns>
         [HttpGet]
-        public PageModel<MenuInfo> GetMenusByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
+        public PageModel<MenuInfo> GetMenusByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
-            return this._authorizationContract.GetMenusByPage(keywords, systemNo, applicationType, pageIndex, pageSize);
+            return this._authorizationContract.GetMenusByPage(keywords, infoSystemNo, applicationType, pageIndex, pageSize);
         }
         #endregion
 
@@ -458,12 +457,12 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// </summary>
         /// <param name="keywords">关键字</param>
         /// <param name="loginId">用户名</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <returns>角色列表</returns>
         [HttpGet]
-        public IEnumerable<RoleInfo> GetRoles(string keywords, string loginId, string systemNo)
+        public IEnumerable<RoleInfo> GetRoles(string keywords, string loginId, string infoSystemNo)
         {
-            return this._authorizationContract.GetRoles(keywords, loginId, systemNo);
+            return this._authorizationContract.GetRoles(keywords, loginId, infoSystemNo);
         }
         #endregion
 
@@ -472,44 +471,44 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// 分页获取角色列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <returns>角色列表</returns>
         [HttpGet]
-        public PageModel<RoleInfo> GetRolesByPage(string keywords, string systemNo, int pageIndex, int pageSize)
+        public PageModel<RoleInfo> GetRolesByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize)
         {
-            return this._authorizationContract.GetRolesByPage(keywords, systemNo, pageIndex, pageSize);
+            return this._authorizationContract.GetRolesByPage(keywords, infoSystemNo, pageIndex, pageSize);
         }
         #endregion
 
-        #region # 是否存在权限 —— bool ExistsAuthority(string systemNo, ApplicationType...
+        #region # 是否存在权限 —— bool ExistsAuthority(string infoSystemNo, ApplicationType...
         /// <summary>
         /// 是否存在权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityPath">权限路径</param>
         /// <returns>是否存在</returns>
         [HttpGet]
-        public bool ExistsAuthority(string systemNo, ApplicationType applicationType, string authorityPath)
+        public bool ExistsAuthority(string infoSystemNo, ApplicationType applicationType, string authorityPath)
         {
-            return this._authorizationContract.ExistsAuthority(systemNo, applicationType, authorityPath);
+            return this._authorizationContract.ExistsAuthority(infoSystemNo, applicationType, authorityPath);
         }
         #endregion
 
-        #region # 是否存在角色 —— bool ExistsRole(string systemNo, Guid? roleId, string roleName)
+        #region # 是否存在角色 —— bool ExistsRole(string infoSystemNo, Guid? roleId, string roleName)
         /// <summary>
         /// 是否存在角色
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="roleId">角色Id</param>
         /// <param name="roleName">角色名称</param>
         /// <returns>是否存在</returns>
         [HttpGet]
-        public bool ExistsRole(string systemNo, Guid? roleId, string roleName)
+        public bool ExistsRole(string infoSystemNo, Guid? roleId, string roleName)
         {
-            return this._authorizationContract.ExistsRole(systemNo, roleId, roleName);
+            return this._authorizationContract.ExistsRole(infoSystemNo, roleId, roleName);
         }
         #endregion
     }

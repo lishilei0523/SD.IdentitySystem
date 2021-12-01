@@ -31,7 +31,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <summary>
         /// 创建菜单构造器
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="menuName">菜单名称</param>
         /// <param name="sort">菜单排序</param>
@@ -39,29 +39,29 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         /// <param name="parentNode">上级节点</param>
-        public Menu(string systemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Menu parentNode)
+        public Menu(string infoSystemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Menu parentNode)
             : this()
         {
-            #region # 验证参数
+            #region # 验证
 
             if (string.IsNullOrWhiteSpace(menuName))
             {
-                throw new ArgumentNullException("menuName", "菜单名称不可为空！");
+                throw new ArgumentNullException(nameof(menuName), "菜单名称不可为空！");
             }
-            if (parentNode != null && parentNode.SystemNo != systemNo)
+            if (parentNode != null && parentNode.InfoSystemNo != infoSystemNo)
             {
-                throw new InvalidOperationException("子级菜单的信息系统必须与父级菜单一致！");
+                throw new ArgumentOutOfRangeException(nameof(infoSystemNo), "下级菜单的信息系统必须与上级菜单一致！");
             }
             if (parentNode != null && parentNode.Authorities.Any())
             {
-                throw new InvalidOperationException("已关联权限的菜单不可增加子菜单！");
+                throw new ArgumentOutOfRangeException(nameof(parentNode), "已关联权限的菜单不可增加子菜单！");
             }
 
             #endregion
 
             base.Name = menuName;
             this.Sort = sort;
-            this.SystemNo = systemNo;
+            this.InfoSystemNo = infoSystemNo;
             this.ApplicationType =
                 parentNode?.ApplicationType == null
                     ? applicationType
@@ -72,8 +72,8 @@ namespace SD.IdentitySystem.Domain.Entities
             this.Path = path;
             this.Icon = icon;
             this.ParentNode = parentNode;
-            this.IsRoot = parentNode == null;
             parentNode?.SubNodes.Add(this);
+            this.IsRoot = parentNode == null;
 
             //初始化关键字
             this.InitKeywords();
@@ -84,11 +84,11 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 属性
 
-        #region 信息系统编号 —— string SystemNo
+        #region 信息系统编号 —— string InfoSystemNo
         /// <summary>
         /// 信息系统编号
         /// </summary>
-        public string SystemNo { get; private set; }
+        public string InfoSystemNo { get; private set; }
         #endregion
 
         #region 应用程序类型 —— ApplicationType ApplicationType

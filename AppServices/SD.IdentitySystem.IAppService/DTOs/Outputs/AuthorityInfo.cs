@@ -10,12 +10,12 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
     public class AuthorityInfo : BaseDTO
     {
-        #region 信息系统编号 —— string SystemNo
+        #region 信息系统编号 —— string InfoSystemNo
         /// <summary>
         /// 信息系统编号
         /// </summary>
         [DataMember]
-        public string SystemNo { get; set; }
+        public string InfoSystemNo { get; set; }
         #endregion
 
         #region 应用程序类型 —— ApplicationType ApplicationType

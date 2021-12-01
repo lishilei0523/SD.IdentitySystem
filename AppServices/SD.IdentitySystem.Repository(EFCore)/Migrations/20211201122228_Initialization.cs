@@ -8,48 +8,16 @@ namespace SD.IdentitySystem.Repository.Migrations
         protected override void Up(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.CreateTable(
-                name: "Authority",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SystemNo = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
-                    ApplicationType = table.Column<int>(type: "int", nullable: false),
-                    AuthorityPath = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    EnglishName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AssemblyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Namespace = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    ClassName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    MethodName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OperatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OperatorName = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_Authority", x => x.Id)
-                        .Annotation("SqlServer:Clustered", false);
-                });
-
-            migrationBuilder.CreateTable(
                 name: "InfoSystem",
                 columns: table => new
                 {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    Number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     AdminLoginId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplicationType = table.Column<int>(type: "int", nullable: false),
                     Host = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Port = table.Column<int>(type: "int", nullable: true),
                     Index = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -62,7 +30,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InfoSystem", x => x.Id)
+                    table.PrimaryKey("PK_InfoSystem", x => x.Number)
                         .Annotation("SqlServer:Clustered", false);
                 });
 
@@ -92,11 +60,73 @@ namespace SD.IdentitySystem.Repository.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "User",
+                columns: table => new
+                {
+                    Number = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Password = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
+                    PrivateKey = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Enabled = table.Column<bool>(type: "bit", nullable: false),
+                    AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Deleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OperatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OperatorName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_User", x => x.Number)
+                        .Annotation("SqlServer:Clustered", false);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Authority",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
+                    InfoSystemNo = table.Column<string>(type: "nvarchar(16)", nullable: false),
+                    ApplicationType = table.Column<int>(type: "int", nullable: false),
+                    AuthorityPath = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    EnglishName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AssemblyName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Namespace = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    ClassName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    MethodName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
+                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
+                    SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Deleted = table.Column<bool>(type: "bit", nullable: false),
+                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
+                    CreatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OperatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    OperatorName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Authority", x => x.Id)
+                        .Annotation("SqlServer:Clustered", false);
+                    table.ForeignKey(
+                        name: "FK_Authority_InfoSystem_InfoSystemNo",
+                        column: x => x.InfoSystemNo,
+                        principalTable: "InfoSystem",
+                        principalColumn: "Number",
+                        onDelete: ReferentialAction.Restrict);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "Menu",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SystemNo = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    InfoSystemNo = table.Column<string>(type: "nvarchar(16)", nullable: true),
                     ApplicationType = table.Column<int>(type: "int", nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Path = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -120,6 +150,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                     table.PrimaryKey("PK_Menu", x => x.Id)
                         .Annotation("SqlServer:Clustered", false);
                     table.ForeignKey(
+                        name: "FK_Menu_InfoSystem_InfoSystemNo",
+                        column: x => x.InfoSystemNo,
+                        principalTable: "InfoSystem",
+                        principalColumn: "Number",
+                        onDelete: ReferentialAction.Restrict);
+                    table.ForeignKey(
                         name: "FK_Menu_Menu_ParentNode_Id",
                         column: x => x.ParentNode_Id,
                         principalTable: "Menu",
@@ -132,7 +168,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    SystemNo = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    InfoSystemNo = table.Column<string>(type: "nvarchar(16)", nullable: true),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -150,32 +186,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                 {
                     table.PrimaryKey("PK_Role", x => x.Id)
                         .Annotation("SqlServer:Clustered", false);
-                });
-
-            migrationBuilder.CreateTable(
-                name: "User",
-                columns: table => new
-                {
-                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    Password = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
-                    PrivateKey = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
-                    Enabled = table.Column<bool>(type: "bit", nullable: false),
-                    AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Number = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
-                    Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
-                    SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
-                    CreatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OperatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OperatorName = table.Column<string>(type: "nvarchar(max)", nullable: true)
-                },
-                constraints: table =>
-                {
-                    table.PrimaryKey("PK_User", x => x.Id)
-                        .Annotation("SqlServer:Clustered", false);
+                    table.ForeignKey(
+                        name: "FK_Role_InfoSystem_InfoSystemNo",
+                        column: x => x.InfoSystemNo,
+                        principalTable: "InfoSystem",
+                        principalColumn: "Number",
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -231,7 +247,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 columns: table => new
                 {
                     Role_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    User_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
+                    User_Id = table.Column<string>(type: "nvarchar(20)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -246,7 +262,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                         name: "FK_User_Role_User_User_Id",
                         column: x => x.User_Id,
                         principalTable: "User",
-                        principalColumn: "Id",
+                        principalColumn: "Number",
                         onDelete: ReferentialAction.Cascade);
                 });
 
@@ -257,21 +273,15 @@ namespace SD.IdentitySystem.Repository.Migrations
                 .Annotation("SqlServer:Clustered", true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_SystemNo",
+                name: "IX_Authority_InfoSystemNo",
                 table: "Authority",
-                column: "SystemNo");
+                column: "InfoSystemNo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AddedTime",
                 table: "InfoSystem",
                 column: "AddedTime")
                 .Annotation("SqlServer:Clustered", true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Number",
-                table: "InfoSystem",
-                column: "Number",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_AddedTime",
@@ -280,14 +290,14 @@ namespace SD.IdentitySystem.Repository.Migrations
                 .Annotation("SqlServer:Clustered", true);
 
             migrationBuilder.CreateIndex(
+                name: "IX_Menu_InfoSystemNo",
+                table: "Menu",
+                column: "InfoSystemNo");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_Menu_ParentNode_Id",
                 table: "Menu",
                 column: "ParentNode_Id");
-
-            migrationBuilder.CreateIndex(
-                name: "IX_SystemNo",
-                table: "Menu",
-                column: "SystemNo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Menu_Authority_Menu_Id",
@@ -301,9 +311,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                 .Annotation("SqlServer:Clustered", true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_SystemNo",
+                name: "IX_Role_InfoSystemNo",
                 table: "Role",
-                column: "SystemNo");
+                column: "InfoSystemNo");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Role_Authority_Role_Id",
@@ -315,12 +325,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                 table: "User",
                 column: "AddedTime")
                 .Annotation("SqlServer:Clustered", true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Number",
-                table: "User",
-                column: "Number",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_PrivateKey",
@@ -336,9 +340,6 @@ namespace SD.IdentitySystem.Repository.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.DropTable(
-                name: "InfoSystem");
-
             migrationBuilder.DropTable(
                 name: "LoginRecord");
 
@@ -362,6 +363,9 @@ namespace SD.IdentitySystem.Repository.Migrations
 
             migrationBuilder.DropTable(
                 name: "User");
+
+            migrationBuilder.DropTable(
+                name: "InfoSystem");
         }
     }
 }

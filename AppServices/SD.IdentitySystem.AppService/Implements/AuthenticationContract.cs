@@ -17,9 +17,9 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 #endif
 #if NETSTANDARD2_0_OR_GREATER
+using SD.Toolkits.OwinCore.Extensions;
 using CoreWCF;
 using CoreWCF.Channels;
-using SD.Toolkits.OwinCore.Extensions;
 #endif
 
 namespace SD.IdentitySystem.AppService.Implements
@@ -50,8 +50,6 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        /// <param name="repMediator">仓储中介者</param>
-        /// <param name="unitOfWork">单元事务</param>
         public AuthenticationContract(RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
         {
             this._repMediator = repMediator;
@@ -72,7 +70,7 @@ namespace SD.IdentitySystem.AppService.Implements
         [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
         public LoginInfo Logon(string privateKey)
         {
-            #region # 验证参数
+            #region # 验证
 
             if (string.IsNullOrWhiteSpace(privateKey))
             {
@@ -180,9 +178,9 @@ namespace SD.IdentitySystem.AppService.Implements
             ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(user.Number, null);
 
             /*信息系统部分*/
-            IEnumerable<string> systemNos = user.GetInfoSystemNos();
-            IDictionary<string, InfoSystem> systems = this._repMediator.InfoSystemRep.Find(systemNos);
-            loginInfo.LoginSystemInfos.AddRange(systems.Values.Select(x => x.ToLoginSystemInfo()));
+            IEnumerable<string> infoSystemNos = user.GetInfoSystemNos();
+            IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.Find(infoSystemNos);
+            loginInfo.LoginSystemInfos.AddRange(infoSystems.Values.Select(x => x.ToLoginSystemInfo()));
 
             /*菜单部分*/
             IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);

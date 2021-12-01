@@ -15,28 +15,28 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class MenuRepository : EFAggRootRepositoryProvider<Menu>, IMenuRepository
     {
-        #region # 分页获取菜单列表 —— ICollection<Menu> FindByPage(string keywords, string systemNo...
+        #region # 分页获取菜单列表 —— ICollection<Menu> FindByPage(string keywords, string infoSystemNo...
         /// <summary>
         /// 分页获取菜单列表
         /// </summary>
         /// <param name="keywords">关键字</param>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount">总记录数</param>
         /// <param name="pageCount">总页数</param>
         /// <returns>菜单列表</returns>
-        public ICollection<Menu> FindByPage(string keywords, string systemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        public ICollection<Menu> FindByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
             QueryBuilder<Menu> queryBuilder = QueryBuilder<Menu>.Affirm();
             if (!string.IsNullOrWhiteSpace(keywords))
             {
                 queryBuilder.And(x => x.Keywords.Contains(keywords));
             }
-            if (!string.IsNullOrWhiteSpace(systemNo))
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
             {
-                queryBuilder.And(x => x.SystemNo == systemNo);
+                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
             }
             if (applicationType != null)
             {
@@ -51,19 +51,19 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 获取菜单列表 —— ICollection<Menu> FindBySystem(string systemNo...
+        #region # 获取菜单列表 —— ICollection<Menu> FindBySystem(string infoSystemNo...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        public ICollection<Menu> FindBySystem(string systemNo, ApplicationType? applicationType)
+        public ICollection<Menu> FindBySystem(string infoSystemNo, ApplicationType? applicationType)
         {
             QueryBuilder<Menu> queryBuilder = QueryBuilder<Menu>.Affirm();
-            if (!string.IsNullOrWhiteSpace(systemNo))
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
             {
-                queryBuilder.And(x => x.SystemNo == systemNo);
+                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
             }
             if (applicationType != null)
             {

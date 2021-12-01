@@ -12,48 +12,48 @@ namespace SD.IdentitySystem.IAppService.DTOs.Inputs
         /// 权限名称
         /// </summary>
         [DataMember]
-        public string AuthorityName;
+        public string authorityName;
 
         /// <summary>
         /// 权限路径
         /// </summary>
         [DataMember]
-        public string AuthorityPath;
+        public string authorityPath;
 
         /// <summary>
         /// 英文名称
         /// </summary>
         [DataMember]
-        public string EnglishName;
+        public string englishName;
 
         /// <summary>
         /// 程序集名称
         /// </summary>
         [DataMember]
-        public string AssemblyName;
+        public string assemblyName;
 
         /// <summary>
         /// 命名空间
         /// </summary>
         [DataMember]
-        public string Namespace;
+        public string @namespace;
 
         /// <summary>
         /// 类名
         /// </summary>
         [DataMember]
-        public string ClassName;
+        public string className;
 
         /// <summary>
         /// 方法名
         /// </summary>
         [DataMember]
-        public string MethodName;
+        public string methodName;
 
         /// <summary>
         /// 描述
         /// </summary>
         [DataMember]
-        public string Description;
+        public string description;
     }
 }

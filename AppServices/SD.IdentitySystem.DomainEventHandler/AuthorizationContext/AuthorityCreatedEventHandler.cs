@@ -55,29 +55,26 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
         /// <param name="eventSource">事件源</param>
         public void Handle(AuthorityCreatedEvent eventSource)
         {
-            this.AppendAuthorities(eventSource.SystemNo, eventSource.AuthorityId);
+            this.AppendAuthorities(eventSource.InfoSystemNo, eventSource.AuthorityId);
         }
         #endregion
 
-        #region # 追加权限 —— void AppendAuthorities(string systemNo, Guid authorityId)
+        #region # 追加权限 —— void AppendAuthorities(string infoSystemNo, Guid authorityId)
         /// <summary>
         /// 追加权限
         /// </summary>
-        /// <param name="systemNo">信息系统编号</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="authorityId">权限Id</param>
-        private void AppendAuthorities(string systemNo, Guid authorityId)
+        private void AppendAuthorities(string infoSystemNo, Guid authorityId)
         {
             Authority authority = this._unitOfWork.Resolve<Authority>(authorityId);
 
             //为系统管理员角色追加权限
-            Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(systemNo);
+            Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(infoSystemNo);
             Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
             adminRole.AppendAuthorities(new[] { authority });
 
-            //注册保存
             this._unitOfWork.RegisterSave(adminRole);
-
-            //提交
             this._unitOfWork.Commit();
         }
         #endregion

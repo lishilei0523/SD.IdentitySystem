@@ -2,7 +2,7 @@
 <package>
   <metadata>
     <id>SD.IdentitySystem.IAppService</id>
-    <version>4.3.1</version>
+    <version>4.4.0</version>
     <title>SD.IdentitySystem.IAppService</title>
     <authors>Lee</authors>
     <description>SD.IdentitySystem 身份认证系统服务接口</description>
