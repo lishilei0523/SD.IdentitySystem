@@ -145,21 +145,21 @@ export class UserService {
     }
     //endregion
 
-    //region # 分页获取用户列表 —— getUsersByPage(keywords: string, systemNo...
+    //region # 分页获取用户列表 —— getUsersByPage(keywords: string, infoSystemNo...
     /**
      * 分页获取用户列表
      * @param keywords - 关键字
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * @param roleId - 角色Id
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getUsersByPage(keywords: string | null, systemNo: string | null, roleId: string, pageIndex: number, pageSize: number)
+    public getUsersByPage(keywords: string | null, infoSystemNo: string | null, roleId: string, pageIndex: number, pageSize: number)
         : Promise<PageModel<User>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/User/GetUsersByPage`;
         let params = new HttpParams()
             .set("keywords", keywords ? keywords : "")
-            .set("systemNo", systemNo ? systemNo : "")
+            .set("infoSystemNo", infoSystemNo ? infoSystemNo : "")
             .set("roleId", roleId)
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());

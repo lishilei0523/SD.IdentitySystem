@@ -38,10 +38,10 @@ export class AddComponent extends ComponentBase implements OnInit {
     //region # 属性
 
     /*信息系统编号*/
-    public systemNo: string = "";
+    public infoSystemNo: string = "";
 
     /*信息系统名称*/
-    public systemName: string = "";
+    public infoSystemName: string = "";
 
     /*系统管理员账号*/
     public adminLoginId: string = "";
@@ -68,8 +68,8 @@ export class AddComponent extends ComponentBase implements OnInit {
     public ngOnInit(): void {
         //初始化表单
         this.formGroup = this._formBuilder.group({
-            systemNo: [null, [Validators.required]],
-            systemName: [null, [Validators.required]],
+            infoSystemNo: [null, [Validators.required]],
+            infoSystemName: [null, [Validators.required]],
             adminLoginId: [null, [Validators.required]],
             applicationType: [null, [Validators.required]],
         });
@@ -92,7 +92,7 @@ export class AddComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this._infoSystemService.createInfoSystem(this.systemNo, this.systemName, this.adminLoginId, this.selectedApplicationType!);
+            let promise: Promise<void> = this._infoSystemService.createInfoSystem(this.infoSystemNo, this.infoSystemName, this.adminLoginId, this.selectedApplicationType!);
             promise.catch(_ => {
                 this.idle();
             });

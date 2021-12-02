@@ -37,17 +37,13 @@ export class UpdateComponent extends ComponentBase implements OnInit {
 
     //region # 属性
 
-    /*信息系统Id*/
-    @Input()
-    public systemId: string = "";
-
     /*信息系统编号*/
     @Input()
-    public systemNo: string = "";
+    public infoSystemNo: string = "";
 
     /*信息系统名称*/
     @Input()
-    public systemName: string = "";
+    public infoSystemName: string = "";
 
     /*表单*/
     public formGroup!: FormGroup;
@@ -65,8 +61,8 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     public ngOnInit(): void {
         //初始化表单
         this.formGroup = this._formBuilder.group({
-            systemNo: [null, [Validators.required]],
-            systemName: [null, [Validators.required]],
+            infoSystemNo: [null, [Validators.required]],
+            infoSystemName: [null, [Validators.required]],
         });
     }
     //endregion
@@ -87,7 +83,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this._infoSystemService.updateInfoSystem(this.systemId, this.systemNo, this.systemName);
+            let promise: Promise<void> = this._infoSystemService.updateInfoSystem(this.infoSystemNo, this.infoSystemName);
             promise.catch(_ => {
                 this.idle();
             });

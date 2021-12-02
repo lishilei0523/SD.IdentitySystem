@@ -23,10 +23,10 @@ export class MenuService {
 
     //endregion
 
-    //region # 创建菜单 —— async createMenu(systemNo: string, applicationType...
+    //region # 创建菜单 —— async createMenu(infoSystemNo: string, applicationType...
     /**
      * 创建菜单
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * @param applicationType - 应用程序类型
      * @param menuName - 菜单名称
      * @param sort - 排序
@@ -35,11 +35,11 @@ export class MenuService {
      * @param icon - 图标
      * @param parentNodeId - 上级节点Id
      * */
-    public async createMenu(systemNo: string, applicationType: ApplicationType, menuName: string, sort: number, url: string | null, path: string | null, icon: string | null, parentNodeId: string | null)
+    public async createMenu(infoSystemNo: string, applicationType: ApplicationType, menuName: string, sort: number, url: string | null, path: string | null, icon: string | null, parentNodeId: string | null)
         : Promise<void> {
         let requestUrl: string = `${Constants.appConfig.webApiPrefix}/Authorization/CreateMenu`;
         let params = {
-            systemNo: systemNo,
+            infoSystemNo: infoSystemNo,
             applicationType: applicationType,
             menuName: menuName,
             sort: sort,
@@ -113,17 +113,17 @@ export class MenuService {
     }
     //endregion
 
-    //region # 获取菜单列表 —— getMenus(systemNo: string | null, applicationType...
+    //region # 获取菜单列表 —— getMenus(infoSystemNo: string | null, applicationType...
     /**
      * 获取菜单列表
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * @param applicationType - 应用程序类型
      * */
-    public getMenus(systemNo: string | null, applicationType: ApplicationType | null)
+    public getMenus(infoSystemNo: string | null, applicationType: ApplicationType | null)
         : Promise<Array<Menu>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetMenus`;
         let params = new HttpParams()
-            .set("systemNo", systemNo ? systemNo : "")
+            .set("infoSystemNo", infoSystemNo ? infoSystemNo : "")
             .set("applicationType", applicationType == null ? "" : applicationType.toString());
 
         return this._httpClient.get<Array<Menu>>(url, {params}).toPromise();

@@ -23,10 +23,10 @@ export class AuthorityService {
 
     //endregion
 
-    //region # 创建权限 —— async createAuthority(systemNo: string, applicationType...
+    //region # 创建权限 —— async createAuthority(infoSystemNo: string, applicationType...
     /**
      * 创建权限
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * @param applicationType - 应用程序类型
      * @param authorityName - 权限名称
      * @param authorityPath - 权限路径
@@ -37,10 +37,10 @@ export class AuthorityService {
      * @param methodName - 方法名
      * @param description - 描述
      * */
-    public async createAuthority(systemNo: string, applicationType: ApplicationType, authorityName: string, authorityPath: string, englishName: string | null, assemblyName: string | null, namespace: string | null, className: string | null, methodName: string | null, description: string | null): Promise<void> {
+    public async createAuthority(infoSystemNo: string, applicationType: ApplicationType, authorityName: string, authorityPath: string, englishName: string | null, assemblyName: string | null, namespace: string | null, className: string | null, methodName: string | null, description: string | null): Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/CreateAuthority`;
         let params = {
-            systemNo: systemNo,
+            infoSystemNo: infoSystemNo,
             applicationType: applicationType,
             authorityName: authorityName,
             authorityPath: authorityPath,
@@ -104,21 +104,21 @@ export class AuthorityService {
     }
     //endregion
 
-    //region # 获取权限列表 —— getAuthorities(keywords: string | null, systemNo: string...
+    //region # 获取权限列表 —— getAuthorities(keywords: string | null, infoSystemNo: string...
     /**
      * 获取权限列表
      * @param keywords - 关键字
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * @param applicationType - 应用程序类型
      * @param menuId - 菜单Id
      * @param roleId - 角色Id
      * */
-    public getAuthorities(keywords: string | null, systemNo: string | null, applicationType: ApplicationType | null, menuId: string | null, roleId: string | null)
+    public getAuthorities(keywords: string | null, infoSystemNo: string | null, applicationType: ApplicationType | null, menuId: string | null, roleId: string | null)
         : Promise<Array<Authority>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetAuthorities`;
         let params = new HttpParams()
             .set("keywords", keywords ? keywords : "")
-            .set("systemNo", systemNo ? systemNo : "")
+            .set("infoSystemNo", infoSystemNo ? infoSystemNo : "")
             .set("applicationType", applicationType == null ? "" : applicationType.toString())
             .set("menuId", menuId ? menuId : "")
             .set("roleId", roleId ? roleId : "");
@@ -127,21 +127,21 @@ export class AuthorityService {
     }
     //endregion
 
-    //region # 分页获取权限列表 —— getAuthoritiesByPage(keywords: string | null, systemNo: string...
+    //region # 分页获取权限列表 —— getAuthoritiesByPage(keywords: string | null, infoSystemNo: string...
     /**
      * 分页获取权限列表
      * @param keywords - 关键字
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * @param applicationType - 应用程序类型
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getAuthoritiesByPage(keywords: string | null, systemNo: string | null, applicationType: ApplicationType | null, pageIndex: number, pageSize: number)
+    public getAuthoritiesByPage(keywords: string | null, infoSystemNo: string | null, applicationType: ApplicationType | null, pageIndex: number, pageSize: number)
         : Promise<PageModel<Authority>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetAuthoritiesByPage`;
         let params = new HttpParams()
             .set("keywords", keywords ? keywords : "")
-            .set("systemNo", systemNo ? systemNo : "")
+            .set("infoSystemNo", infoSystemNo ? infoSystemNo : "")
             .set("applicationType", applicationType == null ? "" : applicationType.toString())
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());

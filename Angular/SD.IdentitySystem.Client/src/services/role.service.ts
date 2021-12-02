@@ -23,19 +23,19 @@ export class RoleService {
 
     //endregion
 
-    //region # 创建角色 —— async createRole(systemNo: string, roleName...
+    //region # 创建角色 —— async createRole(infoSystemNo: string, roleName...
     /**
      * 创建角色
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * @param roleName - 角色名称
      * @param description - 描述
      * @param authorityIds - 权限Id集
      * */
-    public async createRole(systemNo: string, roleName: string, description: string | null, authorityIds: Array<string>)
+    public async createRole(infoSystemNo: string, roleName: string, description: string | null, authorityIds: Array<string>)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/CreateRole`;
         let params = {
-            systemNo: systemNo,
+            infoSystemNo: infoSystemNo,
             roleName: roleName,
             description: description,
             authorityIds: authorityIds
@@ -88,34 +88,34 @@ export class RoleService {
      * 获取角色列表
      * @param keywords - 关键字
      * @param loginId - 用户名
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * */
-    public getRoles(keywords: string | null, loginId: string | null, systemNo: string | null)
+    public getRoles(keywords: string | null, loginId: string | null, infoSystemNo: string | null)
         : Promise<Array<Role>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetRoles`;
         let params = new HttpParams()
             .set("keywords", keywords ? keywords : "")
             .set("loginId", loginId ? loginId : "")
-            .set("systemNo", systemNo ? systemNo : "");
+            .set("infoSystemNo", infoSystemNo ? infoSystemNo : "");
 
         return this._httpClient.get<Array<Role>>(url, {params}).toPromise();
     }
     //endregion
 
-    //region # 分页获取角色列表 —— getRolesByPage(keywords: string | null, systemNo...
+    //region # 分页获取角色列表 —— getRolesByPage(keywords: string | null, infoSystemNo...
     /**
      * 分页获取角色列表
      * @param keywords - 关键字
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * @param pageIndex - 页码
      * @param pageSize - 页容量
      * */
-    public getRolesByPage(keywords: string | null, systemNo: string | null, pageIndex: number, pageSize: number)
+    public getRolesByPage(keywords: string | null, infoSystemNo: string | null, pageIndex: number, pageSize: number)
         : Promise<PageModel<Role>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetRolesByPage`;
         let params = new HttpParams()
             .set("keywords", keywords ? keywords : "")
-            .set("systemNo", systemNo ? systemNo : "")
+            .set("infoSystemNo", infoSystemNo ? infoSystemNo : "")
             .set("pageIndex", pageIndex.toString())
             .set("pageSize", pageSize.toString());
 

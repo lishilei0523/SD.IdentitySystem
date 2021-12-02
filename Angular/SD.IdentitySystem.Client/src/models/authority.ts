@@ -5,7 +5,7 @@ import {InfoSystem} from "./info-system";
 export interface Authority extends ModelBase {
 
     /*信息系统编号*/
-    systemNo: string;
+    infoSystemNo: string;
 
     /*应用程序类型*/
     applicationType: ApplicationType;

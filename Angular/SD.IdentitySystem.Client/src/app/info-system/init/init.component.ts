@@ -39,7 +39,7 @@ export class InitComponent extends ComponentBase implements OnInit {
 
     /*信息系统编号*/
     @Input()
-    public systemNo: string = "";
+    public infoSystemNo: string = "";
 
     /*主机名*/
     @Input()
@@ -92,7 +92,7 @@ export class InitComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this._infoSystemService.initInfoSystem(this.systemNo, this.host!, this.port!, this.index!);
+            let promise: Promise<void> = this._infoSystemService.initInfoSystem(this.infoSystemNo, this.host!, this.port!, this.index!);
             promise.catch(_ => {
                 this.idle();
             });

@@ -5,7 +5,7 @@ import {InfoSystem} from "./info-system";
 export interface Role extends ModelBase {
 
     /*信息系统编号*/
-    systemNo: string;
+    infoSystemNo: string;
 
     /*描述*/
     description: string | null;

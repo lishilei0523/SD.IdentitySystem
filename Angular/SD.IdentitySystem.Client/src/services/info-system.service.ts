@@ -23,20 +23,20 @@ export class InfoSystemService {
 
     //endregion
 
-    //region # 创建信息系统 —— async createInfoSystem(systemNo: string...
+    //region # 创建信息系统 —— async createInfoSystem(infoSystemNo: string...
     /**
      * 创建信息系统
-     * @param systemNo - 信息系统编号
-     * @param systemName - 信息系统名称
+     * @param infoSystemNo - 信息系统编号
+     * @param infoSystemName - 信息系统名称
      * @param adminLoginId - 系统管理员账号
      * @param applicationType - 应用程序类型
      * */
-    public async createInfoSystem(systemNo: string, systemName: string, adminLoginId: string, applicationType: ApplicationType)
+    public async createInfoSystem(infoSystemNo: string, infoSystemName: string, adminLoginId: string, applicationType: ApplicationType)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/CreateInfoSystem`;
         let params = {
-            systemNo: systemNo,
-            systemName: systemName,
+            infoSystemNo: infoSystemNo,
+            infoSystemName: infoSystemName,
             adminLoginId: adminLoginId,
             applicationType: applicationType
         };
@@ -45,39 +45,37 @@ export class InfoSystemService {
     }
     //endregion
 
-    //region # 修改信息系统 —— async updateInfoSystem(infoSystemId: string...
+    //region # 修改信息系统 —— async updateInfoSystem(infoSystemNo: string...
     /**
      * 修改信息系统
-     * @param infoSystemId - 信息系统Id
-     * @param systemNo - 信息系统编号
-     * @param systemName - 信息系统名称
+     * @param infoSystemNo - 信息系统编号
+     * @param infoSystemName - 信息系统名称
      * */
-    public async updateInfoSystem(infoSystemId: string, systemNo: string, systemName: string)
+    public async updateInfoSystem(infoSystemNo: string, infoSystemName: string)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/UpdateInfoSystem`;
         let params = {
-            infoSystemId: infoSystemId,
-            systemNo: systemNo,
-            systemName: systemName
+            infoSystemNo: infoSystemNo,
+            infoSystemName: infoSystemName
         };
 
         await this._httpClient.post(url, params).toPromise();
     }
     //endregion
 
-    //region # 初始化信息系统 —— async initInfoSystem(systemNo: string...
+    //region # 初始化信息系统 —— async initInfoSystem(infoSystemNo: string...
     /**
      * 初始化信息系统
-     * @param systemNo - 信息系统编号
+     * @param infoSystemNo - 信息系统编号
      * @param host - 主机名称
      * @param port - 端口
      * @param index - 首页
      * */
-    public async initInfoSystem(systemNo: string, host: string, port: number, index: string)
+    public async initInfoSystem(infoSystemNo: string, host: string, port: number, index: string)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/InitInfoSystem`;
         let params = {
-            systemNo: systemNo,
+            infoSystemNo: infoSystemNo,
             host: host,
             port: port,
             index: index
