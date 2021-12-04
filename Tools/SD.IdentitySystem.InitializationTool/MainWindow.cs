@@ -139,13 +139,8 @@ namespace SD.IdentitySystem.InitializationTool
                 RequireAuthorizationAttribute attribute = methodInfo.GetCustomAttribute<RequireAuthorizationAttribute>();
                 AuthorityParam authorityParam = new AuthorityParam
                 {
-                    englishName = attribute.EnglishName,
-                    assemblyName = assembly.GetName().Name,
-                    @namespace = methodInfo.DeclaringType?.Namespace,
-                    className = methodInfo.DeclaringType?.Name,
-                    methodName = methodInfo.Name,
-                    authorityName = attribute.AuthorityName,
-                    description = attribute.Description
+                    authorityName = attribute.AuthorityPath,
+                    authorityPath = attribute.AuthorityPath
                 };
                 authorityParams.Add(authorityParam);
             }

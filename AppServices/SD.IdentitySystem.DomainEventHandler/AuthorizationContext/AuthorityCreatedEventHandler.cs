@@ -36,16 +36,8 @@ namespace SD.IdentitySystem.DomainEventHandler.AuthorizationContext
         {
             this._repMediator = repMediator;
             this._unitOfWork = unitOfWork;
-            this.Sort = uint.MaxValue;
         }
 
-        #endregion
-
-        #region # 执行顺序，倒序排列 —— uint Sort
-        /// <summary>
-        /// 执行顺序，倒序排列
-        /// </summary>
-        public uint Sort { get; private set; }
         #endregion
 
         #region # 事件处理方法 —— void Handle(AuthorityCreatedEvent eventSource)
