@@ -19,7 +19,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             //配置属性
             builder.HasKey(menu => menu.Id).IsClustered(false);
             builder.HasOne(menu => menu.ParentNode).WithMany(menu => menu.SubNodes).IsRequired(false).HasForeignKey("ParentNode_Id");
-            builder.HasOne<InfoSystem>().WithMany().IsRequired().HasForeignKey(menu => menu.InfoSystemNo).OnDelete(DeleteBehavior.Restrict); ;
+            builder.HasOne<InfoSystem>().WithMany().IsRequired().HasForeignKey(menu => menu.InfoSystemNo).OnDelete(DeleteBehavior.Restrict);
             builder.Property(menu => menu.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(menu => menu.Name).IsRequired().HasMaxLength(32);
 

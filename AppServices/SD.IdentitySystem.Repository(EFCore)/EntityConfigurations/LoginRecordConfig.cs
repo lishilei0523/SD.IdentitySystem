@@ -19,7 +19,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             builder.Property(record => record.Keywords).IsRequired().HasMaxLength(256);
 
             //配置索引
-            builder.HasIndex(record => record.AddedTime).IsUnique(false).IsClustered().HasDatabaseName("IX_AddedTime");
+            builder.HasIndex(record => record.AddedTime).IsUnique(false).IsClustered();
 
             //忽略映射
             builder.Ignore(record => record.Number);

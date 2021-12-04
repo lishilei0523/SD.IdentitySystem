@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             builder.HasKey(role => role.Id).IsClustered(false);
-            builder.HasOne<InfoSystem>().WithMany().IsRequired().HasForeignKey(role => role.InfoSystemNo).OnDelete(DeleteBehavior.Restrict); ;
+            builder.HasOne<InfoSystem>().WithMany().IsRequired().HasForeignKey(role => role.InfoSystemNo).OnDelete(DeleteBehavior.Restrict);
             builder.Property(role => role.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(role => role.Name).IsRequired().HasMaxLength(32);
 
@@ -32,7 +32,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
                     map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}Role_Authority"));
 
             //配置索引
-            builder.HasIndex(role => role.AddedTime).IsUnique(false).IsClustered().HasDatabaseName("IX_AddedTime");
+            builder.HasIndex(role => role.AddedTime).IsUnique(false).IsClustered();
         }
     }
 }

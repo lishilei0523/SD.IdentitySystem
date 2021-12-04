@@ -82,6 +82,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 {
                     table.PrimaryKey("PK_User", x => x.Number)
                         .Annotation("SqlServer:Clustered", false);
+                    table.UniqueConstraint("AK_User_PrivateKey", x => x.PrivateKey);
                 });
 
             migrationBuilder.CreateTable(
@@ -267,7 +268,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddedTime",
+                name: "IX_Authority_AddedTime",
                 table: "Authority",
                 column: "AddedTime")
                 .Annotation("SqlServer:Clustered", true);
@@ -278,13 +279,13 @@ namespace SD.IdentitySystem.Repository.Migrations
                 column: "InfoSystemNo");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddedTime",
+                name: "IX_InfoSystem_AddedTime",
                 table: "InfoSystem",
                 column: "AddedTime")
                 .Annotation("SqlServer:Clustered", true);
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddedTime",
+                name: "IX_LoginRecord_AddedTime",
                 table: "LoginRecord",
                 column: "AddedTime")
                 .Annotation("SqlServer:Clustered", true);
@@ -305,7 +306,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 column: "Menu_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddedTime",
+                name: "IX_Role_AddedTime",
                 table: "Role",
                 column: "AddedTime")
                 .Annotation("SqlServer:Clustered", true);
@@ -321,16 +322,10 @@ namespace SD.IdentitySystem.Repository.Migrations
                 column: "Role_Id");
 
             migrationBuilder.CreateIndex(
-                name: "IX_AddedTime",
+                name: "IX_User_AddedTime",
                 table: "User",
                 column: "AddedTime")
                 .Annotation("SqlServer:Clustered", true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_PrivateKey",
-                table: "User",
-                column: "PrivateKey",
-                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_User_Role_User_Id",

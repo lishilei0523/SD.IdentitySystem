@@ -122,7 +122,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
                     b.HasIndex("InfoSystemNo");
@@ -189,7 +188,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
                     b.ToTable("InfoSystem");
@@ -245,7 +243,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
                     b.ToTable("LoginRecord");
@@ -376,7 +373,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
                     b.HasIndex("InfoSystemNo");
@@ -438,13 +434,10 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.HasKey("Number")
                         .IsClustered(false);
 
-                    b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
-                        .IsClustered();
+                    b.HasAlternateKey("PrivateKey");
 
-                    b.HasIndex("PrivateKey")
-                        .IsUnique()
-                        .HasDatabaseName("IX_PrivateKey");
+                    b.HasIndex("AddedTime")
+                        .IsClustered();
 
                     b.ToTable("User");
                 });

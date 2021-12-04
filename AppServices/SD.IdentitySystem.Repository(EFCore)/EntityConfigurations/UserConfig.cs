@@ -18,6 +18,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             builder.HasKey(user => user.Number).IsClustered(false);
+            builder.HasAlternateKey(user => user.PrivateKey);
             builder.Property(user => user.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(user => user.Number).IsRequired().HasMaxLength(20);
             builder.Property(user => user.Password).IsRequired().HasMaxLength(32);
@@ -33,8 +34,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
                     map => map.ToTable($"{FrameworkSection.Setting.EntityTablePrefix.Value}User_Role"));
 
             //配置索引
-            builder.HasIndex(user => user.AddedTime).IsUnique(false).IsClustered().HasDatabaseName("IX_AddedTime");
-            builder.HasIndex(user => user.PrivateKey).IsUnique().HasDatabaseName("IX_PrivateKey");
+            builder.HasIndex(user => user.AddedTime).IsUnique(false).IsClustered();
 
             //忽略映射
             builder.Ignore(user => user.Id);

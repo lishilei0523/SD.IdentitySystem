@@ -10,7 +10,7 @@ using SD.IdentitySystem.Repository.Base;
 namespace SD.IdentitySystem.Repository.Migrations
 {
     [DbContext(typeof(DbSession))]
-    [Migration("20211201122228_Initialization")]
+    [Migration("20211204041103_Initialization")]
     partial class Initialization
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -124,7 +124,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
                     b.HasIndex("InfoSystemNo");
@@ -191,7 +190,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
                     b.ToTable("InfoSystem");
@@ -247,7 +245,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
                     b.ToTable("LoginRecord");
@@ -378,7 +375,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
                         .IsClustered();
 
                     b.HasIndex("InfoSystemNo");
@@ -440,13 +436,10 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.HasKey("Number")
                         .IsClustered(false);
 
-                    b.HasIndex("AddedTime")
-                        .HasDatabaseName("IX_AddedTime")
-                        .IsClustered();
+                    b.HasAlternateKey("PrivateKey");
 
-                    b.HasIndex("PrivateKey")
-                        .IsUnique()
-                        .HasDatabaseName("IX_PrivateKey");
+                    b.HasIndex("AddedTime")
+                        .IsClustered();
 
                     b.ToTable("User");
                 });

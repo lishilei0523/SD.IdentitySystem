@@ -19,7 +19,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             this.Property(record => record.Keywords).IsRequired().HasMaxLength(256);
 
             //配置索引
-            this.HasIndex("IX_AddedTime", IndexType.Clustered, table => table.Property(record => record.AddedTime));
+            this.HasIndex("IX_LoginRecord_AddedTime", IndexType.Clustered, table => table.Property(record => record.AddedTime));
 
             //忽略映射
             this.Ignore(record => record.Number);
