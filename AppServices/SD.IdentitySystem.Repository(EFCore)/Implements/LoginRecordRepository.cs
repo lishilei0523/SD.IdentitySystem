@@ -35,13 +35,11 @@ namespace SD.IdentitySystem.Repository.Implements
             }
             if (startTime.HasValue)
             {
-                DateTime startTime_ = startTime.Value;
-                queryBuilder.And(x => x.AddedTime >= startTime_);
+                queryBuilder.And(x => x.AddedTime >= startTime.Value);
             }
             if (endTime.HasValue)
             {
-                DateTime endTime_ = endTime.Value;
-                queryBuilder.And(x => x.AddedTime <= endTime_);
+                queryBuilder.And(x => x.AddedTime <= endTime.Value);
             }
 
             Expression<Func<LoginRecord, bool>> condition = queryBuilder.Build();

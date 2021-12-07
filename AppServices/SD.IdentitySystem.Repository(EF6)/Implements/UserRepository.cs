@@ -40,8 +40,7 @@ namespace SD.IdentitySystem.Repository.Implements
             }
             if (roleId.HasValue)
             {
-                Guid roleId_ = roleId.Value;
-                queryBuilder.And(x => x.Roles.Any(y => y.Id == roleId_));
+                queryBuilder.And(x => x.Roles.Any(y => y.Id == roleId.Value));
             }
 
             Expression<Func<User, bool>> condition = queryBuilder.Build();

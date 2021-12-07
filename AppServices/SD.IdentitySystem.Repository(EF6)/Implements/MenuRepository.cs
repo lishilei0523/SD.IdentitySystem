@@ -40,8 +40,7 @@ namespace SD.IdentitySystem.Repository.Implements
             }
             if (applicationType != null)
             {
-                ApplicationType applicationType_ = applicationType.Value;
-                queryBuilder.And(x => x.ApplicationType == applicationType_ || x.ApplicationType == ApplicationType.Complex);
+                queryBuilder.And(x => x.ApplicationType == applicationType.Value || x.ApplicationType == ApplicationType.Complex);
             }
 
             Expression<Func<Menu, bool>> condition = queryBuilder.Build();
@@ -67,8 +66,7 @@ namespace SD.IdentitySystem.Repository.Implements
             }
             if (applicationType != null)
             {
-                ApplicationType applicationType_ = applicationType.Value;
-                queryBuilder.And(x => x.ApplicationType == applicationType_ || x.ApplicationType == ApplicationType.Complex);
+                queryBuilder.And(x => x.ApplicationType == applicationType.Value || x.ApplicationType == ApplicationType.Complex);
             }
 
             Expression<Func<Menu, bool>> condition = queryBuilder.Build();
@@ -96,8 +94,7 @@ namespace SD.IdentitySystem.Repository.Implements
             }
             if (applicationType != null)
             {
-                ApplicationType applicationType_ = applicationType.Value;
-                queryBuilder.And(x => x.ApplicationType == applicationType_);
+                queryBuilder.And(x => x.ApplicationType == applicationType.Value);
             }
 
             Expression<Func<Menu, bool>> condition = queryBuilder.Build();
@@ -120,10 +117,9 @@ namespace SD.IdentitySystem.Repository.Implements
             Expression<Func<Menu, bool>> condition;
             if (parentNodeId.HasValue)
             {
-                Guid parentNodeId_ = parentNodeId.Value;
                 condition =
                     x =>
-                        x.ParentNode.Id == parentNodeId_ &&
+                        x.ParentNode.Id == parentNodeId.Value &&
                         x.ApplicationType == applicationType &&
                         x.Name == menuName;
             }

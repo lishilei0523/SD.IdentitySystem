@@ -40,8 +40,7 @@ namespace SD.IdentitySystem.Repository.Implements
             }
             if (applicationType.HasValue)
             {
-                ApplicationType applicationType_ = applicationType.Value;
-                queryBuilder.And(x => x.ApplicationType == applicationType_);
+                queryBuilder.And(x => x.ApplicationType == applicationType.Value);
             }
 
             Expression<Func<Authority, bool>> condition = queryBuilder.Build();
@@ -74,18 +73,15 @@ namespace SD.IdentitySystem.Repository.Implements
             }
             if (applicationType.HasValue)
             {
-                ApplicationType applicationType_ = applicationType.Value;
-                queryBuilder.And(x => x.ApplicationType == applicationType_);
+                queryBuilder.And(x => x.ApplicationType == applicationType.Value);
             }
             if (menuId.HasValue)
             {
-                Guid menuId_ = menuId.Value;
-                queryBuilder.And(x => x.MenuLeaves.Any(y => y.Id == menuId_));
+                queryBuilder.And(x => x.MenuLeaves.Any(y => y.Id == menuId.Value));
             }
             if (roleId.HasValue)
             {
-                Guid roleId_ = roleId.Value;
-                queryBuilder.And(x => x.Roles.Any(y => y.Id == roleId_));
+                queryBuilder.And(x => x.Roles.Any(y => y.Id == roleId.Value));
             }
 
             Expression<Func<Authority, bool>> condition = queryBuilder.Build();
