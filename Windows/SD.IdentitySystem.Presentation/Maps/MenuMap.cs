@@ -10,7 +10,7 @@ using System.Linq;
 namespace SD.IdentitySystem.Presentation.Maps
 {
     /// <summary>
-    /// 菜单映射工具类
+    /// 菜单映射
     /// </summary>
     public static class MenuMap
     {
@@ -18,8 +18,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单映射
         /// </summary>
-        /// <param name="menuInfo">菜单</param>
-        /// <returns>菜单</returns>
         public static Menu ToModel(this MenuInfo menuInfo)
         {
             Menu menu = menuInfo.Map<MenuInfo, Menu>();
@@ -33,8 +31,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单树节点映射
         /// </summary>
-        /// <param name="menu">菜单</param>
-        /// <returns>树节点</returns>
         public static Node ToNode(this Menu menu)
         {
             return new Node(menu.Id, null, menu.Name, false, null);
@@ -45,9 +41,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单树映射
         /// </summary>
-        /// <param name="menus">菜单集</param>
-        /// <param name="parentId">父级菜单Id</param>
-        /// <returns>菜单树</returns>
         public static ICollection<Node> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
         {
             //验证
@@ -64,7 +57,6 @@ namespace SD.IdentitySystem.Presentation.Maps
                 {
                     Node node = menu.ToNode();
                     tree.Add(node);
-
                     node.SubNodes = new ObservableCollection<Node>(menus.ToTree(node.Id));
                 }
             }
@@ -75,7 +67,6 @@ namespace SD.IdentitySystem.Presentation.Maps
                 {
                     Node node = menu.ToNode();
                     tree.Add(node);
-
                     node.SubNodes = new ObservableCollection<Node>(menus.ToTree(node.Id));
                 }
             }
@@ -88,8 +79,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 菜单树列表映射
         /// </summary>
-        /// <param name="menus">菜单列表</param>
-        /// <returns>菜单树列表</returns>
         public static IEnumerable<Menu> ToTreeList(this IEnumerable<Menu> menus)
         {
             Menu[] allMenus = menus?.ToArray() ?? Array.Empty<Menu>();

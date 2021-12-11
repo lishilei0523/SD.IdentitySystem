@@ -4,7 +4,7 @@ using SD.Infrastructure.WPF.Models;
 namespace SD.IdentitySystem.Presentation.Maps
 {
     /// <summary>
-    /// 角色映射工具类
+    /// 角色映射
     /// </summary>
     public static class RoleMap
     {

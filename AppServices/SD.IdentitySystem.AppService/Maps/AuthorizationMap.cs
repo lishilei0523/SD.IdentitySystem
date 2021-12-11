@@ -9,7 +9,7 @@ using System.Linq;
 namespace SD.IdentitySystem.AppService.Maps
 {
     /// <summary>
-    /// 权限相关映射工具类
+    /// 权限相关映射
     /// </summary>
     public static class AuthorizationMap
     {
@@ -42,7 +42,7 @@ namespace SD.IdentitySystem.AppService.Maps
         public static MenuInfo ToDTO(this Menu menu, IDictionary<string, InfoSystemInfo> infoSystemInfos)
         {
             MenuInfo menuInfo = menu.Map<Menu, MenuInfo>();
-            menuInfo.InfoSystemInfo = infoSystemInfos[menu.InfoSystemNo];
+            menuInfo.InfoSystemInfo = infoSystemInfos?[menu.InfoSystemNo];
             menuInfo.ParentMenuId = menu.ParentNode?.Id;
 
             return menuInfo;
@@ -115,7 +115,7 @@ namespace SD.IdentitySystem.AppService.Maps
         public static AuthorityInfo ToDTO(this Authority authority, IDictionary<string, InfoSystemInfo> infoSystemInfos)
         {
             AuthorityInfo authorityInfo = authority.Map<Authority, AuthorityInfo>();
-            authorityInfo.InfoSystemInfo = infoSystemInfos[authority.InfoSystemNo];
+            authorityInfo.InfoSystemInfo = infoSystemInfos?[authority.InfoSystemNo];
 
             return authorityInfo;
         }
@@ -138,7 +138,7 @@ namespace SD.IdentitySystem.AppService.Maps
         public static RoleInfo ToDTO(this Role role, IDictionary<string, InfoSystemInfo> infoSystemInfos)
         {
             RoleInfo roleInfo = role.Map<Role, RoleInfo>();
-            roleInfo.InfoSystemInfo = infoSystemInfos[role.InfoSystemNo];
+            roleInfo.InfoSystemInfo = infoSystemInfos?[role.InfoSystemNo];
 
             return roleInfo;
         }

@@ -6,7 +6,7 @@ using SD.Toolkits.Mapper;
 namespace SD.IdentitySystem.Presentation.Maps
 {
     /// <summary>
-    /// 角色映射工具类
+    /// 角色映射
     /// </summary>
     public static class RoleMap
     {
@@ -17,8 +17,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static Role ToModel(this RoleInfo roleInfo)
         {
             Role role = roleInfo.Map<RoleInfo, Role>();
-
-            role.InfoSystemName = roleInfo.InfoSystemInfo.Name;
+            role.InfoSystemName = roleInfo.InfoSystemInfo?.Name;
 
             return role;
         }

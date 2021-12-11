@@ -10,7 +10,7 @@ using System.Linq;
 namespace SD.IdentitySystem.Presentation.Maps
 {
     /// <summary>
-    /// 信息系统映射工具类
+    /// 信息系统映射
     /// </summary>
     public static class InfoSytemMap
     {
@@ -21,7 +21,6 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static InfoSystem ToModel(this InfoSystemInfo infoSystemInfo)
         {
             InfoSystem infoSystem = infoSystemInfo.Map<InfoSystemInfo, InfoSystem>();
-
             infoSystem.ApplicationTypeName = infoSystemInfo.ApplicationType.GetEnumMember();
 
             return infoSystem;
@@ -67,7 +66,6 @@ namespace SD.IdentitySystem.Presentation.Maps
             };
 
             Node infoSystemNode = new Node(infoSystem.Id, infoSystem.Name, "open", false, attributes);
-
             foreach (Role role in roles)
             {
                 if (role.InfoSystemNo == infoSystem.Number)

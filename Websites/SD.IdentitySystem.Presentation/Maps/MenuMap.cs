@@ -10,7 +10,7 @@ using System.Linq;
 namespace SD.IdentitySystem.Presentation.Maps
 {
     /// <summary>
-    /// 菜单映射工具类
+    /// 菜单映射
     /// </summary>
     public static class MenuMap
     {
@@ -51,7 +51,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static ICollection<Node> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
         {
             //验证
-            menus = menus == null ? new Menu[0] : menus.ToArray();
+            menus = menus?.ToArray() ?? Array.Empty<Menu>();
 
             //声明容器
             ICollection<Node> tree = new HashSet<Node>();
@@ -63,9 +63,7 @@ namespace SD.IdentitySystem.Presentation.Maps
                 foreach (Menu menu in menus.Where(x => x.IsRoot))
                 {
                     Node node = menu.ToNode();
-
                     tree.Add(node);
-
                     node.children = menus.ToTree(node.id);
                 }
             }
@@ -75,9 +73,7 @@ namespace SD.IdentitySystem.Presentation.Maps
                 foreach (Menu menu in menus.Where(x => x.ParentMenuId != null && x.ParentMenuId == parentId.Value))
                 {
                     Node node = menu.ToNode();
-
                     tree.Add(node);
-
                     node.children = menus.ToTree(node.id);
                 }
             }
@@ -92,7 +88,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// </summary>
         public static IEnumerable<Menu> ToTreeGrid(this IEnumerable<Menu> menus)
         {
-            Menu[] allMenus = menus?.ToArray() ?? new Menu[0];
+            Menu[] allMenus = menus?.ToArray() ?? Array.Empty<Menu>();
             foreach (Menu menu in allMenus)
             {
                 menu.FillChildren(allMenus);

@@ -5,7 +5,7 @@ using SD.Toolkits.Mapper;
 namespace SD.IdentitySystem.AppService.Maps
 {
     /// <summary>
-    /// 用户相关映射工具类
+    /// 用户相关映射
     /// </summary>
     public static class UserMap
     {
@@ -15,7 +15,9 @@ namespace SD.IdentitySystem.AppService.Maps
         /// </summary>
         public static UserInfo ToDTO(this User user)
         {
-            return user.Map<User, UserInfo>();
+            UserInfo userInfo = user.Map<User, UserInfo>();
+
+            return userInfo;
         }
         #endregion
 
@@ -25,7 +27,9 @@ namespace SD.IdentitySystem.AppService.Maps
         /// </summary>
         public static LoginRecordInfo ToDTO(this LoginRecord loginRecord)
         {
-            return loginRecord.Map<LoginRecord, LoginRecordInfo>();
+            LoginRecordInfo recordInfo = loginRecord.Map<LoginRecord, LoginRecordInfo>();
+
+            return recordInfo;
         }
         #endregion
     }

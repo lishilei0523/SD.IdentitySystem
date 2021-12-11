@@ -19,7 +19,7 @@
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.0.3" />
     <PackageReference Include="SD.IOC.Core" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.2.1" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.2" />
     <PackageReference Include="SD.Infrastructure.WPF" Version="1.0.4" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.4.0" />
   </ItemGroup>

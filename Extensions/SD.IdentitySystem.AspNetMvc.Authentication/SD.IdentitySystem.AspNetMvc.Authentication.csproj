@@ -24,6 +24,6 @@
   <ItemGroup>
     <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.2.1" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.2" />
   </ItemGroup>
 </Project>

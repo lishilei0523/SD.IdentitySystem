@@ -5,7 +5,7 @@ using SD.Infrastructure.WPF.Models;
 namespace SD.IdentitySystem.Presentation.Maps
 {
     /// <summary>
-    /// 权限映射工具类
+    /// 权限映射
     /// </summary>
     public static class AuthorityMap
     {
