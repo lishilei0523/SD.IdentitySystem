@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.WCF.Authentication
     /// <summary>
     /// WCF客户端/服务端身份认证行为
     /// </summary>
-    public class AuthenticationBehavior : IServiceBehavior, IEndpointBehavior
+    public class AuthenticationBehavior : IServiceBehavior, System.ServiceModel.Description.IEndpointBehavior
     {
         /// <summary>
         /// 适用身份认证服务端行为
@@ -44,7 +44,7 @@ namespace SD.IdentitySystem.WCF.Authentication
         /// </summary>
         /// <param name="endpoint">服务终结点</param>
         /// <param name="clientRuntime">客户端运行时</param>
-        public void ApplyClientBehavior(ServiceEndpoint endpoint, ClientRuntime clientRuntime)
+        public void ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint endpoint, System.ServiceModel.Dispatcher.ClientRuntime clientRuntime)
         {
 #if NET40_OR_GREATER
             //添加消息拦截器
@@ -59,10 +59,29 @@ namespace SD.IdentitySystem.WCF.Authentication
 
 
         //没有用
-        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase) { }
-        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters) { }
-        public void Validate(ServiceEndpoint endpoint) { }
-        public void AddBindingParameters(ServiceEndpoint endpoint, BindingParameterCollection bindingParameters) { }
+#if NET40_OR_GREATER
+        //Shared
         public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher) { }
+
+        //Implements of IServiceBehavior
+        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters) { }
+        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase) { }
+
+        //Implements of IEndpointBehavior
+        public void AddBindingParameters(ServiceEndpoint endpoint, BindingParameterCollection bindingParameters) { }
+        public void Validate(ServiceEndpoint endpoint) { }
+#endif
+#if NETSTANDARD2_0_OR_GREATER
+        //Shared
+        public void ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint endpoint, System.ServiceModel.Dispatcher.EndpointDispatcher endpointDispatcher) { }
+
+        //Implements of IServiceBehavior
+        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters) { }
+        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase) { }
+
+        //Implements of IEndpointBehavior
+        public void AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint endpoint, System.ServiceModel.Channels.BindingParameterCollection bindingParameters) { }
+        public void Validate(System.ServiceModel.Description.ServiceEndpoint endpoint) { }
+#endif
     }
 }
