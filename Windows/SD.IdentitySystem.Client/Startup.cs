@@ -17,7 +17,7 @@ using System.Windows.Threading;
 #if NET45_OR_GREATER
 using SD.IOC.Extension.NetFx;
 #endif
-#if NETCOREAPP3_1
+#if NETCOREAPP3_1_OR_GREATER
 using SD.IOC.Extension.NetCore;
 using SD.IOC.Extension.NetCore.ServiceModel;
 #endif
@@ -119,8 +119,7 @@ namespace SD.IdentitySystem.Client
             {
                 IServiceCollection serviceCollection = ResolveMediator.GetServiceCollection();
                 serviceCollection.RegisterConfigs();
-
-#if NETCOREAPP3_1
+#if NETCOREAPP3_1_OR_GREATER
                 serviceCollection.RegisterServiceModels();
 #endif
                 ResolveMediator.Build();
