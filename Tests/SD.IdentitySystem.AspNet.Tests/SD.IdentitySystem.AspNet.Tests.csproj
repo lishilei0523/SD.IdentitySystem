@@ -61,7 +61,7 @@
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.1.0" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.0.6" />
-    <PackageReference Include="SD.Infrastructure" Version="3.2.2" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.4" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.4.0" />
   </ItemGroup>
   <ItemGroup>

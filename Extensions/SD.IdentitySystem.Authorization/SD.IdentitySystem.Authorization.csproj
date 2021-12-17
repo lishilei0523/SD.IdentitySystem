@@ -19,7 +19,7 @@
 
   <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.9.2" />
-    <PackageReference Include="SD.Infrastructure" Version="3.2.2" />
+    <PackageReference Include="SD.Infrastructure" Version="3.2.4" />
   </ItemGroup>
 
   <ItemGroup>
