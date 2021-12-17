@@ -22,7 +22,7 @@ namespace SD.IdentitySystem.WCF.Authentication
     /// <summary>
     /// WCF客户端/服务端身份认证消息拦截器
     /// </summary>
-    internal class AuthenticationMessageInspector : IDispatchMessageInspector, IClientMessageInspector
+    internal class AuthenticationMessageInspector : IDispatchMessageInspector, System.ServiceModel.Dispatcher.IClientMessageInspector
     {
         #region # 字段
 
@@ -116,7 +116,7 @@ namespace SD.IdentitySystem.WCF.Authentication
         /// </summary>
         /// <param name="request">请求消息</param>
         /// <param name="channel">信道</param>
-        public object BeforeSendRequest(ref Message request, IClientChannel channel)
+        public object BeforeSendRequest(ref System.ServiceModel.Channels.Message request, System.ServiceModel.IClientChannel channel)
         {
             if (OperationContext.Current != null)
             {
@@ -140,7 +140,7 @@ namespace SD.IdentitySystem.WCF.Authentication
                 Guid publishKey = incomingHeaders.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
 
                 //添加消息头
-                MessageHeader outgoingheader = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
+                System.ServiceModel.Channels.MessageHeader outgoingheader = System.ServiceModel.Channels.MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
                 request.Headers.Add(outgoingheader);
             }
 
@@ -152,7 +152,7 @@ namespace SD.IdentitySystem.WCF.Authentication
         /// </summary>
         /// <param name="reply">响应消息</param>
         /// <param name="correlationState">相关状态</param>
-        public void AfterReceiveReply(ref Message reply, object correlationState) { }
+        public void AfterReceiveReply(ref System.ServiceModel.Channels.Message reply, object correlationState) { }
 
         #endregion
     }
