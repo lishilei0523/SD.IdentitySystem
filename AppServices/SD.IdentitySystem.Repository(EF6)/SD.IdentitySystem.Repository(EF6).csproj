@@ -10,8 +10,8 @@
 
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
-    <PackageReference Include="MrAdvice" Version="2.9.2" />
-    <PackageReference Include="SD.AOP.Core" Version="2.1.3" />
+    <PackageReference Include="MrAdvice" Version="2.9.4" />
+    <PackageReference Include="SD.AOP.Core" Version="2.2.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.2.4" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
     <PackageReference Include="SD.Infrastructure.Repository.EntityFramework" Version="2.3.0" />
