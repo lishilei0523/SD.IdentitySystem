@@ -61,9 +61,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membershi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membership.Windows", "Extensions\SD.IdentitySystem.Membership.Windows\SD.IdentitySystem.Membership.Windows.csproj", "{ABDDAB08-9BEB-4540-A179-558C742CB488}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 - Membership测试", "06 - Membership测试", "{8E6A1390-E95D-4589-A3A3-2F109F3C21AF}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "06 - Membership 测试", "06 - Membership 测试", "{8E6A1390-E95D-4589-A3A3-2F109F3C21AF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Membership.Tests", "Tests\SD.IdentitySystem.Membership.Tests\SD.IdentitySystem.Membership.Tests.csproj", "{81B720F7-46C8-46A8-8DEF-7BEA16AB8D08}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membership.Tests", "Tests\SD.IdentitySystem.Membership.Tests\SD.IdentitySystem.Membership.Tests.csproj", "{81B720F7-46C8-46A8-8DEF-7BEA16AB8D08}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

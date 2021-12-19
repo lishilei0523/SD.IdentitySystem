@@ -8,6 +8,6 @@
 
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.EasyUI" Version="1.0.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.2.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.0" />
   </ItemGroup>
 </Project>

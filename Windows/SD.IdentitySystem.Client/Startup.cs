@@ -112,7 +112,7 @@ namespace SD.IdentitySystem.Client
         protected override void Configure()
         {
             //配置自动更新服务
-            AutoUpdater.Start(FrameworkSection.Setting.WindowsUpdateService.Value);
+            AutoUpdater.Start(FrameworkSection.Setting.AutoUpdateService.Value);
 
             //初始化依赖注入容器
             if (!ResolveMediator.ContainerBuilt)

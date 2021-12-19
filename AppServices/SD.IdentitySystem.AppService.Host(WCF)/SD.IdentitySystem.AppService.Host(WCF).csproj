@@ -38,7 +38,7 @@
     <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.4" />
     <PackageReference Include="SD.CacheManager" Version="2.0.3" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.0.6" />
-    <PackageReference Include="SD.Infrastructure" Version="3.2.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.0" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.1.0" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
     <PackageReference Include="SD.Infrastructure.EventBase" Version="2.1.0" />
