@@ -22,7 +22,7 @@ namespace SD.IdentitySystem.AppService.Implements
     /// <summary>
     /// 用户管理服务契约实现
     /// </summary>
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, IncludeExceptionDetailInFaults = true)]
     public class UserContract : IUserContract
     {
         #region # 字段及依赖注入构造器

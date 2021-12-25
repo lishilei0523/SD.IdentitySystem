@@ -10,7 +10,7 @@ namespace SD.IdentitySystem.StubWCF.Server.Implements
     /// <summary>
     /// WCF服务端契约实现
     /// </summary>
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, IncludeExceptionDetailInFaults = true)]
     public class ServerContract : IServerContract
     {
         /// <summary>

@@ -27,7 +27,7 @@ namespace SD.IdentitySystem.AppService.Implements
     /// <summary>
     /// 身份认证服务契约实现
     /// </summary>
-    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall)]
+    [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, IncludeExceptionDetailInFaults = true)]
     public class AuthenticationContract : IAuthenticationContract
     {
         #region # 字段及依赖注入构造器
