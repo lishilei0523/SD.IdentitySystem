@@ -301,10 +301,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>用户列表</returns>
         public PageModel<UserInfo> GetUsersByPage(string keywords, string infoSystemNo, Guid? roleId, int pageIndex, int pageSize)
         {
-            ICollection<User> specUsers = this._repMediator.UserRep.FindByPage(keywords, infoSystemNo, roleId, pageIndex, pageSize, out int rowCount, out int pageCount);
-            IEnumerable<UserInfo> specUserInfos = specUsers.Select(x => x.ToDTO());
+            ICollection<User> users = this._repMediator.UserRep.FindByPage(keywords, infoSystemNo, roleId, pageIndex, pageSize, out int rowCount, out int pageCount);
+            IEnumerable<UserInfo> userInfos = users.Select(x => x.ToDTO());
 
-            return new PageModel<UserInfo>(specUserInfos, pageIndex, pageSize, pageCount, rowCount);
+            return new PageModel<UserInfo>(userInfos, pageIndex, pageSize, pageCount, rowCount);
         }
         #endregion
 
@@ -318,7 +318,7 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             User user = this._repMediator.UserRep.Single(loginId);
 
-            ICollection<string> infoSystemNos = user.GetInfoSystemNos();
+            ICollection<string> infoSystemNos = user.GetRelatedInfoSystemNos();
             IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.Find(infoSystemNos);
 
             return infoSystems.Values.Select(x => x.ToDTO());
@@ -338,7 +338,7 @@ namespace SD.IdentitySystem.AppService.Implements
             ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, infoSystemNo);
             ICollection<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
 
-            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, applicationType);
+            ICollection<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, applicationType);
             menus = menus.TailRecurseParentNodes();
 
             IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindDictionary();

@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Repository.EntityFrameworkCore;
@@ -98,7 +99,7 @@ namespace SD.IdentitySystem.Repository.Implements
             }
 
             Expression<Func<Menu, bool>> condition = queryBuilder.Build();
-            IQueryable<Menu> menus = base.Find(condition).OrderBy(x => x.Sort);
+            IQueryable<Menu> menus = base.Find(condition).Include(x => x.ParentNode).OrderBy(x => x.Sort);
 
             return menus.ToList();
         }

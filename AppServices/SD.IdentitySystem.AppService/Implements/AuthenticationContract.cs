@@ -130,7 +130,7 @@ namespace SD.IdentitySystem.AppService.Implements
             lock (_Sync)
             {
                 //验证登录
-                User user = this._repMediator.UserRep.SingleOrDefault(loginId);
+                User user = this._repMediator.UserRep.SingleFully(loginId);
 
                 #region # 验证
 
@@ -175,23 +175,23 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #region # 登录信息的信息系统部分/菜单部分/权限部分
 
-            ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(user.Number, null);
+            /*角色部分*/
+            ICollection<Guid> roleIds = user.GetRelatedRoleIds();
 
             /*信息系统部分*/
-            IEnumerable<string> infoSystemNos = user.GetInfoSystemNos();
+            IEnumerable<string> infoSystemNos = user.GetRelatedInfoSystemNos();
             IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.Find(infoSystemNos);
-            loginInfo.LoginSystemInfos.AddRange(infoSystems.Values.Select(x => x.ToLoginSystemInfo()));
-
-            /*菜单部分*/
-            IEnumerable<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
-            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, null);
-            menus = menus.TailRecurseParentNodes();
-            ICollection<LoginMenuInfo> menuTree = menus.ToLoginMenuInfoTree(null);
-            loginInfo.LoginMenuInfos.AddRange(menuTree);
+            loginInfo.LoginSystemInfos = infoSystems.Values.Select(x => x.ToLoginSystemInfo()).ToList();
 
             /*权限部分*/
             IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
             loginInfo.LoginAuthorityInfos = authorities.Select(x => x.ToLoginAuthorityInfo()).ToList();
+
+            /*菜单部分*/
+            IEnumerable<Guid> authorityIds = authorities.Select(x => x.Id);
+            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, null);
+            menus = menus.TailRecurseParentNodes();
+            loginInfo.LoginMenuInfos = menus.ToLoginMenuInfoTree(null);
 
             #endregion
 

@@ -558,10 +558,10 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>信息系统列表</returns>
         public PageModel<InfoSystemInfo> GetInfoSystemsByPage(string keywords, int pageIndex, int pageSize)
         {
-            ICollection<InfoSystem> specSystems = this._repMediator.InfoSystemRep.FindByPage(keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
-            IEnumerable<InfoSystemInfo> specSystemInfos = specSystems.Select(x => x.ToDTO());
+            ICollection<InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindByPage(keywords, pageIndex, pageSize, out int rowCount, out int pageCount);
+            IEnumerable<InfoSystemInfo> infoSystemInfos = infoSystems.Select(x => x.ToDTO());
 
-            return new PageModel<InfoSystemInfo>(specSystemInfos, pageIndex, pageSize, pageCount, rowCount);
+            return new PageModel<InfoSystemInfo>(infoSystemInfos, pageIndex, pageSize, pageCount, rowCount);
         }
         #endregion
 
@@ -680,9 +680,9 @@ namespace SD.IdentitySystem.AppService.Implements
             IEnumerable<string> infoSystemNos = menus.Select(x => x.InfoSystemNo);
             IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            IEnumerable<MenuInfo> specMenuInfos = menus.Select(x => x.ToDTO(infoSystemInfos));
+            IEnumerable<MenuInfo> menuInfos = menus.Select(x => x.ToDTO(infoSystemInfos));
 
-            return new PageModel<MenuInfo>(specMenuInfos, pageIndex, pageSize, pageCount, rowCount);
+            return new PageModel<MenuInfo>(menuInfos, pageIndex, pageSize, pageCount, rowCount);
         }
         #endregion
 

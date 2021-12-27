@@ -10,6 +10,24 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// </summary>
     public interface IUserRepository : IAggRootRepository<User>
     {
+        #region # 完整获取用户 —— User SingleFully(string loginId)
+        /// <summary>
+        /// 完整获取用户
+        /// </summary>
+        /// <param name="loginId">用户名</param>
+        /// <returns>用户</returns>
+        User SingleFully(string loginId);
+        #endregion
+
+        #region # 根据私钥获取唯一用户 —— User SingleByPrivateKey(string privateKey)
+        /// <summary>
+        /// 根据私钥获取唯一用户
+        /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>用户</returns>
+        User SingleByPrivateKey(string privateKey);
+        #endregion
+
         #region # 分页获取用户列表 —— ICollection<User> FindByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表
@@ -23,15 +41,6 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <param name="pageCount"></param>
         /// <returns>用户列表</returns>
         ICollection<User> FindByPage(string keywords, string infoSystemNo, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount);
-        #endregion
-
-        #region # 根据私钥获取唯一用户 —— User SingleByPrivateKey(string privateKey)
-        /// <summary>
-        /// 根据私钥获取唯一用户
-        /// </summary>
-        /// <param name="privateKey">私钥</param>
-        /// <returns>用户</returns>
-        User SingleByPrivateKey(string privateKey);
         #endregion
 
         #region # 是否存在私钥 —— bool ExistsPrivateKey(string loginId, string privateKey)

@@ -5,6 +5,7 @@ using SD.Infrastructure.Repository.EntityFramework;
 using SD.Toolkits.EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -98,7 +99,7 @@ namespace SD.IdentitySystem.Repository.Implements
             }
 
             Expression<Func<Menu, bool>> condition = queryBuilder.Build();
-            IQueryable<Menu> menus = base.Find(condition).OrderBy(x => x.Sort);
+            IQueryable<Menu> menus = base.Find(condition).Include(x => x.ParentNode).OrderBy(x => x.Sort);
 
             return menus.ToList();
         }

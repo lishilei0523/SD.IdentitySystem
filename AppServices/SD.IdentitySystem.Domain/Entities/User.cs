@@ -265,12 +265,23 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 获取信息系统编号列表 —— ICollection<string> GetInfoSystemNos()
+        #region 获取相关角色Id列表 —— ICollection<Guid> GetRelatedRoleIds()
         /// <summary>
-        /// 获取信息系统编号列表
+        /// 获取相关角色Id列表
+        /// </summary>
+        /// <returns>角色Id列表</returns>
+        public ICollection<Guid> GetRelatedRoleIds()
+        {
+            return this.Roles.Select(x => x.Id).Distinct().ToList();
+        }
+        #endregion
+
+        #region 获取相关信息系统编号列表 —— ICollection<string> GetRelatedInfoSystemNos()
+        /// <summary>
+        /// 获取相关信息系统编号列表
         /// </summary>
         /// <returns>信息系统编号列表</returns>
-        public ICollection<string> GetInfoSystemNos()
+        public ICollection<string> GetRelatedInfoSystemNos()
         {
             return this.Roles.Select(x => x.InfoSystemNo).Distinct().ToList();
         }

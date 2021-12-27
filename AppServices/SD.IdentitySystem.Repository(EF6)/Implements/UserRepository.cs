@@ -5,6 +5,7 @@ using SD.Infrastructure.Repository.EntityFramework;
 using SD.Toolkits.EntityFramework.Extensions;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Linq.Expressions;
 
@@ -15,6 +16,54 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class UserRepository : EFAggRootRepositoryProvider<User>, IUserRepository
     {
+        #region # 完整获取用户 —— User SingleFully(string loginId)
+        /// <summary>
+        /// 完整获取用户
+        /// </summary>
+        /// <param name="loginId">用户名</param>
+        /// <returns>用户</returns>
+        public User SingleFully(string loginId)
+        {
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(loginId))
+            {
+                throw new ArgumentNullException(nameof(loginId), "用户名不可为空！");
+            }
+
+            #endregion
+
+            IQueryable<User> users = base.Find(x => x.Number == loginId).Include(x => x.Roles);
+            User user = users.SingleOrDefault();
+
+            return user;
+        }
+        #endregion
+
+        #region # 根据私钥获取唯一用户 —— User SingleByPrivateKey(string privateKey)
+        /// <summary>
+        /// 根据私钥获取唯一用户
+        /// </summary>
+        /// <param name="privateKey">私钥</param>
+        /// <returns>用户</returns>
+        public User SingleByPrivateKey(string privateKey)
+        {
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(privateKey))
+            {
+                throw new ArgumentNullException(nameof(privateKey), "私钥不可为空！");
+            }
+
+            #endregion
+
+            IQueryable<User> users = base.Find(x => x.PrivateKey == privateKey).Include(x => x.Roles);
+            User user = users.SingleOrDefault();
+
+            return user;
+        }
+        #endregion
+
         #region # 分页获取用户列表 —— ICollection<User> FindByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表
@@ -47,29 +96,6 @@ namespace SD.IdentitySystem.Repository.Implements
             IQueryable<User> users = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
 
             return users.ToList();
-        }
-        #endregion
-
-        #region # 根据私钥获取唯一用户 —— User SingleByPrivateKey(string privateKey)
-        /// <summary>
-        /// 根据私钥获取唯一用户
-        /// </summary>
-        /// <param name="privateKey">私钥</param>
-        /// <returns>用户</returns>
-        public User SingleByPrivateKey(string privateKey)
-        {
-            #region # 验证
-
-            if (string.IsNullOrWhiteSpace(privateKey))
-            {
-                throw new ArgumentNullException(nameof(privateKey), "私钥不可为空！");
-            }
-
-            #endregion
-
-            User user = base.SingleOrDefault(x => x.PrivateKey == privateKey);
-
-            return user;
         }
         #endregion
 
