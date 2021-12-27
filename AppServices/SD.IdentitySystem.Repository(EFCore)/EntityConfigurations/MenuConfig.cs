@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace SD.IdentitySystem.Repository.EntityConfigurations
 {
     /// <summary>
-    /// 菜单数据映射配置
+    /// 菜单实体映射配置
     /// </summary>
     public class MenuConfig : IEntityTypeConfiguration<Menu>
     {

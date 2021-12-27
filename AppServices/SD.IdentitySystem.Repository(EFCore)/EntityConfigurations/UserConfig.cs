@@ -7,7 +7,7 @@ using System.Collections.Generic;
 namespace SD.IdentitySystem.Repository.EntityConfigurations
 {
     /// <summary>
-    /// 用户数据映射配置
+    /// 用户实体映射配置
     /// </summary>
     public class UserConfig : IEntityTypeConfiguration<User>
     {

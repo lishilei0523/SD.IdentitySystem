@@ -6,7 +6,7 @@ using System.Data.Entity.ModelConfiguration;
 namespace SD.IdentitySystem.Repository.EntityConfigurations
 {
     /// <summary>
-    /// 角色数据映射配置
+    /// 角色实体映射配置
     /// </summary>
     public class RoleConfig : EntityTypeConfiguration<Role>
     {
