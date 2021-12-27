@@ -17,7 +17,6 @@ namespace SD.IdentitySystem.AppService.Host
         public IServiceCollection CreateBuilder(IServiceCollection services)
         {
             IServiceCollection builder = ResolveMediator.GetServiceCollection();
-
             foreach (ServiceDescriptor serviceDescriptor in services)
             {
                 builder.Add(serviceDescriptor);
