@@ -1,5 +1,5 @@
-﻿using System;
-using Microsoft.EntityFrameworkCore.Migrations;
+﻿using Microsoft.EntityFrameworkCore.Migrations;
+using System;
 
 namespace SD.IdentitySystem.Repository.Migrations
 {
@@ -63,11 +63,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                 name: "User",
                 columns: table => new
                 {
-                    Number = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     Password = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     PrivateKey = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Enabled = table.Column<bool>(type: "bit", nullable: false),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Number = table.Column<string>(type: "nvarchar(20)", maxLength: 20, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
@@ -80,8 +81,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_User", x => x.Number)
+                    table.PrimaryKey("PK_User", x => x.Id)
                         .Annotation("SqlServer:Clustered", false);
+                    table.UniqueConstraint("AK_User_Number", x => x.Number);
                     table.UniqueConstraint("AK_User_PrivateKey", x => x.PrivateKey);
                 });
 
@@ -248,7 +250,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 columns: table => new
                 {
                     Role_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    User_Id = table.Column<string>(type: "nvarchar(20)", nullable: false)
+                    User_Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -263,7 +265,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                         name: "FK_User_Role_User_User_Id",
                         column: x => x.User_Id,
                         principalTable: "User",
-                        principalColumn: "Number",
+                        principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
 

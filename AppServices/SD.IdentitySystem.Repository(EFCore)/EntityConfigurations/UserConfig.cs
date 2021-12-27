@@ -17,7 +17,8 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public void Configure(EntityTypeBuilder<User> builder)
         {
             //配置属性
-            builder.HasKey(user => user.Number).IsClustered(false);
+            builder.HasKey(user => user.Id).IsClustered(false);
+            builder.HasAlternateKey(user => user.Number);
             builder.HasAlternateKey(user => user.PrivateKey);
             builder.Property(user => user.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(user => user.Number).IsRequired().HasMaxLength(20);
@@ -35,9 +36,6 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
 
             //配置索引
             builder.HasIndex(user => user.AddedTime).IsUnique(false).IsClustered();
-
-            //忽略映射
-            builder.Ignore(user => user.Id);
         }
     }
 }

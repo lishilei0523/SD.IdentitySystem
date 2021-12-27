@@ -10,7 +10,7 @@ using SD.IdentitySystem.Repository.Base;
 namespace SD.IdentitySystem.Repository.Migrations
 {
     [DbContext(typeof(DbSession))]
-    [Migration("20211204041103_Initialization")]
+    [Migration("20211227115947_Initialization")]
     partial class Initialization
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -384,9 +384,8 @@ namespace SD.IdentitySystem.Repository.Migrations
 
             modelBuilder.Entity("SD.IdentitySystem.Domain.Entities.User", b =>
                 {
-                    b.Property<string>("Number")
-                        .HasMaxLength(20)
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedTime")
                         .HasColumnType("datetime2");
@@ -414,6 +413,11 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("nvarchar(20)");
+
                     b.Property<string>("OperatorAccount")
                         .HasColumnType("nvarchar(max)");
 
@@ -433,8 +437,10 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Number")
+                    b.HasKey("Id")
                         .IsClustered(false);
+
+                    b.HasAlternateKey("Number");
 
                     b.HasAlternateKey("PrivateKey");
 
@@ -449,8 +455,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<Guid>("Role_Id")
                         .HasColumnType("uniqueidentifier");
 
-                    b.Property<string>("User_Id")
-                        .HasColumnType("nvarchar(20)");
+                    b.Property<Guid>("User_Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.HasKey("Role_Id", "User_Id");
 

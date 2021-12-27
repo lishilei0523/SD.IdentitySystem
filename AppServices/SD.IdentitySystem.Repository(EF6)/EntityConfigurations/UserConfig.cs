@@ -16,7 +16,7 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         public UserConfig()
         {
             //配置属性
-            this.HasKey(user => user.Number, index => index.IsClustered(false));
+            this.HasKey(user => user.Id, index => index.IsClustered(false));
             this.Property(user => user.Keywords).IsRequired().HasMaxLength(256);
             this.Property(user => user.Number).IsRequired().HasMaxLength(20);
             this.Property(user => user.Password).IsRequired().HasMaxLength(32);
@@ -27,10 +27,8 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
 
             //配置索引
             this.HasIndex("IX_User_AddedTime", IndexType.Clustered, table => table.Property(user => user.AddedTime));
+            this.HasIndex("IX_User_Number", IndexType.Unique, table => table.Property(user => user.Number));
             this.HasIndex("IX_User_PrivateKey", IndexType.Unique, table => table.Property(user => user.PrivateKey));
-
-            //忽略映射
-            this.Ignore(user => user.Id);
         }
     }
 }
