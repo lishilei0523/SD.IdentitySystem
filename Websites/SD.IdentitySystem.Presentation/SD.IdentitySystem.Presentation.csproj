@@ -12,7 +12,7 @@
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.EasyUI" Version="1.0.1" />
     <PackageReference Include="SD.AOP.Core" Version="2.2.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.3.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.1" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.4.0" />
   </ItemGroup>

@@ -37,8 +37,8 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <param name="roleId">角色Id</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
-        /// <param name="rowCount"></param>
-        /// <param name="pageCount"></param>
+        /// <param name="rowCount">总记录数</param>
+        /// <param name="pageCount">总页数</param>
         /// <returns>用户列表</returns>
         ICollection<User> FindByPage(string keywords, string infoSystemNo, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount);
         #endregion

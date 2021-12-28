@@ -10,7 +10,7 @@ using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using SD.Infrastructure;
+using SD.Infrastructure.Constants;
 #if NET40_OR_GREATER
 using SD.Toolkits.Owin.Extensions;
 using System.ServiceModel;
@@ -196,10 +196,7 @@ namespace SD.IdentitySystem.AppService.Implements
             #endregion
 
             //以公钥为键，登录信息为值，存入分布式缓存
-            int timeout = FrameworkSection.Setting.AuthenticationTimeout.Value.HasValue
-                ? FrameworkSection.Setting.AuthenticationTimeout.Value.Value
-                : 20;
-            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(timeout));
+            CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(GlobalSetting.AuthenticationTimeout));
 
             //获取客户端IP
             string ip = this.GetClientIp();
