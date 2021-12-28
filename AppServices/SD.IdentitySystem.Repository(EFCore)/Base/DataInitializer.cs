@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.Domain.Entities;
+﻿using Microsoft.EntityFrameworkCore;
+using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
 using SD.Infrastructure.Constants;
@@ -76,6 +77,12 @@ namespace SD.IdentitySystem.Repository.Base
         /// </summary>
         public void Initialize()
         {
+#if DEBUG
+            using (DbSession dbSession = new DbSession())
+            {
+                dbSession.Database.Migrate();
+            }
+#endif
             this.InitAdmin();
             this.InitInfoSystems();
             this.InitInfoSystemAdmins();
