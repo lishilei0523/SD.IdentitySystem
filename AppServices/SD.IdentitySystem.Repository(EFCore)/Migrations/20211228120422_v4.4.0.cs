@@ -1,9 +1,9 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace SD.IdentitySystem.Repository.Migrations
 {
-    public partial class Initialization : Migration
+    public partial class v440 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {

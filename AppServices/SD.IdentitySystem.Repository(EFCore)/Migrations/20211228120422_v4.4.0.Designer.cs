@@ -10,8 +10,8 @@ using SD.IdentitySystem.Repository.Base;
 namespace SD.IdentitySystem.Repository.Migrations
 {
     [DbContext(typeof(DbSession))]
-    [Migration("20211227115947_Initialization")]
-    partial class Initialization
+    [Migration("20211228120422_v4.4.0")]
+    partial class v440
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
