@@ -3,7 +3,6 @@ using Grpc.Core.Interceptors;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using SD.CacheManager;
-using SD.Infrastructure;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNet;
@@ -45,10 +44,7 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
                     else
                     {
                         //通过后，重新设置缓存过期时间
-                        int timeout = FrameworkSection.Setting.AuthenticationTimeout.Value.HasValue
-                            ? FrameworkSection.Setting.AuthenticationTimeout.Value.Value
-                            : 20;
-                        CacheMediator.Set(publicKey, loginInfo, DateTime.Now.AddMinutes(timeout));
+                        CacheMediator.Set(publicKey, loginInfo, DateTime.Now.AddMinutes(GlobalSetting.AuthenticationTimeout));
                     }
                 }
             }

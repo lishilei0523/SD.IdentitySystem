@@ -1,4 +1,4 @@
-﻿using SD.Infrastructure;
+﻿using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.Membership;
 using System;
@@ -20,7 +20,7 @@ namespace SD.IdentitySystem.Authorization.WPF.Converters
         /// </summary>
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            if (FrameworkSection.Setting.AuthorizationEnabled.Value == true)
+            if (GlobalSetting.AuthorizationEnabled)
             {
                 FrameworkElement element = (FrameworkElement)value;
                 string authorityPath = element?.Tag?.ToString();

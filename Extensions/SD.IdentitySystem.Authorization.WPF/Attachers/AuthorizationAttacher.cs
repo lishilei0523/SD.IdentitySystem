@@ -1,4 +1,4 @@
-﻿using SD.Infrastructure;
+﻿using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.Membership;
 using System;
@@ -80,7 +80,7 @@ namespace SD.IdentitySystem.Authorization.WPF.Attachers
         /// </summary>
         private static void OnAuthorityPathChanged(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs eventArgs)
         {
-            if (FrameworkSection.Setting.AuthorizationEnabled.Value == true)
+            if (GlobalSetting.AuthorizationEnabled)
             {
                 UIElement element = (UIElement)dependencyObject;
                 string authorityPath = eventArgs.NewValue?.ToString();

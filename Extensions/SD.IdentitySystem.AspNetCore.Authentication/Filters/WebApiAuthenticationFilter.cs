@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
 using SD.CacheManager;
-using SD.Infrastructure;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNet;
@@ -75,10 +74,7 @@ namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
                             else
                             {
                                 //通过后，重新设置缓存过期时间
-                                int timeout = FrameworkSection.Setting.AuthenticationTimeout.Value.HasValue
-                                    ? FrameworkSection.Setting.AuthenticationTimeout.Value.Value
-                                    : 20;
-                                CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(timeout));
+                                CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(GlobalSetting.AuthenticationTimeout));
                             }
                         }
                     }

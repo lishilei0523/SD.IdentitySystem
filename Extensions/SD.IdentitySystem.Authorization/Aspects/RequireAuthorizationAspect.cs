@@ -1,5 +1,6 @@
 ﻿using ArxOne.MrAdvice.Advice;
 using SD.Infrastructure.Attributes;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.Membership;
 using System;
@@ -22,7 +23,7 @@ namespace SD.IdentitySystem.Authorization.Aspects
         /// <param name="context">方法元数据</param>
         public void Advise(MethodAdviceContext context)
         {
-            if (context.TargetMethod.IsDefined(typeof(RequireAuthorizationAttribute)))
+            if (GlobalSetting.AuthorizationEnabled && context.TargetMethod.IsDefined(typeof(RequireAuthorizationAttribute)))
             {
                 LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
                 if (loginInfo == null)
