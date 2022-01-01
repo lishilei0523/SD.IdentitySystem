@@ -43,7 +43,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.3.1" />
+    <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.2" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.2" />
   </ItemGroup>
 </Project>
