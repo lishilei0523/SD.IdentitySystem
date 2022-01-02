@@ -1,0 +1,35 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>netstandard2.0;monoandroid8.0</TargetFrameworks>
+    <Authors>Lee</Authors>
+    <Company>SD</Company>
+    <Description>SD.IdentitySystem WCF身份认证组件 - Xamarin移动端</Description>
+    <Copyright>Copyright © SD 2021</Copyright>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <OutputPath Condition="'$(TargetFramework)' == 'monoandroid8.0'">bin\Debug\$(TargetFramework)</OutputPath>
+    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.WCF.Authentication.Xamarin.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <OutputPath Condition="'$(TargetFramework)' == 'monoandroid8.0'">bin\Release\$(TargetFramework)</OutputPath>
+    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.WCF.Authentication.Xamarin.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="'$(TargetFramework)' == 'monoandroid8.0'">
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Infrastructure" Version="3.3.4" />
+  </ItemGroup>
+
+  <Import Condition="'$(TargetFramework)' == 'monoandroid8.0'" Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
+</Project>

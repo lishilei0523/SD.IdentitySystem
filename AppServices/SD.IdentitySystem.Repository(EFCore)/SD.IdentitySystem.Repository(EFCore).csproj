@@ -12,9 +12,9 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="5.0.10" />
     <PackageReference Include="MrAdvice" Version="2.9.5" />
     <PackageReference Include="SD.AOP.Core" Version="2.2.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.3.2" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.4" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure.Repository.EntityFrameworkCore" Version="2.3.0" />
+    <PackageReference Include="SD.Infrastructure.Repository.EntityFrameworkCore" Version="2.3.2" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.0.2" />
   </ItemGroup>
 

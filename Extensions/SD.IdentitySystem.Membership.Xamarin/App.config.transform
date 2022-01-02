@@ -1,0 +1,11 @@
+﻿<configuration>
+  <configSections>
+    <!--SD.Membership配置节点-->
+    <section name="sd.membership" type="SD.IdentitySystem.MembershipSection, SD.IdentitySystem.Membership" />
+  </configSections>
+  <!--SD.Membership配置-->
+  <sd.membership>
+    <!--Membership提供者-->
+    <provider type="SD.IdentitySystem.Membership.Xamarin.MembershipProvider" assembly="SD.IdentitySystem.Membership.Xamarin" />
+  </sd.membership>
+</configuration>
