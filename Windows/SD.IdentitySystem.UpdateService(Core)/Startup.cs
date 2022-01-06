@@ -1,4 +1,5 @@
 using Microsoft.AspNetCore.Builder;
+using Microsoft.AspNetCore.StaticFiles;
 using Microsoft.Extensions.FileProviders;
 using SD.Toolkits.AspNet;
 using System;
@@ -30,6 +31,9 @@ namespace SD.IdentitySystem.UpdateService
                 FileProvider = new PhysicalFileProvider(fileServerRoot),
                 EnableDirectoryBrowsing = true
             };
+            FileExtensionContentTypeProvider contentTypeProvider = (FileExtensionContentTypeProvider)fileServerOptions.StaticFileOptions.ContentTypeProvider;
+            contentTypeProvider.Mappings.Add(".apk", "application/vnd.android.package-archive");
+
             appBuilder.UseStaticFiles(staticFileOptions);
             appBuilder.UseFileServer(fileServerOptions);
         }

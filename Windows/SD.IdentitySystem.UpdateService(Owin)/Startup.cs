@@ -1,5 +1,6 @@
 ﻿using Microsoft.Owin.FileSystems;
 using Microsoft.Owin.StaticFiles;
+using Microsoft.Owin.StaticFiles.ContentTypes;
 using Owin;
 using SD.Toolkits.AspNet;
 using System.IO;
@@ -34,6 +35,9 @@ namespace SD.IdentitySystem.UpdateService
                 FileSystem = new PhysicalFileSystem(AspNetSection.Setting.FileServer.Value),
                 EnableDirectoryBrowsing = true
             };
+            FileExtensionContentTypeProvider contentTypeProvider = (FileExtensionContentTypeProvider)fileServerOptions.StaticFileOptions.ContentTypeProvider;
+            contentTypeProvider.Mappings.Add(".apk", "application/vnd.android.package-archive");
+
             appBuilder.UseStaticFiles(staticFileOptions);
             appBuilder.UseFileServer(fileServerOptions);
             appBuilder.UseWebApi(httpConfiguration);
