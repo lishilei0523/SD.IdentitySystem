@@ -24,6 +24,6 @@
 
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.Owin" Version="1.0.3" />
-    <PackageReference Include="SD.Infrastructure" Version="3.3.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.5" />
   </ItemGroup>
 </Project>

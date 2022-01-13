@@ -9,7 +9,7 @@
   <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.9.5" />
     <PackageReference Include="SD.AOP.Core" Version="2.2.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.3.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.5" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
     <PackageReference Include="SD.Infrastructure.EventBase" Version="2.1.0" />
   </ItemGroup>

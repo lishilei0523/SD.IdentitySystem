@@ -35,6 +35,6 @@
     <PackageReference Include="Microsoft.Owin.StaticFiles" Version="4.2.0" />
     <PackageReference Include="Topshelf" Version="4.2.1" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.2" />
-    <PackageReference Include="SD.Infrastructure" Version="3.3.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.5" />
   </ItemGroup>
 </Project>

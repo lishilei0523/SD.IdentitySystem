@@ -1,6 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>netstandard2.0;monoandroid8.0</TargetFrameworks>
+    <TargetFrameworkVersion Condition="'$(TargetFramework)' == 'monoandroid8.0'">v8.0</TargetFrameworkVersion>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem WCF身份认证组件 - Xamarin移动端</Description>
@@ -28,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="3.3.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.5" />
   </ItemGroup>
 
   <Import Condition="'$(TargetFramework)' == 'monoandroid8.0'" Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
