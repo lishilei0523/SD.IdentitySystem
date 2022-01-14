@@ -4,6 +4,7 @@ using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SD.Common;
 using SD.IdentitySystem.DataImporter.ViewModels;
+using SD.Infrastructure.WPF.Caliburn.Extensions;
 using SD.IOC.Core.Mediators;
 using SD.IOC.Extension.NetFx;
 using System;
@@ -53,6 +54,9 @@ namespace SD.IdentitySystem.DataImporter
         {
             Exception exception = eventArgs.Exception;
             eventArgs.Handled = true;
+
+            //释放遮罩
+            BusyExtension.GlobalIdle();
 
             //提示消息
             string errorMessage = string.Empty;

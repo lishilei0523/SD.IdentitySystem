@@ -14,6 +14,7 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using SD.Infrastructure.WPF.Caliburn.Extensions;
 #if NET45_OR_GREATER
 using SD.IOC.Extension.NetFx;
 #endif
@@ -64,6 +65,9 @@ namespace SD.IdentitySystem.Client
         {
             Exception exception = eventArgs.Exception;
             eventArgs.Handled = true;
+
+            //释放遮罩
+            BusyExtension.GlobalIdle();
 
             //提示消息
             string errorMessage = string.Empty;

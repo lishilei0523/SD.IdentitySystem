@@ -1,5 +1,4 @@
 ﻿using SD.IdentitySystem.DataImporter.Content.Attributes;
-using SD.Infrastructure.WPF.Caliburn.Aspects;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Windows;
@@ -34,7 +33,5 @@ using System.Windows;
                                               //、应用程序或任何主题专用资源字典中找到时使用)
 )]
 
-
 // AOP特性
 [assembly: StringNullToNull]
-[assembly: ExceptionAspect]
