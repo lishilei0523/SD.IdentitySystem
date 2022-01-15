@@ -138,7 +138,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems(), cancellationToken);
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
 
-            this.LoadUsers();
+            await this.ReloadUsers();
         }
         #endregion
 
@@ -296,8 +296,10 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         public async void RelateRoles(Wrap<UserInfo> user)
         {
             this.Busy();
+
             RelateRoleViewModel viewModel = ResolveMediator.Resolve<RelateRoleViewModel>();
             await viewModel.Load(user.Model.Number);
+
             this.Idle();
 
             await this._windowManager.ShowDialogAsync(viewModel);

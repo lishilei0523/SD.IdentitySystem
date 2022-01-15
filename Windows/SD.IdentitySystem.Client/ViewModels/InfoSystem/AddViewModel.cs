@@ -3,7 +3,6 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
-using SD.Infrastructure.WPF.Extensions;
 using System.Collections.Generic;
 using System.ServiceModel.Extensions;
 using System.Threading;
@@ -90,7 +89,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
         {
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
 
-            return Task.CompletedTask;
+            return base.OnInitializeAsync(cancellationToken);
         }
         #endregion
 
@@ -132,8 +131,8 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             await Task.Run(() => this._authorizationContract.Channel.CreateInfoSystem(this.InfoSystemNo, this.InfoSystemName, this.AdminLoginId, this.ApplicationType.Value));
 
-            await base.TryCloseAsync(true);
             this.Idle();
+            await base.TryCloseAsync(true);
         }
         #endregion
 

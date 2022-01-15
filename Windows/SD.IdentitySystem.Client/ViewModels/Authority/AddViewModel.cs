@@ -4,7 +4,6 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
-using SD.Infrastructure.WPF.Extensions;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ServiceModel.Extensions;
@@ -184,8 +183,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
             await Task.Run(() => this._authorizationContract.Channel.CreateAuthority(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value, this.AuthorityName, this.AuthorityPath, this.EnglishName, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName, this.Description));
 
-            await base.TryCloseAsync(true);
             this.Idle();
+            await base.TryCloseAsync(true);
         }
         #endregion
 

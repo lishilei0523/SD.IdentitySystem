@@ -5,7 +5,6 @@ using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
-using SD.Infrastructure.WPF.Extensions;
 using SD.Infrastructure.WPF.Models;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -234,8 +233,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             await Task.Run(() => this._authorizationContract.Channel.CreateMenu(this.SelectedInfoSystem.Number, this.SelectedApplicationType.Value, this.MenuName, this.Sort.Value, this.Url, this.Path, this.Icon, this.ParentMenu?.Id));
 
-            await base.TryCloseAsync(true);
             this.Idle();
+            await base.TryCloseAsync(true);
         }
         #endregion
 

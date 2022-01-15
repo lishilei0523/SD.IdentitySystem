@@ -3,7 +3,6 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
-using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
 using System.Collections.Generic;
@@ -104,7 +103,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         {
             this.ReloadMenus();
 
-            return Task.CompletedTask;
+            return base.OnInitializeAsync(cancellationToken);
         }
         #endregion
 

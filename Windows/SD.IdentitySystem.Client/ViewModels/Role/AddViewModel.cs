@@ -145,8 +145,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             IEnumerable<Guid> authorityIds = this.AuthorityItems.Where(x => x.IsChecked == true).Select(x => x.Id);
             await Task.Run(() => this._authorizationContract.Channel.CreateRole(this.SelectedInfoSystem.Number, this.RoleName, this.Description, authorityIds));
 
-            await base.TryCloseAsync(true);
             this.Idle();
+            await base.TryCloseAsync(true);
         }
         #endregion
 

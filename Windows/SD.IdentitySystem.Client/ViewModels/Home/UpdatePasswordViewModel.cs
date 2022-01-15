@@ -2,7 +2,6 @@
 using SD.Infrastructure.Membership;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
-using SD.Infrastructure.WPF.Extensions;
 using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -99,8 +98,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
             await Task.Run(() => this._userContract.Channel.UpdatePassword(loginInfo.LoginId, this.OldPassword, this.NewPassword));
 
-            await base.TryCloseAsync(true);
             this.Idle();
+            await base.TryCloseAsync(true);
         }
         #endregion
 

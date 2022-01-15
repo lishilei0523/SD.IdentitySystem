@@ -29,7 +29,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="3.3.5" />
+    <PackageReference Include="SD.Infrastructure" Version="3.3.6" />
   </ItemGroup>
 
   <Import Condition="'$(TargetFramework)' == 'monoandroid8.0'" Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />

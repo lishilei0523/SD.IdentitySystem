@@ -150,7 +150,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
 
-            this.LoadAuthorities();
+            await this.ReloadAuthorities();
         }
         #endregion
 

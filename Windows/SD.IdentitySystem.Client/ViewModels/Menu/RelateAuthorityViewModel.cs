@@ -92,8 +92,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             IEnumerable<Guid> authorityIds = this.AuthorityItems.Where(x => x.IsChecked == true).Select(x => x.Id);
             await Task.Run(() => this._authorizationContract.Channel.RelateAuthoritiesToMenu(this.MenuId, authorityIds));
 
-            await base.TryCloseAsync(true);
             this.Idle();
+            await base.TryCloseAsync(true);
         }
         #endregion
 

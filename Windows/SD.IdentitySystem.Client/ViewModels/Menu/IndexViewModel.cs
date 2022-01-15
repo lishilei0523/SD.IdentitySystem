@@ -6,7 +6,6 @@ using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
-using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using SD.Toolkits.Recursion.Tree;
 using System.Collections.Generic;
@@ -112,7 +111,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
             this.ApplicationTypes = typeof(ApplicationType).GetEnumMembers();
 
-            this.LoadMenus();
+            await this.ReloadMenus();
         }
         #endregion
 
@@ -236,8 +235,10 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
         public async void RelateAuthorities(Models.Menu menu)
         {
             this.Busy();
+
             RelateAuthorityViewModel viewModel = ResolveMediator.Resolve<RelateAuthorityViewModel>();
             await viewModel.Load(menu.Id);
+
             this.Idle();
 
             await this._windowManager.ShowDialogAsync(viewModel);

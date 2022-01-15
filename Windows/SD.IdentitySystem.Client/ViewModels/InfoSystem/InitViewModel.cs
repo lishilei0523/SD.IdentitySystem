@@ -2,7 +2,6 @@
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
-using SD.Infrastructure.WPF.Extensions;
 using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
@@ -117,8 +116,8 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             await Task.Run(() => this._authorizationContract.Channel.InitInfoSystem(this.InfoSystemNo, this.Host, this.Port.Value, this.Index));
 
-            await base.TryCloseAsync(true);
             this.Idle();
+            await base.TryCloseAsync(true);
         }
         #endregion
 

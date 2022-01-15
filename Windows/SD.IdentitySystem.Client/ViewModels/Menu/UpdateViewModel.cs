@@ -2,7 +2,6 @@
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
-using SD.Infrastructure.WPF.Extensions;
 using System;
 using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
@@ -156,8 +155,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             await Task.Run(() => this._authorizationContract.Channel.UpdateMenu(this.MenuId, this.MenuName, this.Sort.Value, this.Url, this.Path, this.Icon));
 
-            await base.TryCloseAsync(true);
             this.Idle();
+            await base.TryCloseAsync(true);
         }
         #endregion
 

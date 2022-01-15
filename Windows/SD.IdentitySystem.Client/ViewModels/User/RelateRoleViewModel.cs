@@ -92,8 +92,8 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             IEnumerable<Guid> roleIds = this.RoleItems.Where(x => x.IsChecked == true).Select(x => x.Id);
             await Task.Run(() => this._userContract.Channel.RelateRolesToUser(this.LoginId, roleIds));
 
-            await base.TryCloseAsync(true);
             this.Idle();
+            await base.TryCloseAsync(true);
         }
         #endregion
 

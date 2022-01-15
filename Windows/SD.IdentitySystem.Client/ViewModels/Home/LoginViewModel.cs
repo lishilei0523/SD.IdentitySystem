@@ -5,7 +5,6 @@ using SD.Infrastructure.Membership;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Commands;
-using SD.Infrastructure.WPF.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
 using System.ServiceModel.Extensions;
@@ -68,7 +67,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
         /// </summary>
         public ICommand LoginCommand
         {
-            get { return new RelayCommand(x => this.Login()); }
+            get => new RelayCommand(x => this.Login());
         }
         #endregion
 
@@ -78,7 +77,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
         //Initializations
 
-        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
+        #region 初始化 —— override Task OnInitializeAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
@@ -90,7 +89,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             this.Password = CommonConstants.InitialPassword;
             this.Login();
 #endif
-            return Task.CompletedTask;
+            return base.OnInitializeAsync(cancellationToken);
         }
 
         #endregion
@@ -127,8 +126,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             IndexViewModel homeViewModel = ResolveMediator.Resolve<IndexViewModel>();
             await this._windowManager.ShowWindowAsync(homeViewModel);
 
-            await base.TryCloseAsync();
             this.Idle();
+            await base.TryCloseAsync();
         }
         #endregion
 
