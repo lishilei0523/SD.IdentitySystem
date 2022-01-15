@@ -59,8 +59,8 @@
     <PackageReference Include="SD.Infrastructure" Version="3.3.6" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.1.1" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure.EventStore.Redis" Version="1.0.2" />
+    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.1.1" />
+    <PackageReference Include="SD.Infrastructure.EventStore.Redis" Version="1.0.3" />
     <PackageReference Include="SD.Infrastructure.WCF.Server" Version="2.1.0" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.0.2" />
     <PackageReference Include="SD.IdentitySystem.Membership.WCF" Version="1.0.3" />

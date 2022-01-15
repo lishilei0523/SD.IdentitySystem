@@ -1,7 +1,7 @@
 ﻿using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
-using SD.Infrastructure.EventBase.Mediator;
+using SD.Infrastructure.EventBase.Mediators;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;

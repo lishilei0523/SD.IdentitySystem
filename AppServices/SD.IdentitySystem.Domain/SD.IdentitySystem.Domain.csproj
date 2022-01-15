@@ -13,6 +13,6 @@
     <PackageReference Include="SD.AOP.Core" Version="2.2.1" />
     <PackageReference Include="SD.Infrastructure" Version="3.3.6" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.1.0" />
+    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.1.1" />
   </ItemGroup>
 </Project>
