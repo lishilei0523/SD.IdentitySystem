@@ -1,4 +1,13 @@
-﻿IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
+﻿USE [master]
+GO
+
+CREATE DATABASE [SD.IdentitySystem]
+GO
+
+USE [SD.IdentitySystem]
+GO
+
+IF OBJECT_ID(N'[__EFMigrationsHistory]') IS NULL
 BEGIN
     CREATE TABLE [__EFMigrationsHistory] (
         [MigrationId] nvarchar(150) NOT NULL,
@@ -12,23 +21,23 @@ BEGIN TRANSACTION;
 GO
 
 CREATE TABLE [InfoSystem] (
-    [Number] nvarchar(16) NOT NULL,
+    [Id] uniqueidentifier NOT NULL,
     [AdminLoginId] nvarchar(max) NULL,
     [ApplicationType] int NOT NULL,
     [Host] nvarchar(max) NULL,
     [Port] int NULL,
     [Index] nvarchar(max) NULL,
     [AddedTime] datetime2 NOT NULL,
+    [Number] nvarchar(16) NOT NULL,
     [Name] nvarchar(64) NOT NULL,
     [Keywords] nvarchar(256) NOT NULL,
     [SavedTime] datetime2 NOT NULL,
-    [Deleted] bit NOT NULL,
-    [DeletedTime] datetime2 NULL,
     [CreatorAccount] nvarchar(max) NULL,
     [CreatorName] nvarchar(max) NULL,
     [OperatorAccount] nvarchar(max) NULL,
     [OperatorName] nvarchar(max) NULL,
-    CONSTRAINT [PK_InfoSystem] PRIMARY KEY NONCLUSTERED ([Number])
+    CONSTRAINT [PK_InfoSystem] PRIMARY KEY NONCLUSTERED ([Id]),
+    CONSTRAINT [AK_InfoSystem_Number] UNIQUE ([Number])
 );
 GO
 
@@ -38,15 +47,12 @@ CREATE TABLE [LoginRecord] (
     [LoginId] nvarchar(max) NULL,
     [RealName] nvarchar(max) NULL,
     [IP] nvarchar(max) NULL,
+    [PartitionIndex] int NOT NULL,
     [AddedTime] datetime2 NOT NULL,
     [Keywords] nvarchar(256) NOT NULL,
     [SavedTime] datetime2 NOT NULL,
-    [Deleted] bit NOT NULL,
-    [DeletedTime] datetime2 NULL,
     [CreatorAccount] nvarchar(max) NULL,
     [CreatorName] nvarchar(max) NULL,
-    [OperatorAccount] nvarchar(max) NULL,
-    [OperatorName] nvarchar(max) NULL,
     CONSTRAINT [PK_LoginRecord] PRIMARY KEY NONCLUSTERED ([Id])
 );
 GO
@@ -61,8 +67,6 @@ CREATE TABLE [User] (
     [Name] nvarchar(max) NULL,
     [Keywords] nvarchar(256) NOT NULL,
     [SavedTime] datetime2 NOT NULL,
-    [Deleted] bit NOT NULL,
-    [DeletedTime] datetime2 NULL,
     [CreatorAccount] nvarchar(max) NULL,
     [CreatorName] nvarchar(max) NULL,
     [OperatorAccount] nvarchar(max) NULL,
@@ -101,7 +105,7 @@ GO
 
 CREATE TABLE [Menu] (
     [Id] uniqueidentifier NOT NULL,
-    [InfoSystemNo] nvarchar(16) NULL,
+    [InfoSystemNo] nvarchar(16) NOT NULL,
     [ApplicationType] int NOT NULL,
     [Url] nvarchar(max) NULL,
     [Path] nvarchar(max) NULL,
@@ -113,8 +117,6 @@ CREATE TABLE [Menu] (
     [Name] nvarchar(32) NOT NULL,
     [Keywords] nvarchar(256) NOT NULL,
     [SavedTime] datetime2 NOT NULL,
-    [Deleted] bit NOT NULL,
-    [DeletedTime] datetime2 NULL,
     [CreatorAccount] nvarchar(max) NULL,
     [CreatorName] nvarchar(max) NULL,
     [OperatorAccount] nvarchar(max) NULL,
@@ -127,15 +129,13 @@ GO
 
 CREATE TABLE [Role] (
     [Id] uniqueidentifier NOT NULL,
-    [InfoSystemNo] nvarchar(16) NULL,
+    [InfoSystemNo] nvarchar(16) NOT NULL,
     [Description] nvarchar(max) NULL,
     [AddedTime] datetime2 NOT NULL,
     [Number] nvarchar(max) NULL,
     [Name] nvarchar(32) NOT NULL,
     [Keywords] nvarchar(256) NOT NULL,
     [SavedTime] datetime2 NOT NULL,
-    [Deleted] bit NOT NULL,
-    [DeletedTime] datetime2 NULL,
     [CreatorAccount] nvarchar(max) NULL,
     [CreatorName] nvarchar(max) NULL,
     [OperatorAccount] nvarchar(max) NULL,
@@ -209,9 +209,8 @@ CREATE INDEX [IX_User_Role_User_Id] ON [User_Role] ([User_Id]);
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20211228120422_v4.4.0', N'5.0.10');
+VALUES (N'20220122102050_v4.4.0', N'5.0.10');
 GO
 
 COMMIT;
 GO
-

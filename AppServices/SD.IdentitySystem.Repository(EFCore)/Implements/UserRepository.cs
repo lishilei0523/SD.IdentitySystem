@@ -16,6 +16,17 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class UserRepository : EFAggRootRepositoryProvider<User>, IUserRepository
     {
+        #region # 获取实体对象列表 —— override IQueryable<User> FindAllInner()
+        /// <summary>
+        /// 获取实体对象列表
+        /// </summary>
+        /// <returns>实体对象列表</returns>
+        protected override IQueryable<User> FindAllInner()
+        {
+            return base._dbContext.Set<User>();
+        }
+        #endregion
+
         #region # 完整获取用户 —— User SingleFully(string loginId)
         /// <summary>
         /// 完整获取用户

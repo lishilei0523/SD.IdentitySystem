@@ -1,4 +1,5 @@
-﻿using SD.Infrastructure.EntityBase;
+﻿using SD.Infrastructure.Constants;
+using SD.Infrastructure.EntityBase;
 using System;
 using System.Text;
 
@@ -7,7 +8,7 @@ namespace SD.IdentitySystem.Domain.Entities
     /// <summary>
     /// 登录记录
     /// </summary>
-    public class LoginRecord : AggregateRootEntity
+    public class LoginRecord : AggregateRootEntity, IPartible
     {
         #region # 构造器
 
@@ -69,6 +70,17 @@ namespace SD.IdentitySystem.Domain.Entities
         /// IP地址
         /// </summary>
         public string IP { get; private set; }
+        #endregion
+
+        #region 分区索引 —— int PartitionIndex
+        /// <summary>
+        /// 分区索引
+        /// </summary>
+        public int PartitionIndex
+        {
+            get => (int)(this.AddedTime.Ticks % GlobalSetting.PartitionsCount);
+            set => value = (int)(this.AddedTime.Ticks % GlobalSetting.PartitionsCount);
+        }
         #endregion
 
         #endregion

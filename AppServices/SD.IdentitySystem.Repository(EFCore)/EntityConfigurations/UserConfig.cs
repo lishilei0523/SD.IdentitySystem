@@ -20,10 +20,10 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             builder.HasKey(user => user.Id).IsClustered(false);
             builder.HasAlternateKey(user => user.Number);
             builder.HasAlternateKey(user => user.PrivateKey);
-            builder.Property(user => user.Keywords).IsRequired().HasMaxLength(256);
             builder.Property(user => user.Number).IsRequired().HasMaxLength(20);
             builder.Property(user => user.Password).IsRequired().HasMaxLength(32);
             builder.Property(user => user.PrivateKey).IsRequired().HasMaxLength(64);
+            builder.Property(user => user.Keywords).IsRequired().HasMaxLength(256);
 
             //配置中间表
             builder
@@ -36,6 +36,10 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
 
             //配置索引
             builder.HasIndex(user => user.AddedTime).IsUnique(false).IsClustered();
+
+            //忽略映射
+            builder.Ignore(user => user.Deleted);
+            builder.Ignore(user => user.DeletedTime);
         }
     }
 }

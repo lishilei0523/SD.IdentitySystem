@@ -11,18 +11,17 @@ namespace SD.IdentitySystem.Repository.Migrations
                 name: "InfoSystem",
                 columns: table => new
                 {
-                    Number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
+                    Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
                     AdminLoginId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     ApplicationType = table.Column<int>(type: "int", nullable: false),
                     Host = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Port = table.Column<int>(type: "int", nullable: true),
                     Index = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Number = table.Column<string>(type: "nvarchar(16)", maxLength: 16, nullable: false),
                     Name = table.Column<string>(type: "nvarchar(64)", maxLength: 64, nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OperatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -30,8 +29,9 @@ namespace SD.IdentitySystem.Repository.Migrations
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_InfoSystem", x => x.Number)
+                    table.PrimaryKey("PK_InfoSystem", x => x.Id)
                         .Annotation("SqlServer:Clustered", false);
+                    table.UniqueConstraint("AK_InfoSystem_Number", x => x.Number);
                 });
 
             migrationBuilder.CreateTable(
@@ -43,15 +43,12 @@ namespace SD.IdentitySystem.Repository.Migrations
                     LoginId = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     RealName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     IP = table.Column<string>(type: "nvarchar(max)", nullable: true),
+                    PartitionIndex = table.Column<int>(type: "int", nullable: false),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OperatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
-                    OperatorName = table.Column<string>(type: "nvarchar(max)", nullable: true)
+                    CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -72,8 +69,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                     Name = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OperatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -129,7 +124,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    InfoSystemNo = table.Column<string>(type: "nvarchar(16)", nullable: true),
+                    InfoSystemNo = table.Column<string>(type: "nvarchar(16)", nullable: false),
                     ApplicationType = table.Column<int>(type: "int", nullable: false),
                     Url = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Path = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -141,8 +136,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                     Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OperatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
@@ -171,15 +164,13 @@ namespace SD.IdentitySystem.Repository.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(type: "uniqueidentifier", nullable: false),
-                    InfoSystemNo = table.Column<string>(type: "nvarchar(16)", nullable: true),
+                    InfoSystemNo = table.Column<string>(type: "nvarchar(16)", nullable: false),
                     Description = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     AddedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Number = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     Name = table.Column<string>(type: "nvarchar(32)", maxLength: 32, nullable: false),
                     Keywords = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: false),
                     SavedTime = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    Deleted = table.Column<bool>(type: "bit", nullable: false),
-                    DeletedTime = table.Column<DateTime>(type: "datetime2", nullable: true),
                     CreatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     CreatorName = table.Column<string>(type: "nvarchar(max)", nullable: true),
                     OperatorAccount = table.Column<string>(type: "nvarchar(max)", nullable: true),

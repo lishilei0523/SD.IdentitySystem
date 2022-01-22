@@ -17,8 +17,8 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             this.HasKey(menu => menu.Id, index => index.IsClustered(false));
-            this.Property(menu => menu.Keywords).IsRequired().HasMaxLength(256);
             this.Property(menu => menu.Name).IsRequired().HasMaxLength(32);
+            this.Property(menu => menu.Keywords).IsRequired().HasMaxLength(256);
             this.Property(menu => menu.InfoSystemNo).IsRequired().HasMaxLength(16);
 
             //配置中间表
@@ -29,6 +29,8 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
 
             //忽略映射
             this.Ignore(menu => menu.Number);
+            this.Ignore(menu => menu.Deleted);
+            this.Ignore(menu => menu.DeletedTime);
         }
     }
 }

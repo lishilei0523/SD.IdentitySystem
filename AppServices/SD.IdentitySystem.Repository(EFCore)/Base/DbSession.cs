@@ -14,7 +14,10 @@ namespace SD.IdentitySystem.Repository.Base
         /// </summary>
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(GlobalSetting.WriteConnectionString);
+            optionsBuilder.UseSqlServer(GlobalSetting.WriteConnectionString, options =>
+            {
+                options.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+            });
             base.OnConfiguring(optionsBuilder);
         }
     }

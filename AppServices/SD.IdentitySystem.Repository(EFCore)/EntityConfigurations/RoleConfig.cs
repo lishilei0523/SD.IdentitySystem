@@ -18,9 +18,10 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             builder.HasKey(role => role.Id).IsClustered(false);
-            builder.HasOne<InfoSystem>().WithMany().IsRequired().HasForeignKey(role => role.InfoSystemNo).OnDelete(DeleteBehavior.Restrict);
-            builder.Property(role => role.Keywords).IsRequired().HasMaxLength(256);
+            builder.HasOne<InfoSystem>().WithMany().IsRequired().HasForeignKey(role => role.InfoSystemNo).HasPrincipalKey(system => system.Number).OnDelete(DeleteBehavior.Restrict);
             builder.Property(role => role.Name).IsRequired().HasMaxLength(32);
+            builder.Property(role => role.Keywords).IsRequired().HasMaxLength(256);
+            builder.Property(role => role.InfoSystemNo).IsRequired();
 
             //配置中间表
             builder
@@ -33,6 +34,10 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
 
             //配置索引
             builder.HasIndex(role => role.AddedTime).IsUnique(false).IsClustered();
+
+            //忽略映射
+            builder.Ignore(role => role.Deleted);
+            builder.Ignore(role => role.DeletedTime);
         }
     }
 }

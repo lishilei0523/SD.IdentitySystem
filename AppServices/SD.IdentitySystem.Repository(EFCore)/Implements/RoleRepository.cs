@@ -15,6 +15,17 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class RoleRepository : EFAggRootRepositoryProvider<Role>, IRoleRepository
     {
+        #region # 获取实体对象列表 —— override IQueryable<Role> FindAllInner()
+        /// <summary>
+        /// 获取实体对象列表
+        /// </summary>
+        /// <returns>实体对象列表</returns>
+        protected override IQueryable<Role> FindAllInner()
+        {
+            return base._dbContext.Set<Role>();
+        }
+        #endregion
+
         #region # 分页获取角色列表 —— ICollection<Role> FindByPage(string keywords...
         /// <summary>
         /// 分页获取角色列表

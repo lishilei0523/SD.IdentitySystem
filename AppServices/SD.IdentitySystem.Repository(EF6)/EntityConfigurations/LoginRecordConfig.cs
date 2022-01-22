@@ -24,6 +24,10 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             //忽略映射
             this.Ignore(record => record.Number);
             this.Ignore(record => record.Name);
+            this.Ignore(record => record.OperatorAccount);
+            this.Ignore(record => record.OperatorName);
+            this.Ignore(record => record.Deleted);
+            this.Ignore(record => record.DeletedTime);
         }
     }
 }

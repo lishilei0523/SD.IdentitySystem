@@ -10,7 +10,7 @@ using SD.IdentitySystem.Repository.Base;
 namespace SD.IdentitySystem.Repository.Migrations
 {
     [DbContext(typeof(DbSession))]
-    [Migration("20211228120422_v4.4.0")]
+    [Migration("20220122102050_v4.4.0")]
     partial class v440
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -133,9 +133,8 @@ namespace SD.IdentitySystem.Repository.Migrations
 
             modelBuilder.Entity("SD.IdentitySystem.Domain.Entities.InfoSystem", b =>
                 {
-                    b.Property<string>("Number")
-                        .HasMaxLength(16)
-                        .HasColumnType("nvarchar(16)");
+                    b.Property<Guid>("Id")
+                        .HasColumnType("uniqueidentifier");
 
                     b.Property<DateTime>("AddedTime")
                         .HasColumnType("datetime2");
@@ -151,12 +150,6 @@ namespace SD.IdentitySystem.Repository.Migrations
 
                     b.Property<string>("CreatorName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<string>("Host")
                         .HasColumnType("nvarchar(max)");
@@ -174,6 +167,11 @@ namespace SD.IdentitySystem.Repository.Migrations
                         .HasMaxLength(64)
                         .HasColumnType("nvarchar(64)");
 
+                    b.Property<string>("Number")
+                        .IsRequired()
+                        .HasMaxLength(16)
+                        .HasColumnType("nvarchar(16)");
+
                     b.Property<string>("OperatorAccount")
                         .HasColumnType("nvarchar(max)");
 
@@ -186,7 +184,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<DateTime>("SavedTime")
                         .HasColumnType("datetime2");
 
-                    b.HasKey("Number")
+                    b.HasKey("Id")
                         .IsClustered(false);
 
                     b.HasIndex("AddedTime")
@@ -209,12 +207,6 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("CreatorName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("IP")
                         .HasColumnType("nvarchar(max)");
 
@@ -226,11 +218,8 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("LoginId")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<string>("OperatorAccount")
-                        .HasColumnType("nvarchar(max)");
-
-                    b.Property<string>("OperatorName")
-                        .HasColumnType("nvarchar(max)");
+                    b.Property<int>("PartitionIndex")
+                        .HasColumnType("int");
 
                     b.Property<Guid>("PublicKey")
                         .HasColumnType("uniqueidentifier");
@@ -267,16 +256,11 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("CreatorName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Icon")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InfoSystemNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(16)");
 
                     b.Property<bool>("IsRoot")
@@ -337,16 +321,11 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.Property<string>("CreatorName")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
-
                     b.Property<string>("Description")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("InfoSystemNo")
+                        .IsRequired()
                         .HasColumnType("nvarchar(16)");
 
                     b.Property<string>("Keywords")
@@ -395,12 +374,6 @@ namespace SD.IdentitySystem.Repository.Migrations
 
                     b.Property<string>("CreatorName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<bool>("Deleted")
-                        .HasColumnType("bit");
-
-                    b.Property<DateTime?>("DeletedTime")
-                        .HasColumnType("datetime2");
 
                     b.Property<bool>("Enabled")
                         .HasColumnType("bit");
@@ -500,6 +473,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.HasOne("SD.IdentitySystem.Domain.Entities.InfoSystem", null)
                         .WithMany()
                         .HasForeignKey("InfoSystemNo")
+                        .HasPrincipalKey("Number")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });
@@ -509,6 +483,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.HasOne("SD.IdentitySystem.Domain.Entities.InfoSystem", null)
                         .WithMany()
                         .HasForeignKey("InfoSystemNo")
+                        .HasPrincipalKey("Number")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
@@ -524,6 +499,7 @@ namespace SD.IdentitySystem.Repository.Migrations
                     b.HasOne("SD.IdentitySystem.Domain.Entities.InfoSystem", null)
                         .WithMany()
                         .HasForeignKey("InfoSystemNo")
+                        .HasPrincipalKey("Number")
                         .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
                 });

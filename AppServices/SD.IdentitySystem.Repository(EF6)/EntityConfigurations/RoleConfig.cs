@@ -17,8 +17,8 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
         {
             //配置属性
             this.HasKey(role => role.Id, index => index.IsClustered(false));
-            this.Property(role => role.Keywords).IsRequired().HasMaxLength(256);
             this.Property(role => role.Name).IsRequired().HasMaxLength(32);
+            this.Property(role => role.Keywords).IsRequired().HasMaxLength(256);
             this.Property(role => role.InfoSystemNo).IsRequired().HasMaxLength(16);
 
             //配置中间表
@@ -27,6 +27,10 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             //配置索引
             this.HasIndex("IX_Role_AddedTime", IndexType.Clustered, table => table.Property(role => role.AddedTime));
             this.HasIndex("IX_Role_InfoSystemNo", IndexType.Nonclustered, table => table.Property(role => role.InfoSystemNo));
+
+            //忽略映射
+            this.Ignore(role => role.Deleted);
+            this.Ignore(role => role.DeletedTime);
         }
     }
 }

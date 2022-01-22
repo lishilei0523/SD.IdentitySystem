@@ -24,6 +24,10 @@ namespace SD.IdentitySystem.Repository.EntityConfigurations
             //忽略映射
             builder.Ignore(record => record.Number);
             builder.Ignore(record => record.Name);
+            builder.Ignore(record => record.OperatorAccount);
+            builder.Ignore(record => record.OperatorName);
+            builder.Ignore(record => record.Deleted);
+            builder.Ignore(record => record.DeletedTime);
         }
     }
 }

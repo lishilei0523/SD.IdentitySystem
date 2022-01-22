@@ -16,6 +16,17 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class MenuRepository : EFAggRootRepositoryProvider<Menu>, IMenuRepository
     {
+        #region # 获取实体对象列表 —— override IQueryable<Menu> FindAllInner()
+        /// <summary>
+        /// 获取实体对象列表
+        /// </summary>
+        /// <returns>实体对象列表</returns>
+        protected override IQueryable<Menu> FindAllInner()
+        {
+            return base._dbContext.Set<Menu>();
+        }
+        #endregion
+
         #region # 分页获取菜单列表 —— ICollection<Menu> FindByPage(string keywords, string infoSystemNo...
         /// <summary>
         /// 分页获取菜单列表

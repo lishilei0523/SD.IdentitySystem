@@ -14,6 +14,17 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class LoginRecordRepository : EFAggRootRepositoryProvider<LoginRecord>, ILoginRecordRepository
     {
+        #region # 获取实体对象列表 —— override IQueryable<LoginRecord> FindAllInner()
+        /// <summary>
+        /// 获取实体对象列表
+        /// </summary>
+        /// <returns>实体对象列表</returns>
+        protected override IQueryable<LoginRecord> FindAllInner()
+        {
+            return base._dbContext.Set<LoginRecord>();
+        }
+        #endregion
+
         #region # 分页获取用户登录记录列表 —— ICollection<LoginRecord> FindByPage(string keywords...
         /// <summary>
         /// 分页获取用户登录记录列表
