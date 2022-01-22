@@ -19,7 +19,7 @@
     <PackageReference Include="SD.IOC.Integration.WCF" Version="2.1.0" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.3.6" />
+    <PackageReference Include="SD.Infrastructure" Version="3.4.0" />
   </ItemGroup>
 
   <ItemGroup>

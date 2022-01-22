@@ -2,6 +2,7 @@
 using SD.Infrastructure.MessageBase;
 using SD.Infrastructure.SignalR.Server.Base;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.SignalR.Authentication.Base
 {
@@ -14,16 +15,16 @@ namespace SD.IdentitySystem.SignalR.Authentication.Base
         /// 交换消息
         /// </summary>
         /// <param name="message">消息</param>
-        public override void Exchange(T message)
+        public override async Task Exchange(T message)
         {
             if (message.ReceiverAccounts != null && message.ReceiverAccounts.Any())
             {
                 IClientProxy clientProxy = base.Clients.Users(message.ReceiverAccounts);
-                clientProxy.SendAsync(nameof(this.Exchange), message);
+                await clientProxy.SendAsync(nameof(this.Exchange), message);
             }
             else
             {
-                base.Exchange(message);
+                await base.Exchange(message);
             }
         }
     }

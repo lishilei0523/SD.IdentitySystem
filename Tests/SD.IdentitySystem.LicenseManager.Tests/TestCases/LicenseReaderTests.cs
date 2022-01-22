@@ -22,8 +22,8 @@ namespace SD.IdentitySystem.LicenseManager.Tests.TestCases
             Assert.IsTrue(license != null);
             Assert.IsTrue(license.Value.EnterpriseName == "SD");
             Assert.IsTrue(license.Value.UniqueCode == "a1cab08d01ffc87b9ecaa873745592f1");
-            Assert.IsTrue(license.Value.ServiceExpiredDate == CommonConstants.MaxDateTime);
-            Assert.IsTrue(license.Value.LicenseExpiredDate == CommonConstants.MaxDateTime);
+            Assert.IsTrue(license.Value.ServiceExpiredDate == CommonConstants.MaxDate);
+            Assert.IsTrue(license.Value.LicenseExpiredDate == CommonConstants.MaxDate);
         }
     }
 }
