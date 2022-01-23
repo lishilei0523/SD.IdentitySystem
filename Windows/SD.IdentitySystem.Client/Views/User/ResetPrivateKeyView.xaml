@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-        xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:sd="https://github.com/lishilei0523/SD.Framework"
         mc:Ignorable="d"
         Title="重置私钥" 
         Width="470" Height="260" ResizeMode="NoResize" 
@@ -28,9 +28,9 @@
             </Grid.RowDefinitions>
             <!--表单区-->
             <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="40,30">
-                <kino:FormItem Label="私钥：">
+                <sd:FormItem Label="私钥：">
                     <TextBox Text="{Binding PrivateKey}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
+                </sd:FormItem>
             </StackPanel>
             <!--占位区-->
             <Grid Grid.Row="1" />

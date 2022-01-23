@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-        xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:sd="https://github.com/lishilei0523/SD.Framework"
         mc:Ignorable="d"
         Title="创建信息系统" 
         Width="450" Height="380" ResizeMode="NoResize" 
@@ -28,22 +28,22 @@
             </Grid.RowDefinitions>
             <!--表单区-->
             <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="20,30">
-                <kino:FormItem Label="信息系统编号：">
+                <sd:FormItem Label="信息系统编号：">
                     <TextBox Text="{Binding InfoSystemNo}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="信息系统名称：">
+                </sd:FormItem>
+                <sd:FormItem Label="信息系统名称：">
                     <TextBox Text="{Binding InfoSystemName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="系统管理员账号：">
+                </sd:FormItem>
+                <sd:FormItem Label="系统管理员账号：">
                     <TextBox Text="{Binding AdminLoginId}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="应用程序类型：">
+                </sd:FormItem>
+                <sd:FormItem Label="应用程序类型：">
                     <ComboBox ItemsSource="{Binding ApplicationTypes}" 
                               DisplayMemberPath="Value"
                               SelectedValuePath="Key"
                               SelectedValue="{Binding ApplicationType}"
                               Style="{StaticResource ComboBox.Styles.Fluent}" />
-                </kino:FormItem>
+                </sd:FormItem>
             </StackPanel>
             <!--占位区-->
             <Grid Grid.Row="1" />

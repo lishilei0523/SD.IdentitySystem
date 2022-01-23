@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-        xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:sd="https://github.com/lishilei0523/SD.Framework"
         mc:Ignorable="d"
         Title="创建权限" 
         Width="550" Height="730" ResizeMode="NoResize" 
@@ -28,48 +28,48 @@
             </Grid.RowDefinitions>
             <!--表单区-->
             <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="40,30">
-                <kino:FormItem Label="信息系统：">
+                <sd:FormItem Label="信息系统：">
                     <ComboBox ItemsSource="{Binding InfoSystems}" 
                               DisplayMemberPath="Name"
                               SelectedValue="{Binding SelectedInfoSystem}"
                               Style="{StaticResource ComboBox.Styles.Fluent}" />
-                </kino:FormItem>
-                <kino:FormItem Label="应用程序类型：">
+                </sd:FormItem>
+                <sd:FormItem Label="应用程序类型：">
                     <ComboBox ItemsSource="{Binding ApplicationTypes}" 
                               DisplayMemberPath="Value"
                               SelectedValuePath="Key"
                               SelectedValue="{Binding SelectedApplicationType}"
                               Style="{StaticResource ComboBox.Styles.Fluent}" />
-                </kino:FormItem>
-                <kino:FormItem Label="权限名称：">
+                </sd:FormItem>
+                <sd:FormItem Label="权限名称：">
                     <TextBox Text="{Binding AuthorityName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="权限路径：">
+                </sd:FormItem>
+                <sd:FormItem Label="权限路径：">
                     <TextBox Text="{Binding AuthorityPath}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="英文名称：">
+                </sd:FormItem>
+                <sd:FormItem Label="英文名称：">
                     <TextBox Text="{Binding EnglishName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="程序集名称：">
+                </sd:FormItem>
+                <sd:FormItem Label="程序集名称：">
                     <TextBox Text="{Binding AssemblyName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="命名空间：">
+                </sd:FormItem>
+                <sd:FormItem Label="命名空间：">
                     <TextBox Text="{Binding Namespace}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="类名：">
+                </sd:FormItem>
+                <sd:FormItem Label="类名：">
                     <TextBox Text="{Binding ClassName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="方法名：">
+                </sd:FormItem>
+                <sd:FormItem Label="方法名：">
                     <TextBox Text="{Binding MethodName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="描述：">
+                </sd:FormItem>
+                <sd:FormItem Label="描述：">
                     <TextBox Text="{Binding Description}"
                              Height="100"
                              TextWrapping="Wrap"
                              AcceptsReturn="True"
                              VerticalScrollBarVisibility="Auto"
                              Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
+                </sd:FormItem>
             </StackPanel>
             <!--占位区-->
             <Grid Grid.Row="1" />

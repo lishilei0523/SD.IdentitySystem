@@ -4,7 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:cal="http://www.caliburnproject.org"
-        xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:sd="https://github.com/lishilei0523/SD.Framework"
@@ -35,11 +34,11 @@
                     BorderBrush="{DynamicResource SystemListMediumColorBrush}" />
             <!--表单区-->
             <StackPanel Grid.Row="1" Grid.IsSharedSizeScope="True" Margin="40,30">
-                <kino:FormItem Label="账号：" FontSize="14" Padding="5">
+                <sd:FormItem Label="账号：" FontSize="14" Padding="5">
                     <TextBox Height="40" VerticalContentAlignment="Center" Text="{Binding LoginId}"
                              Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="密码：" FontSize="14" Padding="5">
+                </sd:FormItem>
+                <sd:FormItem Label="密码：" FontSize="14" Padding="5">
                     <PasswordBox Height="40" VerticalContentAlignment="Center" 
                                  sd:PasswordBoxAttacher.Password="{Binding Password, Mode=TwoWay}"
                                  Style="{StaticResource PasswordBoxRevealStyle}">
@@ -47,7 +46,7 @@
                             <KeyBinding Key="Enter" Command="{Binding LoginCommand}" />
                         </PasswordBox.InputBindings>
                     </PasswordBox>
-                </kino:FormItem>
+                </sd:FormItem>
             </StackPanel>
             <!--占位区-->
             <Grid Grid.Row="2" />

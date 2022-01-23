@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-        xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:sd="https://github.com/lishilei0523/SD.Framework"
         mc:Ignorable="d"
         Title="创建角色" 
         Width="800" Height="600" ResizeMode="NoResize" 
@@ -34,24 +34,24 @@
             <GroupBox Header="角色信息" Grid.Row="0" Grid.Column="0">
                 <!--角色表单-->
                 <StackPanel Grid.IsSharedSizeScope="True" Margin="10,30">
-                    <kino:FormItem Label="信息系统：">
+                    <sd:FormItem Label="信息系统：">
                         <ComboBox ItemsSource="{Binding InfoSystems}" 
                                   DisplayMemberPath="Name"
                                   SelectedValue="{Binding SelectedInfoSystem}"
                                   Style="{StaticResource ComboBox.Styles.Fluent}"
                                   cal:Message.Attach="[Event SelectionChanged] = [Action LoadAuthorities()]" />
-                    </kino:FormItem>
-                    <kino:FormItem Label="角色名称：">
+                    </sd:FormItem>
+                    <sd:FormItem Label="角色名称：">
                         <TextBox Text="{Binding RoleName}" Style="{StaticResource TextBoxRevealStyle}" />
-                    </kino:FormItem>
-                    <kino:FormItem Label="描述：">
+                    </sd:FormItem>
+                    <sd:FormItem Label="描述：">
                         <TextBox Text="{Binding Description}"
                                  Height="100"
                                  TextWrapping="Wrap"
                                  AcceptsReturn="True"
                                  VerticalScrollBarVisibility="Auto"
                                  Style="{StaticResource TextBoxRevealStyle}" />
-                    </kino:FormItem>
+                    </sd:FormItem>
                 </StackPanel>
             </GroupBox>
             <!--权限信息-->

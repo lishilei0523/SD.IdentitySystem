@@ -5,8 +5,8 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-        xmlns:kino="https://github.com/DinoChan/Kino.Toolkit.Wpf"
         xmlns:cal="http://www.caliburnproject.org"
+        xmlns:sd="https://github.com/lishilei0523/SD.Framework"
         mc:Ignorable="d"
         Title="修改菜单" 
         Width="550" Height="620" ResizeMode="NoResize" 
@@ -28,36 +28,36 @@
             </Grid.RowDefinitions>
             <!--表单区-->
             <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="40,30">
-                <kino:FormItem Label="信息系统：">
+                <sd:FormItem Label="信息系统：">
                     <TextBox Text="{Binding InfoSystemName}" 
                              Style="{StaticResource TextBoxRevealStyle}" 
                              IsEnabled="False" />
-                </kino:FormItem>
-                <kino:FormItem Label="应用程序类型：">
+                </sd:FormItem>
+                <sd:FormItem Label="应用程序类型：">
                     <TextBox Text="{Binding ApplicationType,Converter={StaticResource Converters.EnumMemberConverter}}"
                              Style="{StaticResource TextBoxRevealStyle}"
                              IsEnabled="False" />
-                </kino:FormItem>
-                <kino:FormItem Label="上级菜单：">
+                </sd:FormItem>
+                <sd:FormItem Label="上级菜单：">
                     <TextBox Text="{Binding ParentMenuName}" 
                              Style="{StaticResource TextBoxRevealStyle}"
                              IsEnabled="False" />
-                </kino:FormItem>
-                <kino:FormItem Label="菜单名称：">
+                </sd:FormItem>
+                <sd:FormItem Label="菜单名称：">
                     <TextBox Text="{Binding MenuName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="链接地址：">
+                </sd:FormItem>
+                <sd:FormItem Label="链接地址：">
                     <TextBox Text="{Binding Url}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="路径：">
+                </sd:FormItem>
+                <sd:FormItem Label="路径：">
                     <TextBox Text="{Binding Path}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="图标：">
+                </sd:FormItem>
+                <sd:FormItem Label="图标：">
                     <TextBox Text="{Binding Icon}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
-                <kino:FormItem Label="排序：">
+                </sd:FormItem>
+                <sd:FormItem Label="排序：">
                     <TextBox Text="{Binding Sort}" Style="{StaticResource TextBoxRevealStyle}" />
-                </kino:FormItem>
+                </sd:FormItem>
             </StackPanel>
             <!--占位区-->
             <Grid Grid.Row="1" />

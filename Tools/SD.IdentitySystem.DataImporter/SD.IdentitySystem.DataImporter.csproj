@@ -40,7 +40,7 @@
     <PackageReference Include="SD.IOC.Core" Version="2.1.6" />
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.1.1" />
     <PackageReference Include="SD.Infrastructure" Version="3.4.0" />
-    <PackageReference Include="SD.Infrastructure.WPF" Version="1.0.5" />
+    <PackageReference Include="SD.Infrastructure.WPF" Version="1.1.0" />
     <PackageReference Include="SD.Infrastructure.WPF.Caliburn" Version="1.1.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.4.0" />
     <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Windows" Version="1.1.1" />

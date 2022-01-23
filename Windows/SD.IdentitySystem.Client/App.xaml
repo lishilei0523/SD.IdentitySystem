@@ -16,7 +16,7 @@
                 <ResourceDictionary Source="pack://application:,,,/MahApps.Metro;component/Styles/Themes/Light.Steel.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/BusyIndicator;component/Theme/Default.xaml" />
                 <ResourceDictionary Source="pack://application:,,,/ToastNotifications.Messages;component/Themes/Default.xaml" />
-                <ResourceDictionary Source="pack://application:,,,/SD.Infrastructure.WPF;component/CustomControls/TreeListView.xaml" />
+                <ResourceDictionary Source="pack://application:,,,/SD.Infrastructure.WPF;component/Themes/Default.xaml" />
                 <ResourceDictionary Source="/Content/Dictionaries/Converters.xaml" />
                 <ResourceDictionary Source="/Content/Dictionaries/Graphics.xaml" />
                 <ResourceDictionary Source="/Content/Dictionaries/Styles.Metro.xaml" />
