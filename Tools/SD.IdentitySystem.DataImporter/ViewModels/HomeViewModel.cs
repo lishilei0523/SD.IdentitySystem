@@ -96,6 +96,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             });
 
             this.Idle();
+            this.ToastSuccess("导入信息系统成功！");
         }
         #endregion
 
@@ -136,6 +137,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             });
 
             this.Idle();
+            this.ToastSuccess("导入权限成功！");
         }
         #endregion
 
@@ -164,6 +166,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             });
 
             this.Idle();
+            this.ToastSuccess("导入菜单成功！");
         }
         #endregion
 
@@ -207,6 +210,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             });
 
             this.Idle();
+            this.ToastSuccess("关联权限到菜单成功！");
         }
         #endregion
 
@@ -229,6 +233,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             });
 
             this.Idle();
+            this.ToastSuccess("导入角色成功！");
         }
         #endregion
 
@@ -271,6 +276,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             });
 
             this.Idle();
+            this.ToastSuccess("关联权限到角色成功！");
         }
         #endregion
 
@@ -293,6 +299,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             });
 
             this.Idle();
+            this.ToastSuccess("导入用户成功！");
         }
         #endregion
 
@@ -327,6 +334,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             });
 
             this.Idle();
+            this.ToastSuccess("关联角色到用户成功！");
         }
         #endregion
 
