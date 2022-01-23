@@ -2,7 +2,8 @@
 using SD.Infrastructure.Membership;
 using System;
 
-namespace SD.IdentitySystem.Membership.Xamarin
+// ReSharper disable once CheckNamespace
+namespace SD.IdentitySystem
 {
     /// <summary>
     /// Xamarin Membership提供者

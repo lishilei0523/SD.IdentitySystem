@@ -6,7 +6,8 @@ using SD.Infrastructure.Membership;
 using SD.Toolkits.OwinCore.Extensions;
 using System;
 
-namespace SD.IdentitySystem.Membership.AspNetCore
+// ReSharper disable once CheckNamespace
+namespace SD.IdentitySystem
 {
     /// <summary>
     /// ASP.NET Core Membership提供者

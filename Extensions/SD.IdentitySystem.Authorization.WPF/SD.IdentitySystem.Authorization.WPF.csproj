@@ -19,7 +19,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="3.4.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.4.1" />
   </ItemGroup>
 
   <ItemGroup>

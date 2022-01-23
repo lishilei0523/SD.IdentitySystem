@@ -6,7 +6,8 @@ using SD.Toolkits.Owin.Extensions;
 using System;
 using System.Linq;
 
-namespace SD.IdentitySystem.Membership.Owin
+// ReSharper disable once CheckNamespace
+namespace SD.IdentitySystem
 {
     /// <summary>
     /// OWIN Membership提供者

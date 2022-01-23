@@ -12,7 +12,8 @@ using CoreWCF;
 using CoreWCF.Channels;
 #endif
 
-namespace SD.IdentitySystem.Membership.WCF
+// ReSharper disable once CheckNamespace
+namespace SD.IdentitySystem
 {
     /// <summary>
     /// WCF Membership提供者

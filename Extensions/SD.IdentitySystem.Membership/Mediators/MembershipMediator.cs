@@ -1,4 +1,6 @@
-﻿using SD.Infrastructure.Membership;
+﻿using SD.Infrastructure;
+using SD.Infrastructure.CustomExceptions;
+using SD.Infrastructure.Membership;
 using System;
 using System.Reflection;
 
@@ -11,18 +13,32 @@ namespace SD.IdentitySystem
     public static class MembershipMediator
     {
         /// <summary>
-        /// Membership提供者实现类型
+        /// Membership提供者
         /// </summary>
-        private static readonly Type _MembershipProviderImplType;
+        private static readonly IMembershipProvider _MembershipProvider;
 
         /// <summary>
         /// 静态构造器
         /// </summary>
         static MembershipMediator()
         {
-            Assembly implAssembly = Assembly.Load(MembershipSection.Setting.Provider.Assembly);
-            _MembershipProviderImplType = implAssembly.GetType(MembershipSection.Setting.Provider.Type);
+            string typeFullName = FrameworkSection.Setting.MembershipProvider.Type;
 
+            #region # 验证
+
+            if (string.IsNullOrWhiteSpace(typeFullName))
+            {
+                throw new AppServiceException("Membership提供者未配置！");
+            }
+
+            #endregion
+
+            string[] typeFullNames = typeFullName.Split(',');
+            string assemblyName = typeFullNames[1].Trim();
+            string typeName = typeFullNames[0].Trim();
+            Assembly implAssembly = Assembly.Load(assemblyName);
+            Type implType = implAssembly.GetType(typeName);
+            _MembershipProvider = (IMembershipProvider)Activator.CreateInstance(implType);
         }
 
         /// <summary>
@@ -31,8 +47,7 @@ namespace SD.IdentitySystem
         /// <returns>登录信息</returns>
         public static LoginInfo GetLoginInfo()
         {
-            IMembershipProvider membershipProvider = (IMembershipProvider)Activator.CreateInstance(_MembershipProviderImplType);
-            LoginInfo loginInfo = membershipProvider?.GetLoginInfo();
+            LoginInfo loginInfo = _MembershipProvider.GetLoginInfo();
 
             return loginInfo;
         }

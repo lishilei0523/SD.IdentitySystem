@@ -2,7 +2,8 @@
 using SD.Infrastructure.Membership;
 using System;
 
-namespace SD.IdentitySystem.Membership.Windows
+// ReSharper disable once CheckNamespace
+namespace SD.IdentitySystem
 {
     /// <summary>
     /// Windows Membership提供者

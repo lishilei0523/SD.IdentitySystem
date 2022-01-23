@@ -1,4 +1,5 @@
 ﻿using Microsoft.VisualStudio.TestTools.UnitTesting;
+using SD.Infrastructure;
 
 namespace SD.IdentitySystem.Membership.Tests.TestCases
 {
@@ -14,11 +15,9 @@ namespace SD.IdentitySystem.Membership.Tests.TestCases
         [TestMethod]
         public void TestReadConfigurations()
         {
-            const string type = "SD.IdentitySystem.Membership.Windows.MembershipProvider";
-            const string assembly = "SD.IdentitySystem.Membership.Windows";
+            const string type = "SD.IdentitySystem.MembershipProvider, SD.IdentitySystem.Membership.Windows";
 
-            Assert.AreEqual(type, MembershipSection.Setting.Provider.Type);
-            Assert.AreEqual(assembly, MembershipSection.Setting.Provider.Assembly);
+            Assert.AreEqual(type, FrameworkSection.Setting.MembershipProvider.Type);
         }
     }
 }

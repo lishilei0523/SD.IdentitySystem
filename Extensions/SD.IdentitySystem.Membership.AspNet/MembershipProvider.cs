@@ -2,7 +2,8 @@
 using SD.Infrastructure.Membership;
 using System.Web;
 
-namespace SD.IdentitySystem.Membership.AspNet
+// ReSharper disable once CheckNamespace
+namespace SD.IdentitySystem
 {
     /// <summary>
     /// ASP.NET Membership提供者
