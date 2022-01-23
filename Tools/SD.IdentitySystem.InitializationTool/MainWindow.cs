@@ -130,13 +130,14 @@ namespace SD.IdentitySystem.InitializationTool
             Type[] types = assembly.GetTypes();
 
             //加载需认证的方法
-            IEnumerable<MethodInfo> methodInfos = types.SelectMany(x => x.GetMethods()).Where(x => x.IsDefined(typeof(RequireAuthorizationAttribute)));
+            IEnumerable<MethodInfo> methodInfos = types.SelectMany(x => x.GetMethods()).Where(x => x.IsDefined(typeof(RequireAuthorizationAttribute), true));
 
             //构造权限参数模型集
             IList<AuthorityParam> authorityParams = new List<AuthorityParam>();
             foreach (MethodInfo methodInfo in methodInfos)
             {
-                RequireAuthorizationAttribute attribute = methodInfo.GetCustomAttribute<RequireAuthorizationAttribute>();
+                object[] attributes = methodInfo.GetCustomAttributes(typeof(RequireAuthorizationAttribute), true);
+                RequireAuthorizationAttribute attribute = (RequireAuthorizationAttribute)(attributes[0]);
                 AuthorityParam authorityParam = new AuthorityParam
                 {
                     authorityName = attribute.AuthorityPath,
@@ -145,7 +146,7 @@ namespace SD.IdentitySystem.InitializationTool
                 authorityParams.Add(authorityParam);
             }
 
-            await Task.Run(() => this._authorizationContract.CreateAuthorities(infoSystemNo, applicationType, authorityParams));
+            await TaskEx.Run(() => this._authorizationContract.CreateAuthorities(infoSystemNo, applicationType, authorityParams));
         }
     }
 }
