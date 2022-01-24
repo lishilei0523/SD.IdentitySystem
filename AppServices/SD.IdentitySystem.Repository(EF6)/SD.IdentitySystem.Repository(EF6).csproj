@@ -14,7 +14,7 @@
     <PackageReference Include="SD.AOP.Core" Version="2.2.1" />
     <PackageReference Include="SD.Infrastructure" Version="3.4.1" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure.Repository.EntityFramework" Version="2.4.2" />
+    <PackageReference Include="SD.Infrastructure.Repository.EntityFramework" Version="2.4.3" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.1.0" />
   </ItemGroup>
 
