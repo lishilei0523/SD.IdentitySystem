@@ -1,7 +1,5 @@
-﻿using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
-using SD.Infrastructure.Constants;
+﻿using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
-using SD.Infrastructure.EventBase.Mediators;
 using System;
 using System.Text;
 
@@ -45,9 +43,6 @@ namespace SD.IdentitySystem.Domain.Entities
             base.Name = infoSystemName;
             this.AdminLoginId = adminLoginId;
             this.ApplicationType = applicationType;
-
-            //挂起领域事件
-            EventMediator.Suspend(new InfoSystemCreatedEvent(this.Number, this.Name, this.ApplicationType, this.AdminLoginId));
 
             //初始化关键字
             this.InitKeywords();

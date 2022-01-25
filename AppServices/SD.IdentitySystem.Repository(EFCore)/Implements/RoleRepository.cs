@@ -185,5 +185,30 @@ namespace SD.IdentitySystem.Repository.Implements
             return base.Exists(condition);
         }
         #endregion
+
+        #region # 是否存在角色 —— bool Exists(string infoSystemNo, Guid? roleId, string roleName)
+        /// <summary>
+        /// 是否存在角色
+        /// </summary>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="roleId">角色Id</param>
+        /// <param name="roleName">角色名称</param>
+        /// <returns>是否存在</returns>
+        public bool Exists(string infoSystemNo, Guid? roleId, string roleName)
+        {
+            if (roleId.HasValue)
+            {
+                string originalRoleName = this.Find(x => x.Id == roleId.Value).Select(x => x.Name).Single();
+                if (originalRoleName == roleName)
+                {
+                    return false;
+                }
+
+                return this.Exists(infoSystemNo, roleName);
+            }
+
+            return this.Exists(infoSystemNo, roleName);
+        }
+        #endregion
     }
 }

@@ -24,7 +24,6 @@
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.4.1" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure.EventBase" Version="2.1.1" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.1.0" />
   </ItemGroup>
 

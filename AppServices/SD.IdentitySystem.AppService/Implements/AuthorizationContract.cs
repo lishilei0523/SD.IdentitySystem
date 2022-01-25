@@ -7,7 +7,6 @@ using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Infrastructure.Global.Transaction;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,11 +28,6 @@ namespace SD.IdentitySystem.AppService.Implements
         #region # 字段及依赖注入构造器
 
         /// <summary>
-        /// 领域服务中介者
-        /// </summary>
-        private readonly DomainServiceMediator _svcMediator;
-
-        /// <summary>
         /// 仓储中介者
         /// </summary>
         private readonly RepositoryMediator _repMediator;
@@ -46,9 +40,8 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public AuthorizationContract(DomainServiceMediator svcMediator, RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
+        public AuthorizationContract(RepositoryMediator repMediator, IUnitOfWorkIdentity unitOfWork)
         {
-            this._svcMediator = svcMediator;
             this._repMediator = repMediator;
             this._unitOfWork = unitOfWork;
         }
@@ -82,9 +75,19 @@ namespace SD.IdentitySystem.AppService.Implements
             #endregion
 
             InfoSystem infoSystem = new InfoSystem(infoSystemNo, infoSystemName, adminLoginId, applicationType);
+            User superAdmin = this._unitOfWork.Resolve<User>(CommonConstants.AdminLoginId);
+            User systemAdmin = new User(infoSystem.AdminLoginId, $"{infoSystem.Name}管理员", CommonConstants.InitialPassword);
+            Role systemAdminRole = new Role($"{infoSystem.Name}管理员", infoSystem.Number, null, CommonConstants.ManagerRoleNo);
+            superAdmin.AppendRoles(new[] { systemAdminRole });
+            systemAdmin.AppendRoles(new[] { systemAdminRole });
+            Menu systemMenu = new Menu(infoSystem.Number, infoSystem.ApplicationType, infoSystem.Name, 0, null, null, null, null);
 
             this._unitOfWork.RegisterAdd(infoSystem);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.RegisterAdd(systemAdmin);
+            this._unitOfWork.RegisterAdd(systemAdminRole);
+            this._unitOfWork.RegisterAdd(systemMenu);
+            this._unitOfWork.RegisterSave(superAdmin);
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -782,7 +785,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>是否存在</returns>
         public bool ExistsRole(string infoSystemNo, Guid? roleId, string roleName)
         {
-            return this._svcMediator.RoleSvc.ExistsRole(infoSystemNo, roleId, roleName);
+            return this._repMediator.RoleRep.Exists(infoSystemNo, roleId, roleName);
         }
         #endregion
     }
