@@ -1,7 +1,5 @@
-﻿using SD.IdentitySystem.Domain.EventSources.AuthorizationContext;
-using SD.Infrastructure.Constants;
+﻿using SD.Infrastructure.Constants;
 using SD.Infrastructure.EntityBase;
-using SD.Infrastructure.EventBase.Mediators;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -58,9 +56,6 @@ namespace SD.IdentitySystem.Domain.Entities
             //初始化权限路径与关键字
             this.InitPath();
             this.InitKeywords();
-
-            //挂起领域事件
-            EventMediator.Suspend(new AuthorityCreatedEvent(this.InfoSystemNo, this.Id));
         }
         #endregion
 

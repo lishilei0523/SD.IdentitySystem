@@ -188,8 +188,14 @@ namespace SD.IdentitySystem.AppService.Implements
 
             Authority authority = new Authority(infoSystemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
 
+            //为系统管理员角色追加权限
+            Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(infoSystemNo);
+            Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
+            adminRole.AppendAuthorities(new[] { authority });
+
             this._unitOfWork.RegisterAdd(authority);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.RegisterSave(adminRole);
+            this._unitOfWork.Commit();
         }
         #endregion
 
@@ -219,8 +225,14 @@ namespace SD.IdentitySystem.AppService.Implements
                 authorities.Add(authority);
             }
 
+            //为系统管理员角色追加权限
+            Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(infoSystemNo);
+            Role adminRole = this._unitOfWork.Resolve<Role>(adminRoleId);
+            adminRole.AppendAuthorities(authorities);
+
             this._unitOfWork.RegisterAddRange(authorities);
-            this._unitOfWork.UnitedCommit();
+            this._unitOfWork.RegisterSave(adminRole);
+            this._unitOfWork.Commit();
         }
         #endregion
 
