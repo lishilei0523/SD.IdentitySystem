@@ -3,8 +3,8 @@ using Microsoft.Owin.StaticFiles;
 using Microsoft.Owin.StaticFiles.ContentTypes;
 using Owin;
 using SD.Toolkits.AspNet;
+using System;
 using System.IO;
-using System.Web.Http;
 
 namespace SD.IdentitySystem.UpdateService
 {
@@ -19,20 +19,22 @@ namespace SD.IdentitySystem.UpdateService
         /// <param name="appBuilder">应用程序建造者</param>
         public void Configuration(IAppBuilder appBuilder)
         {
-            //配置Web服务器
-            HttpConfiguration httpConfiguration = new HttpConfiguration();
-            httpConfiguration.Formatters.Remove(httpConfiguration.Formatters.XmlFormatter);
-
             //配置文件服务器
-            Directory.CreateDirectory(AspNetSection.Setting.StaticFiles.Value);
-            Directory.CreateDirectory(AspNetSection.Setting.FileServer.Value);
+            string staticFilesPath = Path.IsPathRooted(AspNetSetting.StaticFilesPath)
+                ? AspNetSetting.StaticFilesPath
+                : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AspNetSetting.StaticFilesPath);
+            string fileServerPath = Path.IsPathRooted(AspNetSetting.FileServerPath)
+                ? AspNetSetting.FileServerPath
+                : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AspNetSetting.FileServerPath);
+            Directory.CreateDirectory(staticFilesPath);
+            Directory.CreateDirectory(fileServerPath);
             StaticFileOptions staticFileOptions = new StaticFileOptions
             {
-                FileSystem = new PhysicalFileSystem(AspNetSection.Setting.StaticFiles.Value)
+                FileSystem = new PhysicalFileSystem(staticFilesPath)
             };
             FileServerOptions fileServerOptions = new FileServerOptions
             {
-                FileSystem = new PhysicalFileSystem(AspNetSection.Setting.FileServer.Value),
+                FileSystem = new PhysicalFileSystem(fileServerPath),
                 EnableDirectoryBrowsing = true
             };
             FileExtensionContentTypeProvider contentTypeProvider = (FileExtensionContentTypeProvider)fileServerOptions.StaticFileOptions.ContentTypeProvider;
@@ -40,7 +42,6 @@ namespace SD.IdentitySystem.UpdateService
 
             appBuilder.UseStaticFiles(staticFileOptions);
             appBuilder.UseFileServer(fileServerOptions);
-            appBuilder.UseWebApi(httpConfiguration);
         }
     }
 }
