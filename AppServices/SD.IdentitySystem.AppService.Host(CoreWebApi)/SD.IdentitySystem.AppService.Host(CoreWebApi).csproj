@@ -21,12 +21,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Content Update="App.config">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
-    <Content Include="favicon.ico">
-      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
-    </Content>
+    <Content Include="favicon.ico" />
     <AppConfigWithTargetPath Include="App.config" Condition="'$(Configuration)'=='Debug'">
       <TargetPath>ef.dll.config</TargetPath>
     </AppConfigWithTargetPath>
