@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:cal="http://www.caliburnproject.org"
+                    xmlns:cm="http://www.caliburnproject.org"
                     xmlns:sd="https://github.com/lishilei0523/SD.Framework">
 
     <!--菜单TreeListView列定义-->
@@ -58,7 +58,7 @@
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
                         <TextBlock x:Name="RelateAuthorities" Text="关联权限" 
-                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]"
+                                   cm:Message.Attach="[Event MouseLeftButtonDown] = [Action RelateAuthorities($dataContext)]"
                                    Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                     </Border>
                     <DataTemplate.Triggers>
@@ -75,7 +75,7 @@
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border}">
                         <TextBlock Text="编辑" 
-                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateMenu($dataContext)]"
+                                   cm:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateMenu($dataContext)]"
                                    Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                     </Border>
                 </DataTemplate>
@@ -86,7 +86,7 @@
                 <DataTemplate>
                     <Border Style="{StaticResource TreeListView.Styles.Border.End}">
                         <TextBlock Text="删除"  
-                                   cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RemoveMenu($dataContext)]"
+                                   cm:Message.Attach="[Event MouseLeftButtonDown] = [Action RemoveMenu($dataContext)]"
                                    Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                     </Border>
                 </DataTemplate>

@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
-        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:cm="http://www.caliburnproject.org"
         xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
@@ -48,13 +48,13 @@
                         <TextBlock Text="{Binding LoginInfo.RealName}" FontSize="13" />
                     </WrapPanel>
                     <WrapPanel Margin="0,10,55,0" HorizontalAlignment="Right" VerticalAlignment="Top">
-                        <Button cal:Message.Attach="Logout()" Style="{StaticResource Button.Styles.Fluent.Transparent.Default}">
+                        <Button cm:Message.Attach="Logout()" Style="{StaticResource Button.Styles.Fluent.Transparent.Default}">
                             <WrapPanel>
                                 <iconPacks:PackIconMaterialDesign Kind="ExitToApp" />
                                 <TextBlock Text="注销用户" Margin="3,0,0,0" />
                             </WrapPanel>
                         </Button>
-                        <Button cal:Message.Attach="UpdatePassword()" Style="{StaticResource Button.Styles.Fluent.Transparent.Default}">
+                        <Button cm:Message.Attach="UpdatePassword()" Style="{StaticResource Button.Styles.Fluent.Transparent.Default}">
                             <WrapPanel>
                                 <iconPacks:PackIconMaterialDesign Kind="Lock" />
                                 <TextBlock Text="修改密码" Margin="3,0,0,0" />
@@ -84,7 +84,7 @@
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding SubMenuInfos}">
                             <WrapPanel Background="Transparent"
-                                       cal:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]">
+                                       cm:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]">
                                 <iconPacks:PackIconMaterialDesign Kind="{Binding Icon}" />
                                 <TextBlock Text="{Binding Name}" Margin="3,0,0,0" />
                             </WrapPanel>
@@ -104,7 +104,7 @@
                                 <DataTemplate>
                                     <WrapPanel>
                                         <TextBlock Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" />
-                                        <Button cal:Message.Attach="DeactivateItem($dataContext, 'true')" 
+                                        <Button cm:Message.Attach="DeactivateItem($dataContext, 'true')" 
                                             Style="{StaticResource Button.Styles.Fluent.Transparent.Close}">
                                             <TextBlock Text="×" FontSize="16" HorizontalAlignment="Center" />
                                         </Button>
@@ -113,7 +113,7 @@
                             </TabControl.ItemTemplate>
                             <TabControl.ContentTemplate>
                                 <DataTemplate>
-                                    <ContentControl cal:View.Model="{Binding UpdateSourceTrigger=PropertyChanged}" />
+                                    <ContentControl cm:View.Model="{Binding UpdateSourceTrigger=PropertyChanged}" />
                                 </DataTemplate>
                             </TabControl.ContentTemplate>
                         </TabControl>
@@ -135,7 +135,7 @@
                     <TextBlock Text="开发及技术支持 —— " FontSize="12" xml:space="preserve" />
                     <TextBlock Text="SlamDunk co.,ltd." TextDecorations="Underline" Foreground="Blue" FontSize="12"
                                Cursor="Hand"
-                               cal:Message.Attach="[Event MouseLeftButtonDown] = [Action LaunchGitee()]" />
+                               cm:Message.Attach="[Event MouseLeftButtonDown] = [Action LaunchGitee()]" />
                     <TextBlock Text="{Binding CurrentTime}" FontSize="12" />
                 </WrapPanel>
             </Grid>

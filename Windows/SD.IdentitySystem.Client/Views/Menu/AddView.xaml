@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-        xmlns:cal="http://www.caliburnproject.org"
+        xmlns:cm="http://www.caliburnproject.org"
         xmlns:sd="https://github.com/lishilei0523/SD.Framework"
         mc:Ignorable="d"
         Title="创建菜单" 
@@ -39,7 +39,7 @@
                                   DisplayMemberPath="Name"
                                   SelectedValue="{Binding SelectedInfoSystem}"
                                   Style="{StaticResource ComboBox.Styles.Fluent}"
-                                  cal:Message.Attach="[Event SelectionChanged] = [Action LoadMenuTree()]" />
+                                  cm:Message.Attach="[Event SelectionChanged] = [Action LoadMenuTree()]" />
                     </sd:FormItem>
                     <sd:FormItem Label="应用程序类型：">
                         <ComboBox ItemsSource="{Binding ApplicationTypes}" 
@@ -47,7 +47,7 @@
                                   SelectedValuePath="Key"
                                   SelectedValue="{Binding SelectedApplicationType}"
                                   Style="{StaticResource ComboBox.Styles.Fluent}"
-                                  cal:Message.Attach="[Event SelectionChanged] = [Action LoadMenuTree()]" />
+                                  cm:Message.Attach="[Event SelectionChanged] = [Action LoadMenuTree()]" />
                     </sd:FormItem>
                     <sd:FormItem Label="上级菜单：">
                         <TextBox Text="{Binding ParentMenuName, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" 
@@ -78,7 +78,7 @@
                         <Grid>
                             <TextBlock Text="请选择上级菜单" />
                             <Button Content="清空选择" 
-                                    cal:Message.Attach="ClearSelectParentMenu()"
+                                    cm:Message.Attach="ClearSelectParentMenu()"
                                     Style="{StaticResource Button.Styles.Fluent.Transparent.Panel}" />
                         </Grid>
                     </DataTemplate>
@@ -89,7 +89,7 @@
                           ItemContainerStyle="{StaticResource TreeViewItem.Styles.Default}">
                     <TreeView.ItemTemplate>
                         <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}">
-                            <WrapPanel Background="Transparent" cal:Message.Attach="[Event MouseLeftButtonDown] = [Action SelectParentMenu($datacontext)]">
+                            <WrapPanel Background="Transparent" cm:Message.Attach="[Event MouseLeftButtonDown] = [Action SelectParentMenu($datacontext)]">
                                 <Image x:Name="NodeIcon" Width="14" Height="14" 
                                        HorizontalAlignment="Center" VerticalAlignment="Center" 
                                        Source="{StaticResource Graphics.Icon.Folder}" />
@@ -107,8 +107,8 @@
             <!--控制区-->
             <Grid Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2" Style="{StaticResource Form.Styles.Submit.Grid}">
                 <WrapPanel Style="{StaticResource Form.Styles.Submit.WrapPanel}">
-                    <Button Content="确定" cal:Message.Attach="Submit()" Style="{StaticResource Button.Styles.Fluent.Focus}" />
-                    <Button Content="取消" cal:Message.Attach="TryCloseAsync('false')" Style="{StaticResource Button.Styles.Fluent.Default}" />
+                    <Button Content="确定" cm:Message.Attach="Submit()" Style="{StaticResource Button.Styles.Fluent.Focus}" />
+                    <Button Content="取消" cm:Message.Attach="TryCloseAsync('false')" Style="{StaticResource Button.Styles.Fluent.Default}" />
                 </WrapPanel>
             </Grid>
         </Grid>

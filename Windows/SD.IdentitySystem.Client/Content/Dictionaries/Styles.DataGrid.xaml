@@ -1,6 +1,6 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-                    xmlns:cal="http://www.caliburnproject.org"
+                    xmlns:cm="http://www.caliburnproject.org"
                     xmlns:sd="https://github.com/lishilei0523/SD.Framework">
 
     <!--DataGrid默认样式-->
@@ -49,7 +49,7 @@
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
-        <Style.Triggers >
+        <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Foreground" Value="Black" />
             </Trigger>
@@ -72,6 +72,6 @@
     </DataTemplate>
     <!--DataGrid复选框单元格头模板-->
     <DataTemplate x:Key="DataGrid.CellHeaderTemplates.CheckBox.Default">
-        <CheckBox cal:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
+        <CheckBox cm:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
     </DataTemplate>
 </ResourceDictionary>

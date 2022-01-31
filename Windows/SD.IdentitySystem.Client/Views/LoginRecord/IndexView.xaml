@@ -5,7 +5,7 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:cm="http://www.caliburnproject.org"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:sd="https://github.com/lishilei0523/SD.Framework"
              mc:Ignorable="d">
@@ -31,7 +31,7 @@
                     <TextBlock Text="结束时间：" Margin="10,0,0,0" />
                     <mah:DateTimePicker SelectedDateTime="{Binding EndTime, Mode=TwoWay}"
                                         Style="{StaticResource DateTimePicker.Styles.Default}" />
-                    <Button cal:Message.Attach="LoadLoginRecords()" Style="{StaticResource Button.Styles.Fluent.Focus}">
+                    <Button cm:Message.Attach="LoadLoginRecords()" Style="{StaticResource Button.Styles.Fluent.Focus}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />
                             <TextBlock Text="搜索" Margin="3,0,0,0" />
@@ -77,7 +77,7 @@
                               PageSize="{Binding PageSize, Mode=TwoWay}"
                               RowCount="{Binding RowCount, Mode=TwoWay}"
                               PageCount="{Binding PageCount, Mode=TwoWay}"
-                              cal:Message.Attach="[Event Refresh] = [Action LoadLoginRecords()]" />
+                              cm:Message.Attach="[Event Refresh] = [Action LoadLoginRecords()]" />
             </Grid>
         </Border>
     </Grid>

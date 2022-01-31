@@ -3,7 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
-             xmlns:cal="http://www.caliburnproject.org"
+             xmlns:cm="http://www.caliburnproject.org"
              xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
              xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
              xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
@@ -25,13 +25,13 @@
                 </Grid.RowDefinitions>
                 <!--操作按钮区-->
                 <WrapPanel Grid.Row="0" Style="{StaticResource WrapPanel.Styles.Function.Operation}">
-                    <Button cal:Message.Attach="CreateRole()" Style="{StaticResource Button.Styles.Fluent.Transparent.Round}">
+                    <Button cm:Message.Attach="CreateRole()" Style="{StaticResource Button.Styles.Fluent.Transparent.Round}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Add" />
                             <TextBlock Text="新增" Margin="2,0,0,0" />
                         </WrapPanel>
                     </Button>
-                    <Button cal:Message.Attach="RemoveRoles()" Style="{StaticResource Button.Styles.Fluent.Transparent.Round}">
+                    <Button cm:Message.Attach="RemoveRoles()" Style="{StaticResource Button.Styles.Fluent.Transparent.Round}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Remove" />
                             <TextBlock Text="删除" Margin="2,0,0,0" />
@@ -50,7 +50,7 @@
                               SelectedValue="{Binding SelectedInfoSystem}"
                               mah:TextBoxHelper.Watermark="全部" 
                               Style="{StaticResource ComboBox.Styles.Default}" />
-                    <Button cal:Message.Attach="LoadRoles()" Style="{StaticResource Button.Styles.Fluent.Focus}">
+                    <Button cm:Message.Attach="LoadRoles()" Style="{StaticResource Button.Styles.Fluent.Focus}">
                         <WrapPanel>
                             <iconPacks:PackIconMaterialDesign Kind="Search" />
                             <TextBlock Text="搜索" Margin="3,0,0,0" />
@@ -89,7 +89,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="编辑" 
-                                           cal:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateRole($dataContext)]"
+                                           cm:Message.Attach="[Event MouseLeftButtonDown] = [Action UpdateRole($dataContext)]"
                                            Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -98,7 +98,7 @@
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>
                                 <TextBlock Text="删除" 
-                                           cal:Message.Attach="[Event MouseLeftButtonDown] = [Action RemoveRole($dataContext)]"
+                                           cm:Message.Attach="[Event MouseLeftButtonDown] = [Action RemoveRole($dataContext)]"
                                            Style="{StaticResource TextBlock.Styles.Hyperlink}" />
                             </DataTemplate>
                         </DataGridTemplateColumn.CellTemplate>
@@ -114,7 +114,7 @@
                               PageSize="{Binding PageSize, Mode=TwoWay}"
                               RowCount="{Binding RowCount, Mode=TwoWay}"
                               PageCount="{Binding PageCount, Mode=TwoWay}"
-                              cal:Message.Attach="[Event Refresh] = [Action LoadRoles()]" />
+                              cm:Message.Attach="[Event Refresh] = [Action LoadRoles()]" />
             </Grid>
         </Border>
     </Grid>
