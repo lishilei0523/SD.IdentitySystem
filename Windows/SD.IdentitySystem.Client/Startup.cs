@@ -6,6 +6,7 @@ using Newtonsoft.Json.Linq;
 using SD.Common;
 using SD.IdentitySystem.Client.ViewModels.Home;
 using SD.Infrastructure;
+using SD.Infrastructure.WPF.Caliburn.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
 using System.Collections.Generic;
@@ -14,7 +15,6 @@ using System.ServiceModel;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-using SD.Infrastructure.WPF.Caliburn.Extensions;
 #if NET45_OR_GREATER
 using SD.IOC.Extension.NetFx;
 #endif
