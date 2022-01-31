@@ -16,6 +16,7 @@
         <Setter Property="AlternatingRowBackground" Value="WhiteSmoke" />
         <Setter Property="HorizontalGridLinesBrush" Value="LightGray" />
         <Setter Property="VerticalGridLinesBrush" Value="LightGray" />
+        <Setter Property="VirtualizingStackPanel.VirtualizationMode" Value="Standard" />
         <Setter Property="sd:DataGridAttacher.DisplayRowNumber" Value="True" />
     </Style>
     <!--DataGrid列头默认样式-->
@@ -24,6 +25,7 @@
     </Style>
     <!--DataGrid行默认样式-->
     <Style x:Key="DataGrid.Row.Styles.Default" TargetType="{x:Type DataGridRow}">
+        <Setter Property="IsSelected" Value="{Binding IsSelected, Mode=TwoWay, UpdateSourceTrigger=PropertyChanged}" />
         <Style.Triggers>
             <Trigger Property="IsSelected" Value="True">
                 <Setter Property="Background" Value="#FFE48D" />
