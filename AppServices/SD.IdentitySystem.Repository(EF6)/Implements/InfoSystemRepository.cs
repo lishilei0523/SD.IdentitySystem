@@ -34,19 +34,5 @@ namespace SD.IdentitySystem.Repository.Implements
             return infoSystems.ToList();
         }
         #endregion
-
-        #region # 获取信息系统字典 —— IDictionary<string, InfoSystem> FindDictionary()
-        /// <summary>
-        /// 获取信息系统字典
-        /// </summary>
-        /// <returns>信息系统字典</returns>
-        public IDictionary<string, InfoSystem> FindDictionary()
-        {
-            IQueryable<InfoSystem> infoSystems = this.FindAllInner();
-            IDictionary<string, InfoSystem> dictionary = infoSystems.ToDictionary(x => x.Number, x => x);
-
-            return dictionary;
-        }
-        #endregion
     }
 }

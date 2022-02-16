@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.IAppService.DTOs.Inputs
 {
     /// <summary>
-    /// 初始化信息系统参数模型
+    /// 信息系统参数模型
     /// </summary>
     [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Inputs")]
     public struct InfoSystemParam

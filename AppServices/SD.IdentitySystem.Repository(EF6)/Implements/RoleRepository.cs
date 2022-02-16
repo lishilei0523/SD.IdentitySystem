@@ -26,37 +26,7 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 分页获取角色列表 —— ICollection<Role> FindByPage(string keywords...
-        /// <summary>
-        /// 分页获取角色列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="infoSystemNo">信息系统编号</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <param name="rowCount">总记录数</param>
-        /// <param name="pageCount">总页数</param>
-        /// <returns>角色列表</returns>
-        public ICollection<Role> FindByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount)
-        {
-            QueryBuilder<Role> queryBuilder = QueryBuilder<Role>.Affirm();
-            if (!string.IsNullOrWhiteSpace(keywords))
-            {
-                queryBuilder.And(x => x.Keywords.Contains(keywords));
-            }
-            if (!string.IsNullOrWhiteSpace(infoSystemNo))
-            {
-                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
-            }
-
-            Expression<Func<Role, bool>> condition = queryBuilder.Build();
-            IQueryable<Role> roles = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
-
-            return roles.ToList();
-        }
-        #endregion
-
-        #region # 获取角色列表 —— ICollection<Role> Find(string keywords, string loginId...
+        #region # 获取角色列表 —— ICollection<Role> Find(string keywords...
         /// <summary>
         /// 获取角色列表
         /// </summary>
@@ -87,31 +57,33 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 获取系统管理员角色 —— Role GetManagerRole(string infoSystemNo)
+        #region # 分页获取角色列表 —— ICollection<Role> FindByPage(string keywords...
         /// <summary>
-        /// 获取系统管理员角色
+        /// 分页获取角色列表
         /// </summary>
+        /// <param name="keywords">关键字</param>
         /// <param name="infoSystemNo">信息系统编号</param>
-        /// <returns>系统管理员角色</returns>
-        public Role GetManagerRole(string infoSystemNo)
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <param name="rowCount">总记录数</param>
+        /// <param name="pageCount">总页数</param>
+        /// <returns>角色列表</returns>
+        public ICollection<Role> FindByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
-            Expression<Func<Role, bool>> condition =
-                x =>
-                    x.InfoSystemNo == infoSystemNo &&
-                    x.Number == CommonConstants.ManagerRoleNo;
-
-            Role managerRole = base.SingleOrDefault(condition);
-
-            #region # 验证
-
-            if (managerRole == null)
+            QueryBuilder<Role> queryBuilder = QueryBuilder<Role>.Affirm();
+            if (!string.IsNullOrWhiteSpace(keywords))
             {
-                throw new ApplicationException($"未为编号为\"{infoSystemNo}\"的信息系统初始化系统管理员角色！");
+                queryBuilder.And(x => x.Keywords.Contains(keywords));
+            }
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
+            {
+                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
             }
 
-            #endregion
+            Expression<Func<Role, bool>> condition = queryBuilder.Build();
+            IQueryable<Role> roles = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
 
-            return managerRole;
+            return roles.ToList();
         }
         #endregion
 

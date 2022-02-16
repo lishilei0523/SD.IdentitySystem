@@ -590,8 +590,11 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             Authority authority = this._repMediator.AuthorityRep.Single(authorityId);
 
-            IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> infoSystemInfos = infoSystems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            InfoSystem infoSystem = this._repMediator.InfoSystemRep.Single(authority.InfoSystemNo);
+            IDictionary<string, InfoSystemInfo> infoSystemInfos = new Dictionary<string, InfoSystemInfo>
+            {
+                { infoSystem.Number, infoSystem.ToDTO() }
+            };
 
             AuthorityInfo authorityInfo = authority.ToDTO(infoSystemInfos);
 
@@ -613,10 +616,12 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             ICollection<Authority> authorities = this._repMediator.AuthorityRep.Find(keywords, infoSystemNo, applicationType, menuId, roleId);
 
-            IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> infoSystemInfos = infoSystems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            IEnumerable<string> infoSystemNos = authorities.Select(x => x.InfoSystemNo);
+            IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            return authorities.Select(x => x.ToDTO(infoSystemInfos));
+            IEnumerable<AuthorityInfo> authorityInfos = authorities.Select(x => x.ToDTO(infoSystemInfos));
+
+            return authorityInfos;
         }
         #endregion
 
@@ -634,8 +639,8 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(keywords, infoSystemNo, applicationType, pageIndex, pageSize, out int rowCount, out int pageCount);
 
-            IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> infoSystemInfos = infoSystems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            IEnumerable<string> infoSystemNos = authorities.Select(x => x.InfoSystemNo);
+            IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
             IEnumerable<AuthorityInfo> authorityInfos = authorities.Select(x => x.ToDTO(infoSystemInfos));
 
@@ -653,10 +658,15 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             Menu menu = this._repMediator.MenuRep.Single(menuId);
 
-            IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> infoSystemInfos = infoSystems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            InfoSystem infoSystem = this._repMediator.InfoSystemRep.Single(menu.InfoSystemNo);
+            IDictionary<string, InfoSystemInfo> infoSystemInfos = new Dictionary<string, InfoSystemInfo>
+            {
+                { infoSystem.Number, infoSystem.ToDTO() }
+            };
 
-            return menu.ToDTO(infoSystemInfos);
+            MenuInfo menuInfo = menu.ToDTO(infoSystemInfos);
+
+            return menuInfo;
         }
         #endregion
 
@@ -674,7 +684,9 @@ namespace SD.IdentitySystem.AppService.Implements
             IEnumerable<string> infoSystemNos = menus.Select(x => x.InfoSystemNo);
             IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            return menus.Select(x => x.ToDTO(infoSystemInfos));
+            IEnumerable<MenuInfo> menuInfos = menus.Select(x => x.ToDTO(infoSystemInfos));
+
+            return menuInfos;
         }
         #endregion
 
@@ -711,8 +723,11 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             Role role = this._repMediator.RoleRep.Single(roleId);
 
-            IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> infoSystemInfos = infoSystems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            InfoSystem infoSystem = this._repMediator.InfoSystemRep.Single(role.InfoSystemNo);
+            IDictionary<string, InfoSystemInfo> infoSystemInfos = new Dictionary<string, InfoSystemInfo>
+            {
+                { infoSystem.Number, infoSystem.ToDTO() }
+            };
 
             RoleInfo roleInfo = role.ToDTO(infoSystemInfos);
 
@@ -732,10 +747,12 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             IEnumerable<Role> roles = this._repMediator.RoleRep.Find(keywords, loginId, infoSystemNo);
 
-            IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> infoSystemInfos = infoSystems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            IEnumerable<string> infoSystemNos = roles.Select(x => x.InfoSystemNo);
+            IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
-            return roles.Select(x => x.ToDTO(infoSystemInfos));
+            IEnumerable<RoleInfo> roleInfos = roles.Select(x => x.ToDTO(infoSystemInfos));
+
+            return roleInfos;
         }
         #endregion
 
@@ -752,8 +769,8 @@ namespace SD.IdentitySystem.AppService.Implements
         {
             ICollection<Role> roles = this._repMediator.RoleRep.FindByPage(keywords, infoSystemNo, pageIndex, pageSize, out int rowCount, out int pageCount);
 
-            IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindDictionary();
-            IDictionary<string, InfoSystemInfo> infoSystemInfos = infoSystems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+            IEnumerable<string> infoSystemNos = roles.Select(x => x.InfoSystemNo);
+            IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
 
             IEnumerable<RoleInfo> roleInfos = roles.Select(x => x.ToDTO(infoSystemInfos));
 

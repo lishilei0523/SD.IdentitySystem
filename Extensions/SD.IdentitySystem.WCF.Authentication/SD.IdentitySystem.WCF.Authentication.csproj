@@ -23,7 +23,6 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <Compile Remove="AuthenticationBehaviorElement.cs" />
     <PackageReference Include="CoreWCF.Primitives" Version="0.1.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.7.0" />
   </ItemGroup>

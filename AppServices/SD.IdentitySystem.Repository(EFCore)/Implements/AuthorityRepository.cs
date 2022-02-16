@@ -15,42 +15,7 @@ namespace SD.IdentitySystem.Repository.Implements
     /// </summary>
     public class AuthorityRepository : EFAggRootRepositoryProvider<Authority>, IAuthorityRepository
     {
-        #region # 分页获取权限列表 —— ICollection<Authority> FindByPage(string keywords...
-        /// <summary>
-        /// 分页获取权限列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="infoSystemNo">信息系统编号</param>
-        /// <param name="applicationType">应用程序类型</param>
-        /// <param name="pageIndex">页码</param>
-        /// <param name="pageSize">页容量</param>
-        /// <param name="rowCount">总记录数</param>
-        /// <param name="pageCount">总页数</param>
-        /// <returns>权限列表</returns>
-        public ICollection<Authority> FindByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount)
-        {
-            QueryBuilder<Authority> queryBuilder = QueryBuilder<Authority>.Affirm();
-            if (!string.IsNullOrWhiteSpace(keywords))
-            {
-                queryBuilder.And(x => x.Keywords.Contains(keywords));
-            }
-            if (!string.IsNullOrWhiteSpace(infoSystemNo))
-            {
-                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
-            }
-            if (applicationType.HasValue)
-            {
-                queryBuilder.And(x => x.ApplicationType == applicationType.Value);
-            }
-
-            Expression<Func<Authority, bool>> condition = queryBuilder.Build();
-            IQueryable<Authority> authorities = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
-
-            return authorities.ToList();
-        }
-        #endregion
-
-        #region # 获取权限列表 —— ICollection<Authority> Find(string keywords, string infoSystemNo...
+        #region # 获取权限列表 —— ICollection<Authority> Find(string keywords...
         /// <summary>
         /// 获取权限列表
         /// </summary>
@@ -91,6 +56,41 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
+        #region # 分页获取权限列表 —— ICollection<Authority> FindByPage(string keywords...
+        /// <summary>
+        /// 分页获取权限列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <param name="pageIndex">页码</param>
+        /// <param name="pageSize">页容量</param>
+        /// <param name="rowCount">总记录数</param>
+        /// <param name="pageCount">总页数</param>
+        /// <returns>权限列表</returns>
+        public ICollection<Authority> FindByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        {
+            QueryBuilder<Authority> queryBuilder = QueryBuilder<Authority>.Affirm();
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                queryBuilder.And(x => x.Keywords.Contains(keywords));
+            }
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
+            {
+                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
+            }
+            if (applicationType.HasValue)
+            {
+                queryBuilder.And(x => x.ApplicationType == applicationType.Value);
+            }
+
+            Expression<Func<Authority, bool>> condition = queryBuilder.Build();
+            IQueryable<Authority> authorities = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
+
+            return authorities.ToList();
+        }
+        #endregion
+
         #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRole(IEnumerable<Guid> roleIds)
         /// <summary>
         /// 根据角色获取权限列表
@@ -101,8 +101,8 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             #region # 验证
 
-            Guid[] roleIds_ = roleIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
-            if (!roleIds_.Any())
+            roleIds = roleIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
+            if (!roleIds.Any())
             {
                 return new List<Authority>();
             }
@@ -111,7 +111,7 @@ namespace SD.IdentitySystem.Repository.Implements
 
             Expression<Func<Authority, bool>> condition =
                 x =>
-                    x.Roles.Any(y => roleIds_.Contains(y.Id));
+                    x.Roles.Any(y => roleIds.Contains(y.Id));
 
             IQueryable<Authority> authorities = base.Find(condition);
 
@@ -129,8 +129,8 @@ namespace SD.IdentitySystem.Repository.Implements
         {
             #region # 验证
 
-            Guid[] roleIds_ = roleIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
-            if (!roleIds_.Any())
+            roleIds = roleIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
+            if (!roleIds.Any())
             {
                 return new List<Guid>();
             }
@@ -139,7 +139,7 @@ namespace SD.IdentitySystem.Repository.Implements
 
             Expression<Func<Authority, bool>> condition =
                 x =>
-                    x.Roles.Any(y => roleIds_.Contains(y.Id));
+                    x.Roles.Any(y => roleIds.Contains(y.Id));
 
             IQueryable<Guid> authorityIds = base.FindIds(condition);
 

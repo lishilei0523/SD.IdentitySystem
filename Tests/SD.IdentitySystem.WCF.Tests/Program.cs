@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.WCF.Tests
         static void Main()
         {
             //初始化容器
-            Program.InitContainer();
+            InitContainer();
 
             //伪造一个登录信息
             IAuthenticationContract authenticationContract = ResolveMediator.Resolve<IAuthenticationContract>();

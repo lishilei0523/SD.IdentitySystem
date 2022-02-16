@@ -27,7 +27,33 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 分页获取菜单列表 —— ICollection<Menu> FindByPage(string keywords, string infoSystemNo...
+        #region # 获取菜单列表 —— ICollection<Menu> FindBySystem(string infoSystemNo...
+        /// <summary>
+        /// 获取菜单列表
+        /// </summary>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <returns>菜单列表</returns>
+        public ICollection<Menu> FindBySystem(string infoSystemNo, ApplicationType? applicationType)
+        {
+            QueryBuilder<Menu> queryBuilder = QueryBuilder<Menu>.Affirm();
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
+            {
+                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
+            }
+            if (applicationType != null)
+            {
+                queryBuilder.And(x => x.ApplicationType == applicationType.Value || x.ApplicationType == ApplicationType.Complex);
+            }
+
+            Expression<Func<Menu, bool>> condition = queryBuilder.Build();
+            IQueryable<Menu> menus = base.Find(condition).OrderBy(x => x.Sort);
+
+            return menus.ToList();
+        }
+        #endregion
+
+        #region # 分页获取菜单列表 —— ICollection<Menu> FindByPage(string keywords...
         /// <summary>
         /// 分页获取菜单列表
         /// </summary>
@@ -62,32 +88,6 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 获取菜单列表 —— ICollection<Menu> FindBySystem(string infoSystemNo...
-        /// <summary>
-        /// 获取菜单列表
-        /// </summary>
-        /// <param name="infoSystemNo">信息系统编号</param>
-        /// <param name="applicationType">应用程序类型</param>
-        /// <returns>菜单列表</returns>
-        public ICollection<Menu> FindBySystem(string infoSystemNo, ApplicationType? applicationType)
-        {
-            QueryBuilder<Menu> queryBuilder = QueryBuilder<Menu>.Affirm();
-            if (!string.IsNullOrWhiteSpace(infoSystemNo))
-            {
-                queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
-            }
-            if (applicationType != null)
-            {
-                queryBuilder.And(x => x.ApplicationType == applicationType.Value || x.ApplicationType == ApplicationType.Complex);
-            }
-
-            Expression<Func<Menu, bool>> condition = queryBuilder.Build();
-            IQueryable<Menu> menus = base.Find(condition).OrderBy(x => x.Sort);
-
-            return menus.ToList();
-        }
-        #endregion
-
         #region # 根据权限获取菜单列表 —— ICollection<Menu> FindByAuthority(IEnumerable<Guid>...
         /// <summary>
         /// 根据权限获取菜单列表
@@ -97,14 +97,22 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <returns>菜单列表</returns>
         public ICollection<Menu> FindByAuthority(IEnumerable<Guid> authorityIds, ApplicationType? applicationType)
         {
-            Guid[] authorityIds_ = authorityIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
+            #region # 验证
+
+            authorityIds = authorityIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
+            if (!authorityIds.Any())
+            {
+                return new List<Menu>();
+            }
+
+            #endregion
 
             QueryBuilder<Menu> queryBuilder = QueryBuilder<Menu>.Affirm();
-            if (authorityIds_.Any())
+            if (authorityIds.Any())
             {
-                queryBuilder.And(x => x.Authorities.Any(y => authorityIds_.Contains(y.Id)));
+                queryBuilder.And(x => x.Authorities.Any(y => authorityIds.Contains(y.Id)));
             }
-            if (applicationType != null)
+            if (applicationType.HasValue)
             {
                 queryBuilder.And(x => x.ApplicationType == applicationType.Value);
             }

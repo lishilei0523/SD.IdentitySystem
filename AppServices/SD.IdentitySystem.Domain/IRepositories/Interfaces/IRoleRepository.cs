@@ -10,6 +10,17 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// </summary>
     public interface IRoleRepository : IAggRootRepository<Role>
     {
+        #region # 获取角色列表 —— ICollection<Role> Find(string keywords...
+        /// <summary>
+        /// 获取角色列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="loginId">用户名</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <returns>角色列表</returns>
+        ICollection<Role> Find(string keywords, string loginId, string infoSystemNo);
+        #endregion
+
         #region # 分页获取角色列表 —— ICollection<Role> FindByPage(string keywords...
         /// <summary>
         /// 分页获取角色列表
@@ -22,26 +33,6 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <param name="pageCount">总页数</param>
         /// <returns>角色列表</returns>
         ICollection<Role> FindByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount);
-        #endregion
-
-        #region # 获取角色列表 —— ICollection<Role> Find(string keywords, string loginId...
-        /// <summary>
-        /// 获取角色列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="loginId">用户名</param>
-        /// <param name="infoSystemNo">信息系统编号</param>
-        /// <returns>角色列表</returns>
-        ICollection<Role> Find(string keywords, string loginId, string infoSystemNo);
-        #endregion
-
-        #region # 获取系统管理员角色 —— Role GetManagerRole(string infoSystemNo)
-        /// <summary>
-        /// 获取系统管理员角色
-        /// </summary>
-        /// <param name="infoSystemNo">信息系统编号</param>
-        /// <returns>系统管理员角色</returns>
-        Role GetManagerRole(string infoSystemNo);
         #endregion
 
         #region # 获取角色Id列表 —— ICollection<Guid> FindIds(string loginId, string infoSystemNo)

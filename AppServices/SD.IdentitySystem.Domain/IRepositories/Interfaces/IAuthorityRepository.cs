@@ -11,6 +11,19 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// </summary>
     public interface IAuthorityRepository : IAggRootRepository<Authority>
     {
+        #region # 获取权限列表 —— ICollection<Authority> Find(string keywords...
+        /// <summary>
+        /// 获取权限列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <param name="menuId">菜单Id</param>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>权限列表</returns>
+        ICollection<Authority> Find(string keywords, string infoSystemNo, ApplicationType? applicationType, Guid? menuId, Guid? roleId);
+        #endregion
+
         #region # 分页获取权限列表 —— ICollection<Authority> FindByPage(string keywords...
         /// <summary>
         /// 分页获取权限列表
@@ -24,19 +37,6 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// <param name="pageCount">总页数</param>
         /// <returns>权限列表</returns>
         ICollection<Authority> FindByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount);
-        #endregion
-
-        #region # 获取权限列表 —— ICollection<Authority> Find(string keywords, string infoSystemNo...
-        /// <summary>
-        /// 获取权限列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <param name="infoSystemNo">信息系统编号</param>
-        /// <param name="applicationType">应用程序类型</param>
-        /// <param name="menuId">菜单Id</param>
-        /// <param name="roleId">角色Id</param>
-        /// <returns>权限列表</returns>
-        ICollection<Authority> Find(string keywords, string infoSystemNo, ApplicationType? applicationType, Guid? menuId, Guid? roleId);
         #endregion
 
         #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRole(IEnumerable<Guid> roleIds)

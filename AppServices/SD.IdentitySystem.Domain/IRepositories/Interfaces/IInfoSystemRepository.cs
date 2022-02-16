@@ -1,6 +1,5 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
 using SD.Infrastructure.RepositoryBase;
-using System.Collections.Generic;
 
 namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
 {
@@ -9,12 +8,6 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
     /// </summary>
     public interface IInfoSystemRepository : IAggRootRepository<InfoSystem>
     {
-        #region # 获取信息系统字典 —— IDictionary<string, InfoSystem> FindDictionary()
-        /// <summary>
-        /// 获取信息系统字典
-        /// </summary>
-        /// <returns>信息系统字典</returns>
-        IDictionary<string, InfoSystem> FindDictionary();
-        #endregion
+
     }
 }
