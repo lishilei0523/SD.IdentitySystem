@@ -1,6 +1,6 @@
 ﻿using System.Windows.Forms;
 
-namespace SD.IdentitySystem.InitializationTool
+namespace SD.IdentitySystem.AuthorityImporter
 {
     partial class MainWindow
     {
@@ -143,7 +143,7 @@ namespace SD.IdentitySystem.InitializationTool
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "身份认证系统初始化工具";
+            this.Text = "身份认证系统 - 权限导入工具";
             this.Load += new System.EventHandler(this.MainWindow_Load);
             this.ResumeLayout(false);
             this.PerformLayout();

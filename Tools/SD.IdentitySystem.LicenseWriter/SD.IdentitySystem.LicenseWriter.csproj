@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Resource Include="favicon.ico" />
+    <Content Include="favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>

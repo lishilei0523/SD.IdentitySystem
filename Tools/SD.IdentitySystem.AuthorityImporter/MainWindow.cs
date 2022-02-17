@@ -12,28 +12,28 @@ using System.Reflection;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
-namespace SD.IdentitySystem.InitializationTool
+namespace SD.IdentitySystem.AuthorityImporter
 {
     /// <summary>
     /// 主窗体
     /// </summary>
     public partial class MainWindow : Form
     {
+        #region # 字段及构造器
+
         /// <summary>
         /// 身份认证服务契约接口
         /// </summary>
         private readonly IAuthenticationContract _authenticationContract;
 
         /// <summary>
-        /// 权限服务契约接口
+        /// 权限管理服务契约接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
 
         /// <summary>
-        /// 构造器
+        /// 依赖注入构造器
         /// </summary>
-        /// <param name="authorizationContract">权限服务契约接口</param>
-        /// <param name="authenticationContract">身份认证服务契约接口</param>
         public MainWindow(IAuthorizationContract authorizationContract, IAuthenticationContract authenticationContract)
         {
             this._authorizationContract = authorizationContract;
@@ -49,10 +49,13 @@ namespace SD.IdentitySystem.InitializationTool
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
         }
 
+        #endregion
+
+        #region # 窗体加载事件 —— void MainWindow_Load(object sender, EventArgs eventArgs)
         /// <summary>
         /// 窗体加载事件
         /// </summary>
-        private void MainWindow_Load(object sender, EventArgs e)
+        private void MainWindow_Load(object sender, EventArgs eventArgs)
         {
             IEnumerable<InfoSystemInfo> infoSystems = this._authorizationContract.GetInfoSystems().OrderBy(x => x.Number);
             IDictionary<string, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumMembers();
@@ -69,21 +72,25 @@ namespace SD.IdentitySystem.InitializationTool
             this.Cbx_InfoSystems.DisplayMember = nameof(InfoSystemInfo.Name);
             this.Cbx_ApplicationTypes.DisplayMember = "Value";
         }
+        #endregion
 
+        #region # 打开文件事件 —— void Btn_OpenFile_Click(object sender, EventArgs eventArgs)
         /// <summary>
-        /// 打开文件
+        /// 打开文件事件
         /// </summary>
-        private void Btn_OpenFile_Click(object sender, EventArgs e)
+        private void Btn_OpenFile_Click(object sender, EventArgs eventArgs)
         {
             OpenFileDialog openFileDialog = new OpenFileDialog { Filter = @"dll files (*.dll)|*.dll" };
             openFileDialog.ShowDialog();
             this.Txt_FilePath.Text = openFileDialog.FileName;
         }
+        #endregion
 
+        #region # 初始化事件 —— void Btn_Init_Click(object sender, EventArgs eventArgs)
         /// <summary>
-        /// 初始化
+        /// 初始化事件
         /// </summary>
-        private async void Btn_Init_Click(object sender, EventArgs e)
+        private async void Btn_Init_Click(object sender, EventArgs eventArgs)
         {
             #region # 验证
 
@@ -116,9 +123,11 @@ namespace SD.IdentitySystem.InitializationTool
             await this.InitAuthorities(assemblyPath, infoSystemNo, applicationType);
             MessageBox.Show(@"OK", @"OK");
         }
+        #endregion
 
+        #region # 初始化权限 —— Task InitAuthorities(string assemblyPath, string infoSystemNo...
         /// <summary>
-        /// 初始化权限集
+        /// 初始化权限
         /// </summary>
         /// <param name="assemblyPath">程序集路径</param>
         /// <param name="infoSystemNo">信息系统编号</param>
@@ -130,13 +139,13 @@ namespace SD.IdentitySystem.InitializationTool
             Type[] types = assembly.GetTypes();
 
             //加载需认证的方法
-            IEnumerable<MethodInfo> methodInfos = types.SelectMany(x => x.GetMethods()).Where(x => x.IsDefined(typeof(RequireAuthorizationAttribute), true));
+            IEnumerable<MethodInfo> methodInfos = types.SelectMany(x => x.GetMethods()).Where(x => x.IsDefined(typeof(RequireAuthorizationAttribute), false));
 
             //构造权限参数模型集
             IList<AuthorityParam> authorityParams = new List<AuthorityParam>();
             foreach (MethodInfo methodInfo in methodInfos)
             {
-                object[] attributes = methodInfo.GetCustomAttributes(typeof(RequireAuthorizationAttribute), true);
+                object[] attributes = methodInfo.GetCustomAttributes(typeof(RequireAuthorizationAttribute), false);
                 RequireAuthorizationAttribute attribute = (RequireAuthorizationAttribute)(attributes[0]);
                 AuthorityParam authorityParam = new AuthorityParam
                 {
@@ -146,7 +155,8 @@ namespace SD.IdentitySystem.InitializationTool
                 authorityParams.Add(authorityParam);
             }
 
-            await TaskEx.Run(() => this._authorizationContract.CreateAuthorities(infoSystemNo, applicationType, authorityParams));
+            await Task.Factory.StartNew(() => this._authorizationContract.CreateAuthorities(infoSystemNo, applicationType, authorityParams));
         }
+        #endregion
     }
 }

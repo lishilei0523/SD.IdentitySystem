@@ -4,7 +4,7 @@ using SD.IOC.Core.Mediators;
 using System;
 using System.Windows.Forms;
 
-namespace SD.IdentitySystem.InitializationTool
+namespace SD.IdentitySystem.AuthorityImporter
 {
     static class Program
     {
@@ -20,7 +20,8 @@ namespace SD.IdentitySystem.InitializationTool
             //初始化依赖注入容器
             InitContainer();
 
-            Application.Run(ResolveMediator.Resolve<MainWindow>());
+            MainWindow mainWindow = ResolveMediator.Resolve<MainWindow>();
+            Application.Run(mainWindow);
         }
 
         /// <summary>

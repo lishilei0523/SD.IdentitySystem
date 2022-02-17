@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
         xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
-        xmlns:cm="http://caliburnmicro.com"
+        xmlns:cm="http://www.caliburnproject.org"
         mc:Ignorable="d"
         Title="身份认证系统 - 数据导入工具" 
         Width="400" Height="480" ResizeMode="NoResize" 

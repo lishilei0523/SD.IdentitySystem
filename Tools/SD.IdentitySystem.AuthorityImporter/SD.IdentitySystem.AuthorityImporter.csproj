@@ -6,7 +6,7 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem 初始化工具</Description>
+    <Description>SD.IdentitySystem 权限导入工具</Description>
     <Copyright>Copyright © SD 2021</Copyright>
     <Version>4.4.0</Version>
     <AssemblyVersion>4.4.0</AssemblyVersion>
@@ -18,7 +18,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Resource Include="favicon.ico" />
+    <Content Include="favicon.ico" />
   </ItemGroup>
 
   <ItemGroup>

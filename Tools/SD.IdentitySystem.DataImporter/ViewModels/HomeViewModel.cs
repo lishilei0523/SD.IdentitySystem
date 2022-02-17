@@ -10,7 +10,6 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.ServiceModel.Extensions;
-using System.Threading;
 using System.Threading.Tasks;
 
 namespace SD.IdentitySystem.DataImporter.ViewModels
@@ -58,11 +57,11 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
 
         //Initializations
 
-        #region 初始化 —— override async Task OnInitializeAsync(CancellationToken cancellationToken)
+        #region 初始化 —— override async void OnInitialize()
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
+        protected override async void OnInitialize()
         {
             string loginId = CommonConstants.AdminLoginId;
             string password = CommonConstants.InitialPassword;

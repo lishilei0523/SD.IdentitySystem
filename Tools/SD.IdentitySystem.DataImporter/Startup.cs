@@ -1,12 +1,12 @@
-﻿using Caliburn.Micro;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Autofac;
+using Caliburn.Micro;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SD.Common;
 using SD.IdentitySystem.DataImporter.ViewModels;
 using SD.Infrastructure.WPF.Caliburn.Extensions;
+using SD.IOC.Core.Extensions;
 using SD.IOC.Core.Mediators;
-using SD.IOC.Extension.NetFx;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -91,8 +91,8 @@ namespace SD.IdentitySystem.DataImporter
             //初始化依赖注入容器
             if (!ResolveMediator.ContainerBuilt)
             {
-                IServiceCollection serviceCollection = ResolveMediator.GetServiceCollection();
-                serviceCollection.RegisterConfigs();
+                ContainerBuilder containerBuilder = ResolveMediator.GetContainerBuilder();
+                containerBuilder.RegisterConfigs();
                 ResolveMediator.Build();
             }
         }
