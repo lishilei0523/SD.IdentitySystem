@@ -1,5 +1,4 @@
 ﻿using SD.Infrastructure;
-using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.Membership;
 using System;
 using System.Reflection;
@@ -28,7 +27,7 @@ namespace SD.IdentitySystem
 
             if (string.IsNullOrWhiteSpace(typeFullName))
             {
-                throw new AppServiceException("Membership提供者未配置！");
+                throw new ApplicationException("Membership提供者未配置！");
             }
 
             #endregion
