@@ -35,8 +35,10 @@ namespace SD.IdentitySystem.UpdateService
                 FileProvider = new PhysicalFileProvider(fileServerPath),
                 EnableDirectoryBrowsing = true
             };
-            FileExtensionContentTypeProvider contentTypeProvider = (FileExtensionContentTypeProvider)fileServerOptions.StaticFileOptions.ContentTypeProvider;
+
+            FileExtensionContentTypeProvider contentTypeProvider = new FileExtensionContentTypeProvider();
             contentTypeProvider.Mappings.Add(".apk", "application/vnd.android.package-archive");
+            fileServerOptions.StaticFileOptions.ContentTypeProvider = contentTypeProvider;
 
             appBuilder.UseStaticFiles(staticFileOptions);
             appBuilder.UseFileServer(fileServerOptions);
