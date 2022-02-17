@@ -144,7 +144,7 @@ namespace SD.IdentitySystem.Domain.Entities
 
         #region # 方法
 
-        #region 修改权限 —— void UpdateInfo(string authorityName, string englishName...
+        #region 修改权限 —— void UpdateInfo(string authorityName...
         /// <summary>
         /// 修改权限
         /// </summary>
