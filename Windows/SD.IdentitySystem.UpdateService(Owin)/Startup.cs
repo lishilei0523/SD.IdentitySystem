@@ -16,10 +16,9 @@ namespace SD.IdentitySystem.UpdateService
         /// <summary>
         /// 配置应用程序
         /// </summary>
-        /// <param name="appBuilder">应用程序建造者</param>
         public void Configuration(IAppBuilder appBuilder)
         {
-            //配置文件服务器
+            //配置服务器
             string staticFilesPath = Path.IsPathRooted(AspNetSetting.StaticFilesPath)
                 ? AspNetSetting.StaticFilesPath
                 : Path.Combine(AppDomain.CurrentDomain.BaseDirectory, AspNetSetting.StaticFilesPath);

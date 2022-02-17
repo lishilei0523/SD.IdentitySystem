@@ -1,6 +1,6 @@
 <service>
   <id>SD.IdentitySystem.UpdateService(Core)</id>
   <name>SD.IdentitySystem.UpdateService(Core)</name>
-  <description>身份认证系统客户端更新服务</description>
+  <description>身份认证系统更新服务</description>
   <executable>%BASE%\..\SD.IdentitySystem.UpdateService.exe</executable>
 </service>

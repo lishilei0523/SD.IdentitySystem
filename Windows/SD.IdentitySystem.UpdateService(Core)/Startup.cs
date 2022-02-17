@@ -18,17 +18,21 @@ namespace SD.IdentitySystem.UpdateService
         public void Configure(IApplicationBuilder appBuilder)
         {
             //ÅäÖÃ·þÎñÆ÷
-            string staticFilesRoot = Path.Combine(AppContext.BaseDirectory, AspNetSetting.StaticFilesPath);
-            string fileServerRoot = Path.Combine(AppContext.BaseDirectory, AspNetSetting.FileServerPath);
-            Directory.CreateDirectory(staticFilesRoot);
-            Directory.CreateDirectory(fileServerRoot);
+            string staticFilesPath = Path.IsPathRooted(AspNetSetting.StaticFilesPath)
+                ? AspNetSetting.StaticFilesPath
+                : Path.Combine(AppContext.BaseDirectory, AspNetSetting.StaticFilesPath);
+            string fileServerPath = Path.IsPathRooted(AspNetSetting.FileServerPath)
+                ? AspNetSetting.FileServerPath
+                : Path.Combine(AppContext.BaseDirectory, AspNetSetting.FileServerPath);
+            Directory.CreateDirectory(staticFilesPath);
+            Directory.CreateDirectory(fileServerPath);
             StaticFileOptions staticFileOptions = new StaticFileOptions
             {
-                FileProvider = new PhysicalFileProvider(staticFilesRoot)
+                FileProvider = new PhysicalFileProvider(staticFilesPath)
             };
             FileServerOptions fileServerOptions = new FileServerOptions
             {
-                FileProvider = new PhysicalFileProvider(fileServerRoot),
+                FileProvider = new PhysicalFileProvider(fileServerPath),
                 EnableDirectoryBrowsing = true
             };
             FileExtensionContentTypeProvider contentTypeProvider = (FileExtensionContentTypeProvider)fileServerOptions.StaticFileOptions.ContentTypeProvider;
