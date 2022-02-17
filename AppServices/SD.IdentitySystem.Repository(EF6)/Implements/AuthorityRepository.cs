@@ -63,12 +63,14 @@ namespace SD.IdentitySystem.Repository.Implements
         /// <param name="keywords">关键字</param>
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
+        /// <param name="menuId">菜单Id</param>
+        /// <param name="roleId">角色Id</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount">总记录数</param>
         /// <param name="pageCount">总页数</param>
         /// <returns>权限列表</returns>
-        public ICollection<Authority> FindByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        public ICollection<Authority> FindByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, Guid? menuId, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
             QueryBuilder<Authority> queryBuilder = QueryBuilder<Authority>.Affirm();
             if (!string.IsNullOrWhiteSpace(keywords))
@@ -83,6 +85,14 @@ namespace SD.IdentitySystem.Repository.Implements
             {
                 queryBuilder.And(x => x.ApplicationType == applicationType.Value);
             }
+            if (menuId.HasValue)
+            {
+                queryBuilder.And(x => x.MenuLeaves.Any(y => y.Id == menuId.Value));
+            }
+            if (roleId.HasValue)
+            {
+                queryBuilder.And(x => x.Roles.Any(y => y.Id == roleId.Value));
+            }
 
             Expression<Func<Authority, bool>> condition = queryBuilder.Build();
             IQueryable<Authority> authorities = base.FindByPage(condition, pageIndex, pageSize, out rowCount, out pageCount);
@@ -91,13 +101,13 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRole(IEnumerable<Guid> roleIds)
+        #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds)
         /// <summary>
         /// 根据角色获取权限列表
         /// </summary>
         /// <param name="roleIds">角色Id集</param>
         /// <returns>权限列表</returns>
-        public ICollection<Authority> FindByRole(IEnumerable<Guid> roleIds)
+        public ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds)
         {
             #region # 验证
 
@@ -119,13 +129,13 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 根据角色获取权限Id列表 —— ICollection<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
+        #region # 根据角色获取权限Id列表 —— ICollection<Guid> FindIdsByRoles(IEnumerable<Guid> roleIds)
         /// <summary>
         /// 根据角色获取权限Id列表
         /// </summary>
         /// <param name="roleIds">角色Id集</param>
         /// <returns>权限Id列表</returns>
-        public ICollection<Guid> FindIdsByRole(IEnumerable<Guid> roleIds)
+        public ICollection<Guid> FindIdsByRoles(IEnumerable<Guid> roleIds)
         {
             #region # 验证
 

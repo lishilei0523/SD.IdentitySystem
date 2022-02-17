@@ -327,20 +327,20 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetMenus(string loginId, string infoSystemNo...
+        #region # 获取用户菜单列表 —— IEnumerable<MenuInfo> GetMenus(string loginId, string infoSystemNo...
         /// <summary>
-        /// 获取用户菜单树
+        /// 获取用户菜单列表
         /// </summary>
         /// <param name="loginId">用户名</param>
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
-        /// <returns>用户菜单树</returns>
+        /// <returns>用户菜单列表</returns>
         public IEnumerable<MenuInfo> GetUserMenus(string loginId, string infoSystemNo, ApplicationType? applicationType)
         {
             ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, infoSystemNo);
-            ICollection<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRole(roleIds);
+            ICollection<Guid> authorityIds = this._repMediator.AuthorityRep.FindIdsByRoles(roleIds);
 
-            ICollection<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, applicationType);
+            ICollection<Menu> menus = this._repMediator.MenuRep.FindByAuthorities(authorityIds, applicationType);
             menus = menus.TailRecurseParentNodes();
 
             IEnumerable<string> infoSystemNos = menus.Select(x => x.InfoSystemNo);
@@ -382,7 +382,7 @@ namespace SD.IdentitySystem.AppService.Implements
         public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string infoSystemNo)
         {
             ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, infoSystemNo);
-            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
+            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByRoles(roleIds);
 
             IEnumerable<string> infoSystemNos = authorities.Select(x => x.InfoSystemNo);
             IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());

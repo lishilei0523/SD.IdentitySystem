@@ -27,16 +27,21 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 获取菜单列表 —— ICollection<Menu> FindBySystem(string infoSystemNo...
+        #region # 获取菜单列表 —— ICollection<Menu> FindBySystem(string keywords...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
+        /// <param name="keywords">关键字</param>
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        public ICollection<Menu> FindBySystem(string infoSystemNo, ApplicationType? applicationType)
+        public ICollection<Menu> FindBySystem(string keywords, string infoSystemNo, ApplicationType? applicationType)
         {
             QueryBuilder<Menu> queryBuilder = QueryBuilder<Menu>.Affirm();
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                queryBuilder.And(x => x.Keywords.Contains(keywords));
+            }
             if (!string.IsNullOrWhiteSpace(infoSystemNo))
             {
                 queryBuilder.And(x => x.InfoSystemNo == infoSystemNo);
@@ -88,14 +93,14 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 根据权限获取菜单列表 —— ICollection<Menu> FindByAuthority(IEnumerable<Guid>...
+        #region # 根据权限获取菜单列表 —— ICollection<Menu> FindByAuthorities(IEnumerable<Guid>...
         /// <summary>
         /// 根据权限获取菜单列表
         /// </summary>
         /// <param name="authorityIds">权限Id集</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        public ICollection<Menu> FindByAuthority(IEnumerable<Guid> authorityIds, ApplicationType? applicationType)
+        public ICollection<Menu> FindByAuthorities(IEnumerable<Guid> authorityIds, ApplicationType? applicationType)
         {
             #region # 验证
 

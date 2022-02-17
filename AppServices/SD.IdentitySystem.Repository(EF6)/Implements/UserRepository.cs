@@ -75,6 +75,37 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
+        #region # 获取用户列表 —— ICollection<User> Find(string keywords...
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>用户列表</returns>
+        public ICollection<User> Find(string keywords, string infoSystemNo, Guid? roleId)
+        {
+            QueryBuilder<User> queryBuilder = new QueryBuilder<User>(x => x.Number != CommonConstants.AdminLoginId);
+            if (!string.IsNullOrWhiteSpace(keywords))
+            {
+                queryBuilder.And(x => x.Keywords.Contains(keywords));
+            }
+            if (!string.IsNullOrWhiteSpace(infoSystemNo))
+            {
+                queryBuilder.And(x => x.Roles.Any(y => y.InfoSystemNo == infoSystemNo));
+            }
+            if (roleId.HasValue)
+            {
+                queryBuilder.And(x => x.Roles.Any(y => y.Id == roleId.Value));
+            }
+
+            Expression<Func<User, bool>> condition = queryBuilder.Build();
+            IQueryable<User> users = base.Find(condition);
+
+            return users.ToList();
+        }
+        #endregion
+
         #region # 分页获取用户列表 —— ICollection<User> FindByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表

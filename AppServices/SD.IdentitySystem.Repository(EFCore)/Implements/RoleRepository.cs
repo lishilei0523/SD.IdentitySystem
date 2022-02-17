@@ -62,18 +62,23 @@ namespace SD.IdentitySystem.Repository.Implements
         /// 分页获取角色列表
         /// </summary>
         /// <param name="keywords">关键字</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount">总记录数</param>
         /// <param name="pageCount">总页数</param>
         /// <returns>角色列表</returns>
-        public ICollection<Role> FindByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount)
+        public ICollection<Role> FindByPage(string keywords, string loginId, string infoSystemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount)
         {
             QueryBuilder<Role> queryBuilder = QueryBuilder<Role>.Affirm();
             if (!string.IsNullOrWhiteSpace(keywords))
             {
                 queryBuilder.And(x => x.Keywords.Contains(keywords));
+            }
+            if (!string.IsNullOrWhiteSpace(loginId))
+            {
+                queryBuilder.And(x => x.Users.Any(y => y.Number == loginId));
             }
             if (!string.IsNullOrWhiteSpace(infoSystemNo))
             {

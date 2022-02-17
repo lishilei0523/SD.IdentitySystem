@@ -637,7 +637,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>权限列表</returns>
         public PageModel<AuthorityInfo> GetAuthoritiesByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int pageIndex, int pageSize)
         {
-            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(keywords, infoSystemNo, applicationType, pageIndex, pageSize, out int rowCount, out int pageCount);
+            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByPage(keywords, infoSystemNo, applicationType, null, null, pageIndex, pageSize, out int rowCount, out int pageCount);
 
             IEnumerable<string> infoSystemNos = authorities.Select(x => x.InfoSystemNo);
             IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -679,7 +679,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>菜单列表</returns>
         public IEnumerable<MenuInfo> GetMenus(string infoSystemNo, ApplicationType? applicationType)
         {
-            ICollection<Menu> menus = this._repMediator.MenuRep.FindBySystem(infoSystemNo, applicationType);
+            ICollection<Menu> menus = this._repMediator.MenuRep.FindBySystem(null, infoSystemNo, applicationType);
 
             IEnumerable<string> infoSystemNos = menus.Select(x => x.InfoSystemNo);
             IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -767,7 +767,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <returns>角色列表</returns>
         public PageModel<RoleInfo> GetRolesByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize)
         {
-            ICollection<Role> roles = this._repMediator.RoleRep.FindByPage(keywords, infoSystemNo, pageIndex, pageSize, out int rowCount, out int pageCount);
+            ICollection<Role> roles = this._repMediator.RoleRep.FindByPage(keywords, null, infoSystemNo, pageIndex, pageSize, out int rowCount, out int pageCount);
 
             IEnumerable<string> infoSystemNos = roles.Select(x => x.InfoSystemNo);
             IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());

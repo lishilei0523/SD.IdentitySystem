@@ -184,12 +184,12 @@ namespace SD.IdentitySystem.AppService.Implements
             loginInfo.LoginSystemInfos = infoSystems.Values.Select(x => x.ToLoginSystemInfo()).ToList();
 
             /*权限部分*/
-            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRole(roleIds);
+            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRoles(roleIds);
             loginInfo.LoginAuthorityInfos = authorities.Select(x => x.ToLoginAuthorityInfo()).ToList();
 
             /*菜单部分*/
             IEnumerable<Guid> authorityIds = authorities.Select(x => x.Id);
-            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthority(authorityIds, null);
+            IEnumerable<Menu> menus = this._repMediator.MenuRep.FindByAuthorities(authorityIds, null);
             menus = menus.TailRecurseParentNodes();
             loginInfo.LoginMenuInfos = menus.ToLoginMenuInfoTree(null);
 

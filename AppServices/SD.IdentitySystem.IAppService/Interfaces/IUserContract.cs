@@ -162,14 +162,14 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         IEnumerable<InfoSystemInfo> GetUserInfoSystems(string loginId);
         #endregion
 
-        #region # 获取用户菜单树 —— IEnumerable<MenuInfo> GetUserMenus(string loginId, string infoSystemNo...
+        #region # 获取用户菜单列表 —— IEnumerable<MenuInfo> GetUserMenus(string loginId, string infoSystemNo...
         /// <summary>
-        /// 获取用户菜单树
+        /// 获取用户菜单列表
         /// </summary>
         /// <param name="loginId">用户名</param>
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
-        /// <returns>用户菜单树</returns>
+        /// <returns>用户菜单列表</returns>
         [OperationContract]
         IEnumerable<MenuInfo> GetUserMenus(string loginId, string infoSystemNo, ApplicationType? applicationType);
         #endregion

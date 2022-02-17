@@ -28,6 +28,17 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         User SingleByPrivateKey(string privateKey);
         #endregion
 
+        #region # 获取用户列表 —— ICollection<User> Find(string keywords...
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>用户列表</returns>
+        ICollection<User> Find(string keywords, string infoSystemNo, Guid? roleId);
+        #endregion
+
         #region # 分页获取用户列表 —— ICollection<User> FindByPage(string keywords...
         /// <summary>
         /// 分页获取用户列表

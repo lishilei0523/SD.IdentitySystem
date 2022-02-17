@@ -26,13 +26,14 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         /// 分页获取角色列表
         /// </summary>
         /// <param name="keywords">关键字</param>
+        /// <param name="loginId">用户名</param>
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="pageIndex">页码</param>
         /// <param name="pageSize">页容量</param>
         /// <param name="rowCount">总记录数</param>
         /// <param name="pageCount">总页数</param>
         /// <returns>角色列表</returns>
-        ICollection<Role> FindByPage(string keywords, string infoSystemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount);
+        ICollection<Role> FindByPage(string keywords, string loginId, string infoSystemNo, int pageIndex, int pageSize, out int rowCount, out int pageCount);
         #endregion
 
         #region # 获取角色Id列表 —— ICollection<Guid> FindIds(string loginId, string infoSystemNo)
