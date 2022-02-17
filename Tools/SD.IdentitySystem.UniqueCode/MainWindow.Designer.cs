@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainWindow));
             this.Btn_CalculateMachineCode = new System.Windows.Forms.Button();
             this.Btn_Copy = new System.Windows.Forms.Button();
             this.Txt_MachineCode = new System.Windows.Forms.TextBox();
@@ -89,10 +90,11 @@
             this.Controls.Add(this.Txt_MachineCode);
             this.Controls.Add(this.label3);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "MainWindow";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "机器唯一码计算工具";
+            this.Text = "身份认证系统 - 唯一码生成工具";
             this.ResumeLayout(false);
             this.PerformLayout();
 

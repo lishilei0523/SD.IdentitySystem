@@ -3,10 +3,13 @@ using System.Windows.Forms;
 
 namespace SD.IdentitySystem.UniqueCode
 {
+    /// <summary>
+    /// 主窗体
+    /// </summary>
     public partial class MainWindow : Form
     {
         /// <summary>
-        /// 构造器
+        /// 默认构造器
         /// </summary>
         public MainWindow()
         {

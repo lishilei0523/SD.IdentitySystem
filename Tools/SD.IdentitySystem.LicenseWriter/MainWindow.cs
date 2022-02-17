@@ -13,7 +13,7 @@ namespace SD.IdentitySystem.LicenseWriter
     public partial class MainWindow : Form
     {
         /// <summary>
-        /// 无参构造器
+        /// 默认构造器
         /// </summary>
         public MainWindow()
         {
