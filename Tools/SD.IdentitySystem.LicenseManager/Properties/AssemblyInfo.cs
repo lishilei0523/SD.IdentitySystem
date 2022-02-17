@@ -16,6 +16,5 @@ using System.Runtime.InteropServices;
 // 如果此项目向 COM 公开，则下列 GUID 用于类型库的 ID
 [assembly: Guid("9db7a34c-ca30-4ec9-91d5-c6e46078e6f1")]
 
-
 [assembly: InternalsVisibleTo("SD.IdentitySystem.LicenseWriter")]
 [assembly: InternalsVisibleTo("SD.IdentitySystem.UniqueCode")]
