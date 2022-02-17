@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 16.0.30907.101
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - 系统初始化工具", "01 - 系统初始化工具", "{E738CC7C-C2A8-4038-ABD2-CD6205A1989B}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "01 - 初始化工具", "01 - 初始化工具", "{E738CC7C-C2A8-4038-ABD2-CD6205A1989B}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.UniqueCode", "Tools\SD.IdentitySystem.UniqueCode\SD.IdentitySystem.UniqueCode.csproj", "{1ADB97CB-60D3-4D0F-99CA-744EB0726868}"
 EndProject
