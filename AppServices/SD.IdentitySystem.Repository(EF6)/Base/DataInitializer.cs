@@ -216,12 +216,12 @@ namespace SD.IdentitySystem.Repository.Base
             Menu loginRecordManagement = new Menu(infoSystemNo, ApplicationType.Web, "登录记录", 7, "/LoginRecord/Index", null, null, root);
 
             //创建权限
-            Authority infoSystemManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "信息系统管理首页", "/InfoSystem/Index", null, null, null, null, null, null);
-            Authority userManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "用户管理首页", "/User/Index", null, null, null, null, null, null);
-            Authority roleManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "角色管理首页", "/Role/Index", null, null, null, null, null, null);
-            Authority menuManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "菜单管理首页", "/Menu/Index", null, null, null, null, null, null);
-            Authority authorityManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "权限管理首页", "/Authority/Index", null, null, null, null, null, null);
-            Authority loginRecordManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "登录记录首页", "/LoginRecord/Index", null, null, null, null, null, null);
+            Authority infoSystemManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "信息系统管理首页", "/InfoSystem/Index", null);
+            Authority userManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "用户管理首页", "/User/Index", null);
+            Authority roleManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "角色管理首页", "/Role/Index", null);
+            Authority menuManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "菜单管理首页", "/Menu/Index", null);
+            Authority authorityManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "权限管理首页", "/Authority/Index", null);
+            Authority loginRecordManagementIndex = new Authority(infoSystemNo, ApplicationType.Web, "登录记录首页", "/LoginRecord/Index", null);
 
             //菜单关联权限
             infoSystemManagement.RelateAuthorities(new[] { infoSystemManagementIndex });
@@ -264,12 +264,12 @@ namespace SD.IdentitySystem.Repository.Base
             Menu loginRecordManagement = new Menu(infoSystemNo, ApplicationType.Windows, "登录记录", 7, "SD.IdentitySystem.Client.ViewModels.LoginRecord.IndexViewModel", null, "LabelOutline", root);
 
             //创建权限
-            Authority infoSystemManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "信息系统管理首页", "/InfoSystem/Index", null, null, null, null, null, null);
-            Authority userManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "用户管理首页", "/User/Index", null, null, null, null, null, null);
-            Authority roleManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "角色管理首页", "/Role/Index", null, null, null, null, null, null);
-            Authority menuManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "菜单管理首页", "/Menu/Index", null, null, null, null, null, null);
-            Authority authorityManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "权限管理首页", "/Authority/Index", null, null, null, null, null, null);
-            Authority loginRecordManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "登录记录首页", "/LoginRecord/Index", null, null, null, null, null, null);
+            Authority infoSystemManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "信息系统管理首页", "/InfoSystem/Index", null);
+            Authority userManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "用户管理首页", "/User/Index", null);
+            Authority roleManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "角色管理首页", "/Role/Index", null);
+            Authority menuManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "菜单管理首页", "/Menu/Index", null);
+            Authority authorityManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "权限管理首页", "/Authority/Index", null);
+            Authority loginRecordManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "登录记录首页", "/LoginRecord/Index", null);
 
             //菜单关联权限
             infoSystemManagement.RelateAuthorities(new[] { infoSystemManagementIndex });
@@ -312,12 +312,12 @@ namespace SD.IdentitySystem.Repository.Base
             Menu loginRecordManagement = new Menu(infoSystemNo, ApplicationType.IOS, "登录记录", 7, "/Home/LoginRecord", null, null, root);
 
             //创建权限
-            Authority infoSystemManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "信息系统管理首页", "/InfoSystem/Index", null, null, null, null, null, null);
-            Authority userManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "用户管理首页", "/User/Index", null, null, null, null, null, null);
-            Authority roleManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "角色管理首页", "/Role/Index", null, null, null, null, null, null);
-            Authority menuManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "菜单管理首页", "/Menu/Index", null, null, null, null, null, null);
-            Authority authorityManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "权限管理首页", "/Authority/Index", null, null, null, null, null, null);
-            Authority loginRecordManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "登录记录首页", "/LoginRecord/Index", null, null, null, null, null, null);
+            Authority infoSystemManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "信息系统管理首页", "/InfoSystem/Index", null);
+            Authority userManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "用户管理首页", "/User/Index", null);
+            Authority roleManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "角色管理首页", "/Role/Index", null);
+            Authority menuManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "菜单管理首页", "/Menu/Index", null);
+            Authority authorityManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "权限管理首页", "/Authority/Index", null);
+            Authority loginRecordManagementIndex = new Authority(infoSystemNo, ApplicationType.IOS, "登录记录首页", "/LoginRecord/Index", null);
 
             //菜单关联权限
             infoSystemManagement.RelateAuthorities(new[] { infoSystemManagementIndex });

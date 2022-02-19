@@ -9,7 +9,7 @@
         xmlns:sd="https://github.com/lishilei0523/SD.Framework"
         mc:Ignorable="d"
         Title="创建权限" 
-        Width="550" Height="730" ResizeMode="NoResize" 
+        Width="550" Height="500" ResizeMode="NoResize" 
         FontSize="14"
         WindowStyle="ThreeDBorderWindow"
         WindowStartupLocation="CenterOwner"
@@ -20,7 +20,7 @@
         <Grid>
             <Grid.RowDefinitions>
                 <!--表单区-->
-                <RowDefinition Height="630" />
+                <RowDefinition Height="400" />
                 <!--占位区-->
                 <RowDefinition Height="*" />
                 <!--控制区-->
@@ -46,21 +46,6 @@
                 </sd:FormItem>
                 <sd:FormItem Label="权限路径：">
                     <TextBox Text="{Binding AuthorityPath}" Style="{StaticResource TextBoxRevealStyle}" />
-                </sd:FormItem>
-                <sd:FormItem Label="英文名称：">
-                    <TextBox Text="{Binding EnglishName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </sd:FormItem>
-                <sd:FormItem Label="程序集名称：">
-                    <TextBox Text="{Binding AssemblyName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </sd:FormItem>
-                <sd:FormItem Label="命名空间：">
-                    <TextBox Text="{Binding Namespace}" Style="{StaticResource TextBoxRevealStyle}" />
-                </sd:FormItem>
-                <sd:FormItem Label="类名：">
-                    <TextBox Text="{Binding ClassName}" Style="{StaticResource TextBoxRevealStyle}" />
-                </sd:FormItem>
-                <sd:FormItem Label="方法名：">
-                    <TextBox Text="{Binding MethodName}" Style="{StaticResource TextBoxRevealStyle}" />
                 </sd:FormItem>
                 <sd:FormItem Label="描述：">
                     <TextBox Text="{Binding Description}"

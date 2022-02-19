@@ -62,7 +62,7 @@
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.1.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.4.2" />
-    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.4.0" />
+    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.5.0" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Default.aspx" />

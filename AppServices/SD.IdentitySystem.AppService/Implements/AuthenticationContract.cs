@@ -184,7 +184,7 @@ namespace SD.IdentitySystem.AppService.Implements
             loginInfo.LoginSystemInfos = infoSystems.Values.Select(x => x.ToLoginSystemInfo()).ToList();
 
             /*权限部分*/
-            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRoles(roleIds);
+            IEnumerable<Authority> authorities = this._repMediator.AuthorityRep.FindByRoles(roleIds, null);
             loginInfo.LoginAuthorityInfos = authorities.Select(x => x.ToLoginAuthorityInfo()).ToList();
 
             /*菜单部分*/

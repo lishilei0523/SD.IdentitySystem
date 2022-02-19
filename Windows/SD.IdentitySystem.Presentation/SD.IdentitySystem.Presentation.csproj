@@ -3,7 +3,7 @@
     <TargetFrameworks>net461;netcoreapp3.1</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Copyright>Copyright © SD 2021</Copyright>
+    <Copyright>Copyright © SD 2022</Copyright>
   </PropertyGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
@@ -22,6 +22,6 @@
     <PackageReference Include="SD.IOC.Core" Version="2.1.6" />
     <PackageReference Include="SD.Infrastructure" Version="3.4.2" />
     <PackageReference Include="SD.Infrastructure.WPF" Version="1.1.1" />
-    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.4.0" />
+    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.5.0" />
   </ItemGroup>
 </Project>

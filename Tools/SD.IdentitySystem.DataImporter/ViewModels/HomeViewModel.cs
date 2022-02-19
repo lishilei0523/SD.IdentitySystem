@@ -157,7 +157,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
                 foreach (IGrouping<string, Menu> menuGroup in menuGroups)
                 {
                     //获取信息系统根级菜单
-                    Guid infoSystemMenuId = authorizationContract.GetMenus(menuGroup.Key, null).First().Id;
+                    Guid infoSystemMenuId = authorizationContract.GetMenus(null, menuGroup.Key, null).First().Id;
 
                     IList<Menu> rootMenus = menuGroup.Where(x => string.IsNullOrWhiteSpace(x.上级Id)).ToList();
                     this.CreateMenus(authorizationContract, menuGroup.Key, menus, rootMenus, infoSystemMenuId);
@@ -182,7 +182,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
                 IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
                 MenuRelatedAuthority[] relatedAuthorities = ExcelReader.ReadFile<MenuRelatedAuthority>(ExcelPath, "菜单相关权限");
 
-                MenuInfo[] menuInfos = authorizationContract.GetMenus(null, null).ToArray();
+                MenuInfo[] menuInfos = authorizationContract.GetMenus(null, null, null).ToArray();
                 AuthorityInfo[] authorityInfos = authorizationContract.GetAuthorities(null, null, null, null, null).ToArray();
 
                 var relatedAuthorityGroups = relatedAuthorities.GroupBy(x => new

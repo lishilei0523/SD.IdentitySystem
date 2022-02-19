@@ -33,28 +33,17 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
-        /// <param name="englishName">英文名称</param>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
         /// <param name="description">描述</param>
-        public Authority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public Authority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string description)
             : this()
         {
             base.Name = authorityName;
             this.InfoSystemNo = infoSystemNo;
             this.ApplicationType = applicationType;
             this.AuthorityPath = authorityPath;
-            this.EnglishName = englishName;
-            this.AssemblyName = assemblyName;
-            this.Namespace = @namespace;
-            this.ClassName = className;
-            this.MethodName = methodName;
             this.Description = description;
 
-            //初始化权限路径与关键字
-            this.InitPath();
+            //初始化关键字
             this.InitKeywords();
         }
         #endregion
@@ -82,41 +71,6 @@ namespace SD.IdentitySystem.Domain.Entities
         /// 权限路径
         /// </summary>
         public string AuthorityPath { get; private set; }
-        #endregion
-
-        #region 英文名称 —— string EnglishName
-        /// <summary>
-        /// 英文名称
-        /// </summary>
-        public string EnglishName { get; private set; }
-        #endregion
-
-        #region 程序集名称 —— string AssemblyName
-        /// <summary>
-        /// 程序集名称
-        /// </summary>
-        public string AssemblyName { get; private set; }
-        #endregion
-
-        #region 命名空间 —— string Namespace
-        /// <summary>
-        /// 命名空间
-        /// </summary>
-        public string Namespace { get; private set; }
-        #endregion
-
-        #region 类名 —— string ClassName
-        /// <summary>
-        /// 类名
-        /// </summary>
-        public string ClassName { get; private set; }
-        #endregion
-
-        #region 方法名 —— string MethodName
-        /// <summary>
-        /// 方法名
-        /// </summary>
-        public string MethodName { get; private set; }
         #endregion
 
         #region 描述 —— string Description
@@ -150,25 +104,14 @@ namespace SD.IdentitySystem.Domain.Entities
         /// </summary>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
-        /// <param name="englishName">英文名称</param>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
         /// <param name="description">描述</param>
-        public void UpdateInfo(string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public void UpdateInfo(string authorityName, string authorityPath, string description)
         {
             base.Name = authorityName;
             this.AuthorityPath = authorityPath;
-            this.EnglishName = englishName;
-            this.AssemblyName = assemblyName;
-            this.Namespace = @namespace;
-            this.ClassName = className;
-            this.MethodName = methodName;
             this.Description = description;
 
-            //初始化权限路径与关键字
-            this.InitPath();
+            //初始化关键字
             this.InitKeywords();
         }
         #endregion
@@ -201,28 +144,6 @@ namespace SD.IdentitySystem.Domain.Entities
         }
         #endregion
 
-        #region 初始化权限路径 —— void InitPath()
-        /// <summary>
-        /// 初始化权限路径
-        /// </summary>
-        private void InitPath()
-        {
-            if (string.IsNullOrWhiteSpace(this.AuthorityPath))
-            {
-                StringBuilder pathBuilder = new StringBuilder("/");
-                pathBuilder.Append(this.AssemblyName);
-                pathBuilder.Append("/");
-                pathBuilder.Append(this.Namespace);
-                pathBuilder.Append("/");
-                pathBuilder.Append(this.ClassName);
-                pathBuilder.Append("/");
-                pathBuilder.Append(this.MethodName);
-
-                this.AuthorityPath = pathBuilder.ToString();
-            }
-        }
-        #endregion
-
         #region 初始化关键字 —— void InitKeywords()
         /// <summary>
         /// 初始化关键字
@@ -231,7 +152,6 @@ namespace SD.IdentitySystem.Domain.Entities
         {
             StringBuilder keywordsBuilder = new StringBuilder();
             keywordsBuilder.Append(this.Name);
-            keywordsBuilder.Append(this.EnglishName);
             keywordsBuilder.Append(this.Description);
             keywordsBuilder.Append(this.AuthorityPath);
 

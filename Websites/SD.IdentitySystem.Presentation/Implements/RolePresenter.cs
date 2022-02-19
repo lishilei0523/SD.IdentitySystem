@@ -143,7 +143,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>信息系统/角色树</returns>
         private IEnumerable<Node> GetInfoSystemRoleTree()
         {
-            IEnumerable<InfoSystemInfo> infoSystems = this._authorizationContract.GetInfoSystems();
+            IEnumerable<InfoSystemInfo> infoSystems = this._authorizationContract.GetInfoSystems(null);
             IList<Node> tree = new List<Node>();
             foreach (InfoSystemInfo infoSystemNode in infoSystems)
             {

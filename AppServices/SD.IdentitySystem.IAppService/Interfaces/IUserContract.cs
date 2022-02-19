@@ -118,24 +118,26 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         UserInfo GetUser(string loginId);
         #endregion
 
-        #region # 获取用户列表 —— IEnumerable<UserInfo> GetUsers(string keywords)
-        /// <summary>
-        /// 获取用户列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <returns>用户列表</returns>
-        [OperationContract]
-        IEnumerable<UserInfo> GetUsers(string keywords);
-        #endregion
-
-        #region # 获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
+        #region # 获取用户字典 —— IDictionary<string, UserInfo> GetUsersByNo(...
         /// <summary>
         /// 获取用户字典
         /// </summary>
         /// <param name="loginIds">用户名集</param>
         /// <returns>用户字典</returns>
         [OperationContract]
-        IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds);
+        IDictionary<string, UserInfo> GetUsersByNo(IEnumerable<string> loginIds);
+        #endregion
+
+        #region # 获取用户列表 —— IEnumerable<UserInfo> GetUsers(string keywords...
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>用户列表</returns>
+        [OperationContract]
+        IEnumerable<UserInfo> GetUsers(string keywords, string infoSystemNo, Guid? roleId);
         #endregion
 
         #region # 分页获取用户列表 —— PageModel<UserInfo> GetUsersByPage(string keywords...
@@ -191,9 +193,10 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         /// </summary>
         /// <param name="loginId">用户名</param>
         /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>权限列表</returns>
         [OperationContract]
-        IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string infoSystemNo);
+        IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string infoSystemNo, ApplicationType? applicationType);
         #endregion
 
         #region # 分页获取登录记录列表 —— PageModel<LoginRecordInfo> GetLoginRecordsByPage(string keywords...

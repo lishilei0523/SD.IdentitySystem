@@ -101,13 +101,14 @@ namespace SD.IdentitySystem.Repository.Implements
         }
         #endregion
 
-        #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds)
+        #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds...
         /// <summary>
         /// 根据角色获取权限列表
         /// </summary>
         /// <param name="roleIds">角色Id集</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>权限列表</returns>
-        public ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds)
+        public ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds, ApplicationType? applicationType)
         {
             #region # 验证
 
@@ -119,10 +120,14 @@ namespace SD.IdentitySystem.Repository.Implements
 
             #endregion
 
-            Expression<Func<Authority, bool>> condition =
-                x =>
-                    x.Roles.Any(y => roleIds.Contains(y.Id));
+            QueryBuilder<Authority> queryBuilder = QueryBuilder<Authority>.Affirm();
+            queryBuilder.And(x => x.Roles.Any(y => roleIds.Contains(y.Id)));
+            if (applicationType.HasValue)
+            {
+                queryBuilder.And(x => x.ApplicationType == applicationType.Value);
+            }
 
+            Expression<Func<Authority, bool>> condition = queryBuilder.Build();
             IQueryable<Authority> authorities = base.Find(condition);
 
             return authorities.ToList();

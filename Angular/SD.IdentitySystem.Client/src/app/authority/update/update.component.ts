@@ -57,26 +57,6 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     @Input()
     public authorityPath: string = "";
 
-    /*英文名称*/
-    @Input()
-    public englishName: string | null = null;
-
-    /*程序集名称*/
-    @Input()
-    public assemblyName: string | null = null;
-
-    /*命名空间*/
-    @Input()
-    public namespace: string | null = null;
-
-    /*类名*/
-    @Input()
-    public className: string | null = null;
-
-    /*方法名*/
-    @Input()
-    public methodName: string | null = null;
-
     /*描述*/
     @Input()
     public description: string | null = null;
@@ -101,11 +81,6 @@ export class UpdateComponent extends ComponentBase implements OnInit {
             applicationTypeName: [null],
             authorityName: [null, [Validators.required]],
             authorityPath: [null, [Validators.required]],
-            englishName: [null],
-            assemblyName: [null],
-            namespace: [null],
-            className: [null],
-            methodName: [null],
             description: [null]
         });
     }
@@ -127,7 +102,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this._authorityService.updateAuthority(this.authorityId, this.authorityName, this.authorityPath, this.englishName, this.assemblyName, this.namespace, this.className, this.methodName, this.description);
+            let promise: Promise<void> = this._authorityService.updateAuthority(this.authorityId, this.authorityName, this.authorityPath, this.description);
             promise.catch(_ => {
                 this.idle();
             });

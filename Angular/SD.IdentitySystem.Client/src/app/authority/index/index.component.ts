@@ -154,7 +154,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             nzTitle: "创建权限",
             nzWidth: "500px",
             nzBodyStyle: {
-                height: "700px"
+                height: "450px"
             },
             nzContent: AddComponent,
             nzFooter: null,
@@ -183,7 +183,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             nzTitle: "修改权限",
             nzWidth: "500px",
             nzBodyStyle: {
-                height: "700px"
+                height: "450px"
             },
             nzContent: UpdateComponent,
             nzFooter: null,
@@ -193,11 +193,6 @@ export class IndexComponent extends ComponentBase implements OnInit {
                 applicationTypeName: applicationTypeDescripttor.transform(authority.applicationType),
                 authorityName: authority.name,
                 authorityPath: authority.authorityPath,
-                englishName: authority.englishName,
-                assemblyName: authority.assemblyName,
-                namespace: authority.namespace,
-                className: authority.className,
-                methodName: authority.methodName,
                 description: authority.description
             }
         });

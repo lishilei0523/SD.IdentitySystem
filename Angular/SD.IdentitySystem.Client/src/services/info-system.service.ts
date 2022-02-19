@@ -92,8 +92,10 @@ export class InfoSystemService {
     public getInfoSystems():
         Promise<Array<InfoSystem>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetInfoSystems`;
+        let params = new HttpParams()
+            .set("keywords", "");
 
-        return this._httpClient.get<Array<InfoSystem>>(url).toPromise();
+        return this._httpClient.get<Array<InfoSystem>>(url, {params}).toPromise();
     }
     //endregion
 

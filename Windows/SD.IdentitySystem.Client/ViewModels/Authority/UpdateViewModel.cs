@@ -71,46 +71,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         public string AuthorityPath { get; set; }
         #endregion
 
-        #region 英文名称 —— string EnglishName
-        /// <summary>
-        /// 英文名称
-        /// </summary>
-        [DependencyProperty]
-        public string EnglishName { get; set; }
-        #endregion
-
-        #region 程序集名称 —— string AssemblyName
-        /// <summary>
-        /// 程序集名称
-        /// </summary>
-        [DependencyProperty]
-        public string AssemblyName { get; set; }
-        #endregion
-
-        #region 命名空间 —— string Namespace
-        /// <summary>
-        /// 命名空间
-        /// </summary>
-        [DependencyProperty]
-        public string Namespace { get; set; }
-        #endregion
-
-        #region 类名 —— string ClassName
-        /// <summary>
-        /// 类名
-        /// </summary>
-        [DependencyProperty]
-        public string ClassName { get; set; }
-        #endregion
-
-        #region 方法名 —— string MethodName
-        /// <summary>
-        /// 方法名
-        /// </summary>
-        [DependencyProperty]
-        public string MethodName { get; set; }
-        #endregion
-
         #region 描述 —— string Description
         /// <summary>
         /// 描述
@@ -136,11 +96,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
             this.AuthorityId = authority.Id;
             this.AuthorityName = authority.Name;
             this.AuthorityPath = authority.AuthorityPath;
-            this.EnglishName = authority.EnglishName;
-            this.AssemblyName = authority.AssemblyName;
-            this.Namespace = authority.Namespace;
-            this.ClassName = authority.ClassName;
-            this.MethodName = authority.MethodName;
             this.Description = authority.Description;
         }
         #endregion
@@ -166,7 +121,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
 
             this.Busy();
 
-            await Task.Run(() => this._authorizationContract.Channel.UpdateAuthority(this.AuthorityId, this.AuthorityName, this.AuthorityPath, this.EnglishName, this.AssemblyName, this.Namespace, this.ClassName, this.MethodName, this.Description));
+            await Task.Run(() => this._authorizationContract.Channel.UpdateAuthority(this.AuthorityId, this.AuthorityName, this.AuthorityPath, this.Description));
 
             this.Idle();
             await base.TryCloseAsync(true);

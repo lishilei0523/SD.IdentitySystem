@@ -116,7 +116,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>菜单列表</returns>
         private IEnumerable<Menu> GetMenus(string infoSystemNo, ApplicationType? applicationType)
         {
-            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.GetMenus(infoSystemNo, applicationType);
+            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.GetMenus(null, infoSystemNo, applicationType);
             IEnumerable<Menu> menus = menuInfos.OrderBy(x => x.Sort).Select(x => x.ToModel());
 
             return menus;

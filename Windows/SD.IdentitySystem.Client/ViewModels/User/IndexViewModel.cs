@@ -135,7 +135,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         protected override async Task OnInitializeAsync(CancellationToken cancellationToken)
         {
-            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems(), cancellationToken);
+            IEnumerable<InfoSystemInfo> infoSystems = await Task.Run(() => this._authorizationContract.Channel.GetInfoSystems(null), cancellationToken);
             this.InfoSystems = new ObservableCollection<InfoSystemInfo>(infoSystems);
 
             await this.ReloadUsers();

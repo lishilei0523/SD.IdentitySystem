@@ -104,17 +104,12 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
-        /// <param name="englishName">英文名称</param>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
         /// <param name="description">描述</param>
         [HttpPost]
         [WrapPostParameters]
-        public void CreateAuthority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public void CreateAuthority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string description)
         {
-            this._authorizationContract.CreateAuthority(infoSystemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
+            this._authorizationContract.CreateAuthority(infoSystemNo, applicationType, authorityName, authorityPath, description);
         }
         #endregion
 
@@ -140,17 +135,12 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// <param name="authorityId">权限Id</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
-        /// <param name="englishName">英文名称</param>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
         /// <param name="description">描述</param>
         [HttpPost]
         [WrapPostParameters]
-        public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string description)
         {
-            this._authorizationContract.UpdateAuthority(authorityId, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
+            this._authorizationContract.UpdateAuthority(authorityId, authorityName, authorityPath, description);
         }
         #endregion
 
@@ -322,15 +312,28 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems()
+        #region # 获取信息系统字典 —— IDictionary<string, InfoSystemInfo> GetInfoSystemsByNo(...
+        /// <summary>
+        /// 获取信息系统字典
+        /// </summary>
+        /// <param name="infoSystemNos">信息系统编号集</param>
+        /// <returns>信息系统字典</returns>
+        [HttpGet]
+        public IDictionary<string, InfoSystemInfo> GetInfoSystemsByNo(IEnumerable<string> infoSystemNos)
+        {
+            return this._authorizationContract.GetInfoSystemsByNo(infoSystemNos);
+        }
+        #endregion
+
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string keywords)
         /// <summary>
         /// 获取信息系统列表
         /// </summary>
         /// <returns>信息系统列表</returns>
         [HttpGet]
-        public IEnumerable<InfoSystemInfo> GetInfoSystems()
+        public IEnumerable<InfoSystemInfo> GetInfoSystems(string keywords)
         {
-            return this._authorizationContract.GetInfoSystems();
+            return this._authorizationContract.GetInfoSystems(keywords);
         }
         #endregion
 
@@ -359,6 +362,19 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         public AuthorityInfo GetAuthority(Guid authorityId)
         {
             return this._authorizationContract.GetAuthority(authorityId);
+        }
+        #endregion
+
+        #region # 获取权限字典 —— IDictionary<Guid, AuthorityInfo> GetAuthoritiesById(...
+        /// <summary>
+        /// 获取权限字典
+        /// </summary>
+        /// <param name="authorityIds">权限Id集</param>
+        /// <returns>权限字典</returns>
+        [HttpGet]
+        public IDictionary<Guid, AuthorityInfo> GetAuthoritiesById(IEnumerable<Guid> authorityIds)
+        {
+            return this._authorizationContract.GetAuthoritiesById(authorityIds);
         }
         #endregion
 
@@ -409,17 +425,31 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string infoSystemNo...
+        #region # 获取菜单字典 —— IDictionary<Guid, MenuInfo> GetMenusById(...
+        /// <summary>
+        /// 获取菜单字典
+        /// </summary>
+        /// <param name="menuIds">菜单Id集</param>
+        /// <returns>菜单字典</returns>
+        [HttpGet]
+        public IDictionary<Guid, MenuInfo> GetMenusById(IEnumerable<Guid> menuIds)
+        {
+            return this._authorizationContract.GetMenusById(menuIds);
+        }
+        #endregion
+
+        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string keywords...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
+        /// <param name="keywords">关键字</param>
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
         [HttpGet]
-        public IEnumerable<MenuInfo> GetMenus(string infoSystemNo, ApplicationType? applicationType)
+        public IEnumerable<MenuInfo> GetMenus(string keywords, string infoSystemNo, ApplicationType? applicationType)
         {
-            return this._authorizationContract.GetMenus(infoSystemNo, applicationType);
+            return this._authorizationContract.GetMenus(keywords, infoSystemNo, applicationType);
         }
         #endregion
 
@@ -450,6 +480,19 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         public RoleInfo GetRole(Guid roleId)
         {
             return this._authorizationContract.GetRole(roleId);
+        }
+        #endregion
+
+        #region # 获取角色字典 —— IDictionary<Guid, RoleInfo> GetRolesById(...
+        /// <summary>
+        /// 获取角色字典
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>角色字典</returns>
+        [HttpGet]
+        public IDictionary<Guid, RoleInfo> GetRolesById(IEnumerable<Guid> roleIds)
+        {
+            return this._authorizationContract.GetRolesById(roleIds);
         }
         #endregion
 
@@ -496,6 +539,21 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         public bool ExistsAuthority(string infoSystemNo, ApplicationType applicationType, string authorityPath)
         {
             return this._authorizationContract.ExistsAuthority(infoSystemNo, applicationType, authorityPath);
+        }
+        #endregion
+
+        #region # 是否存在菜单 —— bool ExistsMenu(Guid? parentNodeId, ApplicationType applicationType...
+        /// <summary>
+        /// 是否存在菜单
+        /// </summary>
+        /// <param name="parentNodeId">上级节点Id</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <param name="menuName">菜单名称</param>
+        /// <returns>是否存在</returns>
+        [HttpGet]
+        public bool ExistsMenu(Guid? parentNodeId, ApplicationType applicationType, string menuName)
+        {
+            return this._authorizationContract.ExistsMenu(parentNodeId, applicationType, menuName);
         }
         #endregion
 

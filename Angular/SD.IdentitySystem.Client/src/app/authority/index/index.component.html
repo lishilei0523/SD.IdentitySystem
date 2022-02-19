@@ -52,15 +52,10 @@
     <thead>
     <tr>
         <th nzWidth="40px" nzAlign="center" nzLeft [nzChecked]="checkedAll" (nzCheckedChange)="checkAll($event)"></th>
-        <th nzWidth="150px" nzAlign="center" nzLeft>名称</th>
-        <th nzWidth="70px" nzAlign="center">英文名称</th>
+        <th nzWidth="150px" nzAlign="center" nzLeft>权限名称</th>
+        <th nzWidth="230px" nzAlign="center">权限路径</th>
         <th nzWidth="140px" nzAlign="center">所属系统</th>
         <th nzWidth="140px" nzAlign="center">应用程序类型</th>
-        <th nzWidth="230px" nzAlign="center">路径</th>
-        <th nzWidth="80px" nzAlign="center">程序集名称</th>
-        <th nzWidth="70px" nzAlign="center">命名空间</th>
-        <th nzWidth="50px" nzAlign="center">类名</th>
-        <th nzWidth="60px" nzAlign="center">方法名</th>
         <th nzWidth="100px" nzAlign="center">描述</th>
         <th nzWidth="150px" nzAlign="center">创建时间</th>
         <th nzWidth="150px" nzAlign="center" nzRight>操作</th>
@@ -71,14 +66,9 @@
         <td nzLeft [nzChecked]="checkedIds.has(authority.id)"
             (nzCheckedChange)="checkItem(authority.id, $event)"></td>
         <td nzLeft>{{authority.name}}</td>
-        <td>{{authority.englishName}}</td>
+        <td>{{authority.authorityPath}}</td>
         <td>{{authority.infoSystemInfo?.name}}</td>
         <td>{{authority.applicationType | applicationTypeDescriptor}}</td>
-        <td>{{authority.authorityPath}}</td>
-        <td>{{authority.assemblyName}}</td>
-        <td>{{authority.namespace}}</td>
-        <td>{{authority.className}}</td>
-        <td>{{authority.methodName}}</td>
         <td>{{authority.description}}</td>
         <td nzAlign="center">{{authority.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
         <td nzAlign="center" nzRight>

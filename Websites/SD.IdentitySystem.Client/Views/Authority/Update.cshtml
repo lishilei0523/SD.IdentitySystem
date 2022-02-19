@@ -10,7 +10,7 @@
 }
 
 <div style="width: 100%; height: 100%; float:left; margin: 0;">
-    <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 520px; padding: 10px;">
+    <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 320px; padding: 10px;">
         <form id="frmUpdateAuthority">
             <input type="hidden" name="authorityId" value="@Model.Id" />
             <table id="tbAdd" style="margin: 0 auto;">
@@ -23,7 +23,7 @@
                 <tr>
                     <td class="tdTitle">应用程序类型：</td>
                     <td class="tdContent">
-                        <input class="easyui-textbox" type="text" data-options="disabled:true,width:210" value="@Model.ApplicationType" />
+                        <input class="easyui-textbox" type="text" data-options="disabled:true,width:210" value="@Model.ApplicationTypeName" />
                     </td>
                 </tr>
                 <tr>
@@ -36,36 +36,6 @@
                     <td class="tdTitle">权限路径：</td>
                     <td class="tdContent">
                         <input class="easyui-textbox" type="text" name="authorityPath" data-options="width:210" value="@Model.AuthorityPath" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdTitle">英文名称：</td>
-                    <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="englishName" data-options="width:210" value="@Model.EnglishName" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdTitle">程序集名称：</td>
-                    <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="assemblyName" data-options="width:210" value="@Model.AssemblyName" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdTitle">命名空间：</td>
-                    <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="namespace" data-options="width:210" value="@Model.Namespace" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdTitle">类名：</td>
-                    <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="className" data-options="width:210" value="@Model.ClassName" />
-                    </td>
-                </tr>
-                <tr>
-                    <td class="tdTitle">方法名：</td>
-                    <td class="tdContent">
-                        <input class="easyui-textbox" type="text" name="methodName" data-options="width:210" value="@Model.MethodName" />
                     </td>
                 </tr>
                 <tr>

@@ -260,31 +260,33 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取用户列表 —— IEnumerable<UserInfo> GetUsers(string keywords)
-        /// <summary>
-        /// 获取用户列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <returns>用户列表</returns>
-        public IEnumerable<UserInfo> GetUsers(string keywords)
-        {
-            ICollection<User> users = this._repMediator.UserRep.Find(keywords);
-            IEnumerable<UserInfo> userInfos = users.Select(x => x.ToDTO());
-
-            return userInfos;
-        }
-        #endregion
-
-        #region # 获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
+        #region # 获取用户字典 —— IDictionary<string, UserInfo> GetUsersByNo(...
         /// <summary>
         /// 获取用户字典
         /// </summary>
         /// <param name="loginIds">用户名集</param>
         /// <returns>用户字典</returns>
-        public IDictionary<string, UserInfo> GetUsersByLoginIds(IEnumerable<string> loginIds)
+        public IDictionary<string, UserInfo> GetUsersByNo(IEnumerable<string> loginIds)
         {
             IDictionary<string, User> users = this._repMediator.UserRep.Find(loginIds);
             IDictionary<string, UserInfo> userInfos = users.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return userInfos;
+        }
+        #endregion
+
+        #region # 获取用户列表 —— IEnumerable<UserInfo> GetUsers(string keywords...
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>用户列表</returns>
+        public IEnumerable<UserInfo> GetUsers(string keywords, string infoSystemNo, Guid? roleId)
+        {
+            ICollection<User> users = this._repMediator.UserRep.Find(keywords, infoSystemNo, roleId);
+            IEnumerable<UserInfo> userInfos = users.Select(x => x.ToDTO());
 
             return userInfos;
         }
@@ -378,11 +380,12 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="loginId">用户名</param>
         /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>权限列表</returns>
-        public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string infoSystemNo)
+        public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string infoSystemNo, ApplicationType? applicationType)
         {
             ICollection<Guid> roleIds = this._repMediator.RoleRep.FindIds(loginId, infoSystemNo);
-            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByRoles(roleIds);
+            ICollection<Authority> authorities = this._repMediator.AuthorityRep.FindByRoles(roleIds, applicationType);
 
             IEnumerable<string> infoSystemNos = authorities.Select(x => x.InfoSystemNo);
             IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());

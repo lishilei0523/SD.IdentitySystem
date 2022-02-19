@@ -3,10 +3,10 @@
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Copyright>Copyright © SD 2021</Copyright>
+    <Copyright>Copyright © SD 2022</Copyright>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
     <Reference Include="System.ServiceModel" />
     <PackageReference Include="SD.Toolkits.Owin" Version="1.0.3" />
   </ItemGroup>

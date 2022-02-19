@@ -41,13 +41,14 @@ namespace SD.IdentitySystem.Domain.IRepositories.Interfaces
         ICollection<Authority> FindByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, Guid? menuId, Guid? roleId, int pageIndex, int pageSize, out int rowCount, out int pageCount);
         #endregion
 
-        #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds)
+        #region # 根据角色获取权限列表 —— ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds...
         /// <summary>
         /// 根据角色获取权限列表
         /// </summary>
         /// <param name="roleIds">角色Id集</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>权限列表</returns>
-        ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds);
+        ICollection<Authority> FindByRoles(IEnumerable<Guid> roleIds, ApplicationType? applicationType);
         #endregion
 
         #region # 根据角色获取权限Id列表 —— ICollection<Guid> FindIdsByRoles(IEnumerable<Guid> roleIds)

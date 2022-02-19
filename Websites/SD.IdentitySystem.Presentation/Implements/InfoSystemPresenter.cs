@@ -52,8 +52,7 @@ namespace SD.IdentitySystem.Presentation.Implements
         /// <returns>信息系统列表</returns>
         public IEnumerable<InfoSystem> GetInfoSystems()
         {
-            IEnumerable<InfoSystemInfo> infoSystemInfos = this._authorizationContract.GetInfoSystems();
-
+            IEnumerable<InfoSystemInfo> infoSystemInfos = this._authorizationContract.GetInfoSystems(null);
             IEnumerable<InfoSystem> infoSystems = infoSystemInfos.Select(x => x.ToModel());
 
             return infoSystems;

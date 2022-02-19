@@ -114,17 +114,12 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
-        /// <param name="englishName">英文名称</param>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
         /// <param name="description">描述</param>
         [HttpPost]
         [RequireAuthorization("创建权限")]
-        public void CreateAuthority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public void CreateAuthority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string description)
         {
-            this._authorizationContract.CreateAuthority(infoSystemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
+            this._authorizationContract.CreateAuthority(infoSystemNo, applicationType, authorityName, authorityPath, description);
         }
         #endregion
 
@@ -135,17 +130,12 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="authorityId">权限Id</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
-        /// <param name="englishName">英文名称</param>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
         /// <param name="description">描述</param>
         [HttpPost]
         [RequireAuthorization("修改权限")]
-        public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string description)
         {
-            this._authorizationContract.UpdateAuthority(authorityId, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
+            this._authorizationContract.UpdateAuthority(authorityId, authorityName, authorityPath, description);
         }
         #endregion
 

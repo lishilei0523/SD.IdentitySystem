@@ -30,25 +30,15 @@ export class AuthorityService {
      * @param applicationType - 应用程序类型
      * @param authorityName - 权限名称
      * @param authorityPath - 权限路径
-     * @param englishName - 英文名称
-     * @param assemblyName - 程序集名称
-     * @param namespace - 命名空间
-     * @param className - 类名
-     * @param methodName - 方法名
      * @param description - 描述
      * */
-    public async createAuthority(infoSystemNo: string, applicationType: ApplicationType, authorityName: string, authorityPath: string, englishName: string | null, assemblyName: string | null, namespace: string | null, className: string | null, methodName: string | null, description: string | null): Promise<void> {
+    public async createAuthority(infoSystemNo: string, applicationType: ApplicationType, authorityName: string, authorityPath: string, description: string | null): Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/CreateAuthority`;
         let params = {
             infoSystemNo: infoSystemNo,
             applicationType: applicationType,
             authorityName: authorityName,
             authorityPath: authorityPath,
-            englishName: englishName,
-            assemblyName: assemblyName,
-            namespace: namespace,
-            className: className,
-            methodName: methodName,
             description: description,
         };
 
@@ -62,25 +52,15 @@ export class AuthorityService {
      * @param authorityId - 权限Id
      * @param authorityName - 权限名称
      * @param authorityPath - 权限路径
-     * @param englishName - 英文名称
-     * @param assemblyName - 程序集名称
-     * @param namespace - 命名空间
-     * @param className - 类名
-     * @param methodName - 方法名
      * @param description - 描述
      * */
-    public async updateAuthority(authorityId: string, authorityName: string, authorityPath: string, englishName: string | null, assemblyName: string | null, namespace: string | null, className: string | null, methodName: string | null, description: string | null)
+    public async updateAuthority(authorityId: string, authorityName: string, authorityPath: string, description: string | null)
         : Promise<void> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/UpdateAuthority`;
         let params = {
             authorityId: authorityId,
             authorityName: authorityName,
             authorityPath: authorityPath,
-            englishName: englishName,
-            assemblyName: assemblyName,
-            namespace: namespace,
-            className: className,
-            methodName: methodName,
             description: description,
         };
 

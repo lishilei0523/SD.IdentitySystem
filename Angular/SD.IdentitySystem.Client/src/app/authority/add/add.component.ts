@@ -44,21 +44,6 @@ export class AddComponent extends ComponentBase implements OnInit {
     /*权限路径*/
     public authorityPath: string = "";
 
-    /*英文名称*/
-    public englishName: string | null = null;
-
-    /*程序集名称*/
-    public assemblyName: string | null = null;
-
-    /*命名空间*/
-    public namespace: string | null = null;
-
-    /*类名*/
-    public className: string | null = null;
-
-    /*方法名*/
-    public methodName: string | null = null;
-
     /*描述*/
     public description: string | null = null;
 
@@ -94,11 +79,6 @@ export class AddComponent extends ComponentBase implements OnInit {
         this.formGroup = this._formBuilder.group({
             authorityName: [null, [Validators.required]],
             authorityPath: [null, [Validators.required]],
-            englishName: [null],
-            assemblyName: [null],
-            namespace: [null],
-            className: [null],
-            methodName: [null],
             description: [null],
             selectedInfoSystemNo: [null, [Validators.required]],
             selectedApplicationType: [null, [Validators.required]],
@@ -122,7 +102,7 @@ export class AddComponent extends ComponentBase implements OnInit {
         if (this.formGroup.valid) {
             this.busy();
 
-            let promise: Promise<void> = this._authorityService.createAuthority(this.selectedInfoSystemNo!, this.selectedApplicationType!, this.authorityName, this.authorityPath, this.englishName, this.assemblyName, this.namespace, this.className, this.methodName, this.description);
+            let promise: Promise<void> = this._authorityService.createAuthority(this.selectedInfoSystemNo!, this.selectedApplicationType!, this.authorityName, this.authorityPath, this.description);
             promise.catch(_ => {
                 this.idle();
             });

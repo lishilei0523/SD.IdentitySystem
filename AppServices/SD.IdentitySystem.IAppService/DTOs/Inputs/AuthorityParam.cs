@@ -21,36 +21,6 @@ namespace SD.IdentitySystem.IAppService.DTOs.Inputs
         public string authorityPath;
 
         /// <summary>
-        /// 英文名称
-        /// </summary>
-        [DataMember]
-        public string englishName;
-
-        /// <summary>
-        /// 程序集名称
-        /// </summary>
-        [DataMember]
-        public string assemblyName;
-
-        /// <summary>
-        /// 命名空间
-        /// </summary>
-        [DataMember]
-        public string @namespace;
-
-        /// <summary>
-        /// 类名
-        /// </summary>
-        [DataMember]
-        public string className;
-
-        /// <summary>
-        /// 方法名
-        /// </summary>
-        [DataMember]
-        public string methodName;
-
-        /// <summary>
         /// 描述
         /// </summary>
         [DataMember]

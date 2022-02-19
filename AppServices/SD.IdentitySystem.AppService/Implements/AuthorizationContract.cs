@@ -172,13 +172,8 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="applicationType">应用程序类型</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
-        /// <param name="englishName">英文名称</param>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
         /// <param name="description">描述</param>
-        public void CreateAuthority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public void CreateAuthority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string description)
         {
             #region # 验证
 
@@ -189,7 +184,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #endregion
 
-            Authority authority = new Authority(infoSystemNo, applicationType, authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
+            Authority authority = new Authority(infoSystemNo, applicationType, authorityName, authorityPath, description);
 
             //为系统管理员角色追加权限
             Guid adminRoleId = this._repMediator.RoleRep.GetManagerRoleId(infoSystemNo);
@@ -214,7 +209,7 @@ namespace SD.IdentitySystem.AppService.Implements
             IList<Authority> authorities = new List<Authority>();
             foreach (AuthorityParam param in authorityParams)
             {
-                Authority authority = new Authority(infoSystemNo, applicationType, param.authorityName, param.authorityPath, param.englishName, param.assemblyName, param.@namespace, param.className, param.methodName, param.description);
+                Authority authority = new Authority(infoSystemNo, applicationType, param.authorityName, param.authorityPath, param.description);
 
                 #region # 验证
 
@@ -246,13 +241,8 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="authorityId">权限Id</param>
         /// <param name="authorityName">权限名称</param>
         /// <param name="authorityPath">权限路径</param>
-        /// <param name="englishName">英文名称</param>
-        /// <param name="assemblyName">程序集名称</param>
-        /// <param name="namespace">命名空间</param>
-        /// <param name="className">类名</param>
-        /// <param name="methodName">方法名</param>
         /// <param name="description">描述</param>
-        public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string englishName, string assemblyName, string @namespace, string className, string methodName, string description)
+        public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string description)
         {
             Authority authority = this._unitOfWork.Resolve<Authority>(authorityId);
 
@@ -266,7 +256,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #endregion
 
-            authority.UpdateInfo(authorityName, authorityPath, englishName, assemblyName, @namespace, className, methodName, description);
+            authority.UpdateInfo(authorityName, authorityPath, description);
 
             this._unitOfWork.RegisterSave(authority);
             this._unitOfWork.Commit();
@@ -544,20 +534,46 @@ namespace SD.IdentitySystem.AppService.Implements
         public InfoSystemInfo GetInfoSystem(string infoSystemNo)
         {
             InfoSystem infoSystem = this._repMediator.InfoSystemRep.Single(infoSystemNo);
+            InfoSystemInfo infoSystemInfo = infoSystem.ToDTO();
 
-            return infoSystem.ToDTO();
+            return infoSystemInfo;
         }
         #endregion
 
-        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems()
+        #region # 获取信息系统字典 —— IDictionary<string, InfoSystemInfo> GetInfoSystemsByNo(...
+        /// <summary>
+        /// 获取信息系统字典
+        /// </summary>
+        /// <param name="infoSystemNos">信息系统编号集</param>
+        /// <returns>信息系统字典</returns>
+        public IDictionary<string, InfoSystemInfo> GetInfoSystemsByNo(IEnumerable<string> infoSystemNos)
+        {
+            #region # 验证
+
+            infoSystemNos = infoSystemNos?.Distinct().ToArray() ?? Array.Empty<string>();
+            if (!infoSystemNos.Any())
+            {
+                return new Dictionary<string, InfoSystemInfo>();
+            }
+
+            #endregion
+
+            IDictionary<string, InfoSystem> infoSystems = this._repMediator.InfoSystemRep.Find(infoSystemNos);
+            IDictionary<string, InfoSystemInfo> infoSystemInfos = infoSystems.ToDictionary(x => x.Key, x => x.Value.ToDTO());
+
+            return infoSystemInfos;
+        }
+        #endregion
+
+        #region # 获取信息系统列表 —— IEnumerable<InfoSystemInfo> GetInfoSystems(string keywords)
         /// <summary>
         /// 获取信息系统列表
         /// </summary>
         /// <returns>信息系统列表</returns>
-        public IEnumerable<InfoSystemInfo> GetInfoSystems()
+        public IEnumerable<InfoSystemInfo> GetInfoSystems(string keywords)
         {
-            ICollection<InfoSystem> infoSystems = this._repMediator.InfoSystemRep.FindAll();
-            IEnumerable<InfoSystemInfo> infoSystemInfos = infoSystems.Select(x => x.ToDTO());
+            ICollection<InfoSystem> infoSystems = this._repMediator.InfoSystemRep.Find(keywords);
+            IEnumerable<InfoSystemInfo> infoSystemInfos = infoSystems.OrderBy(x => x.Number).Select(x => x.ToDTO());
 
             return infoSystemInfos;
         }
@@ -599,6 +615,31 @@ namespace SD.IdentitySystem.AppService.Implements
             AuthorityInfo authorityInfo = authority.ToDTO(infoSystemInfos);
 
             return authorityInfo;
+        }
+        #endregion
+
+        #region # 获取权限字典 —— IDictionary<Guid, AuthorityInfo> GetAuthoritiesById(...
+        /// <summary>
+        /// 获取权限字典
+        /// </summary>
+        /// <param name="authorityIds">权限Id集</param>
+        /// <returns>权限字典</returns>
+        public IDictionary<Guid, AuthorityInfo> GetAuthoritiesById(IEnumerable<Guid> authorityIds)
+        {
+            #region # 验证
+
+            authorityIds = authorityIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
+            if (!authorityIds.Any())
+            {
+                return new Dictionary<Guid, AuthorityInfo>();
+            }
+
+            #endregion
+
+            IDictionary<Guid, Authority> authorities = this._repMediator.AuthorityRep.Find(authorityIds);
+            IDictionary<Guid, AuthorityInfo> authorityInfos = authorities.ToDictionary(x => x.Key, x => x.Value.ToDTO(null));
+
+            return authorityInfos;
         }
         #endregion
 
@@ -670,16 +711,42 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string infoSystemNo...
+        #region # 获取菜单字典 —— IDictionary<Guid, MenuInfo> GetMenusById(...
+        /// <summary>
+        /// 获取菜单字典
+        /// </summary>
+        /// <param name="menuIds">菜单Id集</param>
+        /// <returns>菜单字典</returns>
+        public IDictionary<Guid, MenuInfo> GetMenusById(IEnumerable<Guid> menuIds)
+        {
+            #region # 验证
+
+            menuIds = menuIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
+            if (!menuIds.Any())
+            {
+                return new Dictionary<Guid, MenuInfo>();
+            }
+
+            #endregion
+
+            IDictionary<Guid, Menu> menus = this._repMediator.MenuRep.Find(menuIds);
+            IDictionary<Guid, MenuInfo> menuInfos = menus.ToDictionary(x => x.Key, x => x.Value.ToDTO(null));
+
+            return menuInfos;
+        }
+        #endregion
+
+        #region # 获取菜单列表 —— IEnumerable<MenuInfo> GetMenus(string keywords...
         /// <summary>
         /// 获取菜单列表
         /// </summary>
+        /// <param name="keywords">关键字</param>
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单列表</returns>
-        public IEnumerable<MenuInfo> GetMenus(string infoSystemNo, ApplicationType? applicationType)
+        public IEnumerable<MenuInfo> GetMenus(string keywords, string infoSystemNo, ApplicationType? applicationType)
         {
-            ICollection<Menu> menus = this._repMediator.MenuRep.FindBySystem(null, infoSystemNo, applicationType);
+            ICollection<Menu> menus = this._repMediator.MenuRep.FindBySystem(keywords, infoSystemNo, applicationType);
 
             IEnumerable<string> infoSystemNos = menus.Select(x => x.InfoSystemNo);
             IDictionary<string, InfoSystemInfo> infoSystemInfos = this._repMediator.InfoSystemRep.Find(infoSystemNos).ToDictionary(x => x.Key, x => x.Value.ToDTO());
@@ -735,7 +802,32 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取角色列表 —— IEnumerable<RoleInfo> GetRoles(string infoSystemNo...
+        #region # 获取角色字典 —— IDictionary<Guid, RoleInfo> GetRolesById(...
+        /// <summary>
+        /// 获取角色字典
+        /// </summary>
+        /// <param name="roleIds">角色Id集</param>
+        /// <returns>角色字典</returns>
+        public IDictionary<Guid, RoleInfo> GetRolesById(IEnumerable<Guid> roleIds)
+        {
+            #region # 验证
+
+            roleIds = roleIds?.Distinct().ToArray() ?? Array.Empty<Guid>();
+            if (!roleIds.Any())
+            {
+                return new Dictionary<Guid, RoleInfo>();
+            }
+
+            #endregion
+
+            IDictionary<Guid, Role> roles = this._repMediator.RoleRep.Find(roleIds);
+            IDictionary<Guid, RoleInfo> roleInfos = roles.ToDictionary(x => x.Key, x => x.Value.ToDTO(null));
+
+            return roleInfos;
+        }
+        #endregion
+
+        #region # 获取角色列表 —— IEnumerable<RoleInfo> GetRoles(string keywords...
         /// <summary>
         /// 获取角色列表
         /// </summary>
@@ -789,6 +881,20 @@ namespace SD.IdentitySystem.AppService.Implements
         public bool ExistsAuthority(string infoSystemNo, ApplicationType applicationType, string authorityPath)
         {
             return this._repMediator.AuthorityRep.ExistsPath(infoSystemNo, applicationType, authorityPath);
+        }
+        #endregion
+
+        #region # 是否存在菜单 —— bool ExistsMenu(Guid? parentNodeId, ApplicationType applicationType...
+        /// <summary>
+        /// 是否存在菜单
+        /// </summary>
+        /// <param name="parentNodeId">上级节点Id</param>
+        /// <param name="applicationType">应用程序类型</param>
+        /// <param name="menuName">菜单名称</param>
+        /// <returns>是否存在</returns>
+        public bool ExistsMenu(Guid? parentNodeId, ApplicationType applicationType, string menuName)
+        {
+            return this._repMediator.MenuRep.Exists(parentNodeId, applicationType, menuName);
         }
         #endregion
 

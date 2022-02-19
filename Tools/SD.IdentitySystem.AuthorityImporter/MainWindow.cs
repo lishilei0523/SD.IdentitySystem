@@ -57,9 +57,8 @@ namespace SD.IdentitySystem.AuthorityImporter
         /// </summary>
         private void MainWindow_Load(object sender, EventArgs eventArgs)
         {
-            IEnumerable<InfoSystemInfo> infoSystems = this._authorizationContract.GetInfoSystems().OrderBy(x => x.Number);
+            IEnumerable<InfoSystemInfo> infoSystems = this._authorizationContract.GetInfoSystems(null);
             IDictionary<string, string> applicationTypeDescriptions = typeof(ApplicationType).GetEnumMembers();
-
             foreach (InfoSystemInfo infoSystem in infoSystems)
             {
                 this.Cbx_InfoSystems.Items.Add(infoSystem);
@@ -113,10 +112,8 @@ namespace SD.IdentitySystem.AuthorityImporter
             #endregion
 
             string assemblyPath = this.Txt_FilePath.Text;
-
             InfoSystemInfo selectedSystemItem = (InfoSystemInfo)this.Cbx_InfoSystems.SelectedItem;
             KeyValuePair<string, string> selectedApplicationTypeItem = (KeyValuePair<string, string>)this.Cbx_ApplicationTypes.SelectedItem;
-
             string infoSystemNo = selectedSystemItem.Number;
             ApplicationType applicationType = (ApplicationType)Enum.Parse(typeof(ApplicationType), selectedApplicationTypeItem.Key);
 

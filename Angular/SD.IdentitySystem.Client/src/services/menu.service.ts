@@ -123,6 +123,7 @@ export class MenuService {
         : Promise<Array<Menu>> {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authorization/GetMenus`;
         let params = new HttpParams()
+            .set("keywords", "")
             .set("infoSystemNo", infoSystemNo ? infoSystemNo : "")
             .set("applicationType", applicationType == null ? "" : applicationType.toString());
 

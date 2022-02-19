@@ -79,7 +79,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
         /// <returns>菜单列表</returns>
         private IEnumerable<Menu> GetMenus(string infoSystemNo, ApplicationType? applicationType)
         {
-            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.Channel.GetMenus(infoSystemNo, applicationType);
+            IEnumerable<MenuInfo> menuInfos = this._authorizationContract.Channel.GetMenus(null, infoSystemNo, applicationType);
             IEnumerable<Menu> menus = menuInfos.OrderBy(x => x.Sort).Select(x => x.ToModel());
 
             return menus;

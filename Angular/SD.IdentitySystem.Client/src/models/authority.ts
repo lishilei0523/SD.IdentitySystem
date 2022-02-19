@@ -13,21 +13,6 @@ export interface Authority extends ModelBase {
     /*权限路径*/
     authorityPath: string;
 
-    /*英文名称*/
-    englishName: string;
-
-    /*程序集名称*/
-    assemblyName: string | null;
-
-    /*命名空间*/
-    namespace: string | null;
-
-    /*类名*/
-    className: string | null;
-
-    /*方法名*/
-    methodName: string | null;
-
     /*描述*/
     description: string | null;
 

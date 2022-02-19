@@ -177,29 +177,31 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 获取用户列表 —— IEnumerable<UserInfo> GetUsers(string keywords)
-        /// <summary>
-        /// 获取用户列表
-        /// </summary>
-        /// <param name="keywords">关键字</param>
-        /// <returns>用户列表</returns>
-        [HttpGet]
-        public IEnumerable<UserInfo> GetUsers(string keywords)
-        {
-            return this._userContract.GetUsers(keywords);
-        }
-        #endregion
-
-        #region # 获取用户字典 —— IDictionary<string, UserInfo> GetUsersByLoginIds(...
+        #region # 获取用户字典 —— IDictionary<string, UserInfo> GetUsersByNo(...
         /// <summary>
         /// 获取用户字典
         /// </summary>
         /// <param name="loginIds">用户名集</param>
         /// <returns>用户字典</returns>
         [HttpGet]
-        public IDictionary<string, UserInfo> GetUsersByLoginIds([FromJson] IEnumerable<string> loginIds)
+        public IDictionary<string, UserInfo> GetUsersByNo([FromJson] IEnumerable<string> loginIds)
         {
-            return this._userContract.GetUsersByLoginIds(loginIds);
+            return this._userContract.GetUsersByNo(loginIds);
+        }
+        #endregion
+
+        #region # 获取用户列表 —— IEnumerable<UserInfo> GetUsers(string keywords...
+        /// <summary>
+        /// 获取用户列表
+        /// </summary>
+        /// <param name="keywords">关键字</param>
+        /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="roleId">角色Id</param>
+        /// <returns>用户列表</returns>
+        [HttpGet]
+        public IEnumerable<UserInfo> GetUsers(string keywords, string infoSystemNo, Guid? roleId)
+        {
+            return this._userContract.GetUsers(keywords, infoSystemNo, roleId);
         }
         #endregion
 
@@ -268,11 +270,12 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         /// </summary>
         /// <param name="loginId">用户名</param>
         /// <param name="infoSystemNo">信息系统编号</param>
+        /// <param name="applicationType">应用程序类型</param>
         /// <returns>权限列表</returns>
         [HttpGet]
-        public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string infoSystemNo)
+        public IEnumerable<AuthorityInfo> GetUserAuthorities(string loginId, string infoSystemNo, ApplicationType? applicationType)
         {
-            return this._userContract.GetUserAuthorities(loginId, infoSystemNo);
+            return this._userContract.GetUserAuthorities(loginId, infoSystemNo, applicationType);
         }
         #endregion
 

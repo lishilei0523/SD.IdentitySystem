@@ -18,14 +18,9 @@ function getAuthorities(queryParams) {
             { field: "ck", checkbox: true, halign: "center" },
             { field: "Id", title: "Id", halign: "center", hidden: true },
             { field: "Name", title: "权限名称", halign: "center", width: 120 },
-            { field: "EnglishName", title: "英文名称", halign: "center", width: 120 },
+            { field: "AuthorityPath", title: "权限路径", halign: "center", width: 300 },
             { field: "InfoSystemName", title: "所属系统", halign: "center", width: 120 },
             { field: "ApplicationTypeName", title: "应用程序类型", halign: "center", width: 150 },
-            { field: "AuthorityPath", title: "权限路径", halign: "center" },
-            { field: "AssemblyName", title: "程序集名称", halign: "center", width: 150 },
-            { field: "Namespace", title: "命名空间", halign: "center", width: 150 },
-            { field: "ClassName", title: "类名", halign: "center", width: 150 },
-            { field: "MethodName", title: "方法名", halign: "center", width: 150 },
             { field: "Description", title: "描述", halign: "center", width: 200 },
             {
                 field: "AddedTime",
@@ -76,12 +71,12 @@ function getAuthorities(queryParams) {
 
 //创建权限
 function createAuthority() {
-    $.easyuiExt.showWindow("创建权限", "/Authority/Add", 480, 568);
+    $.easyuiExt.showWindow("创建权限", "/Authority/Add", 450, 363);
 }
 
 //修改权限
 function updateAuthority(authorityId) {
-    $.easyuiExt.showWindow("修改权限", "/Authority/Update/" + authorityId, 480, 568);
+    $.easyuiExt.showWindow("修改权限", "/Authority/Update/" + authorityId, 450, 363);
 }
 
 //删除权限

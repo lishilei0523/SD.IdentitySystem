@@ -82,11 +82,6 @@ CREATE TABLE [Authority] (
     [InfoSystemNo] nvarchar(16) NOT NULL,
     [ApplicationType] int NOT NULL,
     [AuthorityPath] nvarchar(256) NOT NULL,
-    [EnglishName] nvarchar(max) NULL,
-    [AssemblyName] nvarchar(max) NULL,
-    [Namespace] nvarchar(max) NULL,
-    [ClassName] nvarchar(max) NULL,
-    [MethodName] nvarchar(max) NULL,
     [Description] nvarchar(max) NULL,
     [AddedTime] datetime2 NOT NULL,
     [Name] nvarchar(64) NOT NULL,
@@ -209,7 +204,7 @@ CREATE INDEX [IX_User_Role_User_Id] ON [User_Role] ([User_Id]);
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20220122102050_v4.4.0', N'5.0.10');
+VALUES (N'20220219093454_v4.5.0', N'5.0.10');
 GO
 
 COMMIT;
