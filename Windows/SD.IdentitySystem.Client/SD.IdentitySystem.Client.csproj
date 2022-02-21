@@ -18,7 +18,7 @@
 
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <Content Include="Content\Images\banner.gif" />
+    <Resource Include="Content\Images\banner.gif" />
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
