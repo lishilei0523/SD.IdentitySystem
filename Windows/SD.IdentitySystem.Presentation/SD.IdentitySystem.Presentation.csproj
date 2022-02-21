@@ -6,7 +6,7 @@
     <Copyright>Copyright © SD 2022</Copyright>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net461'">
+  <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.1.1" />
   </ItemGroup>
 
