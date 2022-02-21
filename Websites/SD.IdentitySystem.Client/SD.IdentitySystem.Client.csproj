@@ -1,11 +1,9 @@
-﻿<?xml version="1.0" encoding="utf-8"?>
-<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
-  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--项目属性-->
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>
-    </ProductVersion>
+    <ProductVersion />
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{588E8C49-6286-41B3-BB00-905DC2971F64}</ProjectGuid>
     <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
@@ -14,20 +12,19 @@
     <RootNamespace>SD.IdentitySystem.Client</RootNamespace>
     <AssemblyName>SD.IdentitySystem.Client</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
-    <MvcBuildViews>false</MvcBuildViews>
     <UseIISExpress>true</UseIISExpress>
     <IISExpressSSLPort />
     <IISExpressAnonymousAuthentication />
     <IISExpressWindowsAuthentication />
     <IISExpressUseClassicPipelineMode />
-    <SolutionDir Condition="$(SolutionDir) == '' Or $(SolutionDir) == '*Undefined*'">..\..\</SolutionDir>
-    <RestorePackages>true</RestorePackages>
     <UseGlobalApplicationHostFile />
     <TargetFrameworkProfile />
     <Use64BitIISExpress />
-    <NuGetPackageImportStamp>
-    </NuGetPackageImportStamp>
+    <NuGetPackageImportStamp />
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
   </PropertyGroup>
+  <!--Debug生成属性-->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
@@ -37,6 +34,7 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <!--Release生成属性-->
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
@@ -45,21 +43,13 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <!--程序集引用-->
   <ItemGroup>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System" />
-    <Reference Include="System.Net" />
-    <Reference Include="System.Net.Http" />
-    <Reference Include="System.Net.Http.WebRequest" />
-    <Reference Include="System.Web.DynamicData" />
-    <Reference Include="System.Web.Entity" />
-    <Reference Include="System.Web.ApplicationServices" />
-    <Reference Include="System.Web.Extensions" />
     <Reference Include="System.Web" />
-    <Reference Include="System.Web.Abstractions" />
-    <Reference Include="System.Web.Routing" />
-    <Reference Include="System.Web.Services" />
   </ItemGroup>
+  <!--NuGet包引用-->
   <ItemGroup>
     <PackageReference Include="jQuery" Version="1.12.4" />
     <PackageReference Include="jQuery.Validation" Version="1.10.0" />
@@ -89,7 +79,20 @@
     <PackageReference Include="SD.IdentitySystem.AspNetMvc.Authentication" Version="1.1.0" />
     <PackageReference Include="SD.IdentitySystem.WCF.Authentication.AspNet" Version="1.1.0" />
   </ItemGroup>
+  <!--项目引用-->
   <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
+      <Project>{e252094f-979a-4655-b864-e600c33ab75d}</Project>
+      <Name>SD.IdentitySystem.IPresentation</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\SD.IdentitySystem.Presentation\SD.IdentitySystem.Presentation.csproj">
+      <Project>{3f6e50ba-8e37-4730-9c2e-0d9483a026d8}</Project>
+      <Name>SD.IdentitySystem.Presentation</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <!--类文件-->
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Controllers\AuthorityController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\InfoSystemController.cs" />
@@ -100,14 +103,53 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <!--Razor视图文件-->
   <ItemGroup>
-    <Content Include="Content\css\Common\Form.css" />
-    <Content Include="Content\css\Common\Grid.css" />
-    <Content Include="Content\css\Common\TreeGrid.css" />
-    <Content Include="Content\css\Home\Index.css" />
-    <Content Include="Content\css\User\Login.css" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Home\Exception.cshtml" />
+    <Content Include="Views\Authority\Add.cshtml" />
+    <Content Include="Views\Authority\Index.cshtml" />
+    <Content Include="Views\Authority\Update.cshtml" />
+    <Content Include="Views\InfoSystem\Add.cshtml" />
+    <Content Include="Views\InfoSystem\Index.cshtml" />
+    <Content Include="Views\InfoSystem\Init.cshtml" />
+    <Content Include="Views\LoginRecord\Index.cshtml" />
+    <Content Include="Views\Menu\Add.cshtml" />
+    <Content Include="Views\Menu\Index.cshtml" />
+    <Content Include="Views\Menu\RelateAuthority.cshtml" />
+    <Content Include="Views\Menu\Update.cshtml" />
+    <Content Include="Views\Role\Add.cshtml" />
+    <Content Include="Views\Role\Index.cshtml" />
+    <Content Include="Views\Role\Update.cshtml" />
+    <Content Include="Views\User\Add.cshtml" />
+    <Content Include="Views\User\Index.cshtml" />
+    <Content Include="Views\User\Login.cshtml" />
+    <Content Include="Views\User\ResetPassword.cshtml" />
+    <Content Include="Views\User\SetRole.cshtml" />
+    <Content Include="Views\User\ResetPrivateKey.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Web.config" />
+  </ItemGroup>
+  <!--资源文件-->
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+    <Content Include="Global.asax" />
+    <Content Include="Properties\PublishProfiles\Default.pubxml" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+  </ItemGroup>
+  <!--图片文件-->
+  <ItemGroup>
     <Content Include="Content\images\banner-pic.gif" />
     <Content Include="Content\images\loader.gif" />
     <Content Include="Content\images\login_bottom.jpg" />
@@ -115,27 +157,9 @@
     <Content Include="Content\images\login_sTop.jpg" />
     <Content Include="Content\images\login_top.jpg" />
     <Content Include="Content\images\qzonebg.gif" />
-    <Content Include="Content\scripts\Authority\Add.js" />
-    <Content Include="Content\scripts\Authority\Index.js" />
-    <Content Include="Content\scripts\Authority\Update.js" />
-    <Content Include="Content\scripts\Home\Index.js" />
-    <Content Include="Content\scripts\InfoSystem\Add.js" />
-    <Content Include="Content\scripts\InfoSystem\Index.js" />
-    <Content Include="Content\scripts\InfoSystem\Init.js" />
-    <Content Include="Content\scripts\LoginRecord\Index.js" />
-    <Content Include="Content\scripts\Menu\Add.js" />
-    <Content Include="Content\scripts\Menu\Index.js" />
-    <Content Include="Content\scripts\Menu\RelateAuthority.js" />
-    <Content Include="Content\scripts\Menu\Update.js" />
-    <Content Include="Content\scripts\Role\Add.js" />
-    <Content Include="Content\scripts\Role\Index.js" />
-    <Content Include="Content\scripts\Role\Update.js" />
-    <Content Include="Content\scripts\User\Add.js" />
-    <Content Include="Content\scripts\User\Index.js" />
-    <Content Include="Content\scripts\User\Login.js" />
-    <Content Include="Content\scripts\User\ResetPrivateKey.js" />
-    <Content Include="Content\scripts\User\ResetPassword.js" />
-    <Content Include="Content\scripts\User\SetRole.js" />
+  </ItemGroup>
+  <!--主题文件-->
+  <ItemGroup>
     <Content Include="Content\themes\black\accordion.css" />
     <Content Include="Content\themes\black\calendar.css" />
     <Content Include="Content\themes\black\combo.css" />
@@ -470,17 +494,45 @@
     <Content Include="Content\themes\metro\validatebox.css" />
     <Content Include="Content\themes\metro\window.css" />
     <Content Include="Content\themes\mobile.css" />
-    <Content Include="favicon.ico" />
-    <Content Include="Global.asax" />
-    <Content Include="Content\themes\material\images\Thumbs.db" />
+  </ItemGroup>
+  <!--样式文件-->
+  <ItemGroup>
+    <Content Include="Content\css\Common\Form.css" />
+    <Content Include="Content\css\Common\Grid.css" />
+    <Content Include="Content\css\Common\TreeGrid.css" />
+    <Content Include="Content\css\Home\Index.css" />
+    <Content Include="Content\css\User\Login.css" />
+  </ItemGroup>
+  <!--脚本文件-->
+  <ItemGroup>
+    <Content Include="Content\scripts\Authority\Add.js" />
+    <Content Include="Content\scripts\Authority\Index.js" />
+    <Content Include="Content\scripts\Authority\Update.js" />
+    <Content Include="Content\scripts\Home\Index.js" />
+    <Content Include="Content\scripts\InfoSystem\Add.js" />
+    <Content Include="Content\scripts\InfoSystem\Index.js" />
+    <Content Include="Content\scripts\InfoSystem\Init.js" />
+    <Content Include="Content\scripts\LoginRecord\Index.js" />
+    <Content Include="Content\scripts\Menu\Add.js" />
+    <Content Include="Content\scripts\Menu\Index.js" />
+    <Content Include="Content\scripts\Menu\RelateAuthority.js" />
+    <Content Include="Content\scripts\Menu\Update.js" />
+    <Content Include="Content\scripts\Role\Add.js" />
+    <Content Include="Content\scripts\Role\Index.js" />
+    <Content Include="Content\scripts\Role\Update.js" />
+    <Content Include="Content\scripts\User\Add.js" />
+    <Content Include="Content\scripts\User\Index.js" />
+    <Content Include="Content\scripts\User\Login.js" />
+    <Content Include="Content\scripts\User\ResetPrivateKey.js" />
+    <Content Include="Content\scripts\User\ResetPassword.js" />
+    <Content Include="Content\scripts\User\SetRole.js" />
     <Content Include="Scripts\datetools.js" />
     <Content Include="Scripts\easyloader.js" />
-    <None Include="Properties\PublishProfiles\Default.pubxml" />
-    <None Include="Scripts\jquery-1.12.4.intellisense.js" />
+    <Content Include="Scripts\jquery-1.12.4.intellisense.js" />
     <Content Include="Scripts\jquery-1.12.4.js" />
     <Content Include="Scripts\jquery-1.12.4.min.js" />
     <Content Include="Scripts\jquery-1.12.4.min.map" />
-    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate-vsdoc.js" />
     <Content Include="Scripts\jquery.easyui-1.4.5.js" />
     <Content Include="Scripts\jquery.easyui-1.4.5.min.js" />
     <Content Include="Scripts\jquery.easyui.extensions.js" />
@@ -519,62 +571,13 @@
     <Content Include="Scripts\locale\easyui-lang-zh_CN.js" />
     <Content Include="Scripts\locale\easyui-lang-zh_TW.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config">
-      <SubType>Designer</SubType>
-    </Content>
-    <Content Include="Web.Debug.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Web.Release.config">
-      <DependentUpon>Web.config</DependentUpon>
-    </Content>
-    <Content Include="Views\Web.config" />
-    <Content Include="Views\_ViewStart.cshtml" />
-    <Content Include="Views\Authority\Add.cshtml" />
-    <Content Include="Views\Authority\Index.cshtml" />
-    <Content Include="Views\Authority\Update.cshtml" />
-    <Content Include="Views\Home\Index.cshtml" />
-    <Content Include="Views\InfoSystem\Add.cshtml" />
-    <Content Include="Views\InfoSystem\Index.cshtml" />
-    <Content Include="Views\InfoSystem\Init.cshtml" />
-    <Content Include="Views\LoginRecord\Index.cshtml" />
-    <Content Include="Views\Menu\Add.cshtml" />
-    <Content Include="Views\Menu\Index.cshtml" />
-    <Content Include="Views\Menu\RelateAuthority.cshtml" />
-    <Content Include="Views\Menu\Update.cshtml" />
-    <Content Include="Views\Role\Add.cshtml" />
-    <Content Include="Views\Role\Index.cshtml" />
-    <Content Include="Views\Role\Update.cshtml" />
-    <Content Include="Views\Shared\Error.cshtml" />
-    <Content Include="Views\Shared\_Layout.cshtml" />
-    <Content Include="Views\User\Add.cshtml" />
-    <Content Include="Views\User\Index.cshtml" />
-    <Content Include="Views\User\Login.cshtml" />
-    <Content Include="Views\User\ResetPassword.cshtml" />
-    <Content Include="Views\User\SetRole.cshtml" />
-    <Content Include="Views\User\ResetPrivateKey.cshtml" />
-    <Content Include="Views\Home\Exception.cshtml" />
   </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
-      <Project>{e252094f-979a-4655-b864-e600c33ab75d}</Project>
-      <Name>SD.IdentitySystem.IPresentation</Name>
-    </ProjectReference>
-    <ProjectReference Include="..\SD.IdentitySystem.Presentation\SD.IdentitySystem.Presentation.csproj">
-      <Project>{3f6e50ba-8e37-4730-9c2e-0d9483a026d8}</Project>
-      <Name>SD.IdentitySystem.Presentation</Name>
-    </ProjectReference>
-  </ItemGroup>
-  <PropertyGroup>
-    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
-    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
-  </PropertyGroup>
+  <!--导入属性-->
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
   <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
-  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
-    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
-  </Target>
+  <!--项目扩展属性-->
   <ProjectExtensions>
     <VisualStudio>
       <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
