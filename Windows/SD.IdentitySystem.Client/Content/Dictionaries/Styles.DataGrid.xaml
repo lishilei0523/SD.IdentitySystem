@@ -72,6 +72,7 @@
     </DataTemplate>
     <!--DataGrid复选框单元格头模板-->
     <DataTemplate x:Key="DataGrid.CellHeaderTemplates.CheckBox.Default">
-        <CheckBox cm:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
+        <CheckBox IsChecked="{Binding Path=DataContext.IsCheckedAll, Mode=TwoWay, RelativeSource={RelativeSource AncestorType={x:Type DataGrid}}, UpdateSourceTrigger=PropertyChanged}"
+                  cm:Message.Attach="[Event Checked] = [Action CheckAll()]; [Event Unchecked] = [Action UncheckAll()]" />
     </DataTemplate>
 </ResourceDictionary>

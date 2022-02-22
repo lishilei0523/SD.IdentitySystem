@@ -117,6 +117,14 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         public ObservableCollection<InfoSystemInfo> InfoSystems { get; set; }
         #endregion
 
+        #region 是否已全选 —— bool? IsCheckedAll
+        /// <summary>
+        /// 是否已全选
+        /// </summary>
+        [DependencyProperty]
+        public bool? IsCheckedAll { get; set; }
+        #endregion
+
         #endregion
 
         #region # 方法
@@ -245,6 +253,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         public void CheckAll()
         {
             this.Roles.ForEach(x => x.IsChecked = true);
+            this.IsCheckedAll = true;
         }
         #endregion
 
@@ -255,6 +264,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
         public void UncheckAll()
         {
             this.Roles.ForEach(x => x.IsChecked = false);
+            this.IsCheckedAll = false;
         }
         #endregion
 
@@ -277,6 +287,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
             this.Roles = new ObservableCollection<Wrap<RoleInfo>>(wrapModels);
 
             this.Idle();
+            this.UncheckAll();
         }
         #endregion
 

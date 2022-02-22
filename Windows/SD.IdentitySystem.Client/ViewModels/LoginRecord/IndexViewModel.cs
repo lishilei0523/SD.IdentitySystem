@@ -1,5 +1,4 @@
-﻿using SD.Common;
-using SD.IdentitySystem.IAppService.DTOs.Outputs;
+﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
@@ -135,26 +134,6 @@ namespace SD.IdentitySystem.Client.ViewModels.LoginRecord
         public async void LoadLoginRecords()
         {
             await this.ReloadLoginRecords();
-        }
-        #endregion
-
-        #region 全选 —— void CheckAll()
-        /// <summary>
-        /// 全选
-        /// </summary>
-        public void CheckAll()
-        {
-            this.LoginRecords.ForEach(x => x.IsChecked = true);
-        }
-        #endregion
-
-        #region 取消全选 —— void UncheckAll()
-        /// <summary>
-        /// 取消全选
-        /// </summary>
-        public void UncheckAll()
-        {
-            this.LoginRecords.ForEach(x => x.IsChecked = false);
         }
         #endregion
 

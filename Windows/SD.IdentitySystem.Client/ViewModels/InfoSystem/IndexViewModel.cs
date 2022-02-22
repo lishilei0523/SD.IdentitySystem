@@ -1,5 +1,4 @@
 ﻿using Caliburn.Micro;
-using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.DTOBase;
@@ -177,26 +176,6 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
             {
                 await this.ReloadInfoSystems();
             }
-        }
-        #endregion
-
-        #region 全选 —— void CheckAll()
-        /// <summary>
-        /// 全选
-        /// </summary>
-        public void CheckAll()
-        {
-            this.InfoSystems.ForEach(x => x.IsChecked = true);
-        }
-        #endregion
-
-        #region 取消全选 —— void UncheckAll()
-        /// <summary>
-        /// 取消全选
-        /// </summary>
-        public void UncheckAll()
-        {
-            this.InfoSystems.ForEach(x => x.IsChecked = false);
         }
         #endregion
 

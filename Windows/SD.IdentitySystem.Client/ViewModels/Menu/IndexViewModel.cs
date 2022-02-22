@@ -196,7 +196,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
                 {
                     checkedMenus.Add(menu);
                 }
-
                 foreach (Models.Menu subNode in menu.GetDeepSubNodes())
                 {
                     if (subNode.IsChecked == true)

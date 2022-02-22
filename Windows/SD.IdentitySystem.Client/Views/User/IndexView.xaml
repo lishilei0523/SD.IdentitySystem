@@ -68,9 +68,7 @@
                       CellStyle="{StaticResource DataGrid.Cell.Styles.Default}">
                 <!--列定义-->
                 <DataGrid.Columns>
-                    <DataGridTemplateColumn Width="35" 
-                                            CellTemplate="{StaticResource DataGrid.CellTemplates.CheckBox.Default}"
-                                            HeaderTemplate="{StaticResource DataGrid.CellHeaderTemplates.CheckBox.Default}" />
+                    <DataGridCheckBoxColumn Width="35" Binding="{Binding RelativeSource={RelativeSource AncestorType=DataGridRow}, Path=IsSelected, Mode=TwoWay}" />
                     <DataGridTextColumn Header="用户名" Width="130" Binding="{Binding Model.Number}" 
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="真实姓名" Width="170" Binding="{Binding Model.Name}" 

@@ -226,12 +226,12 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
         /// </summary>
         public async void RemoveAuthorities()
         {
-            #region # 加载勾选
+            #region # 加载选中
 
-            AuthorityInfo[] checkedAuthorities = this.Authorities.Where(x => x.IsChecked == true).Select(x => x.Model).ToArray();
-            if (!checkedAuthorities.Any())
+            AuthorityInfo[] selectedAuthorities = this.Authorities.Where(x => x.IsSelected == true).Select(x => x.Model).ToArray();
+            if (!selectedAuthorities.Any())
             {
-                MessageBox.Show("请勾选要删除的权限！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("请选中要删除的权限！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -243,31 +243,11 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 this.Busy();
 
                 IAuthorizationContract authorizationContract = this._authorizationContract.Channel;
-                await Task.Run(() => checkedAuthorities.ForEach(authority => authorizationContract.RemoveAuthority(authority.Id)));
+                await Task.Run(() => selectedAuthorities.ForEach(authority => authorizationContract.RemoveAuthority(authority.Id)));
                 await this.ReloadAuthorities();
 
                 this.Idle();
             }
-        }
-        #endregion
-
-        #region 全选 —— void CheckAll()
-        /// <summary>
-        /// 全选
-        /// </summary>
-        public void CheckAll()
-        {
-            this.Authorities.ForEach(x => x.IsChecked = true);
-        }
-        #endregion
-
-        #region 取消全选 —— void UncheckAll()
-        /// <summary>
-        /// 取消全选
-        /// </summary>
-        public void UncheckAll()
-        {
-            this.Authorities.ForEach(x => x.IsChecked = false);
         }
         #endregion
 

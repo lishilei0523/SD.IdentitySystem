@@ -236,12 +236,12 @@ namespace SD.IdentitySystem.Client.ViewModels.User
         /// </summary>
         public async void RemoveUsers()
         {
-            #region # 加载勾选
+            #region # 加载选中
 
-            UserInfo[] checkedUsers = this.Users.Where(x => x.IsChecked == true).Select(x => x.Model).ToArray();
-            if (!checkedUsers.Any())
+            UserInfo[] selectedUsers = this.Users.Where(x => x.IsSelected == true).Select(x => x.Model).ToArray();
+            if (!selectedUsers.Any())
             {
-                MessageBox.Show("请勾选要删除的用户！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
+                MessageBox.Show("请选中要删除的用户！", "警告", MessageBoxButton.OK, MessageBoxImage.Warning);
                 return;
             }
 
@@ -253,7 +253,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
                 this.Busy();
 
                 IUserContract userContract = this._userContract.Channel;
-                await Task.Run(() => checkedUsers.ForEach(user => userContract.RemoveUser(user.Number)));
+                await Task.Run(() => selectedUsers.ForEach(user => userContract.RemoveUser(user.Number)));
                 await this.ReloadUsers();
 
                 this.Idle();
@@ -303,26 +303,6 @@ namespace SD.IdentitySystem.Client.ViewModels.User
             this.Idle();
 
             await this._windowManager.ShowDialogAsync(viewModel);
-        }
-        #endregion
-
-        #region 全选 —— void CheckAll()
-        /// <summary>
-        /// 全选
-        /// </summary>
-        public void CheckAll()
-        {
-            this.Users.ForEach(x => x.IsChecked = true);
-        }
-        #endregion
-
-        #region 取消全选 —— void UncheckAll()
-        /// <summary>
-        /// 取消全选
-        /// </summary>
-        public void UncheckAll()
-        {
-            this.Users.ForEach(x => x.IsChecked = false);
         }
         #endregion
 
