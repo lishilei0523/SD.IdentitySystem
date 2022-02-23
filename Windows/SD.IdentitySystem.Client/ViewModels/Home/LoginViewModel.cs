@@ -123,8 +123,9 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Channel.Login(this.LoginId, this.Password));
             AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
 
-            IndexViewModel homeViewModel = ResolveMediator.Resolve<IndexViewModel>();
-            await this._windowManager.ShowWindowAsync(homeViewModel);
+            IndexViewModel viewModel = ResolveMediator.Resolve<IndexViewModel>();
+            Application.Current.MainWindow = (Window)viewModel.GetView();
+            await this._windowManager.ShowWindowAsync(viewModel);
 
             this.Idle();
             await base.TryCloseAsync();
