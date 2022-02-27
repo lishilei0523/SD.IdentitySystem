@@ -1,0 +1,32 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Xamarin.Forms"
+             xmlns:sd="https://github.com/lishilei0523/SD.Framework"
+             x:Class="SD.IdentitySystem.Mobile.Views.Home.LoginView"
+             Title="登录">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <Label Text="用户名" />
+            <Entry Text="{Binding LoginId}" ClearButtonVisibility="WhileEditing" />
+            <Label Text="密码" />
+            <Grid>
+                <Entry Text="{Binding Password}" 
+                       IsPassword="{Binding Source={x:Reference ShowPasswordActualTrigger}, Path=HidePassword}" />
+                <ImageButton VerticalOptions="Center"
+                             Margin="0,0,10,0"
+                             HeightRequest="20"
+                             HorizontalOptions="End"
+                             Source="ic_eye_hide">
+                    <ImageButton.Triggers>
+                        <EventTrigger Event="Clicked">
+                            <sd:ShowPasswordTriggerAction x:Name="ShowPasswordActualTrigger" ShowIcon="ic_eye" HideIcon="ic_eye_hide" />
+                        </EventTrigger>
+                    </ImageButton.Triggers>
+                </ImageButton>
+            </Grid>
+            <Button Text="登录" cm:Message.Attach="Login()" />
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
