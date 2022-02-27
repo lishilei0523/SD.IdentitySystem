@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<FlyoutPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            xmlns:cm="clr-namespace:Caliburn.Micro.Xamarin.Forms;assembly=Caliburn.Micro.Xamarin.Forms"
+            x:Class="SD.IdentitySystem.Mobile.Views.Home.IndexView"
+            IsPresented="{Binding MenuVisible}"
+            Title="身份认证系统">
+
+    <FlyoutPage.Flyout>
+        <ContentPage Title="身份认证系统菜单">
+            <ListView ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveItem, Mode=TwoWay}">
+                <ListView.ItemTemplate>
+                    <DataTemplate>
+                        <ViewCell>
+                            <StackLayout Orientation="Horizontal" Padding="12">
+                                <Image Source="{Binding Icon}" />
+                                <Label Text="{Binding DisplayName}" />
+                            </StackLayout>
+                        </ViewCell>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+        </ContentPage>
+    </FlyoutPage.Flyout>
+    <FlyoutPage.Detail>
+        <ContentPage Title="{Binding ActiveItem.DisplayName}" cm:View.Model="{Binding ActiveItem}" />
+    </FlyoutPage.Detail>
+</FlyoutPage>
