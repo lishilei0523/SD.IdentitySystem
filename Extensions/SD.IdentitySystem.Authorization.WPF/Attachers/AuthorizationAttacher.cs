@@ -2,9 +2,9 @@
 using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.Membership;
 using System;
-using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace SD.IdentitySystem.Authorization.WPF.Attachers
 {
@@ -82,7 +82,6 @@ namespace SD.IdentitySystem.Authorization.WPF.Attachers
         {
             if (GlobalSetting.AuthorizationEnabled)
             {
-                UIElement element = (UIElement)dependencyObject;
                 string authorityPath = eventArgs.NewValue?.ToString();
                 LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
 
@@ -99,17 +98,31 @@ namespace SD.IdentitySystem.Authorization.WPF.Attachers
 
                 #endregion
 
-                //从登录信息中取出权限集
-                IEnumerable<string> ownedAuthorityPaths = loginInfo.LoginAuthorityInfos.Select(x => x.Path);
+                //从登录信息中取出权限列表
+                string[] ownedAuthorityPaths = loginInfo.LoginAuthorityInfos.Select(x => x.Path).ToArray();
 
                 //验证权限
-                if (ownedAuthorityPaths.Contains(authorityPath))
+                if (dependencyObject is UIElement uiElement)
                 {
-                    element.Visibility = Visibility.Visible;
+                    if (ownedAuthorityPaths.Contains(authorityPath))
+                    {
+                        uiElement.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        uiElement.Visibility = Visibility.Collapsed;
+                    }
                 }
-                else
+                if (dependencyObject is DataGridTemplateColumn columnElement)
                 {
-                    element.Visibility = Visibility.Collapsed;
+                    if (ownedAuthorityPaths.Contains(authorityPath))
+                    {
+                        columnElement.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        columnElement.Visibility = Visibility.Collapsed;
+                    }
                 }
             }
         }
