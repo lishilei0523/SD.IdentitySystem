@@ -177,6 +177,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
                 await this.ReloadMenus();
 
                 this.Idle();
+                this.ToastSuccess("删除成功！");
             }
         }
         #endregion
@@ -222,6 +223,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
                 await this.ReloadMenus();
 
                 this.Idle();
+                this.ToastSuccess("删除成功！");
             }
         }
         #endregion

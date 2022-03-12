@@ -235,6 +235,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Menu
 
             this.Idle();
             await base.TryCloseAsync(true);
+            this.ToastSuccess("创建成功！");
         }
         #endregion
 

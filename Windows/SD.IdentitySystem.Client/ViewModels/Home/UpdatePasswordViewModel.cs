@@ -100,6 +100,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
             this.Idle();
             await base.TryCloseAsync(true);
+            this.ToastSuccess("修改成功！");
         }
         #endregion
 

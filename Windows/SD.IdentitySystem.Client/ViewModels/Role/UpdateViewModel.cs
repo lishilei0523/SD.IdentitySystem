@@ -132,6 +132,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
 
             this.Idle();
             await base.TryCloseAsync(true);
+            this.ToastSuccess("修改成功！");
         }
         #endregion
 

@@ -106,6 +106,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             this.Idle();
             await base.TryCloseAsync(true);
+            this.ToastSuccess("重置密码成功！");
         }
         #endregion
 

@@ -94,6 +94,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
 
             this.Idle();
             await base.TryCloseAsync(true);
+            this.ToastSuccess("分配角色成功！");
         }
         #endregion
 

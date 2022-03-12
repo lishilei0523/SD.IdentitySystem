@@ -118,6 +118,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             this.Idle();
             await base.TryCloseAsync(true);
+            this.ToastSuccess("初始化成功！");
         }
         #endregion
 

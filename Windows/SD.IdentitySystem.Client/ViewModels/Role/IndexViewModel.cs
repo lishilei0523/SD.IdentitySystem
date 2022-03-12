@@ -211,6 +211,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
                 await this.ReloadRoles();
 
                 this.Idle();
+                this.ToastSuccess("删除成功！");
             }
         }
         #endregion
@@ -242,6 +243,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Role
                 await this.ReloadRoles();
 
                 this.Idle();
+                this.ToastSuccess("删除成功！");
             }
         }
         #endregion

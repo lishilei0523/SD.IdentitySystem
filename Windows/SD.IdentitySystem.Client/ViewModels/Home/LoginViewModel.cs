@@ -87,7 +87,6 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             //自动登录
             this.LoginId = CommonConstants.AdminLoginId;
             this.Password = CommonConstants.InitialPassword;
-            this.Login();
 #endif
             return base.OnInitializeAsync(cancellationToken);
         }

@@ -216,6 +216,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 await this.ReloadAuthorities();
 
                 this.Idle();
+                this.ToastSuccess("删除成功！");
             }
         }
         #endregion
@@ -247,6 +248,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Authority
                 await this.ReloadAuthorities();
 
                 this.Idle();
+                this.ToastSuccess("删除成功！");
             }
         }
         #endregion

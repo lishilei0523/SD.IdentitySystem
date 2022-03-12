@@ -27,7 +27,7 @@
                 <RowDefinition Height="50" />
             </Grid.RowDefinitions>
             <!--表单区-->
-            <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="40,30">
+            <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="20,30">
                 <sd:FormItem Label="信息系统：">
                     <TextBox Text="{Binding InfoSystemName}" Style="{StaticResource TextBoxRevealStyle}" IsEnabled="False" />
                 </sd:FormItem>

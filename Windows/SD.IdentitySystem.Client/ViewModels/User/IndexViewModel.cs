@@ -186,6 +186,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
                 await this.ReloadUsers();
 
                 this.Idle();
+                this.ToastSuccess("启用成功！");
             }
         }
         #endregion
@@ -206,6 +207,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
                 await this.ReloadUsers();
 
                 this.Idle();
+                this.ToastSuccess("停用成功！");
             }
         }
         #endregion
@@ -226,6 +228,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
                 await this.ReloadUsers();
 
                 this.Idle();
+                this.ToastSuccess("删除成功！");
             }
         }
         #endregion
@@ -257,6 +260,7 @@ namespace SD.IdentitySystem.Client.ViewModels.User
                 await this.ReloadUsers();
 
                 this.Idle();
+                this.ToastSuccess("删除成功！");
             }
         }
         #endregion

@@ -95,6 +95,7 @@ namespace SD.IdentitySystem.Client.ViewModels.InfoSystem
 
             this.Idle();
             await base.TryCloseAsync(true);
+            this.ToastSuccess("修改成功！");
         }
         #endregion
 
