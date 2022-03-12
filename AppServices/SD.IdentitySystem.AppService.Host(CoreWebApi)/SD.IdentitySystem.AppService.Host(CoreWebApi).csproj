@@ -43,7 +43,7 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MrAdvice" Version="2.9.5" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.2.3" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="6.3.0" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.2" />
     <PackageReference Include="SD.Toolkits.AspNetCore" Version="2.0.2" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.3" />
@@ -54,10 +54,10 @@
     <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.4" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.4.2" />
-    <PackageReference Include="SD.Infrastructure.Global" Version="2.1.1" />
+    <PackageReference Include="SD.Infrastructure" Version="3.4.3" />
+    <PackageReference Include="SD.Infrastructure.Global" Version="2.1.2" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.0.2" />
+    <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.0.3" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.1.0" />
     <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="2.0.0" />
     <PackageReference Include="SD.IdentitySystem.AspNetCore.Authentication" Version="1.1.0" />

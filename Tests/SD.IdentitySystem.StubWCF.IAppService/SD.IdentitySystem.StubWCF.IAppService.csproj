@@ -15,6 +15,6 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="3.4.2" />
+    <PackageReference Include="SD.Infrastructure" Version="3.4.3" />
   </ItemGroup>
 </Project>
