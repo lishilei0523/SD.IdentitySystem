@@ -11,6 +11,7 @@
   <ItemGroup>
     <PackageReference Include="EntityFramework" Version="6.4.4" />
     <PackageReference Include="MrAdvice" Version="2.9.5" />
+    <PackageReference Include="SD.Toolkits.EntityFramework" Version="2.1.5" />
     <PackageReference Include="SD.AOP.Core" Version="2.2.1" />
     <PackageReference Include="SD.Infrastructure" Version="3.4.3" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />

@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.8" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.2" />
     <PackageReference Include="SD.Infrastructure" Version="3.4.3" />
   </ItemGroup>

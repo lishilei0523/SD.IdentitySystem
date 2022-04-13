@@ -54,8 +54,8 @@
     <PackageReference Include="jQuery" Version="1.12.4" />
     <PackageReference Include="jQuery.Validation" Version="1.10.0" />
     <PackageReference Include="EasyUI" Version="1.4.5" />
-    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.7" />
-    <PackageReference Include="Microsoft.Web.Infrastructure" Version="1.0.0.0" />
+    <PackageReference Include="Microsoft.AspNet.Mvc" Version="5.2.8" />
+    <PackageReference Include="Microsoft.Web.Infrastructure" Version="2.0.0" />
     <PackageReference Include="Microsoft.Web.RedisSessionStateProvider" Version="3.0.2" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Ajax" Version="3.2.6" />
     <PackageReference Include="Microsoft.jQuery.Unobtrusive.Validation" Version="3.2.11" />
