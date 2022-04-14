@@ -25,13 +25,12 @@ namespace SD.IdentitySystem.WCF.Authentication.AspNet
 
             //ASP.NET客户端获取公钥处理
             object loginInfo = httpContext?.Session[SessionKey.CurrentUser];
-
             if (loginInfo != null)
             {
-                Guid publishKey = ((LoginInfo)loginInfo).PublicKey;
+                Guid publicKey = ((LoginInfo)loginInfo).PublicKey;
 
                 //添加消息头
-                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publicKey);
                 request.Headers.Add(header);
             }
 

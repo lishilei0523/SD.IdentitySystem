@@ -78,7 +78,6 @@ namespace SD.IdentitySystem.WCF.Authentication
                 {
                     //以公钥为键，查询分布式缓存，如果有值则通过，无值则不通过
                     LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
-
                     if (loginInfo == null)
                     {
                         string message = "身份过期，请重新登录！";
@@ -133,10 +132,10 @@ namespace SD.IdentitySystem.WCF.Authentication
                 #endregion
 
                 //读取消息头中的公钥
-                Guid publishKey = incomingHeaders.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
+                Guid publicKey = incomingHeaders.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
 
                 //添加消息头
-                System.ServiceModel.Channels.MessageHeader outgoingheader = System.ServiceModel.Channels.MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publishKey);
+                System.ServiceModel.Channels.MessageHeader outgoingheader = System.ServiceModel.Channels.MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publicKey);
                 request.Headers.Add(outgoingheader);
             }
 

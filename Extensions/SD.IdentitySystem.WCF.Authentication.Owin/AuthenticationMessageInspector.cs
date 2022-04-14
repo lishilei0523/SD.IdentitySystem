@@ -21,7 +21,6 @@ namespace SD.IdentitySystem.WCF.Authentication.Owin
         {
             //OWIN获取公钥处理
             string publicKeyStr = OwinContextReader.Current.Get<string>(SessionKey.CurrentPublicKey);
-
             if (!string.IsNullOrWhiteSpace(publicKeyStr))
             {
                 Guid publicKey = new Guid(publicKeyStr);
