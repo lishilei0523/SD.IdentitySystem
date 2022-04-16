@@ -1,10 +1,8 @@
 ﻿using Caliburn.Micro.Xamarin.Forms;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
 using SD.Infrastructure.Xamarin.Caliburn.Aspects;
 using SD.Infrastructure.Xamarin.Caliburn.Base;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ServiceModel.Extensions;
@@ -90,7 +88,7 @@ namespace SD.IdentitySystem.Mobile.ViewModels.Home
             this.Busy();
 
             LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Channel.Login(this.LoginId, this.Password));
-            AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
+            MembershipMediator.SetLoginInfo(loginInfo);
 
             this.Idle();
 

@@ -5,9 +5,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem ASP.NET Core gRPC身份认证组件</Description>
     <Copyright>Copyright © SD 2022</Copyright>
-    <Version>1.0.1</Version>
-    <AssemblyVersion>1.0.1</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
+    <Version>1.1.0</Version>
+    <AssemblyVersion>1.1.0</AssemblyVersion>
+    <FileVersion>1.1.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -26,6 +26,6 @@
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.2" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.3" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.4.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.0" />
   </ItemGroup>
 </Project>

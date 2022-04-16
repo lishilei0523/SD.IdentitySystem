@@ -19,8 +19,8 @@
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.1.1" />
     <PackageReference Include="SD.IOC.Core" Version="2.1.6" />
     <PackageReference Include="SD.IOC.Extension.Xamarin.ServiceModel" Version="1.0.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.4.3" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.5.0" />
-    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.1.0" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.0" />
   </ItemGroup>
 </Project>

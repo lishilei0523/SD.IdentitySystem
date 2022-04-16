@@ -5,9 +5,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem ASP.NET Core SignalR身份认证组件</Description>
     <Copyright>Copyright © SD 2022</Copyright>
-    <Version>2.0.3</Version>
-    <AssemblyVersion>2.0.3</AssemblyVersion>
-    <FileVersion>2.0.3.0</FileVersion>
+    <Version>2.1.0</Version>
+    <AssemblyVersion>2.1.0</AssemblyVersion>
+    <FileVersion>2.1.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -24,7 +24,7 @@
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.2" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.4.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.0" />
     <PackageReference Include="SD.Infrastructure.SignalR.Server" Version="2.0.1" />
   </ItemGroup>
 </Project>

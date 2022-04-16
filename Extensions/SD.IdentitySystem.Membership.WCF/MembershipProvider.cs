@@ -21,6 +21,20 @@ namespace SD.IdentitySystem
     public class MembershipProvider : IMembershipProvider
     {
         /// <summary>
+        /// 设置登录信息
+        /// </summary>
+        /// <param name="loginInfo">登录信息</param>
+        public void SetLoginInfo(LoginInfo loginInfo)
+        {
+            if (OperationContext.Current != null)
+            {
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId, loginInfo.PublicKey);
+                MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
+                headers.Add(header);
+            }
+        }
+
+        /// <summary>
         /// 获取登录信息
         /// </summary>
         /// <returns>登录信息</returns>
@@ -30,12 +44,12 @@ namespace SD.IdentitySystem
             {
                 //获取消息头
                 MessageHeaders headers = OperationContext.Current.IncomingMessageHeaders;
-                if (!headers.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
+                if (!headers.Any(x => x.Name == CommonConstants.WCFAuthenticationHeader && x.Namespace == GlobalSetting.ApplicationId))
                 {
                     return null;
                 }
 
-                Guid publicKey = headers.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
+                Guid publicKey = headers.GetHeader<Guid>(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId);
                 LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
 
                 return loginInfo;

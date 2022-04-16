@@ -8,9 +8,9 @@
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Copyright>Copyright © SD 2022</Copyright>
-    <Version>4.5.0</Version>
-    <AssemblyVersion>4.5.0</AssemblyVersion>
-    <FileVersion>4.5.0.0</FileVersion>
+    <Version>4.6.0</Version>
+    <AssemblyVersion>4.6.0</AssemblyVersion>
+    <FileVersion>4.6.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
@@ -38,13 +38,13 @@
     <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.4" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.4.3" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.0" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.1.2" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
     <PackageReference Include="SD.Infrastructure.WCF.Server" Version="2.1.1" />
-    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.1.0" />
-    <PackageReference Include="SD.IdentitySystem.Membership.WCF" Version="2.0.0" />
-    <PackageReference Include="SD.IdentitySystem.WCF.Authentication" Version="1.1.2" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.0" />
+    <PackageReference Include="SD.IdentitySystem.Membership.WCF" Version="2.1.0" />
+    <PackageReference Include="SD.IdentitySystem.WCF.Authentication" Version="1.2.0" />
   </ItemGroup>
 
   <ItemGroup>

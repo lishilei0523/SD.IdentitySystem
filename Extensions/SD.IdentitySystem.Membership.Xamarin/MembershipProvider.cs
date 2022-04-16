@@ -11,12 +11,21 @@ namespace SD.IdentitySystem
     public class MembershipProvider : IMembershipProvider
     {
         /// <summary>
+        /// 设置登录信息
+        /// </summary>
+        /// <param name="loginInfo">登录信息</param>
+        public void SetLoginInfo(LoginInfo loginInfo)
+        {
+            AppDomain.CurrentDomain.SetData(GlobalSetting.ApplicationId, loginInfo);
+        }
+
+        /// <summary>
         /// 获取登录信息
         /// </summary>
         /// <returns>登录信息</returns>
         public LoginInfo GetLoginInfo()
         {
-            object loginInfo = AppDomain.CurrentDomain.GetData(SessionKey.CurrentUser);
+            object loginInfo = AppDomain.CurrentDomain.GetData(GlobalSetting.ApplicationId);
 
             return loginInfo as LoginInfo;
         }

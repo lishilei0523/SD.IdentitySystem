@@ -24,13 +24,13 @@ namespace SD.IdentitySystem.WCF.Authentication.AspNet
             HttpContext httpContext = HttpContext.Current ?? HttpContextReader.Current;
 
             //ASP.NET客户端获取公钥处理
-            object loginInfo = httpContext?.Session[SessionKey.CurrentUser];
+            object loginInfo = httpContext?.Session[GlobalSetting.ApplicationId];
             if (loginInfo != null)
             {
                 Guid publicKey = ((LoginInfo)loginInfo).PublicKey;
 
                 //添加消息头
-                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publicKey);
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId, publicKey);
                 request.Headers.Add(header);
             }
 

@@ -35,11 +35,11 @@ namespace SD.IdentitySystem.SignalR.Authentication.Middlewares
             if (AspNetSetting.Authorized)
             {
                 //读Header
-                string publicKey = context.Request.Headers[SessionKey.CurrentPublicKey];
+                string publicKey = context.Request.Headers[SessionKey.PublicKey];
                 if (string.IsNullOrWhiteSpace(publicKey))
                 {
                     //读QueryString
-                    publicKey = context.Request.Query[SessionKey.CurrentPublicKey];
+                    publicKey = context.Request.Query[SessionKey.PublicKey];
                 }
                 if (string.IsNullOrWhiteSpace(publicKey))
                 {

@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("主页视图")]
         public ViewResult Index()
         {
-            LoginInfo loginInfo = HttpContext.Session[SessionKey.CurrentUser] as LoginInfo;
+            LoginInfo loginInfo = base.HttpContext.Session[GlobalSetting.ApplicationId] as LoginInfo;
 
             base.ViewBag.LoginId = loginInfo?.LoginId;
             base.ViewBag.RealName = loginInfo?.RealName;

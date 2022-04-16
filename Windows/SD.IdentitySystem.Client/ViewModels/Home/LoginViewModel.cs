@@ -6,7 +6,6 @@ using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Commands;
 using SD.IOC.Core.Mediators;
-using System;
 using System.ServiceModel.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
@@ -120,7 +119,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             this.Busy();
 
             LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Channel.Login(this.LoginId, this.Password));
-            AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
+            MembershipMediator.SetLoginInfo(loginInfo);
 
             IndexViewModel viewModel = ResolveMediator.Resolve<IndexViewModel>();
             Application.Current.MainWindow = (Window)viewModel.GetView();

@@ -1,6 +1,5 @@
 ﻿using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories.Interfaces;
-using SD.Infrastructure.Constants;
 using SD.Infrastructure.Repository.EntityFramework;
 using SD.Toolkits.EntityFramework.Extensions;
 using System;
@@ -130,14 +129,14 @@ namespace SD.IdentitySystem.Repository.Implements
 
             #region # 验证
 
-            if (roles.All(x => x.Number != CommonConstants.ManagerRoleNo))
+            if (roles.All(x => x.Number != infoSystemNo))
             {
                 throw new ApplicationException($"未为编号为\"{infoSystemNo}\"的信息系统初始化系统管理员角色！");
             }
 
             #endregion
 
-            roles = roles.Where(x => x.Number == CommonConstants.ManagerRoleNo);
+            roles = roles.Where(x => x.Number == infoSystemNo);
             IQueryable<Guid> roleIds = roles.Select(x => x.Id);
             Guid infoSystemAdminRoleId = roleIds.Single();
 

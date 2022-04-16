@@ -158,7 +158,7 @@ namespace SD.IdentitySystem.Repository.Base
         {
             foreach (InfoSystem infoSystem in this._infoSystems)
             {
-                Role adminRole = new Role("系统管理员", infoSystem.Number, "系统管理员", CommonConstants.ManagerRoleNo);
+                Role adminRole = new Role("系统管理员", infoSystem.Number, "系统管理员", infoSystem.Number);
                 this._roles.Add(adminRole);
             }
         }

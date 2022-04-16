@@ -20,13 +20,13 @@ namespace SD.IdentitySystem.WCF.Authentication.Owin
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //OWIN获取公钥处理
-            string publicKeyStr = OwinContextReader.Current.Get<string>(SessionKey.CurrentPublicKey);
+            string publicKeyStr = OwinContextReader.Current.Get<string>(SessionKey.PublicKey);
             if (!string.IsNullOrWhiteSpace(publicKeyStr))
             {
                 Guid publicKey = new Guid(publicKeyStr);
 
                 //添加消息头
-                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publicKey);
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId, publicKey);
                 request.Headers.Add(header);
             }
 

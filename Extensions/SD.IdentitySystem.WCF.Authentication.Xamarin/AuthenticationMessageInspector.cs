@@ -20,14 +20,14 @@ namespace SD.IdentitySystem.WCF.Authentication.Xamarin
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //Xamarin移动端获取公钥处理
-            object loginInfo = AppDomain.CurrentDomain.GetData(SessionKey.CurrentUser);
+            object loginInfo = AppDomain.CurrentDomain.GetData(GlobalSetting.ApplicationId);
 
             if (loginInfo != null)
             {
                 Guid publicKey = ((LoginInfo)loginInfo).PublicKey;
 
                 //添加消息头
-                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publicKey);
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId, publicKey);
                 request.Headers.Add(header);
             }
 

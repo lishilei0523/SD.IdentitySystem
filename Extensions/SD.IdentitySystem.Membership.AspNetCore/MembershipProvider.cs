@@ -15,13 +15,26 @@ namespace SD.IdentitySystem
     public class MembershipProvider : IMembershipProvider
     {
         /// <summary>
+        /// 设置登录信息
+        /// </summary>
+        /// <param name="loginInfo">登录信息</param>
+        public void SetLoginInfo(LoginInfo loginInfo)
+        {
+            HttpContext httpContext = OwinContextReader.Current;
+            if (httpContext != null)
+            {
+                httpContext.Request.Headers.Add(SessionKey.PublicKey, new StringValues(loginInfo.PublicKey.ToString()));
+            }
+        }
+
+        /// <summary>
         /// 获取登录信息
         /// </summary>
         /// <returns>登录信息</returns>
         public LoginInfo GetLoginInfo()
         {
             HttpContext httpContext = OwinContextReader.Current;
-            if (httpContext != null && httpContext.Request.Headers.TryGetValue(SessionKey.CurrentPublicKey, out StringValues header))
+            if (httpContext != null && httpContext.Request.Headers.TryGetValue(SessionKey.PublicKey, out StringValues header))
             {
                 Guid publicKey = new Guid(header.ToString());
                 LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());

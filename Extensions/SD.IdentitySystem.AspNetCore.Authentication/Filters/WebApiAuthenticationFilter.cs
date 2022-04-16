@@ -44,7 +44,7 @@ namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
                 bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
                 if (needAuthorize && !allowAnonymous)
                 {
-                    if (!context.HttpContext.Request.Headers.TryGetValue(SessionKey.CurrentPublicKey, out StringValues header))
+                    if (!context.HttpContext.Request.Headers.TryGetValue(SessionKey.PublicKey, out StringValues header))
                     {
                         ObjectResult response = new ObjectResult("身份认证消息头不存在，请检查程序！")
                         {

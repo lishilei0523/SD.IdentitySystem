@@ -23,7 +23,7 @@ namespace SD.IdentitySystem.AspNetMvc.Authentication.Filters
         {
             bool needAuthorize = AspNetSetting.Authorized;
             bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
-            bool existsSession = HttpContext.Current.Session[SessionKey.CurrentUser] != null;
+            bool existsSession = HttpContext.Current.Session[GlobalSetting.ApplicationId] != null;
             if (needAuthorize && !allowAnonymous && !existsSession)
             {
                 //设置状态码为401

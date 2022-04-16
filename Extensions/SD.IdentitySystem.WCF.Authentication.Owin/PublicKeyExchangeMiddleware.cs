@@ -24,15 +24,15 @@ namespace SD.IdentitySystem.WCF.Authentication.Owin
         public override Task Invoke(IOwinContext context)
         {
             //读Header
-            string publicKey = context.Request.Headers.Get(SessionKey.CurrentPublicKey);
+            string publicKey = context.Request.Headers.Get(SessionKey.PublicKey);
             if (string.IsNullOrWhiteSpace(publicKey))
             {
                 //读QueryString
-                publicKey = context.Request.Query[SessionKey.CurrentPublicKey];
+                publicKey = context.Request.Query[SessionKey.PublicKey];
             }
 
             //将公钥缓存至OwinContext
-            context.Set(SessionKey.CurrentPublicKey, publicKey);
+            context.Set(SessionKey.PublicKey, publicKey);
 
             return base.Next.Invoke(context);
         }

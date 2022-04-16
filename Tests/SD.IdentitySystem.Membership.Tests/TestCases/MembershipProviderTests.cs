@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Membership.Tests.TestCases
         public void TestGetLoginInfo()
         {
             LoginInfo loginInfoInput = new LoginInfo(CommonConstants.AdminLoginId, "超级管理员", Guid.Empty);
-            AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfoInput);
+            AppDomain.CurrentDomain.SetData(GlobalSetting.ApplicationId, loginInfoInput);
 
             LoginInfo loginInfoOutput = MembershipMediator.GetLoginInfo();
 

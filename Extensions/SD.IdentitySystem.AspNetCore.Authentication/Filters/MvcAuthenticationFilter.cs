@@ -34,7 +34,7 @@ namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
 
             bool needAuthorize = AspNetSetting.Authorized;
             bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
-            bool existsSession = OwinContextReader.Current.Session.TryGetValue(SessionKey.CurrentUser, out _);
+            bool existsSession = OwinContextReader.Current.Session.TryGetValue(GlobalSetting.ApplicationId, out _);
             if (needAuthorize && !allowAnonymous && !existsSession)
             {
                 //是不是Ajax请求

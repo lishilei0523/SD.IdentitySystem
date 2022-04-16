@@ -77,7 +77,7 @@ namespace SD.IdentitySystem.AppService.Implements
             InfoSystem infoSystem = new InfoSystem(infoSystemNo, infoSystemName, adminLoginId, applicationType);
             User superAdmin = this._unitOfWork.Resolve<User>(CommonConstants.AdminLoginId);
             User systemAdmin = new User(infoSystem.AdminLoginId, $"{infoSystem.Name}管理员", CommonConstants.InitialPassword);
-            Role systemAdminRole = new Role($"{infoSystem.Name}管理员", infoSystem.Number, null, CommonConstants.ManagerRoleNo);
+            Role systemAdminRole = new Role($"{infoSystem.Name}管理员", infoSystem.Number, null, infoSystem.Number);
             superAdmin.AppendRoles(new[] { systemAdminRole });
             systemAdmin.AppendRoles(new[] { systemAdminRole });
             Menu systemMenu = new Menu(infoSystem.Number, infoSystem.ApplicationType, infoSystem.Name, 0, null, null, null, null);

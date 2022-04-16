@@ -11,6 +11,15 @@ namespace SD.IdentitySystem
     public class MembershipProvider : IMembershipProvider
     {
         /// <summary>
+        /// 设置登录信息
+        /// </summary>
+        /// <param name="loginInfo">登录信息</param>
+        public void SetLoginInfo(LoginInfo loginInfo)
+        {
+            HttpContext.Current.Session.Add(GlobalSetting.ApplicationId, loginInfo);
+        }
+
+        /// <summary>
         /// 获取登录信息
         /// </summary>
         /// <returns>登录信息</returns>
@@ -19,7 +28,7 @@ namespace SD.IdentitySystem
             if (HttpContext.Current != null)
             {
                 //从Session中获取
-                LoginInfo loginInfo = HttpContext.Current.Session[SessionKey.CurrentUser] as LoginInfo;
+                LoginInfo loginInfo = HttpContext.Current.Session[GlobalSetting.ApplicationId] as LoginInfo;
 
                 return loginInfo;
             }

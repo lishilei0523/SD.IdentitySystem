@@ -59,7 +59,7 @@ namespace SD.IdentitySystem.WCF.Authentication
             {
                 #region # 验证消息头
 
-                if (!headers.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
+                if (!headers.Any(x => x.Name == CommonConstants.WCFAuthenticationHeader && x.Namespace == GlobalSetting.ApplicationId))
                 {
                     string message = "身份认证消息头不存在，请检查程序！";
                     NoPermissionException innerException = new NoPermissionException(message);
@@ -71,7 +71,7 @@ namespace SD.IdentitySystem.WCF.Authentication
                 #endregion
 
                 //读取消息头中的公钥
-                Guid publicKey = headers.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
+                Guid publicKey = headers.GetHeader<Guid>(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId);
 
                 //认证
                 lock (_Sync)
@@ -120,7 +120,7 @@ namespace SD.IdentitySystem.WCF.Authentication
 
                 #region # 验证消息头
 
-                if (!incomingHeaders.Any(x => x.Name == CommonConstants.WcfAuthHeaderName && x.Namespace == CommonConstants.WcfAuthHeaderNamespace))
+                if (!incomingHeaders.Any(x => x.Name == CommonConstants.WCFAuthenticationHeader && x.Namespace == GlobalSetting.ApplicationId))
                 {
                     string message = "身份认证消息头不存在，请检查程序！";
                     NoPermissionException innerException = new NoPermissionException(message);
@@ -132,10 +132,10 @@ namespace SD.IdentitySystem.WCF.Authentication
                 #endregion
 
                 //读取消息头中的公钥
-                Guid publicKey = incomingHeaders.GetHeader<Guid>(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace);
+                Guid publicKey = incomingHeaders.GetHeader<Guid>(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId);
 
                 //添加消息头
-                System.ServiceModel.Channels.MessageHeader outgoingheader = System.ServiceModel.Channels.MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publicKey);
+                System.ServiceModel.Channels.MessageHeader outgoingheader = System.ServiceModel.Channels.MessageHeader.CreateHeader(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId, publicKey);
                 request.Headers.Add(outgoingheader);
             }
 

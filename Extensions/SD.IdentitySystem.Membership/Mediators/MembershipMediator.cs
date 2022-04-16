@@ -41,6 +41,15 @@ namespace SD.IdentitySystem
         }
 
         /// <summary>
+        /// 设置登录信息
+        /// </summary>
+        /// <param name="loginInfo">登录信息</param>
+        public static void SetLoginInfo(LoginInfo loginInfo)
+        {
+            _MembershipProvider.SetLoginInfo(loginInfo);
+        }
+
+        /// <summary>
         /// 获取登录信息
         /// </summary>
         /// <returns>登录信息</returns>

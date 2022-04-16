@@ -50,7 +50,7 @@ namespace SD.IdentitySystem.WebApi.Authentication.Filters
         {
             if (AspNetSetting.Authorized && !this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor))
             {
-                if (!context.Request.Headers.TryGetValues(SessionKey.CurrentPublicKey, out IEnumerable<string> headers))
+                if (!context.Request.Headers.TryGetValues(SessionKey.PublicKey, out IEnumerable<string> headers))
                 {
                     HttpResponseMessage httpResponseMessage = new HttpResponseMessage(HttpStatusCode.Unauthorized)
                     {

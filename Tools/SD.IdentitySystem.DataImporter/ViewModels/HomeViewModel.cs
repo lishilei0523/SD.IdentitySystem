@@ -67,7 +67,7 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
             string password = CommonConstants.InitialPassword;
 
             LoginInfo loginInfo = await this.Login(loginId, password);
-            AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
+            AppDomain.CurrentDomain.SetData(GlobalSetting.ApplicationId, loginInfo);
         }
         #endregion
 

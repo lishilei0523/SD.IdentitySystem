@@ -27,7 +27,7 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
             bool allowAnonymous = endpoint.Metadata.GetMetadata<AllowAnonymousAttribute>() != null;
             if (needAuthorize && !allowAnonymous)
             {
-                string headerKey = SessionKey.CurrentPublicKey.ToLower();
+                string headerKey = SessionKey.PublicKey.ToLower();
                 Metadata.Entry headerEntry = context.RequestHeaders.Get(headerKey);
                 string publicKey = headerEntry?.Value;
                 if (string.IsNullOrWhiteSpace(publicKey))

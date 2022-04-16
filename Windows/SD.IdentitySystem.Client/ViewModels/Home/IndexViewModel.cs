@@ -157,7 +157,7 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
             if (result == MessageBoxResult.Yes)
             {
                 //清空Session
-                AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, null);
+                MembershipMediator.SetLoginInfo(null);
 
                 //跳转到登录窗体
                 LoginViewModel loginViewModel = ResolveMediator.Resolve<LoginViewModel>();

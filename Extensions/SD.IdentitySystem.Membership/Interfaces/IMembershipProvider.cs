@@ -9,6 +9,12 @@ namespace SD.IdentitySystem
     public interface IMembershipProvider
     {
         /// <summary>
+        /// 设置登录信息
+        /// </summary>
+        /// <param name="loginInfo">登录信息</param>
+        void SetLoginInfo(LoginInfo loginInfo);
+
+        /// <summary>
         /// 获取登录信息
         /// </summary>
         /// <returns>登录信息</returns>

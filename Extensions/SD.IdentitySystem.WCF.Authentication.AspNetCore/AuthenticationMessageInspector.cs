@@ -21,7 +21,7 @@ namespace SD.IdentitySystem.WCF.Authentication.AspNetCore
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //ASP.NET Core获取公钥处理
-            if (OwinContextReader.Current.Request.Headers.TryGetValue(SessionKey.CurrentPublicKey, out StringValues stringValues))
+            if (OwinContextReader.Current.Request.Headers.TryGetValue(SessionKey.PublicKey, out StringValues stringValues))
             {
                 string publicKeyStr = stringValues.ToString();
                 if (!string.IsNullOrWhiteSpace(publicKeyStr))
@@ -29,7 +29,7 @@ namespace SD.IdentitySystem.WCF.Authentication.AspNetCore
                     Guid publicKey = new Guid(publicKeyStr);
 
                     //添加消息头
-                    MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WcfAuthHeaderName, CommonConstants.WcfAuthHeaderNamespace, publicKey);
+                    MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId, publicKey);
                     request.Headers.Add(header);
                 }
             }

@@ -1,6 +1,9 @@
 ﻿using SD.IdentitySystem.AspNetMvc.Authentication.Filters;
+using SD.Infrastructure;
 using SD.Toolkits.AspNetMvc.Filters;
+using System.Configuration;
 using System.Web;
+using System.Web.Configuration;
 using System.Web.Mvc;
 using System.Web.Routing;
 
@@ -16,6 +19,10 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected void Application_Start()
         {
+            //初始化配置文件
+            Configuration configuration = WebConfigurationManager.OpenWebConfiguration("~");
+            FrameworkSection.Initialize(configuration);
+
             //注册区域
             AreaRegistration.RegisterAllAreas();
 

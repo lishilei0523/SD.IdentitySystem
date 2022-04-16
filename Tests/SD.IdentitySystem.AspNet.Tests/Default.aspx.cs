@@ -25,7 +25,7 @@ namespace SD.IdentitySystem.AspNet.Tests
             LoginInfo fakeLoginInfo = authenticationContract.Login(CommonConstants.AdminLoginId, CommonConstants.InitialPassword);
 
             //将登录信息存入约定位置
-            base.Session.Add(SessionKey.CurrentUser, fakeLoginInfo);
+            base.Session.Add(GlobalSetting.ApplicationId, fakeLoginInfo);
 
             //实例化WCF服务端服务接口
             IServerContract serverContract = ResolveMediator.Resolve<IServerContract>();

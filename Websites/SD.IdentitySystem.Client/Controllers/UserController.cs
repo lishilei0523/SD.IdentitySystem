@@ -178,7 +178,7 @@ namespace SD.IdentitySystem.Client.Controllers
 
             //验证登录
             LoginInfo loginInfo = this._authenticationContract.Login(loginId, password);
-            HttpContext.Session[SessionKey.CurrentUser] = loginInfo;
+            base.HttpContext.Session[GlobalSetting.ApplicationId] = loginInfo;
         }
         #endregion
 

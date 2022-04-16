@@ -24,7 +24,7 @@ namespace SD.IdentitySystem.Windows.Tests
             LoginInfo fakeLoginInfo = authenticationContract.Login(CommonConstants.AdminLoginId, CommonConstants.InitialPassword);
 
             //将登录信息存入约定位置
-            AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, fakeLoginInfo);
+            AppDomain.CurrentDomain.SetData(GlobalSetting.ApplicationId, fakeLoginInfo);
 
             //实例化服务接口
             IServerContract serverContract = ResolveMediator.Resolve<IServerContract>();

@@ -5,9 +5,9 @@
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Copyright>Copyright © SD 2022</Copyright>
-    <Version>4.1.0</Version>
-    <AssemblyVersion>4.1.0</AssemblyVersion>
-    <FileVersion>4.1.0.0</FileVersion>
+    <Version>4.2.0</Version>
+    <AssemblyVersion>4.2.0</AssemblyVersion>
+    <FileVersion>4.2.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -18,6 +18,6 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="3.4.4" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.0" />
   </ItemGroup>
 </Project>

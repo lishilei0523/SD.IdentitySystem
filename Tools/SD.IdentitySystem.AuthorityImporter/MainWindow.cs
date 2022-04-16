@@ -46,7 +46,7 @@ namespace SD.IdentitySystem.AuthorityImporter
 
             //登录
             LoginInfo loginInfo = this._authenticationContract.Login(loginId, password);
-            AppDomain.CurrentDomain.SetData(SessionKey.CurrentUser, loginInfo);
+            AppDomain.CurrentDomain.SetData(GlobalSetting.ApplicationId, loginInfo);
         }
 
         #endregion
