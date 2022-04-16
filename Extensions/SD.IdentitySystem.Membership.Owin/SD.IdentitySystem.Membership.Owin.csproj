@@ -20,7 +20,7 @@
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.Owin" Version="1.0.3" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.4.3" />
+    <PackageReference Include="SD.Infrastructure" Version="3.4.4" />
   </ItemGroup>
 
   <ItemGroup>
