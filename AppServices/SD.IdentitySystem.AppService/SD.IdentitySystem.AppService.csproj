@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="CoreWCF.Primitives" Version="0.4.0" />
+    <PackageReference Include="CoreWCF.Primitives" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.3" />
   </ItemGroup>
 
