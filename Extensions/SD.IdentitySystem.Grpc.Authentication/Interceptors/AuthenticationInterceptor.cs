@@ -4,6 +4,7 @@ using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
+using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNet;
 using SD.Toolkits.OwinCore.Extensions;
@@ -32,24 +33,26 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
                 string publicKey = headerEntry?.Value;
                 if (string.IsNullOrWhiteSpace(publicKey))
                 {
-                    context.Status = new Status(StatusCode.Unauthenticated, "身份认证消息头不存在，请检查程序！");
+                    string message = "身份认证消息头不存在，请检查程序！";
+                    NoPermissionException innerException = new NoPermissionException(message);
+                    Status status = new Status(StatusCode.Unauthenticated, message, innerException);
+                    throw new RpcException(status);
                 }
-                else
+
+                LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey);
+                if (loginInfo == null)
                 {
-                    LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey);
-                    if (loginInfo == null)
-                    {
-                        context.Status = new Status(StatusCode.Unauthenticated, "身份过期，请重新登录！");
-                    }
-                    else
-                    {
-                        //通过后，重新设置缓存过期时间
-                        CacheMediator.Set(publicKey, loginInfo, DateTime.Now.AddMinutes(GlobalSetting.AuthenticationTimeout));
-                    }
+                    string message = "身份过期，请重新登录！";
+                    NoPermissionException innerException = new NoPermissionException(message);
+                    Status status = new Status(StatusCode.Unauthenticated, message, innerException);
+                    throw new RpcException(status);
                 }
+
+                //通过后，重新设置缓存过期时间
+                CacheMediator.Set(publicKey, loginInfo, DateTime.Now.AddMinutes(GlobalSetting.AuthenticationTimeout));
             }
 
-            return await base.UnaryServerHandler(request, context, continuation);
+            return await continuation.Invoke(request, context);
         }
     }
 }

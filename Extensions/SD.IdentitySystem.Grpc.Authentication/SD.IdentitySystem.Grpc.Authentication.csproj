@@ -5,7 +5,7 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem ASP.NET Core gRPC身份认证组件</Description>
     <Copyright>Copyright © SD 2022</Copyright>
-    <Version>1.0.0-Preview2</Version>
+    <Version>1.0.0-Preview3</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
     <FileVersion>1.0.0.0</FileVersion>
   </PropertyGroup>
