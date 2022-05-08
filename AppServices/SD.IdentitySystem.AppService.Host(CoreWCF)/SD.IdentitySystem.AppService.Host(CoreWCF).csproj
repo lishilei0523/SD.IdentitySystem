@@ -31,10 +31,10 @@
 
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="5.0.0" />
-    <PackageReference Include="CoreWCF.Primitives" Version="1.0.0" />
-    <PackageReference Include="CoreWCF.Http" Version="1.0.0" />
-    <PackageReference Include="CoreWCF.NetTcp" Version="1.0.0" />
-    <PackageReference Include="CoreWCF.ConfigurationManager" Version="1.0.0">
+    <PackageReference Include="CoreWCF.Primitives" Version="1.0.1" />
+    <PackageReference Include="CoreWCF.Http" Version="1.0.1" />
+    <PackageReference Include="CoreWCF.NetTcp" Version="1.0.1" />
+    <PackageReference Include="CoreWCF.ConfigurationManager" Version="1.0.1">
       <ExcludeAssets Condition="'$(Configuration)'=='Debug'">contentFiles</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
