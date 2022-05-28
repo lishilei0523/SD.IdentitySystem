@@ -46,6 +46,7 @@
         <th nzWidth="200px" nzAlign="center">用户名</th>
         <th nzWidth="200px" nzAlign="center">真实姓名</th>
         <th nzWidth="240px" nzAlign="center">IP地址</th>
+        <th nzWidth="300px" nzAlign="center">客户端Id</th>
         <th nzWidth="200px" nzAlign="center">登录时间</th>
         <th nzWidth="*"></th>
     </tr>
@@ -55,6 +56,7 @@
         <td style="padding-left: 20px">{{loginRecord.loginId}}</td>
         <td>{{loginRecord.realName}}</td>
         <td>{{loginRecord.ip}}</td>
+        <td>{{loginRecord.clientId}}</td>
         <td nzAlign="center">{{loginRecord.addedTime | date:"yyyy-MM-dd HH:mm:ss"}}</td>
         <td></td>
     </tr>

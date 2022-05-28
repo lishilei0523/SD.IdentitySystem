@@ -33,7 +33,8 @@ export class HomeService {
         let url: string = `${Constants.appConfig.webApiPrefix}/Authentication/Login`;
         let params = {
             loginId: loginId,
-            password: password
+            password: password,
+            clientId: null
         };
 
         return this._httpClient.post<LoginInfo>(url, params).toPromise();

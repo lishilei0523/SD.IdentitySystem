@@ -11,4 +11,7 @@ export interface LoginRecord extends ModelBase {
 
     /*IP地址*/
     ip: string;
+
+    /*客户端Id*/
+    clientId: string;
 }
