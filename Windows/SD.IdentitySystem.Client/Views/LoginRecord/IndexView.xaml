@@ -55,6 +55,8 @@
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTextColumn Header="IP地址" Width="200" Binding="{Binding Model.IP}"
                                         CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
+                    <DataGridTextColumn Header="客户端Id" Width="250" Binding="{Binding Model.ClientId}"
+                                        CellStyle="{StaticResource DataGrid.Cell.Styles.LeftMargin}" />
                     <DataGridTemplateColumn Header="登录时间" Width="200">
                         <DataGridTemplateColumn.CellTemplate>
                             <DataTemplate>

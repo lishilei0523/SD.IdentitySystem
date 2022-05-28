@@ -37,11 +37,11 @@
     <PackageReference Include="Microsoft.AspNet.WebApi.Cors" Version="5.2.8" />
     <PackageReference Include="Microsoft.AspNet.WebApi.Owin" Version="5.2.8" />
     <PackageReference Include="Microsoft.AspNet.WebApi.OwinSelfHost" Version="5.2.8" />
-    <PackageReference Include="Microsoft.Owin" Version="4.2.1" />
+    <PackageReference Include="Microsoft.Owin" Version="4.2.2" />
     <PackageReference Include="MrAdvice" Version="2.9.5" />
     <PackageReference Include="Swashbuckle.Core" Version="5.6.0" />
     <PackageReference Include="Topshelf" Version="4.2.1" />
-    <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.2" />
+    <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.3" />
     <PackageReference Include="SD.Toolkits.Owin" Version="1.0.3" />
     <PackageReference Include="SD.Toolkits.WebApi" Version="1.1.4" />
     <PackageReference Include="SD.Toolkits.Redis" Version="2.1.0" />
@@ -53,7 +53,7 @@
     <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.4" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.5.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.1" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.1.2" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
     <PackageReference Include="SD.Infrastructure.WebApi.SelfHost.Server" Version="1.1.2" />

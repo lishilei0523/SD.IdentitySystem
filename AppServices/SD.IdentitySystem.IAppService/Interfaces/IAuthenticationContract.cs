@@ -20,15 +20,16 @@ namespace SD.IdentitySystem.IAppService.Interfaces
         LoginInfo Logon(string privateKey);
         #endregion
 
-        #region # 登录 —— LoginInfo Login(string loginId, string password)
+        #region # 登录 —— LoginInfo Login(string loginId, string password...
         /// <summary>
         /// 登录
         /// </summary>
         /// <param name="loginId">用户名</param>
         /// <param name="password">密码</param>
+        /// <param name="clientId">客户端Id</param>
         /// <returns>登录信息</returns>
         [OperationContract]
-        LoginInfo Login(string loginId, string password);
+        LoginInfo Login(string loginId, string password, string clientId = null);
         #endregion
     }
 }

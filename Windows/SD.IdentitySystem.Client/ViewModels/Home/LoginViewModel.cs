@@ -1,4 +1,5 @@
 ﻿using Caliburn.Micro;
+using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
@@ -118,7 +119,8 @@ namespace SD.IdentitySystem.Client.ViewModels.Home
 
             this.Busy();
 
-            LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Channel.Login(this.LoginId, this.Password));
+            string clientId = NetworkExtension.GetLocalMacAddress();
+            LoginInfo loginInfo = await Task.Run(() => this._authenticationContract.Channel.Login(this.LoginId, this.Password, clientId));
             MembershipMediator.SetLoginInfo(loginInfo);
 
             IndexViewModel viewModel = ResolveMediator.Resolve<IndexViewModel>();

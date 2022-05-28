@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using SD.Common;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.IPresentation.Interfaces;
 using SD.IdentitySystem.IPresentation.Models;
 using SD.Infrastructure.AspNetMvc;
@@ -177,7 +178,8 @@ namespace SD.IdentitySystem.Client.Controllers
             MvcExtension.ClearValidCode();
 
             //验证登录
-            LoginInfo loginInfo = this._authenticationContract.Login(loginId, password);
+            string clientId = NetworkExtension.GetLocalMacAddress();
+            LoginInfo loginInfo = this._authenticationContract.Login(loginId, password, clientId);
             base.HttpContext.Session[GlobalSetting.ApplicationId] = loginInfo;
         }
         #endregion

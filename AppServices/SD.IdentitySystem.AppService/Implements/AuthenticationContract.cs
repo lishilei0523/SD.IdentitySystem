@@ -97,22 +97,23 @@ namespace SD.IdentitySystem.AppService.Implements
 
                 #endregion
 
-                LoginInfo loginInfo = this.BuildLoginInfo(user);
+                LoginInfo loginInfo = this.BuildLoginInfo(user, null);
 
                 return loginInfo;
             }
         }
         #endregion
 
-        #region # 登录 —— LoginInfo Login(string loginId, string password)
+        #region # 登录 —— LoginInfo Login(string loginId, string password...
         /// <summary>
         /// 登录
         /// </summary>
         /// <param name="loginId">用户名</param>
         /// <param name="password">密码</param>
+        /// <param name="clientId">客户端Id</param>
         /// <returns>登录信息</returns>
         [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
-        public LoginInfo Login(string loginId, string password)
+        public LoginInfo Login(string loginId, string password, string clientId = null)
         {
             #region # 验证
 
@@ -149,7 +150,7 @@ namespace SD.IdentitySystem.AppService.Implements
 
                 #endregion
 
-                LoginInfo loginInfo = this.BuildLoginInfo(user);
+                LoginInfo loginInfo = this.BuildLoginInfo(user, clientId);
 
                 return loginInfo;
             }
@@ -159,19 +160,21 @@ namespace SD.IdentitySystem.AppService.Implements
 
         //Private
 
-        #region # 构造登录信息 —— LoginInfo BuildLoginInfo(User user)
+        #region # 构造登录信息 —— LoginInfo BuildLoginInfo(User user...
         /// <summary>
         /// 构造登录信息
         /// </summary>
         /// <param name="user">用户</param>
+        /// <param name="clientId">客户端Id</param>
         /// <returns>登录信息</returns>
-        private LoginInfo BuildLoginInfo(User user)
+        private LoginInfo BuildLoginInfo(User user, string clientId)
         {
             //生成公钥
             Guid publicKey = Guid.NewGuid();
 
             //生成登录信息
             LoginInfo loginInfo = new LoginInfo(user.Number, user.Name, publicKey);
+            loginInfo.ClientId = clientId;
 
             #region # 登录信息的信息系统部分/菜单部分/权限部分
 
@@ -202,7 +205,7 @@ namespace SD.IdentitySystem.AppService.Implements
             string ip = this.GetClientIp();
 
             //生成登录记录
-            LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip);
+            LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip, clientId);
 
             this._unitOfWork.RegisterAdd(loginRecord);
             this._unitOfWork.Commit();

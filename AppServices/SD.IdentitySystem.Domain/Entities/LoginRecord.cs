@@ -27,13 +27,15 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <param name="loginId">用户名</param>
         /// <param name="realName">真实姓名</param>
         /// <param name="ip">IP地址</param>
-        public LoginRecord(Guid publicKey, string loginId, string realName, string ip)
+        /// <param name="clientId">客户端Id</param>
+        public LoginRecord(Guid publicKey, string loginId, string realName, string ip, string clientId)
             : this()
         {
             this.PublicKey = publicKey;
             this.LoginId = loginId;
             this.RealName = realName;
             this.IP = ip;
+            this.ClientId = clientId;
 
             //初始化关键字
             this.InitKeywords();
@@ -70,6 +72,13 @@ namespace SD.IdentitySystem.Domain.Entities
         /// IP地址
         /// </summary>
         public string IP { get; private set; }
+        #endregion
+
+        #region 客户端Id —— string ClientId
+        /// <summary>
+        /// 客户端Id
+        /// </summary>
+        public string ClientId { get; private set; }
         #endregion
 
         #region 分区索引 —— int PartitionIndex

@@ -47,6 +47,7 @@ CREATE TABLE [LoginRecord] (
     [LoginId] nvarchar(max) NULL,
     [RealName] nvarchar(max) NULL,
     [IP] nvarchar(max) NULL,
+    [ClientId] nvarchar(max) NULL,
     [PartitionIndex] int NOT NULL,
     [AddedTime] datetime2 NOT NULL,
     [Keywords] nvarchar(256) NOT NULL,
@@ -204,7 +205,7 @@ CREATE INDEX [IX_User_Role_User_Id] ON [User_Role] ([User_Id]);
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20220219093454_v4.5.0', N'5.0.10');
+VALUES (N'20220528074620_v4.6.0', N'5.0.10');
 GO
 
 COMMIT;

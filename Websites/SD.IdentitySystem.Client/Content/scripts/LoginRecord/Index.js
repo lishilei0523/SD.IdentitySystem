@@ -20,6 +20,7 @@ function getRecords(queryParams) {
             { field: "LoginId", title: "用户名", halign: "center", width: 100 },
             { field: "RealName", title: "真实姓名", halign: "center", width: 120 },
             { field: "IP", title: "IP地址", halign: "center", width: 120 },
+            { field: "ClientId", title: "客户端Id", halign: "center", width: 200 },
             {
                 field: "AddedTime",
                 title: "登录时间",

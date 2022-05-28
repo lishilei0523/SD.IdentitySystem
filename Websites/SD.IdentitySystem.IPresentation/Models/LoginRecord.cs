@@ -27,5 +27,12 @@ namespace SD.IdentitySystem.IPresentation.Models
         /// </summary>
         public string IP { get; set; }
         #endregion
+
+        #region 客户端Id —— string ClientId
+        /// <summary>
+        /// 客户端Id
+        /// </summary>
+        public string ClientId { get; set; }
+        #endregion
     }
 }

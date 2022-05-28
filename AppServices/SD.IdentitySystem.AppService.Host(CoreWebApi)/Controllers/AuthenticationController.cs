@@ -50,19 +50,20 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         }
         #endregion
 
-        #region # 登录 —— LoginInfo Login(string loginId, string password)
+        #region # 登录 —— LoginInfo Login(string loginId, string password...
         /// <summary>
         /// 登录
         /// </summary>
         /// <param name="loginId">用户名</param>
         /// <param name="password">密码</param>
+        /// <param name="clientId">客户端Id</param>
         /// <returns>登录信息</returns>
         [HttpPost]
         [WrapPostParameters]
         [AllowAnonymous]
-        public LoginInfo Login(string loginId, string password)
+        public LoginInfo Login(string loginId, string password, string clientId = null)
         {
-            LoginInfo loginInfo = this._authenticationContract.Login(loginId, password);
+            LoginInfo loginInfo = this._authenticationContract.Login(loginId, password, clientId);
 
             return loginInfo;
         }

@@ -1,6 +1,6 @@
-﻿using System;
+﻿using SD.Infrastructure.DTOBase;
+using System;
 using System.Runtime.Serialization;
-using SD.Infrastructure.DTOBase;
 
 namespace SD.IdentitySystem.IAppService.DTOs.Outputs
 {
@@ -41,6 +41,14 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
         /// </summary>
         [DataMember]
         public string IP { get; set; }
+        #endregion
+
+        #region 客户端Id —— string ClientId
+        /// <summary>
+        /// 客户端Id
+        /// </summary>
+        [DataMember]
+        public string ClientId { get; set; }
         #endregion
     }
 }
