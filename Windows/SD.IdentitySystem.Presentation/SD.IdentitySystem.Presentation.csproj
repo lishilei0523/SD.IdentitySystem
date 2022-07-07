@@ -12,7 +12,7 @@
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netcoreapp3.1'">
     <PackageReference Include="SD.IOC.Extension.NetCore" Version="1.0.4" />
-    <PackageReference Include="SD.IOC.Extension.NetCore.ServiceModel" Version="1.1.1" />
+    <PackageReference Include="SD.IOC.Extension.NetCore.ServiceModel" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>

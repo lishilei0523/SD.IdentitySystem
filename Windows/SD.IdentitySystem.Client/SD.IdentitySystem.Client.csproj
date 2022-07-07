@@ -7,9 +7,9 @@
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Copyright>Copyright © SD 2022</Copyright>
-    <Version>4.5.0</Version>
-    <AssemblyVersion>4.5.0</AssemblyVersion>
-    <FileVersion>4.5.0.0</FileVersion>
+    <Version>4.6.0</Version>
+    <AssemblyVersion>4.6.0</AssemblyVersion>
+    <FileVersion>4.6.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
@@ -32,7 +32,7 @@
       <TargetPath>$(AssemblyName).dll.config</TargetPath>
     </AppConfigWithTargetPath>
     <PackageReference Include="SD.IOC.Extension.NetCore" Version="1.0.4" />
-    <PackageReference Include="SD.IOC.Extension.NetCore.ServiceModel" Version="1.1.1" />
+    <PackageReference Include="SD.IOC.Extension.NetCore.ServiceModel" Version="1.1.2" />
   </ItemGroup>
 
   <ItemGroup>
@@ -42,7 +42,7 @@
     <PackageReference Include="BusyIndicator" Version="1.9.0">
       <ExcludeAssets>contentFiles</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Autoupdater.NET.Official" Version="1.7.0" />
+    <PackageReference Include="Autoupdater.NET.Official" Version="1.7.3" />
     <PackageReference Include="MrAdvice" Version="2.9.5" />
     <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
     <PackageReference Include="SD.Common" Version="3.1.4" />

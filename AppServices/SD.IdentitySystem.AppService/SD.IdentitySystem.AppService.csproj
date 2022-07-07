@@ -17,7 +17,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="CoreWCF.Primitives" Version="1.0.2" />
+    <PackageReference Include="CoreWCF.Primitives" Version="1.1.0" />
     <PackageReference Include="MrAdvice" Version="2.9.5" />
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.1.1" />
     <PackageReference Include="SD.AOP.Core" Version="2.2.1" />
