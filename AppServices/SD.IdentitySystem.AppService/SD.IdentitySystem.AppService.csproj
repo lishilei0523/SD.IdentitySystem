@@ -22,7 +22,7 @@
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.1.1" />
     <PackageReference Include="SD.AOP.Core" Version="2.2.1" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.5.1" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.2" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.0" />
   </ItemGroup>
