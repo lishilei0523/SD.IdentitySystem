@@ -51,17 +51,25 @@ namespace SD.IdentitySystem.Client
         /// <summary>
         /// 应用程序启动事件
         /// </summary>
+#if NET461
         protected override void OnStartup(object sender, StartupEventArgs eventArgs)
         {
             base.DisplayRootViewFor<LoginViewModel>();
         }
+#endif
+#if NET48 || NETCOREAPP3_1
+        protected override async void OnStartup(object sender, StartupEventArgs eventArgs)
+        {
+            await base.DisplayRootViewForAsync<LoginViewModel>();
+        }
+#endif
         #endregion
 
         #region 应用程序异常事件 —— override void OnUnhandledException(object sender...
         /// <summary>
         /// 应用程序异常事件
         /// </summary>
-        protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs eventArgs)
+        protected override async void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs eventArgs)
         {
             Exception exception = eventArgs.Exception;
             eventArgs.Handled = true;
@@ -83,8 +91,12 @@ namespace SD.IdentitySystem.Client
                 {
                     activeWindows.Add(window);
                 }
-
-                base.DisplayRootViewFor<LoginViewModel>();
+#if NET461
+                await base.DisplayRootViewFor<LoginViewModel>();
+#endif
+#if NET48 || NETCOREAPP3_1
+                await base.DisplayRootViewForAsync<LoginViewModel>();
+#endif
                 activeWindows.ForEach(window => window.Close());
             }
 
