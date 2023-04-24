@@ -4,7 +4,7 @@
     <OutputType>Exe</OutputType>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Copyright>Copyright © SD 2022</Copyright>
+    <Copyright>Copyright © SD 2023</Copyright>
   </PropertyGroup>
 
   <ItemGroup>
@@ -12,13 +12,13 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Common" Version="3.1.5" />
+    <PackageReference Include="SD.Common" Version="3.1.6" />
     <PackageReference Include="SD.Toolkits.Redis" Version="2.1.0" />
     <PackageReference Include="SD.IOC.Core" Version="2.1.6" />
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.1.1" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.5.6" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.7" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.0" />
   </ItemGroup>
 

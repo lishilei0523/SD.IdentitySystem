@@ -3,7 +3,7 @@
     <TargetFrameworks>net461;netstandard2.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Copyright>Copyright © SD 2022</Copyright>
+    <Copyright>Copyright © SD 2023</Copyright>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.StartsWith('net4'))">
@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="'$(TargetFramework)' == 'netstandard2.0'">
-    <PackageReference Include="CoreWCF.Primitives" Version="1.2.1" />
+    <PackageReference Include="CoreWCF.Primitives" Version="1.3.2" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.0.3" />
   </ItemGroup>
 
@@ -21,7 +21,7 @@
     <PackageReference Include="SD.Toolkits.Mapper" Version="1.1.1" />
     <PackageReference Include="SD.AOP.Core" Version="2.2.1" />
     <PackageReference Include="SD.CacheManager" Version="2.1.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.5.6" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.7" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.0" />
   </ItemGroup>

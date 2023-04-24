@@ -10,7 +10,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyConfiguration("")]
 [assembly: AssemblyCompany("SD")]
 [assembly: AssemblyProduct("SD.IdentitySystem.Client")]
-[assembly: AssemblyCopyright("Copyright © SD 2022")]
+[assembly: AssemblyCopyright("Copyright © SD 2023")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
