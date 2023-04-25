@@ -1,5 +1,4 @@
-﻿using Acr.UserDialogs;
-using Android.App;
+﻿using Android.App;
 using Android.Runtime;
 using Caliburn.Micro;
 using Microsoft.Extensions.DependencyInjection;
@@ -71,9 +70,6 @@ namespace SD.IdentitySystem.Mobile.Host
 
                 ResolveMediator.Build();
             }
-
-            //初始化消息组件
-            UserDialogs.Init(this);
         }
         #endregion
 
