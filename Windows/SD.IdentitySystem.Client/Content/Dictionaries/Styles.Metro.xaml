@@ -19,7 +19,7 @@
     </Style>
     <!--MahApps.Metro.GroupBox默认样式-->
     <Style TargetType="{x:Type GroupBox}" BasedOn="{StaticResource MahApps.Styles.GroupBox}">
-        <Setter Property="Margin" Value="5" />
+        <Setter Property="Margin" Value="4" />
         <Setter Property="Padding" Value="0" />
         <Setter Property="BorderBrush" Value="{DynamicResource SystemBaseLowColorBrush}" />
         <Setter Property="mah:HeaderedControlHelper.HeaderFontSize" Value="14" />
