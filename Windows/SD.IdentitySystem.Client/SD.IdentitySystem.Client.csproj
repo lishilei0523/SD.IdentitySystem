@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net461;net48;netcoreapp3.1</TargetFrameworks>
+    <TargetFrameworks>net461;net48;netcoreapp3.1;net6.0-windows</TargetFrameworks>
     <OutputType>WinExe</OutputType>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
@@ -26,7 +26,7 @@
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.1.1" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1'">
+  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1' Or '$(TargetFramework)'=='net6.0-windows'">
     <None Remove="App.config" />
     <AppConfigWithTargetPath Include="App.core.config">
       <TargetPath>$(AssemblyName).dll.config</TargetPath>
@@ -43,8 +43,8 @@
       <ExcludeAssets>contentFiles</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Autoupdater.NET.Official" Version="1.8.0" />
-    <PackageReference Include="MrAdvice" Version="2.9.5" />
-    <PackageReference Include="Newtonsoft.Json" Version="12.0.3" />
+    <PackageReference Include="MrAdvice" Version="2.12.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
     <PackageReference Include="SD.Common" Version="3.1.6" />
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.1.0" />
     <PackageReference Include="SD.IOC.Core" Version="2.1.6" />

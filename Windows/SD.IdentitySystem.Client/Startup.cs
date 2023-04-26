@@ -57,7 +57,7 @@ namespace SD.IdentitySystem.Client
             base.DisplayRootViewFor<LoginViewModel>();
         }
 #endif
-#if NET48 || NETCOREAPP3_1
+#if NET48 || NETCOREAPP3_1_OR_GREATER
         protected override async void OnStartup(object sender, StartupEventArgs eventArgs)
         {
             await base.DisplayRootViewForAsync<LoginViewModel>();
@@ -94,7 +94,7 @@ namespace SD.IdentitySystem.Client
 #if NET461
                 await base.DisplayRootViewFor<LoginViewModel>();
 #endif
-#if NET48 || NETCOREAPP3_1
+#if NET48 || NETCOREAPP3_1_OR_GREATER
                 await base.DisplayRootViewForAsync<LoginViewModel>();
 #endif
                 activeWindows.ForEach(window => window.Close());
