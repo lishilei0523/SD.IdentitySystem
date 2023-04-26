@@ -3,7 +3,7 @@
 
     <!--功能面板边框样式-->
     <Style x:Key="Panel.Styles.Function.Border" TargetType="{x:Type Border}">
-        <Setter Property="BorderBrush" Value="#CCCCCC" />
+        <Setter Property="BorderBrush" Value="{DynamicResource SystemListLowColorBrush}" />
         <Setter Property="BorderThickness" Value="0,1,0,1" />
     </Style>
     <!--功能面板操作按钮区WrapPanel样式-->
