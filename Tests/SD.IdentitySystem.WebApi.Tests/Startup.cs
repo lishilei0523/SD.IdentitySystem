@@ -1,6 +1,6 @@
 ﻿using Owin;
 using SD.IdentitySystem.WCF.Authentication.Owin;
-using SD.IOC.Integration.WebApi.SelfHost;
+using SD.IOC.Integration.WebApi;
 using SD.Toolkits.Owin.Middlewares;
 using SD.Toolkits.WebApi.Extensions;
 using System.Web.Http;

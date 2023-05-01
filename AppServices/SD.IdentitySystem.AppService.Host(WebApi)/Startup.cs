@@ -1,8 +1,8 @@
 ﻿using Newtonsoft.Json.Serialization;
 using Owin;
 using SD.IdentitySystem.WebApi.Authentication.Filters;
-using SD.Infrastructure.WebApi.SelfHost.Server.Middlewares;
-using SD.IOC.Integration.WebApi.SelfHost;
+using SD.Infrastructure.WebApi.Server.Middlewares;
+using SD.IOC.Integration.WebApi;
 using SD.Toolkits.Owin.Middlewares;
 using SD.Toolkits.WebApi.Extensions;
 using SD.Toolkits.WebApi.Filters;

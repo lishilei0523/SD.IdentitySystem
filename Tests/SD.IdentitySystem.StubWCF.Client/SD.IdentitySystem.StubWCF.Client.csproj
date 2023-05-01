@@ -13,12 +13,12 @@
 
   <ItemGroup>
     <PackageReference Include="Topshelf" Version="4.2.1" />
-    <PackageReference Include="SD.Toolkits.Redis" Version="2.1.0" />
-    <PackageReference Include="SD.IOC.Core" Version="2.1.6" />
-    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.1.1" />
-    <PackageReference Include="SD.IOC.Integration.WCF" Version="2.1.0" />
-    <PackageReference Include="SD.CacheManager" Version="2.1.0" />
-    <PackageReference Include="SD.CacheManager.Redis" Version="2.1.0" />
+    <PackageReference Include="SD.Toolkits.Redis" Version="2.1.1" />
+    <PackageReference Include="SD.IOC.Core" Version="2.2.0" />
+    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.2.0" />
+    <PackageReference Include="SD.IOC.Integration.WCF" Version="2.2.0" />
+    <PackageReference Include="SD.CacheManager" Version="2.1.1" />
+    <PackageReference Include="SD.CacheManager.Redis" Version="2.1.1" />
     <PackageReference Include="SD.Infrastructure" Version="3.5.7" />
   </ItemGroup>
 
