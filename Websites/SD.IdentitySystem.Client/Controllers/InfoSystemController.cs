@@ -1,6 +1,6 @@
 ﻿using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.Models;
+using SD.IdentitySystem.Presentation.Models;
+using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
@@ -17,9 +17,9 @@ namespace SD.IdentitySystem.Client.Controllers
         #region # 字段及构造器
 
         /// <summary>
-        /// 信息系统呈现器接口
+        /// 信息系统呈现器
         /// </summary>
-        private readonly IInfoSystemPresenter _infoSystemPresenter;
+        private readonly InfoSystemPresenter _infoSystemPresenter;
 
         /// <summary>
         /// 权限管理服务契约接口
@@ -29,7 +29,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public InfoSystemController(IInfoSystemPresenter infoSystemPresenter, IAuthorizationContract authorizationContract)
+        public InfoSystemController(InfoSystemPresenter infoSystemPresenter, IAuthorizationContract authorizationContract)
         {
             this._infoSystemPresenter = infoSystemPresenter;
             this._authorizationContract = authorizationContract;

@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.AppService.Maps;
+﻿using CoreWCF;
+using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
 using SD.IdentitySystem.Domain.IRepositories;
 using SD.IdentitySystem.Domain.Mediators;
@@ -10,12 +11,6 @@ using SD.Infrastructure.DTOBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-#if NET40_OR_GREATER
-using System.ServiceModel;
-#endif
-#if NETSTANDARD2_0_OR_GREATER
-using CoreWCF;
-#endif
 
 namespace SD.IdentitySystem.AppService.Implements
 {

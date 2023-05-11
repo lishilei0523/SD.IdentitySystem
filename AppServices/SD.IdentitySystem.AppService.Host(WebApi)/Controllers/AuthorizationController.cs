@@ -1,19 +1,21 @@
-﻿using SD.IdentitySystem.IAppService.DTOs.Inputs;
+﻿using Microsoft.AspNetCore.Mvc;
+using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.WebApi.Attributes;
+using SD.Toolkits.AspNetCore.Attributes;
 using System;
 using System.Collections.Generic;
-using System.Web.Http;
 
 namespace SD.IdentitySystem.AppService.Host.Controllers
 {
     /// <summary>
     /// 权限管理WebApi接口
     /// </summary>
-    public class AuthorizationController : ApiController
+    [ApiController]
+    [Route("Api/[controller]/[action]")]
+    public class AuthorizationController : ControllerBase
     {
         #region # 字段及依赖注入构造器
 

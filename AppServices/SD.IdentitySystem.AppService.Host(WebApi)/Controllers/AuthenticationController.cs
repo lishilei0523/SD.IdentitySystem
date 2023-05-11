@@ -1,14 +1,17 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Membership;
-using SD.Toolkits.WebApi.Attributes;
-using System.Web.Http;
+using SD.Toolkits.AspNetCore.Attributes;
 
 namespace SD.IdentitySystem.AppService.Host.Controllers
 {
     /// <summary>
     /// 身份认证WebApi接口
     /// </summary>
-    public class AuthenticationController : ApiController
+    [ApiController]
+    [Route("Api/[controller]/[action]")]
+    public class AuthenticationController : ControllerBase
     {
         #region # 字段及依赖注入构造器
 
@@ -39,7 +42,6 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         [HttpPost]
         [WrapPostParameters]
         [AllowAnonymous]
-
         public LoginInfo Logon(string privateKey)
         {
             LoginInfo loginInfo = this._authenticationContract.Logon(privateKey);

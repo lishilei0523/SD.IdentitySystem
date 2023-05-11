@@ -1,5 +1,5 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
-using SD.IdentitySystem.IPresentation.Models;
+using SD.IdentitySystem.Presentation.Models;
 using SD.Toolkits.Mapper;
 
 namespace SD.IdentitySystem.Presentation.Maps

@@ -1,66 +1,93 @@
-ï»¿using Newtonsoft.Json.Serialization;
-using Owin;
-using SD.IdentitySystem.WebApi.Authentication.Filters;
-using SD.Infrastructure.WebApi.Server.Middlewares;
-using SD.IOC.Integration.WebApi;
-using SD.Toolkits.Owin.Middlewares;
-using SD.Toolkits.WebApi.Extensions;
-using SD.Toolkits.WebApi.Filters;
-using Swashbuckle.Application;
+using Microsoft.AspNetCore.Builder;
+using Microsoft.Extensions.DependencyInjection;
+using Microsoft.OpenApi.Models;
+using Newtonsoft.Json.Converters;
+using Newtonsoft.Json.Serialization;
+using SD.IdentitySystem.AspNetCore.Authentication.Filters;
+using SD.Infrastructure.AspNetCore.Server.Middlewares;
+using SD.Infrastructure.Constants;
+using SD.Toolkits.AspNetCore.Filters;
+using SD.Toolkits.OwinCore.Middlewares;
 using System;
 using System.IO;
 using System.Reflection;
-using System.Web.Http;
-using System.Web.Http.Cors;
 
 namespace SD.IdentitySystem.AppService.Host
 {
     /// <summary>
-    /// OWINå¯åŠ¨å™¨
+    /// Ó¦ÓÃ³ÌĞòÆô¶¯Æ÷
     /// </summary>
-    public class Startup : StartupBase
+    public class Startup
     {
         /// <summary>
-        /// é…ç½®åº”ç”¨ç¨‹åº
+        /// ÅäÖÃ·şÎñ
         /// </summary>
-        /// <param name="appBuilder">åº”ç”¨ç¨‹åºå»ºé€ è€…</param>
-        /// <param name="httpConfiguration">Httpé…ç½®</param>
-        protected override void Configuration(IAppBuilder appBuilder, HttpConfiguration httpConfiguration)
+        public void ConfigureServices(IServiceCollection services)
         {
-            //é…ç½®ä¸­é—´ä»¶
-            appBuilder.Use<GlobalMiddleware>();
-            appBuilder.Use<CacheOwinContextMiddleware>();
+            //Ìí¼Ó¿çÓò²ßÂÔ
+            services.AddCors(options => options.AddPolicy(typeof(Startup).FullName,
+                policyBuilder =>
+                {
+                    policyBuilder.AllowAnyMethod();
+                    policyBuilder.AllowAnyHeader();
+                    policyBuilder.AllowCredentials();
+                    policyBuilder.SetIsOriginAllowed(_ => true);
+                }));
 
-            //é…ç½®Swagger
-            httpConfiguration.EnableSwagger(config =>
+            //Ìí¼ÓSwagger
+            services.AddSwaggerGen(options =>
             {
-                string xmlFile = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
-                string xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
-                config.IncludeXmlComments(xmlPath);
-                config.SingleApiVersion("v1.0", "èº«ä»½è®¤è¯ç³»ç»Ÿ WebApi æ¥å£æ–‡æ¡£");
-            }).EnableSwaggerUi();
+                OpenApiInfo apiInfo = new OpenApiInfo
+                {
+                    Version = "v1.0",
+                    Title = "Éí·İÈÏÖ¤ÏµÍ³ WebApi ½Ó¿ÚÎÄµµ"
+                };
 
-            //é…ç½®è·¯ç”±
-            httpConfiguration.MapHttpAttributeRoutes();
-            httpConfiguration.Routes.MapHttpRoute(
-                "DefaultApi",
-                "Api/{controller}/{action}/{id}",
-                new { id = RouteParameter.Optional }
-            );
+                string xmlFileName = $"{Assembly.GetExecutingAssembly().GetName().Name}.xml";
+                string xmlFilePath = Path.Combine(AppContext.BaseDirectory, xmlFileName);
 
-            //æ³¨å†Œå‚æ•°ç»‘å®š
-            httpConfiguration.RegisterWrapParameterBindingRule();
-            httpConfiguration.RegisterFileParameterBindingRule();
+                options.SwaggerDoc("v1.0", apiInfo);
+                options.IncludeXmlComments(xmlFilePath);
+            });
 
-            //å…è®¸è·¨åŸŸ
-            httpConfiguration.EnableCors(new EnableCorsAttribute("*", "*", "*"));
+            //Ìí¼Ó¹ıÂËÆ÷
+            services.AddControllers(options =>
+            {
+                options.Filters.Add<WebApiAuthenticationFilter>();
+                options.Filters.Add<WebApiExceptionFilter>();
+            }).AddNewtonsoftJson(options =>
+            {
+                //CamelÃüÃûÉèÖÃ
+                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
 
-            //æ·»åŠ è¿‡æ»¤å™¨
-            httpConfiguration.Filters.Add(new WebApiAuthenticationFilter());
-            httpConfiguration.Filters.Add(new WebApiExceptionFilter());
+                //ÈÕÆÚÊ±¼ä¸ñÊ½ÉèÖÃ
+                IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter()
+                {
+                    DateTimeFormat = CommonConstants.DateTimeFormat
+                };
+                options.SerializerSettings.Converters.Add(dateTimeConverter);
+            });
+        }
 
-            //è¿”å›å€¼é©¼å³°å‘½ååºåˆ—åŒ–
-            httpConfiguration.Formatters.JsonFormatter.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+        /// <summary>
+        /// ÅäÖÃÓ¦ÓÃ³ÌĞò
+        /// </summary>
+        public void Configure(IApplicationBuilder appBuilder)
+        {
+            //ÅäÖÃÖĞ¼ä¼ş
+            appBuilder.UseMiddleware<GlobalMiddleware>();
+            appBuilder.UseMiddleware<CacheOwinContextMiddleware>();
+
+            //ÅäÖÃ¿çÓò
+            appBuilder.UseCors(typeof(Startup).FullName);
+
+            //ÅäÖÃSwagger
+            appBuilder.UseSwagger();
+            appBuilder.UseSwaggerUI(options => options.SwaggerEndpoint("/swagger/v1.0/swagger.json", "Éí·İÈÏÖ¤ÏµÍ³ WebApi ½Ó¿ÚÎÄµµ v1.0"));
+
+            //ÅäÖÃÂ·ÓÉ
+            appBuilder.UseRouting();
+            appBuilder.UseEndpoints(routeBuilder => routeBuilder.MapControllers());
         }
     }
 }

@@ -64,16 +64,16 @@
     <PackageReference Include="SD.Toolkits.AspNetMvc" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.EasyUI" Version="1.0.1" />
     <PackageReference Include="SD.Toolkits.Image" Version="1.0.2" />
-    <PackageReference Include="SD.Toolkits.Json" Version="1.0.2" />
+    <PackageReference Include="SD.Toolkits.Json" Version="1.0.3" />
     <PackageReference Include="SD.Toolkits.JavaScript" Version="1.0.0" />
     <PackageReference Include="SD.Toolkits.WebHost" Version="1.0.1" />
-    <PackageReference Include="SD.IOC.Core" Version="2.1.6" />
-    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.1.1" />
+    <PackageReference Include="SD.IOC.Core" Version="2.2.0" />
+    <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.2.0" />
     <PackageReference Include="SD.IOC.Integration.AspNetMvc" Version="1.0.2" />
-    <PackageReference Include="SD.AOP.Core" Version="2.2.1" />
-    <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.4" />
+    <PackageReference Include="SD.AOP.Core" Version="2.3.0" />
+    <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.5" />
     <PackageReference Include="SD.Infrastructure" Version="3.5.7" />
-    <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.0" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.1" />
     <PackageReference Include="SD.Infrastructure.AspNetMvc" Version="1.2.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.0" />
     <PackageReference Include="SD.IdentitySystem.AspNetMvc.Authentication" Version="1.2.0" />
@@ -81,10 +81,6 @@
   </ItemGroup>
   <!--项目引用-->
   <ItemGroup>
-    <ProjectReference Include="..\SD.IdentitySystem.IPresentation\SD.IdentitySystem.IPresentation.csproj">
-      <Project>{e252094f-979a-4655-b864-e600c33ab75d}</Project>
-      <Name>SD.IdentitySystem.IPresentation</Name>
-    </ProjectReference>
     <ProjectReference Include="..\SD.IdentitySystem.Presentation\SD.IdentitySystem.Presentation.csproj">
       <Project>{3f6e50ba-8e37-4730-9c2e-0d9483a026d8}</Project>
       <Name>SD.IdentitySystem.Presentation</Name>

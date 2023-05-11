@@ -1,4 +1,6 @@
-﻿using SD.CacheManager;
+﻿using CoreWCF;
+using CoreWCF.Channels;
+using SD.CacheManager;
 using SD.Common;
 using SD.IdentitySystem.AppService.Maps;
 using SD.IdentitySystem.Domain.Entities;
@@ -7,20 +9,11 @@ using SD.IdentitySystem.Domain.Mediators;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
+using SD.Toolkits.OwinCore.Extensions;
 using SD.Toolkits.Recursion.Tree;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-#if NET40_OR_GREATER
-using SD.Toolkits.Owin.Extensions;
-using System.ServiceModel;
-using System.ServiceModel.Channels;
-#endif
-#if NETSTANDARD2_0_OR_GREATER
-using SD.Toolkits.OwinCore.Extensions;
-using CoreWCF;
-using CoreWCF.Channels;
-#endif
 
 namespace SD.IdentitySystem.AppService.Implements
 {
@@ -244,17 +237,6 @@ namespace SD.IdentitySystem.AppService.Implements
 
             #region # WebApi获取
 
-#if NET45_OR_GREATER
-            if (OwinContextReader.Current != null)
-            {
-                ip = OwinContextReader.Current.Request.RemoteIpAddress;
-            }
-            if (!string.IsNullOrWhiteSpace(ip))
-            {
-                return ip;
-            }
-#endif
-#if NETSTANDARD2_0_OR_GREATER
             if (OwinContextReader.Current != null)
             {
                 ip = OwinContextReader.Current.Connection.RemoteIpAddress.ToString();
@@ -263,7 +245,7 @@ namespace SD.IdentitySystem.AppService.Implements
             {
                 return ip;
             }
-#endif
+
             #endregion
 
             #region # 本机

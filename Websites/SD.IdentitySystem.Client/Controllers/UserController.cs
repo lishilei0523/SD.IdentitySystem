@@ -1,7 +1,7 @@
 ﻿using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.Models;
+using SD.IdentitySystem.Presentation.Models;
+using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.AspNetMvc;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
@@ -22,14 +22,14 @@ namespace SD.IdentitySystem.Client.Controllers
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户呈现器接口
+        /// 用户呈现器
         /// </summary>
-        private readonly IUserPresenter _userPresenter;
+        private readonly UserPresenter _userPresenter;
 
         /// <summary>
-        /// 信息系统呈现器接口
+        /// 信息系统呈现器
         /// </summary>
-        private readonly IInfoSystemPresenter _infoSystemPresenter;
+        private readonly InfoSystemPresenter _infoSystemPresenter;
 
         /// <summary>
         /// 身份认证服务接口
@@ -44,12 +44,12 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public UserController(IUserPresenter userPresenter, IAuthenticationContract authenticationContract, IUserContract userContract, IInfoSystemPresenter infoSystemPresenter)
+        public UserController(UserPresenter userPresenter, InfoSystemPresenter infoSystemPresenter, IAuthenticationContract authenticationContract, IUserContract userContract)
         {
             this._userPresenter = userPresenter;
+            this._infoSystemPresenter = infoSystemPresenter;
             this._authenticationContract = authenticationContract;
             this._userContract = userContract;
-            this._infoSystemPresenter = infoSystemPresenter;
         }
 
         #endregion
@@ -267,7 +267,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("批量删除用户")]
         public void RemoveUsers(IEnumerable<string> loginIds)
         {
-            loginIds = loginIds ?? new string[0];
+            loginIds = loginIds ?? Array.Empty<string>();
 
             foreach (string loginId in loginIds)
             {

@@ -1,5 +1,5 @@
-﻿using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.Models;
+﻿using SD.IdentitySystem.Presentation.Models;
+using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
@@ -16,14 +16,14 @@ namespace SD.IdentitySystem.Client.Controllers
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户呈现器接口
+        /// 用户呈现器
         /// </summary>
-        private readonly IUserPresenter _userPresenter;
+        private readonly UserPresenter _userPresenter;
 
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public LoginRecordController(IUserPresenter userPresenter)
+        public LoginRecordController(UserPresenter userPresenter)
         {
             this._userPresenter = userPresenter;
         }

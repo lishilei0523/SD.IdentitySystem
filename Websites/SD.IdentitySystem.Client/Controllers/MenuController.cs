@@ -1,7 +1,7 @@
 ﻿using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
-using SD.IdentitySystem.IPresentation.Interfaces;
-using SD.IdentitySystem.IPresentation.Models;
+using SD.IdentitySystem.Presentation.Models;
+using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.EasyUI;
@@ -22,12 +22,12 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 菜单呈现器
         /// </summary>
-        private readonly IMenuPresenter _menuPresenter;
+        private readonly MenuPresenter _menuPresenter;
 
         /// <summary>
         /// 信息系统呈现器
         /// </summary>
-        private readonly IInfoSystemPresenter _infoSystemPresenter;
+        private readonly InfoSystemPresenter _infoSystemPresenter;
 
         /// <summary>
         /// 权限管理服务契约接口
@@ -37,7 +37,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <summary>
         /// 依赖注入构造器
         /// </summary>
-        public MenuController(IMenuPresenter menuPresenter, IInfoSystemPresenter infoSystemPresenter, IAuthorizationContract authorizationContract)
+        public MenuController(MenuPresenter menuPresenter, InfoSystemPresenter infoSystemPresenter, IAuthorizationContract authorizationContract)
         {
             this._menuPresenter = menuPresenter;
             this._infoSystemPresenter = infoSystemPresenter;
