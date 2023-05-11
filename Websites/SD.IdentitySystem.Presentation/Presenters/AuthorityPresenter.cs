@@ -12,7 +12,7 @@ using System.Linq;
 namespace SD.IdentitySystem.Presentation.Presenters
 {
     /// <summary>
-    /// 权限呈现器实现
+    /// 权限呈现器
     /// </summary>
     public class AuthorityPresenter
     {
@@ -38,7 +38,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
         /// 获取权限
         /// </summary>
         /// <param name="authorityId">权限Id</param>
-        /// <returns>权限模型</returns>
+        /// <returns>权限</returns>
         public Authority GetAuthority(Guid authorityId)
         {
             AuthorityInfo authorityInfo = this._authorizationContract.GetAuthority(authorityId);

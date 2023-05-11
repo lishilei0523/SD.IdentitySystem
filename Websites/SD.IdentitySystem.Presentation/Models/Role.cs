@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.Presentation.Models
 {
     /// <summary>
-    /// 角色模型
+    /// 角色
     /// </summary>
     public class Role : ModelBase
     {

@@ -9,9 +9,9 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class UserMap
     {
-        #region # 用户模型映射 —— static User ToModel(this UserInfo...
+        #region # 用户映射 —— static User ToModel(this UserInfo...
         /// <summary>
-        /// 用户模型映射
+        /// 用户映射
         /// </summary>
         public static User ToModel(this UserInfo userInfo)
         {
@@ -22,9 +22,9 @@ namespace SD.IdentitySystem.Presentation.Maps
         }
         #endregion
 
-        #region # 用户登录记录模型映射 —— static LoginRecord ToModel(this LoginRecordInfo...
+        #region # 登录记录映射 —— static LoginRecord ToModel(this LoginRecordInfo...
         /// <summary>
-        /// 用户登录记录模型映射
+        /// 登录记录映射
         /// </summary>
         public static LoginRecord ToModel(this LoginRecordInfo loginRecordInfo)
         {

@@ -34,7 +34,7 @@ function setRoles() {
         roleIds.push(nodes[i].id);
     }
 
-    ////构造参数模型
+    //构造参数模型
     var loginId = $("#txtLoginId").val();
     var form = { loginId: loginId };
     var data = $.global.appendArray(form, roleIds, "roleIds");

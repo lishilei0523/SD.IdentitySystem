@@ -11,7 +11,7 @@ using System.Linq;
 namespace SD.IdentitySystem.Presentation.Presenters
 {
     /// <summary>
-    /// 菜单呈现器实现
+    /// 菜单呈现器
     /// </summary>
     public class MenuPresenter
     {

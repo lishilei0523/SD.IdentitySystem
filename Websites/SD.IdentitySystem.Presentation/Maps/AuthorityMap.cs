@@ -11,9 +11,9 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class AuthorityMap
     {
-        #region # 权限模型映射 —— static Authority ToModel(this AuthorityInfo...
+        #region # 权限映射 —— static Authority ToModel(this AuthorityInfo...
         /// <summary>
-        /// 权限模型映射
+        /// 权限映射
         /// </summary>
         public static Authority ToModel(this AuthorityInfo authorityInfo)
         {

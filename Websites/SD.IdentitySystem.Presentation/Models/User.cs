@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.Presentation.Models
 {
     /// <summary>
-    /// 用户模型
+    /// 用户
     /// </summary>
     public class User : ModelBase
     {

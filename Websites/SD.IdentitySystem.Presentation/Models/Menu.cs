@@ -6,7 +6,7 @@ using System.Collections.Generic;
 namespace SD.IdentitySystem.Presentation.Models
 {
     /// <summary>
-    /// 菜单模型
+    /// 菜单
     /// </summary>
     public class Menu : ModelBase, ITreeGrid<Menu>
     {

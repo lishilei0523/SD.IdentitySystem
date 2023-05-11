@@ -10,7 +10,7 @@ using System.Linq;
 namespace SD.IdentitySystem.Presentation.Presenters
 {
     /// <summary>
-    /// 用户呈现器实现
+    /// 用户呈现器
     /// </summary>
     public class UserPresenter
     {

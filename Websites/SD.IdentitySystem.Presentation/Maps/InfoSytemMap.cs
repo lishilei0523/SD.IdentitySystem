@@ -14,9 +14,9 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class InfoSytemMap
     {
-        #region # 信息系统模型映射 —— static InfoSystem ToModel(this InfoSystemInfo...
+        #region # 信息系统映射 —— static InfoSystem ToModel(this InfoSystemInfo...
         /// <summary>
-        /// 信息系统模型映射
+        /// 信息系统映射
         /// </summary>
         public static InfoSystem ToModel(this InfoSystemInfo infoSystemInfo)
         {

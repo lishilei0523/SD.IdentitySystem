@@ -9,7 +9,7 @@ using System.Web.Mvc;
 namespace SD.IdentitySystem.Client.Controllers
 {
     /// <summary>
-    /// 用户登录记录控制器
+    /// 登录记录控制器
     /// </summary>
     public class LoginRecordController : Controller
     {

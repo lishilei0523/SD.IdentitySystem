@@ -4,7 +4,7 @@ using SD.Infrastructure.PresentationBase;
 namespace SD.IdentitySystem.Presentation.Models
 {
     /// <summary>
-    /// 信息系统模型
+    /// 信息系统
     /// </summary>
     public class InfoSystem : ModelBase
     {

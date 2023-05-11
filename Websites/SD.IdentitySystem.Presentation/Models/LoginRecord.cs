@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.Presentation.Models
 {
     /// <summary>
-    /// 用户登录记录模型
+    /// 登录记录
     /// </summary>
     public class LoginRecord : ModelBase
     {

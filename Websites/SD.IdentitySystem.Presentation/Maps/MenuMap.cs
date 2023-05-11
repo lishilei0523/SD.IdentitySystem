@@ -14,9 +14,9 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class MenuMap
     {
-        #region # 菜单模型映射 —— static Menu ToModel(this MenuInfo...
+        #region # 菜单映射 —— static Menu ToModel(this MenuInfo...
         /// <summary>
-        /// 菜单模型映射
+        /// 菜单映射
         /// </summary>
         public static Menu ToModel(this MenuInfo menuInfo)
         {
@@ -105,8 +105,8 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// <summary>
         /// 填充子节点
         /// </summary>
-        /// <param name="menu">菜单模型</param>
-        /// <param name="allMenus">菜单模型集</param>
+        /// <param name="menu">菜单</param>
+        /// <param name="allMenus">菜单集</param>
         private static void FillChildren(this Menu menu, Menu[] allMenus)
         {
             foreach (Menu subMenu in allMenus)

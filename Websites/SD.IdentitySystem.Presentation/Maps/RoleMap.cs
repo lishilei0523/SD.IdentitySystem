@@ -10,9 +10,9 @@ namespace SD.IdentitySystem.Presentation.Maps
     /// </summary>
     public static class RoleMap
     {
-        #region # 角色模型映射 —— static Role ToModel(this RoleInfo...
+        #region # 角色映射 —— static Role ToModel(this RoleInfo...
         /// <summary>
-        /// 角色模型映射
+        /// 角色映射
         /// </summary>
         public static Role ToModel(this RoleInfo roleInfo)
         {

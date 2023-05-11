@@ -11,7 +11,7 @@ using System.Linq;
 namespace SD.IdentitySystem.Presentation.Presenters
 {
     /// <summary>
-    /// 角色呈现器实现
+    /// 角色呈现器
     /// </summary>
     public class RolePresenter
     {

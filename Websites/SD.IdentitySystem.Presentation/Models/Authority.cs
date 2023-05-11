@@ -3,7 +3,7 @@
 namespace SD.IdentitySystem.Presentation.Models
 {
     /// <summary>
-    /// 权限模型
+    /// 权限
     /// </summary>
     public class Authority : ModelBase
     {

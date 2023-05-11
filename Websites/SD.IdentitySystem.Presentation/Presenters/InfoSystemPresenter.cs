@@ -9,7 +9,7 @@ using System.Linq;
 namespace SD.IdentitySystem.Presentation.Presenters
 {
     /// <summary>
-    /// 信息系统呈现器实现
+    /// 信息系统呈现器
     /// </summary>
     public class InfoSystemPresenter
     {
