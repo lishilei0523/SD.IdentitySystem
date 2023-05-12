@@ -23,7 +23,6 @@ namespace SD.IdentitySystem.StubWCF.Client.Implements
             this._serverContract = serverContract;
         }
 
-
         /// <summary>
         /// 获取消息头
         /// </summary>

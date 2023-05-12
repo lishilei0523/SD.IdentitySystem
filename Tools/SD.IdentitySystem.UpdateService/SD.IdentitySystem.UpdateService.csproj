@@ -2,8 +2,6 @@
   <PropertyGroup>
     <TargetFramework>net6.0</TargetFramework>
     <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
-    <AssemblyName>SD.IdentitySystem.UpdateService</AssemblyName>
-    <RootNamespace>SD.IdentitySystem.UpdateService</RootNamespace>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <Authors>Lee</Authors>
     <Company>SD</Company>

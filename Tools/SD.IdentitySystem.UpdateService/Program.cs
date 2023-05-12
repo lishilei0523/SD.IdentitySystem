@@ -4,9 +4,9 @@ using SD.Toolkits.AspNet;
 
 namespace SD.IdentitySystem.UpdateService
 {
-    public class Program
+    class Program
     {
-        public static void Main()
+        static void Main()
         {
             IHostBuilder hostBuilder = Microsoft.Extensions.Hosting.Host.CreateDefaultBuilder();
 
