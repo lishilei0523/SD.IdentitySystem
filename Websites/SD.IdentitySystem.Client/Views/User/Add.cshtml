@@ -1,26 +1,15 @@
 ﻿@{
     ViewBag.Title = "创建用户";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/User/Add.js"></script>
+    <link type="text/css" href="~/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/User/Add.js"></script>
 }
 
-@using (Ajax.BeginForm("CreateUser", "User",
-    new AjaxOptions
-    {
-        HttpMethod = "post",
-        OnBegin = "addBegin",
-        OnSuccess = "addSucceed",
-        OnFailure = "addFail"
-    },
-    new
-    {
-        id = "frmCreateUser"
-    }))
-{
+<form asp-controller="User" asp-action="CreateUser"
+      data-ajax="true" data-ajax-method="POST"
+      data-ajax-begin="addBegin" data-ajax-success="addSucceed" data-ajax-failure="addFail">
     <div style="width: 100%; height: 100%; float: left; margin: 0;">
         <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 220px; padding: 10px;">
             <table id="tbAdd">
@@ -57,4 +46,4 @@
             <a href="#" onclick="javascript: $.easyuiExt.closeWindow();" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:90px">取消</a>
         </div>
     </div>
-}
+</form>

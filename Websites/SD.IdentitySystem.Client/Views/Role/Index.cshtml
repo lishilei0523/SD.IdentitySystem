@@ -1,14 +1,11 @@
-﻿@using SD.IdentitySystem.Presentation.Models
-@{
+﻿@{
     ViewBag.Title = "角色管理";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
-    IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
+    IEnumerable<InfoSystem> infoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Grid.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/Role/Index.js"></script>
+    <link type="text/css" href="~/css/Common/Grid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/Role/Index.js"></script>
 }
 
 <div class="main">
@@ -28,7 +25,7 @@
                 信息系统：
                 <select class="easyui-combobox" id="cbxInfoSystem" name="infoSystemNo" data-options="editable:false" style="width: 210px">
                     <option value="" selected="selected">全部</option>
-                    @foreach (InfoSystem infoSystem in InfoSystems)
+                    @foreach (InfoSystem infoSystem in infoSystems)
                     {
                         <option value="@infoSystem.Number">@infoSystem.Name</option>
                     }

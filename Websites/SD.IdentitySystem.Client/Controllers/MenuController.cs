@@ -1,4 +1,5 @@
-﻿using SD.Common;
+﻿using Microsoft.AspNetCore.Mvc;
+using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
@@ -8,7 +9,6 @@ using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -225,7 +225,7 @@ namespace SD.IdentitySystem.Client.Controllers
         {
             IEnumerable<Node> menuTree = this._menuPresenter.GetMenuTree(infoSystemNo, applicationType);
 
-            return base.Json(menuTree, JsonRequestBehavior.AllowGet);
+            return base.Json(menuTree);
         }
         #endregion
 
@@ -244,7 +244,7 @@ namespace SD.IdentitySystem.Client.Controllers
                 ? this._menuPresenter.GetMenuTree(infoSystemNo, applicationType)
                 : this._menuPresenter.GetUserMenuTree(loginId, infoSystemNo, applicationType);
 
-            return base.Json(menuTree, JsonRequestBehavior.AllowGet);
+            return base.Json(menuTree);
         }
 
         #endregion
@@ -262,7 +262,7 @@ namespace SD.IdentitySystem.Client.Controllers
             IEnumerable<Menu> menus = this._menuPresenter.GetMenuTreeGrid(infoSystemNo, applicationType).ToArray();
             Grid<Menu> grid = new Grid<Menu>(menus.Count(), menus);
 
-            return base.Json(grid, JsonRequestBehavior.AllowGet);
+            return base.Json(grid);
         }
         #endregion
     }

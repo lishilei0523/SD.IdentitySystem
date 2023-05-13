@@ -14,7 +14,7 @@
 #login_center {
     width: 998px;
     height: 299px;
-    background: url("/Content/images/login_center.jpg") no-repeat;
+    background: url("/images/login_center.jpg") no-repeat;
 }
 
 #login_body {

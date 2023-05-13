@@ -21,16 +21,7 @@ function getRecords(queryParams) {
             { field: "RealName", title: "真实姓名", halign: "center", width: 120 },
             { field: "IP", title: "IP地址", halign: "center", width: 120 },
             { field: "ClientId", title: "客户端Id", halign: "center", width: 200 },
-            {
-                field: "AddedTime",
-                title: "登录时间",
-                align: "center",
-                halign: "center",
-                width: 150,
-                formatter: function (value) {
-                    return $.global.formatDate(value, "yyyy-MM-dd hh:mm:ss");
-                }
-            }
+            { field: "AddedTime", title: "创建时间", align: "center", halign: "center", width: 150 }
         ]
     ];
 

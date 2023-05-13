@@ -23,16 +23,7 @@ function getInfoSystems(queryParams) {
             { field: "Host", title: "主机名", halign: "center", width: 120 },
             { field: "Port", title: "端口", halign: "center", width: 120 },
             { field: "Index", title: "首页", halign: "center", width: 120 },
-            {
-                field: "AddedTime",
-                title: "创建时间",
-                align: "center",
-                halign: "center",
-                width: 150,
-                formatter: function (value) {
-                    return $.global.formatDate(value, "yyyy-MM-dd hh:mm:ss");
-                }
-            },
+            { field: "AddedTime", title: "创建时间", align: "center", halign: "center", width: 150 },
             {
                 field: "Init",
                 title: "初始化",

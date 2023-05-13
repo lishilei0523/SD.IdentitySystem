@@ -5,9 +5,7 @@ VisualStudioVersion = 17.5.33530.505
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Presentation", "Websites\SD.IdentitySystem.Presentation\SD.IdentitySystem.Presentation.csproj", "{3F6E50BA-8E37-4730-9C2E-0D9483A026D8}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Client", "Websites\SD.IdentitySystem.Client\SD.IdentitySystem.Client.csproj", "{588E8C49-6286-41B3-BB00-905DC2971F64}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Client(Core)", "Websites\SD.IdentitySystem.Client(Core)\SD.IdentitySystem.Client(Core).csproj", "{FFF8B4E7-EE38-412A-B6F9-B04F06C705D0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Client", "Websites\SD.IdentitySystem.Client\SD.IdentitySystem.Client.csproj", "{FFF8B4E7-EE38-412A-B6F9-B04F06C705D0}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -19,10 +17,6 @@ Global
 		{3F6E50BA-8E37-4730-9C2E-0D9483A026D8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3F6E50BA-8E37-4730-9C2E-0D9483A026D8}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3F6E50BA-8E37-4730-9C2E-0D9483A026D8}.Release|Any CPU.Build.0 = Release|Any CPU
-		{588E8C49-6286-41B3-BB00-905DC2971F64}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{588E8C49-6286-41B3-BB00-905DC2971F64}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{588E8C49-6286-41B3-BB00-905DC2971F64}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{588E8C49-6286-41B3-BB00-905DC2971F64}.Release|Any CPU.Build.0 = Release|Any CPU
 		{FFF8B4E7-EE38-412A-B6F9-B04F06C705D0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{FFF8B4E7-EE38-412A-B6F9-B04F06C705D0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FFF8B4E7-EE38-412A-B6F9-B04F06C705D0}.Release|Any CPU.ActiveCfg = Release|Any CPU

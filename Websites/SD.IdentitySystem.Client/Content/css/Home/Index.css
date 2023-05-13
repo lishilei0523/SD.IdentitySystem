@@ -5,7 +5,7 @@
 #dvHeader {
     height: 70px;
     padding: 0px;
-    background: url('/Content/images/banner-pic.gif') repeat;
+    background: url('/images/banner-pic.gif') repeat;
     background-size: 100% 100%;
     overflow: hidden;
 }
@@ -18,7 +18,7 @@
         float: left;
         margin-left: 20px;
         margin-top: 15px;
-        /*background: url('/Content/images/Mlogo.jpg');*/
+        /*background: url('/images/Mlogo.jpg');*/
     }
 
     #dvHeader .rightBtns {
@@ -44,7 +44,7 @@
 
     #dvContent .tabHome {
         padding: 0;
-        /*background: url('/Content/images/welcom.jpg') no-repeat;*/
+        /*background: url('/images/welcom.jpg') no-repeat;*/
         background-size: 100% 100%;
     }
 

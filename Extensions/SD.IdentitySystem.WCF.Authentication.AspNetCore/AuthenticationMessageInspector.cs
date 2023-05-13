@@ -1,10 +1,13 @@
-﻿using Microsoft.Extensions.Primitives;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.Extensions.Primitives;
 using SD.Infrastructure.Constants;
+using SD.Infrastructure.Membership;
 using SD.Toolkits.OwinCore.Extensions;
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
+using System.Text.Json;
 
 namespace SD.IdentitySystem.WCF.Authentication.AspNetCore
 {
@@ -21,17 +24,27 @@ namespace SD.IdentitySystem.WCF.Authentication.AspNetCore
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //ASP.NET Core获取公钥处理
+            Guid? publicKey = null;
             if (OwinContextReader.Current.Request.Headers.TryGetValue(SessionKey.PublicKey, out StringValues stringValues))
             {
                 string publicKeyStr = stringValues.ToString();
-                if (!string.IsNullOrWhiteSpace(publicKeyStr))
+                publicKey = new Guid(publicKeyStr);
+            }
+            else
+            {
+                string loginInfoJson = OwinContextReader.Current.Session.GetString(GlobalSetting.ApplicationId);
+                if (!string.IsNullOrWhiteSpace(loginInfoJson))
                 {
-                    Guid publicKey = new Guid(publicKeyStr);
-
-                    //添加消息头
-                    MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId, publicKey);
-                    request.Headers.Add(header);
+                    LoginInfo loginInfo = JsonSerializer.Deserialize<LoginInfo>(loginInfoJson);
+                    publicKey = loginInfo.PublicKey;
                 }
+            }
+
+            if (publicKey.HasValue)
+            {
+                //添加消息头
+                MessageHeader header = MessageHeader.CreateHeader(CommonConstants.WCFAuthenticationHeader, GlobalSetting.ApplicationId, publicKey.Value);
+                request.Headers.Add(header);
             }
 
             return null;

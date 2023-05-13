@@ -21,16 +21,7 @@ function getUsers(queryParams) {
             { field: "Name", title: "真实姓名", halign: "center", width: 150 },
             { field: "PrivateKey", title: "私钥", halign: "center", width: 300 },
             { field: "Status", title: "状态", align: "center", halign: "center", width: 45 },
-            {
-                field: "AddedTime",
-                title: "创建时间",
-                align: "center",
-                halign: "center",
-                width: 150,
-                formatter: function (value) {
-                    return $.global.formatDate(value, "yyyy-MM-dd hh:mm:ss");
-                }
-            },
+            { field: "AddedTime", title: "创建时间", align: "center", halign: "center", width: 150 },
             {
                 field: "ResetPassord",
                 title: "重置密码",

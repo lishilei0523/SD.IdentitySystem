@@ -1,4 +1,5 @@
-﻿using SD.Common;
+﻿using Microsoft.AspNetCore.Mvc;
+using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
@@ -8,7 +9,6 @@ using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -182,13 +182,13 @@ namespace SD.IdentitySystem.Client.Controllers
         {
             if (string.IsNullOrWhiteSpace(id))
             {
-                return base.Json(null, JsonRequestBehavior.AllowGet);
+                return base.Json(null);
             }
 
             Node node = this._authorityPresenter.GetAuthorityTree(id, null);
             IEnumerable<Node> tree = new[] { node };
 
-            return base.Json(tree, JsonRequestBehavior.AllowGet);
+            return base.Json(tree);
         }
         #endregion
 
@@ -204,7 +204,7 @@ namespace SD.IdentitySystem.Client.Controllers
             Node node = this._authorityPresenter.GetAuthorityTreeByRole(id);
             IEnumerable<Node> tree = new[] { node };
 
-            return base.Json(tree, JsonRequestBehavior.AllowGet);
+            return base.Json(tree);
         }
         #endregion
 
@@ -220,7 +220,7 @@ namespace SD.IdentitySystem.Client.Controllers
             Node node = this._authorityPresenter.GetAuthorityTreeByMenu(id);
             IEnumerable<Node> tree = new[] { node };
 
-            return base.Json(tree, JsonRequestBehavior.AllowGet);
+            return base.Json(tree);
         }
         #endregion
 
@@ -240,7 +240,7 @@ namespace SD.IdentitySystem.Client.Controllers
             PageModel<Authority> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, infoSystemNo, applicationType, page, rows);
             Grid<Authority> grid = new Grid<Authority>(pageModel.RowCount, pageModel.Datas);
 
-            return base.Json(grid, JsonRequestBehavior.AllowGet);
+            return base.Json(grid);
         }
         #endregion
     }

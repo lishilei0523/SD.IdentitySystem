@@ -1,26 +1,15 @@
 ﻿@{
     ViewBag.Title = "重置私钥";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/User/ResetPrivateKey.js"></script>
+    <link type="text/css" href="~/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/User/ResetPrivateKey.js"></script>
 }
 
-@using (Ajax.BeginForm("ResetPrivateKey", "User",
-    new AjaxOptions
-    {
-        HttpMethod = "post",
-        OnBegin = "resetBegin",
-        OnSuccess = "resetSucceed",
-        OnFailure = "resetFail"
-    },
-    new
-    {
-        id = "frmResetPrivateKey"
-    }))
-{
+<form asp-controller="User" asp-action="ResetPrivateKey"
+      data-ajax="true" data-ajax-method="POST"
+      data-ajax-begin="resetBegin" data-ajax-success="resetSucceed" data-ajax-failure="resetFail">
     <div style="width: 100%; height: 100%; float: left; margin: 0;">
         <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 160px; padding: 10px;">
             <input type="hidden" name="loginId" value="@ViewBag.LoginId" />
@@ -40,4 +29,4 @@
             <a href="#" onclick="javascript: $.easyuiExt.closeWindow();" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:90px">取消</a>
         </div>
     </div>
-}
+</form>

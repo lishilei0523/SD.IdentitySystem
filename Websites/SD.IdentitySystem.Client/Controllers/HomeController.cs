@@ -1,7 +1,9 @@
-﻿using SD.Infrastructure.Attributes;
+﻿using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
-using System.Web.Mvc;
+using SD.Toolkits.Json;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -18,7 +20,8 @@ namespace SD.IdentitySystem.Client.Controllers
         [RequireAuthorization("主页视图")]
         public ViewResult Index()
         {
-            LoginInfo loginInfo = base.HttpContext.Session[GlobalSetting.ApplicationId] as LoginInfo;
+            string json = base.HttpContext.Session.GetString(GlobalSetting.ApplicationId);
+            LoginInfo loginInfo = json?.AsJsonTo<LoginInfo>();
 
             base.ViewBag.LoginId = loginInfo?.LoginId;
             base.ViewBag.RealName = loginInfo?.RealName;

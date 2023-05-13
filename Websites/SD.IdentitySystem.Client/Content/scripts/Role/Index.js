@@ -20,16 +20,7 @@ function getRoles(queryParams) {
             { field: "Name", title: "角色名称", halign: "center", width: 120 },
             { field: "InfoSystemName", title: "所属系统", halign: "center", width: 120 },
             { field: "Description", title: "角色描述", halign: "center", width: 200 },
-            {
-                field: "AddedTime",
-                title: "创建时间",
-                align: "center",
-                halign: "center",
-                width: 150,
-                formatter: function (value) {
-                    return $.global.formatDate(value, "yyyy-MM-dd hh:mm:ss");
-                }
-            },
+            { field: "AddedTime", title: "创建时间", align: "center", halign: "center", width: 150 },
             {
                 field: "Update",
                 title: "编辑",

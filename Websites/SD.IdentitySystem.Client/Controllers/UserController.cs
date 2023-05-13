@@ -1,16 +1,19 @@
-﻿using SD.Common;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Mvc;
+using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
-using SD.Infrastructure.AspNetMvc;
+using SD.Infrastructure.AspNetMvcCore;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.Membership;
 using SD.Toolkits.EasyUI;
+using SD.Toolkits.Json;
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -180,7 +183,7 @@ namespace SD.IdentitySystem.Client.Controllers
             //验证登录
             string clientId = NetworkExtension.GetLocalMacAddress();
             LoginInfo loginInfo = this._authenticationContract.Login(loginId, password, clientId);
-            base.HttpContext.Session[GlobalSetting.ApplicationId] = loginInfo;
+            base.HttpContext.Session.SetString(GlobalSetting.ApplicationId, loginInfo.ToJson());
         }
         #endregion
 
@@ -377,7 +380,7 @@ namespace SD.IdentitySystem.Client.Controllers
             PageModel<User> pageModel = this._userPresenter.GetUsersByPage(keywords, infoSystemNo, page, rows);
             Grid<User> grid = new Grid<User>(pageModel.RowCount, pageModel.Datas);
 
-            return base.Json(grid, JsonRequestBehavior.AllowGet);
+            return base.Json(grid);
         }
         #endregion
     }

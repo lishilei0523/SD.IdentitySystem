@@ -21,16 +21,7 @@ function getMenus(queryParams) {
             { field: "Path", title: "路径", halign: "center", width: 200 },
             { field: "InfoSystemName", title: "所属系统", halign: "center", width: 150 },
             { field: "ApplicationTypeName", title: "应用程序类型", halign: "center", width: 150 },
-            {
-                field: "AddedTime",
-                title: "创建时间",
-                align: "center",
-                halign: "center",
-                width: 150,
-                formatter: function (value) {
-                    return $.global.formatDate(value, "yyyy-MM-dd hh:mm:ss");
-                }
-            },
+            { field: "AddedTime", title: "创建时间", align: "center", halign: "center", width: 150 },
             {
                 field: "RelateAuthority",
                 title: "关联权限",

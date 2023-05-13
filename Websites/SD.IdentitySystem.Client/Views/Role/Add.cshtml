@@ -1,14 +1,11 @@
-﻿@using SD.IdentitySystem.Presentation.Models
-@{
+﻿@{
     ViewBag.Title = "创建角色";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
-    IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
+    IEnumerable<InfoSystem> infoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/Role/Add.js"></script>
+    <link type="text/css" href="~/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/Role/Add.js"></script>
 }
 
 @*角色信息面板*@
@@ -21,7 +18,7 @@
                     <td class="tdContent">
                         <select class="easyui-combobox" id="cbxInfoSystem" name="infoSystemNo" data-options="required:true,editable:false,onSelect:infoSystemSelected" style="width: 210px">
                             <option value="" selected="selected"></option>
-                            @foreach (InfoSystem infoSystem in InfoSystems)
+                            @foreach (InfoSystem infoSystem in infoSystems)
                             {
                                 <option value="@infoSystem.Number">@infoSystem.Name</option>
                             }

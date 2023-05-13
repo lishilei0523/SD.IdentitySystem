@@ -1,15 +1,12 @@
-﻿@using SD.IdentitySystem.Presentation.Models
-@{
+﻿@{
     ViewBag.Title = "权限管理";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
-    IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
-    IDictionary<int, string> ApplicationTypeDescriptions = ViewBag.ApplicationTypeDescriptions;
+    IEnumerable<InfoSystem> infoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
+    IDictionary<int, string> applicationTypeDescriptions = ViewBag.ApplicationTypeDescriptions;
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Grid.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/Authority/Index.js"></script>
+    <link type="text/css" href="~/css/Common/Grid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/Authority/Index.js"></script>
 }
 
 <div class="main">
@@ -29,7 +26,7 @@
                 信息系统：
                 <select class="easyui-combobox" id="cbxInfoSystem" name="infoSystemNo" data-options="editable:false" style="width: 210px">
                     <option value="" selected="selected">全部</option>
-                    @foreach (InfoSystem infoSystem in InfoSystems)
+                    @foreach (InfoSystem infoSystem in infoSystems)
                     {
                         <option value="@infoSystem.Number">@infoSystem.Name</option>
                     }
@@ -37,7 +34,7 @@
                 应用程序类型：
                 <select class="easyui-combobox" id="slApplicationType" name="applicationType" data-options="editable:false" style="width: 210px">
                     <option value="" selected="selected">全部</option>
-                    @foreach (KeyValuePair<int, string> kv in ApplicationTypeDescriptions)
+                    @foreach (KeyValuePair<int, string> kv in applicationTypeDescriptions)
                     {
                         <option value="@kv.Key">@kv.Value</option>
                     }

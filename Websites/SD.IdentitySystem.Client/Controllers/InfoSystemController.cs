@@ -1,11 +1,11 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
-using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -131,7 +131,7 @@ namespace SD.IdentitySystem.Client.Controllers
             PageModel<InfoSystem> pageModel = this._infoSystemPresenter.GetInfoSystemsByPage(keywords, page, rows);
             Grid<InfoSystem> grid = new Grid<InfoSystem>(pageModel.RowCount, pageModel.Datas);
 
-            return base.Json(grid, JsonRequestBehavior.AllowGet);
+            return base.Json(grid);
         }
         #endregion
     }

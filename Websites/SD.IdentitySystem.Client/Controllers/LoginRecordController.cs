@@ -1,10 +1,10 @@
-﻿using SD.IdentitySystem.Presentation.Models;
+﻿using Microsoft.AspNetCore.Mvc;
+using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System;
-using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -65,7 +65,7 @@ namespace SD.IdentitySystem.Client.Controllers
             PageModel<LoginRecord> pageModel = this._userPresenter.GetLoginRecordsByPage(keywords, startTime, endTime, page, rows);
             Grid<LoginRecord> grid = new Grid<LoginRecord>(pageModel.RowCount, pageModel.Datas);
 
-            return base.Json(grid, JsonRequestBehavior.AllowGet);
+            return base.Json(grid);
         }
         #endregion
     }

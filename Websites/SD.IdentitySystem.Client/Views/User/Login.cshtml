@@ -7,106 +7,96 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>统一身份认证系统 - 登录</title>
-    <link type="text/css" href="~/Content/css/User/Login.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Scripts/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.extensions.message.js"></script>
-    <script type="text/javascript" src="~/Content/scripts/User/Login.js"></script>
+    <link type="text/css" href="~/css/User/Login.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/lib/jquery/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.extensions.message.js"></script>
+    <script type="text/javascript" src="~/scripts/User/Login.js"></script>
 </head>
 <body>
-<div id="login_top">
-    <img src="@Url.Content("~/Content/images/login_top.jpg")" />
-</div>
-<div id="login_stop">
-    <img src="@Url.Content("~/Content/images/login_stop.jpg")" />
-</div>
-<div id="login_center">
-    <div id="login_body">
-        @using (Ajax.BeginForm("Login", "User",
-            new AjaxOptions
-            {
-                HttpMethod = "post",
-                OnBegin = "loginBegin",
-                OnSuccess = "loginSucceed",
-                OnFailure = "loginFail"
-            },
-            new
-            {
-                id = "frmLogin"
-            }))
-        {
-            <table id="login_table">
-                @*占位*@
-                <tr>
-                    <td></td>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-                @*用户名*@
-                <tr>
-                    <td><span style="color: #FFFFFF">用户名:</span></td>
-                    <td>
-                        <input type="text" id="txtUserName" name="loginId" value=""
-                               class="inputbox"
-                               data-val="true" data-val-length="用户名过长"
-                               data-val-length-max="20" data-val-required="必填" />
-                    </td>
-                    <td style="color: Red; font-size: 12px;">
-                        <span class="field-validation-valid" data-valmsg-for="loginId" data-valmsg-replace="true"></span>
-                    </td>
-                </tr>
-                @*密码*@
-                <tr>
-                    <td><span style="color: #FFFFFF">密　码:</span></td>
-                    <td>
-                        <input type="password" id="txtPwd" name="password" value=""
-                               class="inputbox" autocomplete="off"
-                               data-val="true" data-val-length="密码过长"
-                               data-val-length-max="20" data-val-required="必填" />
-                    </td>
-                    <td style="color: Red; font-size: 12px;"><span class="field-validation-valid" data-valmsg-for="password" data-valmsg-replace="true"></span></td>
-                </tr>
-                @*验证码*@
-                <tr>
-                    <td><span style="color: #FFFFFF">验证码:</span></td>
-                    <td>
-                        <input type="text" id="txtVadlidCode" name="validCode" value=""
-                               class="inputbox" data-val="true" data-val-length="验证码过长"
-                               data-val-length-max="4" data-val-regex="格式不正确"
-                               data-val-regex-pattern="\d{4}"
-                               data-val-required="必填" maxlength="4" />
-                    </td>
-                    <td style="color: Red; font-size: 12px;">
-                        <span class="field-validation-valid" data-valmsg-for="validCode" data-valmsg-replace="true"></span>
-                    </td>
-                </tr>
-                @*验证码、记住密码、登录按钮*@
-                <tr>
-                    <td>
-                        <span style="color: #FFFFFF">
-                            <img id="imgValidCode"
-                                 src="@Url.Action("GetValidCode", "User")"
-                                 alt=" 看不清，点击更换!"
-                                 style="cursor: pointer;" />
-                        </span>
-                    </td>
-                    <td>
-                        <input type="submit" id="btnLogin" value="登录" />
-                    </td>
-                </tr>
-                @*占位*@
-                <tr>
-                    <td>&nbsp;</td>
-                    <td>&nbsp;</td>
-                </tr>
-            </table>
-        }
+    <div id="login_top">
+        <img src="@Url.Content("~/images/login_top.jpg")" />
     </div>
-</div>
-<div id="login_bottom">
-    <img src="@Url.Content("~/Content/images/login_bottom.jpg")" />
-</div>
+    <div id="login_stop">
+        <img src="@Url.Content("~/images/login_stop.jpg")" />
+    </div>
+    <div id="login_center">
+        <div id="login_body">
+            <form asp-controller="User" asp-action="Login"
+                  data-ajax="true" data-ajax-method="POST"
+                  data-ajax-begin="loginBegin" data-ajax-success="loginSucceed" data-ajax-failure="loginFail">
+                <table id="login_table">
+                    @*占位*@
+                    <tr>
+                        <td></td>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                    @*用户名*@
+                    <tr>
+                        <td><span style="color: #FFFFFF">用户名:</span></td>
+                        <td>
+                            <input type="text" id="txtUserName" name="loginId" value=""
+                                   class="inputbox"
+                                   data-val="true" data-val-length="用户名过长"
+                                   data-val-length-max="20" data-val-required="必填" />
+                        </td>
+                        <td style="color: Red; font-size: 12px;">
+                            <span class="field-validation-valid" data-valmsg-for="loginId" data-valmsg-replace="true"></span>
+                        </td>
+                    </tr>
+                    @*密码*@
+                    <tr>
+                        <td><span style="color: #FFFFFF">密 码:</span></td>
+                        <td>
+                            <input type="password" id="txtPwd" name="password" value=""
+                                   class="inputbox" autocomplete="off"
+                                   data-val="true" data-val-length="密码过长"
+                                   data-val-length-max="20" data-val-required="必填" />
+                        </td>
+                        <td style="color: Red; font-size: 12px;"><span class="field-validation-valid" data-valmsg-for="password" data-valmsg-replace="true"></span></td>
+                    </tr>
+                    @*验证码*@
+                    <tr>
+                        <td><span style="color: #FFFFFF">验证码:</span></td>
+                        <td>
+                            <input type="text" id="txtVadlidCode" name="validCode" value=""
+                                   class="inputbox" data-val="true" data-val-length="验证码过长"
+                                   data-val-length-max="4" data-val-regex="格式不正确"
+                                   data-val-regex-pattern="\d{4}"
+                                   data-val-required="必填" maxlength="4" />
+                        </td>
+                        <td style="color: Red; font-size: 12px;">
+                            <span class="field-validation-valid" data-valmsg-for="validCode" data-valmsg-replace="true"></span>
+                        </td>
+                    </tr>
+                    @*验证码、记住密码、登录按钮*@
+                    <tr>
+                        <td>
+                            <span style="color: #FFFFFF">
+                                <img id="imgValidCode"
+                                     src="@Url.Action("GetValidCode", "User")"
+                                     alt=" 看不清，点击更换!"
+                                     style="cursor: pointer;" />
+                            </span>
+                        </td>
+                        <td>
+                            <input type="submit" id="btnLogin" value="登录" />
+                        </td>
+                    </tr>
+                    @*占位*@
+                    <tr>
+                        <td>&nbsp;</td>
+                        <td>&nbsp;</td>
+                    </tr>
+                </table>
+            </form>
+        </div>
+    </div>
+    <div id="login_bottom">
+        <img src="@Url.Content("~/images/login_bottom.jpg")" />
+    </div>
 </body>
 </html>
