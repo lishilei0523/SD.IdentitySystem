@@ -1,0 +1,88 @@
+﻿@using SD.IdentitySystem.Presentation.Models
+@{
+    ViewBag.Title = "创建菜单";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
+    IDictionary<int, string> ApplicationTypeDescriptions = ViewBag.ApplicationTypeDescriptions;
+}
+
+@section header{
+    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/scripts/Menu/Add.js"></script>
+}
+
+<div style="width: 100%; height: 100%; float:left; margin: 0;">
+    <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 423px; padding: 10px;">
+        <form id="frmCreateMenu">
+            <table id="tbAdd" style="margin: 0 auto;">
+                <tr>
+                    <td class="tdTitle">信息系统：</td>
+                    <td class="tdContent">
+                        <select class="easyui-combobox" id="cbxInfoSystem" name="infoSystemNo" data-options="required:true,editable:false,onSelect:infoSystemSelected" style="width: 210px">
+                            <option value="" selected="selected"></option>
+                            @foreach (InfoSystem infoSystem in InfoSystems)
+                            {
+                                <option value="@infoSystem.Number">@infoSystem.Name</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">应用程序类型：</td>
+                    <td class="tdContent">
+                        <select class="easyui-combobox" id="slApplicationType" name="applicationType" data-options="required:true,editable:false,onSelect:applicationTypeSelected" style="width: 210px">
+                            <option value="" selected="selected"></option>
+                            @foreach (KeyValuePair<int, string> kv in ApplicationTypeDescriptions)
+                            {
+                                <option value="@kv.Key">@kv.Value</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">上级菜单：</td>
+                    <td class="tdContent">
+                        <input id="slMenu" name="parentId">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">菜单名称：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="menuName" data-options="required:true,width:210" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">排序：</td>
+                    <td class="tdContent">
+                        <input class="easyui-numberbox" name="sort" data-options="required:true,width:210">
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">链接地址：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="url" data-options="width:210" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">路径：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="path" data-options="width:210" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">图标：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="icon" data-options="width:210" />
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="footer" style="padding: 5px;">
+        <div style="float: right;">
+            <a href="#" onclick="createMenu();" class="easyui-linkbutton c6" data-options="iconCls:'icon-ok'" style="width:90px">确定</a>
+            <a href="#" onclick="javascript: $.easyuiExt.closeWindow();" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:90px">取消</a>
+        </div>
+    </div>
+</div>

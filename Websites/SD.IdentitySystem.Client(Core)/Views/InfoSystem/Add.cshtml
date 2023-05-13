@@ -1,0 +1,56 @@
+﻿@using SD.Common
+@using SD.Infrastructure.Constants
+
+@{
+    ViewBag.Title = "创建信息系统";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section header{
+    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/scripts/InfoSystem/Add.js"></script>
+}
+
+<div style="width: 100%; height: 100%; float:left; margin: 0;">
+    <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 323px; padding: 10px;">
+        <form id="frmCreateInfoSystem">
+            <table id="tbAdd" style="margin: 0 auto;">
+                <tr>
+                    <td class="tdTitle">信息系统编号：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="infoSystemNo" data-options="required:true,width:210" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">信息系统名称：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="infoSystemName" data-options="required:true,width:210" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">系统管理员账号：</td>
+                    <td class="tdContent">
+                        <input class="easyui-textbox" type="text" name="adminLoginId" data-options="required:true,width:210" />
+                    </td>
+                </tr>
+                <tr>
+                    <td class="tdTitle">应用程序类型：</td>
+                    <td class="tdContent">
+                        <select class="easyui-combobox" id="slAppType" name="applicationType" data-options="editable:false" style="width: 210px">
+                            @foreach (Tuple<int, string, string> enumInfo in typeof(ApplicationType).GetEnumMemberInfos())
+                            {
+                                <option value="@enumInfo.Item1">@enumInfo.Item3</option>
+                            }
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </form>
+    </div>
+    <div id="footer" style="padding: 5px;">
+        <div style="float: right;">
+            <a href="#" onclick="createInfoSystem();" class="easyui-linkbutton c6" data-options="iconCls:'icon-ok'" style="width:90px">确定</a>
+            <a href="#" onclick="javascript: $.easyuiExt.closeWindow();" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:90px">取消</a>
+        </div>
+    </div>
+</div>

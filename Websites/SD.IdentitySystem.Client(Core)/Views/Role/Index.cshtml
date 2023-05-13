@@ -1,0 +1,46 @@
+﻿@using SD.IdentitySystem.Presentation.Models
+@{
+    ViewBag.Title = "角色管理";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+
+    IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
+}
+
+@section header{
+    <link type="text/css" href="~/Content/css/Common/Grid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/Content/scripts/Role/Index.js"></script>
+}
+
+<div class="main">
+    @*工具栏*@
+    <div id="toolbar" class="datagrid-toolbar" style="padding: 5px; height: auto">
+        @*按钮区*@
+        <div style="margin-bottom: 5px">
+            <a href="#" class="easyui-linkbutton" iconcls="icon-add" plain="true" onclick="createRole();">新增</a>
+            <a href="#" class="easyui-linkbutton" iconcls="icon-remove" plain="true" onclick="removeRoles();">删除</a>
+        </div>
+
+        @*表单区*@
+        <div style="margin-left: 5px">
+            <form id="frmQueries">
+                关键字：<input class="easyui-textbox" type="text" id="txtKeywords" name="keywords" style="width: 210px" data-options="prompt:'角色名称/描述'" />
+
+                信息系统：
+                <select class="easyui-combobox" id="cbxInfoSystem" name="infoSystemNo" data-options="editable:false" style="width: 210px">
+                    <option value="" selected="selected">全部</option>
+                    @foreach (InfoSystem infoSystem in InfoSystems)
+                    {
+                        <option value="@infoSystem.Number">@infoSystem.Name</option>
+                    }
+                </select>
+
+                <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchRoles();">搜索</a>
+            </form>
+        </div>
+    </div>
+
+    @*列表*@
+    <div id="dvGrid" class="gridDiv">
+        <table id="tbGrid"></table>
+    </div>
+</div>

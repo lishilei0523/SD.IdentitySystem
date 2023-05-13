@@ -1,0 +1,28 @@
+﻿.main {
+    width: 100%;
+    height: 100%;
+    position: absolute;
+}
+
+.gridDiv {
+    width: 100%;
+    height: calc(100vh - 68px);
+}
+
+.datagrid-header-rownumber, .datagrid-cell-rownumber {
+    padding: 5px;
+}
+
+.datagrid-cell, .datagrid-cell-group, .datagrid-header-rownumber, .datagrid-cell-rownumber {
+    padding: 5px;
+}
+
+.aLink {
+    text-decoration: none;
+    color: #0094ff;
+}
+
+    .aLink:hover {
+        color: #ffffff;
+        background-color: #0094ff;
+    }
