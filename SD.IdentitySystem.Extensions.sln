@@ -21,7 +21,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membershi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membership.WCF", "Extensions\SD.IdentitySystem.Membership.WCF\SD.IdentitySystem.Membership.WCF.csproj", "{CA85800F-6408-4384-BE09-BBC4045B2B85}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membership.Windows", "Extensions\SD.IdentitySystem.Membership.Windows\SD.IdentitySystem.Membership.Windows.csproj", "{221C9B22-4538-42C9-B137-DE336BE15676}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membership.Common", "Extensions\SD.IdentitySystem.Membership.Common\SD.IdentitySystem.Membership.Common.csproj", "{221C9B22-4538-42C9-B137-DE336BE15676}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication.AspNetCore", "Extensions\SD.IdentitySystem.WCF.Authentication.AspNetCore\SD.IdentitySystem.WCF.Authentication.AspNetCore.csproj", "{53540D94-41FC-4415-BF61-CEC2E1172E8F}"
 EndProject
@@ -34,8 +34,6 @@ EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.SignalR.Authentication", "Extensions\SD.IdentitySystem.SignalR.Authentication\SD.IdentitySystem.SignalR.Authentication.csproj", "{88D13463-74DB-4DF3-9933-D691327DD87F}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Authorization.Xamarin", "Extensions\SD.IdentitySystem.Authorization.Xamarin\SD.IdentitySystem.Authorization.Xamarin.csproj", "{928ECFF4-926C-47FA-B2BB-1E0ABCEF43FE}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membership.Xamarin", "Extensions\SD.IdentitySystem.Membership.Xamarin\SD.IdentitySystem.Membership.Xamarin.csproj", "{C69C9C46-97B3-45F6-AF36-031E28A2DC02}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication.Xamarin", "Extensions\SD.IdentitySystem.WCF.Authentication.Xamarin\SD.IdentitySystem.WCF.Authentication.Xamarin.csproj", "{729F1A86-F3F6-4E4A-A1F0-2644CD49A416}"
 EndProject
@@ -93,10 +91,6 @@ Global
 		{928ECFF4-926C-47FA-B2BB-1E0ABCEF43FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{928ECFF4-926C-47FA-B2BB-1E0ABCEF43FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{928ECFF4-926C-47FA-B2BB-1E0ABCEF43FE}.Release|Any CPU.Build.0 = Release|Any CPU
-		{C69C9C46-97B3-45F6-AF36-031E28A2DC02}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{C69C9C46-97B3-45F6-AF36-031E28A2DC02}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{C69C9C46-97B3-45F6-AF36-031E28A2DC02}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{C69C9C46-97B3-45F6-AF36-031E28A2DC02}.Release|Any CPU.Build.0 = Release|Any CPU
 		{729F1A86-F3F6-4E4A-A1F0-2644CD49A416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{729F1A86-F3F6-4E4A-A1F0-2644CD49A416}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{729F1A86-F3F6-4E4A-A1F0-2644CD49A416}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -118,7 +112,6 @@ Global
 		{732C43F9-7EED-4DB5-BC92-BB120ED4CB73} = {39428193-7C0B-4785-90F2-7C45A67B4D90}
 		{88D13463-74DB-4DF3-9933-D691327DD87F} = {39428193-7C0B-4785-90F2-7C45A67B4D90}
 		{928ECFF4-926C-47FA-B2BB-1E0ABCEF43FE} = {B1F655D7-0873-4D79-A8AE-942A6A464EA6}
-		{C69C9C46-97B3-45F6-AF36-031E28A2DC02} = {623424A5-633C-42E2-BD48-8C2F375417E1}
 		{729F1A86-F3F6-4E4A-A1F0-2644CD49A416} = {4391B3BF-4B53-474A-8636-14BFA15DDB7B}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution

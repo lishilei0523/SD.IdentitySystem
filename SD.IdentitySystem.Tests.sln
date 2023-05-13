@@ -39,7 +39,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membershi
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membership.WCF", "Extensions\SD.IdentitySystem.Membership.WCF\SD.IdentitySystem.Membership.WCF.csproj", "{8D3AD5CC-0011-44FA-AEA8-8344B084F9C2}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membership.Windows", "Extensions\SD.IdentitySystem.Membership.Windows\SD.IdentitySystem.Membership.Windows.csproj", "{ABDDAB08-9BEB-4540-A179-558C742CB488}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membership.Common", "Extensions\SD.IdentitySystem.Membership.Common\SD.IdentitySystem.Membership.Common.csproj", "{ABDDAB08-9BEB-4540-A179-558C742CB488}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - Membership 测试", "02 - Membership 测试", "{8E6A1390-E95D-4589-A3A3-2F109F3C21AF}"
 EndProject

@@ -2,6 +2,6 @@
   <!--SD.Framework配置-->
   <sd.framework>
     <!--Membership提供者-->
-    <membership.provider type="SD.IdentitySystem.MembershipProvider, SD.IdentitySystem.Membership.Xamarin" />
+    <membership.provider type="SD.IdentitySystem.MembershipProvider, SD.IdentitySystem.Membership.Common" />
   </sd.framework>
 </configuration>

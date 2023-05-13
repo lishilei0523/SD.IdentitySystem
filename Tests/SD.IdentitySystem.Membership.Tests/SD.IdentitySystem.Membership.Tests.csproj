@@ -17,6 +17,6 @@
   <ItemGroup>
     <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj" />
     <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.Membership.WCF\SD.IdentitySystem.Membership.WCF.csproj" />
-    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.Membership.Windows\SD.IdentitySystem.Membership.Windows.csproj" />
+    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.Membership.Common\SD.IdentitySystem.Membership.Common.csproj" />
   </ItemGroup>
 </Project>

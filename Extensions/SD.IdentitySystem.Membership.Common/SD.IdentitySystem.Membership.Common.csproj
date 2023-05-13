@@ -3,18 +3,18 @@
     <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem 用户信息组件 - Windows提供者</Description>
+    <Description>SD.IdentitySystem 用户信息组件 - 通用提供者</Description>
     <Copyright>Copyright © SD 2023</Copyright>
-    <Version>2.1.0</Version>
-    <AssemblyVersion>2.1.0</AssemblyVersion>
-    <FileVersion>2.1.0.0</FileVersion>
+    <Version>2.1.1</Version>
+    <AssemblyVersion>2.1.1</AssemblyVersion>
+    <FileVersion>2.1.1.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.Membership.Windows.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.Membership.Common.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Membership.Windows.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Membership.Common.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
