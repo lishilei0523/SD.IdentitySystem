@@ -1,4 +1,5 @@
-﻿using SD.IdentitySystem.IAppService.Interfaces;
+﻿using Microsoft.AspNetCore.Mvc;
+using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Attributes;
@@ -6,7 +7,6 @@ using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
-using System.Web.Mvc;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -180,7 +180,7 @@ namespace SD.IdentitySystem.Client.Controllers
             string loginId = id;
             IEnumerable<Node> tree = this._rolePresenter.GetUserInfoSystemRoleTree(loginId);
 
-            return base.Json(tree, JsonRequestBehavior.AllowGet);
+            return base.Json(tree);
         }
         #endregion
 
@@ -199,7 +199,7 @@ namespace SD.IdentitySystem.Client.Controllers
             PageModel<Role> pageModel = this._rolePresenter.GetRolesByPage(keywords, infoSystemNo, page, rows);
             Grid<Role> grid = new Grid<Role>(pageModel.RowCount, pageModel.Datas);
 
-            return base.Json(grid, JsonRequestBehavior.AllowGet);
+            return base.Json(grid);
         }
         #endregion
     }

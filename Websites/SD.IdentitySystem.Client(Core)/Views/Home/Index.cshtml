@@ -9,21 +9,21 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>统一身份认证 - 后台首页</title>
-    <link type="text/css" href="~/Content/css/Home/Index.css" rel="stylesheet" />
-    <link type="text/css" href="~/Content/themes/default/easyui.css" rel="stylesheet" />
-    <link type="text/css" href="~/Content/themes/color.css" rel="stylesheet" />
-    <link type="text/css" href="~/Content/themes/icon.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Scripts/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.easyui-1.4.5.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.extensions.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.extensions.message.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.easyui.extensions.js"></script>
-    <script type="text/javascript" src="~/Scripts/datetools.js"></script>
-    <script type="text/javascript" src="~/Content/scripts/Home/Index.js"></script>
+    <link type="text/css" href="~/css/Home/Index.css" rel="stylesheet" />
+    <link type="text/css" href="~/lib/jquery.easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="~/lib/jquery.easyui/themes/color.css" rel="stylesheet" />
+    <link type="text/css" href="~/lib/jquery.easyui/themes/icon.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/lib/jquery/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.easyui/jquery.easyui-1.4.5.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.extensions.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.extensions.message.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.easyui.extensions.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/datetools.js"></script>
+    <script type="text/javascript" src="~/scripts/Home/Index.js"></script>
 </head>
 <body class="easyui-layout">
     @*网站头部*@
@@ -65,54 +65,7 @@
 
     @*修改密码对话框*@
     <div id="dvUpdatePwd" class="easyui-window" title="修改密码" style="padding: 5px;" data-options="width:360,height:230,maximizable: false,resizable: false,draggable: false,modal: true,minimizable: false,collapsible: false,closed: true,footer: '#footer'">
-        @using (Ajax.BeginForm("UpdatePassword",
-        new
-        {
-            controller = "User"
-        },
-        new AjaxOptions
-        {
-            HttpMethod = "post",
-            OnBegin = "updatingPassword",
-            OnSuccess = "updateSucceed",
-            OnFailure = "updateFailed"
-        },
-        new
-        {
-            id = "fmUpdatePwd"
-        }))
-        {
-            @*隐藏域，携带LoginId*@
-            <input type="hidden" name="loginId" id="hdLoginId" />
-            <table style="margin: 10px auto;">
-                <tr>
-                    <td>旧密码:</td>
-                    <td>
-                        <input class="easyui-textbox" type="password" id="oldPassword" name="oldPassword" data-options="required:true,iconCls:'icon-lock',width:210" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>新密码:</td>
-                    <td>
-                        <input class="easyui-textbox" type="password" id="newPassword" name="newPassword" data-options="required:true,iconCls:'icon-lock',width:210" />
-                    </td>
-
-                </tr>
-                <tr>
-                    <td>确认密码:</td>
-                    <td>
-                        <input class="easyui-textbox" type="password" id="confirmPassword" name="confirmPassword" data-options="required:true,iconCls:'icon-lock',width:210" />
-                    </td>
-                </tr>
-            </table>
-            <div id="footer" style="padding: 5px;">
-                <div style="float: right;">
-                    <a class="easyui-linkbutton c6" data-options="iconCls:'icon-ok'" onclick="changePassword();" style="width: 90px">保存</a>
-                    <a class="easyui-linkbutton" data-options="iconCls:'icon-reload'" onclick="javascript: $('#fmUpdatePwd').form('reset');" style="width: 90px">重置</a>
-                    <a class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" onclick="javascript: $('#dvUpdatePwd').window('close');" style="width: 90px">取消</a>
-                </div>
-            </div>
-        }
+        //TODO Ajax
     </div>
 
     @*公共窗口*@

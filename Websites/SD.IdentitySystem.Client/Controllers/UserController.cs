@@ -62,8 +62,8 @@ namespace SD.IdentitySystem.Client.Controllers
         /// 加载登录视图
         /// </summary>
         /// <returns>登录视图</returns>
-        [AllowAnonymous]
         [HttpGet]
+        [AllowAnonymous]
         public ViewResult Login()
         {
             return this.View();

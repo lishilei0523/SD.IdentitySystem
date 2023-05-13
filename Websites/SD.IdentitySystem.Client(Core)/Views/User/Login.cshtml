@@ -7,31 +7,31 @@
 <head>
     <meta name="viewport" content="width=device-width" />
     <title>统一身份认证系统 - 登录</title>
-    <link type="text/css" href="~/Content/css/User/Login.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Scripts/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.extensions.message.js"></script>
-    <script type="text/javascript" src="~/Content/scripts/User/Login.js"></script>
+    <link type="text/css" href="~/css/User/Login.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/lib/jquery/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.unobtrusive-ajax.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.validate.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.validate.unobtrusive.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.extensions.message.js"></script>
+    <script type="text/javascript" src="~/scripts/User/Login.js"></script>
 </head>
 <body>
 <div id="login_top">
-    <img src="@Url.Content("~/Content/images/login_top.jpg")" />
+    <img src="@Url.Content("~/images/login_top.jpg")" />
 </div>
 <div id="login_stop">
-    <img src="@Url.Content("~/Content/images/login_stop.jpg")" />
+    <img src="@Url.Content("~/images/login_stop.jpg")" />
 </div>
 <div id="login_center">
     <div id="login_body">
-        @using (Ajax.BeginForm("Login", "User",
-            new AjaxOptions
+        @using (Html.BeginForm("Login", "User",//TODO Ajax
+            @*new AjaxOptions
             {
                 HttpMethod = "post",
                 OnBegin = "loginBegin",
                 OnSuccess = "loginSucceed",
                 OnFailure = "loginFail"
-            },
+            },*@
             new
             {
                 id = "frmLogin"
@@ -106,7 +106,7 @@
     </div>
 </div>
 <div id="login_bottom">
-    <img src="@Url.Content("~/Content/images/login_bottom.jpg")" />
+    <img src="@Url.Content("~/images/login_bottom.jpg")" />
 </div>
 </body>
 </html>

@@ -1,25 +1,24 @@
 ﻿@{
     ViewBag.Title = "创建用户";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/User/Add.js"></script>
+    <link type="text/css" href="~/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/User/Add.js"></script>
 }
 
-@using (Ajax.BeginForm("CreateUser", "User",
-    new AjaxOptions
+@using (Html.BeginForm("CreateUser", "User",//TODO Ajax
+   @*new AjaxOptions
     {
         HttpMethod = "post",
         OnBegin = "addBegin",
         OnSuccess = "addSucceed",
         OnFailure = "addFail"
-    },
-    new
-    {
-        id = "frmCreateUser"
-    }))
+    },*@
+   new
+   {
+       id = "frmCreateUser"
+   }))
 {
     <div style="width: 100%; height: 100%; float: left; margin: 0;">
         <div class="easyui-panel" data-options="footer:'#footer'" style="width: 100%; height: 220px; padding: 10px;">

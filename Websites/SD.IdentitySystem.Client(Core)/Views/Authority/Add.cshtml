@@ -1,15 +1,13 @@
 ﻿@using SD.IdentitySystem.Presentation.Models
 @{
     ViewBag.Title = "创建权限";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
     IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
     IDictionary<int, string> ApplicationTypeDescriptions = ViewBag.ApplicationTypeDescriptions;
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/Authority/Add.js"></script>
+    <link type="text/css" href="~/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/Authority/Add.js"></script>
 }
 
 <div style="width: 100%; height: 100%; float:left; margin: 0;">

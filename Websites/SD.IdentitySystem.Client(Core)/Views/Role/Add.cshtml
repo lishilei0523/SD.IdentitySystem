@@ -1,14 +1,13 @@
 ﻿@using SD.IdentitySystem.Presentation.Models
 @{
     ViewBag.Title = "创建角色";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 
     IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/Role/Add.js"></script>
+    <link type="text/css" href="~/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/Role/Add.js"></script>
 }
 
 @*角色信息面板*@

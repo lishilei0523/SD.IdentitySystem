@@ -1,14 +1,12 @@
 ﻿@using SD.IdentitySystem.Presentation.Models
 @{
     ViewBag.Title = "角色管理";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
     IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Grid.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/Role/Index.js"></script>
+    <link type="text/css" href="~/css/Common/Grid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/Role/Index.js"></script>
 }
 
 <div class="main">

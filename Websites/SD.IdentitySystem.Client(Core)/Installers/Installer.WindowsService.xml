@@ -1,0 +1,6 @@
+<service>
+  <id>SD.IdentitySystem.Client</id>
+  <name>SD.IdentitySystem.Client</name>
+  <description>身份认证系统网站(ASP.NET Core)</description>
+  <executable>%BASE%\..\SD.IdentitySystem.Client.exe</executable>
+</service>

@@ -1,21 +1,20 @@
 ﻿@{
     ViewBag.Title = "重置私钥";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/User/ResetPrivateKey.js"></script>
+    <link type="text/css" href="~/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/User/ResetPrivateKey.js"></script>
 }
 
-@using (Ajax.BeginForm("ResetPrivateKey", "User",
-    new AjaxOptions
+@using (Html.BeginForm("ResetPrivateKey", "User",//TODO Ajax
+    @*new AjaxOptions
     {
         HttpMethod = "post",
         OnBegin = "resetBegin",
         OnSuccess = "resetSucceed",
         OnFailure = "resetFail"
-    },
+    },*@
     new
     {
         id = "frmResetPrivateKey"

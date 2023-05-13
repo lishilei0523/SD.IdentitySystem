@@ -1,15 +1,13 @@
 ﻿@using SD.IdentitySystem.Presentation.Models
 @{
     ViewBag.Title = "菜单管理";
-    Layout = "~/Views/Shared/_Layout.cshtml";
-
     IEnumerable<InfoSystem> InfoSystems = ((IEnumerable<InfoSystem>)ViewBag.InfoSystems).OrderBy(x => x.Number);
     IDictionary<int, string> ApplicationTypeDescriptions = ViewBag.ApplicationTypeDescriptions;
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/TreeGrid.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/Menu/Index.js"></script>
+    <link type="text/css" href="~/css/Common/TreeGrid.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/Menu/Index.js"></script>
 }
 
 <div class="main">

@@ -1,21 +1,18 @@
 ﻿<!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>@ViewBag.Title</title>
-    <link type="text/css" href="~/Content/themes/default/easyui.css" rel="stylesheet" />
-    <link type="text/css" href="~/Content/themes/color.css" rel="stylesheet" />
-    <link type="text/css" href="~/Content/themes/icon.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Scripts/jquery-1.12.4.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.easyui-1.4.5.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/locale/easyui-lang-zh_CN.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.extensions.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.extensions.message.js"></script>
-    <script type="text/javascript" src="~/Scripts/jquery.easyui.extensions.js"></script>
+    <link type="text/css" href="~/lib/jquery.easyui/themes/default/easyui.css" rel="stylesheet" />
+    <link type="text/css" href="~/lib/jquery.easyui/themes/color.css" rel="stylesheet" />
+    <link type="text/css" href="~/lib/jquery.easyui/themes/icon.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/lib/jquery/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.easyui/jquery.easyui-1.4.5.min.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.easyui/locale/easyui-lang-zh_CN.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.extensions.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.extensions.message.js"></script>
+    <script type="text/javascript" src="~/lib/jquery.extensions/jquery.easyui.extensions.js"></script>
     <style type="text/css">
         body {
             margin: 0;
@@ -25,9 +22,9 @@
             height: 100%;
         }
     </style>
-    @RenderSection("header", false)
+    @await RenderSectionAsync("header", false)
 </head>
 <body>
-@RenderBody()
+    @RenderBody()
 </body>
 </html>

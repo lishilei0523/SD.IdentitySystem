@@ -1,12 +1,11 @@
 ﻿@model SD.IdentitySystem.Presentation.Models.Role
 @{
     ViewBag.Title = "修改角色";
-    Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
 @section header{
-    <link type="text/css" href="~/Content/css/Common/Form.css" rel="stylesheet" />
-    <script type="text/javascript" src="~/Content/scripts/Role/Update.js"></script>
+    <link type="text/css" href="~/css/Common/Form.css" rel="stylesheet" />
+    <script type="text/javascript" src="~/scripts/Role/Update.js"></script>
 }
 
 @*角色信息面板*@
@@ -42,7 +41,6 @@
             <a href="#" onclick="updateRole();" class="easyui-linkbutton c6" data-options="iconCls:'icon-ok'" style="width:90px">确定</a>
             <a href="#" onclick="javascript: $.easyuiExt.closeWindow();" class="easyui-linkbutton" data-options="iconCls:'icon-cancel'" style="width:90px">取消</a>
         </div>
-
     </div>
 </div>
 
