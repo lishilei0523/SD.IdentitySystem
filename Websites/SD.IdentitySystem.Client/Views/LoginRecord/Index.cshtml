@@ -14,18 +14,14 @@
         <div style="margin-left: 5px">
             <form id="frmQueries">
                 关键字：<input class="easyui-textbox" type="text" id="txtKeywords" name="keywords" style="width: 210px" data-options="prompt:'用户名/真实姓名'" />
-
                 开始时间：
                 <input class="easyui-datetimebox" data-options="editable:false" name="startTime" style="width: 210px">
-
                 结束时间：
                 <input class="easyui-datetimebox" data-options="editable:false" name="endTime" style="width:210px">
-
                 <a href="#" class="easyui-linkbutton" iconcls="icon-search" onclick="searchRecords();">搜索</a>
             </form>
         </div>
     </div>
-
     @*列表*@
     <div id="dvGrid" class="gridDiv" style="height: 95%;">
         <table id="tbGrid"></table>

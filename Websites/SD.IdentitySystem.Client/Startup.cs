@@ -1,16 +1,12 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.FileProviders;
 using Newtonsoft.Json.Converters;
 using Newtonsoft.Json.Serialization;
 using SD.IdentitySystem.AspNetCore.Authentication.Filters;
 using SD.Infrastructure.Constants;
-using SD.Toolkits.AspNet;
 using SD.Toolkits.AspNetCore.Filters;
 using SD.Toolkits.OwinCore.Middlewares;
 using SD.Toolkits.Redis;
-using System;
-using System.IO;
 
 namespace SD.IdentitySystem.Client
 {
@@ -31,7 +27,7 @@ namespace SD.IdentitySystem.Client
                 options.Filters.Add(new MvcAuthenticationFilter());
             }).AddNewtonsoftJson(options =>
             {
-                //命名设置
+                //JSON命名格式设置
                 options.SerializerSettings.ContractResolver = new DefaultContractResolver();
 
                 //日期时间格式设置
@@ -42,15 +38,10 @@ namespace SD.IdentitySystem.Client
                 options.SerializerSettings.Converters.Add(dateTimeConverter);
             });
 
-            //添加Session
+            //添加Session及共享
             services.AddSession();
             services.AddStackExchangeRedisCache(options => options.ConfigurationOptions = RedisManager.RedisConfigurationOptions);
-
-            //添加Session共享
-            services.AddDataProtection(options =>
-            {
-                options.ApplicationDiscriminator = AspNetSection.Setting.ApplicationName.Value;
-            });
+            services.AddDataProtection(options => options.ApplicationDiscriminator = GlobalSetting.ApplicationId);
         }
 
         /// <summary>
@@ -68,15 +59,6 @@ namespace SD.IdentitySystem.Client
                     name: "default",
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
-
-            //配置静态文件
-            string staticFilesRoot = Path.Combine(AppContext.BaseDirectory, AspNetSetting.StaticFilesPath);
-            Directory.CreateDirectory(staticFilesRoot);
-            StaticFileOptions staticFileOptions = new StaticFileOptions
-            {
-                FileProvider = new PhysicalFileProvider(staticFilesRoot)
-            };
-            appBuilder.UseStaticFiles(staticFileOptions);
         }
     }
 }
