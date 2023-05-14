@@ -263,12 +263,12 @@ namespace SD.IdentitySystem.Repository.Base
         {
             //创建菜单
             Menu root = new Menu(infoSystemNo, ApplicationType.Windows, "身份认证系统", 1, null, null, "Home", null);
-            Menu infoSystemManagement = new Menu(infoSystemNo, ApplicationType.Windows, "信息系统管理", 2, "SD.IdentitySystem.Client.ViewModels.InfoSystem.IndexViewModel", null, "LabelOutline", root);
-            Menu userManagement = new Menu(infoSystemNo, ApplicationType.Windows, "用户管理", 3, "SD.IdentitySystem.Client.ViewModels.User.IndexViewModel", null, "LabelOutline", root);
-            Menu roleManagement = new Menu(infoSystemNo, ApplicationType.Windows, "角色管理", 4, "SD.IdentitySystem.Client.ViewModels.Role.IndexViewModel", null, "LabelOutline", root);
-            Menu menuManagement = new Menu(infoSystemNo, ApplicationType.Windows, "菜单管理", 5, "SD.IdentitySystem.Client.ViewModels.Menu.IndexViewModel", null, "LabelOutline", root);
-            Menu authorityManagement = new Menu(infoSystemNo, ApplicationType.Windows, "权限管理", 6, "SD.IdentitySystem.Client.ViewModels.Authority.IndexViewModel", null, "LabelOutline", root);
-            Menu loginRecordManagement = new Menu(infoSystemNo, ApplicationType.Windows, "登录记录", 7, "SD.IdentitySystem.Client.ViewModels.LoginRecord.IndexViewModel", null, "LabelOutline", root);
+            Menu infoSystemManagement = new Menu(infoSystemNo, ApplicationType.Windows, "信息系统管理", 2, "SD.IdentitySystem.Client.ViewModels.InfoSystemContext.IndexViewModel", null, "LabelOutline", root);
+            Menu userManagement = new Menu(infoSystemNo, ApplicationType.Windows, "用户管理", 3, "SD.IdentitySystem.Client.ViewModels.UserContext.IndexViewModel", null, "LabelOutline", root);
+            Menu roleManagement = new Menu(infoSystemNo, ApplicationType.Windows, "角色管理", 4, "SD.IdentitySystem.Client.ViewModels.RoleContext.IndexViewModel", null, "LabelOutline", root);
+            Menu menuManagement = new Menu(infoSystemNo, ApplicationType.Windows, "菜单管理", 5, "SD.IdentitySystem.Client.ViewModels.MenuContext.IndexViewModel", null, "LabelOutline", root);
+            Menu authorityManagement = new Menu(infoSystemNo, ApplicationType.Windows, "权限管理", 6, "SD.IdentitySystem.Client.ViewModels.AuthorityContext.IndexViewModel", null, "LabelOutline", root);
+            Menu loginRecordManagement = new Menu(infoSystemNo, ApplicationType.Windows, "登录记录", 7, "SD.IdentitySystem.Client.ViewModels.LoginRecordContext.IndexViewModel", null, "LabelOutline", root);
 
             //创建权限
             Authority infoSystemManagementIndex = new Authority(infoSystemNo, ApplicationType.Windows, "信息系统管理首页", "/InfoSystem/Index", null);

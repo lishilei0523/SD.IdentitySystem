@@ -5,6 +5,7 @@
     <ApplicationIcon>favicon.ico</ApplicationIcon>
     <Authors>Lee</Authors>
     <Company>SD</Company>
+    <Description>SD.IdentitySystem 客户端更新服务</Description>
     <Copyright>Copyright © SD 2023</Copyright>
     <Version>1.0.0</Version>
     <AssemblyVersion>1.0.0</AssemblyVersion>
@@ -13,10 +14,7 @@
 
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <Content Include="Content\favicon.ico">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-    <Content Include="Content\Release.xml">
+    <Content Include="Content\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </Content>
   </ItemGroup>

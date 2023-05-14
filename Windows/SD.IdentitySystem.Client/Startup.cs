@@ -4,7 +4,7 @@ using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SD.Common;
-using SD.IdentitySystem.Client.ViewModels.Home;
+using SD.IdentitySystem.Client.ViewModels.HomeContext;
 using SD.Infrastructure;
 using SD.Infrastructure.WPF.Caliburn.Extensions;
 using SD.IOC.Core.Mediators;
