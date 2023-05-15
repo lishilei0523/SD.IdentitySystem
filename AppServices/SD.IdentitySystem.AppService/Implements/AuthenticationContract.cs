@@ -23,7 +23,7 @@ namespace SD.IdentitySystem.AppService.Implements
     [ServiceBehavior(InstanceContextMode = InstanceContextMode.PerCall, IncludeExceptionDetailInFaults = true)]
     public class AuthenticationContract : IAuthenticationContract
     {
-        #region # 字段及依赖注入构造器
+        #region # 字段及构造器
 
         /// <summary>
         /// 同步锁

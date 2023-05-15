@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
     [Route("Api/[controller]/[action]")]
     public class AuthorizationController : ControllerBase
     {
-        #region # 字段及依赖注入构造器
+        #region # 字段及构造器
 
         /// <summary>
         /// 用户服务契约接口

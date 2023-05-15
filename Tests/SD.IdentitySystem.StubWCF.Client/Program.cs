@@ -4,7 +4,7 @@ namespace SD.IdentitySystem.StubWCF.Client
 {
     class Program
     {
-        static void Main(string[] args)
+        static void Main()
         {
             HostFactory.Run(config =>
             {
