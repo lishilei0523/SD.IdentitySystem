@@ -1,4 +1,5 @@
 ﻿using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.Presentation.Models;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
@@ -6,7 +7,6 @@ using System;
 using System.ServiceModel.Extensions;
 using System.Threading.Tasks;
 using System.Windows;
-using Models = SD.IdentitySystem.Presentation.Models;
 
 namespace SD.IdentitySystem.Client.ViewModels.MenuContext
 {
@@ -113,7 +113,7 @@ namespace SD.IdentitySystem.Client.ViewModels.MenuContext
         /// 加载
         /// </summary>
         /// <param name="menu">菜单</param>
-        public void Load(Models.Menu menu)
+        public void Load(Menu menu)
         {
             this.MenuId = menu.Id;
             this.InfoSystemName = menu.InfoSystemName;

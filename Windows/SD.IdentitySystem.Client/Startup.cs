@@ -23,7 +23,6 @@ using SD.IOC.Extension.NetCore;
 using SD.IOC.Extension.NetCore.ServiceModel;
 #endif
 
-
 namespace SD.IdentitySystem.Client
 {
     /// <summary>
@@ -51,18 +50,15 @@ namespace SD.IdentitySystem.Client
         /// <summary>
         /// 应用程序启动事件
         /// </summary>
-#if NET461
-        protected override void OnStartup(object sender, StartupEventArgs eventArgs)
-        {
-            base.DisplayRootViewFor<LoginViewModel>();
-        }
-#endif
-#if NET48 || NETCOREAPP3_1_OR_GREATER
         protected override async void OnStartup(object sender, StartupEventArgs eventArgs)
         {
-            await base.DisplayRootViewForAsync<LoginViewModel>();
-        }
+#if NET461
+            await base.DisplayRootViewFor<LoginViewModel>();
 #endif
+#if NET48 || NETCOREAPP3_1_OR_GREATER
+            await base.DisplayRootViewForAsync<LoginViewModel>();
+#endif
+        }
         #endregion
 
         #region 应用程序异常事件 —— override void OnUnhandledException(object sender...

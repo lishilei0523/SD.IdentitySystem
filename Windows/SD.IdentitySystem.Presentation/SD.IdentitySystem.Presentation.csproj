@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net461;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net461;net48;netcoreapp3.1;net6.0-windows</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Copyright>Copyright © SD 2023</Copyright>
@@ -22,6 +22,7 @@
     <PackageReference Include="SD.IOC.Core" Version="2.2.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.5.7" />
     <PackageReference Include="SD.Infrastructure.WPF" Version="1.2.0" />
+    <PackageReference Include="SD.Infrastructure.WPF.Caliburn" Version="1.2.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.0" />
   </ItemGroup>
 </Project>

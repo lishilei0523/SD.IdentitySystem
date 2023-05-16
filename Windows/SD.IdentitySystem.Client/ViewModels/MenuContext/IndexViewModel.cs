@@ -2,6 +2,7 @@
 using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
@@ -15,7 +16,6 @@ using System.ServiceModel.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
-using Models = SD.IdentitySystem.Presentation.Models;
 
 namespace SD.IdentitySystem.Client.ViewModels.MenuContext
 {
@@ -76,7 +76,7 @@ namespace SD.IdentitySystem.Client.ViewModels.MenuContext
         /// 菜单列表
         /// </summary>
         [DependencyProperty]
-        public ObservableCollection<Models.Menu> Menus { get; set; }
+        public ObservableCollection<Menu> Menus { get; set; }
         #endregion
 
         #region 信息系统列表 —— ObservableCollection<InfoSystemInfo> InfoSystems
@@ -149,7 +149,7 @@ namespace SD.IdentitySystem.Client.ViewModels.MenuContext
         /// 修改菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public async void UpdateMenu(Models.Menu menu)
+        public async void UpdateMenu(Menu menu)
         {
             UpdateViewModel viewModel = ResolveMediator.Resolve<UpdateViewModel>();
             viewModel.Load(menu);
@@ -166,7 +166,7 @@ namespace SD.IdentitySystem.Client.ViewModels.MenuContext
         /// 删除菜单
         /// </summary>
         /// <param name="menu">菜单</param>
-        public async void RemoveMenu(Models.Menu menu)
+        public async void RemoveMenu(Menu menu)
         {
             MessageBoxResult result = MessageBox.Show("确定要删除吗？", "警告", MessageBoxButton.YesNo, MessageBoxImage.Warning);
             if (result == MessageBoxResult.Yes)
@@ -190,14 +190,14 @@ namespace SD.IdentitySystem.Client.ViewModels.MenuContext
         {
             #region # 加载勾选
 
-            IList<Models.Menu> checkedMenus = new List<Models.Menu>();
-            foreach (Models.Menu menu in this.Menus)
+            IList<Menu> checkedMenus = new List<Menu>();
+            foreach (Menu menu in this.Menus)
             {
                 if (menu.IsChecked == true)
                 {
                     checkedMenus.Add(menu);
                 }
-                foreach (Models.Menu subNode in menu.GetDeepSubNodes())
+                foreach (Menu subNode in menu.GetDeepSubNodes())
                 {
                     if (subNode.IsChecked == true)
                     {
@@ -233,7 +233,7 @@ namespace SD.IdentitySystem.Client.ViewModels.MenuContext
         /// 关联权限
         /// </summary>
         /// <param name="menu">菜单</param>
-        public async void RelateAuthorities(Models.Menu menu)
+        public async void RelateAuthorities(Menu menu)
         {
             this.Busy();
 
@@ -260,8 +260,8 @@ namespace SD.IdentitySystem.Client.ViewModels.MenuContext
             string infoSystemNo = this.SelectedInfoSystem?.Number;
             ApplicationType? applicationType = this.SelectedApplicationType;
 
-            IEnumerable<Models.Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
-            this.Menus = new ObservableCollection<Models.Menu>(menus);
+            IEnumerable<Menu> menus = await Task.Run(() => this._menuPresenter.GetMenuTreeList(infoSystemNo, applicationType));
+            this.Menus = new ObservableCollection<Menu>(menus);
 
             this.Idle();
         }
