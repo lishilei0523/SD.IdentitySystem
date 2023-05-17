@@ -12,14 +12,14 @@ namespace SD.IdentitySystem.Domain.Entities
     {
         #region # 构造器
 
-        #region 01.无参构造器
+        #region 00.无参构造器
         /// <summary>
         /// 无参构造器
         /// </summary>
         protected LoginRecord() { }
         #endregion
 
-        #region 02.创建登录记录构造器
+        #region 01.创建登录记录构造器
         /// <summary>
         /// 创建登录记录构造器
         /// </summary>
