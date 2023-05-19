@@ -24,22 +24,21 @@ namespace SD.IdentitySystem.WCF.Authentication.AspNetCore
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //ASP.NET Core获取公钥处理
+            HttpContext httpContext = OwinContextReader.Current;
             Guid? publicKey = null;
-            if (OwinContextReader.Current.Request.Headers.TryGetValue(SessionKey.PublicKey, out StringValues stringValues))
+            if (httpContext != null && httpContext.Request.Headers.TryGetValue(SessionKey.PublicKey, out StringValues stringValues))
             {
-                string publicKeyStr = stringValues.ToString();
-                publicKey = new Guid(publicKeyStr);
+                publicKey = new Guid(stringValues.ToString());
             }
-            else
+            if (httpContext != null && !publicKey.HasValue)
             {
-                string loginInfoJson = OwinContextReader.Current.Session.GetString(GlobalSetting.ApplicationId);
+                string loginInfoJson = httpContext.Session.GetString(GlobalSetting.ApplicationId);
                 if (!string.IsNullOrWhiteSpace(loginInfoJson))
                 {
                     LoginInfo loginInfo = JsonSerializer.Deserialize<LoginInfo>(loginInfoJson);
                     publicKey = loginInfo.PublicKey;
                 }
             }
-
             if (publicKey.HasValue)
             {
                 //添加消息头

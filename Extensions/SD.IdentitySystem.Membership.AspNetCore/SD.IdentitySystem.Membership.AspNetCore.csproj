@@ -5,9 +5,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem 用户信息组件 - ASP.NET Core提供者</Description>
     <Copyright>Copyright © SD 2023</Copyright>
-    <Version>2.1.1</Version>
-    <AssemblyVersion>2.1.1</AssemblyVersion>
-    <FileVersion>2.1.1.0</FileVersion>
+    <Version>2.1.2</Version>
+    <AssemblyVersion>2.1.2</AssemblyVersion>
+    <FileVersion>2.1.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

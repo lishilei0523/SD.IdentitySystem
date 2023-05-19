@@ -5,6 +5,7 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
 using SD.Toolkits.OwinCore.Extensions;
 using System;
+using System.Text.Json;
 
 // ReSharper disable once CheckNamespace
 namespace SD.IdentitySystem
@@ -24,6 +25,7 @@ namespace SD.IdentitySystem
             if (httpContext != null)
             {
                 httpContext.Request.Headers.Add(SessionKey.PublicKey, new StringValues(loginInfo.PublicKey.ToString()));
+                httpContext.Session.SetString(GlobalSetting.ApplicationId, JsonSerializer.Serialize(loginInfo));
             }
         }
 
@@ -34,9 +36,22 @@ namespace SD.IdentitySystem
         public LoginInfo GetLoginInfo()
         {
             HttpContext httpContext = OwinContextReader.Current;
+            Guid? publicKey = null;
             if (httpContext != null && httpContext.Request.Headers.TryGetValue(SessionKey.PublicKey, out StringValues header))
             {
-                Guid publicKey = new Guid(header.ToString());
+                publicKey = new Guid(header.ToString());
+            }
+            if (httpContext != null && !publicKey.HasValue)
+            {
+                string loginInfoJson = httpContext.Session.GetString(GlobalSetting.ApplicationId);
+                if (!string.IsNullOrWhiteSpace(loginInfoJson))
+                {
+                    LoginInfo loginInfoSession = JsonSerializer.Deserialize<LoginInfo>(loginInfoJson);
+                    publicKey = loginInfoSession.PublicKey;
+                }
+            }
+            if (publicKey.HasValue)
+            {
                 LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());
 
                 return loginInfo;

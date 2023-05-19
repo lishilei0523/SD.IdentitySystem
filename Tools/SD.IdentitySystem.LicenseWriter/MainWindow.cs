@@ -13,7 +13,7 @@ namespace SD.IdentitySystem.LicenseWriter
     public partial class MainWindow : Form
     {
         /// <summary>
-        /// 默认构造器
+        /// 构造器
         /// </summary>
         public MainWindow()
         {
@@ -31,10 +31,12 @@ namespace SD.IdentitySystem.LicenseWriter
         /// </summary>
         private void Btn_CreateLicense_Click(object sender, EventArgs e)
         {
-            string enterpriseName = this.Txt_EnterpriseName.Text;
-            string uniqueCode = this.Txt_UniqueCode.Text;
+            string enterpriseName = this.Txt_EnterpriseName.Text?.Trim();
+            string uniqueCode = this.Txt_UniqueCode.Text?.Trim();
             DateTime serviceExpiredDate = this.Dtp_ServiceExpiredDate.Value;
             DateTime licenseExpiredDate = this.Dtp_LicenseExpiredDate.Value;
+
+            #region # 验证
 
             if (string.IsNullOrEmpty(enterpriseName))
             {
@@ -46,6 +48,8 @@ namespace SD.IdentitySystem.LicenseWriter
                 MessageBox.Show(@"唯一码不可为空！", @"警告", MessageBoxButtons.OK, MessageBoxIcon.Warning);
                 return;
             }
+
+            #endregion
 
             License license = new License(enterpriseName, uniqueCode, serviceExpiredDate, licenseExpiredDate);
             this.CreateLicenseFile(license);
@@ -67,15 +71,16 @@ namespace SD.IdentitySystem.LicenseWriter
         /// </summary>
         private void Btn_OpenLicense_Click(object sender, EventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog { Filter = @"License files (*.key)|*.key" };
-            dialog.ShowDialog();
+            OpenFileDialog openFileDialog = new OpenFileDialog
+            {
+                Filter = @"License files (*.key)|*.key"
+            };
+            openFileDialog.ShowDialog();
 
-            string licenseFileName = dialog.FileName;
-
+            string licenseFileName = openFileDialog.FileName?.Trim();
             if (!string.IsNullOrEmpty(licenseFileName))
             {
                 License? license = LicenseReader.GetLicense(licenseFileName);
-
                 if (license.HasValue)
                 {
                     this.Txt_EnterpriseName.Text = license.Value.EnterpriseName;

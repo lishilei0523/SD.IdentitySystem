@@ -6,7 +6,7 @@ using System;
 namespace SD.IdentitySystem
 {
     /// <summary>
-    /// Windows Membership提供者
+    /// 通用Membership提供者
     /// </summary>
     public class MembershipProvider : IMembershipProvider
     {

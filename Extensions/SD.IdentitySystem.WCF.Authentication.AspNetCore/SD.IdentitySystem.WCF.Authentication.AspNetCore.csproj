@@ -5,9 +5,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem WCF身份认证组件 - ASP.NET Core客户端</Description>
     <Copyright>Copyright © SD 2023</Copyright>
-    <Version>1.2.2</Version>
-    <AssemblyVersion>1.2.2</AssemblyVersion>
-    <FileVersion>1.2.2.0</FileVersion>
+    <Version>1.2.3</Version>
+    <AssemblyVersion>1.2.3</AssemblyVersion>
+    <FileVersion>1.2.3.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

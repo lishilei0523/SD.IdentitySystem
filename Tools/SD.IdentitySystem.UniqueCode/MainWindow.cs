@@ -9,7 +9,7 @@ namespace SD.IdentitySystem.UniqueCode
     public partial class MainWindow : Form
     {
         /// <summary>
-        /// 默认构造器
+        /// 构造器
         /// </summary>
         public MainWindow()
         {
@@ -21,7 +21,7 @@ namespace SD.IdentitySystem.UniqueCode
         /// </summary>
         private void Btn_CalculateMachineCode_Click(object sender, EventArgs e)
         {
-            if (string.IsNullOrEmpty(this.Txt_MachineCode.Text))
+            if (string.IsNullOrEmpty(this.Txt_MachineCode.Text?.Trim()))
             {
                 string machineCode = LicenseManager.Toolkits.UniqueCode.Compute();
                 this.Txt_MachineCode.Text = machineCode;
@@ -33,11 +33,15 @@ namespace SD.IdentitySystem.UniqueCode
         /// </summary>
         private void Btn_Copy_Click(object sender, EventArgs e)
         {
+            #region # 验证
+
             if (string.IsNullOrEmpty(this.Txt_MachineCode.Text))
             {
                 MessageBox.Show(@"请先计算再复制！", @"Warning");
                 return;
             }
+
+            #endregion
 
             Clipboard.SetDataObject(this.Txt_MachineCode.Text);
             MessageBox.Show(@"复制成功", @"OK");
