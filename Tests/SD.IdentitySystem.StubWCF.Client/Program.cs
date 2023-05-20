@@ -1,4 +1,6 @@
-﻿using Topshelf;
+﻿using SD.IdentitySystem.StubWCF.Client.Implements;
+using System;
+using System.ServiceModel;
 
 namespace SD.IdentitySystem.StubWCF.Client
 {
@@ -6,20 +8,11 @@ namespace SD.IdentitySystem.StubWCF.Client
     {
         static void Main()
         {
-            HostFactory.Run(config =>
-            {
-                config.Service<ServiceLauncher>(host =>
-                {
-                    host.ConstructUsing(name => new ServiceLauncher());
-                    host.WhenStarted(launcher => launcher.Start());
-                    host.WhenStopped(launcher => launcher.Stop());
-                });
-                config.RunAsLocalSystem();
+            ServiceHost clientContractHost = new ServiceHost(typeof(ClientContract));
+            clientContractHost.Open();
 
-                config.SetServiceName("SD.IdentitySystem.StubWCF.Client");
-                config.SetDisplayName("SD.IdentitySystem.StubWCF.Client");
-                config.SetDescription("SD.IdentitySystem.StubWCF.Client");
-            });
+            Console.WriteLine("服务已启动...");
+            Console.ReadKey();
         }
     }
 }
