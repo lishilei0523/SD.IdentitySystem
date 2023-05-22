@@ -3,7 +3,6 @@ using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
-using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.EasyUI;
 using System;
@@ -55,7 +54,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>首页视图</returns>
         [HttpGet]
-        [RequireAuthorization("菜单管理首页视图")]
         public ViewResult Index()
         {
             IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
@@ -74,7 +72,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>创建菜单视图</returns>
         [HttpGet]
-        [RequireAuthorization("创建菜单视图")]
         public ViewResult Add()
         {
             IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
@@ -94,7 +91,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">菜单Id</param>
         /// <returns>修改菜单视图</returns>
         [HttpGet]
-        [RequireAuthorization("修改菜单视图")]
         public ViewResult Update(Guid id)
         {
             Menu currentMenu = this._menuPresenter.GetMenu(id);
@@ -113,7 +109,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">菜单Id</param>
         /// <returns>关联权限视图</returns>
         [HttpGet]
-        [RequireAuthorization("关联权限视图")]
         public ViewResult RelateAuthority(Guid id)
         {
             Menu currentMenu = this._menuPresenter.GetMenu(id);
@@ -138,7 +133,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="icon">图标</param>
         /// <param name="parentId">父级菜单Id</param>
         [HttpPost]
-        [RequireAuthorization("创建菜单")]
         public void CreateMenu(string infoSystemNo, ApplicationType applicationType, string menuName, int sort, string url, string path, string icon, Guid? parentId)
         {
             this._authorizationContract.CreateMenu(infoSystemNo, applicationType, menuName, sort, url, path, icon, parentId);
@@ -156,7 +150,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="path">路径</param>
         /// <param name="icon">图标</param>
         [HttpPost]
-        [RequireAuthorization("修改菜单")]
         public void UpdateMenu(Guid menuId, string menuName, int sort, string url, string path, string icon)
         {
             this._authorizationContract.UpdateMenu(menuId, menuName, sort, url, path, icon);
@@ -169,7 +162,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">菜单Id</param>
         [HttpPost]
-        [RequireAuthorization("删除菜单")]
         public void RemoveMenu(Guid id)
         {
             this._authorizationContract.RemoveMenu(id);
@@ -182,11 +174,9 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="menuIds">菜单Id集</param>
         [HttpPost]
-        [RequireAuthorization("批量删除菜单")]
         public void RemoveMenus(IEnumerable<Guid> menuIds)
         {
-            menuIds = menuIds ?? new Guid[0];
-
+            menuIds = menuIds?.ToArray() ?? Array.Empty<Guid>();
             foreach (Guid menuId in menuIds)
             {
                 this._authorizationContract.RemoveMenu(menuId);
@@ -201,10 +191,9 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="menuId">菜单Id</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
-        [RequireAuthorization("关联权限")]
         public void RelateAuthorities(Guid menuId, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds ?? new Guid[0];
+            authorityIds = authorityIds?.ToArray() ?? Array.Empty<Guid>();
 
             this._authorizationContract.RelateAuthoritiesToMenu(menuId, authorityIds);
         }
@@ -220,7 +209,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
-        [RequireAuthorization("获取菜单树")]
+        [HttpGet]
         public JsonResult GetMenuTree(string infoSystemNo, ApplicationType? applicationType)
         {
             IEnumerable<Node> menuTree = this._menuPresenter.GetMenuTree(infoSystemNo, applicationType);
@@ -237,7 +226,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
-        [RequireAuthorization("获取用户菜单树")]
+        [HttpGet]
         public JsonResult GetUserMenuTree(string loginId, string infoSystemNo, ApplicationType? applicationType)
         {
             IEnumerable<Node> menuTree = loginId == CommonConstants.AdminLoginId
@@ -256,7 +245,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="infoSystemNo">信息系统编号</param>
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单TreeGrid</returns>
-        [RequireAuthorization("获取菜单树形表格")]
+        [HttpGet]
         public JsonResult GetMenuTreeGrid(string infoSystemNo, ApplicationType? applicationType)
         {
             IEnumerable<Menu> menus = this._menuPresenter.GetMenuTreeGrid(infoSystemNo, applicationType).ToArray();

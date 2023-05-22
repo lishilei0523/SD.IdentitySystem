@@ -3,12 +3,12 @@ using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
-using SD.Infrastructure.Attributes;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -55,7 +55,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>首页视图</returns>
         [HttpGet]
-        [RequireAuthorization("权限管理首页视图")]
         public ViewResult Index()
         {
             IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
@@ -74,7 +73,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>创建权限视图</returns>
         [HttpGet]
-        [RequireAuthorization("创建权限视图")]
         public ViewResult Add()
         {
             IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
@@ -94,7 +92,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">权限Id</param>
         /// <returns>修改权限视图</returns>
         [HttpGet]
-        [RequireAuthorization("修改权限视图")]
         public ViewResult Update(Guid id)
         {
             Authority currentAuthority = this._authorityPresenter.GetAuthority(id);
@@ -116,7 +113,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="authorityPath">权限路径</param>
         /// <param name="description">描述</param>
         [HttpPost]
-        [RequireAuthorization("创建权限")]
         public void CreateAuthority(string infoSystemNo, ApplicationType applicationType, string authorityName, string authorityPath, string description)
         {
             this._authorizationContract.CreateAuthority(infoSystemNo, applicationType, authorityName, authorityPath, description);
@@ -132,7 +128,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="authorityPath">权限路径</param>
         /// <param name="description">描述</param>
         [HttpPost]
-        [RequireAuthorization("修改权限")]
         public void UpdateAuthority(Guid authorityId, string authorityName, string authorityPath, string description)
         {
             this._authorizationContract.UpdateAuthority(authorityId, authorityName, authorityPath, description);
@@ -145,7 +140,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">权限Id</param>
         [HttpPost]
-        [RequireAuthorization("删除权限")]
         public void RemoveAuthority(Guid id)
         {
             this._authorizationContract.RemoveAuthority(id);
@@ -158,9 +152,9 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
-        [RequireAuthorization("批量删除权限")]
         public void RemoveAuthorities(IEnumerable<Guid> authorityIds)
         {
+            authorityIds = authorityIds?.ToArray() ?? Array.Empty<Guid>();
             foreach (Guid authorityId in authorityIds)
             {
                 this._authorizationContract.RemoveAuthority(authorityId);
@@ -177,7 +171,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">信息系统编号</param>
         /// <returns>信息系统/权限树</returns>
-        [RequireAuthorization("获取信息系统-权限树")]
+        [HttpGet]
         public JsonResult GetAuthorityTree(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -198,7 +192,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">角色Id</param>
         /// <returns>权限树</returns>
-        [RequireAuthorization("获取角色的权限树")]
+        [HttpGet]
         public JsonResult GetAuthorityTreeByRole(Guid id)
         {
             Node node = this._authorityPresenter.GetAuthorityTreeByRole(id);
@@ -214,7 +208,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">菜单Id</param>
         /// <returns>权限树</returns>
-        [RequireAuthorization("获取菜单的权限树")]
+        [HttpGet]
         public JsonResult GetAuthorityTreeByMenu(Guid id)
         {
             Node node = this._authorityPresenter.GetAuthorityTreeByMenu(id);
@@ -234,7 +228,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>权限列表</returns>
-        [RequireAuthorization("分页获取权限列表")]
+        [HttpGet]
         public JsonResult GetAuthoritiesByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int page, int rows)
         {
             PageModel<Authority> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, infoSystemNo, applicationType, page, rows);

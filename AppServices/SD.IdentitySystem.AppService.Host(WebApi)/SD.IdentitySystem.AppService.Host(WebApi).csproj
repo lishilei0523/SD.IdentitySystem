@@ -59,7 +59,7 @@
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.1" />
     <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.1.0" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.1" />
-    <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="2.1.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="2.1.2" />
     <PackageReference Include="SD.IdentitySystem.AspNetCore.Authentication" Version="1.2.1" />
   </ItemGroup>
 

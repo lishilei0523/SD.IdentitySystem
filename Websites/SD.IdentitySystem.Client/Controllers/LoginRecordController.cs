@@ -1,7 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
-using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System;
@@ -39,7 +38,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>首页视图</returns>
         [HttpGet]
-        [RequireAuthorization("登录记录首页视图")]
         public ViewResult Index()
         {
             return base.View();
@@ -59,7 +57,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>登录记录列表</returns>
-        [RequireAuthorization("分页获取登录记录列表")]
+        [HttpGet]
         public JsonResult GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
             PageModel<LoginRecord> pageModel = this._userPresenter.GetLoginRecordsByPage(keywords, startTime, endTime, page, rows);

@@ -1,19 +1,16 @@
 ﻿using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.AspNetMvcCore;
-using SD.Infrastructure.Attributes;
-using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.Membership;
 using SD.Toolkits.EasyUI;
-using SD.Toolkits.Json;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -79,7 +76,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>首页视图</returns>
         [HttpGet]
-        [RequireAuthorization("用户管理首页视图")]
         public ViewResult Index()
         {
             IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
@@ -95,7 +91,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>创建用户视图</returns>
         [HttpGet]
-        [RequireAuthorization("创建用户视图")]
         public ViewResult Add()
         {
             return base.View();
@@ -109,7 +104,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">用户名</param>
         /// <returns>重置密码视图</returns>
         [HttpGet]
-        [RequireAuthorization("重置密码视图")]
         public ViewResult ResetPassword(string id)
         {
             base.ViewBag.LoginId = id;
@@ -125,7 +119,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">用户名</param>
         /// <returns>重置私钥视图</returns>
         [HttpGet]
-        [RequireAuthorization("重置私钥视图")]
         public ViewResult ResetPrivateKey(string id)
         {
             base.ViewBag.LoginId = id;
@@ -141,7 +134,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">用户名</param>
         /// <returns>分配角色视图</returns>
         [HttpGet]
-        [RequireAuthorization("分配角色视图")]
         public ViewResult SetRole(string id)
         {
             base.ViewBag.LoginId = id;
@@ -160,8 +152,8 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="loginId">用户名</param>
         /// <param name="password">密码</param>
         /// <param name="validCode">验证码</param>
-        [AllowAnonymous]
         [HttpPost]
+        [AllowAnonymous]
         public void Login(string loginId, string password, string validCode)
         {
             #region # 校验验证码
@@ -183,7 +175,7 @@ namespace SD.IdentitySystem.Client.Controllers
             //验证登录
             string clientId = NetworkExtension.GetLocalMacAddress();
             LoginInfo loginInfo = this._authenticationContract.Login(loginId, password, clientId);
-            base.HttpContext.Session.SetString(GlobalSetting.ApplicationId, loginInfo.ToJson());
+            MembershipMediator.SetLoginInfo(loginInfo);
         }
         #endregion
 
@@ -207,7 +199,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="newPassword">新密码</param>
         /// <param name="confirmPassword">确认密码</param>
         [HttpPost]
-        [RequireAuthorization("修改密码")]
         public void UpdatePassword(string loginId, string oldPassword, string newPassword, string confirmPassword)
         {
             #region # 验证
@@ -232,7 +223,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="password">密码</param>
         /// <param name="confirmPassword">确认密码</param>
         [HttpPost]
-        [RequireAuthorization("创建用户")]
         public void CreateUser(string loginId, string realName, string password, string confirmPassword)
         {
             #region # 验证
@@ -254,7 +244,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">用户名</param>
         [HttpPost]
-        [RequireAuthorization("删除用户")]
         public void RemoveUser(string id)
         {
             this._userContract.RemoveUser(id);
@@ -267,11 +256,9 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="loginIds">用户名集</param>
         [HttpPost]
-        [RequireAuthorization("批量删除用户")]
         public void RemoveUsers(IEnumerable<string> loginIds)
         {
-            loginIds = loginIds ?? Array.Empty<string>();
-
+            loginIds = loginIds?.ToArray() ?? Array.Empty<string>();
             foreach (string loginId in loginIds)
             {
                 this._userContract.RemoveUser(loginId);
@@ -287,7 +274,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="newPassword">新密码</param>
         /// <param name="confirmPassword">确认密码</param>
         [HttpPost]
-        [RequireAuthorization("重置密码")]
         public void ResetPassword(string loginId, string newPassword, string confirmPassword)
         {
             this._userContract.ResetPassword(loginId, newPassword);
@@ -301,7 +287,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="loginId">用户名</param>
         /// <param name="privateKey">私钥</param>
         [HttpPost]
-        [RequireAuthorization("重置私钥")]
         public void ResetPrivateKey(string loginId, string privateKey)
         {
             this._userContract.SetPrivateKey(loginId, privateKey);
@@ -314,7 +299,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">用户名</param>
         [HttpPost]
-        [RequireAuthorization("启用用户")]
         public void EnableUser(string id)
         {
             this._userContract.EnableUser(id);
@@ -327,7 +311,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">用户名</param>
         [HttpPost]
-        [RequireAuthorization("停用用户")]
         public void DisableUser(string id)
         {
             this._userContract.DisableUser(id);
@@ -341,7 +324,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="loginId">用户名</param>
         /// <param name="roleIds">角色Id集</param>
         [HttpPost]
-        [RequireAuthorization("分配角色")]
         public void SetRoles(string loginId, IEnumerable<Guid> roleIds)
         {
             this._userContract.RelateRolesToUser(loginId, roleIds);
@@ -356,6 +338,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// 获取验证码图片
         /// </summary>
         /// <returns>验证码图片二进制内容</returns>
+        [HttpGet]
         [AllowAnonymous]
         public FileContentResult GetValidCode()
         {
@@ -374,7 +357,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>用户列表</returns>
-        [RequireAuthorization("分页获取用户列表")]
+        [HttpGet]
         public JsonResult GetUsersByPage(string keywords, string infoSystemNo, int page, int rows)
         {
             PageModel<User> pageModel = this._userPresenter.GetUsersByPage(keywords, infoSystemNo, page, rows);

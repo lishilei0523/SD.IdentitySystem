@@ -2,11 +2,11 @@
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
-using SD.Infrastructure.Attributes;
 using SD.Infrastructure.DTOBase;
 using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -53,7 +53,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>首页视图</returns>
         [HttpGet]
-        [RequireAuthorization("角色管理首页视图")]
         public ViewResult Index()
         {
             IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
@@ -69,7 +68,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>创建角色视图</returns>
         [HttpGet]
-        [RequireAuthorization("创建角色视图")]
         public ViewResult Add()
         {
             IEnumerable<InfoSystem> infoSystems = this._infoSystemPresenter.GetInfoSystems();
@@ -86,7 +84,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">角色Id</param>
         /// <returns>修改角色视图</returns>
         [HttpGet]
-        [RequireAuthorization("修改角色视图")]
         public ViewResult Update(Guid id)
         {
             Role currentRole = this._rolePresenter.GetRole(id);
@@ -107,10 +104,9 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
-        [RequireAuthorization("创建角色")]
         public void CreateRole(string infoSystemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds ?? Array.Empty<Guid>();
+            authorityIds = authorityIds?.ToArray() ?? Array.Empty<Guid>();
 
             this._authorizationContract.CreateRole(infoSystemNo, roleName, description, authorityIds);
         }
@@ -125,10 +121,9 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="description">角色描述</param>
         /// <param name="authorityIds">权限Id集</param>
         [HttpPost]
-        [RequireAuthorization("修改角色")]
         public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds ?? Array.Empty<Guid>();
+            authorityIds = authorityIds?.ToArray() ?? Array.Empty<Guid>();
 
             this._authorizationContract.UpdateRole(roleId, roleName, description, authorityIds);
         }
@@ -140,7 +135,6 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">角色Id</param>
         [HttpPost]
-        [RequireAuthorization("删除角色")]
         public void RemoveRole(Guid id)
         {
             this._authorizationContract.RemoveRole(id);
@@ -153,11 +147,9 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="roleIds">角色Id集</param>
         [HttpPost]
-        [RequireAuthorization("批量删除角色")]
         public void RemoveRoles(IEnumerable<Guid> roleIds)
         {
-            roleIds = roleIds ?? Array.Empty<Guid>();
-
+            roleIds = roleIds?.ToArray() ?? Array.Empty<Guid>();
             foreach (Guid roleId in roleIds)
             {
                 this._authorizationContract.RemoveRole(roleId);
@@ -174,7 +166,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="id">用户名</param>
         /// <returns>信息系统/角色树</returns>
-        [RequireAuthorization("获取用户的信息系统-角色树")]
+        [HttpGet]
         public JsonResult GetUserInfoSystemRoleTree(string id)
         {
             string loginId = id;
@@ -193,7 +185,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="page">页码</param>
         /// <param name="rows">页容量</param>
         /// <returns>角色列表</returns>
-        [RequireAuthorization("分页获取角色列表")]
+        [HttpGet]
         public JsonResult GetRolesByPage(string keywords, string infoSystemNo, int page, int rows)
         {
             PageModel<Role> pageModel = this._rolePresenter.GetRolesByPage(keywords, infoSystemNo, page, rows);

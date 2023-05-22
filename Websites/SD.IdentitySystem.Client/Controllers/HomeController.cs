@@ -1,9 +1,5 @@
-﻿using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Mvc;
-using SD.Infrastructure.Attributes;
-using SD.Infrastructure.Constants;
+﻿using Microsoft.AspNetCore.Mvc;
 using SD.Infrastructure.Membership;
-using SD.Toolkits.Json;
 
 namespace SD.IdentitySystem.Client.Controllers
 {
@@ -17,11 +13,10 @@ namespace SD.IdentitySystem.Client.Controllers
         /// 加载主页视图
         /// </summary>
         /// <returns>主页视图</returns>
-        [RequireAuthorization("主页视图")]
+        [HttpGet]
         public ViewResult Index()
         {
-            string json = base.HttpContext.Session.GetString(GlobalSetting.ApplicationId);
-            LoginInfo loginInfo = json?.AsJsonTo<LoginInfo>();
+            LoginInfo loginInfo = MembershipMediator.GetLoginInfo();
 
             base.ViewBag.LoginId = loginInfo?.LoginId;
             base.ViewBag.RealName = loginInfo?.RealName;
@@ -36,7 +31,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <param name="message">异常消息</param>
         /// <returns>异常视图</returns>
-        [RequireAuthorization("异常视图")]
+        [HttpGet]
         public ViewResult Exception(string message)
         {
             base.ViewBag.ErrorMessage = message;

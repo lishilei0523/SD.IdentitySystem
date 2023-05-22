@@ -43,12 +43,16 @@
     <PackageReference Include="SD.IOC.Extension.NetCore.ServiceModel" Version="1.2.0" />
     <PackageReference Include="SD.AOP.Core" Version="2.3.0" />
     <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.5" />
+    <PackageReference Include="SD.CacheManager" Version="2.1.1" />
+    <PackageReference Include="SD.CacheManager.Redis" Version="2.1.1" />
     <PackageReference Include="SD.Infrastructure" Version="3.5.7" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.1" />
     <PackageReference Include="SD.Infrastructure.AspNetMvcCore" Version="1.2.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.0" />
     <PackageReference Include="SD.IdentitySystem.AspNetCore.Authentication" Version="1.2.1" />
-    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.AspNetCore" Version="1.2.2" />
+    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.AspNetCore" Version="1.2.3" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="2.1.2" />
   </ItemGroup>
 
   <ItemGroup>
