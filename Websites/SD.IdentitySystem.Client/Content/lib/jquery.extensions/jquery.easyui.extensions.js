@@ -62,6 +62,7 @@
                     this.idField = idFiled;
                 }
             },
+
             //EasyUI TreeGrid组件属性设置
             treegrid: {
                 url: null,

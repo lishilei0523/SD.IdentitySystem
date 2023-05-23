@@ -13,7 +13,7 @@ using System.Diagnostics;
 namespace SD.IdentitySystem.AspNetCore.Tests.Controllers
 {
     [ApiController]
-    [Route("[controller]/[action]")]
+    [Route("Api/[controller]/[action]")]
     public class HomeController : ControllerBase
     {
         [HttpGet]

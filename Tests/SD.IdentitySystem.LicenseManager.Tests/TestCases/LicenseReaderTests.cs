@@ -11,8 +11,9 @@ namespace SD.IdentitySystem.LicenseManager.Tests.TestCases
     [TestClass]
     public class LicenseReaderTests
     {
+        #region # 测试读取许可证 —— void TestReadLicense()
         /// <summary>
-        /// 读取许可证测试
+        /// 测试读取许可证
         /// </summary>
         [TestMethod]
         public void TestReadLicense()
@@ -25,5 +26,6 @@ namespace SD.IdentitySystem.LicenseManager.Tests.TestCases
             Assert.IsTrue(license.Value.ServiceExpiredDate == CommonConstants.MaxDate);
             Assert.IsTrue(license.Value.LicenseExpiredDate == CommonConstants.MaxDate);
         }
+        #endregion
     }
 }
