@@ -31,7 +31,7 @@
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.2.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)'=='netcoreapp3.1' Or '$(TargetFramework)'=='net6.0-windows'">
+  <ItemGroup Condition="$(TargetFramework.Equals('netcoreapp3.1')) Or $(TargetFramework.Equals('net6.0-windows'))">
     <None Remove="App.config" />
     <AppConfigWithTargetPath Include="App.Core.config">
       <TargetPath>$(AssemblyName).dll.config</TargetPath>
