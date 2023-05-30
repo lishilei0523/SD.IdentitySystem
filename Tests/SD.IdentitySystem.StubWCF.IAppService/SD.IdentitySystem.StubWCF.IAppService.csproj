@@ -6,7 +6,7 @@
     <Copyright>Copyright © SD 2023</Copyright>
   </PropertyGroup>
 
-  <ItemGroup Condition="'$(TargetFramework)' == 'net40'">
+  <ItemGroup Condition="$(TargetFramework.Equals('net40'))">
     <Reference Include="System.ServiceModel" />
   </ItemGroup>
 
