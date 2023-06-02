@@ -61,27 +61,97 @@ namespace SD.IdentitySystem.WCF.Authentication
         //没有用
 #if NET40_OR_GREATER
         //Shared
-        public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher) { }
+
+        /// <summary>
+        /// 添加分发行为
+        /// </summary>
+        public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher)
+        {
+
+        }
 
         //Implements of IServiceBehavior
-        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters) { }
-        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase) { }
+
+        /// <summary>
+        /// 添加绑定参数
+        /// </summary>
+        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)
+        {
+
+        }
+
+        /// <summary>
+        /// 验证
+        /// </summary>
+        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+        {
+
+        }
 
         //Implements of IEndpointBehavior
-        public void AddBindingParameters(ServiceEndpoint endpoint, BindingParameterCollection bindingParameters) { }
-        public void Validate(ServiceEndpoint endpoint) { }
+
+        /// <summary>
+        /// 添加绑定参数
+        /// </summary>
+        public void AddBindingParameters(ServiceEndpoint endpoint, BindingParameterCollection bindingParameters)
+        {
+
+        }
+
+        /// <summary>
+        /// 验证
+        /// </summary>
+        public void Validate(ServiceEndpoint endpoint)
+        {
+
+        }
 #endif
 #if NETSTANDARD2_0_OR_GREATER
         //Shared
-        public void ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint endpoint, System.ServiceModel.Dispatcher.EndpointDispatcher endpointDispatcher) { }
+
+        /// <summary>
+        /// 添加分发行为
+        /// </summary>
+        public void ApplyDispatchBehavior(System.ServiceModel.Description.ServiceEndpoint endpoint, System.ServiceModel.Dispatcher.EndpointDispatcher endpointDispatcher)
+        {
+
+        }
 
         //Implements of IServiceBehavior
-        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters) { }
-        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase) { }
+
+        /// <summary>
+        /// 添加绑定参数
+        /// </summary>
+        public void AddBindingParameters(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase, Collection<ServiceEndpoint> endpoints, BindingParameterCollection bindingParameters)
+        {
+
+        }
+
+        /// <summary>
+        /// 验证
+        /// </summary>
+        public void Validate(ServiceDescription serviceDescription, ServiceHostBase serviceHostBase)
+        {
+
+        }
 
         //Implements of IEndpointBehavior
-        public void AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint endpoint, System.ServiceModel.Channels.BindingParameterCollection bindingParameters) { }
-        public void Validate(System.ServiceModel.Description.ServiceEndpoint endpoint) { }
+
+        /// <summary>
+        /// 添加绑定参数
+        /// </summary>
+        public void AddBindingParameters(System.ServiceModel.Description.ServiceEndpoint endpoint, System.ServiceModel.Channels.BindingParameterCollection bindingParameters)
+        {
+
+        }
+
+        /// <summary>
+        /// 验证
+        /// </summary>
+        public void Validate(System.ServiceModel.Description.ServiceEndpoint endpoint)
+        {
+
+        }
 #endif
     }
 }

@@ -54,7 +54,9 @@ namespace SD.IdentitySystem.Authorization.WPF.Converters
             return Visibility.Visible;
         }
 
-
+        /// <summary>
+        /// 转换回
+        /// </summary>
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture)
         {
             throw new NotSupportedException();

@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
   <PropertyGroup>
-    <TargetFrameworks>net461;net48;netcoreapp3.1;net6.0-windows</TargetFrameworks>
+    <TargetFrameworks>net461;net48;net6.0-windows</TargetFrameworks>
     <OutputType>WinExe</OutputType>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
@@ -31,7 +31,7 @@
     <PackageReference Include="SD.IOC.Extension.NetFx" Version="1.2.0" />
   </ItemGroup>
 
-  <ItemGroup Condition="$(TargetFramework.Equals('netcoreapp3.1')) Or $(TargetFramework.Equals('net6.0-windows'))">
+  <ItemGroup Condition="$(TargetFramework.Equals('net6.0-windows'))">
     <None Remove="App.config" />
     <AppConfigWithTargetPath Include="App.Core.config">
       <TargetPath>$(AssemblyName).dll.config</TargetPath>

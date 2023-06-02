@@ -29,8 +29,29 @@ namespace SD.IdentitySystem.WCF.Authentication.Windows
 
 
         //没有用
-        public void Validate(ServiceEndpoint endpoint) { }
-        public void AddBindingParameters(ServiceEndpoint endpoint, BindingParameterCollection bindingParameters) { }
-        public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher) { }
+
+        /// <summary>
+        /// 添加绑定参数
+        /// </summary>
+        public void AddBindingParameters(ServiceEndpoint endpoint, BindingParameterCollection bindingParameters)
+        {
+
+        }
+
+        /// <summary>
+        /// 添加分发行为
+        /// </summary>
+        public void ApplyDispatchBehavior(ServiceEndpoint endpoint, EndpointDispatcher endpointDispatcher)
+        {
+
+        }
+
+        /// <summary>
+        /// 验证
+        /// </summary>
+        public void Validate(ServiceEndpoint endpoint)
+        {
+
+        }
     }
 }
