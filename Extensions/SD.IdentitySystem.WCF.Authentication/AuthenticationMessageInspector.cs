@@ -35,7 +35,7 @@ namespace SD.IdentitySystem.WCF.Authentication
         #region # Implements of IDispatchMessageInspector
 
         /// <summary>
-        /// 接收请求后事件
+        /// 请求接收后事件
         /// </summary>
         /// <param name="request">请求消息</param>
         /// <param name="channel">信道</param>
@@ -96,11 +96,12 @@ namespace SD.IdentitySystem.WCF.Authentication
         }
 
         /// <summary>
-        /// 响应请求前事件
+        /// 请求响应前事件
         /// </summary>
-        /// <param name="reply">响应消息</param>
-        /// <param name="correlationState">相关状态</param>
-        public void BeforeSendReply(ref Message reply, object correlationState) { }
+        public void BeforeSendReply(ref Message reply, object correlationState)
+        {
+
+        }
 
         #endregion
 
@@ -109,8 +110,6 @@ namespace SD.IdentitySystem.WCF.Authentication
         /// <summary>
         /// 请求发送前事件
         /// </summary>
-        /// <param name="request">请求消息</param>
-        /// <param name="channel">信道</param>
         public object BeforeSendRequest(ref System.ServiceModel.Channels.Message request, System.ServiceModel.IClientChannel channel)
         {
             if (OperationContext.Current != null)
@@ -145,9 +144,10 @@ namespace SD.IdentitySystem.WCF.Authentication
         /// <summary>
         /// 请求响应后事件
         /// </summary>
-        /// <param name="reply">响应消息</param>
-        /// <param name="correlationState">相关状态</param>
-        public void AfterReceiveReply(ref System.ServiceModel.Channels.Message reply, object correlationState) { }
+        public void AfterReceiveReply(ref System.ServiceModel.Channels.Message reply, object correlationState)
+        {
+
+        }
 
         #endregion
     }

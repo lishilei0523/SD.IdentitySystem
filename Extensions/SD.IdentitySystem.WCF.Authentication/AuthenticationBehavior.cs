@@ -57,7 +57,6 @@ namespace SD.IdentitySystem.WCF.Authentication
         }
 
 
-
         //没有用
 #if NET40_OR_GREATER
         //Shared
