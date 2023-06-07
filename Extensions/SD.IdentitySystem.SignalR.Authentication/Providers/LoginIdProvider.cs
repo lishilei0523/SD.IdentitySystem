@@ -14,7 +14,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Providers
         /// <returns>用户登录名</returns>
         public string GetUserId(HubConnectionContext connection)
         {
-            return connection.User?.Identity.Name;
+            return connection.User?.Identity?.Name;
         }
     }
 }

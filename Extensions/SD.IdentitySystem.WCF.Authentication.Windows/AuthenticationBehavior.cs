@@ -24,7 +24,6 @@ namespace SD.IdentitySystem.WCF.Authentication.Windows
             //添加消息拦截器
             clientRuntime.ClientMessageInspectors.Add(new AuthenticationMessageInspector());
 #endif
-
         }
 
 

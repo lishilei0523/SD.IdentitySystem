@@ -15,8 +15,6 @@ namespace SD.IdentitySystem.WCF.Authentication.Windows
         /// <summary>
         /// 请求发送前事件
         /// </summary>
-        /// <param name="request">请求消息</param>
-        /// <param name="channel">信道</param>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
             //Windows客户端获取公钥处理
@@ -36,8 +34,9 @@ namespace SD.IdentitySystem.WCF.Authentication.Windows
         /// <summary>
         /// 请求响应后事件
         /// </summary>
-        /// <param name="reply">响应消息</param>
-        /// <param name="correlationState">相关状态</param>
-        public void AfterReceiveReply(ref Message reply, object correlationState) { }
+        public void AfterReceiveReply(ref Message reply, object correlationState)
+        {
+
+        }
     }
 }
