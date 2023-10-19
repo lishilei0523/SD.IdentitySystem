@@ -47,7 +47,6 @@ CREATE TABLE [LoginRecord] (
     [LoginId] nvarchar(max) NULL,
     [RealName] nvarchar(max) NULL,
     [IP] nvarchar(max) NULL,
-    [ClientId] nvarchar(max) NULL,
     [PartitionIndex] int NOT NULL,
     [AddedTime] datetime2 NOT NULL,
     [Keywords] nvarchar(256) NOT NULL,
@@ -83,6 +82,11 @@ CREATE TABLE [Authority] (
     [InfoSystemNo] nvarchar(16) NOT NULL,
     [ApplicationType] int NOT NULL,
     [AuthorityPath] nvarchar(256) NOT NULL,
+    [EnglishName] nvarchar(max) NULL,
+    [AssemblyName] nvarchar(max) NULL,
+    [Namespace] nvarchar(max) NULL,
+    [ClassName] nvarchar(max) NULL,
+    [MethodName] nvarchar(max) NULL,
     [Description] nvarchar(max) NULL,
     [AddedTime] datetime2 NOT NULL,
     [Name] nvarchar(64) NOT NULL,
@@ -205,7 +209,91 @@ CREATE INDEX [IX_User_Role_User_Id] ON [User_Role] ([User_Id]);
 GO
 
 INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
-VALUES (N'20220528074620_v4.6.0', N'5.0.10');
+VALUES (N'20220122102050_v4.4.0', N'6.0.15');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+DECLARE @var0 sysname;
+SELECT @var0 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Authority]') AND [c].[name] = N'AssemblyName');
+IF @var0 IS NOT NULL EXEC(N'ALTER TABLE [Authority] DROP CONSTRAINT [' + @var0 + '];');
+ALTER TABLE [Authority] DROP COLUMN [AssemblyName];
+GO
+
+DECLARE @var1 sysname;
+SELECT @var1 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Authority]') AND [c].[name] = N'ClassName');
+IF @var1 IS NOT NULL EXEC(N'ALTER TABLE [Authority] DROP CONSTRAINT [' + @var1 + '];');
+ALTER TABLE [Authority] DROP COLUMN [ClassName];
+GO
+
+DECLARE @var2 sysname;
+SELECT @var2 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Authority]') AND [c].[name] = N'EnglishName');
+IF @var2 IS NOT NULL EXEC(N'ALTER TABLE [Authority] DROP CONSTRAINT [' + @var2 + '];');
+ALTER TABLE [Authority] DROP COLUMN [EnglishName];
+GO
+
+DECLARE @var3 sysname;
+SELECT @var3 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Authority]') AND [c].[name] = N'MethodName');
+IF @var3 IS NOT NULL EXEC(N'ALTER TABLE [Authority] DROP CONSTRAINT [' + @var3 + '];');
+ALTER TABLE [Authority] DROP COLUMN [MethodName];
+GO
+
+DECLARE @var4 sysname;
+SELECT @var4 = [d].[name]
+FROM [sys].[default_constraints] [d]
+INNER JOIN [sys].[columns] [c] ON [d].[parent_column_id] = [c].[column_id] AND [d].[parent_object_id] = [c].[object_id]
+WHERE ([d].[parent_object_id] = OBJECT_ID(N'[Authority]') AND [c].[name] = N'Namespace');
+IF @var4 IS NOT NULL EXEC(N'ALTER TABLE [Authority] DROP CONSTRAINT [' + @var4 + '];');
+ALTER TABLE [Authority] DROP COLUMN [Namespace];
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20220219093454_v4.5.0', N'6.0.15');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+ALTER TABLE [LoginRecord] ADD [ClientId] nvarchar(max) NULL;
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20220528074620_v4.6.0', N'6.0.15');
+GO
+
+COMMIT;
+GO
+
+BEGIN TRANSACTION;
+GO
+
+ALTER TABLE [User] DROP CONSTRAINT [AK_User_PrivateKey];
+GO
+
+CREATE UNIQUE INDEX [IX_User_PrivateKey] ON [User] ([PrivateKey]);
+GO
+
+INSERT INTO [__EFMigrationsHistory] ([MigrationId], [ProductVersion])
+VALUES (N'20231019063810_v4.6.1', N'6.0.15');
 GO
 
 COMMIT;

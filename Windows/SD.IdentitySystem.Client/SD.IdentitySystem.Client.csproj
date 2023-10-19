@@ -54,7 +54,7 @@
     <PackageReference Include="SD.Toolkits.Recursion" Version="2.1.0" />
     <PackageReference Include="SD.IOC.Core" Version="2.2.2" />
     <PackageReference Include="SD.Infrastructure" Version="3.5.7" />
-    <PackageReference Include="SD.Infrastructure.WPF" Version="1.2.0" />
+    <PackageReference Include="SD.Infrastructure.WPF" Version="1.3.0" />
     <PackageReference Include="SD.Infrastructure.WPF.Caliburn" Version="1.2.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.0" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.1" />
