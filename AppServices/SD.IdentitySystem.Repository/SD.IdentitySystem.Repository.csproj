@@ -10,7 +10,7 @@
     <PackageReference Include="Microsoft.EntityFrameworkCore.SqlServer" Version="6.0.15" />
     <PackageReference Include="MrAdvice" Version="2.12.0" />
     <PackageReference Include="SD.AOP.Core" Version="2.3.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.5.7" />
+    <PackageReference Include="SD.Infrastructure" Version="3.5.8" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.1" />
     <PackageReference Include="SD.Infrastructure.Repository.EntityFrameworkCore" Version="2.5.0" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.1" />
