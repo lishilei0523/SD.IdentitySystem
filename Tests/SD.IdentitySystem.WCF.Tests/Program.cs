@@ -4,7 +4,7 @@ using SD.IdentitySystem.StubWCF.Client.Interfaces;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
 using SD.IOC.Core.Mediators;
-using SD.IOC.Extension.NetFx;
+using SD.IOC.Extension.NetFramework;
 using System;
 
 namespace SD.IdentitySystem.WCF.Tests

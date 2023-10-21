@@ -16,7 +16,7 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 #if NET45_OR_GREATER
-using SD.IOC.Extension.NetFx;
+using SD.IOC.Extension.NetFramework;
 #endif
 #if NETCOREAPP3_1_OR_GREATER
 using SD.IOC.Extension.NetCore;
