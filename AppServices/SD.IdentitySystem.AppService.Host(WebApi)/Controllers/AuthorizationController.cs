@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using SD.IdentitySystem.IAppService.DTOs.Inputs;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
@@ -20,7 +20,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务契约接口
+        /// 权限管理服务契约接口
         /// </summary>
         private readonly IAuthorizationContract _authorizationContract;
 
