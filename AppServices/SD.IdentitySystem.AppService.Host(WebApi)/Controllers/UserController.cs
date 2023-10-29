@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
 using SD.Infrastructure.Constants;
@@ -19,7 +19,7 @@ namespace SD.IdentitySystem.AppService.Host.Controllers
         #region # 字段及构造器
 
         /// <summary>
-        /// 用户服务契约接口
+        /// 用户管理服务契约接口
         /// </summary>
         private readonly IUserContract _userContract;
 
