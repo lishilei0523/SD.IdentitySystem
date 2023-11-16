@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net40;net45;netstandard2.0;net6.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem 身份认证系统服务接口</Description>
@@ -23,6 +23,10 @@
 
   <ItemGroup Condition="$(TargetFramework.Equals('netstandard2.0'))">
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.10.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Equals('net6.0'))">
+    <PackageReference Include="System.ServiceModel.Primitives" Version="6.2.0" />
   </ItemGroup>
 
   <ItemGroup>
