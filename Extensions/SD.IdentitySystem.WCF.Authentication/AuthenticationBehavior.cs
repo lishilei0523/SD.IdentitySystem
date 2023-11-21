@@ -5,7 +5,7 @@ using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 #endif
-#if NETSTANDARD2_0_OR_GREATER
+#if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
 using CoreWCF;
 using CoreWCF.Channels;
 using CoreWCF.Description;
@@ -50,7 +50,7 @@ namespace SD.IdentitySystem.WCF.Authentication
             //添加消息拦截器
             clientRuntime.MessageInspectors.Add(new AuthenticationMessageInspector());
 #endif
-#if NETSTANDARD2_0_OR_GREATER
+#if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
             //添加消息拦截器
             clientRuntime.ClientMessageInspectors.Add(new AuthenticationMessageInspector());
 #endif
@@ -105,7 +105,7 @@ namespace SD.IdentitySystem.WCF.Authentication
 
         }
 #endif
-#if NETSTANDARD2_0_OR_GREATER
+#if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
         //Shared
 
         /// <summary>

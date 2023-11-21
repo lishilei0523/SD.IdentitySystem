@@ -2,10 +2,10 @@
 using System.ServiceModel.Description;
 using System.ServiceModel.Dispatcher;
 
-namespace SD.IdentitySystem.WCF.Authentication.Windows
+namespace SD.IdentitySystem.WCF.Authentication.Common
 {
     /// <summary>
-    /// WCF/Windows客户端身份认证行为
+    /// WCF/通用客户端身份认证行为
     /// </summary>
     public class AuthenticationBehavior : IEndpointBehavior
     {
@@ -20,7 +20,7 @@ namespace SD.IdentitySystem.WCF.Authentication.Windows
             //添加消息拦截器
             clientRuntime.MessageInspectors.Add(new AuthenticationMessageInspector());
 #endif
-#if NETSTANDARD2_0_OR_GREATER
+#if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
             //添加消息拦截器
             clientRuntime.ClientMessageInspectors.Add(new AuthenticationMessageInspector());
 #endif

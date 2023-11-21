@@ -22,7 +22,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication\SD.IdentitySystem.WCF.Authentication.csproj" />
     <ProjectReference Include="..\SD.IdentitySystem.StubWCF.IAppService\SD.IdentitySystem.StubWCF.IAppService.csproj" />
+    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication\SD.IdentitySystem.WCF.Authentication.csproj" />
   </ItemGroup>
 </Project>

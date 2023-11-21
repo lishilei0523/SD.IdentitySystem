@@ -2,10 +2,10 @@
 using System;
 using System.ServiceModel.Configuration;
 
-namespace SD.IdentitySystem.WCF.Authentication.Windows
+namespace SD.IdentitySystem.WCF.Authentication.Common
 {
     /// <summary>
-    /// WCF/Windows客户端身份认证行为扩展元素
+    /// WCF/通用客户端身份认证行为扩展元素
     /// </summary>
     internal class AuthenticationBehaviorElement : BehaviorExtensionElement
     {

@@ -5,10 +5,10 @@ using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;
 
-namespace SD.IdentitySystem.WCF.Authentication.Windows
+namespace SD.IdentitySystem.WCF.Authentication.Common
 {
     /// <summary>
-    /// WCF/Windows客户端身份认证消息拦截器
+    /// WCF/通用客户端身份认证消息拦截器
     /// </summary>
     internal class AuthenticationMessageInspector : IClientMessageInspector
     {
@@ -17,7 +17,7 @@ namespace SD.IdentitySystem.WCF.Authentication.Windows
         /// </summary>
         public object BeforeSendRequest(ref Message request, IClientChannel channel)
         {
-            //Windows客户端获取公钥处理
+            //通用客户端获取公钥处理
             object loginInfo = AppDomain.CurrentDomain.GetData(GlobalSetting.ApplicationId);
             if (loginInfo != null)
             {
