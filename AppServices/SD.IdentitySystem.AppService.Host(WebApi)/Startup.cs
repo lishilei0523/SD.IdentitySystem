@@ -25,7 +25,7 @@ namespace SD.IdentitySystem.AppService.Host
         public void ConfigureServices(IServiceCollection services)
         {
             //ÃÌº”øÁ”Ú≤ﬂ¬‘
-            services.AddCors(options => options.AddPolicy(typeof(Startup).FullName,
+            services.AddCors(options => options.AddPolicy(typeof(Startup).FullName!,
                 policyBuilder =>
                 {
                     policyBuilder.AllowAnyMethod();
@@ -79,7 +79,7 @@ namespace SD.IdentitySystem.AppService.Host
             appBuilder.UseMiddleware<CacheOwinContextMiddleware>();
 
             //≈‰÷√øÁ”Ú
-            appBuilder.UseCors(typeof(Startup).FullName);
+            appBuilder.UseCors(typeof(Startup).FullName!);
 
             //≈‰÷√Swagger
             appBuilder.UseSwagger();

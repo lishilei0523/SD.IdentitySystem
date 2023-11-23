@@ -195,7 +195,7 @@ namespace SD.IdentitySystem.AppService.Implements
             CacheMediator.Set(publicKey.ToString(), loginInfo, DateTime.Now.AddMinutes(GlobalSetting.AuthenticationTimeout));
 
             //获取客户端IP
-            string ip = this.GetClientIp();
+            string ip = this.GetClientIP();
 
             //生成登录记录
             LoginRecord loginRecord = new LoginRecord(publicKey, user.Number, user.Name, ip, clientId);
@@ -207,12 +207,12 @@ namespace SD.IdentitySystem.AppService.Implements
         }
         #endregion
 
-        #region # 获取客户端IP地址 —— string GetClientIp()
+        #region # 获取客户端IP地址 —— string GetClientIP()
         /// <summary>
         /// 获取客户端IP地址
         /// </summary>
         /// <returns>客户端IP地址</returns>
-        private string GetClientIp()
+        private string GetClientIP()
         {
             string ip = null;
 
@@ -221,9 +221,8 @@ namespace SD.IdentitySystem.AppService.Implements
             if (OperationContext.Current != null)
             {
                 MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
-                if (messageProperties.ContainsKey(RemoteEndpointMessageProperty.Name))
+                if (messageProperties.TryGetValue(RemoteEndpointMessageProperty.Name, out object messageProperty))
                 {
-                    object messageProperty = messageProperties[RemoteEndpointMessageProperty.Name];
                     RemoteEndpointMessageProperty remoteEndpointMessageProperty = (RemoteEndpointMessageProperty)messageProperty;
                     ip = remoteEndpointMessageProperty.Address;
                 }

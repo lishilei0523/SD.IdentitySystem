@@ -84,7 +84,7 @@ namespace SD.IdentitySystem.Domain.Entities
         /// <summary>
         /// 导航属性 - 权限集
         /// </summary>
-        public virtual ICollection<Authority> Authorities { get; set; }
+        public virtual ICollection<Authority> Authorities { get; private set; }
         #endregion
 
         #endregion
