@@ -172,6 +172,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">信息系统编号</param>
         /// <returns>信息系统/权限树</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetAuthorityTree(string id)
         {
             if (string.IsNullOrWhiteSpace(id))
@@ -193,6 +194,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">角色Id</param>
         /// <returns>权限树</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetAuthorityTreeByRole(Guid id)
         {
             Node node = this._authorityPresenter.GetAuthorityTreeByRole(id);
@@ -209,6 +211,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">菜单Id</param>
         /// <returns>权限树</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetAuthorityTreeByMenu(Guid id)
         {
             Node node = this._authorityPresenter.GetAuthorityTreeByMenu(id);
@@ -229,6 +232,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="rows">页容量</param>
         /// <returns>权限列表</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetAuthoritiesByPage(string keywords, string infoSystemNo, ApplicationType? applicationType, int page, int rows)
         {
             PageModel<Authority> pageModel = this._authorityPresenter.GetAuthoritiesByPage(keywords, infoSystemNo, applicationType, page, rows);

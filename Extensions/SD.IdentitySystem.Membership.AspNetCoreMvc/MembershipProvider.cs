@@ -11,7 +11,7 @@ using System.Text.Json;
 namespace SD.IdentitySystem
 {
     /// <summary>
-    /// ASP.NET Core Membership提供者
+    /// ASP.NET Core MVC Membership提供者
     /// </summary>
     public class MembershipProvider : IMembershipProvider
     {
@@ -41,6 +41,16 @@ namespace SD.IdentitySystem
             {
                 publicKey = new Guid(header.ToString());
             }
+            if (httpContext != null && httpContext.Session.IsAvailable && !publicKey.HasValue)
+            {
+                string loginInfoJson = httpContext.Session.GetString(GlobalSetting.ApplicationId);
+                if (!string.IsNullOrWhiteSpace(loginInfoJson))
+                {
+                    LoginInfo loginInfoSession = JsonSerializer.Deserialize<LoginInfo>(loginInfoJson);
+                    publicKey = loginInfoSession.PublicKey;
+                }
+            }
+
             if (publicKey.HasValue)
             {
                 LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());

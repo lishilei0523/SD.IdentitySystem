@@ -120,6 +120,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>信息系统列表</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetInfoSystemsByPage(string keywords, int page, int rows)
         {
             PageModel<InfoSystem> pageModel = this._infoSystemPresenter.GetInfoSystemsByPage(keywords, page, rows);

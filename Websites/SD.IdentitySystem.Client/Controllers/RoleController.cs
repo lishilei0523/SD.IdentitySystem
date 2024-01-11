@@ -167,6 +167,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="id">用户名</param>
         /// <returns>信息系统/角色树</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetUserInfoSystemRoleTree(string id)
         {
             string loginId = id;
@@ -186,6 +187,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="rows">页容量</param>
         /// <returns>角色列表</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetRolesByPage(string keywords, string infoSystemNo, int page, int rows)
         {
             PageModel<Role> pageModel = this._rolePresenter.GetRolesByPage(keywords, infoSystemNo, page, rows);

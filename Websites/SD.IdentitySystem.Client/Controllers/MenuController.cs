@@ -210,6 +210,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetMenuTree(string infoSystemNo, ApplicationType? applicationType)
         {
             IEnumerable<Node> menuTree = this._menuPresenter.GetMenuTree(infoSystemNo, applicationType);
@@ -227,6 +228,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单树</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetUserMenuTree(string loginId, string infoSystemNo, ApplicationType? applicationType)
         {
             IEnumerable<Node> menuTree = loginId == CommonConstants.AdminLoginId
@@ -246,6 +248,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="applicationType">应用程序类型</param>
         /// <returns>菜单TreeGrid</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetMenuTreeGrid(string infoSystemNo, ApplicationType? applicationType)
         {
             IEnumerable<Menu> menus = this._menuPresenter.GetMenuTreeGrid(infoSystemNo, applicationType).ToArray();

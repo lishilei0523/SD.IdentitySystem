@@ -58,6 +58,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="rows">页容量</param>
         /// <returns>登录记录列表</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetLoginRecordsByPage(string keywords, DateTime? startTime, DateTime? endTime, int page, int rows)
         {
             PageModel<LoginRecord> pageModel = this._userPresenter.GetLoginRecordsByPage(keywords, startTime, endTime, page, rows);

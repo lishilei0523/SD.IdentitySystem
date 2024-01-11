@@ -25,6 +25,6 @@
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.3" />
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.1.0" />
     <PackageReference Include="SD.CacheManager" Version="2.1.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.5.8" />
+    <PackageReference Include="SD.Infrastructure" Version="3.6.0" />
   </ItemGroup>
 </Project>

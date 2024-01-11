@@ -339,6 +339,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// </summary>
         /// <returns>验证码图片二进制内容</returns>
         [HttpGet]
+        [HttpPost]
         [AllowAnonymous]
         public FileContentResult GetValidCode()
         {
@@ -358,6 +359,7 @@ namespace SD.IdentitySystem.Client.Controllers
         /// <param name="rows">页容量</param>
         /// <returns>用户列表</returns>
         [HttpGet]
+        [HttpPost]
         public JsonResult GetUsersByPage(string keywords, string infoSystemNo, int page, int rows)
         {
             PageModel<User> pageModel = this._userPresenter.GetUsersByPage(keywords, infoSystemNo, page, rows);
