@@ -2,5 +2,5 @@
   <id>SD.IdentitySystem.AppService(WCF)</id>
   <name>SD.IdentitySystem.AppService(WCF)</name>
   <description>身份认证系统服务(WCF)</description>
-  <executable>%BASE%\..\SD.IdentitySystem.AppService.Host.exe</executable>
+  <executable>SD.IdentitySystem.AppService.Host.exe</executable>
 </service>

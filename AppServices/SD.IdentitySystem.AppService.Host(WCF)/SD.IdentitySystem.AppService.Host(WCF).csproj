@@ -18,14 +18,9 @@
     <AppConfigWithTargetPath Include="App.config" Condition="'$(Configuration)'=='Debug'">
       <TargetPath>ef.dll.config</TargetPath>
     </AppConfigWithTargetPath>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Installers\Installer.WindowsService.exe">
+    <None Update="Installers\*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </None>
-    <None Update="Installers\Installer.WindowsService.xml">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
     </None>
   </ItemGroup>
 

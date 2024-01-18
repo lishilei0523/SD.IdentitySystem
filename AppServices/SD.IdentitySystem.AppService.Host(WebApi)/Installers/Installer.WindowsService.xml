@@ -2,5 +2,5 @@
   <id>SD.IdentitySystem.AppService(WebApi)</id>
   <name>SD.IdentitySystem.AppService(WebApi)</name>
   <description>身份认证系统服务(WebApi)</description>
-  <executable>%BASE%\..\SD.IdentitySystem.AppService.Host.exe</executable>
+  <executable>SD.IdentitySystem.AppService.Host.exe</executable>
 </service>

@@ -1,7 +1,7 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netstandard2.0;net6.0;monoandroid8.0</TargetFrameworks>
-    <TargetFrameworkVersion Condition="'$(TargetFramework)' == 'monoandroid8.0'">v8.0</TargetFrameworkVersion>
+    <TargetFrameworks>netstandard2.0;net6.0;net8.0;monoandroid8.0</TargetFrameworks>
+    <TargetFrameworkVersion Condition="$(TargetFramework.Equals('monoandroid8.0'))">v8.0</TargetFrameworkVersion>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem WCF身份认证组件 - Xamarin移动端</Description>
@@ -12,11 +12,11 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <OutputPath Condition="'$(TargetFramework)' == 'monoandroid8.0'">bin\Debug\$(TargetFramework)</OutputPath>
+    <OutputPath Condition="$(TargetFramework.Equals('monoandroid8.0'))">bin\Debug\$(TargetFramework)</OutputPath>
     <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.WCF.Authentication.Xamarin.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <OutputPath Condition="'$(TargetFramework)' == 'monoandroid8.0'">bin\Release\$(TargetFramework)</OutputPath>
+    <OutputPath Condition="$(TargetFramework.Equals('monoandroid8.0'))">bin\Release\$(TargetFramework)</OutputPath>
     <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.WCF.Authentication.Xamarin.xml</DocumentationFile>
   </PropertyGroup>
 
@@ -26,6 +26,10 @@
 
   <ItemGroup Condition="$(TargetFramework.Equals('net6.0'))">
     <PackageReference Include="System.ServiceModel.Primitives" Version="6.2.0" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Equals('net8.0'))">
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.0.0" />
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.Equals('monoandroid8.0'))">

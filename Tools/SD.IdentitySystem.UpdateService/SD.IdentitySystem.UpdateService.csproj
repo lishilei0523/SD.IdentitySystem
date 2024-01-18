@@ -14,17 +14,12 @@
 
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <Content Include="Content\**">
-      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-    </Content>
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="Installers\Installer.WindowsService.exe">
+    <None Update="Content\**">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </None>
-    <None Update="Installers\Installer.WindowsService.xml">
+    <None Update="Installers\*.*">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+      <TargetPath>%(Filename)%(Extension)</TargetPath>
     </None>
   </ItemGroup>
 

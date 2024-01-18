@@ -2,5 +2,5 @@
   <id>SD.IdentitySystem.UpdateService</id>
   <name>SD.IdentitySystem.UpdateService</name>
   <description>身份认证系统更新服务</description>
-  <executable>%BASE%\..\SD.IdentitySystem.UpdateService.exe</executable>
+  <executable>SD.IdentitySystem.UpdateService.exe</executable>
 </service>
