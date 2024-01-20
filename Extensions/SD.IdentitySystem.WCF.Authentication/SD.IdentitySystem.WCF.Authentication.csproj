@@ -5,9 +5,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem WCF身份认证组件 - WCF客户端/服务端</Description>
     <Copyright>Copyright © SD 2024</Copyright>
-    <Version>1.2.1</Version>
-    <AssemblyVersion>1.2.1</AssemblyVersion>
-    <FileVersion>1.2.1.0</FileVersion>
+    <Version>1.2.2</Version>
+    <AssemblyVersion>1.2.2</AssemblyVersion>
+    <FileVersion>1.2.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

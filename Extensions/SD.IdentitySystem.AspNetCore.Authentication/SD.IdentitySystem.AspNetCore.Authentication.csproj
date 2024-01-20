@@ -5,9 +5,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem ASP.NET Core身份认证组件</Description>
     <Copyright>Copyright © SD 2024</Copyright>
-    <Version>1.2.1</Version>
-    <AssemblyVersion>1.2.1</AssemblyVersion>
-    <FileVersion>1.2.1.0</FileVersion>
+    <Version>1.2.2</Version>
+    <AssemblyVersion>1.2.2</AssemblyVersion>
+    <FileVersion>1.2.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -23,7 +23,7 @@
 
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.3" />
-    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.1.0" />
+    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.1.1" />
     <PackageReference Include="SD.CacheManager" Version="2.1.1" />
     <PackageReference Include="SD.Infrastructure" Version="3.6.0" />
   </ItemGroup>
