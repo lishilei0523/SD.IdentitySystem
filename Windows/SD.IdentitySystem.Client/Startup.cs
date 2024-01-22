@@ -52,12 +52,7 @@ namespace SD.IdentitySystem.Client
         /// </summary>
         protected override async void OnStartup(object sender, StartupEventArgs eventArgs)
         {
-#if NET461
-            await base.DisplayRootViewFor<LoginViewModel>();
-#endif
-#if NET48 || NETCOREAPP3_1_OR_GREATER
             await base.DisplayRootViewForAsync<LoginViewModel>();
-#endif
         }
         #endregion
 
@@ -87,12 +82,7 @@ namespace SD.IdentitySystem.Client
                 {
                     activeWindows.Add(window);
                 }
-#if NET461
-                await base.DisplayRootViewFor<LoginViewModel>();
-#endif
-#if NET48 || NETCOREAPP3_1_OR_GREATER
                 await base.DisplayRootViewForAsync<LoginViewModel>();
-#endif
                 activeWindows.ForEach(window => window.Close());
             }
 

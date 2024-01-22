@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
     <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
     <AssemblyName>SD.IdentitySystem.AppService.Host</AssemblyName>
     <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
@@ -32,7 +32,7 @@
     <PackageReference Include="CoreWCF.ConfigurationManager" Version="1.5.1">
       <ExcludeAssets Condition="'$(Configuration)'=='Debug'">contentFiles</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="7.0.15">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
