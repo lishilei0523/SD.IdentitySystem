@@ -17,6 +17,7 @@ namespace SD.IdentitySystem.Repository.Base
             optionsBuilder.UseSqlServer(GlobalSetting.WriteConnectionString, options =>
             {
                 options.UseQuerySplittingBehavior(QuerySplittingBehavior.SplitQuery);
+                options.UseCompatibilityLevel(110);//兼容级别：SQL Server 2012
             });
             base.OnConfiguring(optionsBuilder);
         }
