@@ -1,6 +1,5 @@
 ﻿using AutoUpdaterDotNET;
 using Caliburn.Micro;
-using Microsoft.Extensions.DependencyInjection;
 using Newtonsoft.Json;
 using Newtonsoft.Json.Linq;
 using SD.Common;
@@ -16,9 +15,11 @@ using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
 #if NET45_OR_GREATER
-using SD.IOC.Extension.NetFramework;
+using Autofac;
+using SD.IOC.Core.Extensions;
 #endif
 #if NETCOREAPP3_1_OR_GREATER
+using Microsoft.Extensions.DependencyInjection;
 using SD.IOC.Extension.NetCore;
 using SD.IOC.Extension.NetCore.ServiceModel;
 #endif
@@ -119,9 +120,13 @@ namespace SD.IdentitySystem.Client
             //初始化依赖注入容器
             if (!ResolveMediator.ContainerBuilt)
             {
+#if NET45_OR_GREATER
+                ContainerBuilder containerBuilder = ResolveMediator.GetContainerBuilder();
+                containerBuilder.RegisterConfigs();
+#endif
+#if NETCOREAPP3_1_OR_GREATER
                 IServiceCollection serviceCollection = ResolveMediator.GetServiceCollection();
                 serviceCollection.RegisterConfigs();
-#if NETCOREAPP3_1_OR_GREATER
                 serviceCollection.RegisterServiceModels();
 #endif
                 ResolveMediator.Build();

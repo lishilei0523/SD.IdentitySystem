@@ -11,7 +11,7 @@
              mc:Ignorable="d">
 
     <UserControl.Resources>
-        <ResourceDictionary Source="/Resources/Menu/IndexView.xaml" />
+        <ResourceDictionary Source="/Resources/MenuContext/IndexView.xaml" />
     </UserControl.Resources>
 
     <Grid>
