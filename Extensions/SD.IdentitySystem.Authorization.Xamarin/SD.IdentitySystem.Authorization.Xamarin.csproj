@@ -18,8 +18,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2622" />
-    <PackageReference Include="SD.Infrastructure" Version="3.6.0" />
+    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
+    <PackageReference Include="SD.Infrastructure" Version="3.7.0" />
   </ItemGroup>
 
   <ItemGroup>

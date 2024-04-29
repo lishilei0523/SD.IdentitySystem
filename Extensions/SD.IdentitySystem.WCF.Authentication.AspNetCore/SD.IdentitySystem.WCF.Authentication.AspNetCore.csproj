@@ -31,6 +31,6 @@
 
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.OwinCore" Version="1.1.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.6.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.7.0" />
   </ItemGroup>
 </Project>

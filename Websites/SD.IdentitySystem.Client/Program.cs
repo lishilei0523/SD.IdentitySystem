@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
-using SD.Infrastructure.AOP.Aspects.ForAny;
+using SD.Infrastructure.AOP.Aspects;
 using SD.Toolkits.AspNet;
 
 [assembly: UIExceptionAspect]

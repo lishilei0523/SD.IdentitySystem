@@ -26,10 +26,10 @@
 
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
-    <PackageReference Include="CoreWCF.Primitives" Version="1.5.1" />
-    <PackageReference Include="CoreWCF.Http" Version="1.5.1" />
-    <PackageReference Include="CoreWCF.NetTcp" Version="1.5.1" />
-    <PackageReference Include="CoreWCF.ConfigurationManager" Version="1.5.1">
+    <PackageReference Include="CoreWCF.Primitives" Version="1.5.2" />
+    <PackageReference Include="CoreWCF.Http" Version="1.5.2" />
+    <PackageReference Include="CoreWCF.NetTcp" Version="1.5.2" />
+    <PackageReference Include="CoreWCF.ConfigurationManager" Version="1.5.2">
       <ExcludeAssets Condition="'$(Configuration)'=='Debug'">contentFiles</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.1">
@@ -46,9 +46,9 @@
     <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.6" />
     <PackageReference Include="SD.CacheManager" Version="2.1.1" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.1.2" />
-    <PackageReference Include="SD.Infrastructure" Version="3.6.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.7.0" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.1.4" />
-    <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.2" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.2.0" />
     <PackageReference Include="SD.Infrastructure.WCF.Server" Version="2.1.4" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.1" />
     <PackageReference Include="SD.IdentitySystem.Membership.WCF" Version="2.1.1" />

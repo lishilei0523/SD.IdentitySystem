@@ -18,13 +18,13 @@
     <PackageReference Include="SD.IOC.Extension.NetFramework" Version="1.2.2" />
     <PackageReference Include="SD.CacheManager" Version="2.1.1" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.1.2" />
-    <PackageReference Include="SD.Infrastructure" Version="3.6.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.7.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.1" />
   </ItemGroup>
 
   <ItemGroup>
     <ProjectReference Include="..\SD.IdentitySystem.StubWCF.Client\SD.IdentitySystem.StubWCF.Client.csproj" />
     <ProjectReference Include="..\SD.IdentitySystem.StubWCF.IAppService\SD.IdentitySystem.StubWCF.IAppService.csproj" />
-    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication.Windows\SD.IdentitySystem.WCF.Authentication.Windows.csproj" />
+    <ProjectReference Include="..\..\Extensions\SD.IdentitySystem.WCF.Authentication.Common\SD.IdentitySystem.WCF.Authentication.Common.csproj" />
   </ItemGroup>
 </Project>

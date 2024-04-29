@@ -49,9 +49,9 @@
     <PackageReference Include="SD.AOP.Logger.SqlServer" Version="1.0.6" />
     <PackageReference Include="SD.CacheManager" Version="2.1.1" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.1.2" />
-    <PackageReference Include="SD.Infrastructure" Version="3.6.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.7.0" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.1.4" />
-    <PackageReference Include="SD.Infrastructure.AOP" Version="2.1.2" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.2.0" />
     <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.1.1" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.1" />
     <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="2.1.3" />

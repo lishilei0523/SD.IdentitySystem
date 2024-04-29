@@ -1,4 +1,4 @@
-﻿using SD.Infrastructure.AOP.Aspects.ForAny;
+﻿using SD.Infrastructure.AOP.Aspects;
 
 // AOP标签
 [assembly: AppServiceExceptionAspect]
