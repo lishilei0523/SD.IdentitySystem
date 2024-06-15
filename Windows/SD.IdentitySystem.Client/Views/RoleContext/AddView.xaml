@@ -31,7 +31,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <!--角色信息-->
-            <GroupBox Header="角色信息" Grid.Row="0" Grid.Column="0">
+            <GroupBox Header="角色信息" Grid.Row="0" Grid.Column="0" Margin="4,4,2,4">
                 <!--角色表单-->
                 <StackPanel Grid.IsSharedSizeScope="True" Margin="10,30">
                     <sd:FormItem Label="信息系统：">
@@ -55,7 +55,7 @@
                 </StackPanel>
             </GroupBox>
             <!--权限信息-->
-            <GroupBox Header="权限列表" Grid.Row="0" Grid.Column="1">
+            <GroupBox Header="权限列表" Grid.Row="0" Grid.Column="1" Margin="2,4,4,4">
                 <!--权限列表-->
                 <ListBox ItemsSource="{Binding AuthorityItems}">
                     <!--分组样式-->

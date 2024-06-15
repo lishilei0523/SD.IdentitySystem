@@ -20,7 +20,7 @@
 
   <ItemGroup>
     <Content Include="favicon.ico" />
-    <Resource Include="Content\Images\banner.gif" />
+    <Resource Include="Content\Images\*.*" />
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.Equals('net48'))">

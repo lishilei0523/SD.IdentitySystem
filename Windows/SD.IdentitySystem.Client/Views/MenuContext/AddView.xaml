@@ -31,7 +31,7 @@
                 <ColumnDefinition />
             </Grid.ColumnDefinitions>
             <!--菜单表单-->
-            <GroupBox Header="菜单信息" Grid.Row="0" Grid.Column="0">
+            <GroupBox Header="菜单信息" Grid.Row="0" Grid.Column="0" Margin="4,4,2,4">
                 <!--菜单表单-->
                 <StackPanel Grid.IsSharedSizeScope="True" Margin="10,30">
                     <sd:FormItem Label="信息系统：">
@@ -71,7 +71,7 @@
                 </StackPanel>
             </GroupBox>
             <!--菜单树-->
-            <GroupBox Grid.Row="0" Grid.Column="1">
+            <GroupBox Grid.Row="0" Grid.Column="1" Margin="2,4,4,4">
                 <!--Header-->
                 <GroupBox.HeaderTemplate>
                     <DataTemplate>
