@@ -1,0 +1,21 @@
+﻿<fa:AppWindow x:Class="SD.IdentitySystem.Client.Views.HomeContext.ListView"
+              xmlns="https://github.com/avaloniaui"
+              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+              xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+              xmlns:fa="clr-namespace:FluentAvalonia.UI.Windowing;assembly=FluentAvalonia"
+              mc:Ignorable="d"
+              Title="SD.IdentitySystem.Client"
+              Width="550" Height="500"
+              WindowStartupLocation="CenterScreen">
+
+  <Grid>
+    <ListBox ItemsSource="{Binding BarcodeNos}" Margin="5">
+      <ListBox.ItemTemplate>
+        <DataTemplate>
+          <TextBlock Text="{Binding}"/>
+        </DataTemplate>
+      </ListBox.ItemTemplate>
+    </ListBox>
+  </Grid>
+</fa:AppWindow>

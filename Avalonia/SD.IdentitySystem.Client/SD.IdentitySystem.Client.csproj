@@ -1,0 +1,54 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net8.0</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <Authors>Lee</Authors>
+    <Company>SD</Company>
+    <Copyright>Copyright © SD 2024</Copyright>
+    <Version>1.0.0</Version>
+    <AssemblyVersion>1.0.0</AssemblyVersion>
+    <FileVersion>1.0.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Platform)'=='AnyCPU'">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>full</DebugType>
+    <DebugSymbols>true</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <AppConfigWithTargetPath Include="App.config" Condition="'$(Configuration)'=='Debug'">
+      <TargetPath>Avalonia.Designer.HostApp.dll.config</TargetPath>
+    </AppConfigWithTargetPath>
+    <AvaloniaResource Include="Content\Fonts\msyh.ttf" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" Version="11.1.0-rc1" />
+    <PackageReference Include="Avalonia.ReactiveUI" Version="11.1.0-rc1" />
+    <PackageReference Include="Avalonia.Desktop" Version="11.1.0-rc1" />
+    <PackageReference Include="FluentAvaloniaUI" Version="2.1.0-preview6" />
+    <PackageReference Include="Caliburn.Micro.Avalonia" Version="5.0.102-beta.g4e93fea622" />
+    <PackageReference Include="Caliburn.Micro.Platform.Core" Version="5.0.102-beta.g4e93fea622" />
+    <PackageReference Include="Caliburn.Micro.Core" Version="5.0.102-beta.g4e93fea622" />
+    <PackageReference Include="MrAdvice" Version="2.15.0" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="SD.Common" Version="3.2.2" />
+    <PackageReference Include="SD.Toolkits.Recursion" Version="2.1.0" />
+    <PackageReference Include="SD.IOC.Core" Version="2.2.4" />
+    <PackageReference Include="SD.IOC.Extension.NetCore" Version="1.2.0" />
+    <PackageReference Include="SD.IOC.Extension.NetCore.ServiceModel" Version="1.2.3" />
+    <PackageReference Include="SD.Infrastructure" Version="3.7.0" />
+    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership.Common" Version="2.1.1" />
+    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Common" Version="1.2.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.Presentation\SD.IdentitySystem.Presentation.csproj" />
+    <ProjectReference Include="..\SD.Infrastructure.Avalonia\SD.Infrastructure.Avalonia.csproj" />
+    <ProjectReference Include="..\SD.Infrastructure.Avalonia.Caliburn\SD.Infrastructure.Avalonia.Caliburn.csproj" />
+  </ItemGroup>
+</Project>

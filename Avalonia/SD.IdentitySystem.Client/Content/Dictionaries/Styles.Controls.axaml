@@ -1,0 +1,76 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:fa="clr-namespace:FluentAvalonia.UI.Windowing;assembly=FluentAvalonia">
+
+  <!--Window默认样式-->
+  <Style Selector="Window">
+    <Setter Property="FontFamily" Value="/Content/Fonts/msyh.ttf#Microsoft YaHei"/>
+    <Setter Property="FontSize" Value="14" />
+  </Style>
+  <Style Selector="fa|AppWindow">
+    <Setter Property="FontFamily" Value="/Content/Fonts/msyh.ttf#Microsoft YaHei"/>
+    <Setter Property="FontSize" Value="14" />
+  </Style>
+  <Style Selector="UserControl">
+    <Setter Property="FontFamily" Value="/Content/Fonts/msyh.ttf#Microsoft YaHei"/>
+    <Setter Property="FontSize" Value="14" />
+  </Style>
+  <!--TextBlock默认样式-->
+  <Style Selector="TextBlock">
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="FontWeight" Value="Normal" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <!--TextBlock超链接样式-->
+  <Style Selector="TextBlock.Hyperlink">
+    <Setter Property="Foreground" Value="#0094FF" />
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Padding" Value="4,2" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Style Selector="^:pointerover">
+      <Setter Property="Foreground" Value="White" />
+      <Setter Property="Background" Value="#0094FF" />
+    </Style>
+  </Style>
+  <!--TextBlock行内样式-->
+  <Style Selector="TextBlock.Inline">
+    <Setter Property="HorizontalAlignment" Value="Left" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="Margin" Value="10,0,0,0" />
+  </Style>
+  <!--TextBlock时间样式-->
+  <Style Selector="TextBlock.DateTime">
+    <Setter Property="HorizontalAlignment" Value="Center" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+  </Style>
+  <!--TextBox默认样式-->
+  <Style Selector="TextBox">
+    <!--<Setter Property="CornerRadius" Value="0" />
+    <Setter Property="BorderBrush" Value="{DynamicResource TextBox.Static.Border}" />
+    <Setter Property="BorderThickness" Value="2" />-->
+  </Style>
+  <!--ComboBox默认样式-->
+  <Style Selector="ComboBox">
+    <!--<Setter Property="CornerRadius" Value="0" />
+    <Setter Property="BorderBrush" Value="{DynamicResource TextBox.Static.Border}" />
+    <Setter Property="BorderThickness" Value="2" />-->
+  </Style>
+  <!--Button默认样式-->
+  <Style Selector="Button">
+    <Setter Property="CornerRadius" Value="0" />
+    <Setter Property="Width" Value="85" />
+    <Setter Property="Height" Value="28" />
+    <Setter Property="FontSize" Value="14" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="Padding" Value="1" />
+    <Setter Property="BorderBrush" Value="{DynamicResource TextBox.Static.Border}" />
+    <Setter Property="BorderThickness" Value="2" />
+  </Style>
+  <!--Button焦点样式-->
+  <Style Selector="Button.Focus">
+    <Setter Property="BorderBrush" Value="#0078D7" />
+  </Style>
+</Styles>

@@ -1,0 +1,22 @@
+<Application x:Class="SD.IdentitySystem.Client.App"
+             xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:fa="clr-namespace:FluentAvalonia.Styling;assembly=FluentAvalonia"
+             RequestedThemeVariant="Default">
+
+  <Application.Styles>
+    <fa:FluentAvaloniaTheme />
+    <StyleInclude Source="avares://SD.Infrastructure.Avalonia/Themes/Styles.axaml" />
+    <StyleInclude Source="/Content/Dictionaries/Styles.Controls.axaml" />
+    <StyleInclude Source="/Content/Dictionaries/Styles.Form.axaml" />
+  </Application.Styles>
+  <Application.Resources>
+    <ResourceDictionary>
+      <ResourceDictionary.MergedDictionaries>
+        <ResourceInclude Source="avares://SD.Infrastructure.Avalonia/Themes/Resources.axaml" />
+        <ResourceInclude Source="/Content/Dictionaries/Resources.Brushes.axaml" />
+        <ResourceInclude Source="/Content/Dictionaries/Resources.Converters.axaml" />
+      </ResourceDictionary.MergedDictionaries>
+    </ResourceDictionary>
+  </Application.Resources>
+</Application>
