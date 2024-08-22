@@ -39,6 +39,6 @@
 
   <ItemGroup>
     <PackageReference Include="SD.CacheManager" Version="2.1.1" />
-    <PackageReference Include="SD.Infrastructure" Version="3.7.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
   </ItemGroup>
 </Project>
