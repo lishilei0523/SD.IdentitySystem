@@ -37,12 +37,12 @@
             // 
             // Btn_CalculateMachineCode
             // 
-            this.Btn_CalculateMachineCode.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Btn_CalculateMachineCode.Location = new System.Drawing.Point(184, 141);
+            this.Btn_CalculateMachineCode.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.Btn_CalculateMachineCode.Location = new System.Drawing.Point(367, 240);
             this.Btn_CalculateMachineCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Btn_CalculateMachineCode.Name = "Btn_CalculateMachineCode";
             this.Btn_CalculateMachineCode.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Btn_CalculateMachineCode.Size = new System.Drawing.Size(123, 56);
+            this.Btn_CalculateMachineCode.Size = new System.Drawing.Size(85, 28);
             this.Btn_CalculateMachineCode.TabIndex = 32;
             this.Btn_CalculateMachineCode.Text = "计算";
             this.Btn_CalculateMachineCode.UseVisualStyleBackColor = true;
@@ -51,10 +51,10 @@
             // Btn_Copy
             // 
             this.Btn_Copy.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Btn_Copy.Location = new System.Drawing.Point(399, 47);
+            this.Btn_Copy.Location = new System.Drawing.Point(367, 50);
             this.Btn_Copy.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Btn_Copy.Name = "Btn_Copy";
-            this.Btn_Copy.Size = new System.Drawing.Size(79, 28);
+            this.Btn_Copy.Size = new System.Drawing.Size(85, 28);
             this.Btn_Copy.TabIndex = 31;
             this.Btn_Copy.Text = "点击复制";
             this.Btn_Copy.UseVisualStyleBackColor = true;
@@ -63,18 +63,18 @@
             // Txt_MachineCode
             // 
             this.Txt_MachineCode.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_MachineCode.Location = new System.Drawing.Point(117, 50);
+            this.Txt_MachineCode.Location = new System.Drawing.Point(107, 52);
             this.Txt_MachineCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Txt_MachineCode.Name = "Txt_MachineCode";
             this.Txt_MachineCode.ReadOnly = true;
-            this.Txt_MachineCode.Size = new System.Drawing.Size(270, 24);
+            this.Txt_MachineCode.Size = new System.Drawing.Size(244, 24);
             this.Txt_MachineCode.TabIndex = 30;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(30, 53);
+            this.label3.Location = new System.Drawing.Point(21, 56);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 17);
             this.label3.TabIndex = 29;
@@ -84,7 +84,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 12F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(502, 265);
+            this.ClientSize = new System.Drawing.Size(464, 281);
             this.Controls.Add(this.Btn_CalculateMachineCode);
             this.Controls.Add(this.Btn_Copy);
             this.Controls.Add(this.Txt_MachineCode);

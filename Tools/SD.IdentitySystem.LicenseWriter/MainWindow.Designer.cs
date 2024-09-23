@@ -46,7 +46,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label3.Location = new System.Drawing.Point(60, 90);
+            this.label3.Location = new System.Drawing.Point(44, 91);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(80, 17);
             this.label3.TabIndex = 32;
@@ -55,7 +55,7 @@
             // Txt_UniqueCode
             // 
             this.Txt_UniqueCode.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_UniqueCode.Location = new System.Drawing.Point(147, 87);
+            this.Txt_UniqueCode.Location = new System.Drawing.Point(131, 88);
             this.Txt_UniqueCode.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Txt_UniqueCode.Name = "Txt_UniqueCode";
             this.Txt_UniqueCode.Size = new System.Drawing.Size(270, 24);
@@ -65,7 +65,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label1.Location = new System.Drawing.Point(72, 46);
+            this.label1.Location = new System.Drawing.Point(56, 47);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(68, 17);
             this.label1.TabIndex = 34;
@@ -74,7 +74,7 @@
             // Txt_EnterpriseName
             // 
             this.Txt_EnterpriseName.Font = new System.Drawing.Font("Consolas", 10.5F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.Txt_EnterpriseName.Location = new System.Drawing.Point(147, 43);
+            this.Txt_EnterpriseName.Location = new System.Drawing.Point(131, 43);
             this.Txt_EnterpriseName.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Txt_EnterpriseName.Name = "Txt_EnterpriseName";
             this.Txt_EnterpriseName.Size = new System.Drawing.Size(270, 24);
@@ -84,7 +84,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label2.Location = new System.Drawing.Point(48, 134);
+            this.label2.Location = new System.Drawing.Point(32, 135);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(92, 17);
             this.label2.TabIndex = 36;
@@ -95,7 +95,7 @@
             this.Dtp_ServiceExpiredDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Dtp_ServiceExpiredDate.CustomFormat = "yyyy年 MM月 dd日";
             this.Dtp_ServiceExpiredDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.Dtp_ServiceExpiredDate.Location = new System.Drawing.Point(147, 131);
+            this.Dtp_ServiceExpiredDate.Location = new System.Drawing.Point(131, 133);
             this.Dtp_ServiceExpiredDate.MaxDate = new System.DateTime(2078, 6, 6, 0, 0, 0, 0);
             this.Dtp_ServiceExpiredDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.Dtp_ServiceExpiredDate.Name = "Dtp_ServiceExpiredDate";
@@ -105,12 +105,12 @@
             // 
             // Btn_CreateLicense
             // 
-            this.Btn_CreateLicense.Font = new System.Drawing.Font("微软雅黑", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.Btn_CreateLicense.Location = new System.Drawing.Point(189, 248);
+            this.Btn_CreateLicense.Font = new System.Drawing.Font("微软雅黑", 9F);
+            this.Btn_CreateLicense.Location = new System.Drawing.Point(407, 306);
             this.Btn_CreateLicense.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
             this.Btn_CreateLicense.Name = "Btn_CreateLicense";
             this.Btn_CreateLicense.RightToLeft = System.Windows.Forms.RightToLeft.No;
-            this.Btn_CreateLicense.Size = new System.Drawing.Size(123, 56);
+            this.Btn_CreateLicense.Size = new System.Drawing.Size(85, 28);
             this.Btn_CreateLicense.TabIndex = 6;
             this.Btn_CreateLicense.Text = "生成许可证";
             this.Btn_CreateLicense.UseVisualStyleBackColor = true;
@@ -118,9 +118,9 @@
             // 
             // Btn_LoadLocalMachine
             // 
-            this.Btn_LoadLocalMachine.Location = new System.Drawing.Point(423, 87);
+            this.Btn_LoadLocalMachine.Location = new System.Drawing.Point(407, 86);
             this.Btn_LoadLocalMachine.Name = "Btn_LoadLocalMachine";
-            this.Btn_LoadLocalMachine.Size = new System.Drawing.Size(69, 23);
+            this.Btn_LoadLocalMachine.Size = new System.Drawing.Size(85, 28);
             this.Btn_LoadLocalMachine.TabIndex = 3;
             this.Btn_LoadLocalMachine.Text = "加载本机";
             this.Btn_LoadLocalMachine.UseVisualStyleBackColor = true;
@@ -131,7 +131,7 @@
             this.Dtp_LicenseExpiredDate.Cursor = System.Windows.Forms.Cursors.Hand;
             this.Dtp_LicenseExpiredDate.CustomFormat = "yyyy年 MM月 dd日";
             this.Dtp_LicenseExpiredDate.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.Dtp_LicenseExpiredDate.Location = new System.Drawing.Point(147, 176);
+            this.Dtp_LicenseExpiredDate.Location = new System.Drawing.Point(131, 175);
             this.Dtp_LicenseExpiredDate.MaxDate = new System.DateTime(2078, 6, 6, 0, 0, 0, 0);
             this.Dtp_LicenseExpiredDate.MinDate = new System.DateTime(1900, 1, 1, 0, 0, 0, 0);
             this.Dtp_LicenseExpiredDate.Name = "Dtp_LicenseExpiredDate";
@@ -143,7 +143,7 @@
             // 
             this.label4.AutoSize = true;
             this.label4.Font = new System.Drawing.Font("微软雅黑", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(134)));
-            this.label4.Location = new System.Drawing.Point(49, 179);
+            this.label4.Location = new System.Drawing.Point(33, 179);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(92, 17);
             this.label4.TabIndex = 39;
@@ -151,9 +151,9 @@
             // 
             // Btn_OpenLicense
             // 
-            this.Btn_OpenLicense.Location = new System.Drawing.Point(424, 43);
+            this.Btn_OpenLicense.Location = new System.Drawing.Point(407, 41);
             this.Btn_OpenLicense.Name = "Btn_OpenLicense";
-            this.Btn_OpenLicense.Size = new System.Drawing.Size(68, 23);
+            this.Btn_OpenLicense.Size = new System.Drawing.Size(85, 28);
             this.Btn_OpenLicense.TabIndex = 1;
             this.Btn_OpenLicense.Text = "打开证书";
             this.Btn_OpenLicense.UseVisualStyleBackColor = true;

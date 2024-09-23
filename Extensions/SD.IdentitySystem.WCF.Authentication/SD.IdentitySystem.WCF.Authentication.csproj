@@ -23,17 +23,17 @@
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.Equals('netstandard2.0'))">
-    <PackageReference Include="CoreWCF.Primitives" Version="1.5.2" />
+    <PackageReference Include="CoreWCF.Primitives" Version="1.6.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="4.10.0" />
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.Equals('net6.0'))">
-    <PackageReference Include="CoreWCF.Primitives" Version="1.5.2" />
+    <PackageReference Include="CoreWCF.Primitives" Version="1.6.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="6.2.0" />
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.Equals('net8.0'))">
-    <PackageReference Include="CoreWCF.Primitives" Version="1.5.2" />
+    <PackageReference Include="CoreWCF.Primitives" Version="1.6.0" />
     <PackageReference Include="System.ServiceModel.Primitives" Version="8.0.0" />
   </ItemGroup>
 
