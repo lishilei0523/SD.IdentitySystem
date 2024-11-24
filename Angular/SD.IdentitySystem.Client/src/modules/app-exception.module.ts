@@ -1,6 +1,6 @@
 import {NgModule, Injectable} from '@angular/core';
 import {Router} from "@angular/router";
-import {HTTP_INTERCEPTORS, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest,} from '@angular/common/http';
+import {HTTP_INTERCEPTORS, HttpEvent, HttpInterceptor, HttpHandler, HttpRequest} from '@angular/common/http';
 import {Observable, throwError} from 'rxjs';
 import {catchError} from 'rxjs/operators';
 import {NzMessageService} from "ng-zorro-antd/message";

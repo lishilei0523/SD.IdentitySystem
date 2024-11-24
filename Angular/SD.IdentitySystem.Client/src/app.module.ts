@@ -2,7 +2,7 @@ import {NgModule} from '@angular/core';
 import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
-import {HttpClientModule} from '@angular/common/http';
+import {provideHttpClient, withInterceptorsFromDi} from '@angular/common/http';
 import {AppRoutingModule} from './modules/app-routing.module';
 import {AppExceptionModule} from "./modules/app-exception.module";
 import {InfrastructureModule} from "./modules/sd-infrastructure.module";
@@ -20,7 +20,9 @@ import {InitComponent as InfoSystemInitComponent} from './app/info-system/init/i
 import {IndexComponent as UserIndexComponent} from './app/user/index/index.component';
 import {AddComponent as UserAddComponent} from './app/user/add/add.component';
 import {ResetPasswordComponent as UserResetPasswordComponent} from './app/user/reset-password/reset-password.component';
-import {ResetPrivateKeyComponent as UserResetPrivateKeyComponent} from './app/user/reset-private-key/reset-private-key.component';
+import {
+    ResetPrivateKeyComponent as UserResetPrivateKeyComponent
+} from './app/user/reset-private-key/reset-private-key.component';
 import {RelateRoleComponent as UserRelateRoleComponent} from './app/user/relate-role/relate-role.component';
 import {IndexComponent as RoleIndexComponent} from './app/role/index/index.component';
 import {AddComponent as RoleAddComponent} from './app/role/add/add.component';
@@ -28,7 +30,9 @@ import {UpdateComponent as RoleUpdateComponent} from './app/role/update/update.c
 import {IndexComponent as MenuIndexComponent} from './app/menu/index/index.component';
 import {AddComponent as MenuAddComponent} from './app/menu/add/add.component';
 import {UpdateComponent as MenuUpdateComponent} from './app/menu/update/update.component';
-import {RelateAuthorityComponent as MenuRelateAuthorityComponent} from './app/menu/relate-authority/relate-authority.component';
+import {
+    RelateAuthorityComponent as MenuRelateAuthorityComponent
+} from './app/menu/relate-authority/relate-authority.component';
 import {IndexComponent as AuthorityIndexComponent} from './app/authority/index/index.component';
 import {AddComponent as AuthorityAddComponent} from './app/authority/add/add.component';
 import {UpdateComponent as AuthorityUpdateComponent} from './app/authority/update/update.component';
@@ -77,7 +81,6 @@ import {LoginRecordService} from "./services/login-record.service";
         BrowserAnimationsModule,
         FormsModule,
         ReactiveFormsModule,
-        HttpClientModule,
         InfrastructureModule,
         AppRoutingModule,
         AppExceptionModule,
@@ -89,7 +92,8 @@ import {LoginRecordService} from "./services/login-record.service";
         InfoSystemService,
         UserService,
         MenuService,
-        LoginRecordService
+        LoginRecordService,
+        provideHttpClient(withInterceptorsFromDi())
     ],
     //启动项
     bootstrap: [AppComponent]
