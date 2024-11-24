@@ -161,7 +161,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: AddComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 infoSystems: this.infoSystems,
                 applicationTypes: this.applicationTypes
             }
@@ -190,7 +190,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: UpdateComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 authorityId: authority.id,
                 infoSystemName: authority.infoSystemInfo?.name,
                 applicationTypeName: applicationTypeDescripttor.transform(authority.applicationType),

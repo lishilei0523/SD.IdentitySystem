@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {NzModalRef} from "ng-zorro-antd/modal";
+import {NzModalRef, NZ_MODAL_DATA} from "ng-zorro-antd/modal";
 import {ComponentBase} from "../../../base/component.base";
 import {AuthorityService} from "../../../services/authority.service";
 
@@ -17,11 +17,15 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     /*对话框引用*/
     private readonly _modalRef: NzModalRef;
 
+    /*对话框数据*/
+    private readonly _modalData = inject(NZ_MODAL_DATA);
+
     /*表单建造者*/
     private readonly _formBuilder: UntypedFormBuilder;
 
     /*权限服务*/
     private readonly _authorityService: AuthorityService;
+
 
     /**
      * 创建权限修改组件构造器
@@ -76,6 +80,12 @@ export class UpdateComponent extends ComponentBase implements OnInit {
      * */
     public ngOnInit(): void {
         //初始化表单
+        this.authorityId = this._modalData.authorityId;
+        this.infoSystemName = this._modalData.infoSystemName;
+        this.applicationTypeName = this._modalData.applicationTypeName;
+        this.authorityName = this._modalData.authorityName;
+        this.authorityPath = this._modalData.authorityPath;
+        this.description = this._modalData.description;
         this.formGroup = this._formBuilder.group({
             infoSystemName: [null],
             applicationTypeName: [null],

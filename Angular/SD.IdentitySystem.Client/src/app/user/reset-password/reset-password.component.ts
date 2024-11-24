@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NzModalRef} from "ng-zorro-antd/modal";
+import {Component, inject, Input, OnInit} from '@angular/core';
+import {NzModalRef, NZ_MODAL_DATA} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ComponentBase} from "../../../base/component.base";
@@ -7,9 +7,9 @@ import {UserService} from "../../../services/user.service";
 
 /*用户重置密码组件*/
 @Component({
-  selector: 'app-user-reset-password',
-  templateUrl: './reset-password.component.html',
-  styleUrls: ['./reset-password.component.css']
+    selector: 'app-user-reset-password',
+    templateUrl: './reset-password.component.html',
+    styleUrls: ['./reset-password.component.css']
 })
 export class ResetPasswordComponent extends ComponentBase implements OnInit {
 
@@ -17,6 +17,9 @@ export class ResetPasswordComponent extends ComponentBase implements OnInit {
 
     /*对话框引用*/
     private readonly _modalRef: NzModalRef;
+
+    /*对话框数据*/
+    private readonly _modalData = inject(NZ_MODAL_DATA);
 
     /*消息服务*/
     private readonly _messageService: NzMessageService;
@@ -67,6 +70,7 @@ export class ResetPasswordComponent extends ComponentBase implements OnInit {
      * */
     public ngOnInit(): void {
         //初始化表单
+        this.loginId = this._modalData.loginId;
         this.formGroup = this._formBuilder.group({
             newPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],
             confirmedPassword: [null, [Validators.required, Validators.minLength(6), Validators.maxLength(20)]],

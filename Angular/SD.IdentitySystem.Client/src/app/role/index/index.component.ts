@@ -152,7 +152,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: AddComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 infoSystems: this.infoSystems
             }
         });
@@ -178,7 +178,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: UpdateComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 roleId: role.id,
                 infoSystemNo: role.infoSystemInfo?.number,
                 infoSystemName: role.infoSystemInfo?.name,

@@ -9,7 +9,6 @@ registerLocaleData(zh);
 //Ng-Zorro模块
 import {NZ_I18N, zh_CN} from 'ng-zorro-antd/i18n';
 import {NZ_ICONS, NzIconModule} from 'ng-zorro-antd/icon';
-import {MenuFoldOutline, MenuUnfoldOutline, FormOutline, DashboardOutline} from '@ant-design/icons-angular/icons';
 import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
 
 //布局类
@@ -93,7 +92,6 @@ const ngZorroConfig: NzConfig = {
         NzTreeModule
     ],
     providers: [
-        {provide: NZ_ICONS, useValue: [MenuFoldOutline, MenuUnfoldOutline, DashboardOutline, FormOutline]},
         {provide: NZ_CONFIG, useValue: ngZorroConfig},
         {provide: NZ_I18N, useValue: zh_CN},
         NzMessageService

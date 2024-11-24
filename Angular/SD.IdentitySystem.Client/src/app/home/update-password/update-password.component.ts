@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {NzModalRef} from "ng-zorro-antd/modal";
+import {NzModalRef, NZ_MODAL_DATA} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {ComponentBase} from "../../../base/component.base";
 import {HomeService} from "../../../services/home.service";
@@ -17,6 +17,9 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
 
     /*对话框引用*/
     private readonly _modalRef: NzModalRef;
+
+    /*对话框数据*/
+    private readonly _modalData = inject(NZ_MODAL_DATA);
 
     /*消息服务*/
     private readonly _messageService: NzMessageService;
@@ -70,6 +73,7 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
      * */
     public ngOnInit(): void {
         //初始表单
+        this.loginId = this._modalData.loginId;
         this.formGroup = this._formBuilder.group({
             oldPassword: [null, [Validators.required]],
             newPassword: [null, [Validators.required]],

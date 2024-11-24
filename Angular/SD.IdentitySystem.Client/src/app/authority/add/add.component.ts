@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {NzModalRef} from "ng-zorro-antd/modal";
+import {NzModalRef, NZ_MODAL_DATA} from "ng-zorro-antd/modal";
 import {ComponentBase} from "../../../base/component.base";
 import {ApplicationType} from "../../../values/enums/application-type";
 import {ApplicationTypeDescriptor} from "../../../values/enums/application-type.descriptor";
@@ -19,6 +19,9 @@ export class AddComponent extends ComponentBase implements OnInit {
 
     /*对话框引用*/
     private readonly _modalRef: NzModalRef;
+
+    /*对话框数据*/
+    private readonly _modalData = inject(NZ_MODAL_DATA);
 
     /*表单建造者*/
     private readonly _formBuilder: UntypedFormBuilder;
@@ -78,6 +81,8 @@ export class AddComponent extends ComponentBase implements OnInit {
      * */
     public ngOnInit(): void {
         //初始化表单
+        this.infoSystems = this._modalData.infoSystems;
+        this.applicationTypes = this._modalData.applicationTypes;
         this.formGroup = this._formBuilder.group({
             authorityName: [null, [Validators.required]],
             authorityPath: [null, [Validators.required]],

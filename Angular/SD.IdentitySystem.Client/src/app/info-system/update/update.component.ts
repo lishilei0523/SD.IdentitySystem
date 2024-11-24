@@ -1,6 +1,6 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, inject, Input, OnInit} from '@angular/core';
 import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
-import {NzModalRef} from "ng-zorro-antd/modal";
+import {NzModalRef, NZ_MODAL_DATA} from "ng-zorro-antd/modal";
 import {ComponentBase} from "../../../base/component.base";
 import {InfoSystemService} from "../../../services/info-system.service";
 
@@ -16,6 +16,9 @@ export class UpdateComponent extends ComponentBase implements OnInit {
 
     /*对话框引用*/
     private readonly _modalRef: NzModalRef;
+
+    /*对话框数据*/
+    private readonly _modalData = inject(NZ_MODAL_DATA);
 
     /*表单建造者*/
     private readonly _formBuilder: UntypedFormBuilder;
@@ -60,6 +63,8 @@ export class UpdateComponent extends ComponentBase implements OnInit {
      * */
     public ngOnInit(): void {
         //初始化表单
+        this.infoSystemNo = this._modalData.infoSystemNo;
+        this.infoSystemName = this._modalData.infoSystemName;
         this.formGroup = this._formBuilder.group({
             infoSystemNo: [null, [Validators.required]],
             infoSystemName: [null, [Validators.required]],

@@ -1,5 +1,5 @@
-import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {NzModalRef} from "ng-zorro-antd/modal";
+import {Component, inject, Input, OnInit, ViewChild} from '@angular/core';
+import {NzModalRef, NZ_MODAL_DATA} from "ng-zorro-antd/modal";
 import {NzTreeComponent, NzTreeNode} from "ng-zorro-antd/tree";
 import {ComponentBase} from "../../../base/component.base";
 import {NzNode} from "../../../values/structs/nz-node";
@@ -20,6 +20,9 @@ export class RelateRoleComponent extends ComponentBase implements OnInit {
 
     /*对话框引用*/
     private readonly _modalRef: NzModalRef;
+
+    /*对话框数据*/
+    private readonly _modalData = inject(NZ_MODAL_DATA);
 
     /*角色服务*/
     private readonly _roleService: RoleService;
@@ -66,6 +69,9 @@ export class RelateRoleComponent extends ComponentBase implements OnInit {
      * 初始化组件
      * */
     public async ngOnInit(): Promise<void> {
+        //初始化数据
+        this.loginId = this._modalData.loginId;
+
         //加载角色树
         await this.loadRoleTree();
     }

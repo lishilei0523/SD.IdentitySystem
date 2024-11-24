@@ -178,7 +178,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: ResetPasswordComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 loginId: user.number
             }
         });
@@ -199,7 +199,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: ResetPrivateKeyComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 loginId: user.number,
                 privateKey: user.privateKey
             }
@@ -228,7 +228,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: RelateRoleComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 loginId: user.number
             }
         });

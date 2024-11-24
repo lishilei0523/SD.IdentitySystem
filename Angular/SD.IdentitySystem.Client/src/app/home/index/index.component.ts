@@ -173,7 +173,7 @@ export class IndexComponent implements OnInit {
             },
             nzContent: UpdatePasswordComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 loginId: this.loginInfo?.loginId
             }
         });

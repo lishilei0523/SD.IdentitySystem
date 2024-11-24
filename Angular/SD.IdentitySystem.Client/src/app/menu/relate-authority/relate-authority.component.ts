@@ -1,5 +1,5 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {NzModalRef} from "ng-zorro-antd/modal";
+import {Component, inject, Input, OnInit} from '@angular/core';
+import {NzModalRef, NZ_MODAL_DATA} from "ng-zorro-antd/modal";
 import {ComponentBase} from "../../../base/component.base";
 import {ApplicationType} from "../../../values/enums/application-type";
 import {Authority} from "../../../models/authority";
@@ -18,6 +18,9 @@ export class RelateAuthorityComponent extends ComponentBase implements OnInit {
 
     /*对话框引用*/
     private readonly _modalRef: NzModalRef;
+
+    /*对话框数据*/
+    private readonly _modalData = inject(NZ_MODAL_DATA);
 
     /*权限服务*/
     private readonly _authorityService: AuthorityService;
@@ -68,6 +71,11 @@ export class RelateAuthorityComponent extends ComponentBase implements OnInit {
      * 初始化组件
      * */
     public async ngOnInit(): Promise<void> {
+        //初始化数据
+        this.menuId = this._modalData.menuId;
+        this.infoSystemNo = this._modalData.infoSystemNo;
+        this.applicationType = this._modalData.applicationType;
+
         //加载权限列表
         await this.loadAuthorities();
     }

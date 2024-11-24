@@ -129,7 +129,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: UpdateComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 infoSystemNo: infoSystem.number,
                 infoSystemName: infoSystem.name
             }
@@ -157,7 +157,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             },
             nzContent: InitComponent,
             nzFooter: null,
-            nzComponentParams: {
+            nzData: {
                 infoSystemNo: infoSystem.number,
                 host: infoSystem.host,
                 port: infoSystem.port,
