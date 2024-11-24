@@ -8,7 +8,7 @@ registerLocaleData(zh);
 
 //Ng-Zorro模块
 import {NZ_I18N, zh_CN} from 'ng-zorro-antd/i18n';
-import {NZ_ICONS, NzIconModule} from 'ng-zorro-antd/icon';
+import {NzIconModule} from 'ng-zorro-antd/icon';
 import {NZ_CONFIG, NzConfig} from "ng-zorro-antd/core/config";
 
 //布局类
