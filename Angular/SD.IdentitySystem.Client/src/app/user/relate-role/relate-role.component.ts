@@ -12,7 +12,8 @@ import {RoleService} from "../../../services/role.service";
 @Component({
     selector: 'app-user-relate-role',
     templateUrl: './relate-role.component.html',
-    styleUrls: ['./relate-role.component.css']
+    styleUrls: ['./relate-role.component.css'],
+    standalone: false
 })
 export class RelateRoleComponent extends ComponentBase implements OnInit {
 

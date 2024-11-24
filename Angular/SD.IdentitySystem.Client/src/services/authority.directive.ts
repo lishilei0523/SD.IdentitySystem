@@ -4,7 +4,8 @@ import {Membership} from "../values/constants/membership";
 
 /*身份认证授权指令*/
 @Directive({
-    selector: '[authorityPath]'
+    selector: '[authorityPath]',
+    standalone: false
 })
 export class AuthorityDirective {
 

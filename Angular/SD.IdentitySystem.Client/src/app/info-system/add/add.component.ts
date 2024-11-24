@@ -10,7 +10,8 @@ import {InfoSystemService} from "../../../services/info-system.service";
 @Component({
     selector: 'app-info-system-add',
     templateUrl: './add.component.html',
-    styleUrls: ['./add.component.css']
+    styleUrls: ['./add.component.css'],
+    standalone: false
 })
 export class AddComponent extends ComponentBase implements OnInit {
 

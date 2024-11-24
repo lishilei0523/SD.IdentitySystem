@@ -10,7 +10,8 @@ import {MenuService} from "../../../services/menu.service";
 @Component({
     selector: 'app-menu-relate-authority',
     templateUrl: './relate-authority.component.html',
-    styleUrls: ['./relate-authority.component.css']
+    styleUrls: ['./relate-authority.component.css'],
+    standalone: false
 })
 export class RelateAuthorityComponent extends ComponentBase implements OnInit {
 

@@ -12,7 +12,8 @@ import {UpdatePasswordComponent} from "../update-password/update-password.compon
 @Component({
     selector: 'app-home-index',
     templateUrl: './index.component.html',
-    styleUrls: ['./index.component.css']
+    styleUrls: ['./index.component.css'],
+    standalone: false
 })
 export class IndexComponent implements OnInit {
 

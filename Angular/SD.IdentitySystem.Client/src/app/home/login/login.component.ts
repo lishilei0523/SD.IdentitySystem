@@ -13,7 +13,8 @@ import {HomeService} from "../../../services/home.service";
 @Component({
     selector: 'app-login',
     templateUrl: './login.component.html',
-    styleUrls: ['./login.component.css']
+    styleUrls: ['./login.component.css'],
+    standalone: false
 })
 export class LoginComponent extends ComponentBase implements OnInit {
 

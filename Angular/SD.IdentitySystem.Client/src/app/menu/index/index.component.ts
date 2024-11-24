@@ -17,7 +17,8 @@ import {RelateAuthorityComponent} from "../relate-authority/relate-authority.com
 @Component({
     selector: 'app-menu-index',
     templateUrl: './index.component.html',
-    styleUrls: ['./index.component.css']
+    styleUrls: ['./index.component.css'],
+    standalone: false
 })
 export class IndexComponent extends ComponentBase implements OnInit {
 

@@ -9,7 +9,8 @@ import {HomeService} from "../../../services/home.service";
 @Component({
     selector: 'app-update-password',
     templateUrl: './update-password.component.html',
-    styleUrls: ['./update-password.component.css']
+    styleUrls: ['./update-password.component.css'],
+    standalone: false
 })
 export class UpdatePasswordComponent extends ComponentBase implements OnInit {
 

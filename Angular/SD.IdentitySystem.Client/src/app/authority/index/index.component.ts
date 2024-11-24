@@ -16,7 +16,8 @@ import {UpdateComponent} from "../update/update.component";
 @Component({
     selector: 'app-authority-index',
     templateUrl: './index.component.html',
-    styleUrls: ['./index.component.css']
+    styleUrls: ['./index.component.css'],
+    standalone: false
 })
 export class IndexComponent extends ComponentBase implements OnInit {
 

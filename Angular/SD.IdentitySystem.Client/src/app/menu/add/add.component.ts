@@ -15,7 +15,8 @@ import {MenuMap} from "../../../maps/menu.map";
 @Component({
     selector: 'app-menu-add',
     templateUrl: './add.component.html',
-    styleUrls: ['./add.component.css']
+    styleUrls: ['./add.component.css'],
+    standalone: false
 })
 export class AddComponent extends ComponentBase implements OnInit {
 

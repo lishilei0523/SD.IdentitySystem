@@ -11,7 +11,8 @@ import {AuthorityService} from "../../../services/authority.service";
 @Component({
     selector: 'app-authority-add',
     templateUrl: './add.component.html',
-    styleUrls: ['./add.component.css']
+    styleUrls: ['./add.component.css'],
+    standalone: false
 })
 export class AddComponent extends ComponentBase implements OnInit {
 

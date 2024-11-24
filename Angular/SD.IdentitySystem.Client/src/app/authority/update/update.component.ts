@@ -8,7 +8,8 @@ import {AuthorityService} from "../../../services/authority.service";
 @Component({
     selector: 'app-authority-update',
     templateUrl: './update.component.html',
-    styleUrls: ['./update.component.css']
+    styleUrls: ['./update.component.css'],
+    standalone: false
 })
 export class UpdateComponent extends ComponentBase implements OnInit {
 

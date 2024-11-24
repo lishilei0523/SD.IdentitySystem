@@ -9,7 +9,8 @@ import {UserService} from "../../../services/user.service";
 @Component({
     selector: 'app-user-reset-password',
     templateUrl: './reset-password.component.html',
-    styleUrls: ['./reset-password.component.css']
+    styleUrls: ['./reset-password.component.css'],
+    standalone: false
 })
 export class ResetPasswordComponent extends ComponentBase implements OnInit {
 

@@ -12,7 +12,8 @@ import {InitComponent} from "../init/init.component";
 @Component({
     selector: 'app-info-system-index',
     templateUrl: './index.component.html',
-    styleUrls: ['./index.component.css']
+    styleUrls: ['./index.component.css'],
+    standalone: false
 })
 export class IndexComponent extends ComponentBase implements OnInit {
 

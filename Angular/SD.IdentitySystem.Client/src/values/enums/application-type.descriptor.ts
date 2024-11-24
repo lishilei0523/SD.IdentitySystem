@@ -3,7 +3,8 @@ import {ApplicationType} from './application-type';
 
 /*应用程序类型枚举描述器*/
 @Pipe({
-    name: 'applicationTypeDescriptor'
+    name: 'applicationTypeDescriptor',
+    standalone: false
 })
 export class ApplicationTypeDescriptor implements PipeTransform {
 

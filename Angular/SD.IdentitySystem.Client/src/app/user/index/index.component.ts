@@ -16,7 +16,8 @@ import {RelateRoleComponent} from "../relate-role/relate-role.component";
 @Component({
     selector: 'app-user-index',
     templateUrl: './index.component.html',
-    styleUrls: ['./index.component.css']
+    styleUrls: ['./index.component.css'],
+    standalone: false
 })
 export class IndexComponent extends ComponentBase implements OnInit {
 

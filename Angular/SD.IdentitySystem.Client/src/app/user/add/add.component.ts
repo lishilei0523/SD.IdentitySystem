@@ -9,7 +9,8 @@ import {NzMessageService} from "ng-zorro-antd/message";
 @Component({
     selector: 'app-user-add',
     templateUrl: './add.component.html',
-    styleUrls: ['./add.component.css']
+    styleUrls: ['./add.component.css'],
+    standalone: false
 })
 export class AddComponent extends ComponentBase implements OnInit {
 

@@ -8,7 +8,8 @@ import {UserService} from "../../../services/user.service";
 @Component({
     selector: 'app-user-reset-private-key',
     templateUrl: './reset-private-key.component.html',
-    styleUrls: ['./reset-private-key.component.css']
+    styleUrls: ['./reset-private-key.component.css'],
+    standalone: false
 })
 export class ResetPrivateKeyComponent extends ComponentBase implements OnInit {
 

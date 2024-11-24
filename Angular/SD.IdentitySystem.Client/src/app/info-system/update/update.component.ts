@@ -8,7 +8,8 @@ import {InfoSystemService} from "../../../services/info-system.service";
 @Component({
     selector: 'app-info-system-update',
     templateUrl: './update.component.html',
-    styleUrls: ['./update.component.css']
+    styleUrls: ['./update.component.css'],
+    standalone: false
 })
 export class UpdateComponent extends ComponentBase implements OnInit {
 
