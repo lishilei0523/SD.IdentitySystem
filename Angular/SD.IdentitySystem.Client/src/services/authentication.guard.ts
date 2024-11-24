@@ -1,12 +1,12 @@
 import {Injectable} from "@angular/core";
-import {CanActivate, Router} from "@angular/router";
+import {Router} from "@angular/router";
 import {Membership} from "../values/constants/membership";
 
 /*身份认证守卫器*/
 @Injectable({
     providedIn: 'root'
 })
-export class AuthenticationGuard implements CanActivate {
+export class AuthenticationGuard {
 
     /*路由器*/
     private readonly router: Router;
