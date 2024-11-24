@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NzModalRef} from "ng-zorro-antd/modal";
-import {ApplicationType, ComponentBase} from "sd-infrastructure";
+import {ComponentBase} from "../../../base/component.base";
+import {ApplicationType} from "../../../values/enums/application-type";
 import {Authority} from "../../../models/authority";
 import {AuthorityService} from "../../../services/authority.service";
 import {MenuService} from "../../../services/menu.service";

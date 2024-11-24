@@ -1,8 +1,8 @@
-import {NzNode} from "sd-infrastructure";
+import {NzNode} from "../values/structs/nz-node";
 import {InfoSystem} from "../models/info-system";
 import {Role} from "../models/role";
 
-/*角色映射工具类*/
+/*角色映射*/
 export class RoleMap {
 
     //region # 角色NZ树节点映射 —— static toNzNode(role: Role)
@@ -30,14 +30,14 @@ export class RoleMap {
             }
         }
         for (let infoSystem of distinctedInfoSystems) {
-            let infoSytemNode: NzNode = new NzNode(infoSystem.id, infoSystem.name, false);
-            infoSytemNode.disabled = true;
-            nzTree.push(infoSytemNode);
+            let infoSystemNode: NzNode = new NzNode(infoSystem.id, infoSystem.name, false);
+            infoSystemNode.disabled = true;
+            nzTree.push(infoSystemNode);
 
             let specRoles: Array<Role> = roles.filter(x => x.infoSystemInfo?.id == infoSystem.id);
             for (let role of specRoles) {
                 let roleNode: NzNode = RoleMap.toNzNode(role);
-                infoSytemNode.children.push(roleNode);
+                infoSystemNode.children.push(roleNode);
             }
         }
 

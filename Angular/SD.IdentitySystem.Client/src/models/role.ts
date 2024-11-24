@@ -1,4 +1,4 @@
-import {ModelBase} from "sd-infrastructure";
+import {ModelBase} from "../base/model.base";
 import {InfoSystem} from "./info-system";
 
 /*角色*/

@@ -1,4 +1,4 @@
-import {ModelBase} from "sd-infrastructure";
+import {ModelBase} from "../base/model.base";
 
 /*登录记录*/
 export interface LoginRecord extends ModelBase {

@@ -1,4 +1,5 @@
-import {ApplicationType, ModelBase} from "sd-infrastructure";
+import {ModelBase} from "../base/model.base";
+import {ApplicationType} from "../values/enums/application-type";
 import {InfoSystem} from "./info-system";
 
 /*权限*/

@@ -1,7 +1,9 @@
-import {ApplicationType, ApplicationTypeDescriptor, NzNode} from "sd-infrastructure";
+import {NzNode} from "../values/structs/nz-node";
+import {ApplicationType} from "../values/enums/application-type";
+import {ApplicationTypeDescriptor} from "../values/enums/application-type.descriptor";
 import {Authority} from "../models/authority";
 
-/*权限映射工具类*/
+/*权限映射*/
 export class AuthorityMap {
 
     //region # 权限NZ树节点映射 —— static toNzNode(authority: Authority)

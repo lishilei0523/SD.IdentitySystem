@@ -1,6 +1,8 @@
 import {Component, OnInit} from '@angular/core';
 import {formatDate} from "@angular/common";
-import {Constants, PageModel, ComponentBase} from "sd-infrastructure";
+import {ComponentBase} from "../../../base/component.base";
+import {Constants} from "../../../values/constants/constants";
+import {PageModel} from "../../../values/structs/page-model";
 import {LoginRecord} from "../../../models/login-record";
 import {LoginRecordService} from "../../../services/login-record.service";
 

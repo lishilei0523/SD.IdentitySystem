@@ -1,9 +1,9 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
-import {ComponentBase} from "sd-infrastructure";
-import {HomeService} from "../../../services/home.service";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {ComponentBase} from "../../../base/component.base";
+import {HomeService} from "../../../services/home.service";
 
 /*用户修改密码组件*/
 @Component({

@@ -1,7 +1,7 @@
-import {NzNode} from "sd-infrastructure";
+import {NzNode} from "../values/structs/nz-node";
 import {Menu} from "../models/menu";
 
-/*菜单映射工具类*/
+/*菜单映射*/
 export class MenuMap {
 
     //region # 菜单树列表映射 —— static toTreeList(menus: Array<Menu>)

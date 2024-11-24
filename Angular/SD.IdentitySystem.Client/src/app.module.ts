@@ -3,9 +3,9 @@ import {BrowserModule} from '@angular/platform-browser';
 import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HttpClientModule} from '@angular/common/http';
-import {InfrastructureModule} from "sd-infrastructure";
 import {AppRoutingModule} from './modules/app-routing.module';
 import {AppExceptionModule} from "./modules/app-exception.module";
+import {InfrastructureModule} from "./modules/sd-infrastructure.module";
 import {NgZorroModule} from "./modules/ng-zorro.module";
 
 //组件

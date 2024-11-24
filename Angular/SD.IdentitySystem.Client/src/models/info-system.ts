@@ -1,4 +1,5 @@
-import {ApplicationType, ModelBase} from "sd-infrastructure";
+import {ModelBase} from "../base/model.base";
+import {ApplicationType} from "../values/enums/application-type";
 
 /*信息系统*/
 export interface InfoSystem extends ModelBase {

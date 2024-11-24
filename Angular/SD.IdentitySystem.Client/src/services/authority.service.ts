@@ -1,6 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {ApplicationType, Constants, PageModel} from "sd-infrastructure";
+import {Constants} from "../values/constants/constants";
+import {PageModel} from "../values/structs/page-model";
+import {ApplicationType} from "../values/enums/application-type";
 import {Authority} from "../models/authority";
 
 /*权限服务*/

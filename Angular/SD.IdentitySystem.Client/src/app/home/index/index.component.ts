@@ -1,7 +1,11 @@
 import {Component, OnInit} from '@angular/core';
 import {Router} from "@angular/router";
 import {NzModalService} from "ng-zorro-antd/modal";
-import {Tab, Membership, LoginInfo, LoginMenuInfo, TabRouteReuseStrategy} from "sd-infrastructure";
+import {Membership} from "../../../values/constants/membership";
+import {LoginInfo} from "../../../values/structs/login-info";
+import {LoginMenuInfo} from "../../../values/structs/login-menu-info";
+import {Tab} from "../../../values/structs/tab";
+import {TabRouteReuseStrategy} from "../../../services/tab-route-reuse.strategy";
 import {UpdatePasswordComponent} from "../update-password/update-password.component";
 
 /*首页组件*/

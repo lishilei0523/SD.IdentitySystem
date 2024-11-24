@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpParams} from "@angular/common/http";
-import {ApplicationType, Constants} from "sd-infrastructure";
+import {Constants} from "../values/constants/constants";
+import {ApplicationType} from "../values/enums/application-type";
 import {Menu} from "../models/menu";
 
 /*菜单服务*/

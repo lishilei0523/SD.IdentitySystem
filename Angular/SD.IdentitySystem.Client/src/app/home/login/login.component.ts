@@ -2,7 +2,11 @@ import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
-import {ApplicationType, ComponentBase, LoginInfo, LoginMenuInfo, Membership} from "sd-infrastructure";
+import {ComponentBase} from "../../../base/component.base";
+import {Membership} from "../../../values/constants/membership";
+import {LoginInfo} from "../../../values/structs/login-info";
+import {LoginMenuInfo} from "../../../values/structs/login-menu-info";
+import {ApplicationType} from "../../../values/enums/application-type";
 import {HomeService} from "../../../services/home.service";
 
 /*登录组件*/

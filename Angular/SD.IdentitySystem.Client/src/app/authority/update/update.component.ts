@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
-import {ComponentBase} from "sd-infrastructure";
+import {ComponentBase} from "../../../base/component.base";
 import {AuthorityService} from "../../../services/authority.service";
 
 /*权限修改组件*/

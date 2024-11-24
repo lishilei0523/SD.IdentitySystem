@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
-import {ComponentBase} from "sd-infrastructure";
+import {ComponentBase} from "../../../base/component.base";
 import {UserService} from "../../../services/user.service";
 
 /*用户重置私钥组件*/

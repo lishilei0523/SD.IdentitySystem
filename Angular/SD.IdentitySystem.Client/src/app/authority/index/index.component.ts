@@ -1,7 +1,10 @@
 import {Component, OnInit} from '@angular/core';
-import {ApplicationType, ApplicationTypeDescriptor, PageModel, ComponentBase} from "sd-infrastructure";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {ComponentBase} from "../../../base/component.base";
+import {ApplicationType} from "../../../values/enums/application-type";
+import {ApplicationTypeDescriptor} from "../../../values/enums/application-type.descriptor";
+import {PageModel} from "../../../values/structs/page-model";
 import {InfoSystemService} from "../../../services/info-system.service";
 import {AuthorityService} from "../../../services/authority.service";
 import {Authority} from "../../../models/authority";

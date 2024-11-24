@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
-import {ApplicationType, ApplicationTypeDescriptor, ComponentBase} from "sd-infrastructure";
+import {ComponentBase} from "../../../base/component.base";
+import {ApplicationType} from "../../../values/enums/application-type";
+import {ApplicationTypeDescriptor} from "../../../values/enums/application-type.descriptor";
 import {InfoSystemService} from "../../../services/info-system.service";
 
 /*信息系统创建组件*/

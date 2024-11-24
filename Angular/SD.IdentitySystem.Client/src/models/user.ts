@@ -1,4 +1,4 @@
-import {ModelBase} from "sd-infrastructure";
+import {ModelBase} from "../base/model.base";
 
 /*用户*/
 export interface User extends ModelBase {

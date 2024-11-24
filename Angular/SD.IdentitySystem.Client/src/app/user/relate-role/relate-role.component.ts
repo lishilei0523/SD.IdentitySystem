@@ -1,7 +1,8 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {NzTreeComponent, NzTreeNode} from "ng-zorro-antd/tree";
-import {ComponentBase, NzNode} from "sd-infrastructure";
+import {ComponentBase} from "../../../base/component.base";
+import {NzNode} from "../../../values/structs/nz-node";
 import {UserService} from "../../../services/user.service";
 import {Role} from "../../../models/role";
 import {RoleMap} from "../../../maps/role.map";

@@ -1,8 +1,8 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {ComponentBase} from "sd-infrastructure";
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {ComponentBase} from "../../../base/component.base";
 import {UserService} from "../../../services/user.service";
 
 /*用户重置密码组件*/

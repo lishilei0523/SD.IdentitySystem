@@ -1,7 +1,9 @@
 import {Component, OnInit} from '@angular/core';
-import {ApplicationType, ApplicationTypeDescriptor, ComponentBase} from "sd-infrastructure";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {ComponentBase} from "../../../base/component.base";
+import {ApplicationType} from "../../../values/enums/application-type";
+import {ApplicationTypeDescriptor} from "../../../values/enums/application-type.descriptor";
 import {InfoSystem} from "../../../models/info-system";
 import {InfoSystemService} from "../../../services/info-system.service";
 import {Menu} from "../../../models/menu";
@@ -171,7 +173,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
      * @param menu - 菜单
      * */
     public async updateMenu(menu: Menu): Promise<void> {
-        let applicationTypeDescripttor = new ApplicationTypeDescriptor();
+        let applicationTypeDescriptor = new ApplicationTypeDescriptor();
         let modalRef = this._modalService.create({
             nzTitle: "修改菜单",
             nzWidth: "500px",
@@ -183,7 +185,7 @@ export class IndexComponent extends ComponentBase implements OnInit {
             nzComponentParams: {
                 menuId: menu.id,
                 infoSystemName: menu.infoSystemInfo?.name,
-                applicationTypeName: applicationTypeDescripttor.transform(menu.applicationType),
+                applicationTypeName: applicationTypeDescriptor.transform(menu.applicationType),
                 parentMenuName: menu.parent?.name,
                 menuName: menu.name,
                 url: menu.url,

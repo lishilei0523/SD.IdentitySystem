@@ -1,7 +1,8 @@
 import {Component, OnInit} from '@angular/core';
-import {PageModel, ComponentBase} from "sd-infrastructure";
 import {NzModalService} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
+import {ComponentBase} from "../../../base/component.base";
+import {PageModel} from "../../../values/structs/page-model";
 import {InfoSystem} from "../../../models/info-system";
 import {InfoSystemService} from "../../../services/info-system.service";
 import {Role} from "../../../models/role";
