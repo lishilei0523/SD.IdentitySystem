@@ -77,18 +77,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "sd-identitysystem-client:build"
+                      "buildTarget": "sd-identitysystem-client:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "sd-identitysystem-client:build:production"
+                          "buildTarget": "sd-identitysystem-client:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "sd-identitysystem-client:build"
+                      "buildTarget": "sd-identitysystem-client:build"
                     }
                 },
                 "test": {
