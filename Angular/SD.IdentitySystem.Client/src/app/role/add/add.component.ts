@@ -1,5 +1,5 @@
 import {Component, Input, OnInit, ViewChild} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {NzTreeComponent, NzTreeNode} from "ng-zorro-antd/tree";
 import {ComponentBase} from "../../../base/component.base";
@@ -24,7 +24,7 @@ export class AddComponent extends ComponentBase implements OnInit {
     private readonly _modalRef: NzModalRef;
 
     /*表单建造者*/
-    private readonly _formBuilder: FormBuilder;
+    private readonly _formBuilder: UntypedFormBuilder;
 
     /*权限服务*/
     private readonly _authorityService: AuthorityService;
@@ -35,7 +35,7 @@ export class AddComponent extends ComponentBase implements OnInit {
     /**
      * 创建角色创建组件构造器
      * */
-    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, authorityService: AuthorityService, roleService: RoleService) {
+    public constructor(modalRef: NzModalRef, formBuilder: UntypedFormBuilder, authorityService: AuthorityService, roleService: RoleService) {
         super();
         this._modalRef = modalRef;
         this._formBuilder = formBuilder;
@@ -68,7 +68,7 @@ export class AddComponent extends ComponentBase implements OnInit {
     public authorityTree: Array<NzNode> = new Array<NzNode>();
 
     /*表单*/
-    public formGroup!: FormGroup;
+    public formGroup!: UntypedFormGroup;
 
     //endregion
 

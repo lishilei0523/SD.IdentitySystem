@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {environment} from "../../../environments/environment";
 import {Router} from "@angular/router";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ComponentBase} from "../../../base/component.base";
 import {Membership} from "../../../values/constants/membership";
 import {LoginInfo} from "../../../values/structs/login-info";
@@ -23,7 +23,7 @@ export class LoginComponent extends ComponentBase implements OnInit {
     private readonly _router: Router;
 
     /*表单建造者*/
-    private readonly _formBuilder: FormBuilder;
+    private readonly _formBuilder: UntypedFormBuilder;
 
     /*首页服务*/
     private readonly _homeService: HomeService;
@@ -31,7 +31,7 @@ export class LoginComponent extends ComponentBase implements OnInit {
     /**
      * 创建登录组件构造器
      * */
-    public constructor(router: Router, formBuilder: FormBuilder, homeService: HomeService) {
+    public constructor(router: Router, formBuilder: UntypedFormBuilder, homeService: HomeService) {
         super();
         this._router = router;
         this._formBuilder = formBuilder;
@@ -49,7 +49,7 @@ export class LoginComponent extends ComponentBase implements OnInit {
     public password: string = "";
 
     /*表单组*/
-    public formGroup!: FormGroup;
+    public formGroup!: UntypedFormGroup;
 
     //endregion
 

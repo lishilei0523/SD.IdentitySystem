@@ -1,7 +1,7 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {ComponentBase} from "../../../base/component.base";
 import {UserService} from "../../../services/user.service";
 
@@ -22,7 +22,7 @@ export class ResetPasswordComponent extends ComponentBase implements OnInit {
     private readonly _messageService: NzMessageService;
 
     /*表单建造者*/
-    private readonly _formBuilder: FormBuilder;
+    private readonly _formBuilder: UntypedFormBuilder;
 
     /*用户服务*/
     private readonly _userService: UserService;
@@ -30,7 +30,7 @@ export class ResetPasswordComponent extends ComponentBase implements OnInit {
     /**
      * 创建用户重置密码组件构造器
      * */
-    public constructor(modalRef: NzModalRef, messageService: NzMessageService, formBuilder: FormBuilder, userService: UserService) {
+    public constructor(modalRef: NzModalRef, messageService: NzMessageService, formBuilder: UntypedFormBuilder, userService: UserService) {
         super();
         this._modalRef = modalRef;
         this._messageService = messageService;
@@ -53,7 +53,7 @@ export class ResetPasswordComponent extends ComponentBase implements OnInit {
     public confirmedPassword = "";
 
     /*表单*/
-    public formGroup!: FormGroup;
+    public formGroup!: UntypedFormGroup;
 
     //endregion
 

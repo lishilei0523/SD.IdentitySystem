@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {ComponentBase} from "../../../base/component.base";
 import {UserService} from "../../../services/user.service";
@@ -18,7 +18,7 @@ export class ResetPrivateKeyComponent extends ComponentBase implements OnInit {
     private readonly _modalRef: NzModalRef;
 
     /*表单建造者*/
-    private readonly _formBuilder: FormBuilder;
+    private readonly _formBuilder: UntypedFormBuilder;
 
     /*用户服务*/
     private readonly _userService: UserService;
@@ -26,7 +26,7 @@ export class ResetPrivateKeyComponent extends ComponentBase implements OnInit {
     /**
      * 创建用户重置私钥组件构造器
      * */
-    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, userService: UserService) {
+    public constructor(modalRef: NzModalRef, formBuilder: UntypedFormBuilder, userService: UserService) {
         super();
         this._modalRef = modalRef;
         this._formBuilder = formBuilder;
@@ -46,7 +46,7 @@ export class ResetPrivateKeyComponent extends ComponentBase implements OnInit {
     public privateKey: string = "";
 
     /*表单*/
-    public formGroup!: FormGroup;
+    public formGroup!: UntypedFormGroup;
 
     //endregion
 

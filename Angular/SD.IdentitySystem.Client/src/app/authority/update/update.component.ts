@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {ComponentBase} from "../../../base/component.base";
 import {AuthorityService} from "../../../services/authority.service";
@@ -18,7 +18,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     private readonly _modalRef: NzModalRef;
 
     /*表单建造者*/
-    private readonly _formBuilder: FormBuilder;
+    private readonly _formBuilder: UntypedFormBuilder;
 
     /*权限服务*/
     private readonly _authorityService: AuthorityService;
@@ -26,7 +26,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     /**
      * 创建权限修改组件构造器
      * */
-    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, authorityService: AuthorityService) {
+    public constructor(modalRef: NzModalRef, formBuilder: UntypedFormBuilder, authorityService: AuthorityService) {
         super();
         this._modalRef = modalRef;
         this._formBuilder = formBuilder;
@@ -62,7 +62,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     public description: string | null = null;
 
     /*表单*/
-    public formGroup!: FormGroup;
+    public formGroup!: UntypedFormGroup;
 
     //endregion
 

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {NzMessageService} from "ng-zorro-antd/message";
 import {ComponentBase} from "../../../base/component.base";
@@ -22,7 +22,7 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
     private readonly _messageService: NzMessageService;
 
     /*表单建造者*/
-    private readonly _formBuilder: FormBuilder;
+    private readonly _formBuilder: UntypedFormBuilder;
 
     /*用户服务*/
     private readonly _homeService: HomeService;
@@ -30,7 +30,7 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
     /**
      * 创建用户修改密码组件构造器
      * */
-    public constructor(modalRef: NzModalRef, messageService: NzMessageService, formBuilder: FormBuilder, homeService: HomeService) {
+    public constructor(modalRef: NzModalRef, messageService: NzMessageService, formBuilder: UntypedFormBuilder, homeService: HomeService) {
         super();
         this._modalRef = modalRef;
         this._messageService = messageService;
@@ -56,7 +56,7 @@ export class UpdatePasswordComponent extends ComponentBase implements OnInit {
     public confirmedPassword: string = "";
 
     /*表单*/
-    public formGroup!: FormGroup;
+    public formGroup!: UntypedFormGroup;
 
     //endregion
 

@@ -1,5 +1,5 @@
 import {Component, Input, OnInit} from '@angular/core';
-import {FormBuilder, FormGroup, Validators} from "@angular/forms";
+import {UntypedFormBuilder, UntypedFormGroup, Validators} from "@angular/forms";
 import {NzModalRef} from "ng-zorro-antd/modal";
 import {ComponentBase} from "../../../base/component.base";
 import {MenuService} from "../../../services/menu.service";
@@ -18,7 +18,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     private readonly _modalRef: NzModalRef;
 
     /*表单建造者*/
-    private readonly _formBuilder: FormBuilder;
+    private readonly _formBuilder: UntypedFormBuilder;
 
     /*菜单服务*/
     private readonly _menuService: MenuService;
@@ -26,7 +26,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     /**
      * 创建菜单修改组件构造器
      * */
-    public constructor(modalRef: NzModalRef, formBuilder: FormBuilder, menuService: MenuService) {
+    public constructor(modalRef: NzModalRef, formBuilder: UntypedFormBuilder, menuService: MenuService) {
         super();
         this._modalRef = modalRef;
         this._formBuilder = formBuilder;
@@ -74,7 +74,7 @@ export class UpdateComponent extends ComponentBase implements OnInit {
     public sort: number | null = null;
 
     /*表单*/
-    public formGroup!: FormGroup;
+    public formGroup!: UntypedFormGroup;
 
     //endregion
 
