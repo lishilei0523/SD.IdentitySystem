@@ -12,7 +12,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     /// <summary>
     /// 权限管理服务契约接口
     /// </summary>
-    [ServiceContract(Namespace = "http://SD.IdentitySystem.IAppService.Interfaces")]
+    [ServiceContract]
     public interface IAuthorizationContract : IApplicationService
     {
         //命令部分

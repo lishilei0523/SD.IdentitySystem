@@ -5,9 +5,9 @@
     <Company>SD</Company>
     <Description>SD.IdentitySystem 身份认证系统服务接口</Description>
     <Copyright>Copyright © SD 2024</Copyright>
-    <Version>4.6.1</Version>
-    <AssemblyVersion>4.6.1</AssemblyVersion>
-    <FileVersion>4.6.1.0</FileVersion>
+    <Version>4.6.2</Version>
+    <AssemblyVersion>4.6.2</AssemblyVersion>
+    <FileVersion>4.6.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -30,7 +30,7 @@
   </ItemGroup>
 
   <ItemGroup Condition="$(TargetFramework.Equals('net8.0'))">
-    <PackageReference Include="System.ServiceModel.Primitives" Version="8.0.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.0" />
   </ItemGroup>
 
   <ItemGroup>

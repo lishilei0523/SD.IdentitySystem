@@ -1,0 +1,8 @@
+﻿[Unit]
+Description=SD.IdentitySystem.AppService(WCF)
+
+[Service]
+ExecStart=/usr/bin/dotnet /home/lee/Publish/身份认证系统服务(WCF)/SD.IdentitySystem.AppService.Host.dll
+
+[Install]
+WantedBy=multi-user.target

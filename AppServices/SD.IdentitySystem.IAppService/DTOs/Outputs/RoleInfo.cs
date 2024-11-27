@@ -6,7 +6,7 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     /// <summary>
     /// 角色数据传输对象
     /// </summary>
-    [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
+    [DataContract]
     public class RoleInfo : BaseDTO
     {
         #region 信息系统编号 —— string InfoSystemNo

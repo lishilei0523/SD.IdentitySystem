@@ -8,9 +8,16 @@
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Copyright>Copyright © SD 2024</Copyright>
-    <Version>4.6.1</Version>
-    <AssemblyVersion>4.6.1</AssemblyVersion>
-    <FileVersion>4.6.1.0</FileVersion>
+    <Version>4.6.2</Version>
+    <AssemblyVersion>4.6.2</AssemblyVersion>
+    <FileVersion>4.6.2.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
+    <DefineConstants>OS_WINDOWS</DefineConstants>
+  </PropertyGroup>
+  <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Linux'))">
+    <DefineConstants>OS_LINUX</DefineConstants>
   </PropertyGroup>
 
   <ItemGroup>
@@ -25,7 +32,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.0" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
     <PackageReference Include="CoreWCF.Primitives" Version="1.6.0" />
     <PackageReference Include="CoreWCF.Http" Version="1.6.0" />
     <PackageReference Include="CoreWCF.NetTcp" Version="1.6.0" />
@@ -36,10 +43,13 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
+    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="8.0.1" />
     <PackageReference Include="MrAdvice" Version="2.15.0" />
+    <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" />
+    <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.1.3" />
     <PackageReference Include="SD.Toolkits.Redis" Version="2.1.2" />
-    <PackageReference Include="SD.IOC.Core" Version="2.2.4" />
+    <PackageReference Include="SD.IOC.Core" Version="2.3.0" />
     <PackageReference Include="SD.IOC.Extension.NetCore" Version="1.2.0" />
     <PackageReference Include="SD.IOC.Integration.WCF" Version="2.2.3" />
     <PackageReference Include="SD.AOP.Core" Version="2.3.1" />

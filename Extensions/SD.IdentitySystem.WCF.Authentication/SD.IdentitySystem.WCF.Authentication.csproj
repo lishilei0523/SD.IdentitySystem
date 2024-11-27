@@ -34,7 +34,7 @@
 
   <ItemGroup Condition="$(TargetFramework.Equals('net8.0'))">
     <PackageReference Include="CoreWCF.Primitives" Version="1.6.0" />
-    <PackageReference Include="System.ServiceModel.Primitives" Version="8.0.0" />
+    <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.0" />
   </ItemGroup>
 
   <ItemGroup>

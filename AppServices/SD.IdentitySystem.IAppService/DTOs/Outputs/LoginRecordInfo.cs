@@ -7,8 +7,7 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     /// <summary>
     /// 登录记录数据传输对象
     /// </summary>
-    /// <remarks>勿忘[DataMember]</remarks>
-    [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
+    [DataContract]
     public class LoginRecordInfo : BaseDTO
     {
         #region 公钥 —— Guid PublicKey

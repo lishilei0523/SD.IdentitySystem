@@ -5,7 +5,7 @@ namespace SD.IdentitySystem.IAppService.DTOs.Inputs
     /// <summary>
     /// 权限参数模型
     /// </summary>
-    [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Inputs")]
+    [DataContract]
     public struct AuthorityParam
     {
         /// <summary>

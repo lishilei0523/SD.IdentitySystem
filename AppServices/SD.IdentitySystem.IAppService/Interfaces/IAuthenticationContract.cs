@@ -7,7 +7,7 @@ namespace SD.IdentitySystem.IAppService.Interfaces
     /// <summary>
     /// 身份认证服务契约接口
     /// </summary>
-    [ServiceContract(Namespace = "http://SD.IdentitySystem.IAppService.Interfaces")]
+    [ServiceContract]
     public interface IAuthenticationContract : IApplicationService
     {
         #region # 登录 —— LoginInfo Logon(string privateKey)

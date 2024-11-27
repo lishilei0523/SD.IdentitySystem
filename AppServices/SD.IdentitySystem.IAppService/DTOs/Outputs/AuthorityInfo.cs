@@ -7,7 +7,7 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     /// <summary>
     /// 权限数据传输对象
     /// </summary>
-    [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
+    [DataContract]
     public class AuthorityInfo : BaseDTO
     {
         #region 信息系统编号 —— string InfoSystemNo

@@ -1,5 +1,6 @@
 ﻿using CoreWCF;
 using CoreWCF.Channels;
+using Microsoft.AspNetCore.Authorization;
 using SD.CacheManager;
 using SD.Common;
 using SD.IdentitySystem.AppService.Maps;
@@ -60,6 +61,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// </summary>
         /// <param name="privateKey">私钥</param>
         /// <returns>登录信息</returns>
+        [AllowAnonymous]
         [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
         public LoginInfo Logon(string privateKey)
         {
@@ -105,6 +107,7 @@ namespace SD.IdentitySystem.AppService.Implements
         /// <param name="password">密码</param>
         /// <param name="clientId">客户端Id</param>
         /// <returns>登录信息</returns>
+        [AllowAnonymous]
         [OperationBehavior(Impersonation = ImpersonationOption.Allowed)]
         public LoginInfo Login(string loginId, string password, string clientId = null)
         {

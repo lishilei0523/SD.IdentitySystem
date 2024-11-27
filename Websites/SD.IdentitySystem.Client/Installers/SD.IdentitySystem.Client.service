@@ -1,0 +1,8 @@
+﻿[Unit]
+Description=SD.IdentitySystem.Client
+
+[Service]
+ExecStart=/usr/bin/dotnet /home/lee/Publish/身份认证系统网站(ASP.NET Core)/SD.IdentitySystem.Client.dll
+
+[Install]
+WantedBy=multi-user.target

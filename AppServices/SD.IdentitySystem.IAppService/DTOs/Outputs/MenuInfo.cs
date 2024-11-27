@@ -8,7 +8,7 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     /// <summary>
     /// 菜单数据传输对象
     /// </summary>
-    [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
+    [DataContract]
     public class MenuInfo : BaseDTO
     {
         #region 信息系统编号 —— string InfoSystemNo

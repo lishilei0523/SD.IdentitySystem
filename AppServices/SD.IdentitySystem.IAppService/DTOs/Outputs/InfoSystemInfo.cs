@@ -1,13 +1,13 @@
-﻿using System.Runtime.Serialization;
-using SD.Infrastructure.Constants;
+﻿using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
+using System.Runtime.Serialization;
 
 namespace SD.IdentitySystem.IAppService.DTOs.Outputs
 {
     /// <summary>
     /// 信息系统数据传输对象
     /// </summary>
-    [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
+    [DataContract]
     public class InfoSystemInfo : BaseDTO
     {
         #region 管理员用户名 —— string AdminLoginId

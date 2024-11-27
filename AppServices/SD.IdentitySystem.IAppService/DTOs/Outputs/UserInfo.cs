@@ -6,7 +6,7 @@ namespace SD.IdentitySystem.IAppService.DTOs.Outputs
     /// <summary>
     /// 用户数据传输对象
     /// </summary>
-    [DataContract(Namespace = "http://SD.IdentitySystem.IAppService.DTOs.Outputs")]
+    [DataContract]
     public class UserInfo : BaseDTO
     {
         #region 私钥 —— string PrivateKey
