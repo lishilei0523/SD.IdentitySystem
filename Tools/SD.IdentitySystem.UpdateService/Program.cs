@@ -1,9 +1,11 @@
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using SD.Toolkits.AspNet;
+#if RELEASE
 using Serilog;
 using System;
 using System.IO;
+#endif
 
 namespace SD.IdentitySystem.UpdateService
 {
@@ -32,7 +34,7 @@ namespace SD.IdentitySystem.UpdateService
                 webBuilder.UseWebRoot(AspNetSetting.StaticFilesPath);
                 webBuilder.UseStartup<Startup>();
             });
-
+#if RELEASE
             //ÈÕÖ¾ÅäÖÃ
             string logFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
             Directory.CreateDirectory(logFolder);
@@ -41,7 +43,7 @@ namespace SD.IdentitySystem.UpdateService
                 .WriteTo.Async(config => config.File($"{logFolder}/Log_.txt", rollingInterval: RollingInterval.Day, buffered: true), 1000)
                 .CreateLogger();
             hostBuilder.UseSerilog();
-
+#endif
             IHost host = hostBuilder.Build();
             host.Run();
         }

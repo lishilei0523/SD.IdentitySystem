@@ -2,9 +2,11 @@ using CoreWCF.Configuration;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Hosting;
 using SD.Toolkits.AspNet;
+#if RELEASE
 using Serilog;
 using System;
 using System.IO;
+#endif
 
 namespace SD.IdentitySystem.AppService.Host
 {
@@ -34,7 +36,7 @@ namespace SD.IdentitySystem.AppService.Host
             //依赖注入配置
             ServiceLocator serviceLocator = new ServiceLocator();
             hostBuilder.UseServiceProviderFactory(serviceLocator);
-
+#if RELEASE
             //日志配置
             string logFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
             Directory.CreateDirectory(logFolder);
@@ -43,6 +45,7 @@ namespace SD.IdentitySystem.AppService.Host
                 .WriteTo.Async(config => config.File($"{logFolder}/Log_.txt", rollingInterval: RollingInterval.Day, buffered: true), 1000)
                 .CreateLogger();
             hostBuilder.UseSerilog();
+#endif
 #if OS_LINUX
             //Linux系统服务配置
             hostBuilder.UseSystemd();

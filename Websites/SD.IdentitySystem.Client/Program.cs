@@ -2,9 +2,11 @@
 using Microsoft.Extensions.Hosting;
 using SD.Infrastructure.AOP.Aspects;
 using SD.Toolkits.AspNet;
+#if RELEASE
 using Serilog;
 using System;
 using System.IO;
+#endif
 
 [assembly: UIExceptionAspect]
 namespace SD.IdentitySystem.Client
@@ -32,7 +34,7 @@ namespace SD.IdentitySystem.Client
             //依赖注入配置
             ServiceLocator serviceLocator = new ServiceLocator();
             hostBuilder.UseServiceProviderFactory(serviceLocator);
-
+#if RELEASE
             //日志配置
             string logFolder = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Logs");
             Directory.CreateDirectory(logFolder);
@@ -41,6 +43,7 @@ namespace SD.IdentitySystem.Client
                 .WriteTo.Async(config => config.File($"{logFolder}/Log_.txt", rollingInterval: RollingInterval.Day, buffered: true), 1000)
                 .CreateLogger();
             hostBuilder.UseSerilog();
+#endif
 #if OS_LINUX
             //Linux系统服务配置
             hostBuilder.UseSystemd();
