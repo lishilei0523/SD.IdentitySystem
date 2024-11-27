@@ -7,7 +7,7 @@ namespace SD.IdentitySystem.StubWCF.Client.Interfaces
     /// <summary>
     /// WCF客户端契约接口
     /// </summary>
-    [ServiceContract(Namespace = "http://SD.Infrastructure.WCFTests.Interfaces")]
+    [ServiceContract]
     public interface IClientContract : IApplicationService
     {
         /// <summary>
