@@ -1,13 +1,13 @@
 <Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net40;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
     <Description>SD.IdentitySystem 用户信息组件</Description>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Copyright>Copyright © SD 2024</Copyright>
-    <Version>4.2.1</Version>
-    <AssemblyVersion>4.2.1</AssemblyVersion>
-    <FileVersion>4.2.1.0</FileVersion>
+    <Version>4.3.0</Version>
+    <AssemblyVersion>4.3.0</AssemblyVersion>
+    <FileVersion>4.3.0.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">

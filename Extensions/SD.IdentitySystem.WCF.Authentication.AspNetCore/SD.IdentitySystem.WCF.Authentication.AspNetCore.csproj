@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>netcoreapp3.1;net6.0;net8.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Description>SD.IdentitySystem WCF身份认证组件 - ASP.NET Core客户端</Description>
@@ -17,10 +17,6 @@
     <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.WCF.Authentication.AspNetCore.xml</DocumentationFile>
   </PropertyGroup>
 
-  <ItemGroup Condition="$(TargetFramework.Equals('netcoreapp3.1'))">
-    <PackageReference Include="System.ServiceModel.Primitives" Version="4.10.0" />
-  </ItemGroup>
-
   <ItemGroup Condition="$(TargetFramework.Equals('net6.0'))">
     <PackageReference Include="System.ServiceModel.Primitives" Version="6.2.0" />
   </ItemGroup>
@@ -30,7 +26,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.1.1" />
+    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.2.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
   </ItemGroup>
 </Project>

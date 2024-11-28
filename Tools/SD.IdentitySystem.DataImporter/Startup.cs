@@ -40,9 +40,9 @@ namespace SD.IdentitySystem.DataImporter
         /// <summary>
         /// 应用程序启动事件
         /// </summary>
-        protected override void OnStartup(object sender, StartupEventArgs eventArgs)
+        protected override async void OnStartup(object sender, StartupEventArgs eventArgs)
         {
-            base.DisplayRootViewFor<HomeViewModel>();
+            await base.DisplayRootViewForAsync<HomeViewModel>();
         }
         #endregion
 
