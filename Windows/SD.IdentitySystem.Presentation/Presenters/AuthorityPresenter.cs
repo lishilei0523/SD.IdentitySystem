@@ -5,7 +5,12 @@ using SD.Infrastructure.WPF.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+#if NET48_OR_GREATER
 using System.ServiceModel.Extensions;
+#endif
+#if NET8_0_OR_GREATER
+using SD.IOC.Extension.Grpc.ServiceModels;
+#endif
 
 namespace SD.IdentitySystem.Presentation.Presenters
 {

@@ -4,10 +4,15 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using System.Collections.Generic;
-using System.ServiceModel.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+#if NET48_OR_GREATER
+using System.ServiceModel.Extensions;
+#endif
+#if NET8_0_OR_GREATER
+using SD.IOC.Extension.Grpc.ServiceModels;
+#endif
 
 namespace SD.IdentitySystem.Client.ViewModels.InfoSystemContext
 {

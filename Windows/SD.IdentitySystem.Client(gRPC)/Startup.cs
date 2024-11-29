@@ -9,19 +9,21 @@ using SD.Infrastructure.WPF.Caliburn.Extensions;
 using SD.IOC.Core.Mediators;
 using System;
 using System.Collections.Generic;
-using System.Net;
-using System.ServiceModel;
+using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
-#if NET45_OR_GREATER
+#if NET48_OR_GREATER
 using Autofac;
 using SD.IOC.Core.Extensions;
+using System.Net;
+using System.ServiceModel;
 #endif
-#if NETCOREAPP3_1_OR_GREATER
+#if NET8_0_OR_GREATER
+using Grpc.Core;
 using Microsoft.Extensions.DependencyInjection;
 using SD.IOC.Extension.NetCore;
-using SD.IOC.Extension.NetCore.ServiceModel;
+using SD.IOC.Extension.Grpc;
 #endif
 
 namespace SD.IdentitySystem.Client
@@ -75,18 +77,17 @@ namespace SD.IdentitySystem.Client
             MessageBox.Show(errorMessage, "错误", MessageBoxButton.OK, MessageBoxImage.Error);
 
             #region # 身份认证异常处理
-
+#if NET48_OR_GREATER
             if (exception is FaultException faultException && faultException.Code.Name == HttpStatusCode.Unauthorized.ToString())
+#endif
+#if NET8_0_OR_GREATER
+            if (exception is RpcException rpcException && rpcException.StatusCode == StatusCode.Unauthenticated)
+#endif
             {
-                IList<Window> activeWindows = new List<Window>();
-                foreach (Window window in Application.Current.Windows)
-                {
-                    activeWindows.Add(window);
-                }
+                IList<Window> activeWindows = Application.Current.Windows.Cast<Window>().ToList();
                 await base.DisplayRootViewForAsync<LoginViewModel>();
                 activeWindows.ForEach(window => window.Close());
             }
-
             #endregion
 
             //记录日志
@@ -120,14 +121,14 @@ namespace SD.IdentitySystem.Client
             //初始化依赖注入容器
             if (!ResolveMediator.ContainerBuilt)
             {
-#if NET45_OR_GREATER
+#if NET48_OR_GREATER
                 ContainerBuilder containerBuilder = ResolveMediator.GetContainerBuilder();
                 containerBuilder.RegisterConfigs();
 #endif
-#if NETCOREAPP3_1_OR_GREATER
+#if NET8_0_OR_GREATER
                 IServiceCollection serviceCollection = ResolveMediator.GetServiceCollection();
                 serviceCollection.RegisterConfigs();
-                serviceCollection.RegisterServiceModels();
+                serviceCollection.RegisterGrpcServiceModels();
 #endif
                 ResolveMediator.Build();
             }
