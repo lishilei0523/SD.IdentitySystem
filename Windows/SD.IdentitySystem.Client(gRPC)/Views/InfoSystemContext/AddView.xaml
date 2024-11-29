@@ -1,0 +1,59 @@
+﻿<Window x:Class="SD.IdentitySystem.Client.Views.InfoSystemContext.AddView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
+        xmlns:cm="http://www.caliburnproject.org"
+        xmlns:sd="https://github.com/lishilei0523/SD.Framework"
+        mc:Ignorable="d"
+        Title="创建信息系统" 
+        Width="450" Height="380" ResizeMode="NoResize" 
+        FontSize="14"
+        WindowStyle="ThreeDBorderWindow"
+        WindowStartupLocation="CenterOwner"
+        fluentWpf:AcrylicWindow.Enabled="True"
+        fluentWpf:AcrylicWindow.AcrylicWindowStyle="NoIcon">
+
+    <busyIndicator:BusyMask IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
+        <Grid>
+            <Grid.RowDefinitions>
+                <!--表单区-->
+                <RowDefinition Height="300" />
+                <!--占位区-->
+                <RowDefinition Height="*" />
+                <!--控制区-->
+                <RowDefinition Height="50" />
+            </Grid.RowDefinitions>
+            <!--表单区-->
+            <StackPanel Grid.Row="0" Grid.IsSharedSizeScope="True" Margin="20,30">
+                <sd:FormItem Label="信息系统编号：">
+                    <TextBox Text="{Binding InfoSystemNo}" Style="{StaticResource TextBoxRevealStyle}" />
+                </sd:FormItem>
+                <sd:FormItem Label="信息系统名称：">
+                    <TextBox Text="{Binding InfoSystemName}" Style="{StaticResource TextBoxRevealStyle}" />
+                </sd:FormItem>
+                <sd:FormItem Label="系统管理员账号：">
+                    <TextBox Text="{Binding AdminLoginId}" Style="{StaticResource TextBoxRevealStyle}" />
+                </sd:FormItem>
+                <sd:FormItem Label="应用程序类型：">
+                    <ComboBox ItemsSource="{Binding ApplicationTypes}" 
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              SelectedValue="{Binding ApplicationType}"
+                              Style="{StaticResource ComboBox.Styles.Fluent}" />
+                </sd:FormItem>
+            </StackPanel>
+            <!--占位区-->
+            <Grid Grid.Row="1" />
+            <!--控制区-->
+            <Grid Grid.Row="2" Style="{StaticResource Form.Styles.Submit.Grid}">
+                <WrapPanel Style="{StaticResource Form.Styles.Submit.WrapPanel}">
+                    <Button Content="确定" cm:Message.Attach="Submit()" Style="{StaticResource Button.Styles.Fluent.Focus}" />
+                    <Button Content="取消" cm:Message.Attach="TryCloseAsync('false')" Style="{StaticResource Button.Styles.Fluent.Default}" />
+                </WrapPanel>
+            </Grid>
+        </Grid>
+    </busyIndicator:BusyMask>
+</Window>

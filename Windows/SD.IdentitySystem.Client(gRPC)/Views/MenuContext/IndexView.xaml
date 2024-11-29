@@ -1,0 +1,92 @@
+﻿<UserControl x:Class="SD.IdentitySystem.Client.Views.MenuContext.IndexView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:cm="http://www.caliburnproject.org"
+             xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
+             xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+             xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+             xmlns:sd="https://github.com/lishilei0523/SD.Framework"
+             mc:Ignorable="d">
+
+    <UserControl.Resources>
+        <ResourceDictionary Source="/Resources/MenuContext/IndexView.xaml" />
+    </UserControl.Resources>
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--功能区-->
+            <RowDefinition Height="Auto" />
+            <!--内容区-->
+            <RowDefinition Height="*" />
+            <!--内容控制区-->
+            <RowDefinition Height="30" />
+        </Grid.RowDefinitions>
+        <!--功能区-->
+        <Border Grid.Row="0" Style="{StaticResource Panel.Styles.Function.Border}">
+            <Grid Background="WhiteSmoke">
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <!--操作按钮区-->
+                <WrapPanel Grid.Row="0" Style="{StaticResource WrapPanel.Styles.Function.Operation}">
+                    <Button cm:Message.Attach="CreateMenu()"
+                            Style="{StaticResource Button.Styles.Fluent.Transparent.Round}">
+                        <WrapPanel>
+                            <iconPacks:PackIconMaterialDesign Kind="Add" />
+                            <TextBlock Text="新增" Margin="2,0,0,0" />
+                        </WrapPanel>
+                    </Button>
+                    <Button cm:Message.Attach="RemoveMenus()"
+                            Style="{StaticResource Button.Styles.Fluent.Transparent.Round}">
+                        <WrapPanel>
+                            <iconPacks:PackIconMaterialDesign Kind="Remove" />
+                            <TextBlock Text="删除" Margin="2,0,0,0" />
+                        </WrapPanel>
+                    </Button>
+                </WrapPanel>
+                <!--查询按钮区-->
+                <WrapPanel Grid.Row="1" Style="{StaticResource WrapPanel.Styles.Function.Query}">
+                    <TextBlock Text="信息系统：" />
+                    <ComboBox ItemsSource="{Binding InfoSystems}" 
+                              DisplayMemberPath="Name"
+                              SelectedValue="{Binding SelectedInfoSystem}"
+                              mah:TextBoxHelper.Watermark="全部" 
+                              Style="{StaticResource ComboBox.Styles.Default}" />
+                    <TextBlock Text="应用程序类型：" Margin="10,0,0,0" />
+                    <ComboBox ItemsSource="{Binding ApplicationTypes}" 
+                              DisplayMemberPath="Value"
+                              SelectedValuePath="Key"
+                              SelectedValue="{Binding SelectedApplicationType}"
+                              mah:TextBoxHelper.Watermark="全部" 
+                              Style="{StaticResource ComboBox.Styles.Default}" />
+                    <Button cm:Message.Attach="LoadMenus()" Style="{StaticResource Button.Styles.Fluent.Focus}">
+                        <WrapPanel>
+                            <iconPacks:PackIconMaterialDesign Kind="Search" />
+                            <TextBlock Text="搜索" Margin="3,0,0,0" />
+                        </WrapPanel>
+                    </Button>
+                </WrapPanel>
+            </Grid>
+        </Border>
+        <!--内容区-->
+        <busyIndicator:BusyMask Grid.Row="1" IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
+            <Grid Background="WhiteSmoke">
+                <sd:TreeListView ItemsSource="{Binding Menus}"
+                                 ColumnsDefinition="{StaticResource Menu.TreeListView.ColumnDefinitions}"
+                                 Style="{StaticResource TreeListView.Styles.Default}"
+                                 ItemContainerStyle="{StaticResource TreeListViewItem.Styles.Default}">
+                    <sd:TreeListView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding SubNodes}"  />
+                    </sd:TreeListView.ItemTemplate>
+                </sd:TreeListView>
+            </Grid>
+        </busyIndicator:BusyMask>
+        <!--内容控制区-->
+        <Border Grid.Row="2" Style="{StaticResource Panel.Styles.Function.Border}">
+            <Grid Background="WhiteSmoke" />
+        </Border>
+    </Grid>
+</UserControl>

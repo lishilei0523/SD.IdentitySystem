@@ -1,0 +1,144 @@
+﻿<Window x:Class="SD.IdentitySystem.Client.Views.HomeContext.IndexView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:iconPacks="http://metro.mahapps.com/winfx/xaml/iconpacks"
+        xmlns:cm="http://www.caliburnproject.org"
+        xmlns:mah="http://metro.mahapps.com/winfx/xaml/controls"
+        xmlns:fluentWpf="clr-namespace:SourceChord.FluentWPF;assembly=FluentWPF"
+        xmlns:busyIndicator="clr-namespace:BusyIndicator;assembly=BusyIndicator"
+        mc:Ignorable="d"
+        Title="Powered by SD.Framework"
+        Width="1440" Height="900" 
+        FontSize="14"
+        WindowStyle="ThreeDBorderWindow"
+        WindowStartupLocation="CenterScreen"
+        fluentWpf:AcrylicWindow.Enabled="True"
+        fluentWpf:AcrylicWindow.AcrylicAccentState="Gradient">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <!--Header-->
+            <RowDefinition Height="70" />
+            <!--Body-->
+            <RowDefinition Height="*" />
+            <!--Footer-->
+            <RowDefinition Height="25" />
+        </Grid.RowDefinitions>
+        <!--Header-->
+        <Border Grid.Row="0" BorderBrush="#CCCCCC" BorderThickness="0,0,0,1">
+            <Grid>
+                <!--Banner图片-->
+                <Grid.Background>
+                    <ImageBrush ImageSource="/Content/Images/banner.gif" Stretch="Fill" />
+                </Grid.Background>
+                <Grid.ColumnDefinitions>
+                    <!--系统标题-->
+                    <ColumnDefinition Width="*" />
+                    <!--面板按钮-->
+                    <ColumnDefinition Width="380" />
+                </Grid.ColumnDefinitions>
+                <!--系统标题-->
+                <TextBlock Grid.Column="0" Text="统一身份认证后台管理" FontSize="26" Foreground="#1B4567" Margin="20,0,0,0" VerticalAlignment="Center" />
+                <!--面板按钮-->
+                <Grid Grid.Column="1">
+                    <WrapPanel Margin="10,0,0,10" HorizontalAlignment="Left" VerticalAlignment="Bottom">
+                        <TextBlock Text="欢迎您：" FontSize="13" />
+                        <TextBlock Text="{Binding LoginInfo.RealName}" FontSize="13" />
+                    </WrapPanel>
+                    <WrapPanel Margin="0,10,55,0" HorizontalAlignment="Right" VerticalAlignment="Top">
+                        <Button cm:Message.Attach="Logout()" Style="{StaticResource Button.Styles.Fluent.Transparent.Default}">
+                            <WrapPanel>
+                                <iconPacks:PackIconMaterialDesign Kind="ExitToApp" />
+                                <TextBlock Text="注销用户" Margin="3,0,0,0" />
+                            </WrapPanel>
+                        </Button>
+                        <Button cm:Message.Attach="UpdatePassword()" Style="{StaticResource Button.Styles.Fluent.Transparent.Default}">
+                            <WrapPanel>
+                                <iconPacks:PackIconMaterialDesign Kind="Lock" />
+                                <TextBlock Text="修改密码" Margin="3,0,0,0" />
+                            </WrapPanel>
+                        </Button>
+                    </WrapPanel>
+                </Grid>
+            </Grid>
+        </Border>
+        <!--Body-->
+        <mah:HamburgerMenu Grid.Row="1" Style="{DynamicResource HamburgerMenu.Panel.Styles.Default}" 
+                           DisplayMode="CompactInline"
+                           IsPaneOpen="True"
+                           CanResizeOpenPane="True"
+                           PaneBackground="Transparent"
+                           PaneForeground="Black"
+                           OpenPaneLength="200"
+                           HamburgerWidth="48"
+                           HamburgerHeight="30"
+                           PaneMargin="0"
+                           PaneHeaderMargin="0">
+            <!--Menu-->
+            <mah:HamburgerMenu.ItemsSource>
+                <TreeView ItemsSource="{Binding LoginMenuInfos}" 
+                          Style="{StaticResource TreeView.Styles.Menu}" 
+                          ItemContainerStyle="{StaticResource TreeViewItem.Styles.Menu}">
+                    <TreeView.ItemTemplate>
+                        <HierarchicalDataTemplate ItemsSource="{Binding SubMenuInfos}">
+                            <WrapPanel Background="Transparent"
+                                       cm:Message.Attach="[Event MouseLeftButtonDown] = [Action Navigate($datacontext)]">
+                                <iconPacks:PackIconMaterialDesign Kind="{Binding Icon}" />
+                                <TextBlock Text="{Binding Name}" Margin="3,0,0,0" />
+                            </WrapPanel>
+                        </HierarchicalDataTemplate>
+                    </TreeView.ItemTemplate>
+                </TreeView>
+            </mah:HamburgerMenu.ItemsSource>
+            <!--Body-->
+            <mah:HamburgerMenu.Content>
+                <busyIndicator:BusyMask IndicatorType="Cupertino" IsBusy="{Binding IsBusy}">
+                    <Grid>
+                        <!--Documents-->
+                        <TabControl ItemsSource="{Binding Items}" SelectedItem="{Binding ActiveDocument}" 
+                                Style="{StaticResource TabControl.Styles.Document}" 
+                                ItemContainerStyle="{StaticResource TabControlItem.Styles.Document}">
+                            <TabControl.ItemTemplate>
+                                <DataTemplate>
+                                    <WrapPanel>
+                                        <TextBlock Text="{Binding DisplayName, UpdateSourceTrigger=PropertyChanged}" />
+                                        <Button cm:Message.Attach="DeactivateItem($dataContext, 'true')" 
+                                            Style="{StaticResource Button.Styles.Fluent.Transparent.Close}">
+                                            <TextBlock Text="×" FontSize="16" HorizontalAlignment="Center" />
+                                        </Button>
+                                    </WrapPanel>
+                                </DataTemplate>
+                            </TabControl.ItemTemplate>
+                            <TabControl.ContentTemplate>
+                                <DataTemplate>
+                                    <ContentControl cm:View.Model="{Binding UpdateSourceTrigger=PropertyChanged}" />
+                                </DataTemplate>
+                            </TabControl.ContentTemplate>
+                        </TabControl>
+                        <Grid Visibility="{Binding BingVisibility}">
+                            <WebBrowser Source="https://cn.bing.com" />
+                        </Grid>
+                    </Grid>
+                </busyIndicator:BusyMask>
+            </mah:HamburgerMenu.Content>
+        </mah:HamburgerMenu>
+        <!--Footer-->
+        <Border Grid.Row="2" BorderBrush="#CCCCCC" BorderThickness="0,1,0,0">
+            <Grid Background="WhiteSmoke">
+                <WrapPanel Margin="20,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Center">
+                    <TextBlock Text="当前登录用户：" FontSize="12" />
+                    <TextBlock Text="{Binding LoginInfo.LoginId}" FontSize="12" />
+                </WrapPanel>
+                <WrapPanel Margin="0,0,40,0" HorizontalAlignment="Right" VerticalAlignment="Center">
+                    <TextBlock Text="开发及技术支持 —— " FontSize="12" xml:space="preserve" />
+                    <TextBlock Text="SlamDunk co.,ltd." TextDecorations="Underline" Foreground="Blue" FontSize="12"
+                               Cursor="Hand"
+                               cm:Message.Attach="[Event MouseLeftButtonDown] = [Action LaunchGitee()]" />
+                    <TextBlock Text="{Binding CurrentTime}" FontSize="12" />
+                </WrapPanel>
+            </Grid>
+        </Border>
+    </Grid>
+</Window>
