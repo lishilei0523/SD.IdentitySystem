@@ -1,5 +1,4 @@
 ﻿using CoreWCF;
-using CoreWCF.Channels;
 using Microsoft.AspNetCore.Authorization;
 using SD.CacheManager;
 using SD.Common;
@@ -218,48 +217,16 @@ namespace SD.IdentitySystem.AppService.Implements
         private string GetClientIP()
         {
             string ip = null;
-
-            #region # WCF获取
-
-            if (OperationContext.Current != null)
-            {
-                MessageProperties messageProperties = OperationContext.Current.IncomingMessageProperties;
-                if (messageProperties.TryGetValue(RemoteEndpointMessageProperty.Name, out object messageProperty))
-                {
-                    RemoteEndpointMessageProperty remoteEndpointMessageProperty = (RemoteEndpointMessageProperty)messageProperty;
-                    ip = remoteEndpointMessageProperty.Address;
-                }
-            }
-            if (!string.IsNullOrWhiteSpace(ip))
-            {
-                return ip;
-            }
-
-            #endregion
-
-            #region # WebApi获取
-
             if (OwinContextReader.Current != null)
             {
-                ip = OwinContextReader.Current.Connection.RemoteIpAddress.ToString();
+                ip = OwinContextReader.Current.Connection.RemoteIpAddress?.ToString();
             }
             if (!string.IsNullOrWhiteSpace(ip))
             {
                 return ip;
             }
 
-            #endregion
-
-            #region # 本机
-
-            if (string.IsNullOrWhiteSpace(ip))
-            {
-                ip = "localhost";
-            }
-
-            #endregion
-
-            return ip;
+            return "localhost";
         }
         #endregion
     }

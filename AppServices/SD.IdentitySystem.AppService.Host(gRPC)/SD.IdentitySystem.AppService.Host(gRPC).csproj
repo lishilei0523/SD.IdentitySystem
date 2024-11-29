@@ -55,7 +55,7 @@
     <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.2.0" />
     <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.2.0" />
-    <PackageReference Include="SD.Infrastructure.AOP" Version="2.3.0" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.4.0" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.3.0" />
     <PackageReference Include="SD.IdentitySystem.Membership.Grpc" Version="2.2.0" />
     <PackageReference Include="SD.IdentitySystem.Grpc.Authentication" Version="2.2.1" />

@@ -8,6 +8,7 @@ using SD.IdentitySystem.WCF.Authentication;
 using SD.Infrastructure.WCF.Server;
 using SD.IOC.Integration.WCF.Behaviors;
 using SD.Toolkits.AspNet;
+using SD.Toolkits.OwinCore.Middlewares;
 using System.Collections.Generic;
 using System.Configuration;
 
@@ -37,6 +38,9 @@ namespace SD.IdentitySystem.AppService.Host
         /// </summary>
         public void Configure(IApplicationBuilder appBuilder)
         {
+            //配置中间件
+            appBuilder.UseMiddleware<CacheOwinContextMiddleware>();
+
             //配置WCF服务
             ServiceMetadataBehavior metadataBehavior = appBuilder.ApplicationServices.GetRequiredService<ServiceMetadataBehavior>();
             metadataBehavior.HttpGetEnabled = true;
