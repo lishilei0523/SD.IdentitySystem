@@ -63,9 +63,9 @@
     <PackageReference Include="SD.Infrastructure.Global" Version="2.2.0" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.3.0" />
     <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.2.0" />
-    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.2.1" />
-    <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="2.1.3" />
-    <PackageReference Include="SD.IdentitySystem.AspNetCore.Authentication" Version="1.2.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.3.0" />
+    <PackageReference Include="SD.IdentitySystem.Membership.AspNetCore" Version="2.2.0" />
+    <PackageReference Include="SD.IdentitySystem.AspNetCore.Authentication" Version="2.2.0" />
   </ItemGroup>
 
   <ItemGroup>
