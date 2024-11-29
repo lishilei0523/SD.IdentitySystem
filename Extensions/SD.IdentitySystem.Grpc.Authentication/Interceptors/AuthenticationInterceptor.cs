@@ -13,7 +13,7 @@ using System.Threading.Tasks;
 namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
 {
     /// <summary>
-    /// gRPC身份认证拦截器
+    /// ASP.NET Core gRPC服务端身份认证拦截器
     /// </summary>
     public class AuthenticationInterceptor : Interceptor
     {

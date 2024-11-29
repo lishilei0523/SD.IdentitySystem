@@ -11,8 +11,6 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authe
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication.Common", "Extensions\SD.IdentitySystem.WCF.Authentication.Common\SD.IdentitySystem.WCF.Authentication.Common.csproj", "{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.WCF.Authentication.Xamarin", "Extensions\SD.IdentitySystem.WCF.Authentication.Xamarin\SD.IdentitySystem.WCF.Authentication.Xamarin.csproj", "{729F1A86-F3F6-4E4A-A1F0-2644CD49A416}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "02 - 身份认证扩展 - ASP.NET Core", "02 - 身份认证扩展 - ASP.NET Core", "{39428193-7C0B-4785-90F2-7C45A67B4D90}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.AspNetCore.Authentication", "Extensions\SD.IdentitySystem.AspNetCore.Authentication\SD.IdentitySystem.AspNetCore.Authentication.csproj", "{732C43F9-7EED-4DB5-BC92-BB120ED4CB73}"
@@ -41,6 +39,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Membershi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Membership.Grpc", "Extensions\SD.IdentitySystem.Membership.Grpc\SD.IdentitySystem.Membership.Grpc.csproj", "{B667FD7E-F99B-4890-8580-05F5B10F6B2E}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.Grpc.Authentication.Common", "Extensions\SD.IdentitySystem.Grpc.Authentication.Common\SD.IdentitySystem.Grpc.Authentication.Common.csproj", "{24C44964-2DE4-4F1C-A947-08F11DB93715}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -59,10 +59,6 @@ Global
 		{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FE93AC6F-B38F-412F-A2B1-2FBE2800C647}.Release|Any CPU.Build.0 = Release|Any CPU
-		{729F1A86-F3F6-4E4A-A1F0-2644CD49A416}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{729F1A86-F3F6-4E4A-A1F0-2644CD49A416}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{729F1A86-F3F6-4E4A-A1F0-2644CD49A416}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{729F1A86-F3F6-4E4A-A1F0-2644CD49A416}.Release|Any CPU.Build.0 = Release|Any CPU
 		{732C43F9-7EED-4DB5-BC92-BB120ED4CB73}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{732C43F9-7EED-4DB5-BC92-BB120ED4CB73}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{732C43F9-7EED-4DB5-BC92-BB120ED4CB73}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -107,6 +103,10 @@ Global
 		{B667FD7E-F99B-4890-8580-05F5B10F6B2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B667FD7E-F99B-4890-8580-05F5B10F6B2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B667FD7E-F99B-4890-8580-05F5B10F6B2E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{24C44964-2DE4-4F1C-A947-08F11DB93715}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{24C44964-2DE4-4F1C-A947-08F11DB93715}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{24C44964-2DE4-4F1C-A947-08F11DB93715}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{24C44964-2DE4-4F1C-A947-08F11DB93715}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -115,7 +115,6 @@ Global
 		{55E99FFF-1BCC-423F-B945-931A4F2BF2D3} = {4391B3BF-4B53-474A-8636-14BFA15DDB7B}
 		{53540D94-41FC-4415-BF61-CEC2E1172E8F} = {4391B3BF-4B53-474A-8636-14BFA15DDB7B}
 		{FE93AC6F-B38F-412F-A2B1-2FBE2800C647} = {4391B3BF-4B53-474A-8636-14BFA15DDB7B}
-		{729F1A86-F3F6-4E4A-A1F0-2644CD49A416} = {4391B3BF-4B53-474A-8636-14BFA15DDB7B}
 		{732C43F9-7EED-4DB5-BC92-BB120ED4CB73} = {39428193-7C0B-4785-90F2-7C45A67B4D90}
 		{6A55927F-87D9-40A1-96A8-316B8A0DE2D1} = {39428193-7C0B-4785-90F2-7C45A67B4D90}
 		{88D13463-74DB-4DF3-9933-D691327DD87F} = {39428193-7C0B-4785-90F2-7C45A67B4D90}
@@ -127,6 +126,7 @@ Global
 		{CA85800F-6408-4384-BE09-BBC4045B2B85} = {623424A5-633C-42E2-BD48-8C2F375417E1}
 		{0DDFC635-F28B-4879-ABF7-819B3C532E48} = {623424A5-633C-42E2-BD48-8C2F375417E1}
 		{B667FD7E-F99B-4890-8580-05F5B10F6B2E} = {623424A5-633C-42E2-BD48-8C2F375417E1}
+		{24C44964-2DE4-4F1C-A947-08F11DB93715} = {39428193-7C0B-4785-90F2-7C45A67B4D90}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {68A6A707-43D9-49D2-A1D9-140E19A613F2}
