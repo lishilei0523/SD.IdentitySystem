@@ -3,11 +3,11 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
 using System;
 using System.Linq;
-#if NET40_OR_GREATER
+#if NET462_OR_GREATER
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 #endif
-#if NETSTANDARD2_0_OR_GREATER
+#if NETSTANDARD2_0_OR_GREATER || NET6_0_OR_GREATER
 using CoreWCF;
 using CoreWCF.Channels;
 #endif

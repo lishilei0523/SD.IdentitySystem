@@ -13,7 +13,12 @@ namespace SD.IdentitySystem.Authorization.WPF.Attachers
     /// </summary>
     public static class AuthorizationAttacher
     {
-        #region # 构造器
+        #region # 字段及构造器
+
+        /// <summary>
+        /// 权限路径
+        /// </summary>
+        public static DependencyProperty AuthorityPathProperty;
 
         /// <summary>
         /// 静态构造器
@@ -29,21 +34,14 @@ namespace SD.IdentitySystem.Authorization.WPF.Attachers
         #region # 依赖属性
 
         #region 权限路径 —— DependencyProperty AuthorityPath
-
-        /// <summary>
-        /// 权限路径
-        /// </summary>
-        public static DependencyProperty AuthorityPathProperty;
-
         /// <summary>
         /// 权限路径
         /// </summary>
         public static DependencyProperty AuthorityPath
         {
-            get { return AuthorityPathProperty; }
-            set { AuthorityPathProperty = value; }
+            get => AuthorityPathProperty;
+            set => AuthorityPathProperty = value;
         }
-
         #endregion
 
         #endregion

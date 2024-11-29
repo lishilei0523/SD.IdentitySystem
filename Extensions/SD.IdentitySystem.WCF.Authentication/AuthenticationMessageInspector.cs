@@ -5,7 +5,7 @@ using SD.Infrastructure.Membership;
 using System;
 using System.Linq;
 using System.Net;
-#if NET40_OR_GREATER
+#if NET462_OR_GREATER
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Dispatcher;

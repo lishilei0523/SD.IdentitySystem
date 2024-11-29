@@ -1,5 +1,5 @@
 ﻿using System.Collections.ObjectModel;
-#if NET40_OR_GREATER
+#if NET462_OR_GREATER
 using System.ServiceModel;
 using System.ServiceModel.Channels;
 using System.ServiceModel.Description;
@@ -46,7 +46,7 @@ namespace SD.IdentitySystem.WCF.Authentication
         /// <param name="clientRuntime">客户端运行时</param>
         public void ApplyClientBehavior(System.ServiceModel.Description.ServiceEndpoint endpoint, System.ServiceModel.Dispatcher.ClientRuntime clientRuntime)
         {
-#if NET40_OR_GREATER
+#if NET462_OR_GREATER
             //添加消息拦截器
             clientRuntime.MessageInspectors.Add(new AuthenticationMessageInspector());
 #endif
@@ -58,7 +58,7 @@ namespace SD.IdentitySystem.WCF.Authentication
 
 
         //没有用
-#if NET40_OR_GREATER
+#if NET462_OR_GREATER
         //Shared
 
         /// <summary>

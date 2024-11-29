@@ -43,7 +43,7 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
                 string publicKey = headerEntry?.Value;
                 if (string.IsNullOrWhiteSpace(publicKey))
                 {
-                    string message = "身份认证消息头不存在，请检查程序！";
+                    const string message = "身份认证消息头不存在，请检查程序！";
                     NoPermissionException innerException = new NoPermissionException(message);
                     Status status = new Status(StatusCode.Unauthenticated, message, innerException);
                     throw new RpcException(status);
@@ -52,7 +52,7 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
                 LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey);
                 if (loginInfo == null)
                 {
-                    string message = "身份过期，请重新登录！";
+                    const string message = "身份过期，请重新登录！";
                     NoPermissionException innerException = new NoPermissionException(message);
                     Status status = new Status(StatusCode.Unauthenticated, message, innerException);
                     throw new RpcException(status);
