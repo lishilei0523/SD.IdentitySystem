@@ -1,0 +1,8 @@
+﻿[Unit]
+Description=SD.IdentitySystem.AppService(gRPC)
+
+[Service]
+ExecStart=/usr/bin/dotnet /home/lee/Publish/身份认证系统服务(gRPC)/SD.IdentitySystem.AppService.Host.dll
+
+[Install]
+WantedBy=multi-user.target

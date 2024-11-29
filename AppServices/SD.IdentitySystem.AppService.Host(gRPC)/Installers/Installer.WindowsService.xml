@@ -1,0 +1,6 @@
+<service>
+  <id>SD.IdentitySystem.AppService(gRPC)</id>
+  <name>SD.IdentitySystem.AppService(gRPC)</name>
+  <description>身份认证系统服务(gRPC)</description>
+  <executable>SD.IdentitySystem.AppService.Host.exe</executable>
+</service>

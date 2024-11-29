@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Authors>Lee</Authors>
+    <Company>SD</Company>
+    <Description>SD.IdentitySystem 用户信息组件 - ASP.NET gRPC提供者</Description>
+    <Copyright>Copyright © SD 2024</Copyright>
+    <Version>2.2.0</Version>
+    <AssemblyVersion>2.2.0</AssemblyVersion>
+    <FileVersion>2.2.0.0</FileVersion>
+  </PropertyGroup>
+
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
+    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.Membership.Grpc.xml</DocumentationFile>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
+    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Membership.Grpc.xml</DocumentationFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Toolkits.Grpc.Server" Version="1.2.0" />
+    <PackageReference Include="SD.CacheManager" Version="2.2.0" />
+    <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj" />
+  </ItemGroup>
+</Project>

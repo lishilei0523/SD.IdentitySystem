@@ -23,6 +23,8 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "03 - 仓储实现", "03 - �
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SD.IdentitySystem.Repository", "AppServices\SD.IdentitySystem.Repository\SD.IdentitySystem.Repository.csproj", "{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SD.IdentitySystem.AppService.Host(gRPC)", "AppServices\SD.IdentitySystem.AppService.Host(gRPC)\SD.IdentitySystem.AppService.Host(gRPC).csproj", "{9BEBB922-9B35-442C-9874-B8856E6BD597}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -53,6 +55,10 @@ Global
 		{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7DFBB9E0-A348-4408-BE63-03CFBC9242FD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9BEBB922-9B35-442C-9874-B8856E6BD597}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9BEBB922-9B35-442C-9874-B8856E6BD597}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9BEBB922-9B35-442C-9874-B8856E6BD597}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9BEBB922-9B35-442C-9874-B8856E6BD597}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -64,6 +70,7 @@ Global
 		{52BF9A76-1B01-4C29-8067-E6F1C88896FD} = {6F925C59-1BA0-4E0F-B61D-4F573A08C64B}
 		{20443D88-D509-43C6-942C-0CE1923BC91E} = {4E46AC96-3000-4185-81F3-18D7FFE5CF82}
 		{7DFBB9E0-A348-4408-BE63-03CFBC9242FD} = {736BB2F7-0FF7-4CAD-9713-BB82C3EDF7D1}
+		{9BEBB922-9B35-442C-9874-B8856E6BD597} = {08AC5539-024B-4EB6-A9A8-625BFE3671A7}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {9428DB86-89E0-425E-9C5A-836EC410CD83}

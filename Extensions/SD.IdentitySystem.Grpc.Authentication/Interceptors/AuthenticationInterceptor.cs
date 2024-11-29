@@ -7,7 +7,6 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNet;
-using SD.Toolkits.OwinCore.Extensions;
 using System;
 using System.Threading.Tasks;
 
@@ -18,18 +17,71 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
     /// </summary>
     public class AuthenticationInterceptor : Interceptor
     {
+        #region # 拦截Unary服务处理 —— override Task<TResponse> UnaryServerHandler(TRequest request...
         /// <summary>
-        /// 拦截服务请求
+        /// 拦截Unary服务处理
         /// </summary>
         public override async Task<TResponse> UnaryServerHandler<TRequest, TResponse>(TRequest request, ServerCallContext context, UnaryServerMethod<TRequest, TResponse> continuation)
         {
-            Endpoint endpoint = OwinContextReader.Current.GetEndpoint();
+            Authenticate(context);
+
+            return await continuation.Invoke(request, context);
+        }
+        #endregion
+
+        #region # 拦截客户端Streaming服务处理 —— override Task<TResponse> ClientStreamingServerHandler(...
+        /// <summary>
+        /// 拦截客户端Streaming服务处理
+        /// </summary>
+        public override async Task<TResponse> ClientStreamingServerHandler<TRequest, TResponse>(IAsyncStreamReader<TRequest> requestStream, ServerCallContext context, ClientStreamingServerMethod<TRequest, TResponse> continuation)
+        {
+            Authenticate(context);
+
+            return await continuation.Invoke(requestStream, context);
+        }
+        #endregion
+
+        #region # 拦截服务端Streaming服务处理 —— override Task ServerStreamingServerHandler(TRequest request...
+        /// <summary>
+        /// 拦截服务端Streaming服务处理
+        /// </summary>
+        public override async Task ServerStreamingServerHandler<TRequest, TResponse>(TRequest request, IServerStreamWriter<TResponse> responseStream, ServerCallContext context, ServerStreamingServerMethod<TRequest, TResponse> continuation)
+        {
+            Authenticate(context);
+
+            await continuation.Invoke(request, responseStream, context);
+        }
+        #endregion
+
+        #region # 拦截双向Streaming服务处理 —— override Task DuplexStreamingServerHandler(IAsyncStreamReader...
+        /// <summary>
+        /// 拦截双向Streaming服务处理
+        /// </summary>
+        public override async Task DuplexStreamingServerHandler<TRequest, TResponse>(IAsyncStreamReader<TRequest> requestStream, IServerStreamWriter<TResponse> responseStream, ServerCallContext context, DuplexStreamingServerMethod<TRequest, TResponse> continuation)
+        {
+            Authenticate(context);
+
+            await continuation.Invoke(requestStream, responseStream, context);
+        }
+        #endregion
+
+
+        //Private
+
+        #region # 认证 —— static void Authenticate(ServerCallContext context)
+        /// <summary>
+        /// 认证
+        /// </summary>
+        private static void Authenticate(ServerCallContext context)
+        {
+            HttpContext httpContext = context.GetHttpContext();
+            Endpoint endpoint = httpContext.GetEndpoint();
 
             #region # 验证
 
             if (endpoint == null)
             {
-                return await continuation.Invoke(request, context);
+                return;
             }
 
             #endregion
@@ -61,8 +113,7 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
                 //通过后，重新设置缓存过期时间
                 CacheMediator.Set(publicKey, loginInfo, DateTime.Now.AddMinutes(GlobalSetting.AuthenticationTimeout));
             }
-
-            return await continuation.Invoke(request, context);
         }
+        #endregion
     }
 }
