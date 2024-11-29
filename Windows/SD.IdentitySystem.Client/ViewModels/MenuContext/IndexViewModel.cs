@@ -12,10 +12,15 @@ using SD.Toolkits.Recursion.Tree;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.ServiceModel.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
+#if NET48_OR_GREATER
+using System.ServiceModel.Extensions;
+#endif
+#if NET8_0_OR_GREATER
+using SD.IOC.Extension.Grpc.ServiceModels;
+#endif
 
 namespace SD.IdentitySystem.Client.ViewModels.MenuContext
 {

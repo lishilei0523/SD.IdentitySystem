@@ -7,11 +7,16 @@ using SD.Infrastructure.WPF.Caliburn.Aspects;
 using SD.Infrastructure.WPF.Caliburn.Base;
 using SD.Infrastructure.WPF.Commands;
 using SD.IOC.Core.Mediators;
-using System.ServiceModel.Extensions;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
+#if NET48_OR_GREATER
+using System.ServiceModel.Extensions;
+#endif
+#if NET8_0_OR_GREATER
+using SD.IOC.Extension.Grpc.ServiceModels;
+#endif
 
 namespace SD.IdentitySystem.Client.ViewModels.HomeContext
 {
