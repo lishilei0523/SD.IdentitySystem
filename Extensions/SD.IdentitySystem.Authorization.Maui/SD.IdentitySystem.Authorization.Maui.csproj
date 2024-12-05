@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem 授权组件 - Xamarin</Description>
+    <Description>SD.IdentitySystem 授权组件 - MAUI</Description>
     <Copyright>Copyright © SD 2024</Copyright>
     <Version>2.2.0</Version>
     <AssemblyVersion>2.2.0</AssemblyVersion>
@@ -11,14 +11,14 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.Authorization.Xamarin.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.Authorization.Maui.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Authorization.Xamarin.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Authorization.Maui.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Xamarin.Forms" Version="5.0.0.2662" />
+    <PackageReference Include="Microsoft.Maui.Controls" Version="8.0.100" />
     <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
   </ItemGroup>
 

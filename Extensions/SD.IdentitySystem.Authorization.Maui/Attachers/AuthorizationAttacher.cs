@@ -1,12 +1,12 @@
-﻿using SD.Infrastructure.Constants;
+﻿using Microsoft.Maui.Controls;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.Membership;
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using Xamarin.Forms;
 
-namespace SD.IdentitySystem.Authorization.Xamarin.Attachers
+namespace SD.IdentitySystem.Authorization.Maui.Attachers
 {
     /// <summary>
     /// 授权附加器
@@ -16,6 +16,11 @@ namespace SD.IdentitySystem.Authorization.Xamarin.Attachers
         #region # 构造器
 
         /// <summary>
+        /// 权限路径依赖属性
+        /// </summary>
+        public static readonly BindableProperty AuthorityPathProperty;
+
+        /// <summary>
         /// 静态构造器
         /// </summary>
         static AuthorizationAttacher()
@@ -23,17 +28,6 @@ namespace SD.IdentitySystem.Authorization.Xamarin.Attachers
             //注册依赖属性
             AuthorityPathProperty = BindableProperty.CreateAttached("AuthorityPath", typeof(string), typeof(AuthorizationAttacher), null, BindingMode.TwoWay, null, OnAuthorityPathChanged);
         }
-
-        #endregion
-
-        #region # 依赖属性
-
-        #region 权限路径 —— BindableProperty AuthorityPathProperty
-        /// <summary>
-        /// 权限路径
-        /// </summary>
-        public static readonly BindableProperty AuthorityPathProperty;
-        #endregion
 
         #endregion
 
