@@ -1,7 +1,7 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using SD.IdentitySystem.AppService.Implements;
-using SD.IdentitySystem.Grpc.Authentication.Interceptors;
+using SD.IdentitySystem.Grpc.Authentication;
 using SD.Infrastructure.AspNetCore.Server.Middlewares;
 using SD.Toolkits.Grpc.Server.Interceptors;
 using SD.Toolkits.OwinCore.Middlewares;

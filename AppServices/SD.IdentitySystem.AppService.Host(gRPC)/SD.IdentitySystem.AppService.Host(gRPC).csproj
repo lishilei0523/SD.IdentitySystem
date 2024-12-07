@@ -58,7 +58,7 @@
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.4.0" />
     <PackageReference Include="SD.IdentitySystem.Membership" Version="4.3.0" />
     <PackageReference Include="SD.IdentitySystem.Membership.Grpc" Version="2.2.0" />
-    <PackageReference Include="SD.IdentitySystem.Grpc.Authentication" Version="2.2.1" />
+    <PackageReference Include="SD.IdentitySystem.Grpc.Authentication" Version="2.2.2" />
   </ItemGroup>
 
   <ItemGroup>

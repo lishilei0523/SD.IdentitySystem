@@ -1,10 +1,10 @@
 ﻿<configuration>
   <sd.grpc>
-    <!--gRPC/通用客户端身份认证拦截配置-->
+    <!--gRPC客户端/服务端身份认证拦截配置-->
     <authInterceptors>
-      <authInterceptor name="commonAuthentication"
+      <authInterceptor name="grpcAuthentication"
                        type="SD.IdentitySystem.Grpc.Authentication.AuthenticationInterceptor"
-                       assembly="SD.IdentitySystem.Grpc.Authentication.Common" />
+                       assembly="SD.IdentitySystem.Grpc.Authentication" />
     </authInterceptors>
   </sd.grpc>
 </configuration>

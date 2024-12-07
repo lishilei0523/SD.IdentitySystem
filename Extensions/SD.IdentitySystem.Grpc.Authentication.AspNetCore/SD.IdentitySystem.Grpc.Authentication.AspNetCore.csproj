@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+    <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem gRPC身份认证组件 - 通用客户端</Description>
+    <Description>SD.IdentitySystem gRPC身份认证组件 - ASP.NET Core客户端</Description>
     <Copyright>Copyright © SD 2024</Copyright>
     <Version>2.2.2</Version>
     <AssemblyVersion>2.2.2</AssemblyVersion>
@@ -11,14 +11,15 @@
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.Grpc.Authentication.Common.xml</DocumentationFile>
+    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.Grpc.Authentication.AspNetCore.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Grpc.Authentication.Common.xml</DocumentationFile>
+    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Grpc.Authentication.AspNetCore.xml</DocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
     <PackageReference Include="SD.Toolkits.Grpc.Client" Version="1.1.0" />
+    <PackageReference Include="SD.Toolkits.OwinCore" Version="1.2.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
   </ItemGroup>
 </Project>

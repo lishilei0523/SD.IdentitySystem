@@ -3,11 +3,11 @@
     <TargetFrameworks>net6.0;net8.0</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem ASP.NET Core gRPC身份认证组件</Description>
+    <Description>SD.IdentitySystem gRPC身份认证组件 - gRPC客户端/服务端</Description>
     <Copyright>Copyright © SD 2024</Copyright>
-    <Version>2.2.1</Version>
-    <AssemblyVersion>2.2.1</AssemblyVersion>
-    <FileVersion>2.2.1.0</FileVersion>
+    <Version>2.2.2</Version>
+    <AssemblyVersion>2.2.2</AssemblyVersion>
+    <FileVersion>2.2.2.0</FileVersion>
   </PropertyGroup>
 
   <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
@@ -25,6 +25,8 @@
     <PackageReference Include="Grpc.Core.Api" Version="2.67.0" />
     <PackageReference Include="Grpc.AspNetCore.Server" Version="2.67.0" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.2.0" />
+    <PackageReference Include="SD.Toolkits.Grpc.Server" Version="1.2.0" />
+    <PackageReference Include="SD.Toolkits.Grpc.Client" Version="1.1.0" />
     <PackageReference Include="SD.CacheManager" Version="2.2.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
   </ItemGroup>

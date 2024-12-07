@@ -40,7 +40,7 @@
     <PackageReference Include="SD.IOC.Core" Version="2.3.0" />
     <PackageReference Include="SD.IOC.Extension.NetCore" Version="2.3.0" />
     <PackageReference Include="SD.IOC.Extension.Grpc" Version="2.3.1" />
-    <PackageReference Include="SD.IdentitySystem.Grpc.Authentication.Common" Version="2.2.1" />
+    <PackageReference Include="SD.IdentitySystem.Grpc.Authentication.Common" Version="2.2.2" />
   </ItemGroup>
 
   <ItemGroup>

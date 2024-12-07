@@ -7,15 +7,18 @@ using SD.Infrastructure.Constants;
 using SD.Infrastructure.CustomExceptions;
 using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNet;
+using SD.Toolkits.Grpc.Client.Interfaces;
+using SD.Toolkits.Grpc.Server.Extensions;
 using System;
 using System.Threading.Tasks;
 
-namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
+// ReSharper disable once CheckNamespace
+namespace SD.IdentitySystem.Grpc.Authentication
 {
     /// <summary>
-    /// ASP.NET Core gRPC服务端身份认证拦截器
+    /// gRPC客户端/服务端身份认证拦截器
     /// </summary>
-    public class AuthenticationInterceptor : Interceptor
+    public class AuthenticationInterceptor : Interceptor, IAuthInterceptor
     {
         #region # 拦截Unary服务处理 —— override Task<TResponse> UnaryServerHandler(TRequest request...
         /// <summary>
@@ -62,6 +65,29 @@ namespace SD.IdentitySystem.Grpc.Authentication.Interceptors
             Authenticate(context);
 
             await continuation.Invoke(requestStream, responseStream, context);
+        }
+        #endregion
+
+        #region # 拦截客户端身份认证 —— Task AuthIntercept(AuthInterceptorContext context, Metadata metadata)
+        /// <summary>
+        /// 拦截客户端身份认证
+        /// </summary>
+        public Task AuthIntercept(AuthInterceptorContext context, Metadata metadata)
+        {
+            ServerCallContext callContext = ServerCallContextReader.Current;
+            if (callContext != null)
+            {
+                string headerKey = SessionKey.PublicKey.ToLower();
+                Metadata.Entry headerEntry = callContext.RequestHeaders.Get(headerKey);
+                string publicKey = headerEntry?.Value;
+                if (!string.IsNullOrWhiteSpace(publicKey))
+                {
+                    //添加登录信息元数据
+                    metadata.Add(headerKey, publicKey);
+                }
+            }
+
+            return Task.CompletedTask;
         }
         #endregion
 

@@ -1,10 +1,10 @@
 ﻿<configuration>
   <sd.grpc>
-    <!--gRPC/通用客户端身份认证拦截配置-->
+    <!--gRPC/ASP.NET Core客户端身份认证拦截配置-->
     <authInterceptors>
-      <authInterceptor name="commonAuthentication"
+      <authInterceptor name="aspAuthentication"
                        type="SD.IdentitySystem.Grpc.Authentication.AuthenticationInterceptor"
-                       assembly="SD.IdentitySystem.Grpc.Authentication.Common" />
+                       assembly="SD.IdentitySystem.Grpc.Authentication.AspNetCore" />
     </authInterceptors>
   </sd.grpc>
 </configuration>
