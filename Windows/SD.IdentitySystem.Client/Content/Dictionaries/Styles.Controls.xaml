@@ -55,7 +55,7 @@
     <!--TabControl文档样式-->
     <Style x:Key="TabControl.Styles.Document" TargetType="{x:Type TabControl}">
         <Setter Property="BorderBrush" Value="{DynamicResource SystemBaseLowColorBrush}" />
-        <Setter Property="BorderThickness" Value="1,1,1,1" />
+        <Setter Property="BorderThickness" Value="1,1,1,0" />
     </Style>
     <!--TabControlItem文档样式-->
     <Style x:Key="TabControlItem.Styles.Document" TargetType="{x:Type TabItem}">
