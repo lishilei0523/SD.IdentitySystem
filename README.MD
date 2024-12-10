@@ -10,7 +10,7 @@
         
     2、探索基于ASP.NET Core MVC的前端架构；
 
-    3、探索Angular + NG-ZORRO前端架构；
+    3、探索Angular + NG-Zorro前端架构；
 
     4、探索基于WPF MVVM的前端架构；
 
