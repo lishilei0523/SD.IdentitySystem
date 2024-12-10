@@ -38,8 +38,8 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="8.0.1" />
-    <PackageReference Include="ServiceModel.Grpc.AspNetCore" Version="1.11.0" />
-    <PackageReference Include="ServiceModel.Grpc.MessagePackMarshaller" Version="1.11.0" />
+    <PackageReference Include="ServiceModel.Grpc.AspNetCore" Version="1.11.1" />
+    <PackageReference Include="ServiceModel.Grpc.MessagePackMarshaller" Version="1.11.1" />
     <PackageReference Include="MrAdvice" Version="2.16.0" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" Condition="'$(Configuration)'=='Release'" />

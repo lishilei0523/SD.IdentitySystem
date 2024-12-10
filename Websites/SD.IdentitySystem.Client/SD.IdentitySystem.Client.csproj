@@ -51,7 +51,7 @@
     <PackageReference Include="SD.CacheManager" Version="2.2.0" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.2.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
-    <PackageReference Include="SD.Infrastructure.AOP" Version="2.3.0" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="2.4.0" />
     <PackageReference Include="SD.Infrastructure.AspNetMvcCore" Version="1.4.0" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.2" />
     <PackageReference Include="SD.IdentitySystem.AspNetCore.Authentication" Version="2.2.0" />

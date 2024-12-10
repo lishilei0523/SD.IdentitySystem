@@ -3,7 +3,7 @@
     <TargetFramework>netstandard2.0</TargetFramework>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Description>SD.IdentitySystem 用户信息组件 - ASP.NET gRPC提供者</Description>
+    <Description>SD.IdentitySystem 用户信息组件 - gRPC提供者</Description>
     <Copyright>Copyright © SD 2024</Copyright>
     <Version>2.2.0</Version>
     <AssemblyVersion>2.2.0</AssemblyVersion>

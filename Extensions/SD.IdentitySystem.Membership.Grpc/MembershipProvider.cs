@@ -8,7 +8,7 @@ using SD.Toolkits.Grpc.Server.Extensions;
 namespace SD.IdentitySystem
 {
     /// <summary>
-    /// ASP.NET Core gRPC Membership提供者
+    /// gRPC Membership提供者
     /// </summary>
     public class MembershipProvider : IMembershipProvider
     {
