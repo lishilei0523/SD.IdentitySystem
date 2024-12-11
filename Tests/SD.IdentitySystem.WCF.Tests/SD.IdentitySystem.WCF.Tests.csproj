@@ -12,12 +12,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Common" Version="3.3.0" />
+    <PackageReference Include="SD.Common" Version="3.4.0" />
     <PackageReference Include="SD.Toolkits.Redis" Version="2.2.0" />
     <PackageReference Include="SD.IOC.Core" Version="2.3.0" />
     <PackageReference Include="SD.IOC.Extension.NetFramework" Version="2.3.0" />
     <PackageReference Include="SD.CacheManager" Version="2.2.0" />
-    <PackageReference Include="SD.CacheManager.Redis" Version="2.2.0" />
+    <PackageReference Include="SD.CacheManager.Redis" Version="2.3.0" />
     <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
     <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.2" />
   </ItemGroup>

@@ -1,16 +1,16 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.OpenApi.Models;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
 using SD.IdentitySystem.AspNetCore.Authentication.Filters;
 using SD.Infrastructure.AspNetCore.Server.Middlewares;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.AspNetCore.Filters;
-using SD.Toolkits.OwinCore.Middlewares;
+using SD.Toolkits.AspNetCore.Middlewares;
+using SD.Toolkits.Json;
 using System;
 using System.IO;
 using System.Reflection;
+using System.Text.Json;
 
 namespace SD.IdentitySystem.AppService.Host
 {
@@ -55,17 +55,14 @@ namespace SD.IdentitySystem.AppService.Host
             {
                 options.Filters.Add<WebApiAuthenticationFilter>();
                 options.Filters.Add<WebApiExceptionFilter>();
-            }).AddNewtonsoftJson(options =>
+            }).AddJsonOptions(options =>
             {
                 //Camel命名设置
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 
                 //日期时间格式设置
-                IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter()
-                {
-                    DateTimeFormat = CommonConstants.DateTimeFormat
-                };
-                options.SerializerSettings.Converters.Add(dateTimeConverter);
+                DateTimeConverter dateTimeConverter = new DateTimeConverter(CommonConstants.DateTimeFormat);
+                options.JsonSerializerOptions.Converters.Add(dateTimeConverter);
             });
         }
 

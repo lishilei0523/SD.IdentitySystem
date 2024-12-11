@@ -1,7 +1,5 @@
 ﻿using AutoUpdaterDotNET;
 using Caliburn.Micro;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using SD.Common;
 using SD.IdentitySystem.Client.ViewModels.HomeContext;
 using SD.Infrastructure;
@@ -13,6 +11,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Threading;
+using SD.Toolkits.Json;
 #if NET48_OR_GREATER
 using Autofac;
 using SD.IOC.Core.Extensions;
@@ -72,8 +71,7 @@ namespace SD.IdentitySystem.Client
             BusyExtension.GlobalIdle();
 
             //提示消息
-            string errorMessage = string.Empty;
-            errorMessage = GetErrorMessage(exception.Message, ref errorMessage);
+            string errorMessage = exception.GetErrorMessage();
             MessageBox.Show(errorMessage, "错误", MessageBoxButton.OK, MessageBoxImage.Error);
 
             #region # 身份认证异常处理
@@ -161,39 +159,6 @@ namespace SD.IdentitySystem.Client
             IEnumerable<object> instances = ResolveMediator.ResolveAll(service);
 
             return instances;
-        }
-        #endregion
-
-        #region 获取错误消息 —— static string GetErrorMessage(string exceptionMessage...
-        /// <summary>
-        /// 获取错误消息
-        /// </summary>
-        /// <param name="exceptionMessage">异常消息</param>
-        /// <param name="errorMessage">错误消息</param>
-        /// <returns>错误消息</returns>
-        private static string GetErrorMessage(string exceptionMessage, ref string errorMessage)
-        {
-            try
-            {
-                const string errorMessageKey = "ErrorMessage";
-                JObject jObject = (JObject)JsonConvert.DeserializeObject(exceptionMessage);
-                if (jObject != null && jObject.ContainsKey(errorMessageKey))
-                {
-                    errorMessage = jObject.GetValue(errorMessageKey)?.ToString();
-                }
-                else
-                {
-                    errorMessage = exceptionMessage;
-                }
-
-                GetErrorMessage(errorMessage, ref errorMessage);
-
-                return errorMessage;
-            }
-            catch
-            {
-                return exceptionMessage;
-            }
         }
         #endregion
 

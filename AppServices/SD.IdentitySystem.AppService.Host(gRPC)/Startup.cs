@@ -3,8 +3,8 @@ using Microsoft.Extensions.DependencyInjection;
 using SD.IdentitySystem.AppService.Implements;
 using SD.IdentitySystem.Grpc.Authentication;
 using SD.Infrastructure.AspNetCore.Server.Middlewares;
+using SD.Toolkits.AspNetCore.Middlewares;
 using SD.Toolkits.Grpc.Server.Interceptors;
-using SD.Toolkits.OwinCore.Middlewares;
 using ServiceModel.Grpc.Configuration;
 
 namespace SD.IdentitySystem.AppService.Host

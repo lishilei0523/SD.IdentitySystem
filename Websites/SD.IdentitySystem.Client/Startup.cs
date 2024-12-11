@@ -1,11 +1,10 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
 using SD.IdentitySystem.AspNetCore.Authentication.Filters;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.AspNetCore.Filters;
-using SD.Toolkits.OwinCore.Middlewares;
+using SD.Toolkits.AspNetCore.Middlewares;
+using SD.Toolkits.Json;
 using SD.Toolkits.Redis;
 
 namespace SD.IdentitySystem.Client
@@ -25,17 +24,14 @@ namespace SD.IdentitySystem.Client
                 //添加过滤器
                 options.Filters.Add(new MvcExceptionFilter());
                 options.Filters.Add(new MvcAuthenticationFilter());
-            }).AddNewtonsoftJson(options =>
+            }).AddJsonOptions(options =>
             {
-                //JSON命名格式设置
-                options.SerializerSettings.ContractResolver = new DefaultContractResolver();
+                //JSON命名格式设置 null为Pascal格式
+                options.JsonSerializerOptions.PropertyNamingPolicy = null;
 
                 //日期时间格式设置
-                IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter()
-                {
-                    DateTimeFormat = CommonConstants.DateTimeFormat
-                };
-                options.SerializerSettings.Converters.Add(dateTimeConverter);
+                DateTimeConverter dateTimeConverter = new DateTimeConverter(CommonConstants.DateTimeFormat);
+                options.JsonSerializerOptions.Converters.Add(dateTimeConverter);
             });
 
             //添加Session及共享

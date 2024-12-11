@@ -18,7 +18,7 @@ namespace SD.IdentitySystem.Authorization.WPF.Attachers
         /// <summary>
         /// 权限路径依赖属性
         /// </summary>
-        public static readonly DependencyProperty AuthorityPathProperty;
+        public static DependencyProperty AuthorityPathProperty;
 
         /// <summary>
         /// 静态构造器

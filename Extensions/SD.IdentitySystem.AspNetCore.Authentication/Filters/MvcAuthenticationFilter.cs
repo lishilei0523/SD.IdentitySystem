@@ -6,7 +6,6 @@ using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using SD.Infrastructure.Constants;
 using SD.Toolkits.AspNet;
-using SD.Toolkits.OwinCore.Extensions;
 using System;
 using System.Net;
 
@@ -34,7 +33,7 @@ namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
 
             bool needAuthorize = AspNetSetting.Authorized;
             bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
-            bool existsSession = OwinContextReader.Current.Session.TryGetValue(GlobalSetting.ApplicationId, out _);
+            bool existsSession = context.HttpContext.Session.TryGetValue(GlobalSetting.ApplicationId, out _);
             if (needAuthorize && !allowAnonymous && !existsSession)
             {
                 //是不是Ajax请求

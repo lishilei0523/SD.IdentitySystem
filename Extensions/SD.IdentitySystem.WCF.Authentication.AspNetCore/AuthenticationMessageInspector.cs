@@ -2,7 +2,7 @@
 using Microsoft.Extensions.Primitives;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
-using SD.Toolkits.OwinCore.Extensions;
+using SD.Toolkits.AspNetCore.Extensions;
 using System;
 using System.ServiceModel;
 using System.ServiceModel.Channels;

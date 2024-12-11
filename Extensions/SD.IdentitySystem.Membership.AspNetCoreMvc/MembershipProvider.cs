@@ -3,7 +3,7 @@ using Microsoft.Extensions.Primitives;
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
-using SD.Toolkits.OwinCore.Extensions;
+using SD.Toolkits.AspNetCore.Extensions;
 using System;
 using System.Text.Json;
 
@@ -46,8 +46,9 @@ namespace SD.IdentitySystem
                 string loginInfoJson = httpContext.Session.GetString(GlobalSetting.ApplicationId);
                 if (!string.IsNullOrWhiteSpace(loginInfoJson))
                 {
-                    LoginInfo loginInfoSession = JsonSerializer.Deserialize<LoginInfo>(loginInfoJson);
-                    publicKey = loginInfoSession.PublicKey;
+                    LoginInfo loginInfo = JsonSerializer.Deserialize<LoginInfo>(loginInfoJson);
+
+                    return loginInfo;
                 }
             }
 

@@ -8,7 +8,7 @@ using SD.IdentitySystem.WCF.Authentication;
 using SD.Infrastructure.WCF.Server;
 using SD.IOC.Integration.WCF.Behaviors;
 using SD.Toolkits.AspNet;
-using SD.Toolkits.OwinCore.Middlewares;
+using SD.Toolkits.AspNetCore.Middlewares;
 using System.Collections.Generic;
 using System.Configuration;
 

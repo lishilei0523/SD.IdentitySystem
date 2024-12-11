@@ -3,7 +3,7 @@ using Microsoft.Extensions.Primitives;
 using SD.CacheManager;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
-using SD.Toolkits.OwinCore.Extensions;
+using SD.Toolkits.AspNetCore.Extensions;
 using System;
 using System.Text.Json;
 
