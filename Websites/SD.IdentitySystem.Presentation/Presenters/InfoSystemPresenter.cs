@@ -3,6 +3,7 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.IdentitySystem.Presentation.Models;
 using SD.Infrastructure.DTOBase;
+using SD.Infrastructure.PresentationBase;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -11,7 +12,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
     /// <summary>
     /// 信息系统呈现器
     /// </summary>
-    public class InfoSystemPresenter
+    public class InfoSystemPresenter : IPresenter
     {
         #region # 字段及构造器
 

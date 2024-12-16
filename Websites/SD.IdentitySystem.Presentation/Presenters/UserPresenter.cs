@@ -3,6 +3,7 @@ using SD.IdentitySystem.IAppService.Interfaces;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.IdentitySystem.Presentation.Models;
 using SD.Infrastructure.DTOBase;
+using SD.Infrastructure.PresentationBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -12,7 +13,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
     /// <summary>
     /// 用户呈现器
     /// </summary>
-    public class UserPresenter
+    public class UserPresenter : IPresenter
     {
         #region # 字段及构造器
 

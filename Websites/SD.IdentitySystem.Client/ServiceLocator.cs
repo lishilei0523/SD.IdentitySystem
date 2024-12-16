@@ -1,7 +1,7 @@
 ﻿using Microsoft.Extensions.DependencyInjection;
 using SD.IOC.Core.Mediators;
 using SD.IOC.Extension.NetCore;
-using SD.IOC.Extension.NetCore.ServiceModel;
+using SD.IOC.Extension.ServiceModel.Client;
 using System;
 
 namespace SD.IdentitySystem.Client

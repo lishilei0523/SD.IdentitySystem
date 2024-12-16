@@ -1,7 +1,7 @@
 ﻿using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.Presentation.EasyUI;
 using SD.IdentitySystem.Presentation.Models;
-using SD.Toolkits.EasyUI;
 using SD.Toolkits.Mapper;
 using System;
 using System.Collections.Generic;

@@ -1,13 +1,15 @@
 ﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.Presentation.EasyUI;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
-using SD.Infrastructure.AspNetMvcCore;
+using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
 using SD.Infrastructure.Membership;
-using SD.Toolkits.EasyUI;
+using SD.Toolkits.Drawing;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -158,11 +160,11 @@ namespace SD.IdentitySystem.Client.Controllers
         {
             #region # 校验验证码
 
-            string currentValidCode = MvcExtension.GetValidCode();
+            string currentValidCode = base.HttpContext.Session.GetString(SessionKey.ValidCode);
             if (currentValidCode != validCode)
             {
                 //清空验证码
-                MvcExtension.ClearValidCode();
+                base.HttpContext.Session.Remove(SessionKey.ValidCode);
 
                 throw new InvalidOperationException("验证码错误！");
             }
@@ -170,7 +172,7 @@ namespace SD.IdentitySystem.Client.Controllers
             #endregion
 
             //清空验证码
-            MvcExtension.ClearValidCode();
+            base.HttpContext.Session.Remove(SessionKey.ValidCode);
 
             //验证登录
             string clientId = NetworkExtension.GetLocalMacAddress();
@@ -186,7 +188,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [HttpPost]
         public void Logout()
         {
-            MvcExtension.Logout();
+            base.HttpContext.Session.Remove(GlobalSetting.ApplicationId);
         }
         #endregion
 
@@ -258,7 +260,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [HttpPost]
         public void RemoveUsers(IEnumerable<string> loginIds)
         {
-            loginIds = loginIds?.ToArray() ?? Array.Empty<string>();
+            loginIds = loginIds?.ToArray() ?? [];
             foreach (string loginId in loginIds)
             {
                 this._userContract.RemoveUser(loginId);
@@ -343,7 +345,11 @@ namespace SD.IdentitySystem.Client.Controllers
         [AllowAnonymous]
         public FileContentResult GetValidCode()
         {
-            FileContentResult validCodeImage = MvcExtension.GetValidCodeImage();
+            string validCode = ValidCodeGenerator.GenerateCode(4);
+            base.HttpContext.Session.SetString(SessionKey.ValidCode, validCode);
+
+            byte[] buffer = ValidCodeGenerator.GenerateStream(validCode);
+            FileContentResult validCodeImage = new FileContentResult(buffer, "image/jpeg");
 
             return validCodeImage;
         }

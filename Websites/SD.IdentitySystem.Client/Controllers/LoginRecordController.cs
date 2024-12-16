@@ -1,8 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SD.IdentitySystem.Presentation.EasyUI;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.EasyUI;
 using System;
 
 namespace SD.IdentitySystem.Client.Controllers

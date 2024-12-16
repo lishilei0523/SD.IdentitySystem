@@ -1,11 +1,11 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.Presentation.EasyUI;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -154,7 +154,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [HttpPost]
         public void RemoveAuthorities(IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds?.ToArray() ?? Array.Empty<Guid>();
+            authorityIds = authorityIds?.ToArray() ?? [];
             foreach (Guid authorityId in authorityIds)
             {
                 this._authorizationContract.RemoveAuthority(authorityId);
@@ -181,7 +181,7 @@ namespace SD.IdentitySystem.Client.Controllers
             }
 
             Node node = this._authorityPresenter.GetAuthorityTree(id, null);
-            IEnumerable<Node> tree = new[] { node };
+            IEnumerable<Node> tree = [node];
 
             return base.Json(tree);
         }
@@ -198,7 +198,7 @@ namespace SD.IdentitySystem.Client.Controllers
         public JsonResult GetAuthorityTreeByRole(Guid id)
         {
             Node node = this._authorityPresenter.GetAuthorityTreeByRole(id);
-            IEnumerable<Node> tree = new[] { node };
+            IEnumerable<Node> tree = [node];
 
             return base.Json(tree);
         }
@@ -215,7 +215,7 @@ namespace SD.IdentitySystem.Client.Controllers
         public JsonResult GetAuthorityTreeByMenu(Guid id)
         {
             Node node = this._authorityPresenter.GetAuthorityTreeByMenu(id);
-            IEnumerable<Node> tree = new[] { node };
+            IEnumerable<Node> tree = [node];
 
             return base.Json(tree);
         }

@@ -1,9 +1,10 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.Presentation.EasyUI;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.IdentitySystem.Presentation.Models;
 using SD.Infrastructure.Constants;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.PresentationBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
     /// <summary>
     /// 菜单呈现器
     /// </summary>
-    public class MenuPresenter
+    public class MenuPresenter : IPresenter
     {
         #region # 字段及构造器
 

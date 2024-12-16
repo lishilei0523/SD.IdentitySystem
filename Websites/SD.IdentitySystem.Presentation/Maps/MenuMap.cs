@@ -1,7 +1,7 @@
 ﻿using SD.Common;
 using SD.IdentitySystem.IAppService.DTOs.Outputs;
+using SD.IdentitySystem.Presentation.EasyUI;
 using SD.IdentitySystem.Presentation.Models;
-using SD.Toolkits.EasyUI;
 using SD.Toolkits.Mapper;
 using System;
 using System.Collections.Generic;
@@ -51,7 +51,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         public static ICollection<Node> ToTree(this IEnumerable<Menu> menus, Guid? parentId)
         {
             //验证
-            menus = menus?.ToArray() ?? Array.Empty<Menu>();
+            menus = menus?.ToArray() ?? [];
 
             //声明容器
             ICollection<Node> tree = new HashSet<Node>();
@@ -88,7 +88,7 @@ namespace SD.IdentitySystem.Presentation.Maps
         /// </summary>
         public static IEnumerable<Menu> ToTreeGrid(this IEnumerable<Menu> menus)
         {
-            Menu[] allMenus = menus?.ToArray() ?? Array.Empty<Menu>();
+            Menu[] allMenus = menus?.ToArray() ?? [];
             foreach (Menu menu in allMenus)
             {
                 menu.FillChildren(allMenus);

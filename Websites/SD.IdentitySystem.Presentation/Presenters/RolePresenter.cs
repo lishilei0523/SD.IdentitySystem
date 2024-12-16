@@ -1,9 +1,10 @@
 ﻿using SD.IdentitySystem.IAppService.DTOs.Outputs;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.Presentation.EasyUI;
 using SD.IdentitySystem.Presentation.Maps;
 using SD.IdentitySystem.Presentation.Models;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.EasyUI;
+using SD.Infrastructure.PresentationBase;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,7 +14,7 @@ namespace SD.IdentitySystem.Presentation.Presenters
     /// <summary>
     /// 角色呈现器
     /// </summary>
-    public class RolePresenter
+    public class RolePresenter : IPresenter
     {
         #region # 字段及构造器
 

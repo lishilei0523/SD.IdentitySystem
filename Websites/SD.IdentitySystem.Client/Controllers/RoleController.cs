@@ -1,9 +1,9 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.Presentation.EasyUI;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.DTOBase;
-using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -106,7 +106,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [HttpPost]
         public void CreateRole(string infoSystemNo, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds?.ToArray() ?? Array.Empty<Guid>();
+            authorityIds = authorityIds?.ToArray() ?? [];
 
             this._authorizationContract.CreateRole(infoSystemNo, roleName, description, authorityIds);
         }
@@ -123,7 +123,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [HttpPost]
         public void UpdateRole(Guid roleId, string roleName, string description, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds?.ToArray() ?? Array.Empty<Guid>();
+            authorityIds = authorityIds?.ToArray() ?? [];
 
             this._authorizationContract.UpdateRole(roleId, roleName, description, authorityIds);
         }
@@ -149,7 +149,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [HttpPost]
         public void RemoveRoles(IEnumerable<Guid> roleIds)
         {
-            roleIds = roleIds?.ToArray() ?? Array.Empty<Guid>();
+            roleIds = roleIds?.ToArray() ?? [];
             foreach (Guid roleId in roleIds)
             {
                 this._authorizationContract.RemoveRole(roleId);

@@ -1,10 +1,10 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using SD.Common;
 using SD.IdentitySystem.IAppService.Interfaces;
+using SD.IdentitySystem.Presentation.EasyUI;
 using SD.IdentitySystem.Presentation.Models;
 using SD.IdentitySystem.Presentation.Presenters;
 using SD.Infrastructure.Constants;
-using SD.Toolkits.EasyUI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -176,7 +176,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [HttpPost]
         public void RemoveMenus(IEnumerable<Guid> menuIds)
         {
-            menuIds = menuIds?.ToArray() ?? Array.Empty<Guid>();
+            menuIds = menuIds?.ToArray() ?? [];
             foreach (Guid menuId in menuIds)
             {
                 this._authorizationContract.RemoveMenu(menuId);
@@ -193,7 +193,7 @@ namespace SD.IdentitySystem.Client.Controllers
         [HttpPost]
         public void RelateAuthorities(Guid menuId, IEnumerable<Guid> authorityIds)
         {
-            authorityIds = authorityIds?.ToArray() ?? Array.Empty<Guid>();
+            authorityIds = authorityIds?.ToArray() ?? [];
 
             this._authorizationContract.RelateAuthoritiesToMenu(menuId, authorityIds);
         }
