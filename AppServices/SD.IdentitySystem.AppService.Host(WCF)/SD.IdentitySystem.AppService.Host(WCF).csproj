@@ -48,7 +48,7 @@
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.2.0" />
-    <PackageReference Include="SD.Toolkits.AspNetCore" Version="2.3.0" />
+    <PackageReference Include="SD.Toolkits.AspNetCore" Version="2.3.1" />
     <PackageReference Include="SD.Toolkits.Redis" Version="2.2.0" />
     <PackageReference Include="SD.IOC.Core" Version="2.3.0" />
     <PackageReference Include="SD.IOC.Extension.NetCore" Version="2.3.0" />

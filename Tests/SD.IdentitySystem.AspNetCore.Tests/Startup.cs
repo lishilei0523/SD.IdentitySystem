@@ -1,9 +1,9 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
-using Newtonsoft.Json.Converters;
-using Newtonsoft.Json.Serialization;
 using SD.Infrastructure.Constants;
-using SD.Toolkits.OwinCore.Middlewares;
+using SD.Toolkits.AspNetCore.Middlewares;
+using SD.Toolkits.Json;
+using System.Text.Json;
 
 namespace SD.IdentitySystem.AspNetCore.Tests
 {
@@ -17,17 +17,14 @@ namespace SD.IdentitySystem.AspNetCore.Tests
         /// </summary>
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers().AddNewtonsoftJson(options =>
+            services.AddControllers().AddJsonOptions(options =>
             {
                 //Camel命名设置
-                options.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
+                options.JsonSerializerOptions.PropertyNamingPolicy = JsonNamingPolicy.CamelCase;
 
                 //日期时间格式设置
-                IsoDateTimeConverter dateTimeConverter = new IsoDateTimeConverter()
-                {
-                    DateTimeFormat = CommonConstants.DateTimeFormat
-                };
-                options.SerializerSettings.Converters.Add(dateTimeConverter);
+                DateTimeConverter dateTimeConverter = new DateTimeConverter(CommonConstants.DateTimeFormat);
+                options.JsonSerializerOptions.Converters.Add(dateTimeConverter);
             });
         }
 

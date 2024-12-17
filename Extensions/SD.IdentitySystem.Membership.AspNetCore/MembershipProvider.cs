@@ -41,6 +41,17 @@ namespace SD.IdentitySystem
             {
                 publicKey = new Guid(header.ToString());
             }
+            if (httpContext != null && httpContext.Session.IsAvailable && !publicKey.HasValue)
+            {
+                string loginInfoJson = httpContext.Session.GetString(GlobalSetting.ApplicationId);
+                if (!string.IsNullOrWhiteSpace(loginInfoJson))
+                {
+                    LoginInfo loginInfo = JsonSerializer.Deserialize<LoginInfo>(loginInfoJson);
+
+                    return loginInfo;
+                }
+            }
+
             if (publicKey.HasValue)
             {
                 LoginInfo loginInfo = CacheMediator.Get<LoginInfo>(publicKey.ToString());

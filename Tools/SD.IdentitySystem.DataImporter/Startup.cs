@@ -1,12 +1,11 @@
 ﻿using Autofac;
 using Caliburn.Micro;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
 using SD.Common;
 using SD.IdentitySystem.DataImporter.ViewModels;
 using SD.Infrastructure.WPF.Caliburn.Extensions;
 using SD.IOC.Core.Extensions;
 using SD.IOC.Core.Mediators;
+using SD.Toolkits.Json;
 using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
@@ -52,15 +51,14 @@ namespace SD.IdentitySystem.DataImporter
         /// </summary>
         protected override void OnUnhandledException(object sender, DispatcherUnhandledExceptionEventArgs eventArgs)
         {
-            Exception exception = eventArgs.Exception;
+            Exception exception = eventArgs.Exception.GetInnerException();
             eventArgs.Handled = true;
 
             //释放遮罩
             BusyExtension.GlobalIdle();
 
             //提示消息
-            string errorMessage = string.Empty;
-            errorMessage = GetErrorMessage(exception.Message, ref errorMessage);
+            string errorMessage = exception.GetErrorMessage();
             MessageBox.Show(errorMessage, "错误", MessageBoxButton.OK, MessageBoxImage.Error);
 
             //记录日志
@@ -124,39 +122,6 @@ namespace SD.IdentitySystem.DataImporter
             IEnumerable<object> instances = ResolveMediator.ResolveAll(service);
 
             return instances;
-        }
-        #endregion
-
-        #region 获取错误消息 —— static string GetErrorMessage(string exceptionMessage...
-        /// <summary>
-        /// 获取错误消息
-        /// </summary>
-        /// <param name="exceptionMessage">异常消息</param>
-        /// <param name="errorMessage">错误消息</param>
-        /// <returns>错误消息</returns>
-        private static string GetErrorMessage(string exceptionMessage, ref string errorMessage)
-        {
-            try
-            {
-                const string errorMessageKey = "ErrorMessage";
-                JObject jObject = (JObject)JsonConvert.DeserializeObject(exceptionMessage);
-                if (jObject != null && jObject.ContainsKey(errorMessageKey))
-                {
-                    errorMessage = jObject.GetValue(errorMessageKey)?.ToString();
-                }
-                else
-                {
-                    errorMessage = exceptionMessage;
-                }
-
-                GetErrorMessage(errorMessage, ref errorMessage);
-
-                return errorMessage;
-            }
-            catch
-            {
-                return exceptionMessage;
-            }
         }
         #endregion
 

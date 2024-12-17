@@ -1,6 +1,5 @@
 ﻿using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Abstractions;
 using Microsoft.AspNetCore.Mvc.Controllers;
 using Microsoft.AspNetCore.Mvc.Filters;
 using Microsoft.Extensions.Primitives;
@@ -8,6 +7,7 @@ using SD.CacheManager;
 using SD.Infrastructure.Constants;
 using SD.Infrastructure.Membership;
 using SD.Toolkits.AspNet;
+using SD.Toolkits.AspNetCore.Extensions;
 using System;
 using System.Net;
 
@@ -18,21 +18,13 @@ namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
     /// </summary>
     public class WebApiAuthenticationFilter : IAuthorizationFilter
     {
-        #region # 字段
-
         /// <summary>
         /// 同步锁
         /// </summary>
         private static readonly object _Sync = new object();
 
-        #endregion
-
-
-        //Implements
-
-        #region # 执行授权过滤器事件 —— void OnAuthorization(AuthorizationFilterContext context)
         /// <summary>
-        /// 执行授权过滤器事件
+        /// 发生授权事件
         /// </summary>
         public void OnAuthorization(AuthorizationFilterContext context)
         {
@@ -41,7 +33,7 @@ namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
                 actionDescriptor.ControllerTypeInfo.IsDefined(typeof(ApiControllerAttribute), true))
             {
                 bool needAuthorize = AspNetSetting.Authorized;
-                bool allowAnonymous = this.HasAttr<AllowAnonymousAttribute>(context.ActionDescriptor);
+                bool allowAnonymous = context.ActionDescriptor.HasAttr<AllowAnonymousAttribute>();
                 if (needAuthorize && !allowAnonymous)
                 {
                     if (!context.HttpContext.Request.Headers.TryGetValue(SessionKey.PublicKey, out StringValues header))
@@ -81,42 +73,5 @@ namespace SD.IdentitySystem.AspNetCore.Authentication.Filters
                 }
             }
         }
-        #endregion
-
-
-        //Private
-
-        #region # Controller/Action是否有某特性标签 —— bool HasAttr<T>(ActionDescriptor...
-        /// <summary>
-        /// Controller/Action是否有某特性标签
-        /// </summary>
-        /// <typeparam name="T">特性类型</typeparam>
-        /// <param name="actionDescriptor">Action方法元数据</param>
-        /// <returns>是否拥有该特性</returns>
-        public bool HasAttr<T>(ActionDescriptor actionDescriptor) where T : Attribute
-        {
-            Type type = typeof(T);
-            if (actionDescriptor is ControllerActionDescriptor controllerActionDescriptor)
-            {
-                bool actionDefined = controllerActionDescriptor.MethodInfo.IsDefined(type, true);
-                if (actionDefined)
-                {
-                    return true;
-                }
-
-                bool controllerDefined = controllerActionDescriptor.ControllerTypeInfo.IsDefined(type, true);
-                if (controllerDefined)
-                {
-                    return true;
-                }
-            }
-            else
-            {
-                return false;
-            }
-
-            return false;
-        }
-        #endregion
     }
 }
