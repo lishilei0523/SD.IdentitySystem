@@ -28,6 +28,6 @@
     <PackageReference Include="SD.Toolkits.Grpc.Server" Version="1.2.0" />
     <PackageReference Include="SD.Toolkits.Grpc.Client" Version="1.1.0" />
     <PackageReference Include="SD.CacheManager" Version="2.2.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.7.7" />
+    <PackageReference Include="SD.Infrastructure" Version="3.8.1" />
   </ItemGroup>
 </Project>
