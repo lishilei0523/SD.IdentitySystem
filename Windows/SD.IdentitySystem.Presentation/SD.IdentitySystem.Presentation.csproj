@@ -3,7 +3,7 @@
     <TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
     <Authors>Lee</Authors>
     <Company>SD</Company>
-    <Copyright>Copyright © SD 2024</Copyright>
+    <Copyright>Copyright © SD 2025</Copyright>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.Equals('net48'))">
