@@ -33,18 +33,18 @@
 
   <ItemGroup>
     <PackageReference Include="System.Configuration.ConfigurationManager" Version="8.0.1" />
-    <PackageReference Include="CoreWCF.Primitives" Version="1.6.0" />
-    <PackageReference Include="CoreWCF.Http" Version="1.6.0" />
-    <PackageReference Include="CoreWCF.NetTcp" Version="1.6.0" />
-    <PackageReference Include="CoreWCF.ConfigurationManager" Version="1.6.0">
+    <PackageReference Include="CoreWCF.Primitives" Version="1.7.0" />
+    <PackageReference Include="CoreWCF.Http" Version="1.7.0" />
+    <PackageReference Include="CoreWCF.NetTcp" Version="1.7.0" />
+    <PackageReference Include="CoreWCF.ConfigurationManager" Version="1.7.0">
       <ExcludeAssets Condition="'$(Configuration)'=='Debug'">contentFiles</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.11">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.13">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="8.0.1" />
-    <PackageReference Include="MrAdvice" Version="2.16.0" />
+    <PackageReference Include="MrAdvice" Version="2.19.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.2.0" />
