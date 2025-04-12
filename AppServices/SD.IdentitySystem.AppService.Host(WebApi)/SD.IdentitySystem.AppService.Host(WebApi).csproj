@@ -13,11 +13,9 @@
     <FileVersion>4.6.2.0</FileVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.AppService.Host.xml</DocumentationFile>
+  <PropertyGroup>
+    <BaseOutputPath>bin\</BaseOutputPath>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">
@@ -46,7 +44,7 @@
     </PackageReference>
     <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="8.0.1" />
     <PackageReference Include="MrAdvice" Version="2.19.1" />
-    <PackageReference Include="Swashbuckle.AspNetCore" Version="7.3.1" />
+    <PackageReference Include="Swashbuckle.AspNetCore" Version="8.1.1" />
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.2.0" />
@@ -59,7 +57,7 @@
     <PackageReference Include="SD.AOP.Logger.SqlServer" Version="2.4.0" />
     <PackageReference Include="SD.CacheManager" Version="2.2.0" />
     <PackageReference Include="SD.CacheManager.Redis" Version="2.3.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.8.1" />
+    <PackageReference Include="SD.Infrastructure" Version="3.8.2" />
     <PackageReference Include="SD.Infrastructure.Global" Version="2.2.0" />
     <PackageReference Include="SD.Infrastructure.AOP" Version="2.4.1" />
     <PackageReference Include="SD.Infrastructure.AspNetCore.Server" Version="1.2.0" />

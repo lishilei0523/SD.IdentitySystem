@@ -9,7 +9,7 @@ namespace SD.IdentitySystem.SignalR.Authentication.Base
     /// <summary>
     /// 认证消息Hub基类
     /// </summary>
-    public abstract class AuthenticationHub<T> : MessageHub<T> where T : IMessage
+    public abstract class AuthenticationHub<T> : MessageHub<T> where T : TransientMessage
     {
         /// <summary>
         /// 交换消息

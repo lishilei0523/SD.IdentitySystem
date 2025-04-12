@@ -10,11 +10,9 @@
     <FileVersion>2.2.2.0</FileVersion>
   </PropertyGroup>
 
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Debug|AnyCPU'">
-    <DocumentationFile>bin\Debug\$(TargetFramework)\SD.IdentitySystem.Grpc.Authentication.xml</DocumentationFile>
-  </PropertyGroup>
-  <PropertyGroup Condition="'$(Configuration)|$(Platform)'=='Release|AnyCPU'">
-    <DocumentationFile>bin\Release\$(TargetFramework)\SD.IdentitySystem.Grpc.Authentication.xml</DocumentationFile>
+  <PropertyGroup>
+    <BaseOutputPath>bin\</BaseOutputPath>
+    <GenerateDocumentationFile>True</GenerateDocumentationFile>
   </PropertyGroup>
 
   <ItemGroup>
@@ -22,12 +20,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.Core.Api" Version="2.67.0" />
-    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.67.0" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.70.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.70.0" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.2.0" />
     <PackageReference Include="SD.Toolkits.Grpc.Server" Version="1.2.0" />
     <PackageReference Include="SD.Toolkits.Grpc.Client" Version="1.1.0" />
     <PackageReference Include="SD.CacheManager" Version="2.2.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.8.1" />
+    <PackageReference Include="SD.Infrastructure" Version="3.8.2" />
   </ItemGroup>
 </Project>

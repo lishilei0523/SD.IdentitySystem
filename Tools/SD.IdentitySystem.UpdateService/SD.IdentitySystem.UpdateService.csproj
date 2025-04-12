@@ -27,6 +27,6 @@
     <PackageReference Include="Serilog.AspNetCore" Version="8.0.3" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="SD.Toolkits.AspNet" Version="1.2.0" />
-    <PackageReference Include="SD.Infrastructure" Version="3.8.1" />
+    <PackageReference Include="SD.Infrastructure" Version="3.8.2" />
   </ItemGroup>
 </Project>
