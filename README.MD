@@ -32,12 +32,6 @@
     身份认证部分：
         ASP.NET Core、WCF、gRPC、SignalR、WPF、Avalonia、MAUI；
 
-    机器许可部分：
-        机器码生成、License发放、License许可等；
-
-    页面授权部分：
-        Angular、WPF、Avalonia、MAUI；
-
 #### 注意事项：
         请先修改服务端Host项目配置文件中连接字符串，然后运行，数据库会自动生成，服务端Repository项目也有数据库脚本
 
