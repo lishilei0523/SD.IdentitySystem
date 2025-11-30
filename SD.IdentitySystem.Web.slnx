@@ -1,0 +1,4 @@
+<Solution>
+  <Project Path="webs/SD.IdentitySystem.Client/SD.IdentitySystem.Client.csproj" />
+  <Project Path="webs/SD.IdentitySystem.Presentation/SD.IdentitySystem.Presentation.csproj" />
+</Solution>

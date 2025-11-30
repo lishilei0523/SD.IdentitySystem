@@ -1,0 +1,20 @@
+<Solution>
+  <Folder Name="/00 - Global/">
+    <File Path="Directory.Build.props" />
+  </Folder>
+  <Folder Name="/01 - Hosts/">
+    <Project Path="services/SD.IdentitySystem.AppService.Host(gRPC)/SD.IdentitySystem.AppService.Host(gRPC).csproj" />
+    <Project Path="services/SD.IdentitySystem.AppService.Host(WCF)/SD.IdentitySystem.AppService.Host(WCF).csproj" />
+    <Project Path="services/SD.IdentitySystem.AppService.Host(WebApi)/SD.IdentitySystem.AppService.Host(WebApi).csproj" />
+  </Folder>
+  <Folder Name="/02 - 应用程序服务/">
+    <Project Path="services/SD.IdentitySystem.AppService/SD.IdentitySystem.AppService.csproj" />
+    <Project Path="services/SD.IdentitySystem.IAppService/SD.IdentitySystem.IAppService.csproj" />
+  </Folder>
+  <Folder Name="/03 - 领域核心/">
+    <Project Path="services/SD.IdentitySystem.Domain/SD.IdentitySystem.Domain.csproj" />
+  </Folder>
+  <Folder Name="/04 - 仓储实现/">
+    <Project Path="services/SD.IdentitySystem.Repository/SD.IdentitySystem.Repository.csproj" />
+  </Folder>
+</Solution>
