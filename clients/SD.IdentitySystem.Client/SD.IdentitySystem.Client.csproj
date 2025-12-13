@@ -2,15 +2,14 @@
   <PropertyGroup>
     <TargetFrameworks>net48;net8.0-windows</TargetFrameworks>
     <OutputType>WinExe</OutputType>
-    <UseWPF>true</UseWPF>
+    <UseWPF>True</UseWPF>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
-    <Version>4.6.3</Version>
   </PropertyGroup>
 
   <PropertyGroup>
     <PlatformTarget>AnyCPU</PlatformTarget>
-    <DebugType>full</DebugType>
-    <DebugSymbols>true</DebugSymbols>
+    <DebugType>Full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
   </PropertyGroup>
 
   <ItemGroup>

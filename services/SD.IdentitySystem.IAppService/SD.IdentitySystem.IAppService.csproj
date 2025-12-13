@@ -1,8 +1,12 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net462;net8.0</TargetFrameworks>
-    <Version>4.6.3</Version>
     <Description>SD.IdentitySystem 身份认证系统服务接口</Description>
+  </PropertyGroup>
+
+  <!--NuGet-->
+  <PropertyGroup>
+    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <ItemGroup Condition="$(TargetFramework.Equals('net462'))">

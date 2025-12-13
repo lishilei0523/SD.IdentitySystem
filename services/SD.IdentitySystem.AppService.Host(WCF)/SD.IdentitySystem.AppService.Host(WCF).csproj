@@ -4,7 +4,6 @@
     <AssemblyName>SD.IdentitySystem.AppService.Host</AssemblyName>
     <RootNamespace>SD.IdentitySystem.AppService.Host</RootNamespace>
     <ApplicationIcon>favicon.ico</ApplicationIcon>
-    <Version>4.6.3</Version>
   </PropertyGroup>
 
   <PropertyGroup Condition="$([MSBuild]::IsOSPlatform('Windows'))">

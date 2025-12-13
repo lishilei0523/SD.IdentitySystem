@@ -1,6 +1,7 @@
 <Solution>
   <Folder Name="/00 - Global/">
     <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
   </Folder>
   <Folder Name="/01 - Hosts/">
     <Project Path="services/SD.IdentitySystem.AppService.Host(gRPC)/SD.IdentitySystem.AppService.Host(gRPC).csproj" />
