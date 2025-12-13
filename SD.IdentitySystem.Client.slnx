@@ -1,4 +1,8 @@
 <Solution>
+  <Folder Name="/00 - Global/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+  </Folder>
   <Project Path="clients/SD.IdentitySystem.Client/SD.IdentitySystem.Client.csproj" />
   <Project Path="clients/SD.IdentitySystem.Presentation/SD.IdentitySystem.Presentation.csproj" />
 </Solution>

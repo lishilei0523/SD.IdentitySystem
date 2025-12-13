@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFrameworks>net462;net8.0</TargetFrameworks>
+    <TargetFrameworks>net462;net8.0;net10.0</TargetFrameworks>
     <Description>SD.IdentitySystem 身份认证系统服务接口</Description>
   </PropertyGroup>
 
@@ -17,7 +17,11 @@
     <PackageReference Include="System.ServiceModel.Primitives" Version="8.1.2" />
   </ItemGroup>
 
+  <ItemGroup Condition="$(TargetFramework.Equals('net10.0'))">
+    <PackageReference Include="System.ServiceModel.Primitives" Version="10.0.652802" />
+  </ItemGroup>
+
   <ItemGroup>
-    <PackageReference Include="SD.Infrastructure" Version="3.8.3" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.0" />
   </ItemGroup>
 </Project>
