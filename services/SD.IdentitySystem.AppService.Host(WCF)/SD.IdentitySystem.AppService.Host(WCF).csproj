@@ -25,37 +25,37 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.1" />
+    <PackageReference Include="System.Configuration.ConfigurationManager" Version="10.0.5" />
     <PackageReference Include="CoreWCF.Primitives" Version="1.8.0" />
     <PackageReference Include="CoreWCF.Http" Version="1.8.0" />
     <PackageReference Include="CoreWCF.NetTcp" Version="1.8.0" />
     <PackageReference Include="CoreWCF.ConfigurationManager" Version="1.8.0">
       <ExcludeAssets Condition="'$(Configuration)'=='Debug'">contentFiles</ExcludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.1">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="10.0.5">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="10.0.1" />
-    <PackageReference Include="MrAdvice" Version="2.19.1" />
+    <PackageReference Include="Microsoft.Extensions.Hosting.Systemd" Version="10.0.5" />
+    <PackageReference Include="MrAdvice" Version="2.20.5" />
     <PackageReference Include="Serilog.AspNetCore" Version="10.0.0" Condition="'$(Configuration)'=='Release'" />
     <PackageReference Include="Serilog.Sinks.Async" Version="2.1.0" Condition="'$(Configuration)'=='Release'" />
-    <PackageReference Include="SD.Toolkits.AspNet" Version="4.0.0" />
-    <PackageReference Include="SD.Toolkits.AspNetCore" Version="4.0.0" />
-    <PackageReference Include="SD.Toolkits.Redis" Version="4.0.0" />
-    <PackageReference Include="SD.IOC.Core" Version="3.0.0" />
-    <PackageReference Include="SD.IOC.Extension.NetCore" Version="3.0.0" />
-    <PackageReference Include="SD.IOC.Integration.WCF" Version="3.0.0" />
-    <PackageReference Include="SD.AOP.Core" Version="3.0.0" />
-    <PackageReference Include="SD.AOP.Logger.SqlServer" Version="3.0.0" />
-    <PackageReference Include="SD.CacheManager" Version="3.0.0" />
-    <PackageReference Include="SD.CacheManager.Redis" Version="3.0.0" />
-    <PackageReference Include="SD.Infrastructure" Version="4.0.0" />
-    <PackageReference Include="SD.Infrastructure.AOP" Version="4.0.0" />
-    <PackageReference Include="SD.Infrastructure.WCF.Server" Version="4.0.0" />
-    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.3.1" />
-    <PackageReference Include="SD.IdentitySystem.Membership.WCF" Version="2.2.4" />
-    <PackageReference Include="SD.IdentitySystem.WCF.Authentication" Version="2.2.4" />
+    <PackageReference Include="SD.Toolkits.AspNet" Version="4.0.1" />
+    <PackageReference Include="SD.Toolkits.AspNetCore" Version="4.0.1" />
+    <PackageReference Include="SD.Toolkits.Redis" Version="4.0.1" />
+    <PackageReference Include="SD.IOC.Core" Version="3.0.1" />
+    <PackageReference Include="SD.IOC.Extension.NetCore" Version="3.0.1" />
+    <PackageReference Include="SD.IOC.Integration.WCF" Version="3.0.1" />
+    <PackageReference Include="SD.AOP.Core" Version="3.0.1" />
+    <PackageReference Include="SD.AOP.Logger.SqlServer" Version="3.0.1" />
+    <PackageReference Include="SD.CacheManager" Version="3.0.1" />
+    <PackageReference Include="SD.CacheManager.Redis" Version="3.0.1" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="4.0.1" />
+    <PackageReference Include="SD.Infrastructure.WCF.Server" Version="4.0.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership" Version="4.7.1" />
+    <PackageReference Include="SD.IdentitySystem.Membership.WCF" Version="4.7.1" />
+    <PackageReference Include="SD.IdentitySystem.WCF.Authentication" Version="4.7.1" />
   </ItemGroup>
 
   <ItemGroup>
