@@ -1,0 +1,18 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+    <IsPackable>False</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Equals('net462'))">
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Equals('netstandard2.0'))">
+    <PackageReference Include="System.ServiceModel.Primitives" Version="4.10.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+  </ItemGroup>
+</Project>

@@ -1,0 +1,17 @@
+<Solution>
+  <Folder Name="/00 - Global/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+  </Folder>
+  <Folder Name="/01 - 初始化工具/">
+    <Project Path="toolkits/SD.IdentitySystem.DataImporter/SD.IdentitySystem.DataImporter.csproj" />
+  </Folder>
+  <Folder Name="/02 - 许可证工具/">
+    <Project Path="toolkits/SD.IdentitySystem.LicenseManager/SD.IdentitySystem.LicenseManager.csproj" />
+    <Project Path="toolkits/SD.IdentitySystem.LicenseWriter/SD.IdentitySystem.LicenseWriter.csproj" />
+    <Project Path="toolkits/SD.IdentitySystem.UniqueCode/SD.IdentitySystem.UniqueCode.csproj" />
+  </Folder>
+  <Folder Name="/03 - 自动更新服务/">
+    <Project Path="toolkits/SD.IdentitySystem.UpdateService/SD.IdentitySystem.UpdateService.csproj" />
+  </Folder>
+</Solution>

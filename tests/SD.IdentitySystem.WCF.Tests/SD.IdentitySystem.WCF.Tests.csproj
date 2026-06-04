@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net462</TargetFramework>
+    <OutputType>Exe</OutputType>
+    <IsPackable>False</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Common" Version="4.0.1" />
+    <PackageReference Include="SD.Toolkits.Redis" Version="4.0.1" />
+    <PackageReference Include="SD.IOC.Core" Version="3.0.1" />
+    <PackageReference Include="SD.IOC.Extension.NetFramework" Version="3.0.1" />
+    <PackageReference Include="SD.CacheManager" Version="3.0.1" />
+    <PackageReference Include="SD.CacheManager.Redis" Version="3.0.1" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.3" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.StubWCF.Client\SD.IdentitySystem.StubWCF.Client.csproj" />
+    <ProjectReference Include="..\SD.IdentitySystem.StubWCF.IAppService\SD.IdentitySystem.StubWCF.IAppService.csproj" />
+    <ProjectReference Include="..\..\extensions\SD.IdentitySystem.WCF.Authentication.Common\SD.IdentitySystem.WCF.Authentication.Common.csproj" />
+  </ItemGroup>
+</Project>

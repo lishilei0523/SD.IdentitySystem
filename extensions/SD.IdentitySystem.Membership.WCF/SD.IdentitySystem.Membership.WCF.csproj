@@ -1,0 +1,23 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+    <Description>SD.IdentitySystem 用户信息组件 - WCF提供者</Description>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Equals('net462'))">
+    <Reference Include="System.ServiceModel" />
+  </ItemGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Equals('netstandard2.0'))">
+    <PackageReference Include="CoreWCF.Primitives" Version="1.8.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.CacheManager" Version="3.0.1" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj" />
+  </ItemGroup>
+</Project>

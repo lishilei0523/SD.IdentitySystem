@@ -1,0 +1,24 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <TargetFramework>net35</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <IsPackable>False</IsPackable>
+    <UseWindowsForms>True</UseWindowsForms>
+    <ApplicationIcon>favicon.ico</ApplicationIcon>
+    <Description>SD.IdentitySystem 唯一码生成工具</Description>
+  </PropertyGroup>
+
+  <PropertyGroup>
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>Full</DebugType>
+    <DebugSymbols>True</DebugSymbols>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="favicon.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.LicenseManager\SD.IdentitySystem.LicenseManager.csproj" />
+  </ItemGroup>
+</Project>

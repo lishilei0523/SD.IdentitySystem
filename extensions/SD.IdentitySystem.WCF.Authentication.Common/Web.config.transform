@@ -1,0 +1,10 @@
+﻿<configuration>
+  <system.serviceModel>
+    <extensions>
+      <behaviorExtensions>
+        <!--WCF/通用客户端身份认证扩展配置-->
+        <add name="commonAuthentication" type="SD.IdentitySystem.WCF.Authentication.Common.AuthenticationBehaviorElement, SD.IdentitySystem.WCF.Authentication.Common" />
+      </behaviorExtensions>
+    </extensions>
+  </system.serviceModel>
+</configuration>

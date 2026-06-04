@@ -1,0 +1,32 @@
+<Solution>
+  <Folder Name="/00 - Global/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+  </Folder>
+  <Folder Name="/01 - 身份认证扩展 - WCF/">
+    <Project Path="extensions/SD.IdentitySystem.WCF.Authentication.AspNetCore/SD.IdentitySystem.WCF.Authentication.AspNetCore.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.WCF.Authentication.Common/SD.IdentitySystem.WCF.Authentication.Common.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.WCF.Authentication/SD.IdentitySystem.WCF.Authentication.csproj" />
+  </Folder>
+  <Folder Name="/02 - 身份认证扩展 - gRPC/">
+    <Project Path="extensions/SD.IdentitySystem.Grpc.Authentication.AspNetCore/SD.IdentitySystem.Grpc.Authentication.AspNetCore.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Grpc.Authentication.Common/SD.IdentitySystem.Grpc.Authentication.Common.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Grpc.Authentication/SD.IdentitySystem.Grpc.Authentication.csproj" />
+  </Folder>
+  <Folder Name="/03 - 身份认证扩展 - ASP.NET Core/">
+    <Project Path="extensions/SD.IdentitySystem.AspNetCore.Authentication/SD.IdentitySystem.AspNetCore.Authentication.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.SignalR.Authentication/SD.IdentitySystem.SignalR.Authentication.csproj" />
+  </Folder>
+  <Folder Name="/04 - 授权扩展/">
+    <Project Path="extensions/SD.IdentitySystem.Authorization.Avalonia/SD.IdentitySystem.Authorization.Avalonia.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Authorization.Maui/SD.IdentitySystem.Authorization.Maui.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Authorization.WPF/SD.IdentitySystem.Authorization.WPF.csproj" />
+  </Folder>
+  <Folder Name="/05 - 用户信息扩展/">
+    <Project Path="extensions/SD.IdentitySystem.Membership.AspNetCore/SD.IdentitySystem.Membership.AspNetCore.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Membership.Common/SD.IdentitySystem.Membership.Common.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Membership.Grpc/SD.IdentitySystem.Membership.Grpc.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Membership.WCF/SD.IdentitySystem.Membership.WCF.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Membership/SD.IdentitySystem.Membership.csproj" />
+  </Folder>
+</Solution>

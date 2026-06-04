@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+    <Description>SD.IdentitySystem 用户信息组件 - 通用提供者</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj" />
+  </ItemGroup>
+</Project>

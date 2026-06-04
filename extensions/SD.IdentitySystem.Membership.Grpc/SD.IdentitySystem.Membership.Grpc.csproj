@@ -1,0 +1,16 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <Description>SD.IdentitySystem 用户信息组件 - gRPC提供者</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Toolkits.Grpc.Server" Version="4.0.1" />
+    <PackageReference Include="SD.CacheManager" Version="3.0.1" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj" />
+  </ItemGroup>
+</Project>

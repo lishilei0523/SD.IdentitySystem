@@ -1,0 +1,11 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net462;netstandard2.0</TargetFrameworks>
+    <Description>SD.IdentitySystem gRPC身份认证组件 - 通用客户端</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Toolkits.Grpc.Client" Version="4.0.1" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+  </ItemGroup>
+</Project>

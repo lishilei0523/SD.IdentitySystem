@@ -1,0 +1,15 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net462;net8.0-windows;net10.0-windows</TargetFrameworks>
+    <UseWPF>True</UseWPF>
+    <Description>SD.IdentitySystem 授权组件 - WPF</Description>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj" />
+  </ItemGroup>
+</Project>

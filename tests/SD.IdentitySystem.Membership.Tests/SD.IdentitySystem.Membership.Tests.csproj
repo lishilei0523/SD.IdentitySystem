@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFrameworks>net462;net10.0</TargetFrameworks>
+    <IsPackable>False</IsPackable>
+  </PropertyGroup>
+
+  <ItemGroup Condition="$(TargetFramework.Equals('net10.0'))">
+    <EmbeddedResource Include="App.config" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Microsoft.NET.Test.Sdk" Version="18.3.0" />
+    <PackageReference Include="MSTest.TestAdapter" Version="4.1.0" />
+    <PackageReference Include="MSTest.TestFramework" Version="4.1.0" />
+    <PackageReference Include="coverlet.collector" Version="8.0.1">
+      <PrivateAssets>all</PrivateAssets>
+      <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
+    </PackageReference>
+    <PackageReference Include="SD.Common" Version="4.0.1" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\extensions\SD.IdentitySystem.Membership\SD.IdentitySystem.Membership.csproj" />
+    <ProjectReference Include="..\..\extensions\SD.IdentitySystem.Membership.WCF\SD.IdentitySystem.Membership.WCF.csproj" />
+    <ProjectReference Include="..\..\extensions\SD.IdentitySystem.Membership.Common\SD.IdentitySystem.Membership.Common.csproj" />
+  </ItemGroup>
+</Project>

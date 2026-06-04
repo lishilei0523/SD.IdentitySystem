@@ -1,0 +1,32 @@
+<Solution>
+  <Folder Name="/00 - Global/">
+    <File Path="Directory.Build.props" />
+    <File Path="Directory.Build.targets" />
+  </Folder>
+  <Folder Name="/01 - 身份认证测试/">
+    <Project Path="tests/SD.IdentitySystem.AspNetCore.Tests/SD.IdentitySystem.AspNetCore.Tests.csproj" />
+    <Project Path="tests/SD.IdentitySystem.WCF.Tests/SD.IdentitySystem.WCF.Tests.csproj" />
+    <Project Path="tests/SD.IdentitySystem.Windows.Tests/SD.IdentitySystem.Windows.Tests.csproj" />
+  </Folder>
+  <Folder Name="/02 - Membership 测试/">
+    <Project Path="tests/SD.IdentitySystem.Membership.Tests/SD.IdentitySystem.Membership.Tests.csproj" />
+  </Folder>
+  <Folder Name="/03 - 许可证测试/">
+    <Project Path="tests/SD.IdentitySystem.LicenseManager.Tests/SD.IdentitySystem.LicenseManager.Tests.csproj" />
+    <Project Path="toolkits/SD.IdentitySystem.LicenseManager/SD.IdentitySystem.LicenseManager.csproj" />
+  </Folder>
+  <Folder Name="/04 - Stubs/">
+    <Project Path="tests/SD.IdentitySystem.StubWCF.Client/SD.IdentitySystem.StubWCF.Client.csproj" />
+    <Project Path="tests/SD.IdentitySystem.StubWCF.IAppService/SD.IdentitySystem.StubWCF.IAppService.csproj" />
+    <Project Path="tests/SD.IdentitySystem.StubWCF.Server/SD.IdentitySystem.StubWCF.Server.csproj" />
+  </Folder>
+  <Folder Name="/05 - Extensions/">
+    <Project Path="extensions/SD.IdentitySystem.Membership.AspNetCore/SD.IdentitySystem.Membership.AspNetCore.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Membership.Common/SD.IdentitySystem.Membership.Common.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Membership.WCF/SD.IdentitySystem.Membership.WCF.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.Membership/SD.IdentitySystem.Membership.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.WCF.Authentication.AspNetCore/SD.IdentitySystem.WCF.Authentication.AspNetCore.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.WCF.Authentication.Common/SD.IdentitySystem.WCF.Authentication.Common.csproj" />
+    <Project Path="extensions/SD.IdentitySystem.WCF.Authentication/SD.IdentitySystem.WCF.Authentication.csproj" />
+  </Folder>
+</Solution>
