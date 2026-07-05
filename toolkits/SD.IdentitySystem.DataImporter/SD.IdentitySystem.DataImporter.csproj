@@ -38,7 +38,7 @@
     <PackageReference Include="SD.Infrastructure" Version="4.0.2" />
     <PackageReference Include="SD.Infrastructure.WPF" Version="4.0.2" />
     <PackageReference Include="SD.Infrastructure.WPF.Caliburn" Version="4.0.2" />
-    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.7.1" />
-    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Common" Version="4.7.1" />
+    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.7.2" />
+    <PackageReference Include="SD.IdentitySystem.WCF.Authentication.Common" Version="4.7.2" />
   </ItemGroup>
 </Project>

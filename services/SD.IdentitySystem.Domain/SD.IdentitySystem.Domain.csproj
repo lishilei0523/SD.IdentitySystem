@@ -5,9 +5,9 @@
 
   <ItemGroup>
     <PackageReference Include="MrAdvice" Version="2.20.5" />
-    <PackageReference Include="SD.Common" Version="4.0.1" />
-    <PackageReference Include="SD.Toolkits.Recursion" Version="4.0.1" />
-    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
-    <PackageReference Include="SD.Infrastructure.AOP" Version="4.0.1" />
+    <PackageReference Include="SD.Common" Version="4.0.2" />
+    <PackageReference Include="SD.Toolkits.Recursion" Version="4.0.2" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.2" />
+    <PackageReference Include="SD.Infrastructure.AOP" Version="4.0.2" />
   </ItemGroup>
 </Project>
