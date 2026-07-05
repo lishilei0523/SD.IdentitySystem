@@ -30,6 +30,7 @@
       <ExcludeAssets>contentFiles</ExcludeAssets>
     </PackageReference>
     <PackageReference Include="FluentWPF" Version="0.10.2" />
+    <PackageReference Include="SkiaSharp" Version="3.119.4" />
     <PackageReference Include="MrAdvice" Version="2.20.5" />
     <PackageReference Include="SD.Common" Version="4.0.2" />
     <PackageReference Include="SD.Toolkits.Json" Version="4.0.2" />

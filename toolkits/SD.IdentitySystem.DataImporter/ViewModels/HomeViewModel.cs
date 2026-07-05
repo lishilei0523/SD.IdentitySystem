@@ -58,11 +58,11 @@ namespace SD.IdentitySystem.DataImporter.ViewModels
 
         //Initializations
 
-        #region 初始化 —— override async void OnDeactivateAsync(bool close, CancellationToken cancellationToken)
+        #region 初始化 —— override async void OnActivatedAsync(CancellationToken cancellationToken)
         /// <summary>
         /// 初始化
         /// </summary>
-        protected override async Task OnDeactivateAsync(bool close, CancellationToken cancellationToken)
+        protected override async Task OnActivatedAsync(CancellationToken cancellationToken)
         {
             string loginId = CommonConstants.AdminLoginId;
             string password = CommonConstants.InitialPassword;
