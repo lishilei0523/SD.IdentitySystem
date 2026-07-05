@@ -8,7 +8,7 @@
 
   <!--Version-->
   <PropertyGroup>
-    <Version>4.7.1</Version>
+    <Version>4.7.2</Version>
     <Authors>Lee</Authors>
     <Company>SD</Company>
     <Copyright>Copyright © SD $([System.DateTime]::Now.ToString(yyyy))</Copyright>
@@ -18,6 +18,7 @@
   <PropertyGroup>
     <PackageIcon>Icon.png</PackageIcon>
     <PackageOutputPath>$(SolutionDir)\packages</PackageOutputPath>
+    <GeneratePackageOnBuild Condition="'$(Configuration)'=='Release'">True</GeneratePackageOnBuild>
   </PropertyGroup>
 
   <!--NuGet-->

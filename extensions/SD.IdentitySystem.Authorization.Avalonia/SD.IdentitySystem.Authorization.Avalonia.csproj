@@ -5,8 +5,8 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Avalonia" Version="11.3.12" />
-    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+    <PackageReference Include="Avalonia" Version="11.3.18" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.2" />
   </ItemGroup>
 
   <ItemGroup>

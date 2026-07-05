@@ -4,18 +4,18 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Common" Version="4.0.1" />
-    <PackageReference Include="SD.Toolkits.AspNet" Version="4.0.1" />
-    <PackageReference Include="SD.Toolkits.AspNetCore" Version="4.0.1" />
-    <PackageReference Include="SD.Toolkits.Json" Version="4.0.1" />
-    <PackageReference Include="SD.Toolkits.Redis" Version="4.0.1" />
-    <PackageReference Include="SD.IOC.Core" Version="3.0.1" />
-    <PackageReference Include="SD.IOC.Extension.NetCore" Version="3.0.1" />
-    <PackageReference Include="SD.IOC.Extension.ServiceModel.Client" Version="3.0.1" />
-    <PackageReference Include="SD.CacheManager" Version="3.0.1" />
-    <PackageReference Include="SD.CacheManager.Redis" Version="3.0.1" />
-    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
-    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.6.3" />
+    <PackageReference Include="SD.Common" Version="4.0.2" />
+    <PackageReference Include="SD.Toolkits.AspNet" Version="4.0.2" />
+    <PackageReference Include="SD.Toolkits.AspNetCore" Version="4.0.2" />
+    <PackageReference Include="SD.Toolkits.Json" Version="4.0.2" />
+    <PackageReference Include="SD.Toolkits.Redis" Version="4.0.3" />
+    <PackageReference Include="SD.IOC.Core" Version="3.0.2" />
+    <PackageReference Include="SD.IOC.Extension.NetCore" Version="3.0.2" />
+    <PackageReference Include="SD.IOC.Extension.ServiceModel.Client" Version="3.0.2" />
+    <PackageReference Include="SD.CacheManager" Version="3.0.2" />
+    <PackageReference Include="SD.CacheManager.Redis" Version="3.0.2" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.2" />
+    <PackageReference Include="SD.IdentitySystem.IAppService" Version="4.7.1" />
   </ItemGroup>
 
   <ItemGroup>

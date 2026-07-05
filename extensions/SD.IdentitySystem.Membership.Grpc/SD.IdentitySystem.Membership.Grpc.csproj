@@ -5,9 +5,9 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="SD.Toolkits.Grpc.Server" Version="4.0.1" />
-    <PackageReference Include="SD.CacheManager" Version="3.0.1" />
-    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+    <PackageReference Include="SD.Toolkits.Grpc.Server" Version="4.0.2" />
+    <PackageReference Include="SD.CacheManager" Version="3.0.2" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.2" />
   </ItemGroup>
 
   <ItemGroup>

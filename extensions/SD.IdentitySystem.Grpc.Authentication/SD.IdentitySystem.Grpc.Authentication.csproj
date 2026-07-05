@@ -9,12 +9,12 @@
   </ItemGroup>
 
   <ItemGroup>
-    <PackageReference Include="Grpc.Core.Api" Version="2.76.0" />
-    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.76.0" />
-    <PackageReference Include="SD.Toolkits.AspNet" Version="4.0.1" />
-    <PackageReference Include="SD.Toolkits.Grpc.Server" Version="4.0.1" />
-    <PackageReference Include="SD.Toolkits.Grpc.Client" Version="4.0.1" />
-    <PackageReference Include="SD.CacheManager" Version="3.0.1" />
-    <PackageReference Include="SD.Infrastructure" Version="4.0.1" />
+    <PackageReference Include="Grpc.Core.Api" Version="2.80.0" />
+    <PackageReference Include="Grpc.AspNetCore.Server" Version="2.80.0" />
+    <PackageReference Include="SD.Toolkits.AspNet" Version="4.0.2" />
+    <PackageReference Include="SD.Toolkits.Grpc.Server" Version="4.0.2" />
+    <PackageReference Include="SD.Toolkits.Grpc.Client" Version="4.0.2" />
+    <PackageReference Include="SD.CacheManager" Version="3.0.2" />
+    <PackageReference Include="SD.Infrastructure" Version="4.0.2" />
   </ItemGroup>
 </Project>
